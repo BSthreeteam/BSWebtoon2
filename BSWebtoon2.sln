@@ -5,6 +5,10 @@ VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BSWebtoon.Front", "BSWebtoon.Front\BSWebtoon.Front.csproj", "{F2072451-6C88-4B29-96CB-80EF51C4D6CC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BSWebtoon.Admin", "BSWebtoon.Admin\BSWebtoon.Admin.csproj", "{D73D0AD4-8365-49F8-A406-2681869270C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BSWebtoon.Model", "BSWebtoon.Model\BSWebtoon.Model.csproj", "{31BC7AA6-5B5F-4C96-9318-933D1C878C8C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{F2072451-6C88-4B29-96CB-80EF51C4D6CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2072451-6C88-4B29-96CB-80EF51C4D6CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2072451-6C88-4B29-96CB-80EF51C4D6CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D73D0AD4-8365-49F8-A406-2681869270C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D73D0AD4-8365-49F8-A406-2681869270C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D73D0AD4-8365-49F8-A406-2681869270C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D73D0AD4-8365-49F8-A406-2681869270C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31BC7AA6-5B5F-4C96-9318-933D1C878C8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31BC7AA6-5B5F-4C96-9318-933D1C878C8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31BC7AA6-5B5F-4C96-9318-933D1C878C8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31BC7AA6-5B5F-4C96-9318-933D1C878C8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
