@@ -9,39 +9,42 @@ namespace BSWebtoon.Model.Models
     {
         public Comic()
         {
-            ComicPics = new HashSet<ComicPic>();
-            Comments = new HashSet<Comment>();
-            CouponStocks = new HashSet<CouponStock>();
-            Epsiodes = new HashSet<Epsiode>();
-            GetTicketMethods = new HashSet<GetTicketMethod>();
+            ClickRecords = new HashSet<ClickRecord>();
+            Coupons = new HashSet<Coupon>();
+            Episodes = new HashSet<Episode>();
+            Favorites = new HashSet<Favorite>();
+            Ranks = new HashSet<Rank>();
         }
 
         public int ComicId { get; set; }
         public string ComicName { get; set; }
-        public string NamePic { get; set; }
-        public string BgPic { get; set; }
-        public string PeoplePic { get; set; }
-        public string Bgc { get; set; }
+        public string ComicNameImage { get; set; }
+        public string BgCover { get; set; }
+        public string ComicFigure { get; set; }
+        public string BgColor { get; set; }
         public DateTime PublishDate { get; set; }
-        public int UpdateWeek { get; set; }
+        public DateTime LastPublishDate { get; set; }
+        public DateTime? FinallyPublishDate { get; set; }
+        public int? UpdateWeek { get; set; }
         public string Publisher { get; set; }
+        public string Painter { get; set; }
+        public string Author { get; set; }
         public string Introduction { get; set; }
-        public int? ComicStatusId { get; set; }
-        public string TitleVideoWeb { get; set; }
-        public string TitleVideoMp4 { get; set; }
+        public string BannerVideoWeb { get; set; }
+        public string BannerVideoMp4 { get; set; }
         public string ComicVideoWeb { get; set; }
         public string ComicVideoMp4 { get; set; }
-        public string Author { get; set; }
-        public int AuditTypeId { get; set; }
-        public int? Rank { get; set; }
-        public string FailureCheckReason { get; set; }
+        public int AuditType { get; set; }
+        public int AuditEmployeeId { get; set; }
+        public string AuditFailReason { get; set; }
+        public DateTime? AuditTime { get; set; }
+        public int ComicStatus { get; set; }
 
-        public virtual AuditType AuditType { get; set; }
-        public virtual ComicStatus ComicStatus { get; set; }
-        public virtual ICollection<ComicPic> ComicPics { get; set; }
-        public virtual ICollection<Comment> Comments { get; set; }
-        public virtual ICollection<CouponStock> CouponStocks { get; set; }
-        public virtual ICollection<Epsiode> Epsiodes { get; set; }
-        public virtual ICollection<GetTicketMethod> GetTicketMethods { get; set; }
+        public virtual Employee AuditEmployee { get; set; }
+        public virtual ICollection<ClickRecord> ClickRecords { get; set; }
+        public virtual ICollection<Coupon> Coupons { get; set; }
+        public virtual ICollection<Episode> Episodes { get; set; }
+        public virtual ICollection<Favorite> Favorites { get; set; }
+        public virtual ICollection<Rank> Ranks { get; set; }
     }
 }

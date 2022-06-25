@@ -13,7 +13,7 @@ namespace BSWebtoon.Model.Models
         }
 
         public int LoginTypeId { get; set; }
-        public string Name { get; set; }
+        public string LoginTypeName { get; set; }
 
         public virtual ICollection<Member> Members { get; set; }
     }

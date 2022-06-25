@@ -13,8 +13,10 @@ namespace BSWebtoon.Model.Models
         }
 
         public int CashPlanId { get; set; }
-        public string CashPlanName { get; set; }
+        public string CashPlanContent { get; set; }
         public decimal Price { get; set; }
+        public int Sort { get; set; }
+        public bool IsEnable { get; set; }
 
         public virtual ICollection<RechargeRecord> RechargeRecords { get; set; }
     }

@@ -5,16 +5,17 @@ using System.Collections.Generic;
 
 namespace BSWebtoon.Model.Models
 {
-    public partial class PayMethod
+    public partial class Payment
     {
-        public PayMethod()
+        public Payment()
         {
             RechargeRecords = new HashSet<RechargeRecord>();
         }
 
-        public int PayMethodId { get; set; }
-        public string PayMethodName { get; set; }
-        public bool PayMethodtype { get; set; }
+        public int PaymentId { get; set; }
+        public string PaymentName { get; set; }
+        public bool IsEnable { get; set; }
+        public int Sort { get; set; }
 
         public virtual ICollection<RechargeRecord> RechargeRecords { get; set; }
     }
