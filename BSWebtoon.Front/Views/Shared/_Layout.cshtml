@@ -4,36 +4,272 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - BSWebtoon.Front</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap-5.1.3-dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/style/style.css" />
+    @await RenderSectionAsync("topCss", required: false)
+    @await RenderSectionAsync("topJs", required: false)
+   
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BSWebtoon.Front</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+    @RenderBody()
+    <div class="container-fluid top-nav">
+        <div class="row w-1200">
+            <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+                <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-2">
+                        <form class="d-flex">
+                            <input class="form-control me-2 bg-transparent inputSearchBorder" type="search"
+                                placeholder="Search" aria-label="Search">
+                            <a class="nav-link" aria-current="page" href="#"><i
+                                    class="fa-solid fa-magnifying-glass"></i></a>
+                        </form>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link" href="#"><i class="fa-solid fa-bell"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a id="login" class="nav-link active" aria-current="page" href="#">登入</a>
+                        </li>
+                        <li class="nav-item dropdown" id="user">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="./Pics/people.png" alt="登入者"
+                                    class="border border-dark rounded-circle user-icon">
+                                UserName
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item bg-light xl_accountinfo" href="#">我的帳戶</a></li>
+                                <li><a class="dropdown-item bg-light xl_my_comic" href="#">我的漫畫</a></li>
+                                <li><a class="dropdown-item bg-light xl_my_love" href="./My_love/My_love.html">我的最愛</a></li>
+                                <li><a class="dropdown-item bg-light xl_my_coin" href="#">金幣/閱讀券明細</a></li>
+                                <li><a class="dropdown-item bg-light xl_stored_value" href="./Jie/stored.html">儲值金幣</a></li>
+                                <li><a class="dropdown-item bg-light xl_history" href="#">瀏覽紀錄</a></li>
+                                <li><a class="dropdown-item bg-light xl_my_set" href="./Jie/setting.html">我的設定</a></li>
+                                <li><a class="dropdown-item bg-light xl_customer_service" href="#">客服中心</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a id="logout" class="dropdown-item bg-light" href="#">登出</a></li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+            </nav>
+        </div>
     </div>
+    <div class="container-fluid  position-fixed  start-0 end-0 main-nav">
+        <div class="row w-1200">
+            <nav class="navbar navbar-dark bg-dark">
+                <ul class="nav d-flex justify-content-between w-100">
+                    <li class="nav-item">
+                        <a class="nav-link text-secondary" href="#">禮物盒</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#">KAKAO WEBTOON</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-secondary nav-week" href="./try2/try2.html">星期列表</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-secondary" href="./Rank/Rank.html">排行榜</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container-fluid  position-fixed  start-0 end-0 sub-nav">
+        <div class="row w-1200">
+            <nav class="navbar navbar-dark bg-dark">
+                <ul class="nav d-flex justify-content-center w-100 sub-nav-ul">
+                    <template id="sub-nav">
+                        <li class="nav-item mx-1">
+                            <a class="nav-link text-white" href="#">{推薦}</a>
+                        </li>
+                    </template>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container-fluid main-body">
+    </div>
+    <div class="row flex-grow-1 xl_user m-auto">
+    </div>
+
+    <template id="body-recommend">
+        <div class="row w-1000 overflow-hidden">
+            <a class="work_a" href="#">
+                <div class="card bg-dark text-white position-relative p-0 ">
+                    <div class="card-img-overlay recommend-text col-8">
+                        <div class="rotate">
+                            <span class="card-text" id="tag">新作上架</span>
+                            <h5 class="card-title fw-bold mt-2">重生使用說明書</h5>
+                            <p class="card-text ">超爛數值配上特殊特性為了在殘酷的世界存活只好發揮所長寄生強人</p>
+                        </div>
+                    </div>
+                    <div class="rectangle"></div>
+                    <div class="recommend-bg position-relative col-10 ms-auto">
+                        <img src="https://tw-a.kakaopagecdn.com/P/C/252/bg/2x/17be08a2-b561-48e4-b624-e4c9511d4bdf.webp"
+                            class="card-img recommend-pic-bg" alt="...">
+                        <video
+                            src="https://tw-a.kakaopagecdn.com/P/C/230/aclip/29ab2e2e-fbc8-4d4e-a1b6-2931a109c2b4.webm"
+                            autoplay loop class="ms-auto recommend-pic"></video>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </template>
+
+    <!-- <div class="container-fluid main-body"> -->
+    <template id="body-hot">
+        <div class="row w-1200 mt-1">
+            <div class="hot">
+                <img src="https://tw-a.kakaopagecdn.com/P/O/SPECIAL-BRIDGE/2022-04-19/first/2x/fa877646-a202-4e45-822d-5ffb057d8a05.webp"
+                    alt="背景圖" class="video-bg">
+                <video
+                    src="https://tw-a.kakaopagecdn.com/P/O/CARD/SPECIAL/2022-04-19/c/95ff3f36-8bdd-4df2-8483-141381188070.webm"
+                    autoplay loop></video>
+                <img src="https://tw-a.kakaopagecdn.com/P/O/CARD/SPECIAL/2022-04-19/t/2x/ecfc3435-32ac-4511-b48b-be365e787b23.webp"
+                    alt="我和社長相親相愛" class="video-title w-100">
+            </div>
+        </div>
+    </template>
+    <!-- </div> -->
+
+    <template id="useraccount">
+        <div class="col-12 userinfo w-1200">
+            <h1>帳戶資訊</h1>
+            <div class="user d-flex">
+                <div class="userpic">
+                    <img src="./Pics/people.png" alt="登入者" class="border border-dark rounded-circle">
+                </div>
+                <div class="userid ms-2 ">
+                    <p class="fs-3 mb-0">UserName</p>
+                    <p class="mb-0 fs-6"> UID:4567890</p>
+                </div>
+            </div>
+            <div class="usermoney d-flex flex-column flex-md-row">
+                <div class="money d-flex my-2">
+                    <i class="fa-solid fa-sack-dollar text-center text-warning m-auto mx-2"></i>
+                    <p class="d-flex align-items-center my-auto">
+                        金幣: 0  
+                        <a href="./Jie/stored.html" class="btn btn-warning text-white text-center ms-2 ">立即儲值</a>
+                    </p>
+                </div>
+                <div class="ticket d-flex my-2">
+                    <i class="fa-solid fa-ticket text-center  mx-2 text-primary text-opacity-75 m-auto"></i>
+                    <p class=" my-auto">閱讀券: 5 </p>
+                </div>
+                <div class="ticket d-flex my-2">
+                    <i class="fa-solid fa-ticket-simple text-center  mx-2 text-success text-opacity-75 m-auto"></i>
+                    <p class=" my-auto"> 通用券: 5 </p>
+                </div>
+            </div>
+            <div class="record ">
+                <ul class="d-flex m-auto p-0 mt-4 flex-wrap">
+                    <li><a href="#" class="stored">儲值紀錄</a></li>
+                    <li><a href="#" class="consumption">金幣消費紀錄</a></li>
+                    <li><a href="#" class="read">閱讀券使用紀錄</a></li>
+                    <li><a href="#" class="allpass">通用券使用紀錄</a></li>
+                </ul>
+            </div>
+            <hr>
+            <div class="detail text-center">
+                <div class="pic ">
+                    <img src="./Pics/nothing.png" >
+                </div>
+            </div>
+        </div>
+    </template>
+
+
+    <template id="my_comic">
+        <div class="comic p-0 w-1200">
+            <h1>我的漫畫</h1>
+            <div class="morepic ">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 m-0 p-0">
+                    <div class="col ">
+                        <p class="text-center">Again My Life</p>
+                        <img
+                            src="https://tw-a.kakaopagecdn.com/P/C/223/c2/2x/ddecc803-ca1d-4b2c-a8ff-187237952014.webp">
+                    </div>
+                    <div class="col ">
+                        <p class="text-center">魔法師之女梅貝爾</p>
+                        <img
+                            src="https://tw-a.kakaopagecdn.com/P/C/128/c2/2x/2110934c-7259-44f3-81b6-9250d96d3cf3.webp">
+                    </div>
+                    <div class="col">
+                        <p class="text-center">吃貨的私房升級餐</p>
+                        <img
+                            src="https://tw-a.kakaopagecdn.com/P/C/111/c2/2x/07225f44-80f0-4340-b76a-8ac78f3af1a2.webp">
+                    </div>
+                    <div class="col ">
+                        <p class="text-center">Again My Life</p>
+                        <img
+                            src="https://tw-a.kakaopagecdn.com/P/C/223/c2/2x/ddecc803-ca1d-4b2c-a8ff-187237952014.webp">
+                    </div>
+                    <div class="col ">
+                        <p class="text-center">魔法師之女梅貝爾</p>
+                        <img
+                            src="https://tw-a.kakaopagecdn.com/P/C/128/c2/2x/2110934c-7259-44f3-81b6-9250d96d3cf3.webp">
+                    </div>
+                    <div class="col">
+                        <p class="text-center">吃貨的私房升級餐</p>
+                        <img
+                            src="https://tw-a.kakaopagecdn.com/P/C/111/c2/2x/07225f44-80f0-4340-b76a-8ac78f3af1a2.webp">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </template>
+
+    <template id="terms" >
+        <div class="row w-1200 terms_p">
+            <p>
+                本使用條款（以下簡稱為「本條款」）是使用者（或「您」）和KAKAO WEBTOON CORP.（以下簡稱為「本公司」或「我們」）間訂定的條款。
+                本條款適用所有連線、瀏覽、使用、註冊、登入 KAKAO WEBTOON網站、 KAKAO WEBTOON應用程式（以下合稱「本服務」）之人員。
+                當使用者在下載或使用KAKAO WEBTOON網站、KAKAO WEBTOON應用程式及所有數位內容（以下方定義為基準）的過程中勾選同意時，即同意本條款、隱私權政策、相關公告和其他適用條款。若您不同意本條款，則將無法使用KAKAO WEBTOON網站、KAKAO WEBTOON應用程式及數位內容。當您使用或持續使用本服務，將視為已閱讀、了解並同意本條款、隱私權政策、公告和其他適用條款之最新內容，並隨時成為您與本公司所訂協議的一部分。
+                <br>使用KAKAO WEBTOON網頁、KAKAO WEBTOON應用程式及數位內容時，請使用者務必遵守相關規範。<br>
+                本條款列舉所有規範的參考標準。
+            </p>
+            <p>
+                1.條款<br>
+                本條款之目的：<br>
+            </p>
+            <p>
+                1.1 「數位內容」係指「KAKAO WEBTOON網頁」及「KAKAO WEBTOON應用程式」所提供。
+                <br>1.2 「KAKAO WEBTOON網頁」係指下列網址： https://tw.kakaowebtoon.com
+                <br>1.3 「KAKAO WEBTOON應用程式」係指本公司提供使用者在一個或一個以上的指定裝置
+                <br>1.4 「ID」係指使用者加入本服務成為會員（參照7.會員定義）後，本公司為了判別會員帳號，提供使用者的代號。
+                <br>1.5 「留言」係指會員透過本服務在已刊登及投稿的內容上評論、留下感想的行為。
+                <br>1.6 「第三方網站」係指臉書（Facebook）, Line, Google, Apple等第三方所提供之服務網站，亦可利用上述服務網站之帳號登入。
+                <br>1.7 「金幣」係指透過購買、促銷、行銷活動或本公司指定的其他方式，以有償或無償方式所取得的虛擬貨幣，可用於購買或訂閱本公司所提供的服務內容。
+                <br>2. 數位內容之使用及授權規範<br>
+                <br>2.1 KAKAO WEBTOON網站、KAKAO WEBTOON應用程式上之所有內容
+                <br>2.2 本公司僅授權您於個人非商業用途之目的內，透過KAKAO WEBTOON網頁、KAKAO WEBTOON應用程式或其他經本公司認可之平台。
+                <br>您僅能於本條款之授權範圍內使用數位內容。且本公司有權提出追加條款，若本條款與追加條款產生抵觸，本條款應優先適用。
+                <br>3. KAKAO WEBTOON網站及KAKAO WEBTOON應用程式<br>
+                <br>3.1使用者可透過個人裝置，連線、登入、瀏覽或使用KAKAO WEBTOON網站及KAKAO WEBTOON應用程式，並管理ID及購買紀錄，但不得任意販賣、借貸或共享ID。
+                <br>3.2 本公司保有更新本服務軟體或內容之權利。若使用者未更新至最新版本，可能無法使用特定內容或完整功能。
+                <br>3.3 使用者無權擅自編輯、解除、複製、分析或破解KAKAO WEBTOON網站及KAKAO WEBTOON應用程式之電磁紀錄及相關措施保護。
+                <br>4. 認知與接受條款
+                <br>4.1 若您為未成年人，除您本人應遵守本條款規定外，並請您的家長（或法定代理人），確實閱讀、瞭解並同意遵守本條款之所有內容後，方得開始使用本服務。
+                <br>4.2 本公司判斷有必要修改使用條款內容時，須事先通知使用者，並在本服務上公告後，得隨時變更本使用條款內容。
+                <br>5. 個人資料保護
+                <br>本公司尊重使用者的個人資料，僅在使用者同意之範圍內，蒐集、處理或利用個人資料。
+                <br>6.智慧財產權
+                <br>6.1 本公司所使用的軟體、程式、一切著作物均屬本公司及本公司指定之第三人所有，並受到相關法律的保護。
+                <br>6.2 在尊重他人智慧財產權的原則下，使用者同意在使用本公司服務時，不得有侵害他人權利之行為。
+            </p>
+        </div>
+    </template>
 
     <footer class="border-top footer text-muted">
         <div class="container">
@@ -43,6 +279,191 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/json/01.js"></script>
+    <script>
+        
+        let xl_user = document.querySelector(".xl_user");
+        let md_user = document.querySelector(".md_user");
+        let useraccount = document.querySelector("#useraccount");
+        let xl_screen = document.querySelector("#xl_screen");
+        let md_screen = document.querySelector("#md_screen");
+        let my_comic = document.querySelector("#my_comic")
+        let md_accountinfo = document.querySelector(".md_accountinfo");
+        let md_my_comic = document.querySelector(".md_my_comic")
+        let xl_accountinfo = document.querySelector(".xl_accountinfo");
+        let xl_my_comic = document.querySelector(".xl_my_comic");
+        let sub_nav = document.querySelector('.sub-nav')
+        let main_nav = document.querySelector('.main-nav')
+        let xl_customer_service=document.querySelector('.xl_customer_service')
+        
+        // changescreen();
+        window.onload = function () {
+            getcloneContent();
+            HomeReady();
+            xl_user.style.display = "none";
+            xl_accountinfo.addEventListener("click", () => {
+                xl_user.innerText = "";
+                main_nav.style.display = "none";
+                sub_nav.style.display = "none";
+                main_body.style.display = "none";
+                xl_user.style.display = "block";
+                xl_user.appendChild(getcloneContent());
+                
+            })
+
+            xl_my_comic.addEventListener("click", () => {
+                xl_user.innerText = "";
+                main_nav.style.display = "none";
+                sub_nav.style.display = "none";
+                main_body.style.display = "none";
+                xl_user.style.display = "block";
+                xl_user.appendChild(getclonecomic())
+            })
+            xl_customer_service.addEventListener("click",()=>{
+                xl_user.innerText = "";
+                main_nav.style.display = "none";
+                sub_nav.style.display = "none";
+                main_body.style.display = "none";
+                xl_user.style.display = "block";
+                let terms=document.querySelector("#terms").content.cloneNode(true);
+                xl_user.appendChild(terms)
+            })
+        }
+
+        function getcloneContent() {
+            cloneContent = useraccount.content.cloneNode(true);           
+            return cloneContent ;
+        }
+
+        function getclonecomic() {
+            let clonecomic = my_comic.content.cloneNode(true);
+            return clonecomic;
+        }
+    </script>
+
+    <script>
+        let login = document.getElementById('login');
+        let user = document.getElementById('user');
+        let logout = document.getElementById('logout');
+        login.addEventListener('click', () => {
+            user.classList.add('d-block')
+            login.classList.add('d-none')
+        })
+        logout.addEventListener('click', () => {
+            xl_user.style.display = "none";
+            main_nav.style.display = "block";
+            sub_nav.style.display = "block";
+            main_body.style.display = "block";
+            user.classList.remove('d-block')
+            login.classList.remove('d-none')
+        })
+
+
+        let sub_nav_ul = document.querySelector('.sub-nav-ul');
+
+        let subNavTemplate = document.querySelector('#sub-nav');
+        HomeArray.forEach((data, index) => {
+            sub_nav_ul.appendChild(getNavClone(data.part, index));
+        })
+
+        let body_recommendTemplate = document.querySelector('#body-recommend');
+        let body_hotTemplate = document.querySelector('#body-hot');
+        let main_body = document.querySelector('.main-body')
+
+        let nav_recommend = document.querySelector('.nav-home0');
+        nav_recommend.addEventListener('click', () => {
+            HomeReady();
+        })
+
+        let nav_hot = document.querySelector('.nav-home1');
+        nav_hot.addEventListener('click', () => {
+            nav_hot.classList.remove('text-white')
+            nav_hot.classList.add('nav-selected')
+            nav_hot.classList.add('text-black')
+            nav_recommend.classList.remove('nav-selected')
+            nav_recommend.classList.add('text-white')
+            main_body.innerHTML = "";
+            HotArray.forEach((data, index) => {
+                data.cardArray.forEach(card => {
+                    main_body.appendChild(getHotClone(card.videoName, card.videoTitleURL, card.videoBgURL, card.videoURL));
+                })
+            })
+        })
+
+        function getNavClone(text, index) {
+            let clone = subNavTemplate.content.cloneNode(true);
+            let clone_a = clone.querySelector('a');
+            clone_a.innerHTML = text;
+            clone_a.classList.add(`nav-home${index}`);
+            return clone;
+        }
+
+        function HomeReady() {
+            nav_recommend.classList.remove('text-white')
+            nav_recommend.classList.add('nav-selected')
+            nav_recommend.classList.add('text-black')
+            nav_hot.classList.remove('nav-selected')
+            nav_hot.classList.add('text-white')
+            main_body.innerHTML = "";
+            RecommendArray.forEach((data, index) => {
+                data.cardArray.forEach(card => {
+                    main_body.appendChild(getRecommendcarClone(card.title, card.text, card.tag, card.mainPicURL, card.bgPicURL));
+                })
+            })
+        }
+
+        function getRecommendcarClone(title, text, tag, mainPicURL, bgPicURL) {
+            let cloneCard = body_recommendTemplate.content.cloneNode(true);
+            let clone_title = cloneCard.querySelector('h5')
+            let clone_text = cloneCard.querySelector('p')
+            let clone_tag = cloneCard.querySelector('span')
+            let clone_a = cloneCard.querySelector('.work_a')
+            let clone_mainPicURL = cloneCard.querySelector('.recommend-pic')
+            let clone_bgPicURL = cloneCard.querySelector('.recommend-pic-bg')
+            clone_title.innerHTML = title;
+            clone_text.innerHTML = text;
+            clone_tag.innerHTML = tag;
+            clone_mainPicURL.src = mainPicURL;
+            clone_bgPicURL.src = bgPicURL;
+            // console.log(cloneCard.querySelector('a'))
+            clone_a.href = "./Works_page(change)_2/Works_page(change)/Works_page(change).html"
+
+            clone_mainPicURL.style.transform = `translateX(${window.scrollY / 100}%)`
+            clone_mainPicURL.style.transform = `translateX(${window.scrollY / 100}%)`
+
+            window.addEventListener('mousewheel', (e) => {
+                if (e.wheelDelta > 0) {
+                    // alert("滑輪向上滾動");
+                    console.log(window.scrollY)
+                    clone_mainPicURL.style.transform = `translateX(${window.scrollY / 1100}%)`
+                    clone_bgPicURL.style.transform = `translateX(-${window.scrollY / 700}%)`
+                }
+                if (e.wheelDelta < 0) {
+                    // alert("滑輪向下滾動");
+                    console.log(window.scrollY)
+                    clone_mainPicURL.style.transform = `translateX(${window.scrollY / 1100}%)`
+                    clone_bgPicURL.style.transform = `translateX(-${window.scrollY / 700}%)`
+                }
+
+            })
+
+            return cloneCard;
+        }
+
+        function getHotClone(alt, videoTitleURL, videoBgURL, videoURL) {
+            let cloneCard = body_hotTemplate.content.cloneNode(true);
+            let clone_video_title = cloneCard.querySelector('.video-title')
+            let clone_video_bg = cloneCard.querySelector('.video-bg')
+            let clone_video = cloneCard.querySelector('video')
+            clone_video_title.src = videoTitleURL;
+            clone_video_title.alt = alt;
+            clone_video_bg.src = videoBgURL;
+            clone_video.src = videoURL;
+            return cloneCard;
+        }
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("endCss", required: false)
+    @await RenderSectionAsync("endJS", required: false)
 </body>
 </html>
