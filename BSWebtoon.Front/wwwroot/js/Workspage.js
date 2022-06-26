@@ -88,7 +88,7 @@ window.onload = function () {
         cloneCard.querySelector("h5").innerText = title;
         cloneCard.querySelector("p").innerText = content;
         cloneCard.querySelector("img").addEventListener('click', () => {
-            window.location.href = '../../yu(1)/yu.html';
+            window.location.href ="../EpContent/EpContent";
         })
         return cloneCard;
     }

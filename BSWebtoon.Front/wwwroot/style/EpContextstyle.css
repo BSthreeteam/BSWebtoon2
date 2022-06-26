@@ -1,0 +1,123 @@
+.menu-fixed {
+    background-color: #000;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    position: fixed;
+    bottom: 0;
+}
+
+.w-1200 {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.menu-btn {
+    width: 100px;
+}
+
+.mulu-row .card {
+    width: 150px;
+}
+
+.mulu-md-row .card {
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+.mulu-row .card-body {
+    padding: 0;
+}
+
+.offcanvas-width {
+    width: 300px;
+}
+
+.user p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    margin: auto 15px;
+    padding: 0px;
+}
+
+.leval {
+    border-radius: 30px;
+    background: #F00;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    font-size: 15px;
+}
+
+.text p {
+    max-width: 800px;
+    box-sizing: border-box;
+    margin: auto 20px;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.btn_icon {
+    background-color: #fff;
+    border-radius: 30px;
+    margin: 10px 10px;
+}
+
+.more_function {
+    width: 50%;
+    position: fixed;
+    bottom: 0%;
+}
+
+.comic_content {
+    height: 95vh;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+    .comic_content img {
+        width: 500px;
+        height: 700px;
+    }
+
+.comic_text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body {
+    overflow: hidden;
+}
+
+
+
+@media screen and (max-width:768px) {
+    .text p {
+        max-width: 350px;
+        margin: auto;
+        padding: 5px;
+        box-sizing: border-box;
+    }
+
+    .more_function {
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+    }
+
+    .comic_content img {
+        width: 70%;
+        height: 80%;
+    }
+
+    .comic_text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
