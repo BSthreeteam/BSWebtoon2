@@ -1,0 +1,46 @@
+.modal - header {
+    background - color: #fff;
+}
+
+.modal - body {
+    /* background:linear-gradient(rgb(124, 236, 44), rgb(219, 247, 107), rgb(133, 252, 106)); */
+    /* background:radial-gradient(ellipse at center,rgb(249, 249, 51),rgb(0, 255, 0)); */
+    background: linear - gradient(0deg, rgb(38, 255, 0), transparent);
+}
+
+.modal - footer {
+    background - color: #fff;
+}
+
+.log - img {
+    width: 100 %;
+}
+
+/* 偽元素 */
+.slg:: before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 1px;
+    margin - right: 1em;
+    background - color: red;
+    flex - grow: 1;
+    margin - top: 3 %;
+    margin - bottom: 30px;
+}
+
+.slg: after {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 1px;
+    margin - left: 1em;
+    background - color: red;
+    flex - grow: 1;
+    margin - top: 3 %;
+    margin - bottom: 30px;
+}
+/*第三方登入*/
+a {
+    padding: 10px;
+}

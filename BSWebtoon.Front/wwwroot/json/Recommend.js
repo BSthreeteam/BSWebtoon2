@@ -61,6 +61,7 @@ let login = document.getElementById('login');
 let user = document.getElementById('user');
 let logout = document.getElementById('logout');
 login.addEventListener('click', () => {
+
     user.classList.add('d-block')
     login.classList.add('d-none')
 })
@@ -141,7 +142,7 @@ function getRecommendcarClone(title, text, tag, mainPicURL, bgPicURL) {
     clone_mainPicURL.src = mainPicURL;
     clone_bgPicURL.src = bgPicURL;
     // console.log(cloneCard.querySelector('a'))
-    clone_a.href = "./Works_page(change)_2/Works_page(change)/Works_page(change).html"
+    clone_a.href = "WorksPage/WorksPage"
 
     clone_mainPicURL.style.transform = `translateX(${window.scrollY / 100}%)`
     clone_mainPicURL.style.transform = `translateX(${window.scrollY / 100}%)`

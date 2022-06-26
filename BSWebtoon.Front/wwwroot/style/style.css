@@ -2,7 +2,6 @@
     --bs-dark-rgb: #000;
     background-color: var(--bs-dark-rgb);
 }
-
 .inputSearchBorder {
     border: 0px solid #fff;
     border-bottom: 1px solid #fff;
@@ -31,7 +30,7 @@
     z-index: 11;
 }
 
-.dropdown{
+.dropdown {
     height: 100vh;
 }
 
@@ -41,7 +40,7 @@
 }
 
 .sub-nav {
-    top: 110px;
+    top: 100px;
     z-index: 10;
 }
 
@@ -155,36 +154,38 @@
     position: relative;
 }
 
-.hot .video-bg {
-    width: 100%;
-    /* height: 100%; */
-    position: relative;
-    top: 0%;
-    right: 0;
-}
+    .hot .video-bg {
+        width: 100%;
+        /* height: 100%; */
+        position: relative;
+        top: 0%;
+        right: 0;
+    }
 
-.hot video {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    position: absolute;
-    background-color: transparent;
-    bottom: 0%;
-    right: 0%;
-}
+    .hot video {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        position: absolute;
+        background-color: transparent;
+        bottom: 0%;
+        right: 0%;
+    }
 
-.hot .video-title {
-    width: 100%;
-    position: absolute;
-    background-color: transparent;
-    bottom: 10%;
-    left: 0;
-}
-.terms_p p{
+    .hot .video-title {
+        width: 100%;
+        position: absolute;
+        background-color: transparent;
+        bottom: 10%;
+        left: 0;
+    }
+
+.terms_p p {
     color: #fff;
 }
+
 @media screen and (min-width:768px) {
-    .dropdown{
+    .dropdown {
         height: fit-content;
     }
 

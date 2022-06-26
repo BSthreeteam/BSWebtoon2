@@ -1,0 +1,116 @@
+﻿
+@{
+    ViewData["Title"] = "Rank";
+}
+
+@*<h1>Rank</h1>*@
+@section topCss{
+      <link rel="stylesheet" href="~/style/Rankstyle.css" />
+}
+<nav class="navbar navbar-expand-lg navbar-light bg-dark text-white">
+    <div class="container-fluid">
+        <button class="navbar-toggler bg-white text-white" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 m-auto nav nav-pills" id="pills-tab">
+                <li class="nav-item all">
+                    <a class=" all_a nav-link text-white" href="#" id="pills-home-tab" data-bs-toggle="pill">全部</a>
+                </li>
+                <li class="nav-item fantasy">
+                    <a class="  nav-link text-white" href="#" id="pills-home-tab" data-bs-toggle="pill">奇幻</a>
+                </li>
+                <li class="nav-item fantasy_love">
+                    <a class="nav-link text-white" href="#" id="pills-home-tab" data-bs-toggle="pill">奇幻愛情</a>
+                </li>
+                <li class="nav-item action_adventure">
+                    <a class="nav-link text-white" href="#" id="pills-home-tab" data-bs-toggle="pill">動作冒險</a>
+                </li>
+
+                <li class="nav-item love">
+                    <a class="nav-link text-white" href="#" id="pills-home-tab" data-bs-toggle="pill">愛情</a>
+                </li>
+
+                <li class="nav-item plot">
+                    <a class="nav-link text-white" href="#" id="pills-home-tab" data-bs-toggle="pill">劇情</a>
+                </li>
+
+                <li class="nav-item BL_GL">
+                    <a class="nav-link text-white" href="#" id="pills-home-tab" data-bs-toggle="pill">BL/GL</a>
+                </li>
+
+                <li class="nav-item Suspenseful_horror">
+                    <a class="nav-link text-white" href="#" id="pills-home-tab" data-bs-toggle="pill">懸疑恐怖</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    <!-- 第一列 -->
+    <div class="container">
+        <div class="row .row-cols-md-1 card_up_row ">
+
+            <template id="cardTemplate_up">
+                <!-- 圖片區 -->
+                <div class="card card_up col p-0">
+                    <img id="short_pic_up_bgc" class="short_pic_up" src="" alt="背景">
+
+                    <!-- 影片 -->
+                    <video id="short_pic_cover_up_video" class="short_pic_cover_up_vi" loop="true" autoplay="true"
+                        muted="true">
+                        <source id="short_pic_cover_up_video_source" src="">
+                    </video>
+
+                    <img id="short_pic_cover_up_cover" class="short_pic_cover_up_cvr" src="#" alt="封面">
+                </div>
+                <!-- 文字區 -->
+                <div class="text">
+                    <span class="card_up_spen"></span>
+                    <p class="card_up_p_tital"></p>
+                    <p class="card_up_p"></p>
+                </div>
+                <!-- 排行標籤區 -->
+                <div class="card_up_ranking">
+                    <span class="card_up_ranking_number"></span>
+                </div>
+            </template>
+
+        </div>
+    </div>
+
+    <!-- 下面卡牌 -->
+    <main>
+        <div class="container" style="max-width: 1200px;">
+            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 row_down">
+
+                <template id="cardTemplate">
+                    <div class="card short_down_card col p-0">
+                        <a href="#">
+                            <!-- 排行 -->
+                            <span class="short_down_span danger"></span>
+                            <!-- 背景 -->
+                            <img class="short_pic" src="" alt="">
+                            <!-- <video loop="true" autoplay="true" muted="true">
+                                <source src="">
+                            </video>  -->
+                            <!-- 封面 -->
+                            <img class="short_pic_cover" src="" alt="">
+                            <!-- 標題 -->
+                            <div class="short_down_bgc">
+                                <p class="short_down_p my-0 "></p>
+                            </div>
+                        </a>
+                    </div>
+                </template>
+
+            </div>
+        </div>
+    </main>
+
+@section endJS{
+      <script src="~/json/Rank.js"></script>
+}

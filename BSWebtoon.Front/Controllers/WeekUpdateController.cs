@@ -2,12 +2,11 @@
 
 namespace BSWebtoon.Front.Controllers
 {
-    public class RecommendController : Controller
+    public class WeekUpdateController : Controller
     {
-        public IActionResult Recommend()
+        public IActionResult WeekUpdate()
         {
             return View();
         }
-
     }
 }

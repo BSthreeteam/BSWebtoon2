@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+}
+@section topCss{
+      <link rel="stylesheet" href="~/style/Loginstyle.css" />
+}
+
+@*<h1>Login</h1>*@
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <img class="log-img" src="https://picsum.photos/300/200/?random=10" class="log-img card-img-top" alt="...">
+      <div class="modal-header d-flex align-items-center justify-content-center">
+        <h5 class="modal-title text-center" id="exampleModalLabel">登入後可以將喜歡的作品加入最愛，<br>
+          隨時跟追最新劇情喔!</h5>
+      </div>
+
+      <div class="modal-body">
+      <div class="slg d-flex align-items-center justify-content-center"><p>請使用第三方登入</p></div>
+
+      <div class="log-icon d-flex align-items-center justify-content-center">
+        <span></span>
+        <a href="#"><img src="https://tw-a.kakaopagecdn.com/web/static/auth/login-ico-sns-google-abb03d27c5764dce9bb59f95ca5c8602.svg" alt="Google-login"></a>
+        <span></span>
+        <a href="#"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NSIgaGVpZ2h0PSI1NSIgdmlld0JveD0iMCAwIDU1IDU1Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTkzIC02MzcpIHRyYW5zbGF0ZSgwIDUyMSkgdHJhbnNsYXRlKDI2IDExNikgdHJhbnNsYXRlKDY3KSI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxyZWN0IHdpZHRoPSI1NSIgaGVpZ2h0PSI1NSIgZmlsbD0iIzE4NzdGMiIgcng9IjI3LjUiLz4KICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggZmlsbD0iI0ZGRkZGRSIgZD0iTTI3LjUgMTNDMTkuNDkyIDEzIDEzIDE5LjUzMiAxMyAyNy41ODkgMTMgMzQuODcgMTguMzAyIDQwLjkwNiAyNS4yMzQgNDJWMzEuODA2aC0zLjY4MXYtNC4yMTdoMy42ODF2LTMuMjE0YzAtMy42NTcgMi4xNjUtNS42NzYgNS40NzctNS42NzYgMS41ODcgMCAzLjI0Ni4yODUgMy4yNDYuMjg1djMuNTloLTEuODI4Yy0xLjgwMiAwLTIuMzYzIDEuMTI0LTIuMzYzIDIuMjc4djIuNzM3aDQuMDIxbC0uNjQzIDQuMjE3aC0zLjM3OFY0MkMzNi42OTggNDAuOTA2IDQyIDM0Ljg3IDQyIDI3LjU4OSA0MiAxOS41MzIgMzUuNTA4IDEzIDI3LjUgMTN6Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="FB-login"></a>
+        <span></span>
+        <a href="#"><img src="https://tw-a.kakaopagecdn.com/web/static/auth/login-ico-sns-apple-b5e4e1e88f03d0d7f5014ad69e1683f9.svg" alt="Apple-login"></a>
+        <span></span>
+        <a href="#"><img src="https://tw-a.kakaopagecdn.com/web/static/auth/login-ico-sns-line-0e091239442121e27f11b2d164eeef8a.svg" alt="Line-login"></a>
+      </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+@*@section endJS{
+      <script src="~/js/Login.js"></script>
+}*@
+
