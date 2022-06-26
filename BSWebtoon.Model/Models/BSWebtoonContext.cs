@@ -15,6 +15,7 @@ namespace BSWebtoon.Model.Models
         public BSWeBtoonContext(DbContextOptions<BSWeBtoonContext> options)
             : base(options)
         {
+
         }
 
         public virtual DbSet<Activity> Activities { get; set; }

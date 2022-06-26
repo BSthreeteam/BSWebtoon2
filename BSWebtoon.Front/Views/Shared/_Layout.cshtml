@@ -38,7 +38,7 @@
                         <li class="nav-item dropdown" id="user">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="./Pics/people.png" alt="登入者"
+                                <img src="~/images/people.png" alt="登入者"
                                     class="border border-dark rounded-circle user-icon">
                                 UserName
                             </a>
@@ -271,11 +271,11 @@
         </div>
     </template>
 
-    <footer class="border-top footer text-muted">
+    @*<footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2022 - BSWebtoon.Front - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>
+    </footer>*@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
@@ -299,7 +299,7 @@
         // changescreen();
         window.onload = function () {
             getcloneContent();
-            HomeReady();
+            //HomeReady();
             xl_user.style.display = "none";
             xl_accountinfo.addEventListener("click", () => {
                 xl_user.innerText = "";

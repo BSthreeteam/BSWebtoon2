@@ -14,6 +14,11 @@ namespace BSWebtoon.Model.Repository
             if (context == null) { throw new ArgumentNullException(); }
             _context = context;
         }
+
+        public BSRepository()
+        {
+        }
+
         private DbContext _context;
         public void Create<T>(T value) where T : class
         {

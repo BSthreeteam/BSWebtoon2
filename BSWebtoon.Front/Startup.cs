@@ -1,3 +1,5 @@
+using BSWebtoon.Model.Models;
+using BSWebtoon.Model.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -24,6 +26,8 @@ namespace BSWebtoon.Front
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddScoped<BSRepository, BSRepository>();
+            services.AddDbContext<BSWeBtoonContext, BSWeBtoonContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
