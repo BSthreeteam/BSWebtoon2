@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "Recommend";
+}
+
+<div class="container-fluid  position-fixed  start-0 end-0 sub-nav">
+    <div class="row w-1200">
+        <nav class="navbar navbar-dark bg-dark">
+            <ul class="nav d-flex justify-content-center w-100 sub-nav-ul">
+                <template id="sub-nav">
+                    <li class="nav-item mx-1">
+                        <a class="nav-link text-white" href="#">{推薦}</a>
+                    </li>
+                </template>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<div class="container-fluid main-body">
+</div>
+<div class="row flex-grow-1 xl_user m-auto">
+</div>
+
+<template id="body-recommend">
+    <div class="row w-1000 overflow-hidden">
+        <a class="work_a" href="#">
+            <div class="card bg-dark text-white position-relative p-0 ">
+                <div class="card-img-overlay recommend-text col-8">
+                    <div class="rotate">
+                        <span class="card-text" id="tag">新作上架</span>
+                        <h5 class="card-title fw-bold mt-2">重生使用說明書</h5>
+                        <p class="card-text ">超爛數值配上特殊特性為了在殘酷的世界存活只好發揮所長寄生強人</p>
+                    </div>
+                </div>
+                <div class="rectangle"></div>
+                <div class="recommend-bg position-relative col-10 ms-auto">
+                    <img src="https://tw-a.kakaopagecdn.com/P/C/252/bg/2x/17be08a2-b561-48e4-b624-e4c9511d4bdf.webp"
+                         class="card-img recommend-pic-bg" alt="...">
+                    <video src="https://tw-a.kakaopagecdn.com/P/C/230/aclip/29ab2e2e-fbc8-4d4e-a1b6-2931a109c2b4.webm"
+                           autoplay loop class="ms-auto recommend-pic"></video>
+                </div>
+            </div>
+        </a>
+    </div>
+</template>
+
+<!-- <div class="container-fluid main-body"> -->
+<template id="body-hot">
+    <div class="row w-1200 mt-1">
+        <div class="hot">
+            <img src="https://tw-a.kakaopagecdn.com/P/O/SPECIAL-BRIDGE/2022-04-19/first/2x/fa877646-a202-4e45-822d-5ffb057d8a05.webp"
+                 alt="背景圖" class="video-bg">
+            <video src="https://tw-a.kakaopagecdn.com/P/O/CARD/SPECIAL/2022-04-19/c/95ff3f36-8bdd-4df2-8483-141381188070.webm"
+                   autoplay loop></video>
+            <img src="https://tw-a.kakaopagecdn.com/P/O/CARD/SPECIAL/2022-04-19/t/2x/ecfc3435-32ac-4511-b48b-be365e787b23.webp"
+                 alt="我和社長相親相愛" class="video-title w-100">
+        </div>
+    </div>
+</template>
+<!-- </div> -->
+@section endJS{
+<script src="~/json/01.js"></script>
+<script src="~/json/Recommend.js"></script>
+}
