@@ -57,62 +57,62 @@ function getclonecomic() {
     return clonecomic;
 }
 
-let login = document.getElementById('login');
-let user = document.getElementById('user');
-let logout = document.getElementById('logout');
-login.addEventListener('click', () => {
+//let login = document.getElementById('login');
+//let user = document.getElementById('user');
+//let logout = document.getElementById('logout');
+//login.addEventListener('click', () => {
 
-    user.classList.add('d-block')
-    login.classList.add('d-none')
-})
-logout.addEventListener('click', () => {
-    xl_user.style.display = "none";
-    main_nav.style.display = "block";
-    sub_nav.style.display = "block";
-    main_body.style.display = "block";
-    user.classList.remove('d-block')
-    login.classList.remove('d-none')
-})
+//    user.classList.add('d-block')
+//    login.classList.add('d-none')
+//})
+//logout.addEventListener('click', () => {
+//    xl_user.style.display = "none";
+//    main_nav.style.display = "block";
+//    sub_nav.style.display = "block";
+//    main_body.style.display = "block";
+//    user.classList.remove('d-block')
+//    login.classList.remove('d-none')
+//})
 
 
-let sub_nav_ul = document.querySelector('.sub-nav-ul');
+//let sub_nav_ul = document.querySelector('.sub-nav-ul');
 
-let subNavTemplate = document.querySelector('#sub-nav');
-HomeArray.forEach((data, index) => {
-    sub_nav_ul.appendChild(getNavClone(data.part, index));
-})
+//let subNavTemplate = document.querySelector('#sub-nav');
+//HomeArray.forEach((data, index) => {
+//    sub_nav_ul.appendChild(getNavClone(data.part, index));
+//})
 
 let body_recommendTemplate = document.querySelector('#body-recommend');
 let body_hotTemplate = document.querySelector('#body-hot');
-let main_body = document.querySelector('.main-body')
+let main_context = document.querySelector('.main-context')
 
-let nav_recommend = document.querySelector('.nav-home0');
+let nav_recommend = document.querySelector('.nav_recommend');
 nav_recommend.addEventListener('click', () => {
     HomeReady();
 })
 
-let nav_hot = document.querySelector('.nav-home1');
+let nav_hot = document.querySelector('.nav_hot');
 nav_hot.addEventListener('click', () => {
     nav_hot.classList.remove('text-white')
     nav_hot.classList.add('nav-selected')
     nav_hot.classList.add('text-black')
     nav_recommend.classList.remove('nav-selected')
     nav_recommend.classList.add('text-white')
-    main_body.innerHTML = "";
+    main_context.innerHTML = "";
     HotArray.forEach((data, index) => {
         data.cardArray.forEach(card => {
-            main_body.appendChild(getHotClone(card.videoName, card.videoTitleURL, card.videoBgURL, card.videoURL));
+            main_context.appendChild(getHotClone(card.videoName, card.videoTitleURL, card.videoBgURL, card.videoURL));
         })
     })
 })
 
-function getNavClone(text, index) {
-    let clone = subNavTemplate.content.cloneNode(true);
-    let clone_a = clone.querySelector('a');
-    clone_a.innerHTML = text;
-    clone_a.classList.add(`nav-home${index}`);
-    return clone;
-}
+//function getNavClone(text, index) {
+//    let clone = subNavTemplate.content.cloneNode(true);
+//    let clone_a = clone.querySelector('a');
+//    clone_a.innerHTML = text;
+//    clone_a.classList.add(`nav-home${index}`);
+//    return clone;
+//}
 
 function HomeReady() {
     nav_recommend.classList.remove('text-white')
@@ -120,23 +120,23 @@ function HomeReady() {
     nav_recommend.classList.add('text-black')
     nav_hot.classList.remove('nav-selected')
     nav_hot.classList.add('text-white')
-    main_body.innerHTML = "";
+    main_context.innerHTML = "";
     RecommendArray.forEach((data, index) => {
         data.cardArray.forEach(card => {
-            main_body.appendChild(getRecommendcarClone(card.title, card.text, card.tag, card.mainPicURL, card.bgPicURL));
+            main_context.appendChild(getRecommendcarClone(card.title, card.text, card.tag, card.mainPicURL, card.bgPicURL));
         })
     })
 }
 
-function getRecommendcarClone(title, text, tag, mainPicURL, bgPicURL) {
+function getRecommendcarClone(titlePicURL, text, tag, mainPicURL, bgPicURL) {
     let cloneCard = body_recommendTemplate.content.cloneNode(true);
-    let clone_title = cloneCard.querySelector('h5')
+    let clone_titlePicURL = cloneCard.querySelector('.title-pic')
     let clone_text = cloneCard.querySelector('p')
     let clone_tag = cloneCard.querySelector('span')
     let clone_a = cloneCard.querySelector('.work_a')
     let clone_mainPicURL = cloneCard.querySelector('.recommend-pic')
     let clone_bgPicURL = cloneCard.querySelector('.recommend-pic-bg')
-    clone_title.innerHTML = title;
+    clone_titlePicURL.src = "https://picsum.photos/300/100/?random=10";
     clone_text.innerHTML = text;
     clone_tag.innerHTML = tag;
     clone_mainPicURL.src = mainPicURL;
@@ -145,7 +145,7 @@ function getRecommendcarClone(title, text, tag, mainPicURL, bgPicURL) {
     clone_a.href = "WorksPage/WorksPage"
 
     clone_mainPicURL.style.transform = `translateX(${window.scrollY / 100}%)`
-    clone_mainPicURL.style.transform = `translateX(${window.scrollY / 100}%)`
+    //clone_mainPicURL.style.transform = `translateX(${window.scrollY / 100}%)`
 
     window.addEventListener('mousewheel', (e) => {
         if (e.wheelDelta > 0) {
