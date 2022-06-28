@@ -18,27 +18,27 @@ namespace BSWebtoon.Model.Models
 
         }
 
-        public virtual DbSet<Activity> Activities { get; set; }
-        public virtual DbSet<CashPlan> CashPlans { get; set; }
-        public virtual DbSet<ClickRecord> ClickRecords { get; set; }
-        public virtual DbSet<Comic> Comics { get; set; }
-        public virtual DbSet<ComicTag> ComicTags { get; set; }
-        public virtual DbSet<ComicTagList> ComicTagLists { get; set; }
-        public virtual DbSet<Comment> Comments { get; set; }
-        public virtual DbSet<CommentLikeRecord> CommentLikeRecords { get; set; }
-        public virtual DbSet<Coupon> Coupons { get; set; }
-        public virtual DbSet<CouponUsedRecord> CouponUsedRecords { get; set; }
-        public virtual DbSet<Employee> Employees { get; set; }
-        public virtual DbSet<EpContent> EpContents { get; set; }
-        public virtual DbSet<Episode> Episodes { get; set; }
-        public virtual DbSet<Favorite> Favorites { get; set; }
-        public virtual DbSet<LoginType> LoginTypes { get; set; }
-        public virtual DbSet<Member> Members { get; set; }
-        public virtual DbSet<Payment> Payments { get; set; }
-        public virtual DbSet<Rank> Ranks { get; set; }
-        public virtual DbSet<RechargeRecord> RechargeRecords { get; set; }
-        public virtual DbSet<Report> Reports { get; set; }
-        public virtual DbSet<ViewRecord> ViewRecords { get; set; }
+        public virtual DbSet<Activity> Activity { get; set; }
+        public virtual DbSet<CashPlan> CashPlan { get; set; }
+        public virtual DbSet<ClickRecord> ClickRecord { get; set; }
+        public virtual DbSet<Comic> Comic { get; set; }
+        public virtual DbSet<ComicTag> ComicTag { get; set; }
+        public virtual DbSet<ComicTagList> ComicTagList { get; set; }
+        public virtual DbSet<Comment> Comment { get; set; }
+        public virtual DbSet<CommentLikeRecord> CommentLikeRecord { get; set; }
+        public virtual DbSet<Coupon> Coupon { get; set; }
+        public virtual DbSet<CouponUsedRecord> CouponUsedRecord { get; set; }
+        public virtual DbSet<Employee> Employee { get; set; }
+        public virtual DbSet<EpContent> EpContent{ get; set; }
+        public virtual DbSet<Episode> Episode { get; set; }
+        public virtual DbSet<Favorite> Favorite { get; set; }
+        public virtual DbSet<LoginType> LoginType { get; set; }
+        public virtual DbSet<Member> Member { get; set; }
+        public virtual DbSet<Payment> Payment { get; set; }
+        //public virtual DbSet<Rank> Rank { get; set; }
+        public virtual DbSet<RechargeRecord> RechargeRecord { get; set; }
+        public virtual DbSet<Report> Report { get; set; }
+        public virtual DbSet<ViewRecord> ViewRecord { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -92,7 +92,7 @@ namespace BSWebtoon.Model.Models
                 entity.Property(e => e.PrincipalEmployee).HasComment("建立該活動的員工");
 
                 entity.HasOne(d => d.PrincipalEmployeeNavigation)
-                    .WithMany(p => p.Activities)
+                    .WithMany(p => p.Activity)
                     .HasForeignKey(d => d.PrincipalEmployee)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Activity_Employee");
@@ -140,7 +140,7 @@ namespace BSWebtoon.Model.Models
                     .HasConstraintName("FK_ClickRecord_Member");
 
                 entity.HasOne(d => d.Comic)
-                    .WithMany(p => p.ClickRecords)
+                    .WithMany(p => p.ClickRecord)
                     .HasForeignKey(d => d.ComicId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ClickRecord_Comic");
@@ -221,7 +221,7 @@ namespace BSWebtoon.Model.Models
                 entity.Property(e => e.UpdateWeek).HasComment("更新星期");
 
                 entity.HasOne(d => d.AuditEmployee)
-                    .WithMany(p => p.Comics)
+                    .WithMany(p => p.Comic)
                     .HasForeignKey(d => d.AuditEmployeeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Comic_Employee");
@@ -303,13 +303,13 @@ namespace BSWebtoon.Model.Models
                 entity.Property(e => e.ReplyToCommentId).HasComment("被回復評論Id");
 
                 entity.HasOne(d => d.Ep)
-                    .WithMany(p => p.Comments)
+                    .WithMany(p => p.Comment)
                     .HasForeignKey(d => d.EpId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Comment_Epsiode");
 
                 entity.HasOne(d => d.Member)
-                    .WithMany(p => p.Comments)
+                    .WithMany(p => p.Comment)
                     .HasForeignKey(d => d.MemberId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Comment_Member");
@@ -340,13 +340,13 @@ namespace BSWebtoon.Model.Models
                 entity.Property(e => e.MemberId).HasComment("會員Id");
 
                 entity.HasOne(d => d.Comment)
-                    .WithMany(p => p.CommentLikeRecords)
+                    .WithMany(p => p.CommentLikeRecord)
                     .HasForeignKey(d => d.CommentId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Likes_Comment");
 
                 entity.HasOne(d => d.Member)
-                    .WithMany(p => p.CommentLikeRecords)
+                    .WithMany(p => p.CommentLikeRecord)
                     .HasForeignKey(d => d.MemberId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Likes_Member");
@@ -373,17 +373,17 @@ namespace BSWebtoon.Model.Models
                 entity.Property(e => e.Quantity).HasComment("現有數量");
 
                 entity.HasOne(d => d.Activity)
-                    .WithMany(p => p.Coupons)
+                    .WithMany(p => p.Coupon)
                     .HasForeignKey(d => d.ActivityId)
                     .HasConstraintName("FK_Coupon_Activity");
 
                 entity.HasOne(d => d.ActivityNavigation)
-                    .WithMany(p => p.Coupons)
+                    .WithMany(p => p.Coupon)
                     .HasForeignKey(d => d.ActivityId)
                     .HasConstraintName("FK_ReadCoupon_Epsiode");
 
                 entity.HasOne(d => d.Comic)
-                    .WithMany(p => p.Coupons)
+                    .WithMany(p => p.Coupon)
                     .HasForeignKey(d => d.ComicId)
                     .HasConstraintName("FK_ReadCoupon_Comic");
             });
@@ -412,19 +412,19 @@ namespace BSWebtoon.Model.Models
                     .HasComment("開始閱讀日期");
 
                 entity.HasOne(d => d.Coupon)
-                    .WithMany(p => p.CouponUsedRecords)
+                    .WithMany(p => p.CouponUsedRecord)
                     .HasForeignKey(d => d.CouponId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CouponUsedRecord_Coupon");
 
                 entity.HasOne(d => d.Ep)
-                    .WithMany(p => p.CouponUsedRecords)
+                    .WithMany(p => p.CouponUsedRecord)
                     .HasForeignKey(d => d.EpId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CouponUsedRecord_Epsiode");
 
                 entity.HasOne(d => d.Member)
-                    .WithMany(p => p.CouponUsedRecords)
+                    .WithMany(p => p.CouponUsedRecord)
                     .HasForeignKey(d => d.MemberId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CouponUsedRecord_Member");
@@ -468,7 +468,7 @@ namespace BSWebtoon.Model.Models
                 entity.Property(e => e.Page).HasComment("頁次");
 
                 entity.HasOne(d => d.Ep)
-                    .WithMany(p => p.EpContents)
+                    .WithMany(p => p.EpContent)
                     .HasForeignKey(d => d.EpId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ComicPic_Epsiode");
@@ -516,13 +516,13 @@ namespace BSWebtoon.Model.Models
                     .HasComment("作者上傳的時間");
 
                 entity.HasOne(d => d.AuditEmployee)
-                    .WithMany(p => p.Episodes)
+                    .WithMany(p => p.Episode)
                     .HasForeignKey(d => d.AuditEmployeeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Episode_Employee");
 
                 entity.HasOne(d => d.Comic)
-                    .WithMany(p => p.Episodes)
+                    .WithMany(p => p.Episode)
                     .HasForeignKey(d => d.ComicId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Epsiode_Comic");
@@ -539,13 +539,13 @@ namespace BSWebtoon.Model.Models
                 entity.Property(e => e.MemberId).HasComment("會員");
 
                 entity.HasOne(d => d.Comic)
-                    .WithMany(p => p.Favorites)
+                    .WithMany(p => p.Favorite)
                     .HasForeignKey(d => d.ComicId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_MyLove_Comic");
 
                 entity.HasOne(d => d.Member)
-                    .WithMany(p => p.Favorites)
+                    .WithMany(p => p.Favorite)
                     .HasForeignKey(d => d.MemberId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_MyLove_Member");
@@ -595,7 +595,7 @@ namespace BSWebtoon.Model.Models
                     .HasComment("暱稱");
 
                 entity.HasOne(d => d.LoginType)
-                    .WithMany(p => p.Members)
+                    .WithMany(p => p.Member)
                     .HasForeignKey(d => d.LoginTypeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Member_LoginType");
@@ -616,36 +616,36 @@ namespace BSWebtoon.Model.Models
                 entity.Property(e => e.Sort).HasComment("排序");
             });
 
-            modelBuilder.Entity<Rank>(entity =>
-            {
-                entity.ToTable("Rank");
+            //modelBuilder.Entity<Rank>(entity =>
+            //{
+            //    entity.ToTable("Rank");
 
-                entity.Property(e => e.RankId).HasComment("排行");
+            //    entity.Property(e => e.RankId).HasComment("排行");
 
-                entity.Property(e => e.ClickCount).HasComment("點擊數量");
+            //    entity.Property(e => e.ClickCount).HasComment("點擊數量");
 
-                entity.Property(e => e.ComicId).HasComment("漫畫");
+            //    entity.Property(e => e.ComicId).HasComment("漫畫");
 
-                entity.Property(e => e.CreateTime)
-                    .HasColumnType("datetime")
-                    .HasComment("排行時間(排名更新的時間  排名開始時間)");
+            //    entity.Property(e => e.CreateTime)
+            //        .HasColumnType("datetime")
+            //        .HasComment("排行時間(排名更新的時間  排名開始時間)");
 
-                entity.Property(e => e.EndTime)
-                    .HasColumnType("datetime")
-                    .HasComment("排名結束時間(保留但可以先塞入資料)");
+            //    entity.Property(e => e.EndTime)
+            //        .HasColumnType("datetime")
+            //        .HasComment("排名結束時間(保留但可以先塞入資料)");
 
-                entity.Property(e => e.PreRank).HasComment("上次排名(以一00:00~下周一00:00)");
+            //    entity.Property(e => e.PreRank).HasComment("上次排名(以一00:00~下周一00:00)");
 
-                entity.Property(e => e.StartTime)
-                    .HasColumnType("datetime")
-                    .HasComment("排名開始時間(保留但可以先塞入資料)");
+            //    entity.Property(e => e.StartTime)
+            //        .HasColumnType("datetime")
+            //        .HasComment("排名開始時間(保留但可以先塞入資料)");
 
-                entity.HasOne(d => d.Comic)
-                    .WithMany(p => p.Ranks)
-                    .HasForeignKey(d => d.ComicId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Rank_Comic");
-            });
+            //    entity.HasOne(d => d.Comic)
+            //        .WithMany(p => p.Rank)
+            //        .HasForeignKey(d => d.ComicId)
+            //        .OnDelete(DeleteBehavior.ClientSetNull)
+            //        .HasConstraintName("FK_Rank_Comic");
+            //});
 
             modelBuilder.Entity<RechargeRecord>(entity =>
             {
@@ -668,18 +668,18 @@ namespace BSWebtoon.Model.Models
                 entity.Property(e => e.Price).HasComment("價錢");
 
                 entity.HasOne(d => d.CashPlan)
-                    .WithMany(p => p.RechargeRecords)
+                    .WithMany(p => p.RechargeRecord)
                     .HasForeignKey(d => d.CashPlanId)
                     .HasConstraintName("FK_RechargeRecord_CashPlan");
 
                 entity.HasOne(d => d.Member)
-                    .WithMany(p => p.RechargeRecords)
+                    .WithMany(p => p.RechargeRecord)
                     .HasForeignKey(d => d.MemberId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Recharge_Member");
 
                 entity.HasOne(d => d.Payment)
-                    .WithMany(p => p.RechargeRecords)
+                    .WithMany(p => p.RechargeRecord)
                     .HasForeignKey(d => d.PaymentId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Recharge_PayMethod");
@@ -710,13 +710,13 @@ namespace BSWebtoon.Model.Models
                     .HasComment("檢舉詳細理由");
 
                 entity.HasOne(d => d.AuditEmployee)
-                    .WithMany(p => p.Reports)
+                    .WithMany(p => p.Report)
                     .HasForeignKey(d => d.AuditEmployeeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Report_Employee");
 
                 entity.HasOne(d => d.Comment)
-                    .WithMany(p => p.Reports)
+                    .WithMany(p => p.Report)
                     .HasForeignKey(d => d.CommentId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Report_Comment");
@@ -737,13 +737,13 @@ namespace BSWebtoon.Model.Models
                     .HasComment("觀看時間");
 
                 entity.HasOne(d => d.EpContent)
-                    .WithMany(p => p.ViewRecords)
+                    .WithMany(p => p.ViewRecord)
                     .HasForeignKey(d => d.EpContentId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ViewRecord_EpContent");
 
                 entity.HasOne(d => d.Member)
-                    .WithMany(p => p.ViewRecords)
+                    .WithMany(p => p.ViewRecord)
                     .HasForeignKey(d => d.MemberId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ViewRecord_Member");

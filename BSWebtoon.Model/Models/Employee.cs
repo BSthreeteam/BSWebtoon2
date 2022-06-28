@@ -9,10 +9,10 @@ namespace BSWebtoon.Model.Models
     {
         public Employee()
         {
-            Activities = new HashSet<Activity>();
-            Comics = new HashSet<Comic>();
-            Episodes = new HashSet<Episode>();
-            Reports = new HashSet<Report>();
+            Activity = new HashSet<Activity>();
+            Comic = new HashSet<Comic>();
+            Episode = new HashSet<Episode>();
+            Report = new HashSet<Report>();
         }
 
         public int EmployeeId { get; set; }
@@ -21,9 +21,9 @@ namespace BSWebtoon.Model.Models
         public string Account { get; set; }
         public string Password { get; set; }
 
-        public virtual ICollection<Activity> Activities { get; set; }
-        public virtual ICollection<Comic> Comics { get; set; }
-        public virtual ICollection<Episode> Episodes { get; set; }
-        public virtual ICollection<Report> Reports { get; set; }
+        public virtual ICollection<Activity> Activity { get; set; }
+        public virtual ICollection<Comic> Comic { get; set; }
+        public virtual ICollection<Episode> Episode { get; set; }
+        public virtual ICollection<Report> Report { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace BSWebtoon.Model.Models
     {
         public Activity()
         {
-            Coupons = new HashSet<Coupon>();
+            Coupon = new HashSet<Coupon>();
         }
 
         public int ActivityId { get; set; }
@@ -19,11 +19,20 @@ namespace BSWebtoon.Model.Models
         public string ActivityImage { get; set; }
         public string ActivityBgColor { get; set; }
         public string ActivityContent { get; set; }
+        /// <summary>
+        /// 活動負責人
+        /// </summary>
         public int PrincipalEmployee { get; set; }
+        /// <summary>
+        /// 活動上架時間(月初)
+        /// </summary>
         public DateTime CreateTime { get; set; }
+        /// <summary>
+        /// TRUE為刪除，FALSE為保留
+        /// </summary>
         public bool IsDelete { get; set; }
 
         public virtual Employee PrincipalEmployeeNavigation { get; set; }
-        public virtual ICollection<Coupon> Coupons { get; set; }
+        public virtual ICollection<Coupon> Coupon { get; set; }
     }
 }

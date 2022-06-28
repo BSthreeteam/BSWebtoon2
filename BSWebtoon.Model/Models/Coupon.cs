@@ -9,7 +9,7 @@ namespace BSWebtoon.Model.Models
     {
         public Coupon()
         {
-            CouponUsedRecords = new HashSet<CouponUsedRecord>();
+            CouponUsedRecord = new HashSet<CouponUsedRecord>();
         }
 
         public int CouponId { get; set; }
@@ -24,6 +24,6 @@ namespace BSWebtoon.Model.Models
         public virtual Activity Activity { get; set; }
         public virtual Episode ActivityNavigation { get; set; }
         public virtual Comic Comic { get; set; }
-        public virtual ICollection<CouponUsedRecord> CouponUsedRecords { get; set; }
+        public virtual ICollection<CouponUsedRecord> CouponUsedRecord { get; set; }
     }
 }

@@ -9,10 +9,10 @@ namespace BSWebtoon.Model.Models
     {
         public Episode()
         {
-            Comments = new HashSet<Comment>();
-            CouponUsedRecords = new HashSet<CouponUsedRecord>();
-            Coupons = new HashSet<Coupon>();
-            EpContents = new HashSet<EpContent>();
+            Comment = new HashSet<Comment>();
+            CouponUsedRecord = new HashSet<CouponUsedRecord>();
+            Coupon = new HashSet<Coupon>();
+            EpContent = new HashSet<EpContent>();
         }
 
         public int EpId { get; set; }
@@ -30,9 +30,9 @@ namespace BSWebtoon.Model.Models
 
         public virtual Employee AuditEmployee { get; set; }
         public virtual Comic Comic { get; set; }
-        public virtual ICollection<Comment> Comments { get; set; }
-        public virtual ICollection<CouponUsedRecord> CouponUsedRecords { get; set; }
-        public virtual ICollection<Coupon> Coupons { get; set; }
-        public virtual ICollection<EpContent> EpContents { get; set; }
+        public virtual ICollection<Comment> Comment { get; set; }
+        public virtual ICollection<CouponUsedRecord> CouponUsedRecord { get; set; }
+        public virtual ICollection<Coupon> Coupon { get; set; }
+        public virtual ICollection<EpContent> EpContent { get; set; }
     }
 }

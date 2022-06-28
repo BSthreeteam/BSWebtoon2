@@ -1,8 +1,11 @@
+using BSWebtoon.Front.Service;
+using BSWebtoon.Front.Service.RecommendService;
 using BSWebtoon.Model.Models;
 using BSWebtoon.Model.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,7 +30,10 @@ namespace BSWebtoon.Front
         {
             services.AddControllersWithViews();
             services.AddScoped<BSRepository, BSRepository>();
-            services.AddDbContext<BSWeBtoonContext, BSWeBtoonContext>();
+            services.AddScoped<IRecommendService, RecommendService>();
+            //services.AddDbContext<BSWeBtoonContext, BSWeBtoonContext>();
+            services.AddDbContext<BSWeBtoonContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("BSWebtoonContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

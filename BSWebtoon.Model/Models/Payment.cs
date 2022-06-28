@@ -9,7 +9,7 @@ namespace BSWebtoon.Model.Models
     {
         public Payment()
         {
-            RechargeRecords = new HashSet<RechargeRecord>();
+            RechargeRecord = new HashSet<RechargeRecord>();
         }
 
         public int PaymentId { get; set; }
@@ -17,6 +17,6 @@ namespace BSWebtoon.Model.Models
         public bool IsEnable { get; set; }
         public int Sort { get; set; }
 
-        public virtual ICollection<RechargeRecord> RechargeRecords { get; set; }
+        public virtual ICollection<RechargeRecord> RechargeRecord { get; set; }
     }
 }

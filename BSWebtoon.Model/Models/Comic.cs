@@ -9,11 +9,11 @@ namespace BSWebtoon.Model.Models
     {
         public Comic()
         {
-            ClickRecords = new HashSet<ClickRecord>();
-            Coupons = new HashSet<Coupon>();
-            Episodes = new HashSet<Episode>();
-            Favorites = new HashSet<Favorite>();
-            Ranks = new HashSet<Rank>();
+            ClickRecord = new HashSet<ClickRecord>();
+            Coupon = new HashSet<Coupon>();
+            Episode = new HashSet<Episode>();
+            Favorite = new HashSet<Favorite>();
+            //Rank = new HashSet<Rank>();
         }
 
         public int ComicId { get; set; }
@@ -41,10 +41,10 @@ namespace BSWebtoon.Model.Models
         public int ComicStatus { get; set; }
 
         public virtual Employee AuditEmployee { get; set; }
-        public virtual ICollection<ClickRecord> ClickRecords { get; set; }
-        public virtual ICollection<Coupon> Coupons { get; set; }
-        public virtual ICollection<Episode> Episodes { get; set; }
-        public virtual ICollection<Favorite> Favorites { get; set; }
-        public virtual ICollection<Rank> Ranks { get; set; }
+        public virtual ICollection<ClickRecord> ClickRecord { get; set; }
+        public virtual ICollection<Coupon> Coupon { get; set; }
+        public virtual ICollection<Episode> Episode { get; set; }
+        public virtual ICollection<Favorite> Favorite { get; set; }
+        //public virtual ICollection<Rank> Rank { get; set; }
     }
 }
