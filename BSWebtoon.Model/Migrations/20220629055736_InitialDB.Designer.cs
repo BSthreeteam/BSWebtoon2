@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BSWebtoon.Model.Migrations
 {
     [DbContext(typeof(BSWeBtoonContext))]
-    [Migration("20220628154144_InitialDB5")]
-    partial class InitialDB5
+    [Migration("20220629055736_InitialDB")]
+    partial class InitialDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -180,15 +180,20 @@ namespace BSWebtoon.Model.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasComment("漫畫背景圖");
 
+                    b.Property<string>("ComicChineseName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasComment("漫畫中文名稱");
+
+                    b.Property<string>("ComicEnglishName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasComment("漫畫英文名稱");
+
                     b.Property<string>("ComicFigure")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasComment("人物圖");
-
-                    b.Property<string>("ComicName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasComment("漫畫名稱");
 
                     b.Property<string>("ComicNameImage")
                         .IsRequired()

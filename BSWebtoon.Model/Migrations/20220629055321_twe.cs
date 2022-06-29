@@ -2,7 +2,7 @@
 
 namespace BSWebtoon.Model.Migrations
 {
-    public partial class InitialDB5 : Migration
+    public partial class twe : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
