@@ -2,5 +2,8 @@
 {
     public interface IComicService
     {
+        void ComicTagCreate();
+        void ComicCreate();
+        void ComicTagListCreate();
     }
 }

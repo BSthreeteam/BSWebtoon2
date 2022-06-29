@@ -4,14 +4,16 @@ using BSWebtoon.Model.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BSWebtoon.Model.Migrations
 {
     [DbContext(typeof(BSWeBtoonContext))]
-    partial class BSWeBtoonContextModelSnapshot : ModelSnapshot
+    [Migration("20220629131131_InitialDB11")]
+    partial class InitialDB11
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -284,12 +286,6 @@ namespace BSWebtoon.Model.Migrations
 
             modelBuilder.Entity("BSWebtoon.Model.Models.ComicTagList", b =>
                 {
-                    b.Property<int>("TageListId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasComment("關鍵字清單ID")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
                     b.Property<int>("ComicId")
                         .HasColumnType("int")
                         .HasComment("漫畫Id");
@@ -298,8 +294,11 @@ namespace BSWebtoon.Model.Migrations
                         .HasColumnType("int")
                         .HasComment("關鍵字Id(以第一個為最主要的標籤)");
 
-                    b.HasKey("TageListId")
-                        .HasName("PK_Keyword");
+                    b.Property<int>("TageListId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasComment("關鍵字清單ID")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.HasIndex("ComicId");
 

@@ -25,7 +25,7 @@ namespace BSWebtoon.Front.Service.EmployeeService
             foreach(var e in employees)
             {
                 _repository.Create(e);
-
+                //_repository.Delete(e);
             }
             _repository.SaveChange();
             //var employees = new Employee() {EmployeeId=2 ,EmployeeName = "Kei", HireDate = new DateTime(2022, 6, 27), Account = "lkk975036543@hmail.com", Password = "098765432zxcvbn" };

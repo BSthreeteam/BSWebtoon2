@@ -4,14 +4,16 @@ using BSWebtoon.Model.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BSWebtoon.Model.Migrations
 {
     [DbContext(typeof(BSWeBtoonContext))]
-    partial class BSWeBtoonContextModelSnapshot : ModelSnapshot
+    [Migration("20220629161818_InitialDB13")]
+    partial class InitialDB13
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -298,8 +300,7 @@ namespace BSWebtoon.Model.Migrations
                         .HasColumnType("int")
                         .HasComment("關鍵字Id(以第一個為最主要的標籤)");
 
-                    b.HasKey("TageListId")
-                        .HasName("PK_Keyword");
+                    b.HasKey("TageListId");
 
                     b.HasIndex("ComicId");
 
