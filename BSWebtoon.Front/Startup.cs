@@ -1,4 +1,5 @@
 using BSWebtoon.Front.Service;
+using BSWebtoon.Front.Service.CouponService;
 using BSWebtoon.Front.Service.EmployeeService;
 using BSWebtoon.Front.Service.RechargeService;
 using BSWebtoon.Front.Service.RecommendService;
@@ -35,6 +36,7 @@ namespace BSWebtoon.Front
             services.AddScoped<IRecommendService, RecommendService>();
             services.AddScoped<IEmployeeService, EmployeeService>();
             services.AddScoped<IRechargeService, RechargeService>();
+            services.AddScoped<ICouponService, CouponService>();
             //services.AddDbContext<BSWeBtoonContext, BSWeBtoonContext>();
             services.AddDbContext<BSWeBtoonContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("BSWebtoonContext")));
