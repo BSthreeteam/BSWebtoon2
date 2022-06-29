@@ -18,9 +18,21 @@ namespace BSWebtoon.Model.Models
         public int EpId { get; set; }
         public int ComicId { get; set; }
         public string EpTitle { get; set; }
+        /// <summary>
+        /// 話次封面
+        /// </summary>
         public string EpCover { get; set; }
+        /// <summary>
+        /// 更新時間
+        /// </summary>
         public DateTime UpdateTime { get; set; }
+        /// <summary>
+        /// 作者上傳時間
+        /// </summary>
         public DateTime UploadTime { get; set; }
+        /// <summary>
+        /// 1:審核通過,2:審核中,3:未審核,4:審核失敗
+        /// </summary>
         public int AuditTypeId { get; set; }
         public int AuditEmployeeId { get; set; }
         public DateTime AuditTime { get; set; }
