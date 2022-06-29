@@ -2,5 +2,7 @@
 {
     public interface IComicService
     {
+        void EpCreate();
+        void EpContentCreate();
     }
 }
