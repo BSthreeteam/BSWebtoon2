@@ -10,10 +10,7 @@ namespace BSWebtoon.Front.Controllers
     {
         private readonly IRecommendService _recommendservice;
         private readonly BSRepository _repository;
-        public RecommendController(
-            BSRepository repository,
-            IRecommendService recommendService
-            )
+        public RecommendController(BSRepository repository,IRecommendService recommendService)
         {
             _recommendservice = recommendService;
             _repository = repository;
@@ -25,7 +22,7 @@ namespace BSWebtoon.Front.Controllers
         }
         public IActionResult AddActivityView() //Recommend/AddActivityView
         {
-            
+
             _recommendservice.ActivityCreate();
             return View();
         }

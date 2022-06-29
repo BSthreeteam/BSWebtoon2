@@ -182,9 +182,12 @@ namespace BSWebtoon.Model.Models
                     .IsRequired()
                     .HasComment("人物圖");
 
-                entity.Property(e => e.ComicName)
+                entity.Property(e => e.ComicChineseName)
                     .IsRequired()
-                    .HasComment("漫畫名稱");
+                    .HasComment("漫畫中文名稱");
+                entity.Property(e => e.ComicEnglishName)
+                    .IsRequired()
+                    .HasComment("漫畫英文名稱");
 
                 entity.Property(e => e.ComicNameImage)
                     .IsRequired()

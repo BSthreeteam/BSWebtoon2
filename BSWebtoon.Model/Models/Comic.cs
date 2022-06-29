@@ -17,7 +17,8 @@ namespace BSWebtoon.Model.Models
         }
 
         public int ComicId { get; set; }
-        public string ComicName { get; set; }
+        public string ComicChineseName { get; set; }
+        public string ComicEnglishName { get; set; }
         public string ComicNameImage { get; set; }
         public string BgCover { get; set; }
         public string ComicFigure { get; set; }

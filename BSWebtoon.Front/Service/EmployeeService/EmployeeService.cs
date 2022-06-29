@@ -17,15 +17,20 @@ namespace BSWebtoon.Front.Service.EmployeeService
         }
         public void EmployeeCreate()
         {
-            //List<Employee> employees = new List<Employee>
-            //{
-            //    new Employee{EmployeeId=1,EmployeeName="Kei" ,HireDate=new DateTime(2022, 6, 27),Account="lkk975038781@hmail.com",Password="123456789zxc"},
-            //    new Employee { EmployeeId = 2, EmployeeName = "Joe", HireDate = new DateTime(2022, 6, 27), Account = "lkk975036543@hmail.com", Password = "098765432zxcvbn"},
-            //};
+            List<Employee> employees = new List<Employee>
+            {
+                new Employee {EmployeeName="Kei" ,HireDate=new DateTime(2022, 6, 27), Account="lkk975038781@hmail.com",Password="123456789zxc"},
+                new Employee {EmployeeName="Joe" ,HireDate=new DateTime(2022, 6, 27), Account="lkk975036543@hmail.com",Password="098765432zxcvbn"},
+            };
+            foreach(var e in employees)
+            {
+                _repository.Create(e);
 
-            var employees = new Employee() {EmployeeName = "Joe", HireDate = new DateTime(2022, 6, 27), Account = "lkk975036543@hmail.com", Password = "098765432zxcvbn" };
-            _repository.Create(employees);
+            }
             _repository.SaveChange();
+            //var employees = new Employee() {EmployeeId=2 ,EmployeeName = "Kei", HireDate = new DateTime(2022, 6, 27), Account = "lkk975036543@hmail.com", Password = "098765432zxcvbn" };
+            //_repository.Delete(employees);
+
         }
     }
 }
