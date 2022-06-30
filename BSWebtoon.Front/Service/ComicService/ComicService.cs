@@ -15,8 +15,7 @@ namespace BSWebtoon.Front.Service.ComicService
             _context = context;
             _repository = repository;
         }
-<<<<<<< HEAD
-        
+
         public void ComicTagCreate()
         {
             List<ComicTag> comictags = new List<ComicTag>
@@ -73,8 +72,10 @@ namespace BSWebtoon.Front.Service.ComicService
             foreach (var list in comictaglists)
             {
                 _repository.Create(list);
-=======
+            }
+            _repository.SaveChange();
 
+        }
         public void EpCreate()
         {
             var epList = new List<Episode>
@@ -104,10 +105,9 @@ namespace BSWebtoon.Front.Service.ComicService
                 new EpContent(){ EpId=1, ImagePath="http", Page=1},
                 new EpContent(){ EpId=1, ImagePath="http", Page=2},
             };
-            foreach(var epContent in epContentList)
+            foreach (var epContent in epContentList)
             {
                 _repository.Create(epContent);
->>>>>>> c03a10b08a91acca633107483d03ee49586b0654
             }
             _repository.SaveChange();
         }

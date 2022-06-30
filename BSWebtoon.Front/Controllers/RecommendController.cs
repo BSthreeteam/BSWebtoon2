@@ -10,20 +10,13 @@ namespace BSWebtoon.Front.Controllers
     {
         private readonly IRecommendService _recommendservice;
 
-<<<<<<< HEAD
         private readonly BSRepository _repository;
         public RecommendController(BSRepository repository, IRecommendService recommendService)
         {
             _repository = repository;
-            recommendService = _recommendservice;
-=======
-        public RecommendController( IRecommendService recommendService)
-        {
             _recommendservice = recommendService;
->>>>>>> c03a10b08a91acca633107483d03ee49586b0654
         }
 
-        //private readonly BSRepository _repository;
 
         public IActionResult Recommend()
         {
