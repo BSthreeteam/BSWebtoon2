@@ -35,11 +35,11 @@ namespace BSWebtoon.Front
             services.AddScoped<BSRepository, BSRepository>();
             services.AddScoped<IRecommendService, RecommendService>();
             services.AddScoped<IEmployeeService, EmployeeService>();
-<<<<<<< HEAD
+
             services.AddScoped<IComicService, ComicService>();
-=======
+
             services.AddScoped<IMemberService, MemberService>();
->>>>>>> c03a10b08a91acca633107483d03ee49586b0654
+
             //services.AddDbContext<BSWeBtoonContext, BSWeBtoonContext>();
             services.AddDbContext<BSWeBtoonContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("BSWebtoonContext")));
