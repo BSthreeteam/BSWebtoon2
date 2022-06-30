@@ -16,7 +16,6 @@ namespace BSWebtoon.Front.Controllers
         }
         public IActionResult AddEmployeeView() //Employee/AddEmployeeView
         {
-
             _Employeeservice.EmployeeCreate();
             return View();
         }

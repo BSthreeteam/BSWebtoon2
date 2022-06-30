@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BSWebtoon.Model.Migrations
 {
     [DbContext(typeof(BSWeBtoonContext))]
-    [Migration("20220628142842_InitialDB2")]
-    partial class InitialDB2
+    [Migration("20220629131131_InitialDB11")]
+    partial class InitialDB11
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -180,15 +180,20 @@ namespace BSWebtoon.Model.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasComment("漫畫背景圖");
 
+                    b.Property<string>("ComicChineseName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasComment("漫畫中文名稱");
+
+                    b.Property<string>("ComicEnglishName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasComment("漫畫英文名稱");
+
                     b.Property<string>("ComicFigure")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasComment("人物圖");
-
-                    b.Property<string>("ComicName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasComment("漫畫名稱");
 
                     b.Property<string>("ComicNameImage")
                         .IsRequired()
@@ -711,45 +716,6 @@ namespace BSWebtoon.Model.Migrations
                     b.ToTable("Payment");
                 });
 
-            modelBuilder.Entity("BSWebtoon.Model.Models.Rank", b =>
-                {
-                    b.Property<int>("RankId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasComment("排行")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ClickCount")
-                        .HasColumnType("int")
-                        .HasComment("點擊數量");
-
-                    b.Property<int>("ComicId")
-                        .HasColumnType("int")
-                        .HasComment("漫畫");
-
-                    b.Property<DateTime>("CreateTime")
-                        .HasColumnType("datetime")
-                        .HasComment("排行時間(排名更新的時間  排名開始時間)");
-
-                    b.Property<DateTime?>("EndTime")
-                        .HasColumnType("datetime")
-                        .HasComment("排名結束時間(保留但可以先塞入資料)");
-
-                    b.Property<int>("PreRank")
-                        .HasColumnType("int")
-                        .HasComment("上次排名(以一00:00~下周一00:00)");
-
-                    b.Property<DateTime?>("StartTime")
-                        .HasColumnType("datetime")
-                        .HasComment("排名開始時間(保留但可以先塞入資料)");
-
-                    b.HasKey("RankId");
-
-                    b.HasIndex("ComicId");
-
-                    b.ToTable("Rank");
-                });
-
             modelBuilder.Entity("BSWebtoon.Model.Models.RechargeRecord", b =>
                 {
                     b.Property<int>("RechargeRecordId")
@@ -866,7 +832,7 @@ namespace BSWebtoon.Model.Migrations
             modelBuilder.Entity("BSWebtoon.Model.Models.Activity", b =>
                 {
                     b.HasOne("BSWebtoon.Model.Models.Employee", "PrincipalEmployeeNavigation")
-                        .WithMany("Activities")
+                        .WithMany("Activity")
                         .HasForeignKey("PrincipalEmployee")
                         .HasConstraintName("FK_Activity_Employee")
                         .IsRequired();
@@ -883,7 +849,7 @@ namespace BSWebtoon.Model.Migrations
                         .IsRequired();
 
                     b.HasOne("BSWebtoon.Model.Models.Comic", "Comic")
-                        .WithMany("ClickRecords")
+                        .WithMany("ClickRecord")
                         .HasForeignKey("ComicId")
                         .HasConstraintName("FK_ClickRecord_Comic")
                         .IsRequired();
@@ -896,7 +862,7 @@ namespace BSWebtoon.Model.Migrations
             modelBuilder.Entity("BSWebtoon.Model.Models.Comic", b =>
                 {
                     b.HasOne("BSWebtoon.Model.Models.Employee", "AuditEmployee")
-                        .WithMany("Comics")
+                        .WithMany("Comic")
                         .HasForeignKey("AuditEmployeeId")
                         .HasConstraintName("FK_Comic_Employee")
                         .IsRequired();
@@ -926,13 +892,13 @@ namespace BSWebtoon.Model.Migrations
             modelBuilder.Entity("BSWebtoon.Model.Models.Comment", b =>
                 {
                     b.HasOne("BSWebtoon.Model.Models.Episode", "Ep")
-                        .WithMany("Comments")
+                        .WithMany("Comment")
                         .HasForeignKey("EpId")
                         .HasConstraintName("FK_Comment_Epsiode")
                         .IsRequired();
 
                     b.HasOne("BSWebtoon.Model.Models.Member", "Member")
-                        .WithMany("Comments")
+                        .WithMany("Comment")
                         .HasForeignKey("MemberId")
                         .HasConstraintName("FK_Comment_Member")
                         .IsRequired();
@@ -952,13 +918,13 @@ namespace BSWebtoon.Model.Migrations
             modelBuilder.Entity("BSWebtoon.Model.Models.CommentLikeRecord", b =>
                 {
                     b.HasOne("BSWebtoon.Model.Models.Comment", "Comment")
-                        .WithMany("CommentLikeRecords")
+                        .WithMany("CommentLikeRecord")
                         .HasForeignKey("CommentId")
                         .HasConstraintName("FK_Likes_Comment")
                         .IsRequired();
 
                     b.HasOne("BSWebtoon.Model.Models.Member", "Member")
-                        .WithMany("CommentLikeRecords")
+                        .WithMany("CommentLikeRecord")
                         .HasForeignKey("MemberId")
                         .HasConstraintName("FK_Likes_Member")
                         .IsRequired();
@@ -971,17 +937,17 @@ namespace BSWebtoon.Model.Migrations
             modelBuilder.Entity("BSWebtoon.Model.Models.Coupon", b =>
                 {
                     b.HasOne("BSWebtoon.Model.Models.Activity", "Activity")
-                        .WithMany("Coupons")
+                        .WithMany("Coupon")
                         .HasForeignKey("ActivityId")
                         .HasConstraintName("FK_Coupon_Activity");
 
                     b.HasOne("BSWebtoon.Model.Models.Episode", "ActivityNavigation")
-                        .WithMany("Coupons")
+                        .WithMany("Coupon")
                         .HasForeignKey("ActivityId")
                         .HasConstraintName("FK_ReadCoupon_Epsiode");
 
                     b.HasOne("BSWebtoon.Model.Models.Comic", "Comic")
-                        .WithMany("Coupons")
+                        .WithMany("Coupon")
                         .HasForeignKey("ComicId")
                         .HasConstraintName("FK_ReadCoupon_Comic");
 
@@ -995,19 +961,19 @@ namespace BSWebtoon.Model.Migrations
             modelBuilder.Entity("BSWebtoon.Model.Models.CouponUsedRecord", b =>
                 {
                     b.HasOne("BSWebtoon.Model.Models.Coupon", "Coupon")
-                        .WithMany("CouponUsedRecords")
+                        .WithMany("CouponUsedRecord")
                         .HasForeignKey("CouponId")
                         .HasConstraintName("FK_CouponUsedRecord_Coupon")
                         .IsRequired();
 
                     b.HasOne("BSWebtoon.Model.Models.Episode", "Ep")
-                        .WithMany("CouponUsedRecords")
+                        .WithMany("CouponUsedRecord")
                         .HasForeignKey("EpId")
                         .HasConstraintName("FK_CouponUsedRecord_Epsiode")
                         .IsRequired();
 
                     b.HasOne("BSWebtoon.Model.Models.Member", "Member")
-                        .WithMany("CouponUsedRecords")
+                        .WithMany("CouponUsedRecord")
                         .HasForeignKey("MemberId")
                         .HasConstraintName("FK_CouponUsedRecord_Member")
                         .IsRequired();
@@ -1022,7 +988,7 @@ namespace BSWebtoon.Model.Migrations
             modelBuilder.Entity("BSWebtoon.Model.Models.EpContent", b =>
                 {
                     b.HasOne("BSWebtoon.Model.Models.Episode", "Ep")
-                        .WithMany("EpContents")
+                        .WithMany("EpContent")
                         .HasForeignKey("EpId")
                         .HasConstraintName("FK_ComicPic_Epsiode")
                         .IsRequired();
@@ -1033,13 +999,13 @@ namespace BSWebtoon.Model.Migrations
             modelBuilder.Entity("BSWebtoon.Model.Models.Episode", b =>
                 {
                     b.HasOne("BSWebtoon.Model.Models.Employee", "AuditEmployee")
-                        .WithMany("Episodes")
+                        .WithMany("Episode")
                         .HasForeignKey("AuditEmployeeId")
                         .HasConstraintName("FK_Episode_Employee")
                         .IsRequired();
 
                     b.HasOne("BSWebtoon.Model.Models.Comic", "Comic")
-                        .WithMany("Episodes")
+                        .WithMany("Episode")
                         .HasForeignKey("ComicId")
                         .HasConstraintName("FK_Epsiode_Comic")
                         .IsRequired();
@@ -1052,13 +1018,13 @@ namespace BSWebtoon.Model.Migrations
             modelBuilder.Entity("BSWebtoon.Model.Models.Favorite", b =>
                 {
                     b.HasOne("BSWebtoon.Model.Models.Comic", "Comic")
-                        .WithMany("Favorites")
+                        .WithMany("Favorite")
                         .HasForeignKey("ComicId")
                         .HasConstraintName("FK_MyLove_Comic")
                         .IsRequired();
 
                     b.HasOne("BSWebtoon.Model.Models.Member", "Member")
-                        .WithMany("Favorites")
+                        .WithMany("Favorite")
                         .HasForeignKey("MemberId")
                         .HasConstraintName("FK_MyLove_Member")
                         .IsRequired();
@@ -1071,7 +1037,7 @@ namespace BSWebtoon.Model.Migrations
             modelBuilder.Entity("BSWebtoon.Model.Models.Member", b =>
                 {
                     b.HasOne("BSWebtoon.Model.Models.LoginType", "LoginType")
-                        .WithMany("Members")
+                        .WithMany("Member")
                         .HasForeignKey("LoginTypeId")
                         .HasConstraintName("FK_Member_LoginType")
                         .IsRequired();
@@ -1079,32 +1045,21 @@ namespace BSWebtoon.Model.Migrations
                     b.Navigation("LoginType");
                 });
 
-            modelBuilder.Entity("BSWebtoon.Model.Models.Rank", b =>
-                {
-                    b.HasOne("BSWebtoon.Model.Models.Comic", "Comic")
-                        .WithMany("Ranks")
-                        .HasForeignKey("ComicId")
-                        .HasConstraintName("FK_Rank_Comic")
-                        .IsRequired();
-
-                    b.Navigation("Comic");
-                });
-
             modelBuilder.Entity("BSWebtoon.Model.Models.RechargeRecord", b =>
                 {
                     b.HasOne("BSWebtoon.Model.Models.CashPlan", "CashPlan")
-                        .WithMany("RechargeRecords")
+                        .WithMany("RechargeRecord")
                         .HasForeignKey("CashPlanId")
                         .HasConstraintName("FK_RechargeRecord_CashPlan");
 
                     b.HasOne("BSWebtoon.Model.Models.Member", "Member")
-                        .WithMany("RechargeRecords")
+                        .WithMany("RechargeRecord")
                         .HasForeignKey("MemberId")
                         .HasConstraintName("FK_Recharge_Member")
                         .IsRequired();
 
                     b.HasOne("BSWebtoon.Model.Models.Payment", "Payment")
-                        .WithMany("RechargeRecords")
+                        .WithMany("RechargeRecord")
                         .HasForeignKey("PaymentId")
                         .HasConstraintName("FK_Recharge_PayMethod")
                         .IsRequired();
@@ -1119,13 +1074,13 @@ namespace BSWebtoon.Model.Migrations
             modelBuilder.Entity("BSWebtoon.Model.Models.Report", b =>
                 {
                     b.HasOne("BSWebtoon.Model.Models.Employee", "AuditEmployee")
-                        .WithMany("Reports")
+                        .WithMany("Report")
                         .HasForeignKey("AuditEmployeeId")
                         .HasConstraintName("FK_Report_Employee")
                         .IsRequired();
 
                     b.HasOne("BSWebtoon.Model.Models.Comment", "Comment")
-                        .WithMany("Reports")
+                        .WithMany("Report")
                         .HasForeignKey("CommentId")
                         .HasConstraintName("FK_Report_Comment")
                         .IsRequired();
@@ -1138,13 +1093,13 @@ namespace BSWebtoon.Model.Migrations
             modelBuilder.Entity("BSWebtoon.Model.Models.ViewRecord", b =>
                 {
                     b.HasOne("BSWebtoon.Model.Models.EpContent", "EpContent")
-                        .WithMany("ViewRecords")
+                        .WithMany("ViewRecord")
                         .HasForeignKey("EpContentId")
                         .HasConstraintName("FK_ViewRecord_EpContent")
                         .IsRequired();
 
                     b.HasOne("BSWebtoon.Model.Models.Member", "Member")
-                        .WithMany("ViewRecords")
+                        .WithMany("ViewRecord")
                         .HasForeignKey("MemberId")
                         .HasConstraintName("FK_ViewRecord_Member")
                         .IsRequired();
@@ -1156,93 +1111,91 @@ namespace BSWebtoon.Model.Migrations
 
             modelBuilder.Entity("BSWebtoon.Model.Models.Activity", b =>
                 {
-                    b.Navigation("Coupons");
+                    b.Navigation("Coupon");
                 });
 
             modelBuilder.Entity("BSWebtoon.Model.Models.CashPlan", b =>
                 {
-                    b.Navigation("RechargeRecords");
+                    b.Navigation("RechargeRecord");
                 });
 
             modelBuilder.Entity("BSWebtoon.Model.Models.Comic", b =>
                 {
-                    b.Navigation("ClickRecords");
+                    b.Navigation("ClickRecord");
 
-                    b.Navigation("Coupons");
+                    b.Navigation("Coupon");
 
-                    b.Navigation("Episodes");
+                    b.Navigation("Episode");
 
-                    b.Navigation("Favorites");
-
-                    b.Navigation("Ranks");
+                    b.Navigation("Favorite");
                 });
 
             modelBuilder.Entity("BSWebtoon.Model.Models.Comment", b =>
                 {
-                    b.Navigation("CommentLikeRecords");
+                    b.Navigation("CommentLikeRecord");
 
                     b.Navigation("InverseReplyToComment");
 
-                    b.Navigation("Reports");
+                    b.Navigation("Report");
                 });
 
             modelBuilder.Entity("BSWebtoon.Model.Models.Coupon", b =>
                 {
-                    b.Navigation("CouponUsedRecords");
+                    b.Navigation("CouponUsedRecord");
                 });
 
             modelBuilder.Entity("BSWebtoon.Model.Models.Employee", b =>
                 {
-                    b.Navigation("Activities");
+                    b.Navigation("Activity");
 
-                    b.Navigation("Comics");
+                    b.Navigation("Comic");
 
-                    b.Navigation("Episodes");
+                    b.Navigation("Episode");
 
-                    b.Navigation("Reports");
+                    b.Navigation("Report");
                 });
 
             modelBuilder.Entity("BSWebtoon.Model.Models.EpContent", b =>
                 {
-                    b.Navigation("ViewRecords");
+                    b.Navigation("ViewRecord");
                 });
 
             modelBuilder.Entity("BSWebtoon.Model.Models.Episode", b =>
                 {
-                    b.Navigation("Comments");
+                    b.Navigation("Comment");
 
-                    b.Navigation("Coupons");
+                    b.Navigation("Coupon");
 
-                    b.Navigation("CouponUsedRecords");
+                    b.Navigation("CouponUsedRecord");
 
-                    b.Navigation("EpContents");
+                    b.Navigation("EpContent");
                 });
 
             modelBuilder.Entity("BSWebtoon.Model.Models.LoginType", b =>
                 {
-                    b.Navigation("Members");
+                    b.Navigation("Member");
                 });
 
             modelBuilder.Entity("BSWebtoon.Model.Models.Member", b =>
                 {
                     b.Navigation("ClickRecord");
 
-                    b.Navigation("CommentLikeRecords");
+                    b.Navigation("Comment");
 
-                    b.Navigation("Comments");
+                    b.Navigation("CommentLikeRecord");
 
-                    b.Navigation("CouponUsedRecords");
+                    b.Navigation("CouponUsedRecord");
 
-                    b.Navigation("Favorites");
+                    b.Navigation("Favorite");
 
-                    b.Navigation("RechargeRecords");
+                    b.Navigation("RechargeRecord");
 
-                    b.Navigation("ViewRecords");
+                    b.Navigation("ViewRecord");
                 });
 
             modelBuilder.Entity("BSWebtoon.Model.Models.Payment", b =>
                 {
-                    b.Navigation("RechargeRecords");
+                    b.Navigation("RechargeRecord");
                 });
 #pragma warning restore 612, 618
         }

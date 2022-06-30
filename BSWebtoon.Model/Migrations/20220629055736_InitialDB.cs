@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BSWebtoon.Model.Migrations
 {
-    public partial class AddActivityContext : Migration
+    public partial class InitialDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -117,7 +117,8 @@ namespace BSWebtoon.Model.Migrations
                 {
                     ComicId = table.Column<int>(type: "int", nullable: false, comment: "漫畫ID")
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ComicName = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "漫畫名稱"),
+                    ComicChineseName = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "漫畫中文名稱"),
+                    ComicEnglishName = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "漫畫英文名稱"),
                     ComicNameImage = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "漫畫名稱圖"),
                     BgCover = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "漫畫背景圖"),
                     ComicFigure = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "人物圖"),
@@ -231,30 +232,6 @@ namespace BSWebtoon.Model.Migrations
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Epsiode_Comic",
-                        column: x => x.ComicId,
-                        principalTable: "Comic",
-                        principalColumn: "ComicId",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Rank",
-                columns: table => new
-                {
-                    RankId = table.Column<int>(type: "int", nullable: false, comment: "排行")
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ComicId = table.Column<int>(type: "int", nullable: false, comment: "漫畫"),
-                    CreateTime = table.Column<DateTime>(type: "datetime", nullable: false, comment: "排行時間(排名更新的時間  排名開始時間)"),
-                    StartTime = table.Column<DateTime>(type: "datetime", nullable: true, comment: "排名開始時間(保留但可以先塞入資料)"),
-                    EndTime = table.Column<DateTime>(type: "datetime", nullable: true, comment: "排名結束時間(保留但可以先塞入資料)"),
-                    ClickCount = table.Column<int>(type: "int", nullable: false, comment: "點擊數量"),
-                    PreRank = table.Column<int>(type: "int", nullable: false, comment: "上次排名(以一00:00~下周一00:00)")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Rank", x => x.RankId);
-                    table.ForeignKey(
-                        name: "FK_Rank_Comic",
                         column: x => x.ComicId,
                         principalTable: "Comic",
                         principalColumn: "ComicId",
@@ -670,11 +647,6 @@ namespace BSWebtoon.Model.Migrations
                 column: "LoginTypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Rank_ComicId",
-                table: "Rank",
-                column: "ComicId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_RechargeRecord_CashPlanId",
                 table: "RechargeRecord",
                 column: "CashPlanId");
@@ -726,9 +698,6 @@ namespace BSWebtoon.Model.Migrations
 
             migrationBuilder.DropTable(
                 name: "Favorite");
-
-            migrationBuilder.DropTable(
-                name: "Rank");
 
             migrationBuilder.DropTable(
                 name: "RechargeRecord");

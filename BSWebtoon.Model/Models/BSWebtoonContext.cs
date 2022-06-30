@@ -256,7 +256,8 @@ namespace BSWebtoon.Model.Models
 
             modelBuilder.Entity<ComicTagList>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.TageListId)
+                    .HasName("PK_Keyword");
 
                 entity.ToTable("ComicTagList");
 
