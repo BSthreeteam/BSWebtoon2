@@ -1,14 +1,10 @@
 using BSWebtoon.Front.Service;
-<<<<<<< HEAD
 using BSWebtoon.Front.Service.CouponService;
 using BSWebtoon.Front.Service.EmployeeService;
 using BSWebtoon.Front.Service.RechargeService;
-=======
 using BSWebtoon.Front.Service.ComicService;
-using BSWebtoon.Front.Service.EmployeeService;
 using BSWebtoon.Front.Service.FavoriteService;
 using BSWebtoon.Front.Service.MemberService;
->>>>>>> CRUD_Kei
 using BSWebtoon.Front.Service.RecommendService;
 using BSWebtoon.Model.Models;
 using BSWebtoon.Model.Repository;
@@ -42,15 +38,12 @@ namespace BSWebtoon.Front
             services.AddScoped<BSRepository, BSRepository>();
             services.AddScoped<IRecommendService, RecommendService>();
             services.AddScoped<IEmployeeService, EmployeeService>();
-<<<<<<< HEAD
             services.AddScoped<IRechargeService, RechargeService>();
             services.AddScoped<ICouponService, CouponService>();
             //services.AddDbContext<BSWeBtoonContext, BSWeBtoonContext>();
-=======
             services.AddScoped<IComicService, ComicService>();
             services.AddScoped<IMemberService, MemberService>();
             services.AddScoped<IFavoriteService, FavoriteService>();
->>>>>>> CRUD_Kei
             services.AddDbContext<BSWeBtoonContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("BSWebtoonContext")));
         }
