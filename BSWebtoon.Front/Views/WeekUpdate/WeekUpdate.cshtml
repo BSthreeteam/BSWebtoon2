@@ -1,0 +1,218 @@
+﻿
+@{
+    ViewData["Title"] = "WeekUpdate";
+}
+@section topCss{
+      <link rel="stylesheet" href="~/style/weeklyUpdata.css" />
+}
+@*<h1>WeekUpdate</h1>
+ <div class="weekly">
+        <div class="container week_content">
+            <nav>
+                <a>新作</a>
+                <a class="a_Monday">一</a>
+                <a href="#Tuesday" class="a_Tuesday">二</a>
+                <a>三</a>
+                <a>四</a>
+                <a>五</a>
+                <a>六</a>
+                <a>日</a>
+                <a>完結</a>
+            </nav>
+
+            <div class="Monday">
+                <h2 class="Monday_title">星期一</h2>
+                <div class="content">
+                    <template id="workLongTemplate">
+                        <div class="work_long">
+                            <div class="work_long_bg">
+                                <img
+                                    src="https://tw-a.kakaopagecdn.com/P/C/214/bg/1x/f870dd2e-59a1-4324-bbbe-8419d26f0cf6.webp">
+                            </div>
+                            <video loop="true" autoplay="true" muted="true" class="workV-long ">
+                                <source class="source"
+                                    src="https://tw-a.kakaopagecdn.com/P/C/214/aclip/97caee36-c79a-4ec7-907d-f28cfd975c7c.webm">
+                            </video>
+                            <p class="title_long">身為黑暗英雄的女兒</p>
+                        </div>
+                    </template>
+                    <template id="workTemplate">
+                        <div class="work">
+                            <div class="work_bg">
+                                <img src="https://tw-a.kakaopagecdn.com/P/C/148/bg/1x/f485a521-3410-48a7-a3de-793514f1237c.webp"
+                                    alt="">
+                            </div>
+                            <img class="work_pic"
+                                src="https://tw-a.kakaopagecdn.com/P/C/148/c2/2x/06e61fbe-0d6d-4145-9a9f-3723841ac527.webp">
+
+                            <p class="title">無法親近的千金</p>
+                        </div>
+                    </template>
+                </div>
+
+            </div>
+            <div class="Tuesday">
+                <h2  id="Tuesday" class="Tuesday_title">星期二</h2>
+                <div class="content"></div>
+            </div>
+        </div>
+</div>*@
+
+
+<body data-bs-spy="scroll" data-bs-target="#navbar-id" data-bs-offset="1" class="scrollspy-example" tabindex="0">
+
+    <div class="try"></div>
+    <div class="weekly">
+        <div class="container week_content ">
+            <nav id="navbar-id" class="navbar navbar-light ">
+                <ul class="nav nav-pills">
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#scrollspyHeading0">新作</a>
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#scrollspyHeading1">一</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#scrollspyHeading2">二</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#scrollspyHeading3">三</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#scrollspyHeading4">四</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#scrollspyHeading5">五</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#scrollspyHeading6">六</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#scrollspyHeading7">日</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#scrollspyHeading8">完結</a>
+                    </li>
+                </ul>
+                <!-- <a>新作</a>
+                <a class="a_Monday">一</a>
+                <a class="a_Tuesday">二</a>
+                <a>三</a>
+                <a>四</a>
+                <a>五</a>
+                <a>六</a>
+                <a>日</a>
+                <a>完結</a> -->
+            </nav>
+
+            <div class="Monday">
+                <h2 id="scrollspyHeading1" class="Monday_title">星期一</h2>
+                <div class="content">
+                    <template id="workLongTemplate">
+                        <div class="work_long">
+                            <div class="work_long_bg">
+                                <img
+                                    src="https://tw-a.kakaopagecdn.com/P/C/214/bg/1x/f870dd2e-59a1-4324-bbbe-8419d26f0cf6.webp">
+                            </div>
+                            <video loop="true" autoplay="true" muted="true" class="workV-long ">
+                                <source class="source"
+                                    src="https://tw-a.kakaopagecdn.com/P/C/214/aclip/97caee36-c79a-4ec7-907d-f28cfd975c7c.webm">
+                            </video>
+                            <p class="title_long">身為黑暗英雄的女兒</p>
+                        </div>
+                    </template>
+                    <template id="workTemplate">
+                        <div class="work">
+                            <div class="work_bg">
+                                <img src="https://tw-a.kakaopagecdn.com/P/C/148/bg/1x/f485a521-3410-48a7-a3de-793514f1237c.webp"
+                                    alt="">
+                            </div>
+                            <img class="work_pic"
+                                src="https://tw-a.kakaopagecdn.com/P/C/148/c2/2x/06e61fbe-0d6d-4145-9a9f-3723841ac527.webp">
+
+                            <p class="title">無法親近的千金</p>
+                        </div>
+                    </template>
+
+
+
+                    <div class="black">
+                        <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                            <div class="img-box">
+
+                            </div>
+                        </div>
+                        <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                            <div class="img-box">
+
+                            </div>
+                        </div>
+                        <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                            <div class="img-box">
+
+                            </div>
+                        </div>
+                        <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                            <div class="img-box">
+
+                            </div>
+                        </div>
+
+                        <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                            <div class="img-box">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="Tuesday">
+                <h2 id="scrollspyHeading2" class="Tuesday_title">星期二</h2>
+                <div class="content">
+
+                    <div class="black">
+                        <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                            <div class="img-box">
+
+                            </div>
+                        </div>
+                        <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                            <div class="img-box">
+
+                            </div>
+                        </div>
+                        <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                            <div class="img-box">
+
+                            </div>
+                        </div>
+                        <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                            <div class="img-box">
+
+                            </div>
+                        </div>
+
+                        <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                            <div class="img-box">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    </div>
+</body>
+
+@section endJS{
+      
+      <script src="~/js/WeekUpdate.js"></script>
+}
+

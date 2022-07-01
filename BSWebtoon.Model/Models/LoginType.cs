@@ -9,12 +9,12 @@ namespace BSWebtoon.Model.Models
     {
         public LoginType()
         {
-            Members = new HashSet<Member>();
+            Member = new HashSet<Member>();
         }
 
         public int LoginTypeId { get; set; }
-        public string Name { get; set; }
+        public string LoginTypeName { get; set; }
 
-        public virtual ICollection<Member> Members { get; set; }
+        public virtual ICollection<Member> Member { get; set; }
     }
 }

@@ -1,0 +1,316 @@
+:root {
+    --title-size: 900;
+    --content-size: 700;
+    --content-title-color: rgb(255, 255, 255);
+    --content-small-color: white;
+}
+
+body {
+    /* overflow: hidden; */
+}
+
+a {
+    text-decoration: none;
+}
+
+.hearder_nav {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    opacity: 1;
+}
+
+    .hearder_nav .previous_page_a {
+        margin: 10px;
+    }
+
+.function_box {
+    display: flex;
+}
+
+    .function_box .collect_a, .share_a {
+        margin: 10px;
+    }
+
+        .share_a i {
+            color: red;
+        }
+
+.hearder_nav i {
+    color: white;
+    font-size: 20px;
+}
+
+.main_picture {
+    display: flex;
+    flex-direction: column;
+    color: var(--content-small-color);
+    opacity: 1;
+    background-image: url("https://tw-a.kakaopagecdn.com/P/C/206/bg/2x/861eafec-2cea-4c74-b3e6-07f85c619582.webp");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+    .main_picture .local_picture_bg {
+        display: flex;
+        justify-content: center;
+        margin-top: 80px;
+    }
+
+        .main_picture .local_picture_bg .local_picture_box {
+            width: 80%;
+            display: flex;
+            justify-content: center;
+            align-self: center;
+            border-bottom: 2px solid white;
+            position: relative;
+        }
+
+    .main_picture .local_picture_box .free_watch .read_ticket {
+        background-color: purple;
+        position: absolute;
+        left: -30px;
+        top: 25px;
+    }
+
+    .main_picture .local_picture_box .free_watch .seven_free {
+        background-color: black;
+        position: absolute;
+        top: 50px;
+        left: -30px;
+    }
+
+    .main_picture .local_picture_box .local_video {
+        width: 80%;
+        margin: 10px 0 0 0;
+    }
+
+    .main_picture .comics_name_bg {
+        background: linear-gradient(rgba(149,137,111,0) 2%,rgb(149,137,111));
+        padding-bottom: 50px;
+    }
+
+        .main_picture .comics_name_bg .comics_box {
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+    .main_picture .comics_box .comics_name_click {
+        text-decoration: none;
+        color: var(--content-title-color);
+    }
+
+    .main_picture .comics_name_bg .play_tidy_box {
+        display: flex;
+        flex-direction: column;
+    }
+
+        .main_picture .comics_name_bg .play_tidy_box i {
+            font-size: 35px;
+        }
+
+        .main_picture .comics_name_bg .play_tidy_box .play {
+            width: 50px;
+            height: 50px;
+            margin-top: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .main_picture .comics_name_bg .play_tidy_box .tidy, .tidy_r {
+            width: 50px;
+            height: 50px;
+            margin-top: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .main_picture .comics_name_bg .play_tidy_box .tidy_r {
+            display: none;
+        }
+
+    .main_picture .comics_name {
+        margin: 40px 0 0 0;
+    }
+
+        .main_picture .comics_name h1 {
+            font-weight: var(--title-size);
+        }
+
+        .main_picture .comics_name p {
+            font-weight: var(--content-size);
+        }
+
+        .main_picture .comics_name .comics_category {
+            display: flex;
+        }
+
+            .main_picture .comics_name .comics_category p {
+                margin: 0 10px 0 0;
+            }
+
+            .main_picture .comics_name .comics_category span {
+                display: flex;
+                align-items: center;
+                margin-right: 5px;
+            }
+/* .main_comics_episode.hide{
+    transform: translateY(-465px);
+} */
+.main_comics_episode .comics_episode {
+    /* height: 2000px; */
+    /* height:fit-content; */
+    background-color: rgb(149,137,111);
+    /* transition: all 3s ease-in 0s;
+    transform: translateY(0px); */
+}
+    /* .main_comics_episode .comics_episode.hide{
+} */
+    .main_comics_episode .comics_episode .row {
+        max-width: 1200px;
+        padding-bottom: 200px;
+        padding-top: 10px;
+        top: 465px;
+    }
+
+        .main_comics_episode .comics_episode .row > * {
+            padding-right: 0px;
+            padding-left: 0px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .main_comics_episode .comics_episode .row .card {
+            border: 0px solid;
+            background-color: rgb(149,137,111);
+        }
+
+    .main_comics_episode .comics_episode .illustrate_box {
+        display: flex;
+        justify-content: center;
+    }
+
+        .main_comics_episode .comics_episode .illustrate_box ul {
+            display: flex;
+            flex-direction: row;
+            padding-left: 0px;
+        }
+
+            .main_comics_episode .comics_episode .illustrate_box ul li {
+                list-style: none;
+                margin: 5px;
+                text-align: center;
+            }
+
+                .main_comics_episode .comics_episode .illustrate_box ul li a {
+                    color: var(--content-small-color);
+                    padding: 0px 10px;
+                }
+
+                    .main_comics_episode .comics_episode .illustrate_box ul li a:hover {
+                        color: black;
+                        background-color: white;
+                        border-radius: 30px;
+                    }
+
+    .main_comics_episode .comics_episode .keep_reading_box {
+        /* position: sticky; */
+        display: flex;
+        background-color: rgba(142, 138, 132, 0.9);
+        justify-content: center;
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+        .main_comics_episode .comics_episode .keep_reading_box a {
+            color: var(--content-color);
+        }
+
+        .main_comics_episode .comics_episode .keep_reading_box .keep_reading {
+            margin: 5px 0;
+        }
+
+    .main_comics_episode .comics_episode .row .left_row {
+        /* width: fit-content; */
+        height: 750px;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        overflow: auto;
+    }
+
+        .main_comics_episode .comics_episode .row .left_row::-webkit-scrollbar {
+            display: none;
+        }
+
+        .main_comics_episode .comics_episode .row .left_row .ill_box div {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .main_comics_episode .comics_episode .row .left_row .mobile_title_box {
+            color: var(--content-title-color);
+        }
+
+        .main_comics_episode .comics_episode .row .left_row .ill_box div p {
+        }
+
+        .main_comics_episode .comics_episode .row .left_row .ill_box div span {
+            width: 50px;
+            color: rgb(164, 161, 161);
+        }
+
+        .main_comics_episode .comics_episode .row .left_row .keywords_box div {
+            display: flex;
+        }
+
+            .main_comics_episode .comics_episode .row .left_row .keywords_box div p {
+                margin: 0 3px;
+                padding: 5px;
+                background-color: rgba(209, 206, 201,0.3);
+            }
+
+        .main_comics_episode .comics_episode .row .left_row .leval {
+            border-radius: 30px;
+            background: #F00;
+            width: 45px;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            text-align: center;
+            font-size: 15px;
+        }
+
+        .main_comics_episode .comics_episode .row .left_row .text-white {
+            margin: 0 0 0px 5px;
+        }
+
+.comics_illustrate {
+    display: none;
+}
+
+    .comics_illustrate p {
+        font-size: 25px;
+    }
+
+@media screen and (min-width:1200px) {
+    .hearder_nav i {
+        color: white;
+        font-size: 40px;
+    }
+
+    .main_comics_episode .comics_box {
+        max-width: 1200px;
+    }
+
+    .main_comics_episode .comics_episode .illustrate_box {
+        display: none;
+    }
+
+    .comics_illustrate {
+        display: block;
+        margin: 10px;
+    }
+}

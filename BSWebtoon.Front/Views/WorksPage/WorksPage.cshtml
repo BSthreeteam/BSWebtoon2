@@ -1,0 +1,159 @@
+﻿
+@{
+    ViewData["Title"] = "WorksPage";
+}
+@section topCss{
+      <link rel="stylesheet" href="~/style/WorkspageStyle.css" />
+}
+@*<h1>WorksPage</h1>*@
+<header class="hearder_nav w-100">
+        <a class="previous_page_a" href="#"><i class="fa-solid fa-arrow-left-long previous_page"></i></a>
+        <div class="function_box">
+            <a class="collect_a " href="#"><i class="red fa-solid fa-heart"></i></a>
+            <a class="share_a" href="#" data-bs-toggle="modal" data-bs-target="#loginModal"><i
+                    class="fa-solid fa-comment-dots message"></i></a>
+        </div>
+    </header>
+    <banner class="main_picture mx-auto">
+        <div class="local_picture_bg mx-auto">
+            <div class="local_picture_box">
+                <div class="free_watch">
+                    <div class="read_ticket">閱讀券1張</div>
+                    <div class="seven_free">每7日免費看</div>
+                </div>
+                <video autoplay="ture" muted="ture" class="local_video">
+                    <source src="https://tw-a.kakaopagecdn.com/P/C/206/c1a/349781d6-bdf6-4eb3-a73a-abcccc9f9fec.webm">
+                </video>
+            </div>
+        </div>
+        <div class="comics_name_bg">
+            <div class="comics_box mx-auto">
+                <a class="comics_name_click" href="#">
+                    <!-- <div class="comics_name">
+                        <h1>骨灰級菜鳥玩家</h1>
+                        <p><span>原著</span> BONIEE,Step on a LEGO</p>
+                        <p><span>發行</span> REDICE STUDIO</p>
+                        <div class="comics_category">
+                            <p class="category"><span><i class="fa-solid fa-bars-staggered"></i></span>動作冒險</p>
+                            <p class="whatch"><span><i class="fa-regular fa-eye"></i></span> 843.9K</p>
+                            <p class="good"><span><i class="fa-regular fa-thumbs-up"></i></span> 82.1K</p>
+                        </div>
+                    </div> -->
+                </a>
+                <div class="play_tidy_box">
+                    <div class="play btn btn-light"><i class="fa-regular fa-circle-play"></i></div>
+                    <div class="tidy btn btn-light">
+                        <i class="fa-solid fa-arrow-down-1-9"></i>
+                    </div>
+                    <div class="tidy_r btn btn-light">
+                        <i class="fa-solid fa-arrow-down-9-1"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </banner>
+    <section class="main_comics_episode w-100 ">
+        <div class="comics_episode ">
+            <div class="row mx-auto">
+                <nav class="illustrate_box">
+                    <ul>
+                        <li><a class="ep" href="#">話次</a></li>
+                        <li><a class="illustrate" href="#">作品資訊</a></li>
+                        <li><a class="messages" href="#">留言</a></li>
+                    </ul>
+                </nav>
+                <div class="keep_reading_box">
+                    <a href="#">
+                        <p class="keep_reading"><span>繼續看</span>序章</p>
+                    </a>
+                </div>
+                <div class="left_row col-12 col-lg-8 col-xl-8">
+
+                </div>
+                <div class="col-lg-4 col-xl-4">
+                    <div class="comics_illustrate">
+                        <p>這款遊戲將在15年後終止服務，只有我知道遊戲的結局。「我是骨灰及玩家。」</p>
+                    </div>
+                </div>
+
+            </div>
+
+    </section>
+    <template id="title_template">
+        <div class="comics_name">
+            <h1 class="title">骨灰級菜鳥玩家</h1>
+            <span>原著</span>
+            <p class="author"> BONIEE,Step on a LEGO</p>
+            <span>發行</span>
+            <p class="publisher"> REDICE STUDIO</p>
+            <div class="comics_category">
+                <span><i class="fa-solid fa-bars-staggered"></i></span>
+                <p class="category">動作冒險</p>
+                <span><i class="fa-regular fa-eye"></i></span>
+                <p class="whatch"> 843.9K</p>
+                <span><i class="fa-regular fa-thumbs-up"></i></span>
+                <p class="good"> 82.1K</p>
+            </div>
+        </div>
+    </template>
+    <template id="motle_title">
+        <div class="mobile_title_box p-3">
+            <h2 class="mo_ti fw-bolder">骨灰級菜鳥玩家</h2>
+            <div class="ill_box">
+                <div><span>文</span><p class="mo_word"> BONIEE</p></div>
+                <div><span>圖</span><p class="mo_pic"> BONIEE</p></div>
+                <div><span>原著</span><p class="mo_author"> BONIEE,Step on a LEGO</p></div>
+                <div><span>發行</span><p class="mo_publisher"> REDICE STUDIO</p></div>
+            </div>
+            <div class="story_box mt-5">
+                <h3>故事大綱</h3>
+                <p>這款遊戲將在15年後終止服務，只有我知道遊戲的結局。「我是骨灰及玩家。」</p>
+            </div>
+            <div class="keywords_box mt-5">
+                <h4 class="mb-3">關鍵字</h4>
+                <div>
+                    <p>#刺激緊張</p>
+                    <p>#瘋狂</p>
+                    <p>#動作冒險</p>
+                    <p>#改變命運</p>
+                </div>
+            </div>
+        </div>
+    </template>
+    <template id="ep_card">
+        <div class="col col-6 col-md-4 col-lg-3 col-xl-2">
+            <div class="card w-100" style="width: 18rem;">
+                <img src="https://picsum.photos/300/200/?random=64" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example.</p>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@section endJS{
+      <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+      <script src="~/js/Workspage.js"></script>
+}
+

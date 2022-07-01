@@ -1,6 +1,17 @@
+using BSWebtoon.Front.Service;
+using BSWebtoon.Front.Service.CouponService;
+using BSWebtoon.Front.Service.EmployeeService;
+using BSWebtoon.Front.Service.RechargeService;
+using BSWebtoon.Front.Service.ComicService;
+using BSWebtoon.Front.Service.FavoriteService;
+using BSWebtoon.Front.Service.MemberService;
+using BSWebtoon.Front.Service.RecommendService;
+using BSWebtoon.Model.Models;
+using BSWebtoon.Model.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,6 +35,17 @@ namespace BSWebtoon.Front
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddScoped<BSRepository, BSRepository>();
+            services.AddScoped<IRecommendService, RecommendService>();
+            services.AddScoped<IEmployeeService, EmployeeService>();
+            services.AddScoped<IRechargeService, RechargeService>();
+            services.AddScoped<ICouponService, CouponService>();
+            //services.AddDbContext<BSWeBtoonContext, BSWeBtoonContext>();
+            services.AddScoped<IComicService, ComicService>();
+            services.AddScoped<IMemberService, MemberService>();
+            services.AddScoped<IFavoriteService, FavoriteService>();
+            services.AddDbContext<BSWeBtoonContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("BSWebtoonContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,7 +72,7 @@ namespace BSWebtoon.Front
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Recommend}/{action=Recommend}/{id?}");
             });
         }
     }

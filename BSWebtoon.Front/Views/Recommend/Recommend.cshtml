@@ -1,0 +1,61 @@
+﻿@{
+    ViewData["Title"] = "Recommend";
+}
+@section topCss{
+<link rel="stylesheet" href="~/style/HomePage.css" />
+}
+
+<ul class="nav justify-content-center nav-top">
+    <li class="nav-item">
+        <a class="nav-link nav_recommend" href="#">推薦</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link nav_hot" href="#">強檔巨獻</a>
+    </li>
+</ul>
+
+<div class="container-fluid main-context">
+</div>
+<div class="row flex-grow-1 xl_user m-auto">
+</div>
+
+<div class="container">
+    <template id="body-recommend">
+        <a class="work_a" href="#">
+            <div class="row row-recommend">
+                <div class="txt-part">
+                    <span>123</span>
+                    <img src="https://picsum.photos/300/100/?random=10" class="title-pic">
+                    <p>上了次數支持，用途宅宅，亞洲效果大多我。</p>
+                </div>
+                <div class="transform-part transform-part-public">
+                </div>
+                <div class="transform-part2 transform-part-public">
+                </div>
+                <div class="pic-part p-0">
+                    <img src="https://tw-a.kakaopagecdn.com/P/C/209/bg/2x/2f809479-ecf8-4795-a401-ed8825370af3.webp" class="recommend-pic-bg" alt="">
+                    <video src="https://tw-a.kakaopagecdn.com/P/C/209/c1a/55729505-a52c-470a-a8e0-09c7dab6047c.webm" class="recommend-pic" autoplay loop></video>
+                </div>
+            </div>
+        </a>
+    </template>
+</div>
+
+<!-- <div class="container-fluid main-body"> -->
+<template id="body-hot">
+    <div class="container">
+        <div class="row hot">
+            <img src="https://tw-a.kakaopagecdn.com/P/O/SPECIAL-BRIDGE/2022-04-19/first/2x/fa877646-a202-4e45-822d-5ffb057d8a05.webp"
+                 alt="背景圖" class="video-bg">
+            <video src="https://tw-a.kakaopagecdn.com/P/O/CARD/SPECIAL/2022-04-19/c/95ff3f36-8bdd-4df2-8483-141381188070.webm"
+                   autoplay loop></video>
+            <img src="https://tw-a.kakaopagecdn.com/P/O/CARD/SPECIAL/2022-04-19/t/2x/ecfc3435-32ac-4511-b48b-be365e787b23.webp"
+                 alt="我和社長相親相愛" class="video-title">
+        </div>
+    </div>
+</template>
+<!-- </div> -->
+@section endJS{
+<script src="~/json/01.js"></script>
+<script src="~/js/Recommend.js"></script>
+}

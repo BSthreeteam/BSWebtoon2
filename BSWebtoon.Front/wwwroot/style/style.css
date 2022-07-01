@@ -1,0 +1,56 @@
+body {
+    background-color: #000;
+}
+
+.user-icon {
+    width: 25px;
+    height: 25px;
+}
+
+#user {
+    display: flex;
+    align-items: center;
+}
+
+    #user a {
+        padding: 10px;
+    }
+
+.container,
+.row {
+    max-width: 1200px;
+    margin: auto;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    width: 100%;
+    background-color: #000;
+}
+
+.inputSearchBorder {
+    border: 0px solid #fff;
+    border-bottom: 1px solid #fff;
+    border-radius: 0%;
+}
+
+.context {
+    position: relative;
+    top: 100px;
+}
+
+.nav-link {
+    color: #fff;
+}
+
+    .nav-link:visited {
+        color: #fff;
+    }
+
+    .nav-link:hover {
+        color: #ccc;
+    }
