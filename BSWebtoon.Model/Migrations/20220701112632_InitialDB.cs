@@ -189,6 +189,7 @@ namespace BSWebtoon.Model.Migrations
                 },
                 constraints: table =>
                 {
+                    table.PrimaryKey("PK_Keyword", x => x.TageListId);
                     table.ForeignKey(
                         name: "FK_ComicTag_Comic",
                         column: x => x.ComicId,
