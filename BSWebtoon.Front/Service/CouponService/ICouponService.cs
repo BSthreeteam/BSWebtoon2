@@ -3,5 +3,6 @@
     public interface ICouponService
     {
         void CouponCreate();
+        void CouponUsedRecordCreate();
     }
 }

@@ -12,9 +12,10 @@ namespace BSWebtoon.Front.Controllers
             _couponService = couponService;
         }
 
-        public IActionResult Coupon()
+        public IActionResult Coupon() //Coupon/Coupon
         {
-            _couponService.CouponCreate();
+            //_couponService.CouponCreate();
+            _couponService.CouponUsedRecordCreate();
             return View();
         }
     }
