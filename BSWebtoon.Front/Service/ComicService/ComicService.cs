@@ -82,6 +82,8 @@ namespace BSWebtoon.Front.Service.ComicService
             {
                 new Episode(){ ComicId = 1, EpTitle = "第1話", EpCover = "http", UpdateTime=new DateTime(2022,05,05),UploadTime=new DateTime(2022,05,01),AuditTypeId=1,AuditEmployeeId=1,AuditTime=new DateTime(2022,05,02),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
                 new Episode(){ ComicId = 1, EpTitle = "第2話", EpCover = "http", UpdateTime=new DateTime(2022,05,05),UploadTime=new DateTime(2022,05,01),AuditTypeId=1,AuditEmployeeId=1,AuditTime=new DateTime(2022,05,02),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
+                new Episode(){ ComicId = 2, EpTitle = "第1話", EpCover = "http", UpdateTime=new DateTime(2022,05,05),UploadTime=new DateTime(2022,05,02),AuditTypeId=1,AuditEmployeeId=1,AuditTime=new DateTime(2022,05,03),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
+                new Episode(){ ComicId = 2, EpTitle = "第2話", EpCover = "http", UpdateTime=new DateTime(2022,05,05),UploadTime=new DateTime(2022,05,02),AuditTypeId=1,AuditEmployeeId=1,AuditTime=new DateTime(2022,05,04),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
                 //new Episode(){ ComicId = 1, EpTitle = "第3話", EpCover = "http", UpdateTime=new DateTime(2022,05,06),UploadTime=new DateTime(2022,05,01),AuditTypeId=1,AuditEmployeeId=1,AuditTime=new DateTime(2022,05,02),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
                 //new Episode(){ ComicId = 1, EpTitle = "第4話", EpCover = "http", UpdateTime=new DateTime(2022,05,06),UploadTime=new DateTime(2022,05,01),AuditTypeId=1,AuditEmployeeId=1,AuditTime=new DateTime(2022,05,02),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
                 //new Episode(){ ComicId = 1, EpTitle = "第5話", EpCover = "http", UpdateTime=new DateTime(2022,05,07),UploadTime=new DateTime(2022,05,01),AuditTypeId=1,AuditEmployeeId=1,AuditTime=new DateTime(2022,05,02),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
@@ -104,6 +106,12 @@ namespace BSWebtoon.Front.Service.ComicService
             {
                 new EpContent(){ EpId=1, ImagePath="http", Page=1},
                 new EpContent(){ EpId=1, ImagePath="http", Page=2},
+                new EpContent(){ EpId=2, ImagePath="http", Page=1},
+                new EpContent(){ EpId=2, ImagePath="http", Page=2},
+                new EpContent(){ EpId=3, ImagePath="http", Page=1},
+                new EpContent(){ EpId=3, ImagePath="http", Page=2},
+                new EpContent(){ EpId=4, ImagePath="http", Page=1},
+                new EpContent(){ EpId=4, ImagePath="http", Page=2},
             };
             foreach (var epContent in epContentList)
             {

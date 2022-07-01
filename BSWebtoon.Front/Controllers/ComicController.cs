@@ -28,14 +28,15 @@ namespace BSWebtoon.Front.Controllers
         public IActionResult AddEpView() //Comic/AddEpView
         {
             _ComicService.EpCreate();
-            return View();
-        }
-
-        public IActionResult AddEpContentView() //Comic/AddEpContentView
-        {
             _ComicService.EpContentCreate();
             return View();
         }
+
+        //public IActionResult AddEpContentView() //Comic/AddEpContentView
+        //{
+        //    _ComicService.EpContentCreate();
+        //    return View();
+        //}
 
     }
 }

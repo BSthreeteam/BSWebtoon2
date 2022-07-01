@@ -26,6 +26,14 @@ namespace BSWebtoon.Front.Controllers
             _recommendservice.ActivityCreate();
             return View();
         }
+        public IActionResult AddViewRecordView() //Recommend/AddViewRecordView
+        {
 
+            _recommendservice.ViewRecordCreate();
+            _recommendservice.CommentCreate();
+            _recommendservice.LikeCreate();
+            _recommendservice.ReportCreate();
+            return View();
+        }
     }
 }
