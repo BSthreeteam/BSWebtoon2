@@ -34,5 +34,59 @@ namespace BSWebtoon.Front.Service.RecommendService
             //_repository.Delete(data);
             _repository.SaveChange();
         }
+        public void ViewRecordCreate()
+        {
+            var viewRecordList = new List<ViewRecord>()
+            {
+                new ViewRecord(){ MemberId=1,EpContentId=4,ViewTime=new DateTime(2022,06,01)},
+                new ViewRecord(){ MemberId=2,EpContentId=8,ViewTime=new DateTime(2022,06,04)},
+            };
+            foreach (ViewRecord record in viewRecordList)
+            {
+                _repository.Create(record);
+            }
+            _repository.SaveChange();
+        }
+
+        public void CommentCreate()
+        {
+            var commentList = new List<Comment>()
+            {
+                new Comment(){MemberId=1,EpId=2,ReplyToCommentId=null,IsSpoiler=false,CreateTime=new DateTime(2022,06,01,13,45,00),Context="超好看!!!老師太厲害了!",IsDelete=false},
+                new Comment(){MemberId=2,EpId=4,ReplyToCommentId=null,IsSpoiler=true,CreateTime=new DateTime(2022,06,04,18,30,00),Context="女主角超心機  不過我喜歡<br>哈哈哈",IsDelete=false},
+            };
+            foreach (Comment comment in commentList)
+            {
+                _repository.Create(comment);
+            }
+            _repository.SaveChange();
+        }
+
+        public void LikeCreate()
+        {
+            var likeList = new List<CommentLikeRecord>
+            {
+                new CommentLikeRecord(){ MemberId=1, CommentId=1, CreateTime=new DateTime(2022,06,01,13,47,00), IsLike = true},
+                new CommentLikeRecord(){ MemberId=2, CommentId=2, CreateTime=new DateTime(2022,06,04,18,35,00), IsLike = true},
+            };
+            foreach (CommentLikeRecord Like in likeList)
+            {
+                _repository.Create(Like);
+            }
+            _repository.SaveChange();
+        }
+
+        public void ReportCreate()
+        {
+            var reportList = new List<Report>
+            {
+                new Report(){ CommentId=2,CreateTime=new DateTime(2022,06,05,12,20,00),AuditType=4,AuditEmployeeId=1,AuditTime=new DateTime(2022,06,05,16,00,00),Reason="我看他不爽!!!"}
+            };
+            foreach (Report report in reportList)
+            {
+                _repository.Create(report);
+            }
+            _repository.SaveChange();
+        }
     }
 }
