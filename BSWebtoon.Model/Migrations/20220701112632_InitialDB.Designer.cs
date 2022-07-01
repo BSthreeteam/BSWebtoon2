@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BSWebtoon.Model.Migrations
 {
     [DbContext(typeof(BSWeBtoonContext))]
-    [Migration("20220629055736_InitialDB")]
+    [Migration("20220701112632_InitialDB")]
     partial class InitialDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -286,6 +286,12 @@ namespace BSWebtoon.Model.Migrations
 
             modelBuilder.Entity("BSWebtoon.Model.Models.ComicTagList", b =>
                 {
+                    b.Property<int>("TageListId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasComment("關鍵字清單ID")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
                     b.Property<int>("ComicId")
                         .HasColumnType("int")
                         .HasComment("漫畫Id");
@@ -294,11 +300,8 @@ namespace BSWebtoon.Model.Migrations
                         .HasColumnType("int")
                         .HasComment("關鍵字Id(以第一個為最主要的標籤)");
 
-                    b.Property<int>("TageListId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasComment("關鍵字清單ID")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.HasKey("TageListId")
+                        .HasName("PK_Keyword");
 
                     b.HasIndex("ComicId");
 
