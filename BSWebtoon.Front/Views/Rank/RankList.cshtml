@@ -4,11 +4,30 @@
     ViewData["Title"] = "RankList";
 }
 
-<h1>RankList</h1>
+@*<h1>RankList</h1>*@
 
-<p>
+@section topCSS{
+    <style>
+        .table{
+            margin-top:80px;
+        }
+        .pic{
+            width:20%;
+        }
+        .NameImage,.Figure{
+            width:100%;
+        }
+        .Cover{
+            width:100%;
+            height:50%;
+        }
+    </style>
+}
+
+
+@*<p>
     <a asp-action="Create">Create New</a>
-</p>
+</p>*@
 <table class="table text-white">
     <thead>
         <tr>
@@ -18,13 +37,13 @@
             <th>
                 @Html.DisplayNameFor(model => model.ComicName)
             </th>
-            <th>
+            <th class"pic">
                 @Html.DisplayNameFor(model => model.ComicNameImage)
-            </th>
-            <th>
+            </th class"pic">
+            <th class"pic">
                 @Html.DisplayNameFor(model => model.ComicFigure)
             </th>
-            <th>
+            <th class"pic">
                 @Html.DisplayNameFor(model => model.BgCover)
             </th>
             <th>
@@ -51,27 +70,27 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ComicName)
             </td>
-            <td>
+            <td >
                 @*@Html.DisplayFor(modelItem => item.ComicNameImage)*@
-                <img src="@item.ComicNameImage"/>
+                <img src="@item.ComicNameImage" class="NameImage"/>
             </td>
-            <td>
+            <td >
                 @*@Html.DisplayFor(modelItem => item.ComicFigure)*@
-                <img src="@item.ComicFigure"/>
+                <img src="@item.ComicFigure" class="Figure"/>
             </td>
-            <td>
+            <td >
                @* @Html.DisplayFor(modelItem => item.BgCover)*@
-                <img src="@item.BgCover"/>
+                <img src="@item.BgCover" class="Cover"/>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.BgColor)
             </td>
-            <td>
+            <td class"context"> 
                 @Html.DisplayFor(modelItem => item.Introduction)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.BannerVideoWeb)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.TagName)
             </td>

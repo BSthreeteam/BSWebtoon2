@@ -47,7 +47,7 @@ namespace BSWebtoon.Front.Service.RankService
                            ComicId = comic.ComicId,
                            ComicName = comic.ComicChineseName,
                            ComicNameImage = comic.ComicNameImage,
-                           Introduction = comic.Introduction,
+                           Introduction = comic.Introduction.Substring(0,50),
                            ComicFigure = comic.ComicFigure,
                            BgCover = comic.BgCover,
                            BgColor = comic.BgColor,
