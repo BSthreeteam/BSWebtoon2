@@ -167,7 +167,7 @@
         :target:before {
             content: "";
             display: block;
-            height: 85px;
+            height: 130px;
             z-index: -1;
 
         }
