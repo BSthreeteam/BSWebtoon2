@@ -42,11 +42,12 @@ namespace BSWebtoon.Front
             services.AddScoped<IRechargeService, RechargeService>();
             services.AddScoped<ICouponService, CouponService>();
             services.AddScoped<IClickRecordService, ClickRecordService>();
+            services.AddScoped<ClickRecordService, ClickRecordService>();
             //services.AddDbContext<BSWeBtoonContext, BSWeBtoonContext>();
             services.AddScoped<IComicService, ComicService>();
             services.AddScoped<IMemberService, MemberService>();
             services.AddScoped<IFavoriteService, FavoriteService>();
-            services.AddDbContext<BSWeBtoonContext>(options =>
+            services.AddDbContext<BSWebtoonContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("BSWebtoonContext")));
         }
 

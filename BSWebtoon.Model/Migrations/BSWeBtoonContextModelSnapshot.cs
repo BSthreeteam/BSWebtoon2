@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BSWebtoon.Model.Migrations
 {
-    [DbContext(typeof(BSWeBtoonContext))]
+    [DbContext(typeof(BSWebtoonContext))]
     partial class BSWeBtoonContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

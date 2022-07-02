@@ -10,7 +10,7 @@ namespace BSWebtoon.Model.Repository
 {
     public class BSRepository
     {
-        public BSRepository(BSWeBtoonContext context)
+        public BSRepository(BSWebtoonContext context)
         {
             if (context == null) { throw new ArgumentNullException(); }
             _context = context;
@@ -20,7 +20,7 @@ namespace BSWebtoon.Model.Repository
         {
         }
 
-        private BSWeBtoonContext _context;
+        private BSWebtoonContext _context;
         public void Create<T>(T value) where T : class
         {
             _context.Entry(value).State = EntityState.Added;

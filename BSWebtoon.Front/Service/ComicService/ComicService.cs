@@ -7,10 +7,10 @@ namespace BSWebtoon.Front.Service.ComicService
 {
     public class ComicService : IComicService
     {
-        private readonly BSWeBtoonContext _context;
+        private readonly BSWebtoonContext _context;
         private readonly BSRepository _repository;
 
-        public ComicService(BSWeBtoonContext context, BSRepository repository)
+        public ComicService(BSWebtoonContext context, BSRepository repository)
         {
             _context = context;
             _repository = repository;
@@ -22,6 +22,13 @@ namespace BSWebtoon.Front.Service.ComicService
             {
                 new ComicTag {TagName="愛情"    ,IsMainTag=true ,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,21)},
                 new ComicTag {TagName="奇幻愛情",IsMainTag=false,IsDelete=false,AuditEmployeeId=2,AuditDate=new DateTime(2021,6,22)}
+
+                //new ComicTag {TagName="動作冒險",IsMainTag=true ,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,23)},
+                //new ComicTag {TagName="劇情"    ,IsMainTag=true ,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,23)},
+
+                //new ComicTag {TagName="BL/GL"  ,IsMainTag=true ,IsDelete=false,AuditEmployeeId=2,AuditDate=new DateTime(2021,6,24)},
+                //new ComicTag {TagName="懸疑恐怖",IsMainTag=false,IsDelete=false,AuditEmployeeId=2,AuditDate=new DateTime(2021,6,24)},
+
             };
             foreach (var tags in comictags)
             {

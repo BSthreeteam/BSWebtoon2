@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BSWebtoon.Model.Migrations
 {
-    [DbContext(typeof(BSWeBtoonContext))]
+    [DbContext(typeof(BSWebtoonContext))]
     [Migration("20220702033115_database")]
     partial class database
     {

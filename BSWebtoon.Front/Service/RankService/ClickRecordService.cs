@@ -1,15 +1,17 @@
-﻿using BSWebtoon.Model.Models;
+﻿using BSWebtoon.Front.ViewModel;
+using BSWebtoon.Model.Models;
 using BSWebtoon.Model.Repository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BSWebtoon.Front.Service.RankService
 {
     public class ClickRecordService:IClickRecordService
     {
-        private readonly BSWeBtoonContext _context;
+        private readonly BSWebtoonContext _context;
         private readonly BSRepository _repository;
-        public ClickRecordService(BSWeBtoonContext context, BSRepository repository)
+        public ClickRecordService(BSWebtoonContext context, BSRepository repository)
         {
             _context = context;
             _repository = repository;
@@ -30,5 +32,44 @@ namespace BSWebtoon.Front.Service.RankService
             //_repository.Delete(data);
             _repository.SaveChange();
         }
+
+         public IEnumerable<RankViewModel> ReadRank() 
+            {
+                //var repository = new BSRepository(new BSWebtoonContext());
+                return from comic in _repository.GetAll<Comic>()
+                       join comicTagList in _repository.GetAll<ComicTagList>()
+                       on comic.ComicId equals comicTagList.ComicId
+                       join comicTag in _repository.GetAll<ComicTag>()
+                       on comicTagList.TagId equals comicTag.TagId
+                       where comicTag.IsMainTag== true
+                       select new RankViewModel
+                       {
+                           ComicId = comic.ComicId,
+                           ComicName = comic.ComicChineseName,
+                           ComicNameImage = comic.ComicNameImage,
+                           Introduction = comic.Introduction,
+                           ComicFigure = comic.ComicFigure,
+                           BgCover = comic.BgCover,
+                           BgColor = comic.BgColor,
+                           BannerVideoWeb=comic.BannerVideoWeb,
+                           TagName = comicTag.TagName
+
+                       };
+
+                //foreach(var comic in _repository.GetAll<Comic>())
+                //{
+                //    yield return new RankViewModel()
+                //    {
+                //        ComicId = comic.ComicId,
+                //        ComicName = comic.ComicChineseName,
+                //        ComicNameImage = comic.ComicNameImage,
+                //        ComicFigure = comic.ComicFigure,
+                //        BgCover = comic.BgCover,
+                //        BgColor = comic.BgColor,
+                //        TagName = /*_repository.GetAll<ComicTagList>()*/
+                //    };
+                //}
+            }
+
     }
 }

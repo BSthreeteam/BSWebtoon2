@@ -35,5 +35,6 @@ namespace BSWebtoon.Front.Controllers
             _recommendservice.ReportCreate();
             return View();
         }
+
     }
 }
