@@ -4,16 +4,14 @@ using BSWebtoon.Model.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BSWebtoon.Model.Migrations
 {
     [DbContext(typeof(BSWeBtoonContext))]
-    [Migration("20220630075717_Hana")]
-    partial class Hana
+    partial class BSWeBtoonContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

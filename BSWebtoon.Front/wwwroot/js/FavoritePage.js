@@ -7,10 +7,10 @@ let div_btns = document.querySelector('#div_btns')
 window.addEventListener('mousewheel', (e) => {
     if (e.wheelDelta > 0) {
         // alert("滑輪向上滾動");
-        img1.style.transform = "translateY(20%)"
-        img2.style.transform = "translateY(30%)"
-        img3.style.transform = "translateY(40%)"
-        img4.style.transform = "translateY(50%)"
+        img1.style.transform = "translateY(15%)"
+        img2.style.transform = "translateY(20%)"
+        img3.style.transform = "translateY(25%)"
+        img4.style.transform = "translateY(30%)"
         div_btns.style.transform = "translateY(-30px)"
 
     }
