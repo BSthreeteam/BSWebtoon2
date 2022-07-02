@@ -2,10 +2,16 @@
 @{
     ViewData["Title"] = "WeekUpdate";
 }
+
+
 @section topCss{
-      <link rel="stylesheet" href="~/style/weeklyUpdata.css" />
+      <link rel="stylesheet" href="~/style~/style/weeklyUpdataStyle.css" />
 }
-@*<h1>WeekUpdate</h1>
+
+
+@*
+    
+<h1>WeekUpdate</h1>
  <div class="weekly">
         <div class="container week_content">
             <nav>
@@ -66,9 +72,9 @@
         <div class="container week_content ">
             <nav id="navbar-id" class="navbar navbar-light ">
                 <ul class="nav nav-pills">
-                    <!-- <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link" href="#scrollspyHeading0">新作</a>
-                    </li> -->
+                    </li> 
                     <li class="nav-item">
                         <a class="nav-link" href="#scrollspyHeading1">一</a>
                     </li>
@@ -94,20 +100,13 @@
                         <a class="nav-link" href="#scrollspyHeading8">完結</a>
                     </li>
                 </ul>
-                <!-- <a>新作</a>
-                <a class="a_Monday">一</a>
-                <a class="a_Tuesday">二</a>
-                <a>三</a>
-                <a>四</a>
-                <a>五</a>
-                <a>六</a>
-                <a>日</a>
-                <a>完結</a> -->
+
             </nav>
 
             <div class="Monday">
                 <h2 id="scrollspyHeading1" class="Monday_title">星期一</h2>
                 <div class="content">
+
                     <template id="workLongTemplate">
                         <div class="work_long">
                             <div class="work_long_bg">
@@ -121,6 +120,7 @@
                             <p class="title_long">身為黑暗英雄的女兒</p>
                         </div>
                     </template>
+
                     <template id="workTemplate">
                         <div class="work">
                             <div class="work_bg">

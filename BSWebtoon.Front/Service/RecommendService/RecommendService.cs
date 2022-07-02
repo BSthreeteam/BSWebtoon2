@@ -9,9 +9,9 @@ namespace BSWebtoon.Front.Service.RecommendService
 {
     public class RecommendService : IRecommendService
     {
-        private readonly BSWeBtoonContext _context;
+        private readonly BSWebtoonContext _context;
         private readonly BSRepository _repository;
-        public RecommendService(BSWeBtoonContext context, BSRepository repository)
+        public RecommendService(BSWebtoonContext context, BSRepository repository)
         {
             _context = context;
             _repository = repository;
