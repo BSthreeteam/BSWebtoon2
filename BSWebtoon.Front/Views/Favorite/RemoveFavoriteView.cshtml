@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewData["Title"] = "RemoveFavorite";
+}
+
+@*<h1>RemoveFavoriteView</h1>*@
+@section topCss{
+      <link rel="stylesheet" href="~/style/FavoriteRemove.css" />
+}
+ <div style="background-color: #000;">
+        <div class="d-flex flex-row-reverse ">
+            <button type="button" class="btn-close btn-close-white m-2" aria-label="Close" onclick="window.close();" ></button>
+        </div>
+
+        <div class="container col-12" style="max-width: 800px;">
+            <div class="container">
+                <div class="row row-cols-3 row-cols-md-3 row-cols-lg-3 row-cols-xl-4"
+                    style=" transform: translateY(80px);">
+                    <div class="col ">
+                        <div class="mb-4 pic_box">
+                            <!-- id 是用來按刪除時 抓取的方式 父層設position relative 這樣子層就可以設 absolute(absolute會抽離出來,relative會保留空間) -->
+                            <div id="img_1" onclick="select_img(this)" style="position:relative;">
+                                <img src="https://picsum.photos/248/520/?random=10" class="w-100">
+                                <div></div>
+                                <div class="check_btn text-center "></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col ">
+                        <div class="mb-4 pic_box">
+                            <div id="img_2" onclick="select_img(this)" style="position:relative;">
+                                <img src="https://picsum.photos/248/520/?random=10" class="w-100">
+                                <div></div>
+                                <div class="check_btn text-center "></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col ">
+                        <div class="mb-4 pic_box">
+                            <div id="img_3" onclick="select_img(this)" style="position:relative;">
+                                <img src="https://picsum.photos/248/520/?random=10" class="w-100">
+                                <div></div>
+                                <div class="check_btn text-center "></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col ">
+                        <div class="mb-4 pic_box">
+                            <div id="img_4" onclick="select_img(this)" style="position:relative;">
+                                <img src="https://picsum.photos/248/520/?random=10" class="w-100">
+                                <div></div>
+                                <div class="check_btn text-center "></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col ">
+                        <div class="mb-4 pic_box">
+                            <div id="img_5" onclick="select_img(this)" style="position:relative;">
+                                <img src="https://picsum.photos/248/520/?random=10" class="w-100">
+                                <div></div>
+                                <div class="check_btn text-center "></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col ">
+                        <div class="mb-4 pic_box">
+                            <div id="img_6" onclick="select_img(this)" style="position:relative;">
+                                <img src="https://picsum.photos/248/520/?random=10" class="w-100">
+                                <div></div>
+                                <div class="check_btn text-center "></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col ">
+                        <div class="mb-4 pic_box">
+                            <div id="img_7" onclick="select_img(this)" style="position:relative;">
+                                <img src="https://picsum.photos/248/520/?random=10" class="w-100">
+                                <div></div>
+                                <div class="check_btn text-center "></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- 重要 -->
+            <div class="d-flex justify-content-center fixed-bottom " id="div_btns">
+                <button id="del_btn" type="button" class="m-auto btn btn_dark fixed-bottom my-4 px-4 py-2 "
+                    onclick="remove_all(false)">刪除0個作品</button>
+            </div>
+            <section id="double_check_block" style="background-color:#1c1c1c; width: 100%;height: 150px; "
+                class=" fixed-bottom ">
+                <div class="text-center" style="margin-top:30px;">
+                    <p style="color: #fff;">del_number</p>
+                </div>
+                <div class="d-flex justify-content-center ">
+                    <button id="" type="button" class="btn border btn-dark m-4 px-4 py-2 col-2"
+                        style="border-radius: 20px; display: inline-block;"
+                        onclick="cancel_double_check_block()">取消</button>
+                    <button id="" type="button" class="btn btn-light m-4 px-4 py-2 col-2"
+                        style="border-radius: 20px; display: inline-block; " onclick="remove_all(true)">確定</button>
+                </div>
+            </section>
+
+   
+    </div>
+
+
+  @section endJS{
+             <script src="~/js/FavoriteRemove.js"></script>
+        }

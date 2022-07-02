@@ -1,0 +1,56 @@
+﻿img {
+    margin-bottom: 10px;
+    max-width: 100%;
+}
+
+.pic_del_btn {
+    position: absolute;
+    background-color: rgb(191, 182, 182);
+    border-radius: 50%;
+    font-size: 20px;
+    left: 115px;
+    top: -15px;
+}
+
+.gray_block {
+    position: absolute;
+    background-color: rgb(42, 42, 42);
+    /* 透明度 0 全透明 ~ 1 完全不透明 */
+    opacity: 0.7;
+    width: 100%;
+    height: 455px;
+    top: 0px;
+}
+
+.pic_box {
+    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.check_btn::before {
+    content: "✓";
+    position: absolute;
+    background-color: rgb(99, 93, 87);
+    color: aliceblue;
+    border-radius: 50%;
+    padding: 5px;
+    margin: 5px;
+    right: 0px;
+    top: 0px;
+}
+
+.check_btn_bag_red::before {
+    background-color: rgb(255, 0, 0);
+}
+
+.btn_lock {
+    cursor: not-allowed;
+    border-radius: 20px;
+    width: 40%;
+}
+
+.btn_dark {
+    color: #fff;
+}
+
