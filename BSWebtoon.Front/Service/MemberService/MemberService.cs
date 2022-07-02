@@ -13,6 +13,8 @@ namespace BSWebtoon.Front.Service.MemberService
         {
             _repository = repository;
         }
+
+
         public void MemberCreate()
         {
             var memberList = new List<Member>
@@ -27,6 +29,8 @@ namespace BSWebtoon.Front.Service.MemberService
             }
             _repository.SaveChange();
         }
+
+
         public void LoginTypeCreate()
         {
             var logintypeList = new List<LoginType>

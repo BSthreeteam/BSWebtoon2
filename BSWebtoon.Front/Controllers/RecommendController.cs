@@ -10,10 +10,8 @@ namespace BSWebtoon.Front.Controllers
     {
         private readonly IRecommendService _recommendservice;
 
-        private readonly BSRepository _repository;
-        public RecommendController(BSRepository repository, IRecommendService recommendService)
+        public RecommendController(IRecommendService recommendService)
         {
-            _repository = repository;
             _recommendservice = recommendService;
         }
 
@@ -28,6 +26,14 @@ namespace BSWebtoon.Front.Controllers
             _recommendservice.ActivityCreate();
             return View();
         }
+        public IActionResult AddViewRecordView() //Recommend/AddViewRecordView
+        {
 
+            _recommendservice.ViewRecordCreate();
+            _recommendservice.CommentCreate();
+            _recommendservice.LikeCreate();
+            _recommendservice.ReportCreate();
+            return View();
+        }
     }
 }

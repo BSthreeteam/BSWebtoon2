@@ -1,6 +1,8 @@
 using BSWebtoon.Front.Service;
-using BSWebtoon.Front.Service.ComicService;
+using BSWebtoon.Front.Service.CouponService;
 using BSWebtoon.Front.Service.EmployeeService;
+using BSWebtoon.Front.Service.RechargeService;
+using BSWebtoon.Front.Service.ComicService;
 using BSWebtoon.Front.Service.FavoriteService;
 using BSWebtoon.Front.Service.MemberService;
 using BSWebtoon.Front.Service.RecommendService;
@@ -36,6 +38,9 @@ namespace BSWebtoon.Front
             services.AddScoped<BSRepository, BSRepository>();
             services.AddScoped<IRecommendService, RecommendService>();
             services.AddScoped<IEmployeeService, EmployeeService>();
+            services.AddScoped<IRechargeService, RechargeService>();
+            services.AddScoped<ICouponService, CouponService>();
+            //services.AddDbContext<BSWeBtoonContext, BSWeBtoonContext>();
             services.AddScoped<IComicService, ComicService>();
             services.AddScoped<IMemberService, MemberService>();
             services.AddScoped<IFavoriteService, FavoriteService>();
