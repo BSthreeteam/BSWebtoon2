@@ -1,4 +1,5 @@
-﻿
+﻿@using BSWebtoon.Front.ViewModel
+@model IEnumerable<WeekUpdateViewModel>
 @{
     ViewData["Title"] = "WeekUpdate";
 }
@@ -160,6 +161,168 @@
 
     </div>
 </body>
+
+
+@*<body data-bs-spy="scroll" data-bs-target="#navbar-id" data-bs-offset="1" class="scrollspy-example" tabindex="0">
+
+
+            <nav id="navbar-id" class="navbar navbar-light ">
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#scrollspyHeading0">新作</a>
+                    </li> 
+                    <li class="nav-item">
+                        <a class="nav-link" href="#scrollspyHeading1">一</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#scrollspyHeading2">二</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#scrollspyHeading3">三</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#scrollspyHeading4">四</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#scrollspyHeading5">五</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#scrollspyHeading6">六</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#scrollspyHeading7">日</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#scrollspyHeading8">完結</a>
+                    </li>
+                </ul>
+
+            </nav>
+
+    <div class="weekly">
+        <div class="container week_content ">
+
+            <div class="new_work">
+                <h2 id="scrollspyHeading0" class="new_work_title">新作</h2>
+                <div class="content">
+
+                </div>
+            </div>
+
+
+            <div class="Monday">
+                <h2 id="scrollspyHeading1" class="Monday_title">星期一</h2>
+                <div class="content">
+
+                    <template id="workLongTemplate">
+                        <div class="work_long">
+                            <div class="work_long_bg">
+                                <img
+                                    src="https://tw-a.kakaopagecdn.com/P/C/214/bg/1x/f870dd2e-59a1-4324-bbbe-8419d26f0cf6.webp">
+                            </div>
+                            <video loop="true" autoplay="true" muted="true" class="workV-long ">
+                                <source class="source"
+                                    src="https://tw-a.kakaopagecdn.com/P/C/214/aclip/97caee36-c79a-4ec7-907d-f28cfd975c7c.webm">
+                            </video>
+                            <p class="title_long">身為黑暗英雄的女兒</p>
+                        </div>
+                    </template>
+
+                    
+                        @foreach(var work in Model)
+                        {
+                            <div class="work">
+                                <div class="work_bg">
+                                    <img src="@work.BgCover"
+                                        alt="">
+                                </div>
+                                <img class="work_pic"
+                                    src="@work.ComicFigure">
+
+                                <p class="title">綠茵之冠</p>
+
+                                <img class="title" src="@work.ComicNameImage">
+
+                            </div>
+
+                        }
+                    
+
+
+
+
+                    <template id="blackTemplate">
+                        <div class="black">
+                            <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                                <div class="img-box"></div>
+                            </div>
+                            <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                                <div class="img-box"></div>
+                            </div>
+                            <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                                <div class="img-box"></div>
+                            </div>
+                            <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                                <div class="img-box"></div>
+                            </div>
+                            <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                                <div class="img-box"></div>
+                            </div>
+                        </div>
+                    </template>
+
+                </div>
+
+            </div>
+            <div class="Tuesday">
+                <h2 id="scrollspyHeading2" class="Tuesday_title">星期二</h2>
+                <div class="content">
+
+                </div>
+            </div>
+            <div class="Wednesday">
+                <h2 id="scrollspyHeading3" class="Wednesday_title">星期三</h2>
+                <div class="content">
+
+                </div>
+            </div>
+            <div class="Thursday">
+                <h2 id="scrollspyHeading4" class="Thursday_title">星期四</h2>
+                <div class="content">
+
+                </div>
+            </div>
+            <div class="Friday">
+                <h2 id="scrollspyHeading5" class="Friday_title">星期五</h2>
+                <div class="content">
+
+                </div>
+            </div>
+            <div class="Saturday">
+                <h2 id="scrollspyHeading6" class="Saturday_title">星期六</h2>
+                <div class="content">
+
+                </div>
+            </div>
+            <div class="Sunday">
+                <h2 id="scrollspyHeading7" class="Sunday_title">星期日</h2>
+                <div class="content">
+
+                </div>
+            </div>
+            <div class="finish">
+                <h2 id="scrollspyHeading8" class="finish_title">完結</h2>
+                <div class="content">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    </div>
+</body>
+*@
 
 @section endJS{
 

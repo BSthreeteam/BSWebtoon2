@@ -15,7 +15,7 @@ namespace BSWebtoon.Front.Controllers
 
         public IActionResult WeekUpdate()
         {
-            return View();
+            return View(_weekUpdateService.ReadComic());
         }
 
         public  IActionResult WeekUpdateList()
