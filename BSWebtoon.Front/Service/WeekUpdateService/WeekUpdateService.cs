@@ -21,7 +21,6 @@ namespace BSWebtoon.Front.Service.WeekUpdateService
             foreach (var comic in _repository.GetAll<Comic>())
             {
 
-
                 yield return new WeekUpdateViewModel()
                 {
                     ComicId = comic.ComicId,

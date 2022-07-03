@@ -110,9 +110,15 @@
             background-image: linear-gradient(to top, rgb(0, 0, 0) 30%, transparent 100%);
 
         }
-
+        .new_work_title,
         .Monday_title,
-        .Tuesday_title {
+        .Tuesday_title,
+        .Wednesday_title,
+        .Thursday_title,
+        .Friday_title,
+        .Saturday_title,
+        .Sunday_title,
+        .finish_title {
             color: #fff;
         }
 
