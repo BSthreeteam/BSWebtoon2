@@ -5,6 +5,7 @@
         void ComicTagCreate();
         void ComicCreate();
         void ComicTagListCreate();
+        void ComicTagListUpdate();
         void EpCreate();
         void EpContentCreate();
     }

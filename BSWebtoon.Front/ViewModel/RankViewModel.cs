@@ -1,4 +1,6 @@
-﻿namespace BSWebtoon.Front.ViewModel
+﻿using System.Collections.Generic;
+
+namespace BSWebtoon.Front.ViewModel
 {
     public class RankViewModel
     {
@@ -14,6 +16,8 @@
         public string BannerVideoWeb { get; set; }
 
         public string TagName { get; set; }
+        public List<int> ClickCount { get; set; }
+
 
 
 
