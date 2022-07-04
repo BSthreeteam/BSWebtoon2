@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace BSWebtoon.Front.Service.FavoriteService
 {
-    
+
     public class FavoriteService : IFavoriteService
     {
         private readonly BSRepository _repository;
@@ -23,7 +23,7 @@ namespace BSWebtoon.Front.Service.FavoriteService
                 new Favorite {MemberId = 1,ComicId =1},
                 new Favorite {MemberId = 2,ComicId =2},
             };
-            foreach(Favorite favorite in favoriteList)
+            foreach (Favorite favorite in favoriteList)
             {
                 _repository.Create(favorite);
             }

@@ -1,40 +1,4 @@
-﻿
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-using BSWebtoon.Front.Service.MemberService;
+﻿using BSWebtoon.Front.Service.MemberService;
 using BSWebtoon.Model.Repository;
 using Microsoft.AspNetCore.Mvc;
 
@@ -61,6 +25,6 @@ namespace BSWebtoon.Front.Controllers
             _memberService.MemberUpdateData();
             return View();
         }
-        
+
     }
 }

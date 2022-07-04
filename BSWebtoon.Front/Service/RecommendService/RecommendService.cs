@@ -119,11 +119,11 @@ namespace BSWebtoon.Front.Service.RecommendService
             _repository.SaveChange();
         }
 
-        public async Task<List<ClickCountViewModel>> ClickCount()
-        {
-            var query = (await _context.ClickRecord.ToListAsync()).GroupBy(comic => comic.ComicId).Select(g => new ClickCountViewModel { ComicId = g.Key, Count = g.Count() });
-        
-            return query.ToList();
-        }
+        //public async Task<List<ClickCountViewModel>> ClickCount()
+        //{
+        //    var query = (await _context.ClickRecord.ToListAsync()).GroupBy(comic => comic.ComicId).Select(g => new ClickCountViewModel { ComicId = g.Key, Count = g.Count() });
+
+        //    return query.ToList();
+        //}
     }
 }

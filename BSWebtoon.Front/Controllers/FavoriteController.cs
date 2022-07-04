@@ -27,7 +27,7 @@ namespace BSWebtoon.Front.Controllers
         }
         public IActionResult AddReadFavoriteList()//Favorite/AddReadFavoriteList
         {
-            
+
             return View(_readfavoriteService.GetFavorite());
         }
     }

@@ -34,7 +34,7 @@
                 @Html.DisplayNameFor(model => model.ReadTicket)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EpCover)
+               @* @Html.DisplayNameFor(model => model.EpCover)*@
             </th>
             <th></th>
         </tr>
@@ -67,7 +67,7 @@
             </td>
             <td class ="box">
 @*                @Html.DisplayFor(modelItem => item.EpCover)
-*@                <img class ="w-100" src ="@item.EpCover"/>
+*@                @*<img class ="w-100" src ="@item.EpCover"/>*@
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

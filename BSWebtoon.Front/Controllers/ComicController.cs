@@ -10,7 +10,7 @@ namespace BSWebtoon.Front.Controllers
         private readonly IComicService _ComicService;
         private readonly ComicService _comic;
         private readonly BSRepository _repository;
-        public ComicController(BSRepository repository, IComicService ComicService,ComicService comic)
+        public ComicController(BSRepository repository, IComicService ComicService, ComicService comic)
         {
             _ComicService = ComicService;
             _repository = repository;
@@ -37,7 +37,7 @@ namespace BSWebtoon.Front.Controllers
         }
         public IActionResult WorkPageReadView()//Comic/WorkPageReadView
         {
-            
+
             return View(_comic.WordPageRead().ToList());
         }
 

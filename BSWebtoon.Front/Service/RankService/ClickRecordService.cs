@@ -9,7 +9,7 @@ using Microsoft.Data.SqlClient;
 
 namespace BSWebtoon.Front.Service.RankService
 {
-    public class ClickRecordService:IClickRecordService
+    public class ClickRecordService : IClickRecordService
     {
         private readonly BSWebtoonContext _context;
         private readonly BSRepository _repository;

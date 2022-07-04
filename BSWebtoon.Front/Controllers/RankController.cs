@@ -10,7 +10,7 @@ namespace BSWebtoon.Front.Controllers
         private readonly IClickRecordService _ClickRecordService;
         private readonly ClickRecordService _rankService;
 
-        public RankController(IClickRecordService clickRecordService,ClickRecordService rankService)
+        public RankController(IClickRecordService clickRecordService, ClickRecordService rankService)
         {
             _ClickRecordService = clickRecordService;
             _rankService = rankService;
@@ -26,6 +26,6 @@ namespace BSWebtoon.Front.Controllers
             _ClickRecordService.ClickRecordCreate();
             return View(_rankService.ReadRank());
         }
-        
+
     }
 }

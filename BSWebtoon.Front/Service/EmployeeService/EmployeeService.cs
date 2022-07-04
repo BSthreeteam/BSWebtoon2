@@ -22,7 +22,7 @@ namespace BSWebtoon.Front.Service.EmployeeService
                 new Employee {EmployeeName="Kei" ,HireDate=new DateTime(2022, 6, 27), Account="lkk975038781@hmail.com",Password="123456789zxc"},
                 new Employee {EmployeeName="Joe" ,HireDate=new DateTime(2022, 6, 27), Account="lkk975036543@hmail.com",Password="098765432zxcvbn"},
             };
-            foreach(var e in employees)
+            foreach (var e in employees)
             {
                 _repository.Create(e);
                 //_repository.Delete(e);

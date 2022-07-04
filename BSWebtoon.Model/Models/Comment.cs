@@ -9,9 +9,9 @@ namespace BSWebtoon.Model.Models
     {
         public Comment()
         {
-            CommentLikeRecord = new HashSet<CommentLikeRecord>();
+            CommentLikeRecords = new HashSet<CommentLikeRecord>();
             InverseReplyToComment = new HashSet<Comment>();
-            Report = new HashSet<Report>();
+            Reports = new HashSet<Report>();
         }
 
         public int CommentId { get; set; }
@@ -26,8 +26,8 @@ namespace BSWebtoon.Model.Models
         public virtual Episode Ep { get; set; }
         public virtual Member Member { get; set; }
         public virtual Comment ReplyToComment { get; set; }
-        public virtual ICollection<CommentLikeRecord> CommentLikeRecord { get; set; }
+        public virtual ICollection<CommentLikeRecord> CommentLikeRecords { get; set; }
         public virtual ICollection<Comment> InverseReplyToComment { get; set; }
-        public virtual ICollection<Report> Report { get; set; }
+        public virtual ICollection<Report> Reports { get; set; }
     }
 }
