@@ -1,0 +1,86 @@
+﻿@model IEnumerable<BSWebtoon.Front.ViewModel.RankViewModel>
+
+@{
+    ViewData["Title"] = "RankList";
+}
+
+<h1>RankList</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table text-white">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ComicId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComicName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComicNameImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComicFigure)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BgCover)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BgColor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Introduction)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BannerVideoWeb)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TagName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ComicId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ComicName)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.ComicNameImage)*@
+                <img src="@item.ComicNameImage"/>
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.ComicFigure)*@
+                <img src="@item.ComicFigure"/>
+            </td>
+            <td>
+               @* @Html.DisplayFor(modelItem => item.BgCover)*@
+                <img src="@item.BgCover"/>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BgColor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Introduction)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BannerVideoWeb)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TagName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

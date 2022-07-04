@@ -9,12 +9,12 @@ namespace BSWebtoon.Model.Models
     {
         public Member()
         {
-            CommentLikeRecord = new HashSet<CommentLikeRecord>();
-            Comment = new HashSet<Comment>();
-            CouponUsedRecord = new HashSet<CouponUsedRecord>();
-            Favorite = new HashSet<Favorite>();
-            RechargeRecord = new HashSet<RechargeRecord>();
-            ViewRecord = new HashSet<ViewRecord>();
+            CommentLikeRecords = new HashSet<CommentLikeRecord>();
+            Comments = new HashSet<Comment>();
+            CouponUsedRecords = new HashSet<CouponUsedRecord>();
+            Favorites = new HashSet<Favorite>();
+            RechargeRecords = new HashSet<RechargeRecord>();
+            ViewRecords = new HashSet<ViewRecord>();
         }
 
         public int MemberId { get; set; }
@@ -29,11 +29,11 @@ namespace BSWebtoon.Model.Models
 
         public virtual LoginType LoginType { get; set; }
         public virtual ClickRecord ClickRecord { get; set; }
-        public virtual ICollection<CommentLikeRecord> CommentLikeRecord { get; set; }
-        public virtual ICollection<Comment> Comment { get; set; }
-        public virtual ICollection<CouponUsedRecord> CouponUsedRecord { get; set; }
-        public virtual ICollection<Favorite> Favorite { get; set; }
-        public virtual ICollection<RechargeRecord> RechargeRecord { get; set; }
-        public virtual ICollection<ViewRecord> ViewRecord { get; set; }
+        public virtual ICollection<CommentLikeRecord> CommentLikeRecords { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<CouponUsedRecord> CouponUsedRecords { get; set; }
+        public virtual ICollection<Favorite> Favorites { get; set; }
+        public virtual ICollection<RechargeRecord> RechargeRecords { get; set; }
+        public virtual ICollection<ViewRecord> ViewRecords { get; set; }
     }
 }

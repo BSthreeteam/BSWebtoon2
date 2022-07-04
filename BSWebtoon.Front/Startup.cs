@@ -19,6 +19,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BSWebtoon.Front.Service.RankService;
+using BSWebtoon.Front.Service.WeekUpdateService;
 
 namespace BSWebtoon.Front
 {
@@ -40,6 +42,8 @@ namespace BSWebtoon.Front
             services.AddScoped<IEmployeeService, EmployeeService>();
             services.AddScoped<IRechargeService, RechargeService>();
             services.AddScoped<ICouponService, CouponService>();
+            services.AddScoped<IClickRecordService, ClickRecordService>();
+            services.AddScoped<FavoriteService, FavoriteService>();
             //services.AddDbContext<BSWeBtoonContext, BSWeBtoonContext>();
             services.AddScoped<IComicService, ComicService>();
             services.AddScoped<IMemberService, MemberService>();

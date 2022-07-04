@@ -1,7 +1,56 @@
 ﻿
+
 @{
-    ViewData["Title"] = "AddFavoriteView";
+    //ViewData["Title"] = "AddFavoriteView";
 }
 
 <h1>AddFavoriteView</h1>
+@section topCss{
+      <link rel="stylesheet" href="~/style/FavoritePage.css" />
+}
+ <div style="background-color: #000;" >
+        <div class="container" style="width: 50%;">
+                <div class="d-flex justify-content-center fixed-top" style="background-color: #000; margin:95px; z-index:1;">
+                    <button style="border-radius: 20px;" type="button" class="btn btn btn-light my-3 px-3 ">我的最愛</button>
+                </div>
+            <!-- <button type="button" class="btn btn-outline-light">Light</button>  -->
+            <div class="box row row-cols-4 mt-1">
+                <div class="img1 img_col_move">
+                    <img class="No1" src="https://picsum.photos/248/520/?random=10">
+                    <img class="No2" src="https://picsum.photos/248/520/?random=2">
+                    <img class="No3" src="https://picsum.photos/248/520/?random=12">
+                    <img class="No4" src="https://picsum.photos/248/520/?random=13">
+                </div>
+                <div class="img2 img_col_move">
+                    <img class="No1" src="https://picsum.photos/248/520/?random=5">
+                    <img class="No2" src="https://picsum.photos/248/520/?random=1">
+                    <img class="No3" src="https://picsum.photos/248/520/?random=14">
+                    <img class="No4" src="https://picsum.photos/248/520/?random=1">
+                </div>
+                <div class="img3 img_col_move">
+                    <img class="No1" src="https://picsum.photos/248/520/?random=5">
+                    <img class="No2" src="https://picsum.photos/248/520/?random=1">
+                    <img class="No3" src="https://picsum.photos/248/520/?random=14">
+                    <img class="No4" src="https://picsum.photos/248/520/?random=1">
+                </div>
+                <div class="img4 img_col_move"> 
+                    
+                    <img class="No1" src="https://picsum.photos/248/520/?random=5">
+                    <img class="No2" src="https://picsum.photos/248/520/?random=1">
+                    <img class="No3" src="https://picsum.photos/248/520/?random=14">
+                    <img class="No4" src="https://picsum.photos/248/520/?random=1">
+                </div>
+            </div>
+            <div class="d-flex justify-content-center fixed-bottom " id="div_btns">
+                <button type="button" class="btn btn btn-dark border m-4 "
+                    style="border-radius: 50%;font-size: 10px;">⇅</button>
+                <button type="button" class="btn btn btn-dark border my-4 px-4 py-2"
+                    style="border-radius: 20px;" onclick="Open_del_page()">編輯</button>
+            </div>
 
+        </div>
+
+    </div>
+  @section endJS{
+             <script src="~/js/FavoritePage.js"></script>
+        }

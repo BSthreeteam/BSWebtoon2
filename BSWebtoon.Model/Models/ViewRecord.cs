@@ -11,6 +11,7 @@ namespace BSWebtoon.Model.Models
         public int MemberId { get; set; }
         public int EpContentId { get; set; }
         public DateTime ViewTime { get; set; }
+        public bool IsDelete { get; set; }
 
         public virtual EpContent EpContent { get; set; }
         public virtual Member Member { get; set; }

@@ -1,7 +1,9 @@
-﻿using BSWebtoon.Model.Models;
+﻿using BSWebtoon.Front.ViewModels;
+using BSWebtoon.Model.Models;
 using BSWebtoon.Model.Repository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BSWebtoon.Front.Service.ComicService
 {
@@ -22,6 +24,13 @@ namespace BSWebtoon.Front.Service.ComicService
             {
                 new ComicTag {TagName="愛情"    ,IsMainTag=true ,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,21)},
                 new ComicTag {TagName="奇幻愛情",IsMainTag=false,IsDelete=false,AuditEmployeeId=2,AuditDate=new DateTime(2021,6,22)}
+
+                //new ComicTag {TagName="動作冒險",IsMainTag=true ,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,23)},
+                //new ComicTag {TagName="劇情"    ,IsMainTag=true ,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,23)},
+
+                //new ComicTag {TagName="BL/GL"  ,IsMainTag=true ,IsDelete=false,AuditEmployeeId=2,AuditDate=new DateTime(2021,6,24)},
+                //new ComicTag {TagName="懸疑恐怖",IsMainTag=false,IsDelete=false,AuditEmployeeId=2,AuditDate=new DateTime(2021,6,24)},
+
             };
             foreach (var tags in comictags)
             {
@@ -41,7 +50,6 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,Publisher     ="DAON STUDIO",Painter="binu",Author="Siya"
                            ,Introduction  ="因為穿越進自己寫的小說，我成了欺負男主角的繼姐!別擔心，我一定會讓你變得幸福。因為這本小說的作者就是我!「我從來都沒把姐姐當成是我的家人。」雖然我覺得自己很認真在實踐讓男主角幸福的計畫，但為什麼他沒把我當成家人看呢?在他成為公爵前，我真的能順利活下來嗎?"
                            ,ComicVideoWeb ="https://tw-a.kakaopagecdn.com/P/C/83/ip1/e8a88d55-959c-47cd-8471-2bca2840f078.webm"
-                           ,ComicVideoMp4 ="https://tw-a.kakaopagecdn.com/P/C/83/ip2/78e58ee7-b469-4f46-8a74-7b4ed5489390.mp4"
                            ,AuditType     =1,AuditEmployeeId=1,AuditFailReason="NULL",AuditTime=new DateTime(2021,6,28),ComicStatus=2},
 
                 new Comic {ComicChineseName="Lady Baby",ComicEnglishName="Lady Baby"
@@ -119,5 +127,76 @@ namespace BSWebtoon.Front.Service.ComicService
             }
             _repository.SaveChange();
         }
+
+
+        public WorkpageViewModel WordPageRead(int comicId)
+        {
+            var comicSource = _repository.GetAll<Comic>().First(x => x.ComicId == comicId);
+            var tagListSource = _repository.GetAll<ComicTagList>().Where(x => x.ComicId == comicSource.ComicId).ToList();
+            var mainTag = _repository.GetAll<ComicTag>().Where(x => tagListSource.Any(y => y.TagId == x.TagId)).First(x => x.IsMainTag);
+            var couponSource = _repository.GetAll<Coupon>().First(x => x.CouponTypeId == 1 && x.MemberId == 1 && x.ComicId == comicId);
+            var epSource = _repository.GetAll<Episode>().Where(x => x.ComicId == comicId).ToList();
+
+            return new WorkpageViewModel
+            {
+                ComicChineseName = comicSource.ComicChineseName,
+                ComicFigure = comicSource.ComicFigure,
+                Tag = mainTag.TagName,
+                BgCover = comicSource.BgCover,
+                Publisher = comicSource.Publisher,
+                Author = comicSource.Author,
+                ReadTicket = couponSource.Quantity,
+                EpList = epSource.Select(x => new WorkpageViewModel.EpData())
+            };
+
+
+            //return from comic in _repository.GetAll<Comic>()
+            //       join tag in _repository.GetAll<ComicTagList>()
+            //       on comic.ComicId equals tag.ComicId
+            //       join tagList in _repository.GetAll<ComicTag>()
+            //       on tag.TagId equals tagList.TagId
+            //       join coupon in _repository.GetAll<Coupon>()
+            //       on comic.ComicId equals coupon.ComicId
+            //       join member in _repository.GetAll<Member>()
+            //       on coupon.MemberId equals member.MemberId
+            //       join ep in _repository.GetAll<Episode>()
+            //       on comic.ComicId equals ep.ComicId
+            //       where coupon.MemberId == 1 && coupon.CouponTypeId == 1
+            //       where tagList.IsMainTag == true
+            //       select new WorkpageViewModel
+            //       {
+            //           ComicChineseName = comic.ComicChineseName,
+            //           ComicFigure = comic.ComicFigure,
+            //           Tag = tagList.TagName,
+            //           BgCover = comic.BgCover,
+            //           Publisher = comic.Publisher,
+            //           Author = comic.Author,
+            //           ReadTicket = coupon.Quantity,
+            //           EpCover = ep.EpCover
+
+            //       };
+            //foreach(var item in _repository.GetAll<Comic>())
+            //{
+            //    yield return new WorkpageViewModel()
+            //    {
+            //        ComicChineseName = item.ComicChineseName,
+            //        ComicFigure = item.ComicFigure,
+            //        BgCover = item.BgCover,
+            //        Publisher = item.Publisher,
+            //        Author = item.Author,
+
+            //    };
+            //}
+        }
+        public void EpUpdate()
+        {
+            var p1 = _repository.GetAll<Episode>().Where(x => x.EpId == 1).FirstOrDefault();
+            p1.EpCover = "https://tw-a.kakaopagecdn.com/P/EO/46/14940/tn/2x/ad6f27c3-0d1b-4402-9d23-a25dfb4adddd.jpg";
+            var p2 = _repository.GetAll<Episode>().Where(x => x.EpId == 2).FirstOrDefault();
+            p2.EpCover = "https://tw-a.kakaopagecdn.com/P/EO/46/14826/tn/2x/bbc85024-ca09-4084-8213-c92c7ec0dd27.jpg";
+
+            _repository.SaveChange();
+        }
+
     }
 }

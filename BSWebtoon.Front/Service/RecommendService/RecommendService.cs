@@ -6,6 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BSWebtoon.Front.Service.RecommendService;
+using BSWebtoon.Model.ViewModel;
+using System.Linq;
 
 namespace BSWebtoon.Front.Service.RecommendService
 {
@@ -36,6 +39,31 @@ namespace BSWebtoon.Front.Service.RecommendService
             //_repository.Delete(data);
             _repository.SaveChange();
         }
+
+
+
+
+        public IEnumerable<ActivityViewModel> ActivityRead()
+        {
+            foreach (var vr in _repository.GetAll<Activity>())
+            {
+                var data = new ActivityViewModel()
+                {
+                    //ActivityName = _repository.GetAll<Coupon>().First(m => m.ActivityId == vr.ActivityId).ActivityName,
+                    //ActivityId = _repository.GetAll<Coupon>().First(m => m.ActivityId == vr.ActivityId).ActivityName,
+                    ActivityName = vr.ActivityName,
+                    ActivityStartTime = vr.ActivityStartTime,
+                    ActivityEndTime = vr.ActivityEndTime,
+                    CreateTime = vr.CreateTime,
+                };
+                yield return data;
+            }
+        }
+
+
+
+
+
         public void ViewRecordCreate()
         {
             var viewRecordList = new List<ViewRecord>()
@@ -91,11 +119,11 @@ namespace BSWebtoon.Front.Service.RecommendService
             _repository.SaveChange();
         }
 
-        public async Task<List<ClickCountViewModel>> ClickCount()
-        {
-            var query = (await _context.ClickRecord.ToListAsync()).GroupBy(comic => comic.ComicId).Select(g => new ClickCountViewModel { ComicId = g.Key, Count = g.Count() });
-        
-            return query.ToList();
-        }
+        //public async Task<List<ClickCountViewModel>> ClickCount()
+        //{
+        //    var query = (await _context.ClickRecord.ToListAsync()).GroupBy(comic => comic.ComicId).Select(g => new ClickCountViewModel { ComicId = g.Key, Count = g.Count() });
+
+        //    return query.ToList();
+        //}
     }
 }
