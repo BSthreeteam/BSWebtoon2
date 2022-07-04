@@ -9,7 +9,7 @@ namespace BSWebtoon.Model.Models
     {
         public EpContent()
         {
-            ViewRecord = new HashSet<ViewRecord>();
+            ViewRecords = new HashSet<ViewRecord>();
         }
 
         public int EpContentId { get; set; }
@@ -18,6 +18,6 @@ namespace BSWebtoon.Model.Models
         public int Page { get; set; }
 
         public virtual Episode Ep { get; set; }
-        public virtual ICollection<ViewRecord> ViewRecord { get; set; }
+        public virtual ICollection<ViewRecord> ViewRecords { get; set; }
     }
 }

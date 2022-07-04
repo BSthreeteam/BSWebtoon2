@@ -1,0 +1,33 @@
+﻿@using BSWebtoon.Model.ViewModels
+@model IEnumerable<ClickCountViewModel>
+
+@{
+    ViewData["Title"] = "ReadClickRecord";
+}
+
+<h1>ReadClickRecord</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ComicId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Count)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ComicId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Count)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

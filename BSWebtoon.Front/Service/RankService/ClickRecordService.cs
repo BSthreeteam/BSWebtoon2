@@ -4,13 +4,16 @@ using BSWebtoon.Model.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Dapper;
+using Microsoft.Data.SqlClient;
 
 namespace BSWebtoon.Front.Service.RankService
 {
-    public class ClickRecordService:IClickRecordService
+    public class ClickRecordService : IClickRecordService
     {
         private readonly BSWebtoonContext _context;
         private readonly BSRepository _repository;
+        private static string _connectionStr = "Server=(localdb)\\mssqllocaldb;Database=BS;Trusted_Connection=True;";
         public ClickRecordService(BSWebtoonContext context, BSRepository repository)
         {
             _context = context;

@@ -9,30 +9,18 @@ namespace BSWebtoon.Model.Models
     {
         public Episode()
         {
-            Comment = new HashSet<Comment>();
-            CouponUsedRecord = new HashSet<CouponUsedRecord>();
-            Coupon = new HashSet<Coupon>();
-            EpContent = new HashSet<EpContent>();
+            Comments = new HashSet<Comment>();
+            CouponUsedRecords = new HashSet<CouponUsedRecord>();
+            Coupons = new HashSet<Coupon>();
+            EpContents = new HashSet<EpContent>();
         }
 
         public int EpId { get; set; }
         public int ComicId { get; set; }
         public string EpTitle { get; set; }
-        /// <summary>
-        /// 話次封面
-        /// </summary>
         public string EpCover { get; set; }
-        /// <summary>
-        /// 更新時間
-        /// </summary>
         public DateTime UpdateTime { get; set; }
-        /// <summary>
-        /// 作者上傳時間
-        /// </summary>
         public DateTime UploadTime { get; set; }
-        /// <summary>
-        /// 1:審核通過,2:審核中,3:未審核,4:審核失敗
-        /// </summary>
         public int AuditTypeId { get; set; }
         public int AuditEmployeeId { get; set; }
         public DateTime AuditTime { get; set; }
@@ -42,9 +30,9 @@ namespace BSWebtoon.Model.Models
 
         public virtual Employee AuditEmployee { get; set; }
         public virtual Comic Comic { get; set; }
-        public virtual ICollection<Comment> Comment { get; set; }
-        public virtual ICollection<CouponUsedRecord> CouponUsedRecord { get; set; }
-        public virtual ICollection<Coupon> Coupon { get; set; }
-        public virtual ICollection<EpContent> EpContent { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<CouponUsedRecord> CouponUsedRecords { get; set; }
+        public virtual ICollection<Coupon> Coupons { get; set; }
+        public virtual ICollection<EpContent> EpContents { get; set; }
     }
 }

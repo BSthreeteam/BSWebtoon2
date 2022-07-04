@@ -33,7 +33,7 @@ namespace BSWebtoon.Model.Repository
         {
             _context.Entry(value).State = EntityState.Deleted;
         }
-        public IQueryable<T> GetAll<T>() where T : class 
+        public IQueryable<T> GetAll<T>() where T : class
         {
             return _context.Set<T>();
         }
@@ -42,5 +42,9 @@ namespace BSWebtoon.Model.Repository
             _context.SaveChanges();
         }
 
+        public IEnumerable<object> GetAll<T>(Activity activity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

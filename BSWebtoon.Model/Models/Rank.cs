@@ -14,7 +14,5 @@ namespace BSWebtoon.Model.Models
         public DateTime? EndTime { get; set; }
         public int ClickCount { get; set; }
         public int PreRank { get; set; }
-
-        public virtual Comic Comic { get; set; }
     }
 }

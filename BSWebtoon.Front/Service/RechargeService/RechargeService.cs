@@ -69,11 +69,11 @@ namespace BSWebtoon.Front.Service.RechargeService
         //    foreach (var data in datas)
         //    {
         //        _repository.Create(data);
-        //    };
+        //};
 
-        //    _repository.SaveChange();
+    //    _repository.SaveChange();
 
-        //}
+    //}
 
     }
 }

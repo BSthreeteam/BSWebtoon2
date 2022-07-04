@@ -7,5 +7,9 @@
         void CommentCreate();
         void LikeCreate();
         void ReportCreate();
+
+        //Task<List<ClickCountViewModel>> ClickCount();
+
+        //IEnumerable<ActivityViewModel> ActivityRead();
     }
 }

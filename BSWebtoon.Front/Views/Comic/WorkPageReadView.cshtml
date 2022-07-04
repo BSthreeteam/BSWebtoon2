@@ -1,0 +1,92 @@
+﻿@model IEnumerable<BSWebtoon.Front.ViewModels.WorkpageViewModel>
+
+@{
+    ViewData["Title"] = "WorkPageReadView";
+}
+
+<h1>WorkPageReadView</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ComicChineseName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComicFigure)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BgCover)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tag)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Publisher)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReadTicket)
+            </th>
+            <th>
+               @* @Html.DisplayNameFor(model => model.EpCover)*@
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ComicChineseName)
+            </td>
+            <td class ="box">
+@*                @Html.DisplayFor(modelItem => item.ComicFigure)
+*@                <img class ="w-100" src ="@item.ComicFigure"/>
+            </td>
+            <td class ="box">
+@*                @Html.DisplayFor(modelItem => item.BgCover)
+*@                <img class ="w-100" src ="@item.BgCover"/>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tag)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Publisher)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReadTicket)
+            </td>
+            <td class ="box">
+@*                @Html.DisplayFor(modelItem => item.EpCover)
+*@                @*<img class ="w-100" src ="@item.EpCover"/>*@
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@section topCSS {
+    <style>
+        .table {
+            color : white;
+        }
+        .box{
+            width : 200px;
+            height : 200px
+        }
+    </style>
+}
