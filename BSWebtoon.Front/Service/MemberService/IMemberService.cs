@@ -4,5 +4,7 @@
     {
         void LoginTypeCreate();
         void MemberCreate();
+
+        void MemberUpdateData();
     }
 }

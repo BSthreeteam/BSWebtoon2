@@ -12,6 +12,9 @@ namespace BSWebtoon.Model.Migrations
     [DbContext(typeof(BSWebtoonContext))]
     [Migration("20220702033115_database")]
     partial class database
+    [DbContext(typeof(BSWeBtoonContext))]
+    [Migration("20220702065757_databasetwo")]
+    partial class databasetwo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
