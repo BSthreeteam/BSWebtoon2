@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace BSWebtoon.Model.Models
 {
-    public partial class BSWeBtoonContext : DbContext
+    public partial class BSWebtoonContext : DbContext
     {
-        public BSWeBtoonContext()
+        public BSWebtoonContext()
         {
         }
 
-        public BSWeBtoonContext(DbContextOptions<BSWeBtoonContext> options)
+        public BSWebtoonContext(DbContextOptions<BSWebtoonContext> options)
             : base(options)
         {
 

@@ -1,17 +1,19 @@
-﻿using BSWebtoon.Model.Models;
+﻿using BSWebtoon.Model.ViewModels;
+using BSWebtoon.Model.Models;
 using BSWebtoon.Model.Repository;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BSWebtoon.Front.Service.RecommendService
 {
     public class RecommendService : IRecommendService
     {
-        private readonly BSWeBtoonContext _context;
+        private readonly BSWebtoonContext _context;
         private readonly BSRepository _repository;
-        public RecommendService(BSWeBtoonContext context, BSRepository repository)
+        public RecommendService(BSWebtoonContext context, BSRepository repository)
         {
             _context = context;
             _repository = repository;
@@ -87,6 +89,13 @@ namespace BSWebtoon.Front.Service.RecommendService
                 _repository.Create(report);
             }
             _repository.SaveChange();
+        }
+
+        public async Task<List<ClickCountViewModel>> ClickCount()
+        {
+            var query = (await _context.ClickRecord.ToListAsync()).GroupBy(comic => comic.ComicId).Select(g => new ClickCountViewModel { ComicId = g.Key, Count = g.Count() });
+        
+            return query.ToList();
         }
     }
 }
