@@ -18,12 +18,12 @@ namespace BSWebtoon.Front.Controllers
 
         public IActionResult Rank() //Rank/Rank 
         {
-            //_ClickRecordService.ClickRecordCreate();
+            _ClickRecordService.ClickRecordCreate();
             return View();
         }
         public IActionResult RankList() //Rank/RankList 
         {
-            //_ClickRecordService.ClickRecordCreate();
+            _ClickRecordService.ClickRecordCreate();
             return View(_rankService.ReadRank());
         }
         

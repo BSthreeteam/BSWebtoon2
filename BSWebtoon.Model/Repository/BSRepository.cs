@@ -42,5 +42,9 @@ namespace BSWebtoon.Model.Repository
             _context.SaveChanges();
         }
 
+        public IEnumerable<object> GetAll<T>(Activity activity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
