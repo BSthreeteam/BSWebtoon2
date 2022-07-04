@@ -8,8 +8,8 @@
         void LikeCreate();
         void ReportCreate();
 
-        Task<List<ClickCountViewModel>> ClickCount();
+        //Task<List<ClickCountViewModel>> ClickCount();
 
-        IEnumerable<ActivityViewModel> ActivityRead();
+        //IEnumerable<ActivityViewModel> ActivityRead();
     }
 }
