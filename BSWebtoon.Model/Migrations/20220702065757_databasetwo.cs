@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BSWebtoon.Model.Migrations
 {
-    public partial class database : Migration
+    public partial class databasetwo : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -2,6 +2,8 @@
 using BSWebtoon.Model.Repository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+
 
 namespace BSWebtoon.Front.Service.MemberService
 {
@@ -45,6 +47,14 @@ namespace BSWebtoon.Front.Service.MemberService
                 _repository.Create(logintype);
                 //_repository.Delete(logintype);
             }
+            _repository.SaveChange();
+        }
+        public void MemberUpdateData()
+        {
+            var p1 = _repository.GetAll<Member>().Where(x => x.MemberId == 1).FirstOrDefault();
+            p1.LoginTypeId = 1;
+            //_repository.Update(p1);
+
             _repository.SaveChange();
         }
     }
