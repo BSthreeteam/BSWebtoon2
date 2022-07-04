@@ -4,6 +4,8 @@ using BSWebtoon.Model.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Dapper;
+using Microsoft.Data.SqlClient;
 
 namespace BSWebtoon.Front.Service.RankService
 {
@@ -11,6 +13,7 @@ namespace BSWebtoon.Front.Service.RankService
     {
         private readonly BSWebtoonContext _context;
         private readonly BSRepository _repository;
+        private static string _connectionStr = "Server=(localdb)\\mssqllocaldb;Database=BS;Trusted_Connection=True;";
         public ClickRecordService(BSWebtoonContext context, BSRepository repository)
         {
             _context = context;
@@ -33,43 +36,44 @@ namespace BSWebtoon.Front.Service.RankService
             _repository.SaveChange();
         }
 
-         public IEnumerable<RankViewModel> ReadRank() 
-            {
-                //var repository = new BSRepository(new BSWebtoonContext());
-                return from comic in _repository.GetAll<Comic>()
-                       join comicTagList in _repository.GetAll<ComicTagList>()
-                       on comic.ComicId equals comicTagList.ComicId
-                       join comicTag in _repository.GetAll<ComicTag>()
-                       on comicTagList.TagId equals comicTag.TagId
-                       where comicTag.IsMainTag== true
-                       select new RankViewModel
-                       {
-                           ComicId = comic.ComicId,
-                           ComicName = comic.ComicChineseName,
-                           ComicNameImage = comic.ComicNameImage,
-                           Introduction = comic.Introduction,
-                           ComicFigure = comic.ComicFigure,
-                           BgCover = comic.BgCover,
-                           BgColor = comic.BgColor,
-                           BannerVideoWeb=comic.BannerVideoWeb,
-                           TagName = comicTag.TagName
 
-                       };
+        public IEnumerable<RankViewModel> ReadRank()
+        {
+            //var clickcount = _repository.GetAll<ClickRecord>().GroupBy(c => c.ComicId).Select(c => c.Count(gp=>gp.ComicId==c.Key));
+            //foreach(var index in clickcount)
+            //{
+            //    return index;
+            //}
 
-                //foreach(var comic in _repository.GetAll<Comic>())
-                //{
-                //    yield return new RankViewModel()
-                //    {
-                //        ComicId = comic.ComicId,
-                //        ComicName = comic.ComicChineseName,
-                //        ComicNameImage = comic.ComicNameImage,
-                //        ComicFigure = comic.ComicFigure,
-                //        BgCover = comic.BgCover,
-                //        BgColor = comic.BgColor,
-                //        TagName = /*_repository.GetAll<ComicTagList>()*/
-                //    };
-                //}
-            }
+            return from clickrecord in _repository.GetAll<ClickRecord>()
+                   join comic in _repository.GetAll<Comic>()
+                   on clickrecord.ComicId equals comic.ComicId
+                   join comicTagList in _repository.GetAll<ComicTagList>()
+                   on comic.ComicId equals comicTagList.ComicId
+                   join comicTag in _repository.GetAll<ComicTag>()
+                   on comicTagList.TagId equals comicTag.TagId
+                   where comicTag.IsMainTag == true
+                   select new RankViewModel
+                   {
+                       ComicId = comic.ComicId,
+                       ComicName = comic.ComicChineseName,
+                       ComicNameImage = comic.ComicNameImage,
+                       Introduction = comic.Introduction.Substring(0, 50),
+                       ComicFigure = comic.ComicFigure,
+                       BgCover = comic.BgCover,
+                       BgColor = comic.BgColor,
+                       TagName = comicTag.TagName,
+                       //ClickCount = clickcount;
+                   };
+        }
 
+
+        public void UpdateRank()
+        {
+            var updatarank = _repository.GetAll<ClickRecord>().Where(x => x.ClickRecordId == 2).FirstOrDefault();
+            updatarank.CreateTime = new DateTime(2021, 07, 24);
+            _repository.Update(updatarank);
+            _repository.SaveChange();
+        }
     }
 }
