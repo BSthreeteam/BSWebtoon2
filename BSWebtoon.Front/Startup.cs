@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BSWebtoon.Front.Service.RankService;
+using BSWebtoon.Front.Service.WeekUpdateService;
 
 namespace BSWebtoon.Front
 {
@@ -46,7 +47,7 @@ namespace BSWebtoon.Front
             services.AddScoped<IComicService, ComicService>();
             services.AddScoped<IMemberService, MemberService>();
             services.AddScoped<IFavoriteService, FavoriteService>();
-            services.AddDbContext<BSWebtoonContext>(options =>
+            services.AddDbContext<BSWeBtoonContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("BSWebtoonContext")));
         }
 
