@@ -7,12 +7,12 @@ namespace BSWebtoon.Front.Controllers
     public class FavoriteController : Controller
     {
         private readonly IFavoriteService _favoriteService;
-        private readonly BSRepository _repository;
+        private readonly FavoriteService _readfavoriteService;
 
-        public FavoriteController(IFavoriteService favoriteService, BSRepository repository)
+        public FavoriteController(IFavoriteService favoriteService, FavoriteService readfavoriteService)
         {
             _favoriteService = favoriteService;
-            _repository = repository;
+            _readfavoriteService = readfavoriteService;
         }
 
         public IActionResult AddFavoriteView()//Favorite/AddFavoriteView
@@ -24,6 +24,11 @@ namespace BSWebtoon.Front.Controllers
         {
             //_favoriteService.FavoriteCreate();
             return View();
+        }
+        public IActionResult AddReadFavoriteList()//Favorite/AddReadFavoriteList
+        {
+            
+            return View(_readfavoriteService.GetFavorite());
         }
     }
 }
