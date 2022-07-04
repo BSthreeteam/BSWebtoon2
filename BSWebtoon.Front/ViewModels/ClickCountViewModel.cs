@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BSWebtoon.Model.ViewModels
+namespace BSWebtoon.Front.ViewModels
 {
     public class ClickCountViewModel
     {

@@ -29,5 +29,21 @@ namespace BSWebtoon.Front.Service.CouponService
 
             _repository.SaveChange();
         }
+
+        public void CouponUsedRecordCreate()
+        {
+            List<CouponUsedRecord> couponuseds = new List<CouponUsedRecord>
+            {
+                new CouponUsedRecord(){MemberId=1,EpId=1,CouponId=1,StartReadTime=new DateTime(2021,07,22),EndReadTime=new DateTime(2021,07,29)},
+                new CouponUsedRecord(){MemberId=1,EpId=2,CouponId=2,StartReadTime=new DateTime(2021,07,23),EndReadTime=new DateTime(2021,07,30)}
+            };
+
+            foreach (var used in couponuseds)
+            {
+                _repository.Create(used);
+            }
+
+            _repository.SaveChange();
+        }
     }
 }

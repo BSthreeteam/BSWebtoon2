@@ -1,4 +1,4 @@
-﻿using BSWebtoon.Model.ViewModels;
+﻿using BSWebtoon.Front.ViewModels;
 using BSWebtoon.Model.Models;
 using BSWebtoon.Model.Repository;
 using Microsoft.EntityFrameworkCore;

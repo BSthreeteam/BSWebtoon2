@@ -1,4 +1,4 @@
-﻿using BSWebtoon.Model.ViewModels;
+﻿using BSWebtoon.Front.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
