@@ -1,8 +1,4 @@
-﻿using BSWebtoon.Model.ViewModels;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace BSWebtoon.Front.Service.RecommendService
+﻿namespace BSWebtoon.Front.Service.RecommendService
 {
     public interface IRecommendService
     {
@@ -13,5 +9,7 @@ namespace BSWebtoon.Front.Service.RecommendService
         void ReportCreate();
 
         Task<List<ClickCountViewModel>> ClickCount();
+
+        IEnumerable<ActivityViewModel> ActivityRead();
     }
 }

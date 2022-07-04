@@ -1,0 +1,28 @@
+﻿@using BSWebtoon.Model.ViewModel
+
+@model IEnumerable<ActivityViewModel>
+
+@foreach(var vr in Model){
+    <div class="tab">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ActivityName</th>
+                    <th>ActivityStartTime</th>
+                    <th>ActivityEndTime</th>
+                    <th>CreateTime</th>
+                </tr>
+            </thead>
+            @*/Recommend/ActivityView*@
+            <tbody>
+                <tr>
+                    <td>@vr.CreateTime</td>
+                    <th>@vr.ActivityName</th>
+                    <th>@vr.ActivityStartTime</th>
+                    <th>@vr.ActivityEndTime</th>
+                    <th>@vr.CreateTime</th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+}

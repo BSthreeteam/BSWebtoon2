@@ -63,6 +63,10 @@ namespace BSWebtoon.Front.Controllers
             _recommendservice.ReportCreate();
             return View();
         }
-
+        public IActionResult ActivityView() //活動小雞
+        {
+            var vr = _recommendservice.ActivityRead();
+            return View(vr);
+        }
     }
 }
