@@ -22,17 +22,17 @@ namespace BSWebtoon.Front.Service.RankService
         public void ClickRecordCreate()
         {
             var clickRecod = new List<ClickRecord> {
-                new ClickRecord {ClickRecordId=1,ComicId=1,CreateTime=new DateTime(2021,07,21),MemberId=1},
-                new ClickRecord {ClickRecordId=2,ComicId=2,CreateTime=new DateTime(2021,07,23),MemberId=2}
+                //new ClickRecord {ClickRecordId=1,ComicId=1,CreateTime=new DateTime(2021,5,20),MemberId=1},
+                //new ClickRecord {ClickRecordId=2,ComicId=2,CreateTime=new DateTime(2021,7,23),MemberId=2},
+                new ClickRecord {ClickRecordId=3,ComicId=3,CreateTime=new DateTime(2021,7,21),MemberId=1},
+                new ClickRecord {ClickRecordId=4,ComicId=1,CreateTime=new DateTime(2021,7,24),MemberId=2},
+
             };
-            //var data = new Activity() { ActivityName = "BuildSchoolDEMO", ActivityStartTime = new DateTime(2022, 08, 01), ActivityEndTime = new DateTime(2022, 08, 15), ActivityImage = "jpg", ActivityBgColor = "#CF9B68", ActivityContent = "<h2>DEMO Day</h2><br><p>祝大家有個美好的未來!</p>", PrincipalEmployee = 2, CreateTime = new DateTime(2022, 08, 01), IsDelete = false };
             foreach (ClickRecord click in clickRecod)
             {
                 _repository.Create(click);
 
             }
-
-            //_repository.Delete(data);
             _repository.SaveChange();
         }
 
@@ -76,4 +76,7 @@ namespace BSWebtoon.Front.Service.RankService
             _repository.SaveChange();
         }
     }
+
+   
+
 }
