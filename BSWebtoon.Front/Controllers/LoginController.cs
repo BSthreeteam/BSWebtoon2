@@ -19,12 +19,15 @@ namespace BSWebtoon.Front.Controllers
             _memberService.MemberCreate();
             return View();
         }
-        public IActionResult AddLoginTypeView() //Login/AddLoginTypeView
-        {
-            //_memberService.LoginTypeCreate();
-            _memberService.MemberUpdateData();
-            return View();
-        }
+
+
+
+        //public IActionResult AddLoginTypeView() //Login/AddLoginTypeView
+        //{
+        //    //_memberService.LoginTypeCreate();
+        //    _memberService.MemberUpdateData();
+        //    return View();
+        //}
 
     }
 }
