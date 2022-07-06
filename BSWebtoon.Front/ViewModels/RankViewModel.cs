@@ -19,9 +19,5 @@ namespace BSWebtoon.Front.ViewModel
         public List<int> ClickCount { get; set; }
 
 
-
-
-
-
     }
 }
