@@ -7,10 +7,13 @@
 @section topCss{
       <link rel="stylesheet" href="~/style/FavoriteRemove.css" />
 }
- <div style="background-color: #000;margin-top: 50px;">
-        <div class="d-flex flex-row-reverse close_btn ">
-            <button type="button" class="btn-close btn-close-white m-2" aria-label="Close" onclick="window.close();" ></button>
-        </div>
+
+ <div  style="background-color: #000;margin-top: 50px;">
+
+
+    <nav class="navbar d-flex justify-content-end ">
+        <a href="#" onclick="window.close();">✖</a>
+    </nav>
 
         <div class="container col-12" style="max-width: 800px;">
             <div class="container">
@@ -45,6 +48,30 @@
                         </div>
                     </div>
                     <div class="col ">
+                        <div class=" pic_box">
+                            <div id="img_4" onclick="select_img(this)" style="position:relative;">
+                                <img src="https://picsum.photos/248/520/?random=7" class="w-100">
+                                <div></div>
+                                <div class="check_btn text-center "></div>
+                            </div>
+                        </div>
+                    </div>                    <div class="col ">
+                        <div class=" pic_box">
+                            <div id="img_4" onclick="select_img(this)" style="position:relative;">
+                                <img src="https://picsum.photos/248/520/?random=7" class="w-100">
+                                <div></div>
+                                <div class="check_btn text-center "></div>
+                            </div>
+                        </div>
+                    </div>                    <div class="col ">
+                        <div class=" pic_box">
+                            <div id="img_4" onclick="select_img(this)" style="position:relative;">
+                                <img src="https://picsum.photos/248/520/?random=7" class="w-100">
+                                <div></div>
+                                <div class="check_btn text-center "></div>
+                            </div>
+                        </div>
+                    </div>                    <div class="col ">
                         <div class=" pic_box">
                             <div id="img_4" onclick="select_img(this)" style="position:relative;">
                                 <img src="https://picsum.photos/248/520/?random=7" class="w-100">
@@ -103,9 +130,9 @@
                         style="border-radius: 20px; display: inline-block; " onclick="remove_all(true)">確定</button>
                 </div>
             </section>
+    </div>
 
    
-    </div>
 
 
   @section endJS{

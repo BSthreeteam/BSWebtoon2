@@ -1,10 +1,9 @@
-﻿
-function To_RecordPage() {
-    window.open("/Favorite/RecordView");
+﻿function Open_del_page() {
+    window.open("/Favorite/RemoveFavoriteView");
 }
 
-function Open_del_page() {
-    window.open("/Favorite/RemoveFavoriteView");
+function TO_Favorite() {
+    window.open("/Favorite/AddFavoriteView");
 }
 
 //傳送漫畫對應網址路由
