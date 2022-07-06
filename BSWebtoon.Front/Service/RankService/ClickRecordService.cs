@@ -43,48 +43,24 @@ namespace BSWebtoon.Front.Service.RankService
         {
 
             var OldClickRecords = _repository.GetAll<ClickRecord>().Where(c => c.CreateTime < new DateTime(2022, 7, 5).AddDays(-7) && c.CreateTime >= new DateTime(2022, 7, 5).AddDays(-14)).GroupBy(c => c.ComicId)
-             .OrderByDescending(c => c.Count(gp => gp.ComicId == c.Key)).ThenBy(c => c.Key).Select(c => $"{c.Key}");
+             .OrderByDescending(c => c.Count(gp => gp.ComicId == c.Key)).ThenBy(c => c.Key).Select(c => c.Key);
 
 
             var NewClickRecords = _repository.GetAll<ClickRecord>().Where(c => c.CreateTime < new DateTime(2022, 7, 5) && c.CreateTime >= new DateTime(2022, 7, 5).AddDays(-7)).GroupBy(c => c.ComicId)
-               .OrderByDescending(c => c.Count(gp => gp.ComicId == c.Key)).ThenBy(c => c.Key)/*.Select(c => $"{c.Key}")*/;
+               .OrderByDescending(c => c.Count(gp => gp.ComicId == c.Key)).ThenBy(c => c.Key).Select(c => c.Key);
 
 
-            var newrank = _repository.GetAll<Comic>().Where(n => NewClickRecords.Any(nc=>nc.Key==n.ComicId)).ToList();//.Select(n => n.ComicId);
+            var newrank = _repository.GetAll<Comic>().Where(n => NewClickRecords.Any(nc=>nc==n.ComicId)).ToList();//.Select(n => n.ComicId);
             var tagListSource = _repository.GetAll<ComicTagList>().Where(ts=> newrank.Any(nc=>nc.ComicId==ts.ComicId)).ToList();
             var mainTag = _repository.GetAll<ComicTag>().Where(x => tagListSource.Any(y => y.TagId == x.TagId)).First(x => x.IsMainTag);
-            //List<string> oldsource = new List<string>();
-            //List<string> newsource = new List<string>();
-            //oldsource.AddRange(OldClickRecords); 
-            //newsource.AddRange(NewClickRecords); 
-            //foreach (var old in oldsource)
-            //{
-            //    var aaa = (newsource.IndexOf(old) + 1);
-            //    var bbb = (oldsource.IndexOf(old) + 1);
-            //    var ccc = bbb - aaa;
-            //    if (aaa == 0)
-            //    {
-            //        continue;
-            //    }
 
-            //    //Console.WriteLine(old);
-            //    //Console.WriteLine(aaa);
-            //    //Console.WriteLine(bbb);
-            //    //Console.WriteLine(ccc);
-            //    //Console.WriteLine("----------");
-            //    //comic.Add(new DiffRankDTO() { ComicId = int.Parse(old), diff = ccc });
+            List<int> oldsource = new List<int>();
+            List<int> newsource = new List<int>();
 
-            //    //{
-            //    //    new DiffRankDTO.Rank(){ComicId = int.Parse(old),diff = ccc}
-            //    //};
-            //    comic.comiclist.Add(new DiffRankDTO.Rank() { ComicId = int.Parse(old), diff = ccc });
-            //}
-            //foreach (var list in comic.comiclist)
-            //{
-            //    Console.WriteLine($"{list.ComicId},{list.diff}");
-            //}
+            oldsource.AddRange(OldClickRecords);
+            newsource.AddRange(NewClickRecords);
 
-            return newrank.Select(comicrank => new RankDTO
+            var result = newrank.Select(comicrank => new RankDTO
             {
                 ComicId = comicrank.ComicId,
                 ComicName = comicrank.ComicChineseName,
@@ -93,10 +69,32 @@ namespace BSWebtoon.Front.Service.RankService
                 BgCover = comicrank.BgCover,
                 Introduction = comicrank.Introduction,
                 BannerVideoWeb = comicrank.BannerVideoWeb,
-                TagName = mainTag.TagName 
-            }) ;
+                TagName = mainTag.TagName,
+                Diff = oldsource.IndexOf(comicrank.ComicId)+1 == 0 ? -1 : oldsource.IndexOf(comicrank.ComicId)+1 - newsource.IndexOf(comicrank.ComicId)+1
+            });
+            return result;
 
 
+
+
+
+
+            //var diff = NewClickRecords.Select(ncr => oldsource.IndexOf(ncr) - newsource.IndexOf(ncr) == 0? -1 : oldsource.IndexOf(ncr) - newsource.IndexOf(ncr));
+
+            //foreach (var news in newsource)
+            //{
+            //    var aaa = (oldsource.IndexOf(news) + 1);
+            //    var bbb = (newsource.IndexOf(news) + 1);
+            //    if (aaa == 0)
+            //    {
+            //        Console.WriteLine($"{news}:new");
+            //    }
+            //    else
+            //    {
+            //        var ccc = aaa - bbb;
+            //        Console.WriteLine($"{news}:{ccc}");
+            //    }
+            //}
 
             //var result=new RankDTO
             //{
