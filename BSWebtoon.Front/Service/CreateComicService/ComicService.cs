@@ -112,14 +112,26 @@ namespace BSWebtoon.Front.Service.ComicService
         {
             var epContentList = new List<EpContent>
             {
-                new EpContent(){ EpId=1, ImagePath="http", Page=1},
-                new EpContent(){ EpId=1, ImagePath="http", Page=2},
-                new EpContent(){ EpId=2, ImagePath="http", Page=1},
-                new EpContent(){ EpId=2, ImagePath="http", Page=2},
-                new EpContent(){ EpId=3, ImagePath="http", Page=1},
-                new EpContent(){ EpId=3, ImagePath="http", Page=2},
-                new EpContent(){ EpId=4, ImagePath="http", Page=1},
-                new EpContent(){ EpId=4, ImagePath="http", Page=2},
+                new EpContent(){ EpContentId=1, EpId=1, ImagePath="https://raw.githubusercontent.com/Jamie1721/FileStorage/main/MoonFestival.png", Page=1},
+                new EpContent(){ EpContentId=2, EpId=2, ImagePath="https://raw.githubusercontent.com/Jamie1721/FileStorage/main/MoonFestival.png", Page=1},
+                new EpContent(){ EpContentId=3, EpId=3, ImagePath="https://raw.githubusercontent.com/Jamie1721/FileStorage/main/MoonFestival.png", Page=1},
+                new EpContent(){ EpContentId=4, EpId=4, ImagePath="https://raw.githubusercontent.com/Jamie1721/FileStorage/main/MoonFestival.png", Page=1},
+                new EpContent(){ EpContentId=5, EpId=5, ImagePath="https://raw.githubusercontent.com/Jamie1721/FileStorage/main/MoonFestival.png", Page=1},
+                new EpContent(){ EpContentId=6, EpId=6, ImagePath="https://raw.githubusercontent.com/Jamie1721/FileStorage/main/MoonFestival.png", Page=1},
+                new EpContent(){ EpContentId=7, EpId=7, ImagePath="https://raw.githubusercontent.com/Jamie1721/FileStorage/main/MoonFestival.png", Page=1},
+                new EpContent(){ EpContentId=8, EpId=8, ImagePath="https://raw.githubusercontent.com/Jamie1721/FileStorage/main/MoonFestival.png", Page=1},
+                new EpContent(){ EpContentId=9, EpId=9, ImagePath="https://raw.githubusercontent.com/Jamie1721/FileStorage/main/MoonFestival.png", Page=1},
+                new EpContent(){ EpContentId=10, EpId=10, ImagePath="https://raw.githubusercontent.com/Jamie1721/FileStorage/main/MoonFestival.png", Page=1},
+                new EpContent(){ EpContentId=11, EpId=11, ImagePath="https://raw.githubusercontent.com/Jamie1721/FileStorage/main/MoonFestival.png", Page=1},
+                new EpContent(){ EpContentId=12, EpId=12, ImagePath="https://raw.githubusercontent.com/Jamie1721/FileStorage/main/MoonFestival.png", Page=1},
+                new EpContent(){ EpContentId=13, EpId=13, ImagePath="https://raw.githubusercontent.com/Jamie1721/FileStorage/main/MoonFestival.png", Page=1},
+                new EpContent(){ EpContentId=14, EpId=14, ImagePath="https://raw.githubusercontent.com/Jamie1721/FileStorage/main/MoonFestival.png", Page=1},
+                new EpContent(){ EpContentId=15, EpId=15, ImagePath="https://raw.githubusercontent.com/Jamie1721/FileStorage/main/MoonFestival.png", Page=1},
+                new EpContent(){ EpContentId=16, EpId=16, ImagePath="https://raw.githubusercontent.com/Jamie1721/FileStorage/main/MoonFestival.png", Page=1},
+                new EpContent(){ EpContentId=17, EpId=17, ImagePath="https://raw.githubusercontent.com/Jamie1721/FileStorage/main/MoonFestival.png", Page=1},
+                new EpContent(){ EpContentId=18, EpId=18, ImagePath="https://raw.githubusercontent.com/Jamie1721/FileStorage/main/MoonFestival.png", Page=1},
+                new EpContent(){ EpContentId=19, EpId=19, ImagePath="https://raw.githubusercontent.com/Jamie1721/FileStorage/main/MoonFestival.png", Page=1},
+                new EpContent(){ EpContentId=20, EpId=20, ImagePath="https://raw.githubusercontent.com/Jamie1721/FileStorage/main/MoonFestival.png", Page=1},
             };
             foreach (var epContent in epContentList)
             {
