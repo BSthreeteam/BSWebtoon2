@@ -6,33 +6,32 @@ using System.Linq;
 
 namespace BSWebtoon.Front.Service.WeekUpdateService
 {
-    public class WeekUpdateService : IWeekUpdateService
-    {
-        private readonly BSRepository _repository;
+    //public class WeekUpdateService : IWeekUpdateService
+    //{
+    //    private readonly BSRepository _repository;
+    //    //private readonly BSWeBtoonContext _context;
 
-        public WeekUpdateService(BSRepository repository)
-        {
-            _repository = repository;
-        }
+    //    public WeekUpdateService(BSRepository repository, BSWebtoonContext context)
+    //    {
+    //        _repository = repository;
+    //        //_context = context;
+    //    }
 
-        public IEnumerable<WeekUpDateDTO> ReadComic()
-        {
-            var comicsource = _repository.GetAll<Comic>().Where(c=>c.ComicStatus != 1).OrderBy(c => c.ComicId);
-            //var comicorderby = _repository.GetAll<Comic>().Where(co=>co.UpdateWeek = comicsource)
+    //    //public IEnumerable<WeekUpdateViewModel> ReadComic()
+    //    //{
+    //    //    foreach (var comic in _repository.GetAll<Comic>())
+    //    //    {
 
-            //var comicClickRecords = _repository.GetAll<ClickRecord>().GroupBy(c => c.ComicId).ToDictionary(c => c.Key,c=>c.Count());
-
-            return comicsource.Select(c => new WeekUpDateDTO
-            {
-                ComicId = c.ComicId,
-                ComicNameImage = c.ComicNameImage,
-                ComicStatus = c.ComicStatus,
-                UpdateWeek = c.UpdateWeek,
-                BgCover = c.BgCover,
-                ComicWeekFigure = c.ComicWeekFigure,
-                WeekVideoWrb = c.WeekVideoWrb,
-            });
-
-        }
-    }
+    //    //        yield return new WeekUpdateViewModel()
+    //    //        {
+    //    //            ComicId = comic.ComicId,
+    //    //            ComicNameImage = comic.ComicNameImage,
+    //    //            BgCover = comic.BgCover,
+    //    //            ComicFigure = comic.ComicFigure,
+    //    //            ComicStatus = comic.ComicStatus,
+    //    //            UpdateWeek = comic.UpdateWeek
+    //    //        };
+    //    //    }
+    //    //}
+    //}
 }
