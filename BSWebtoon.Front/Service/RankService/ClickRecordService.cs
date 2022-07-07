@@ -42,23 +42,23 @@ namespace BSWebtoon.Front.Service.RankService
         public IEnumerable<RankDTO> ReadRank()    
         {
 
-            var OldClickRecords = _repository.GetAll<ClickRecord>().Where(c => c.CreateTime < new DateTime(2022, 7, 5).AddDays(-7) && c.CreateTime >= new DateTime(2022, 7, 5).AddDays(-14)).GroupBy(c => c.ComicId)
-             .OrderByDescending(c => c.Count(gp => gp.ComicId == c.Key)).ThenBy(c => c.Key).Select(c => c.Key);
+            var oldClickRecords = _repository.GetAll<ClickRecord>().Where(c => c.CreateTime < new DateTime(2022, 7, 5).AddDays(-7) && c.CreateTime >= new DateTime(2022, 7, 5).AddDays(-14));
+            
+            var oldGroupBy = oldClickRecords.GroupBy(c => c.ComicId).OrderByDescending(c => c.Count(gp => gp.ComicId == c.Key)).ThenBy(c => c.Key).Select(c => c.Key);
 
+            var newClickRecords = _repository.GetAll<ClickRecord>().Where(c => c.CreateTime < new DateTime(2022, 7, 5) && c.CreateTime >= new DateTime(2022, 7, 5).AddDays(-7));
+            
+            var newGroupBy= newClickRecords.GroupBy(c => c.ComicId).OrderByDescending(c => c.Count(gp => gp.ComicId == c.Key)).ThenBy(c => c.Key).Select(c => c.Key);
 
-            var NewClickRecords = _repository.GetAll<ClickRecord>().Where(c => c.CreateTime < new DateTime(2022, 7, 5) && c.CreateTime >= new DateTime(2022, 7, 5).AddDays(-7)).GroupBy(c => c.ComicId)
-               .OrderByDescending(c => c.Count(gp => gp.ComicId == c.Key)).ThenBy(c => c.Key).Select(c => c.Key);
-
-
-            var newrank = _repository.GetAll<Comic>().Where(n => NewClickRecords.Any(nc=>nc==n.ComicId)).ToList();//.Select(n => n.ComicId);
+            var newrank = _repository.GetAll<Comic>().Where(n => newGroupBy.Any(nc=>nc==n.ComicId)).ToList();//.Select(n => n.ComicId);
             var tagListSource = _repository.GetAll<ComicTagList>().Where(ts=> newrank.Any(nc=>nc.ComicId==ts.ComicId)).ToList();
             var mainTag = _repository.GetAll<ComicTag>().Where(x => tagListSource.Any(y => y.TagId == x.TagId)).First(x => x.IsMainTag);
 
-            List<int> oldsource = new List<int>();
-            List<int> newsource = new List<int>();
+            List<int> oldSource = new List<int>();
+            List<int> newSource = new List<int>();
 
-            oldsource.AddRange(OldClickRecords);
-            newsource.AddRange(NewClickRecords);
+            oldSource.AddRange(oldGroupBy);
+            newSource.AddRange(newGroupBy);
 
             var result = newrank.Select(comicrank => new RankDTO
             {
@@ -70,7 +70,7 @@ namespace BSWebtoon.Front.Service.RankService
                 Introduction = comicrank.Introduction,
                 BannerVideoWeb = comicrank.BannerVideoWeb,
                 TagName = mainTag.TagName,
-                Diff = oldsource.IndexOf(comicrank.ComicId)+1 == 0 ? -1 : oldsource.IndexOf(comicrank.ComicId)+1 - newsource.IndexOf(comicrank.ComicId)+1
+                Diff = oldSource.IndexOf(comicrank.ComicId) == -1 ? 0 : oldSource.IndexOf(comicrank.ComicId)+1 - newSource.IndexOf(comicrank.ComicId)+1
             });
             return result;
 
