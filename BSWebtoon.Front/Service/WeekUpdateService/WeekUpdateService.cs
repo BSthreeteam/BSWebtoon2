@@ -1,36 +1,38 @@
-﻿using BSWebtoon.Front.ViewModel;
+﻿using BSWebtoon.Front.Models.DTO.WeekUpData;
 using BSWebtoon.Model.Models;
 using BSWebtoon.Model.Repository;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BSWebtoon.Front.Service.WeekUpdateService
 {
     public class WeekUpdateService : IWeekUpdateService
     {
         private readonly BSRepository _repository;
-        //private readonly BSWeBtoonContext _context;
 
-        public WeekUpdateService(BSRepository repository, BSWebtoonContext context)
+        public WeekUpdateService(BSRepository repository)
         {
             _repository = repository;
-            //_context = context;
         }
 
-        public IEnumerable<WeekUpdateViewModel> ReadComic()
+        public IEnumerable<WeekUpDateDTO> ReadComic()
         {
-            foreach (var comic in _repository.GetAll<Comic>())
-            {
+            var comicsource = _repository.GetAll<Comic>().Where(c=>c.ComicStatus != 1).OrderBy(c => c.ComicId);
+            //var comicorderby = _repository.GetAll<Comic>().Where(co=>co.UpdateWeek = comicsource)
 
-                yield return new WeekUpdateViewModel()
-                {
-                    ComicId = comic.ComicId,
-                    ComicNameImage = comic.ComicNameImage,
-                    BgCover = comic.BgCover,
-                    ComicFigure = comic.ComicFigure,
-                    ComicStatus = comic.ComicStatus,
-                    UpdateWeek = comic.UpdateWeek
-                };
-            }
+            //var comicClickRecords = _repository.GetAll<ClickRecord>().GroupBy(c => c.ComicId).ToDictionary(c => c.Key,c=>c.Count());
+
+            return comicsource.Select(c => new WeekUpDateDTO
+            {
+                ComicId = c.ComicId,
+                ComicNameImage = c.ComicNameImage,
+                ComicStatus = c.ComicStatus,
+                UpdateWeek = c.UpdateWeek,
+                BgCover = c.BgCover,
+                ComicWeekFigure = c.ComicWeekFigure,
+                WeekVideoWrb = c.WeekVideoWrb,
+            });
+
         }
     }
 }

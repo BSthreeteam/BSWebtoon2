@@ -19,9 +19,9 @@ namespace BSWebtoon.Front.Controllers
         {
             var comicData = _weekUpdateService.ReadComic();
 
-            var result = new WeekUpdateViewModel_Page
+            var result = new WeekUpdateViewModel
             {
-                ComicList = comicData.Select(c => new WeekUpdateViewModel_Page.WeekUpdateData
+                ComicList = comicData.Select(c => new WeekUpdateViewModel.WeekUpdateData
                 {
                     ComicId = c.ComicId
                 })
