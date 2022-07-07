@@ -1,58 +1,32 @@
-﻿
-function To_RecordPage() {
-    window.open("/Favorite/RecordView");
-}
+﻿let img1 = document.querySelector('.img1')
+let img2 = document.querySelector('.img2')
+let img3 = document.querySelector('.img3')
+let img4 = document.querySelector('.img4')
+let div_btns = document.querySelector('#div_btns')
 
-function Open_del_page() {
-    window.open("/Favorite/RemoveFavoriteView");
-}
-
-//傳送漫畫對應網址路由
-function to_comnic(node) {
-    let comic_id = node.querySelector('input').value;
-    console.log(comic_id);
-    let url = "" + comic_id;
-    // document.location.href = "https://www.google.com.tw/";
-}
-let all_cols = document.querySelectorAll('div.col');
-
-//滑動效果
 window.addEventListener('mousewheel', (e) => {
-    all_cols.forEach((col, index) => {
-        col.style.transition = "all 0.5s ease";
-    });
     if (e.wheelDelta > 0) {
         // alert("滑輪向上滾動");
-        if (window.innerWidth >= 1200) {
-            all_cols.forEach((col, index) => {
-                if (index % 4 == 0) {
-                    col.style.transform = "translateY(20%)"
-                } else if (index % 4 == 1) {
-                    col.style.transform = "translateY(40%)"
-                } else if (index % 4 == 2) {
-                    col.style.transform = "translateY(60%)"
-                } else if (index % 4 == 3) {
-                    col.style.transform = "translateY(80%)"
-                }
-            });
-        } else {
-            all_cols.forEach((col, index) => {
-                if (index % 3 == 0) {
-                    col.style.transform = "translateY(20%)"
-                } else if (index % 3 == 1) {
-                    col.style.transform = "translateY(40%)"
-                } else if (index % 3 == 2) {
-                    col.style.transform = "translateY(60%)"
-                }
-            });
-        }
+        img1.style.transform = "translateY(15%)"
+        img2.style.transform = "translateY(20%)"
+        img3.style.transform = "translateY(25%)"
+        img4.style.transform = "translateY(30%)"
         div_btns.style.transform = "translateY(-30px)"
+
     }
     if (e.wheelDelta < 0) {
-        all_cols.forEach((col, index) => {
-            col.style.transform = "translateY(0%)"
-        });
         // alert("滑輪向下滾動");
+        img1.style.transform = "translateY(0%)"
+        img2.style.transform = "translateY(0%)"
+        img3.style.transform = "translateY(0%)"
+        img4.style.transform = "translateY(0%)"
         div_btns.style.transform = "translateY(100px)"
     }
 })
+
+function Open_del_page() {
+    //window.open("https://fan-hua-hsuan.github.io/comics/comics_mylove_del_comics");
+    window.open("/Favorite/RemoveFavoriteView");
+
+    
+}

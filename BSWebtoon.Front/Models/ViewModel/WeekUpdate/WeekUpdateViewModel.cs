@@ -14,10 +14,6 @@ namespace BSWebtoon.Front.Models.ViewModels.WeekUpdate
             public string ComicFigure { get; set; }
             public int ComicStatus { get; set; }
             public int? UpdateWeek { get; set; }
-            public string ComicWeekFigure { get; set; }
-            public string WeekVideoWrb { get; set; }
-
-
         }
     }
 }

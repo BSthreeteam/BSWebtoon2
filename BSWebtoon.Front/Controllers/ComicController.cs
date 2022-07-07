@@ -36,11 +36,11 @@ namespace BSWebtoon.Front.Controllers
             //_ComicService.EpUpdate();
             return View();
         }
-        //public IActionResult WorkPageReadView()//Comic/WorkPageReadView
-        //{
+        public IActionResult WorkPageReadView()//Comic/WorkPageReadView
+        {
 
-        //    return View(_comic.WordPageRead().ToList());
-        //}
+            return View(_comic.WordPageRead().ToList());
+        }
 
         //public IActionResult AddEpContentView() //Comic/AddEpContentView
         //{
