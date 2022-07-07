@@ -18,29 +18,29 @@ namespace BSWebtoon.Front.Service.CouponService
         {
             List<Coupon> coupons = new List<Coupon>
             {
-                new Coupon(){MemberId=1,ComicId=1,ActivityId=1,CouponTypeId=1,OriginQuantity=5,CreateTime=new DateTime(2022,5,6,6,20,30), Quantity=15 },
-                new Coupon(){MemberId=2,ComicId=2,ActivityId=2,CouponTypeId=2,OriginQuantity=6,CreateTime=new DateTime(2022,7,12,8,10,30), Quantity=10 },
-                new Coupon(){MemberId=3,ComicId=3,ActivityId=3,CouponTypeId=1,OriginQuantity=4,CreateTime=new DateTime(2022,7,11,8,10,30), Quantity=14 },
-                new Coupon(){MemberId=4,ComicId=4,ActivityId=1,CouponTypeId=2,OriginQuantity=6,CreateTime=new DateTime(2022,7,13,8,10,30), Quantity=12 },
+                new Coupon(){MemberId=1,ComicId=1,ActivityId=1,CouponTypeId=1,OriginQuantity=1,CreateTime=new DateTime(2022,5,6,6,20,30), Quantity=15 },
+                new Coupon(){MemberId=2,ComicId=2,ActivityId=2,CouponTypeId=2,OriginQuantity=2,CreateTime=new DateTime(2022,7,12,8,10,30), Quantity=10 },
+                new Coupon(){MemberId=3,ComicId=3,ActivityId=3,CouponTypeId=3,OriginQuantity=1,CreateTime=new DateTime(2022,7,11,8,10,30), Quantity=14 },
+                new Coupon(){MemberId=4,ComicId=4,ActivityId=1,CouponTypeId=1,OriginQuantity=1,CreateTime=new DateTime(2022,7,13,8,10,30), Quantity=12 },
                 new Coupon(){MemberId=5,ComicId=5,ActivityId=3,CouponTypeId=2,OriginQuantity=6,CreateTime=new DateTime(2022,3,14,8,10,30), Quantity=10 },
 
-                new Coupon(){MemberId=6,ComicId=6,ActivityId=1,CouponTypeId=2,OriginQuantity=2,CreateTime=new DateTime(2022,2,10,8,10,30), Quantity=10 },
+                new Coupon(){MemberId=6,ComicId=6,ActivityId=1,CouponTypeId=3,OriginQuantity=1,CreateTime=new DateTime(2022,2,10,8,10,30), Quantity=10 },
                 new Coupon(){MemberId=7,ComicId=7,ActivityId=3,CouponTypeId=2,OriginQuantity=3,CreateTime=new DateTime(2022,8,12,8,10,30), Quantity=19 },
-                new Coupon(){MemberId=8,ComicId=8,ActivityId=2,CouponTypeId=1,OriginQuantity=6,CreateTime=new DateTime(2022,4,12,8,10,30), Quantity=10 },
-                new Coupon(){MemberId=9,ComicId=3,ActivityId=2,CouponTypeId=2,OriginQuantity=7,CreateTime=new DateTime(2022,7,12,8,10,30), Quantity=10 },
+                new Coupon(){MemberId=8,ComicId=8,ActivityId=2,CouponTypeId=1,OriginQuantity=1,CreateTime=new DateTime(2022,4,12,8,10,30), Quantity=10 },
+                new Coupon(){MemberId=9,ComicId=3,ActivityId=2,CouponTypeId=3,OriginQuantity=1,CreateTime=new DateTime(2022,7,12,8,10,30), Quantity=10 },
                 new Coupon(){MemberId=10,ComicId=2,ActivityId=2,CouponTypeId=2,OriginQuantity=6,CreateTime=new DateTime(2022,7,12,8,10,30), Quantity=10 },
 
                 new Coupon(){MemberId=11,ComicId=5,ActivityId=2,CouponTypeId=2,OriginQuantity=3,CreateTime=new DateTime(2022,5,12,8,10,30), Quantity=10 },
                 new Coupon(){MemberId=12,ComicId=4,ActivityId=2,CouponTypeId=2,OriginQuantity=2,CreateTime=new DateTime(2022,6,12,8,10,30), Quantity=18 },
-                new Coupon(){MemberId=13,ComicId=2,ActivityId=2,CouponTypeId=2,OriginQuantity=6,CreateTime=new DateTime(2022,7,12,8,10,30), Quantity=19 },
+                new Coupon(){MemberId=13,ComicId=2,ActivityId=2,CouponTypeId=3,OriginQuantity=1,CreateTime=new DateTime(2022,7,12,8,10,30), Quantity=19 },
                 new Coupon(){MemberId=14,ComicId=2,ActivityId=4,CouponTypeId=2,OriginQuantity=4,CreateTime=new DateTime(2022,7,12,8,10,30), Quantity=11 },
-                new Coupon(){MemberId=15,ComicId=2,ActivityId=2,CouponTypeId=2,OriginQuantity=6,CreateTime=new DateTime(2022,7,12,8,10,30), Quantity=14 },
+                new Coupon(){MemberId=15,ComicId=2,ActivityId=2,CouponTypeId=3,OriginQuantity=1,CreateTime=new DateTime(2022,7,12,8,10,30), Quantity=14 },
 
-                new Coupon(){MemberId=16,ComicId=2,ActivityId=2,CouponTypeId=2,OriginQuantity=6,CreateTime=new DateTime(2022,7,12,8,10,30), Quantity=10 },
+                new Coupon(){MemberId=16,ComicId=2,ActivityId=2,CouponTypeId=3,OriginQuantity=1,CreateTime=new DateTime(2022,7,12,8,10,30), Quantity=10 },
                 new Coupon(){MemberId=17,ComicId=3,ActivityId=2,CouponTypeId=2,OriginQuantity=6,CreateTime=new DateTime(2022,7,12,8,10,30), Quantity=10 },
-                new Coupon(){MemberId=18,ComicId=2,ActivityId=2,CouponTypeId=2,OriginQuantity=6,CreateTime=new DateTime(2022,10,12,8,10,30), Quantity=10 },
+                new Coupon(){MemberId=18,ComicId=2,ActivityId=2,CouponTypeId=3,OriginQuantity=1,CreateTime=new DateTime(2022,10,12,8,10,30), Quantity=10 },
                 new Coupon(){MemberId=19,ComicId=2,ActivityId=2,CouponTypeId=2,OriginQuantity=8,CreateTime=new DateTime(2022,9,12,8,10,30), Quantity=10 },
-                new Coupon(){MemberId=20,ComicId=2,ActivityId=2,CouponTypeId=2,OriginQuantity=7,CreateTime=new DateTime(2022,7,12,8,10,30), Quantity=10 },
+                new Coupon(){MemberId=20,ComicId=2,ActivityId=2,CouponTypeId=1,OriginQuantity=1,CreateTime=new DateTime(2022,7,12,8,10,30), Quantity=10 },
 
 
 
