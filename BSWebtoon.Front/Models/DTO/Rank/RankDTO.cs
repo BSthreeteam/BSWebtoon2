@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-
-namespace BSWebtoon.Front.Models.ViewModels.Rank
+namespace BSWebtoon.Front.Models.DTO.Rank
 {
-    public class RankViewModel_ClickRecord
+    public class RankDTO
     {
         public int ClickRecordId { get; set; }
         public int ComicId { get; set; }
@@ -11,9 +10,19 @@ namespace BSWebtoon.Front.Models.ViewModels.Rank
         public string ComicNameImage { get; set; }
         public string ComicFigure { get; set; }
         public string BgCover { get; set; }
-        public string BgColor { get; set; }
         public string Introduction { get; set; }
         public string BannerVideoWeb { get; set; }
         public string TagName { get; set; }
+        public int Diff { get; set; }
+        //public IEnumerable<RankClickRecord> RankDiff { get; set; }
+        //public class RankClickRecord
+        //{
+        //    public int ComicId { get; set; }
+        //    //public DateTime CreateTime { get; set; }
+        //    public string TagName { get; set; }
+        //    public int Diff { get; set; }
+
+        //}
+
     }
 }

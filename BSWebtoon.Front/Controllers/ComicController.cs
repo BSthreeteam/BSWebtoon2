@@ -31,9 +31,9 @@ namespace BSWebtoon.Front.Controllers
         }
         public IActionResult AddEpView() //Comic/AddEpView
         {
-            //_ComicService.EpCreate();
-            //_ComicService.EpContentCreate();
-            //_ComicService.EpUpdate();
+            _ComicService.EpCreate();
+            _ComicService.EpContentCreate();
+            _ComicService.EpUpdate();
             return View();
         }
         //public IActionResult WorkPageReadView()//Comic/WorkPageReadView
@@ -42,10 +42,7 @@ namespace BSWebtoon.Front.Controllers
         //    return View(_comic.WordPageRead().ToList());
         //}
 
-        //public IActionResult AddEpContentView() //Comic/AddEpContentView
-        //{
-        //    _ComicService.EpContentCreate();
-        //    return View();
+        //    return View(_comic.WordPageRead().ToList());
         //}
 
     }
