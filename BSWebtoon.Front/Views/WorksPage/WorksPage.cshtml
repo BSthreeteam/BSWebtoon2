@@ -1,128 +1,173 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "WorksPage";
 }
 @section topCss{
-      <link rel="stylesheet" href="~/style/WorkspageStyle.css" />
+<link rel="stylesheet" href="~/style/WorkspageStyle.css" />
 }
 @*<h1>WorksPage</h1>*@
 <header class="hearder_nav w-100">
-        <a class="previous_page_a" href="#"><i class="fa-solid fa-arrow-left-long previous_page"></i></a>
-        <div class="function_box">
-            <a class="collect_a " href="#"><i class="red fa-solid fa-heart"></i></a>
-            <a class="share_a" href="#" data-bs-toggle="modal" data-bs-target="#loginModal"><i
-                    class="fa-solid fa-comment-dots message"></i></a>
+    <a class="previous_page_a" href="#"><i class="fa-solid fa-arrow-left-long previous_page"></i></a>
+    <div class="function_box">
+        <label class="collect_a" for="heart" href="#"><i class="red fa-solid fa-heart"></i></label>
+        <input type="checkbox" class="d-none" id="heart">
+        <a class="share_a" href="#" data-bs-toggle="modal" data-bs-target="#shareModal">
+            <i class="fa-solid fa-comment-dots message"></i>
+        </a>
+    </div>
+</header>
+<banner class="main_picture mx-auto">
+    <div class="main_picture_bg">
+        <div class="main_picture_box">
+            <div class="free_watch">
+                <div class="read_ticket pe-2"><a class="text-white" href="#">閱讀券1張</a></div>
+                <div class="seven_free">每7日免費看</div>
+            </div>
+            <video title="" autoplay="autoplay" muted="ture"
+                   class="local_video object-contain w-full h-full pointer-events-auto">
+                <source src="https://tw-a.kakaopagecdn.com/P/C/96/c1a/f481dbdc-3c61-4c70-bedc-4150a22d54ad.webm"
+                        type="video/webm">
+                <source src="https://tw-a.kakaopagecdn.com/P/C/96/c1a/f481dbdc-3c61-4c70-bedc-4150a22d54ad.mov"
+                        type="video/quicktime">
+            </video>
+            <!-- <img class="w-100" src="https://tw-a.kakaopagecdn.com/P/C/58/c1/2x/106d7904-7aa6-4dcc-bfdb-92b2d6fd401e.webp" alt=""> -->
         </div>
-    </header>
-    <banner class="main_picture mx-auto">
-        <div class="local_picture_bg mx-auto">
-            <div class="local_picture_box">
-                <div class="free_watch">
-                    <div class="read_ticket">閱讀券1張</div>
-                    <div class="seven_free">每7日免費看</div>
+    </div>
+    <div class="big_video">
+        <video title="" preload="auto" muted="ture"
+               class="local_video_bg object-contain pointer-events-auto   d-none">
+            <source src="https://tw-a.kakaopagecdn.com/P/C/46/ip2/f901cf8c-0072-4dd4-b4c2-f11cc9edccdd.webm"
+                    type="video/webm">
+            <source src="https://tw-a.kakaopagecdn.com/P/C/36/ip1/abd98bbc-0794-4866-933d-b5ea985a45c9.mp4"
+                    type="video/quicktime">
+        </video>
+    </div>
+
+    <div class="comics_name_bg">
+        <div class="comics_box mx-auto">
+            <a class="comics_name_click" href="#">
+                <div class="comics_name">
+                    <h1>骨灰級菜鳥玩家</h1>
+                    <p><span>原著</span> BONIEE,Step on a LEGO</p>
+                    <p><span>發行</span> REDICE STUDIO</p>
+                    <div class="comics_category">
+                        <p class="category"><span><i class="fa-solid fa-bars-staggered"></i></span>動作冒險</p>
+                        <p class="whatch"><span><i class="fa-regular fa-eye"></i></span> 843.9K</p>
+                        <p class="good"><span><i class="fa-regular fa-thumbs-up"></i></span> 82.1K</p>
+                    </div>
                 </div>
-                <video autoplay="ture" muted="ture" class="local_video">
-                    <source src="https://tw-a.kakaopagecdn.com/P/C/206/c1a/349781d6-bdf6-4eb3-a73a-abcccc9f9fec.webm">
-                </video>
+            </a>
+            <div class="play_tidy_box">
+                <div class="play btn btn-light"><i class="fa-regular fa-circle-play"></i></div>
+                <div class="tidy btn btn-light">
+                    <i class="fa-solid fa-arrow-down-1-9"></i>
+                </div>
+                <div class="tidy_r btn btn-light">
+                    <i class="fa-solid fa-arrow-down-9-1"></i>
+                </div>
             </div>
         </div>
-        <div class="comics_name_bg">
-            <div class="comics_box mx-auto">
-                <a class="comics_name_click" href="#">
-                    <!-- <div class="comics_name">
-                        <h1>骨灰級菜鳥玩家</h1>
-                        <p><span>原著</span> BONIEE,Step on a LEGO</p>
-                        <p><span>發行</span> REDICE STUDIO</p>
-                        <div class="comics_category">
-                            <p class="category"><span><i class="fa-solid fa-bars-staggered"></i></span>動作冒險</p>
-                            <p class="whatch"><span><i class="fa-regular fa-eye"></i></span> 843.9K</p>
-                            <p class="good"><span><i class="fa-regular fa-thumbs-up"></i></span> 82.1K</p>
-                        </div>
-                    </div> -->
+    </div>
+
+</banner>
+<section class="main_comics_episode w-100 ">
+    <div class="comics_episode ">
+        <div class="row mx-auto">
+            <nav class="illustrate_box">
+                <ul>
+                    <li><a class="ep" href="#">話次</a></li>
+                    <li><a class="illustrate" href="#">作品資訊</a></li>
+                    <li><a class="messages" href="#">留言</a></li>
+                </ul>
+            </nav>
+            <div class="keep_reading_box">
+                <a href="#">
+                    <p class="keep_reading"><span>繼續看</span>序章</p>
                 </a>
-                <div class="play_tidy_box">
-                    <div class="play btn btn-light"><i class="fa-regular fa-circle-play"></i></div>
-                    <div class="tidy btn btn-light">
-                        <i class="fa-solid fa-arrow-down-1-9"></i>
-                    </div>
-                    <div class="tidy_r btn btn-light">
-                        <i class="fa-solid fa-arrow-down-9-1"></i>
-                    </div>
+            </div>
+            <div class="ep_row col-12 col-lg-8 col-xl-8">
+            </div>
+            <div class="col-lg-4 col-xl-4">
+                <div class="comics_illustrate">
+                    <p>這款遊戲將在15年後終止服務，只有我知道遊戲的結局。「我是骨灰級玩家。」</p>
                 </div>
             </div>
         </div>
+        <div class="message_box d-flex justify-content-center flex-column">
+            <div class="message_name mx-auto">留言</div>
 
-    </banner>
-    <section class="main_comics_episode w-100 ">
-        <div class="comics_episode ">
-            <div class="row mx-auto">
-                <nav class="illustrate_box">
-                    <ul>
-                        <li><a class="ep" href="#">話次</a></li>
-                        <li><a class="illustrate" href="#">作品資訊</a></li>
-                        <li><a class="messages" href="#">留言</a></li>
-                    </ul>
-                </nav>
-                <div class="keep_reading_box">
-                    <a href="#">
-                        <p class="keep_reading"><span>繼續看</span>序章</p>
-                    </a>
-                </div>
-                <div class="left_row col-12 col-lg-8 col-xl-8">
+        </div>
 
-                </div>
-                <div class="col-lg-4 col-xl-4">
-                    <div class="comics_illustrate">
-                        <p>這款遊戲將在15年後終止服務，只有我知道遊戲的結局。「我是骨灰及玩家。」</p>
-                    </div>
-                </div>
-
+    </div>
+</section>    
+<template id="mobile_title">
+    <div class="mobile_title_box p-3">
+        <h2 class="mo_ti fw-bolder">骨灰級菜鳥玩家</h2>
+        <div class="ill_box">
+            <div>
+                <span>文</span>
+                <p class="mo_word"> BONIEE</p>
             </div>
-
-    </section>
-    <template id="title_template">
-        <div class="comics_name">
-            <h1 class="title">骨灰級菜鳥玩家</h1>
-            <span>原著</span>
-            <p class="author"> BONIEE,Step on a LEGO</p>
-            <span>發行</span>
-            <p class="publisher"> REDICE STUDIO</p>
-            <div class="comics_category">
-                <span><i class="fa-solid fa-bars-staggered"></i></span>
-                <p class="category">動作冒險</p>
-                <span><i class="fa-regular fa-eye"></i></span>
-                <p class="whatch"> 843.9K</p>
-                <span><i class="fa-regular fa-thumbs-up"></i></span>
-                <p class="good"> 82.1K</p>
+            <div>
+                <span>圖</span>
+                <p class="mo_pic"> BONIEE</p>
+            </div>
+            <div>
+                <span>原著</span>
+                <p class="mo_author"> BONIEE,Step on a LEGO</p>
+            </div>
+            <div>
+                <span>發行</span>
+                <p class="mo_publisher"> REDICE STUDIO</p>
             </div>
         </div>
-    </template>
-    <template id="motle_title">
-        <div class="mobile_title_box p-3">
-            <h2 class="mo_ti fw-bolder">骨灰級菜鳥玩家</h2>
-            <div class="ill_box">
-                <div><span>文</span><p class="mo_word"> BONIEE</p></div>
-                <div><span>圖</span><p class="mo_pic"> BONIEE</p></div>
-                <div><span>原著</span><p class="mo_author"> BONIEE,Step on a LEGO</p></div>
-                <div><span>發行</span><p class="mo_publisher"> REDICE STUDIO</p></div>
-            </div>
-            <div class="story_box mt-5">
-                <h3>故事大綱</h3>
-                <p>這款遊戲將在15年後終止服務，只有我知道遊戲的結局。「我是骨灰及玩家。」</p>
-            </div>
-            <div class="keywords_box mt-5">
-                <h4 class="mb-3">關鍵字</h4>
-                <div>
-                    <p>#刺激緊張</p>
-                    <p>#瘋狂</p>
-                    <p>#動作冒險</p>
-                    <p>#改變命運</p>
-                </div>
+        <div class="story_box mt-5">
+            <h3>故事大綱</h3>
+            <p>這款遊戲將在15年後終止服務，只有我知道遊戲的結局。「我是骨灰及玩家。」</p>
+        </div>
+        <div class="keywords_box mt-5">
+            <h4 class="mb-3">關鍵字</h4>
+            <div>
+                <p>#刺激緊張</p>
+                <p>#瘋狂</p>
+                <p>#動作冒險</p>
+                <p>#改變命運</p>
             </div>
         </div>
-    </template>
-    <template id="ep_card">
-        <div class="col col-6 col-md-4 col-lg-3 col-xl-2">
+    </div>
+</template>
+<template id="comment">
+    <div class="comment_text  mx-auto">
+        <div class="row p-4">
+            <div class="user  d-flex ">
+                <span class="leval border-danger  text-white">BEST</span>
+                <p class="username  mb-0 ms-3 text-white">凍豆腐</p>
+            </div>
+            <div class="text">
+                <p class="text-white ">
+                    古代事業士兵烏日是因為，圍繞商品迅速很快突破似乎對你模式進一步人們手裡，暴力網頁班美元財政是怎麼想法指導屬性隨着算是民主自信另外，病人衛生工廠，總是行業聯繫最。
+                </p>
+                <button class="btn btn_icon">
+                    <i class="fa-solid fa-thumbs-up "></i>
+                    讚
+                    <span class="count">1.9k</span>
+                </button>
+                <button class="btn btn_icon">
+                    <i class="fa-solid fa-reply-all"></i>
+                    回覆
+                    <span class="count">66</span>
+                </button>
+                <button class="btn btn_icon">
+                    <i class="fa-solid fa-thumbs-down"></i>
+                    檢舉
+                    <span class="count">10</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</template>
+<template id="ep_card">
+    <div class="col col-6 col-md-4 col-lg-3 col-xl-2">
+        <a class="" href="#">
             <div class="card w-100" style="width: 18rem;">
                 <img src="https://picsum.photos/300/200/?random=64" class="card-img-top" alt="...">
                 <div class="card-body">
@@ -130,30 +175,36 @@
                     <p class="card-text">Some quick example.</p>
                 </div>
             </div>
-        </div>
-    </template>
-
-    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+        </a>
+    </div>
+</template>
+<div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">分享</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <button type="button" class="copy btn btn-dark" data-bs-dismiss="modal">複製網址</button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
             </div>
         </div>
     </div>
+</div>
+
+
 
 @section endJS{
-      <script src="https://code.jquery.com/jquery-3.5.1.js"
+<script src="https://code.jquery.com/jquery-3.5.1.js"
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-      <script src="~/js/Workspage.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+<script src="~/js/Workspage.js"></script>
 }
 
