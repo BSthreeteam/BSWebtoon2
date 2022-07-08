@@ -14,5 +14,10 @@ namespace BSWebtoon.Model.Models
 
         public virtual Member ClickRecordNavigation { get; set; }
         public virtual Comic Comic { get; set; }
+
+        public int FirstOrDefault(Func<object, bool> p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

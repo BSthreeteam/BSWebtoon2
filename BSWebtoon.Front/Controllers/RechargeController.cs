@@ -18,11 +18,13 @@ namespace BSWebtoon.Front.Controllers
             _rechargeService.CashPlanCreate();
             return View();
         }
+
         public IActionResult PaymentView() //Recharge/PaymentView
         {
             _rechargeService.PaymentCreate();
             return View();
         }
+
         public IActionResult RechargeRecordView() //Recharge/RechargeRecordView
         {
             _rechargeService.RechargeRecordCreate();

@@ -1,314 +1,228 @@
-* {
-    --bs-dark-rgb: ;
-    background-color: var(--bs-dark-rgb);
-}
-:root {
-    /* --nav_bgc-color: rgb(73, 250, 3); */
-    /* --nav_bgc-color: red; */
-    --nav_p-color: rgb(6, 6, 6);
-}
-
 body {
     background-color: #000;
 }
 
-.na {
-    /* width: 100%; */
-    display: flex;
-    margin: auto;
-}
-
 .navbar {
-    background-color: rgb(10, 0, 0);
-}
-
-.rank-title {
-    position: fixed;
-    max-width: 1200px;
-    top: 80px;
-    left: 0px;
-    padding: 0px 0px 0px;
-    margin: auto ;
-    margin-bottom:20px
-}
-
-:hover.all {
-    background-color: var(--nav_bgc-color);
-    color: var(--nav_p-color);
-}
-
-:hover.fantasy {
-    background-color: var(--nav_bgc-color);
-    color: var(--nav_p-color);
-}
-
-
-:hover.fantasy_love {
-    background-color: var(--nav_bgc-color);
-    color: var(--nav_p-color);
-}
-
-:hover.action_adventure {
-    background-color: var(--nav_bgc-color);
-    color: var(--nav_p-color);
-}
-
-:hover.love {
-    background-color: var(--nav_bgc-color);
-    color: var(--nav_p-color);
-}
-
-:hover.plot {
-    background-color: var(--nav_bgc-color);
-    color: var(--nav_p-color);
-}
-
-
-:hover.BL_GL {
-    background-color: var(--nav_bgc-color);
-    color: var(--nav_p-color);
-}
-
-:hover.Suspenseful_horror {
-    background-color: var(--nav_bgc-color);
-    color: var(--nav_p-color);
-}
-
-
-
-.rank-top1 {
-    max-width: 1200px;
-    margin-top: 136px;
-}
-
-/* 上面圖片區 */
-
-
-.card_up_row {
-    display: grid;
-    /* grid-template-columns: repeat(1, 1fr); */
-    grid-template-rows: repeat(1, 600px);
     position: relative;
-}
-
-.card_up {
-    /* grid-area: 1/1; */
-    background-color: rgb(7, 0, 0);
-    margin: auto;
-    height: 100%;
-    position: relative;
-    /* 超出的範圍隱藏 */
-    overflow: hidden;
-    z-index: 1;
-}
-
-.short_pic_up {
-    /* display: none; */
-    margin: auto;
-    width: 100%;
-    z-index: 2;
-}
-
-.short_pic_cover_up_vi {
-    position: absolute;
+    top: 100px;
     left: 0;
-    right: 0;
-    bottom: 0;
+    background-color: #000;
+    max-width: 1200px;
     margin: auto;
-    width: 100%;
-    z-index: 3;
 }
 
-.short_pic_cover_up_cvr {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    width: 100%;
-    z-index: 3;
+.nav-link {
+    background-color: #000;
+    color: #fff;
 }
 
-/* 上面文字區 */
-
-.text {
-    position: absolute;
-    width: 100%;
-    bottom: 0px;
-    left: 0px;
-    padding-left: 10px;
-    padding-bottom: 5px;
-    z-index: 1;
-    /* 漸層 */
-    /*顏色*/
-    /*漸層方向*/
-    /*透明*/
-    background: linear-gradient(0deg, black, transparent);
-}
-
-.card_up_spen {
-    width: 100px;
-    display: block;
-    background-color: rgb(251, 4, 4);
-    color: rgb(255, 253, 253);
-    border-radius: 100px;
-    text-align: center;
-    font-weight: bold;
-    font-size: 5px;
-}
-
-.card_up_p_tital {
-    display: block;
-    color: rgb(248, 250, 248);
-    font-size: 20px;
-    font-weight: bold;
-    bottom: 50%;
-    left: 0;
-}
-
-.card_up_p {
-    display: block;
-    color: rgb(248, 250, 248);
-    font-size: 5px;
-    font-weight: bold;
-    bottom: 50%;
-    left: 0;
-}
-
-/* 上面排行榜標籤區 */
-.card_up_ranking {
-    position: absolute;
-    /* width: fit-content; */
-    width: 100px;
-    height: 30px;
-    bottom: 10px;
-    right: 20px;
-    z-index: 2;
-    /* background-color: rgb(251, 4, 4); */
-    border-radius: 100px;
-}
-
-    .card_up_ranking span {
-        display: block;
-        font-size: 60px;
-        color: rgb(255, 253, 253);
-        position: absolute;
-        bottom: -20px;
-        text-align: left;
-        font-weight: bold;
+    .nav-link:hover {
+        background-color: #fff;
+        border-radius: 50%;
+        color: #000;
     }
 
-/* 下面卡片 */
-
-main {
-    display: flex;
-    flex-wrap: wrap;
+.container {
+    margin: auto;
+    margin-top: 100px;
 }
 
-.short_down_card {
-    position: relative;
-}
-
-.short_down_span {
-    position: absolute;
-    width: 70px;
-    color: rgb(252, 249, 249);
-    background-color: rgb(51, 42, 42);
-    z-index: 1;
-    border-radius: 100px;
-    margin: 10px;
-    font-weight: bold;
-    font-size: 20px;
-    text-align: justify;
-    padding-left: 15px;
-}
-
-
-.card .short_pic {
-    position: absolute;
+.box {
+    max-width: 1200px;
     width: 100%;
-    height: 350px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
 }
 
-.card .short_pic_cover {
-    position: relative;
+.number-one {
+    color: #fff;
     width: 100%;
-    height: 350px;
+    height: fit-content;
+    position: relative;
+    grid-row: 1/2;
+    grid-column: 1/4;
+    overflow: hidden;
 }
 
-.short_down_p {
-    /* 背景半透明 .2 */
-    background-color: rgba(0, 0, 0, .2);
-    position: absolute;
-    bottom: 0px;
-    font-size: 20px;
-    color: rgb(249, 252, 252);
-    font-weight: bold;
-    left: 40px;
-    right: 40px;
-    text-align: center;
+    .number-one:hover,
+    .numbers:hover {
+        color: #fff;
+    }
+
+    .number-one .rank_pic {
+        position: relative;
+        text-align: center;
+    }
+
+    .number-one .rank_pic_bg {
+        position: absolute;
+        z-index: -1;
+        width: 100%;
+        left: 0;
+        right: 0;
+    }
+
+    .number-one .rank_pic_people,
+    .numbers .rank_pic_people,
+    .numbers .rank_pic_title {
+        width: 100%;
+    }
+
+    .number-one .rank_pic_title {
+        width: 50%;
+    }
+
+    .number-one .rank_text {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 30px 10px 0px;
+        box-sizing: border-box;
+        background: linear-gradient(to top, #000, transparent);
+        z-index: 1;
+        font-size: 15px;
+    }
+
+    .number-one .tag {
+        position: absolute;
+        top: 0;
+        background-color: #f00;
+        padding: 0px 5px;
+        border-radius: 20px;
+        font-weight: 600;
+    }
+
+    .number-one p {
+        position: relative;
+        margin-top: 10px;
+        width: 50%;
+    }
+
+    .number-one .rank_bgdiv {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        font-size: 60px;
+        font-weight: 900;
+        background-color: #f00;
+        border-radius: 20px;
+        margin: 20px 50px;
+        height: 30px;
+    }
+
+    .number-one .rank_icon {
+        position: relative;
+        top: -150%;
+        margin-left: 70px;
+        margin-right: 10px;
+        font-size: 30px;
+    }
+
+    .number-one .rank_num {
+        position: absolute;
+        bottom: -50%;
+    }
+
+.numbers {
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    width: 100%;
+    height: fit-content;
 }
+
+    .numbers .rank_pic_bg {
+        position: absolute;
+        z-index: -1;
+    }
+
+    .numbers .rank_text {
+        text-align: center;
+    }
+
+    .numbers .box-title {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to top, #000, transparent);
+    }
+
+    .numbers .rank {
+        margin-left: 10px;
+    }
+
+    .numbers .rank_icon {
+        margin-left: 30px;
+        margin-right: 10px;
+        font-size: 15px;
+    }
+
+    .numbers .up_icon, .down_icon {
+        font-size: 10px;
+        color: #f00;
+    }
+
+    .numbers .down_icon {
+        color: #0af;
+    }
+
+    .numbers .rank_bgdiv {
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 20px;
+        font-size: 20px;
+        font-weight: 900;
+        background-color: #000;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+    }
+
+    .numbers .tag {
+        display: inline-block;
+        background-color: #f00;
+        padding: 0px 5px;
+        border-radius: 20px;
+        font-weight: 600;
+        margin: 10px 0px;
+    }
 
 @media screen and (min-width:768px) {
-    /* 大於等於768才會執行 */
-
-    .text {
-        padding-left: 50px;
-        padding-bottom: 50px;
-    }
-
-    .short_pic_cover_up_vi {
-        /* display: none; */
-        width: 600px;
-        height: 100%;
-        margin-top: 20px;
-    }
-
-    .short_pic_cover_up_cvr {
-        /* display: none; */
-        width: 600px;
-        height: 100%;
-        margin-top: 20px;
-    }
-
-    .card_up_spen {
-        font-size: 10px;
-    }
-
-    .card_up_p_tital {
-        font-size: 50px;
-    }
-
-    .card_up_p {
-        font-size: 10px;
-    }
-
-    /* 上面排行榜標籤區 */
-    .card_up_ranking {
-        bottom: 50px;
-    }
-
-    .card .short_pic {
-        position: absolute;
+    .box {
         width: 100%;
-        height: 500px;
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
     }
 
-    .card .short_pic_cover {
-        /* display: none; */
+    .number-one {
         position: relative;
-        width: 100%;
-        height: 500px;
+        grid-row: 1/2;
+        grid-column: 1/5;
     }
-}
-/* ------------------------------------------ */
-.nav-link {
-    /* color: red; */
-    /* background-color: red; */
-}
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-    background-color: white;
-    color: black !important;
-    border-radius: 30px;
+        .number-one .rank_pic_people {
+            width: fit-content;
+        }
+
+        .number-one .rank_pic_title {
+            width: fit-content;
+        }
+
+        .number-one p {
+            font-size: 20px;
+        }
+
+        .number-one .tag {
+            top: -5%;
+        }
+
+        .number-one .rank_text {
+            padding: 10px 20px;
+        }
 }

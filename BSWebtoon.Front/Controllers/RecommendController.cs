@@ -36,7 +36,6 @@ namespace BSWebtoon.Front.Controllers
         //    //{
         //    //    var result = item.Count();
         //    //}
-        //    var ClickCount = await _recommendservice.ClickCount();
 
         //    return View(ClickCount);
         //}
@@ -62,10 +61,10 @@ namespace BSWebtoon.Front.Controllers
             _recommendservice.ReportCreate();
             return View();
         }
-        public IActionResult ActivityView() //活動小雞
-        {
-            var vr = _recommendservice.ActivityRead();
-            return View(vr);
-        }
+        //public IActionResult ActivityView() //活動小雞
+        //{
+        //    var vr = _recommendservice.ActivityRead();
+        //    return View(vr);
+        //}
     }
 }
