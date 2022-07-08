@@ -13,7 +13,6 @@ namespace BSWebtoon.Front.Service.RankService
     {
         private readonly BSWebtoonContext _context;
         private readonly BSRepository _repository;
-        private static string _connectionStr = "Server=(localdb)\\mssqllocaldb;Database=BS;Trusted_Connection=True;";
         public ClickRecordService(BSWebtoonContext context, BSRepository repository)
         {
             _context = context;

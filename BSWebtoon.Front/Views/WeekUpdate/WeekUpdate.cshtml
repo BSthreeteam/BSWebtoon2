@@ -1,6 +1,6 @@
 ﻿@*@using BSWebtoon.Front.ViewModel
 @model IEnumerable<WeekUpdateViewModel>*@
-
+@*
 @model BSWebtoon.Front.Models.ViewModels.WeekUpdate.WeekUpdateViewModel_Page
 
 @{
@@ -11,7 +11,7 @@
 @section topCss{
       <link rel="stylesheet" href="~/style/weeklyUpdataStyle.css" />
 }
-
+*@
 
 
 @*<body data-bs-spy="scroll" data-bs-target="#navbar-id" data-bs-offset="1" class="scrollspy-example" tabindex="0">
@@ -244,8 +244,8 @@
 
                                 <p class="title">綠茵之冠</p>
 
-@*                                <img class="title" src="@work.ComicNameImage">
-*@
+                                  <img class="title" src="@work.ComicNameImage">
+
                             </div>
 
                         }

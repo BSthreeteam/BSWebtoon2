@@ -21,6 +21,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BSWebtoon.Front.Service.RankService;
 using BSWebtoon.Front.Service.WeekUpdateService;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BSWebtoon.Front
 {
@@ -79,5 +80,6 @@ namespace BSWebtoon.Front
                     pattern: "{controller=Recommend}/{action=Recommend}/{id?}");
             });
         }
+
     }
 }

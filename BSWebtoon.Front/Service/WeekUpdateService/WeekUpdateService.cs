@@ -16,21 +16,5 @@ namespace BSWebtoon.Front.Service.WeekUpdateService
             //_context = context;
         }
 
-        public IEnumerable<WeekUpdateViewModel> ReadComic()
-        {
-            foreach (var comic in _repository.GetAll<Comic>())
-            {
-
-                yield return new WeekUpdateViewModel()
-                {
-                    ComicId = comic.ComicId,
-                    ComicNameImage = comic.ComicNameImage,
-                    BgCover = comic.BgCover,
-                    ComicFigure = comic.ComicFigure,
-                    ComicStatus = comic.ComicStatus,
-                    UpdateWeek = comic.UpdateWeek
-                };
-            }
-        }
     }
 }

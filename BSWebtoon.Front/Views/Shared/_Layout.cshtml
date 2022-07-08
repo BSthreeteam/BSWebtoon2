@@ -24,7 +24,7 @@
                     <a data-bs-toggle="modal" href="#" data-bs-target="#exampleModal" class="nav-link">登入</a>
                 </li>
 
-                <li class="nav-item dropdown" id="user">
+                <li class="nav-item dropdown flex-nowrap" id="user">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="~/images/people.png" alt="登入者"
@@ -33,7 +33,7 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item bg-light xl_accountinfo" href="#">我的帳戶</a></li>
-                        <li><a class="dropdown-item bg-light xl_my_comic" href="#">我的漫畫</a></li>
+                        <li><a class="dropdown-item bg-light xl_my_comic" href="/Favorite/RecordView">我的漫畫</a></li>
                         <li><a class="dropdown-item bg-light xl_my_love" href="/Favorite/AddFavoriteView">我的最愛</a></li>
                         <li><a class="dropdown-item bg-light xl_my_coin" href="#">金幣/閱讀券明細</a></li>
                         <li><a class="dropdown-item bg-light xl_stored_value" href="./Jie/stored.html">儲值金幣</a></li>
@@ -65,7 +65,7 @@
                 </li>
                 <li class="nav-item">
                    @* <a class="nav-link" href="#">我的漫畫</a>*@
-                    @Html.ActionLink("我的漫畫", "Rank", "Rank", new {},new {@class="nav-link text-secondary"})
+                    @Html.ActionLink("我的漫畫", "RecordView", "Favorite", new {},new {@class="nav-link text-secondary"})
                 </li>
             </ul>
             <template>
