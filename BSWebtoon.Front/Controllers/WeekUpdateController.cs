@@ -15,27 +15,6 @@ namespace BSWebtoon.Front.Controllers
             _weekUpdateService = weekUpdateService;
         }
 
-        public IActionResult WeekUpdate()//WeekUpdate/WeekUpdate
-        {
-            var comicData = _weekUpdateService.ReadComic();
-
-            var result = new WeekUpdateViewModel_Page
-            {
-                ComicList = comicData.Select(c => new WeekUpdateViewModel_Page.WeekUpdateData
-                {
-                    //ComicId = c.ComicId,
-                    //ComicNameImage = c.ComicNameImage,
-
-                })
-            };
-
-            return View(result);
-        }
-
-        public  IActionResult WeekUpdateList()
-        {
-            return View(_weekUpdateService.ReadComic());
-        }
 
     }
 }

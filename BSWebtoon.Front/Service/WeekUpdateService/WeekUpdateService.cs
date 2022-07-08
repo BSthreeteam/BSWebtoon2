@@ -1,7 +1,8 @@
-﻿using BSWebtoon.Front.ViewModel;
+﻿using BSWebtoon.Front.Models.DTO.WeekUpData;
 using BSWebtoon.Model.Models;
 using BSWebtoon.Model.Repository;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BSWebtoon.Front.Service.WeekUpdateService
 {
@@ -16,21 +17,12 @@ namespace BSWebtoon.Front.Service.WeekUpdateService
             //_context = context;
         }
 
-        public IEnumerable<WeekUpdateViewModel> ReadComic()
+        public List<WeekUpDateDTO> ReadComic()
         {
-            foreach (var comic in _repository.GetAll<Comic>())
+            return new List<WeekUpDateDTO>()
             {
-
-                yield return new WeekUpdateViewModel()
-                {
-                    ComicId = comic.ComicId,
-                    ComicNameImage = comic.ComicNameImage,
-                    BgCover = comic.BgCover,
-                    ComicFigure = comic.ComicFigure,
-                    ComicStatus = comic.ComicStatus,
-                    UpdateWeek = comic.UpdateWeek
-                };
-            }
+                new WeekUpDateDTO(){}
+            };
         }
     }
 }

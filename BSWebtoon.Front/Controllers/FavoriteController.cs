@@ -20,15 +20,15 @@ namespace BSWebtoon.Front.Controllers
             //_favoriteService.FavoriteCreate();
             return View();
         }
-        public IActionResult RemoveFavoriteView()//Favorite/RemoveFavoriteView
-        {
-            //_favoriteService.FavoriteCreate();
-            return View();
-        }
-        public IActionResult AddReadFavoriteList()//Favorite/AddReadFavoriteList
-        {
+        //public IActionResult RemoveFavoriteView()//Favorite/RemoveFavoriteView
+        //{
+        //    //_favoriteService.FavoriteCreate();
+        //    return View();
+        //}
+        //public IActionResult AddReadFavoriteList()//Favorite/AddReadFavoriteList
+        //{
 
-            return View(_readfavoriteService.GetFavorite());
-        }
+        //    return View(_readfavoriteService.GetFavorite());
+        //}
     }
 }

@@ -21,7 +21,7 @@ namespace BSWebtoon.Front.Controllers
         }
         public IActionResult AddLoginTypeView() //Login/AddLoginTypeView
         {
-            //_memberService.LoginTypeCreate();
+            _memberService.LoginTypeCreate();
             //_memberService.MemberUpdateData();
             return View();
         }

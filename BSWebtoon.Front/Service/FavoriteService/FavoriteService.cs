@@ -21,7 +21,30 @@ namespace BSWebtoon.Front.Service.FavoriteService
             var favoriteList = new List<Favorite>
             {
                 new Favorite {MemberId = 1,ComicId =1},
+                new Favorite {MemberId = 1,ComicId =4},
+                new Favorite {MemberId = 1,ComicId =5},
+                new Favorite {MemberId = 1,ComicId =6},
+
                 new Favorite {MemberId = 2,ComicId =2},
+                new Favorite {MemberId = 2,ComicId =3},
+                new Favorite {MemberId = 2,ComicId =4},
+                new Favorite {MemberId = 2,ComicId =5},
+
+                new Favorite {MemberId = 3,ComicId =2},
+                new Favorite {MemberId = 3,ComicId =3},
+                new Favorite {MemberId = 3,ComicId =4},
+                new Favorite {MemberId = 3,ComicId =5},
+
+                new Favorite {MemberId = 4,ComicId =5},
+                new Favorite {MemberId = 4,ComicId =6},
+                new Favorite {MemberId = 4,ComicId =7},
+                new Favorite {MemberId = 4,ComicId =8},
+
+                new Favorite {MemberId = 5,ComicId =6},
+                new Favorite {MemberId = 5,ComicId =8},
+                new Favorite {MemberId = 5,ComicId =9},
+                new Favorite {MemberId = 5,ComicId =3},
+
             };
             foreach (Favorite favorite in favoriteList)
             {

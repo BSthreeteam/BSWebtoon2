@@ -2,18 +2,19 @@
 
 namespace BSWebtoon.Front.Models.ViewModels.WeekUpdate
 {
-    public class WeekUpdateViewModel_Page
+    public class WeekUpdateViewModel
     {
-        public IEnumerable<WeekUpdateData> ComicList { get; set; }
+        public IEnumerable<WeekUpdateData> WeekComicList { get; set; }
 
         public class WeekUpdateData
         {
             public int ComicId { get; set; }
             public string ComicNameImage { get; set; }
             public string BgCover { get; set; }
-            public string ComicFigure { get; set; }
+            public string ComicWeekFigure { get; set; }
             public int ComicStatus { get; set; }
             public int? UpdateWeek { get; set; }
+            public string WeekVideoWrb { get; set; }
         }
     }
 }
