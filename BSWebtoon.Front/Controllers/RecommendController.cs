@@ -37,7 +37,6 @@ namespace BSWebtoon.Front.Controllers
         //    //{
         //    //    var result = item.Count();
         //    //}
-        //    //var ClickCount = await _recommendservice.ClickCount();
 
         //    return View(ClickCount);
         //}
