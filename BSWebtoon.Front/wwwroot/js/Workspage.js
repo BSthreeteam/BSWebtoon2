@@ -1,5 +1,5 @@
-let main_picture, main_comics_episode, local_video, collect_a, tidy, tidy_r, comics_episode, ep, illustrate, messages;
-let ep_template, left_row, title_template, comics_name_click, moble_title_template;
+let main_picture, main_comics_episode, local_video, collect_a, tidy, tidy_r, comics_episode, ep, illustrate, messages, copy, play;
+let ep_template, ep_row, comics_name_click, moble_title_template, ticket_template, free_watch, local_video_bg, message_box;
 window.onload = function () {
     ep = document.querySelector('.ep');
     illustrate = document.querySelector('.illustrate');
@@ -7,64 +7,109 @@ window.onload = function () {
     local_video = document.querySelector('.local_video');
     collect_a = document.querySelector('.red');
     comics_name_click = document.querySelector('.comics_name_click');
-    left_row = document.querySelector('.left_row');
+    ep_row = document.querySelector('.ep_row');
+    local_video = document.querySelector('.local_video');
+    copy = document.querySelector('.copy');
+    free_watch = document.querySelector('.free_watch');
+    local_video_bg = document.querySelector('.local_video_bg');
+    play = document.querySelector('.play');
+    message_box = document.querySelector('.message_box');
+    main_picture = document.querySelector('.main_picture');
+    comics_episode = document.querySelector('.comics_episode');
+
+
 
     epCloned();
+    ////按下play鍵，開始撥放影片
+    play.addEventListener('click', () => {
+        local_video_bg.classList.remove('d-none');
+        local_video_bg.play();
+    })
+    local_video_bg.addEventListener('ended', () => {
+        local_video_bg.classList.add('d-none');
+    })
 
+    ////分享-複製連結
+    copy.addEventListener('click', () => {
+        var dummy = document.createElement('input');
+        console.log(dummy)
+        document.body.appendChild(dummy);
+        dummy.value = this.location.href;
+        dummy.select();
+        document.execCommand('copy');
+        document.body.removeChild(dummy);
+        alert('^^ 網址已複製 ^^');
+    })
+
+    //留言
+    let comment = document.querySelector('#comment');
+    function clonemessage() {
+        let cloneContent = comment.content.cloneNode(true);
+        return cloneContent;
+    }
+    messages.addEventListener('click', () => {
+        console.log('3')
+        ep_row.innerText = "";
+        ep_row.appendChild(clonemessage());
+    })
+    ////桌機留言區
+    message_box.appendChild(clonemessage());
+
+
+
+    let screen = window.innerWidth;
+    console.log(screen)
+    window.addEventListener('resize', () => {
+        if (screen <= 768) {
+            message_box.remove("d-flex");
+            console.log("small")
+        }
+        else if (screen > 768) {
+            ep_row.innerText = "";
+            epCloned();
+            message_box.classList.add("d-flex");
+            console.log('///')
+        }
+    })
     ////(手機)選單
     //話次
-    // ep = document.querySelector('.ep');
     ep.addEventListener('click', () => {
         console.log('1')
-        left_row.innerText = "";
+        ep_row.innerText = "";
         epCloned();
     })
     //作品資訊
-    // illustrate = document.querySelector('.illustrate');
     illustrate.addEventListener('click', () => {
         console.log('2')
-        left_row.innerText = "";
-        left_row.appendChild(mobleCloned('骨灰級菜鳥玩家', 'BONIEE', 'BONIEE', 'BONIEE,Step on a LEGO', 'REDICE STUDIO'))
+        ep_row.innerText = "";
+        ep_row.appendChild(mobleCloned('骨灰級菜鳥玩家', 'BONIEE', 'BONIEE', 'BONIEE,Step on a LEGO', 'REDICE STUDIO'))
     })
-    //留言
-    // messages = document.querySelector('.messages');
-    messages.addEventListener('click', () => {
-        console.log('3')
-        left_row.innerText = "";
-        let cloneContent = comment.content.cloneNode(true);
-        left_row.appendChild(cloneContent);
-    })
+
     ////點擊影片，影片開始播放。
-    // local_video = document.querySelector('.local_video');
     local_video.addEventListener('click', () => {
         local_video.play();
     })
     ////點擊愛心，顏色變紅色
-    // collect_a = document.querySelector('.red');
+    let check = document.querySelector('#heart');
     collect_a.addEventListener('click', () => {
-        collect_a.classList.add('text-danger');
+        if (!check.checked) {
+            console.log('111')
+            collect_a.classList.add('text-danger');
+        }
+        else {
+            console.log('222')
+            collect_a.classList.remove('text-danger');
+        }
     })
-    ////title_cloned
-    title_template = document.querySelector('#title_template');
-    // comics_name_click = document.querySelector('.comics_name_click');
-    //抓資料庫...
-    comics_name_click.appendChild(getTitle('骨灰級菜鳥玩家', 'BONIEE,Step on a LEGO', 'REDICE STUDIO', '動作冒險', '843.9K', '82.1K', '原著'))
-    ////
-    function getTitle(title, author, publisher, category, whatch, good) {
-        let cloneTitle = title_template.content.cloneNode(true);
-        cloneTitle.querySelector(".title").innerText = title;
-        cloneTitle.querySelector(".author").innerText = author;
-        cloneTitle.querySelector(".publisher").innerText = publisher;
-        cloneTitle.querySelector(".category").innerText = category;
-        cloneTitle.querySelector(".whatch").innerText = whatch;
-        cloneTitle.querySelector(".good").innerText = good;
-        return cloneTitle;
+
+    function getView(imgUrl, imgUrlMov) {
+        let cloneView = View_template.content.cloneNode(true);
+        cloneView.querySelector(".webm").src = imgUrl;
+        cloneView.querySelector(".mov").src = imgUrlMov;
+        return cloneView;
     }
     ////moble_title_cloned
-    function moble_title() {
-
-    }
-    moble_title_template = document.querySelector('#motle_title');
+    moble_title_template = document.querySelector('#mobile_title');
     function mobleCloned(title, mo_word, mo_pic, mo_author, mo_publisher) {
         let cloneMoble = moble_title_template.content.cloneNode(true);
         cloneMoble.querySelector(".mo_ti").innerText = title;
@@ -77,9 +122,8 @@ window.onload = function () {
     ////話次cloned
     function epCloned() {
         ep_template = document.querySelector('#ep_card');
-        // left_row = document.querySelector('.left_row');
         for (let i = 1; i <= 50; i++) {
-            left_row.appendChild(getCard(`第${i}話`, `https://picsum.photos/300/200/?random=${i}`, `2022/06/${i.toString().padStart(2, "0")}`));
+            ep_row.appendChild(getCard(`第${i}話`, `https://picsum.photos/300/200/?random=${i}`, `2022/06/${i.toString().padStart(2, "0")}`));
         }
     }
     function getCard(title, imgurl, content) {
@@ -87,9 +131,6 @@ window.onload = function () {
         cloneCard.querySelector("img").src = imgurl;
         cloneCard.querySelector("h5").innerText = title;
         cloneCard.querySelector("p").innerText = content;
-        cloneCard.querySelector("img").addEventListener('click', () => {
-            window.location.href ="../EpContent/EpContent";
-        })
         return cloneCard;
     }
     ////次序顛倒
@@ -99,55 +140,34 @@ window.onload = function () {
         tidy.style.display = "none";
         tidy_r.style.display = "flex";
 
-        left_row.innerText = "";
+        ep_row.innerText = "";
         for (let i = 50; i >= 1; i--) {
-            // getCard("第?話","https://picsum.photos/300/200/?random=64");
-            left_row.appendChild(getCard(`第${i}話`, `https://picsum.photos/300/200/?random=${i}`, `2022/06/1${i}`));
+            ep_row.appendChild(getCard(`第${i}話`, `https://picsum.photos/300/200/?random=${i}`, `2022/06/1${i}`));
         }
     })
     tidy_r.addEventListener('click', () => {
         tidy.style.display = "flex";
         tidy_r.style.display = "none";
-        left_row.innerText = "";
+        ep_row.innerText = "";
         for (let i = 1; i <= 50; i++) {
-            // getCard("第?話","https://picsum.photos/300/200/?random=64");
-            left_row.appendChild(getCard(`第${i}話`, `https://picsum.photos/300/200/?random=${i}`, `2022/06/1${i}`));
+            ep_row.appendChild(getCard(`第${i}話`, `https://picsum.photos/300/200/?random=${i}`, `2022/06/1${i}`));
         }
 
     })
-    main_picture = document.querySelector('.main_picture');
-    comics_episode = document.querySelector('.comics_episode');
-    // let main_comics_episode_top = $('.main_comics_episode').offset().top;
-    // let formTop, yPos;
 
 
-    // $(window).scroll(function () {
-    //     if ($(this).scrollTop() > 0) {
-    //         $('html, body').animate({ 
-    //             scrollTop: $('.main_comics_episode').offset().top
-    //         }, "fast")
-
-    //     }
-    //     else if($(this).scrollTop() < main_comics_episode_top){
+    // //我們是用以下的方式讓它做出滾動的效果
+    // window.addEventListener('mousewheel', (event) => {
+    //     event = event || window.event;
+    //     if (event.wheelDelta > 0 || event.detail < 0) {
+    //         //向上滾
     //         $('html, body').animate({ scrollTop: 0 }, "fast")
-
     //     }
-    // }).scroll()
-    window.addEventListener('mousewheel', (event) => {
-        event = event || window.event;
-        if (event.wheelDelta > 0 || event.detail < 0) {
-            //向上滾
-            $('html, body').animate({ scrollTop: 0 }, "fast")
-
-        }
-        else {
-            //向下滾
-            // comics_episode.overflow-y="scroll"
-            $('html, body').animate({
-                scrollTop: $('.comics_episode').offset().top
-            }, "fast")
-
-
-        }
-    })
+    //     else {
+    //         //向下滾
+    //         $('html, body').animate({
+    //             scrollTop: $('.comics_episode').offset().top
+    //         }, "fast")
+    //     }
+    // })
 }

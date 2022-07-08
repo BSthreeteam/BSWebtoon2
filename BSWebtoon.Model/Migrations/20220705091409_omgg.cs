@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BSWebtoon.Model.Migrations
 {
-    public partial class InitialDB : Migration
+    public partial class omgg : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -85,6 +85,24 @@ namespace BSWebtoon.Model.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Rank",
+                columns: table => new
+                {
+                    RankId = table.Column<int>(type: "int", nullable: false, comment: "排行")
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ComicId = table.Column<int>(type: "int", nullable: false, comment: "漫畫"),
+                    CreateTime = table.Column<DateTime>(type: "datetime", nullable: false, comment: "排行時間(排名更新的時間  排名開始時間)"),
+                    StartTime = table.Column<DateTime>(type: "datetime", nullable: true, comment: "排名開始時間(保留但可以先塞入資料)"),
+                    EndTime = table.Column<DateTime>(type: "datetime", nullable: true, comment: "排名結束時間(保留但可以先塞入資料)"),
+                    ClickCount = table.Column<int>(type: "int", nullable: false, comment: "點擊數量"),
+                    PreRank = table.Column<int>(type: "int", nullable: false, comment: "上次排名(以一00:00~下周一00:00)")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Rank", x => x.RankId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Activity",
                 columns: table => new
                 {
@@ -120,8 +138,11 @@ namespace BSWebtoon.Model.Migrations
                     ComicChineseName = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "漫畫中文名稱"),
                     ComicEnglishName = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "漫畫英文名稱"),
                     ComicNameImage = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "漫畫名稱圖"),
+                    HotComicNameImage = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "強檔劇獻名稱圖"),
                     BgCover = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "漫畫背景圖"),
+                    HotBgCover = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "強檔劇獻背景圖"),
                     ComicFigure = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "人物圖"),
+                    ComicWeekFigure = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "星期列表人物圖"),
                     BgColor = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "背景色"),
                     PublishDate = table.Column<DateTime>(type: "datetime", nullable: false, comment: "發行日期"),
                     LastPublishDate = table.Column<DateTime>(type: "datetime", nullable: false, comment: "最後更新日期"),
@@ -132,9 +153,9 @@ namespace BSWebtoon.Model.Migrations
                     Author = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "作者"),
                     Introduction = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "故事大綱"),
                     BannerVideoWeb = table.Column<string>(type: "nvarchar(max)", nullable: true, comment: "短影片"),
-                    BannerVideoMp4 = table.Column<string>(type: "nvarchar(max)", nullable: true, comment: "短影片"),
+                    WeekVideoWrb = table.Column<string>(type: "nvarchar(max)", nullable: true, comment: "星期列表影片"),
                     ComicVideoWeb = table.Column<string>(type: "nvarchar(max)", nullable: true, comment: "長影片"),
-                    ComicVideoMp4 = table.Column<string>(type: "nvarchar(max)", nullable: true, comment: "長影片"),
+                    HotVideo = table.Column<string>(type: "nvarchar(max)", nullable: true, comment: "強檔劇獻影片"),
                     AuditType = table.Column<int>(type: "int", nullable: false, comment: "審核狀態"),
                     AuditEmployeeId = table.Column<int>(type: "int", nullable: false, comment: "審核人員(也是上傳人員)"),
                     AuditFailReason = table.Column<string>(type: "nvarchar(max)", nullable: true, comment: "審核失敗原因"),
@@ -189,7 +210,7 @@ namespace BSWebtoon.Model.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Keyword", x => x.TageListId);
+                    table.PrimaryKey("PK_ComicTagList", x => x.TageListId);
                     table.ForeignKey(
                         name: "FK_ComicTag_Comic",
                         column: x => x.ComicId,
@@ -523,7 +544,8 @@ namespace BSWebtoon.Model.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     MemberId = table.Column<int>(type: "int", nullable: false, comment: "會員"),
                     EpContentId = table.Column<int>(type: "int", nullable: false, comment: "漫畫圖片Id"),
-                    ViewTime = table.Column<DateTime>(type: "datetime", nullable: false, comment: "觀看時間")
+                    ViewTime = table.Column<DateTime>(type: "datetime", nullable: false, comment: "觀看時間"),
+                    IsDelete = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -648,6 +670,11 @@ namespace BSWebtoon.Model.Migrations
                 column: "LoginTypeId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Rank_ComicId",
+                table: "Rank",
+                column: "ComicId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_RechargeRecord_CashPlanId",
                 table: "RechargeRecord",
                 column: "CashPlanId");
@@ -699,6 +726,9 @@ namespace BSWebtoon.Model.Migrations
 
             migrationBuilder.DropTable(
                 name: "Favorite");
+
+            migrationBuilder.DropTable(
+                name: "Rank");
 
             migrationBuilder.DropTable(
                 name: "RechargeRecord");

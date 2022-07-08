@@ -16,13 +16,13 @@ namespace BSWebtoon.Front.Controllers
         }
         public IActionResult AddMemberView()//Login/AddMemberView(我沒有建View，執行了找不到View沒關係，資料還是會進資料庫!!)
         {
-            _memberService.MemberCreate();
+            //_memberService.MemberCreate();
             return View();
         }
         public IActionResult AddLoginTypeView() //Login/AddLoginTypeView
         {
             //_memberService.LoginTypeCreate();
-            _memberService.MemberUpdateData();
+            //_memberService.MemberUpdateData();
             return View();
         }
 

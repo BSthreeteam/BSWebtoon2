@@ -26,7 +26,7 @@ namespace BSWebtoon.Front.Controllers
             //_ComicService.ComicTagCreate();
             //_ComicService.ComicCreate();
             //_ComicService.ComicTagListCreate();
-            _ComicService.ComicTagListUpdate();
+            //_ComicService.ComicTagListUpdate();
             return View();
         }
         public IActionResult AddEpView() //Comic/AddEpView
@@ -39,7 +39,7 @@ namespace BSWebtoon.Front.Controllers
         public IActionResult WorkPageReadView()//Comic/WorkPageReadView
         {
 
-            return View(_comic.WordPageRead().ToList());
+            return View(/*_comic.WordPageRead().ToList()*/);
         }
 
         //public IActionResult AddEpContentView() //Comic/AddEpContentView

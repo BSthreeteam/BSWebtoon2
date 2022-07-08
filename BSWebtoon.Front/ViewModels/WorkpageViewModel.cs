@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace BSWebtoon.Front.ViewModels
 {
@@ -15,6 +16,9 @@ namespace BSWebtoon.Front.ViewModels
 
         public class EpData
         {
+            public string EpTitle { get; set; }
+            public string EpCover { get; set; }
+            public DateTime UploadTime { get; set; }
         }
     }
 }
