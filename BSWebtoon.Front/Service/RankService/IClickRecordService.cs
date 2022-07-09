@@ -7,9 +7,5 @@ namespace BSWebtoon.Front.Service.RankService
     {
         void ClickRecordCreate();
         void UpdateRank();
-
-        //string ReadRank();
-        //IEnumerable<RankViewModel> ReadRank();
-        //void ReadRank();
     }
 }

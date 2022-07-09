@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 namespace BSWebtoon.Front.Models.DTO.Rank
 {
-    public class RankDTO
+    public class AllTagRankDTO
     {
         public int ClickRecordId { get; set; }
         public int ComicId { get; set; }
@@ -14,6 +14,7 @@ namespace BSWebtoon.Front.Models.DTO.Rank
         public string BannerVideoWeb { get; set; }
         public string TagName { get; set; }
         public int Diff { get; set; }
+
         //public IEnumerable<RankClickRecord> RankDiff { get; set; }
         //public class RankClickRecord
         //{
