@@ -44,7 +44,6 @@ namespace BSWebtoon.Front
             services.AddScoped<ICouponService, CouponService>();
             services.AddScoped<IClickRecordService, ClickRecordService>();
             services.AddScoped<FavoriteService, FavoriteService>();
-            //services.AddScoped<RankService, RankService>();
             //services.AddDbContext<BSWeBtoonContext, BSWeBtoonContext>();
             services.AddScoped<IComicService, ComicService>();
             services.AddScoped<IMemberService, MemberService>();

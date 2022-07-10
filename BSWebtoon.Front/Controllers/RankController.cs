@@ -9,20 +9,20 @@ namespace BSWebtoon.Front.Controllers
     public class RankController : Controller
     {
         private readonly IClickRecordService _ClickRecordService;
-        private readonly ClickRecordService _rankService;
 
-        public RankController(IClickRecordService clickRecordService, ClickRecordService rankService)
+        public RankController(IClickRecordService clickRecordService)
         {
             _ClickRecordService = clickRecordService;
-            _rankService = rankService;
+            
         }
 
         public IActionResult Rank() //Rank/Rank 
         {
-           //_ClickRecordService.ClickRecordCreate();
-           _ClickRecordService.UpdateRank();
+           _ClickRecordService.ClickRecordCreate();
+           //_ClickRecordService.UpdateRank();
             return View();
         }
+
         public IActionResult RankShowList() //Rank/RankShowList 
         {
             var rank =_ClickRecordService.ReadAllRank();
@@ -39,18 +39,20 @@ namespace BSWebtoon.Front.Controllers
                 //    Introduction = firstRank.Introduction,
                 //    BannerVideoWeb = firstRank.BannerVideoWeb
                 //},
-                OtherRank = rank.Skip(1).Take(99).Select(o => new RankViewModel_ClickRecord.ClickRecordRank
+                OtherRank = rank.Skip(1).Take(99).Select(other => new RankViewModel_ClickRecord.ClickRecordRank
                 {
-                    ClickRecordId = firstRank.ClickRecordId,
-                    ComicName = firstRank.ComicName,
-                    ComicNameImage = firstRank.ComicNameImage,
-                    ComicFigure = firstRank.ComicFigure,
-                    BgCover = firstRank.BgCover,
-                    Introduction = firstRank.Introduction,
-                    BannerVideoWeb = firstRank.BannerVideoWeb
+                    ClickRecordId = other.ClickRecordId,
+                    ComicName = other.ComicName,
+                    ComicNameImage = other.ComicNameImage,
+                    ComicFigure = other.ComicFigure,
+                    BgCover = other.BgCover,
+                    Introduction = other.Introduction,
+                    BannerVideoWeb = other.BannerVideoWeb,
+                    Diff=other.Diff
                 }).ToList()
 
             };
+            
             return View(restult);
         }
 

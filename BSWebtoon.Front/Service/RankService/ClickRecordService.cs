@@ -54,18 +54,18 @@ namespace BSWebtoon.Front.Service.RankService
         public List<AllTagRankDTO> ReadAllRank()    
         {
             var oldClickRecords = _repository.GetAll<ClickRecord>()
-                .Where(c => c.CreateTime < new DateTime(2022, 7, 5).AddDays(-7) && c.CreateTime >= new DateTime(2022, 7, 5).AddDays(-14));
+                .Where(c => c.CreateTime < new DateTime(2022, 8, 4).AddDays(-7) && c.CreateTime >= new DateTime(2022, 8, 4).AddDays(-14));
             
             var oldGroupBy = oldClickRecords.GroupBy(c => c.ComicId).OrderByDescending(c => c.Count(gp => gp.ComicId == c.Key)).ThenBy(c => c.Key).Select(c => c.Key);
 
             var newClickRecords = _repository.GetAll<ClickRecord>()
-                .Where(c => c.CreateTime < new DateTime(2022, 7, 5) && c.CreateTime >= new DateTime(2022, 7, 5).AddDays(-7));
+                .Where(c => c.CreateTime < new DateTime(2022, 8, 4) && c.CreateTime >= new DateTime(2022, 8, 4).AddDays(-7));
             
             var newGroupBy= newClickRecords.GroupBy(c => c.ComicId).OrderByDescending(c => c.Count(gp => gp.ComicId == c.Key)).ThenBy(c => c.Key).Select(c => c.Key);
 
             var newrank = _repository.GetAll<Comic>().Where(n => newGroupBy.Any(nc=>nc==n.ComicId) && n.AuditType==1).ToList();//.Select(n => n.ComicId);
 
-            var tagListSource = _repository.GetAll<ComicTagList>().Where(ts=> newrank.Any(nc=>nc.ComicId==ts.ComicId)).ToList();
+            var tagListSource = _repository.GetAll<ComicTagList>().Where(ts => newrank.Any(nc => nc.ComicId == ts.ComicId)).ToList();
 
             var mainTag = _repository.GetAll<ComicTag>().Where(x => tagListSource.Any(y => y.TagId == x.TagId)).First(x => x.IsMainTag);
 
@@ -165,13 +165,13 @@ namespace BSWebtoon.Front.Service.RankService
 
 
 
-        public void UpdateRank()
-        {
-            var updatarank = _repository.GetAll<ClickRecord>().Where(x => x.ClickRecordId == 2).FirstOrDefault();
-            updatarank.CreateTime = new DateTime(2021, 07, 24);
-            _repository.Update(updatarank);
-            _repository.SaveChange();
-        }
+        //public void UpdateRank()
+        //{
+        //    var updatarank = _repository.GetAll<ClickRecord>().Where(x => x.ClickRecordId == 2).FirstOrDefault();
+        //    updatarank.CreateTime = new DateTime(2021, 07, 24);
+        //    _repository.Update(updatarank);
+        //    _repository.SaveChange();
+        //}
     }
 
    

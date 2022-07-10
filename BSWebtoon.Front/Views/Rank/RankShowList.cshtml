@@ -3,24 +3,6 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-@*<table class="table">
-    <thead>
-        <tr>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>*@
 
 <div class="container p-0">
     <div class="box">
@@ -42,27 +24,39 @@
                 </div>
             </div>
         </a>
-        <a href="#" class="numbers">
-            <div class="rank_pic">
-                <img src="https://tw-a.kakaopagecdn.com/P/C/270/bg/1x/e6f07925-f715-4ec6-a2ad-c50b2b86d0a9.jpg"
-                     alt="背景" class="rank_pic_bg">
-                <img src="https://tw-a.kakaopagecdn.com/P/C/270/c2/2x/4122cbca-b90c-4100-b30d-21af44f41106.png"
-                     alt="圖林的莉莉安" class="rank_pic_people">
-            </div>
-            <div class="rank_text">
-                <div class="rank_bgdiv">
-                    <span class="rank rank_num">1</span>
-                    <span class="rank rank_icon">-</span>
-                </div>
-                <div class="box-title">
-                    <img src="https://tw-a.kakaopagecdn.com/P/C/270/t2/2x/79dde0a6-c4af-450f-8655-1435f661d974.png"
-                         alt="標題" class="rank_pic_title">
-                    <span class="tag">新作</span>
-                    <!-- <span class="tag">新作</span> -->
-                </div>
-            </div>
-        </a>
-        <a href="#" class="numbers">
+        @for(var i=2;i<=99;i++)
+        {
+            @foreach (var item in Model)
+            {
+                @foreach(var index in item.OtherRank)
+                {
+                    
+                    <a href="#" class="numbers">
+                        <div class="rank_pic">
+
+                            @*<img src="https://tw-a.kakaopagecdn.com/P/C/270/bg/1x/e6f07925-f715-4ec6-a2ad-c50b2b86d0a9.jpg"
+                                    alt="背景" class="rank_pic_bg">*@
+
+                            <img src="@index.BgCover"alt="背景" class="rank_pic_bg">
+                            <img src="@index.ComicFigure"
+                                    alt="@index.ComicName" class="rank_pic_people">
+                        </div>
+                        <div class="rank_text">
+                            <div class="rank_bgdiv">
+                                <span class="rank rank_num">@i</span>
+                                <span class="rank rank_icon">@index.Diff</span>
+                            </div>
+                            <div class="box-title">
+                                <img src="https://tw-a.kakaopagecdn.com/P/C/270/t2/2x/79dde0a6-c4af-450f-8655-1435f661d974.png"
+                                        alt="標題" class="rank_pic_title">
+                                <span class="tag">新作</span>
+                            </div>
+                        </div>
+                    </a>  
+                }
+            }
+        }
+        @*<a href="#" class="numbers">
             <div class="rank_pic">
                 <img src="https://tw-a.kakaopagecdn.com/P/C/270/bg/1x/e6f07925-f715-4ec6-a2ad-c50b2b86d0a9.jpg"
                      alt="背景" class="rank_pic_bg">
@@ -142,6 +136,6 @@
                     <span class="tag">新作</span>
                 </div>
             </div>
-        </a>
+        </a>*@
     </div>
 </div>

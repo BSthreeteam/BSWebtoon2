@@ -8,13 +8,13 @@ namespace BSWebtoon.Front.Controllers
     public class ComicController : Controller
     {
         private readonly IComicService _ComicService;
-        private readonly ComicService _comic;
+        //private readonly ComicService _comic;
         private readonly BSRepository _repository;
-        public ComicController(BSRepository repository, IComicService ComicService, ComicService comic)
+        public ComicController(BSRepository repository, IComicService ComicService/*, ComicService comic*/)
         {
             _ComicService = ComicService;
             _repository = repository;
-            _comic = comic;
+            //_comic = comic;
         }
 
         public IActionResult Index()
@@ -23,10 +23,10 @@ namespace BSWebtoon.Front.Controllers
         }
         public IActionResult AddComicTagView() //Comic/AddComicTagView
         {
-            //_ComicService.ComicTagCreate();
-            //_ComicService.ComicCreate();
-            //_ComicService.ComicTagListCreate();
-            _ComicService.ComicTagListUpdate();
+            _ComicService.ComicTagCreate();
+            _ComicService.ComicCreate();
+            _ComicService.ComicTagListCreate();
+            //_ComicService.ComicTagListUpdate();
             return View();
         }
         public IActionResult AddEpView() //Comic/AddEpView
