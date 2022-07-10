@@ -21,6 +21,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using BSWebtoon.Front.Service.RankService;
 using BSWebtoon.Front.Service.WeekUpdateService;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace BSWebtoon.Front
 {
@@ -52,6 +54,30 @@ namespace BSWebtoon.Front
             services.AddScoped<IFavoriteService, FavoriteService>();
             services.AddDbContext<BSWebtoonContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("BSWebtoonContext")));
+            //第三方登入(yu)
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    //全部寫得和預設值一樣
+
+                    //設定登入Action的路徑： 
+                    //options.LoginPath = new PathString("/Account/Login");
+
+                    ////設定 導回網址 的QueryString參數名稱：
+                    //options.ReturnUrlParameter = "ReturnUrl";
+
+                    ////設定登出Action的路徑： 
+                    //options.LogoutPath = new PathString("/Account/Logout");
+
+                    ////若權限不足，會導向的Action的路徑
+                    //options.AccessDeniedPath = new PathString("/Account/AccessDenied");
+                })
+                .AddFacebook(options =>
+                {
+                    var provider = "FB";
+                    options.AppId = Configuration[$"Authentication:{provider}:ClientId"];
+                    options.AppSecret = Configuration[$"Authentication:{provider}:ClientSecret"];
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -72,6 +98,7 @@ namespace BSWebtoon.Front
 
             app.UseRouting();
 
+            app.UseAuthentication(); //要有這行，順序一定要在UseAuthorization()之前
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
