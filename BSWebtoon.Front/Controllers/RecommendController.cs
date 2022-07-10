@@ -58,7 +58,7 @@ namespace BSWebtoon.Front.Controllers
 
             _recommendservice.ViewRecordCreate();
             _recommendservice.CommentCreate();
-            _recommendservice.LikeCreate();
+            _recommendservice.CommentLikeCreate();
             _recommendservice.ReportCreate();
             return View();
         }
