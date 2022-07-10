@@ -1,5 +1,4 @@
-﻿using BSWebtoon.Front.ViewModel;
-using BSWebtoon.Model.Models;
+﻿using BSWebtoon.Model.Models;
 using BSWebtoon.Model.Repository;
 using System;
 using System.Collections.Generic;
@@ -64,7 +63,7 @@ namespace BSWebtoon.Front.Service.RankService
             
             var newGroupBy= newClickRecords.GroupBy(c => c.ComicId).OrderByDescending(c => c.Count(gp => gp.ComicId == c.Key)).ThenBy(c => c.Key).Select(c => c.Key);
 
-            var newrank = _repository.GetAll<Comic>().Where(n => newGroupBy.Any(nc=>nc==n.ComicId)).ToList();//.Select(n => n.ComicId);
+            var newrank = _repository.GetAll<Comic>().Where(n => newGroupBy.Any(nc=>nc==n.ComicId) && n.AuditType==1).ToList();//.Select(n => n.ComicId);
 
             var tagListSource = _repository.GetAll<ComicTagList>().Where(ts=> newrank.Any(nc=>nc.ComicId==ts.ComicId)).ToList();
 

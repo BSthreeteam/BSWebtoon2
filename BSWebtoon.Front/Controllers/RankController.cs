@@ -1,7 +1,8 @@
-﻿using BSWebtoon.Front.Service.RankService;
-using BSWebtoon.Front.ViewModel;
+﻿using BSWebtoon.Front.Models.ViewModels.Rank;
+using BSWebtoon.Front.Service.RankService;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BSWebtoon.Front.Controllers
 {
@@ -22,11 +23,36 @@ namespace BSWebtoon.Front.Controllers
            _ClickRecordService.UpdateRank();
             return View();
         }
-        //public IActionResult RankList() //Rank/RankList 
-        //{
-        //    _ClickRecordService.ClickRecordCreate();
-        //    return View(_rankService.ReadRank());
-        //}
+        public IActionResult RankShowList() //Rank/RankShowList 
+        {
+            var rank =_ClickRecordService.ReadAllRank();
+            var firstRank = rank.First();
+            var restult = new RankViewModel_ClickRecord
+            {
+                //FirstRank = new RankViewModel_ClickRecord.ClickRecordRank
+                //{
+                //    ClickRecordId = firstRank.ClickRecordId,
+                //    ComicName = firstRank.ComicName,
+                //    ComicNameImage = firstRank.ComicNameImage,
+                //    ComicFigure = firstRank.ComicFigure,
+                //    BgCover = firstRank.BgCover,
+                //    Introduction = firstRank.Introduction,
+                //    BannerVideoWeb = firstRank.BannerVideoWeb
+                //},
+                OtherRank = rank.Skip(1).Take(99).Select(o => new RankViewModel_ClickRecord.ClickRecordRank
+                {
+                    ClickRecordId = firstRank.ClickRecordId,
+                    ComicName = firstRank.ComicName,
+                    ComicNameImage = firstRank.ComicNameImage,
+                    ComicFigure = firstRank.ComicFigure,
+                    BgCover = firstRank.BgCover,
+                    Introduction = firstRank.Introduction,
+                    BannerVideoWeb = firstRank.BannerVideoWeb
+                }).ToList()
+
+            };
+            return View(restult);
+        }
 
     }
 }

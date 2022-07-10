@@ -12,6 +12,7 @@ namespace BSWebtoon.Front.Models.DTO.Rank
         public string BgCover { get; set; }
         public string Introduction { get; set; }
         public string BannerVideoWeb { get; set; }
+        public int AuditType { get; set; }
         public string TagName { get; set; }
         public int Diff { get; set; }
 

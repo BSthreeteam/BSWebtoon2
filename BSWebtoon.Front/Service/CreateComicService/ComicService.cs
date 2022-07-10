@@ -5222,11 +5222,12 @@ namespace BSWebtoon.Front.Service.ComicService
 
         public WorkpageViewModel WordPageRead(int comicId)
         {
-            var comicSource = _repository.GetAll<Comic>().First(x => x.ComicId == comicId);
+            var comicSource = _repository.GetAll<Comic>().Where(c=>c.AuditType==1).First(x => x.ComicId == comicId);
             var tagListSource = _repository.GetAll<ComicTagList>().Where(x => x.ComicId == comicSource.ComicId).ToList();
             var mainTag = _repository.GetAll<ComicTag>().Where(x => tagListSource.Any(y => y.TagId == x.TagId)).First(x => x.IsMainTag);
             var couponSource = _repository.GetAll<Coupon>().First(x => x.CouponTypeId == 1 && x.MemberId == 1 && x.ComicId == comicId);
             var epSource = _repository.GetAll<Episode>().Where(x => x.ComicId == comicId).ToList();
+
 
             return new WorkpageViewModel
             {
