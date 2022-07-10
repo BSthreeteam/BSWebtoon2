@@ -1,69 +1,74 @@
-﻿
-
-@{
-    //ViewData["Title"] = "AddFavoriteView";
+﻿@{
+	//ViewData["Title"] = "AddFavoriteView";
 }
 
-<h1>AddFavoriteView</h1>
+
 @section topCss{
-      <link rel="stylesheet" href="~/style/FavoritePage.css" />
+	<link rel="stylesheet" href="~/style/Favorite_Record.css" />
 }
-<div style="background-color: #000; margin-top: 50px; z-index:1;">
 
-    <nav class="navbar d-flex justify-content-center   ">
-        <button type="button" class=" btn btn-dark" onclick="To_RecordPage()">最近看過</button>
-        <button type="button" class=" btn  btn-light">我的最愛</button>
-    </nav>
+	<nav class="navbar d-flex justify-content-center   ">
+		<button type="button" class=" btn btn-dark" onclick="To_RecordPage()">最近看過</button>
+		<button type="button" class=" btn  btn-light">我的最愛</button>
+	</nav>
 
-    <div class="container" style="max-width: 800px;">
-        <div class="row row-cols-3 row-cols-md-3 row-cols-lg-3 row-cols-xl-4" style=" transform: translateY(80px);">
 
-            <div class="col  " onclick="to_comnic(this);">
-                <img src="https://tw-a.kakaopagecdn.com/P/C/235/c2/2x/30129f26-0a80-4074-a832-21215f542a2d.webp" alt="">
-                <p>隔離人生</p>
-                <input style="display: none;" value="漫畫ID"></input>
-            </div>
-            <div class="col ">
-                <img src="https://tw-a.kakaopagecdn.com/P/C/135/c2/2x/411f54db-f259-4214-a738-b2262ddb8841.webp" alt="">
-                <p class="name">隔離人生</p>
-            </div>
-            <div class="col ">
-                <img src="https://tw-a.kakaopagecdn.com/P/C/80/c2/2x/f2934b53-eb2f-454a-b463-6bbc8b87254a.webp" alt="">
-                <p class="name">隔離人生</p>
-            </div>
-            <div class="col ">
-                <img src="https://tw-a.kakaopagecdn.com/P/C/235/c2/2x/30129f26-0a80-4074-a832-21215f542a2d.webp" alt="">
-                <p class="name">隔離人生</p>
-            </div>
-            <div class="col ">
-                <img src="https://tw-a.kakaopagecdn.com/P/C/43/c2/2x/110642ca-b115-4145-af0f-abe5169193b5.png" alt="">
-                <p class="name">隔離人生</p>
-            </div>
-            <div class="col ">
-                <img src="https://tw-a.kakaopagecdn.com/P/C/232/c2/2x/c3995a3f-77d0-49a6-9aa3-fd8872e06612.webp" alt="">
-                <p class="name">隔離人生</p>
-            </div>
-            <div class="col ">
-                <img src="https://tw-a.kakaopagecdn.com/P/C/129/c2/2x/2cbb5526-be5e-40c4-aa22-a5fa9faced2b.webp" alt="">
-                <p class="name">隔離人生</p>
-                <span style="display: none;">漫畫ID</span>
-            </div>
-            <div class="col ">
-                <img src="https://tw-a.kakaopagecdn.com/P/C/187/c2/2x/1e1bd728-d2fa-4c86-92f3-19faddd72981.webp" alt="">
-                <p class="name">隔離人生</p>
-            </div>
-            <div class="col ">
-                <img src="https://tw-a.kakaopagecdn.com/P/C/150/c2/2x/b77a2d86-068b-4964-b81f-0338c52e5438.webp" alt="">
-                <p class="name">隔離人生</p>
-            </div>
-        </div>
-        <div class="d-flex justify-content-center fixed-bottom " id="div_btns">
-            <button type="button" class="btn btn btn-dark border m-4 "
-            style="border-radius: 50%;font-size: 10px;">⇅</button>
-            <button type="button" class="btn btn btn-dark border my-4 px-4 py-2" style="border-radius: 20px;"
-                onclick="Open_del_page()">編輯</button>
-        </div>
-    </div>
-  @section endJS{
-             <script src="~/js/Favorite_Record.js"></script>
+	<div style="background-color: #000; margin-top: 50px; z-index:1;">
+		<div class="container" style="max-width: 800px;">
+			<div class="row row-cols-3 row-cols-md-3 row-cols-lg-3 row-cols-xl-4" style=" transform: translateY(80px);">
+
+				<div class="col  " onclick="to_comnic(this);">
+					<img src="https://tw-a.kakaopagecdn.com/P/C/235/c2/2x/30129f26-0a80-4074-a832-21215f542a2d.webp" alt="">
+					<p>隔離人生</p>
+					<input style="display: none;" value="漫畫ID" />
+				</div>
+				<div class="col ">
+					<img src="https://tw-a.kakaopagecdn.com/P/C/135/c2/2x/411f54db-f259-4214-a738-b2262ddb8841.webp" alt="">
+					<p class="name">隔離人生</p>
+				</div>
+				<div class="col ">
+					<img src="https://tw-a.kakaopagecdn.com/P/C/80/c2/2x/f2934b53-eb2f-454a-b463-6bbc8b87254a.webp" alt="">
+					<p class="name">隔離人生</p>
+				</div>
+				<div class="col ">
+					<img src="https://tw-a.kakaopagecdn.com/P/C/235/c2/2x/30129f26-0a80-4074-a832-21215f542a2d.webp" alt="">
+					<p class="name">隔離人生</p>
+				</div>
+				<div class="col ">
+					<img src="https://tw-a.kakaopagecdn.com/P/C/43/c2/2x/110642ca-b115-4145-af0f-abe5169193b5.png" alt="">
+					<p class="name">隔離人生</p>
+				</div>
+				<div class="col ">
+					<img src="https://tw-a.kakaopagecdn.com/P/C/232/c2/2x/c3995a3f-77d0-49a6-9aa3-fd8872e06612.webp" alt="">
+					<p class="name">隔離人生</p>
+				</div>
+				<div class="col ">
+					<img src="https://tw-a.kakaopagecdn.com/P/C/129/c2/2x/2cbb5526-be5e-40c4-aa22-a5fa9faced2b.webp" alt="">
+					<p class="name">隔離人生</p>
+					<span style="display: none;">漫畫ID</span>
+				</div>
+				<div class="col ">
+					<img src="https://tw-a.kakaopagecdn.com/P/C/187/c2/2x/1e1bd728-d2fa-4c86-92f3-19faddd72981.webp" alt="">
+					<p class="name">隔離人生</p>
+				</div>
+				<div class="col ">
+					<img src="https://tw-a.kakaopagecdn.com/P/C/150/c2/2x/b77a2d86-068b-4964-b81f-0338c52e5438.webp" alt="">
+					<p class="name">隔離人生</p>
+				</div>
+			</div>
+			<div class="d-flex justify-content-center fixed-bottom " id="div_btns">
+				<button type="button" class="btn btn btn-dark border m-4 "
+					style="border-radius: 50%;font-size: 10px;">
+					⇅
+				</button>
+				<button type="button" class="btn btn btn-dark border my-4 px-4 py-2" style="border-radius: 20px;"
+					onclick="Open_del_page()">
+					編輯
+				</button>
+			</div>
+		</div>
+	</div>
+
+	@section endJS{
+	<script src="~/js/Favorite_Record.js"></script>
         }

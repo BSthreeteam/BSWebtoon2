@@ -71,3 +71,33 @@ body {
 }
 
 
+.text_overflow {
+    white-space: nowrap;
+    overflow: auto;
+}
+
+.display_name::after {
+    border: 0px;
+    vertical-align: middle;
+}
+
+@media (min-width: 0px) and (max-width: 500px) {
+    .text_overflow {
+        justify-content: flex-start;
+    }
+
+    .display_name::after {
+        content: "▼";
+    }
+}
+
+@media (min-width: 500px) {
+    .text_overflow {
+        justify-content: center !important;
+    }
+
+    .display_name::after {
+        content: "UserName▼";
+    }
+}
+

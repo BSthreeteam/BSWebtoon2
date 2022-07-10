@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\style\FavoritePage.css" />
+    <Content Remove="wwwroot\style\RecordPage.css" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.123" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.17">

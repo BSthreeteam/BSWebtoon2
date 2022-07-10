@@ -14,7 +14,7 @@
 <body>
     <div class="container w-1200">
         <nav class="row w-1200">
-            <ul class="nav justify-content-end ">
+            <ul class="nav justify-content-end flex-nowrap  align-items-center" style=" white-space:nowrap;">
                 <form class="d-flex">
                     <input class="form-control me-2 bg-transparent inputSearchBorder" type="search" placeholder="Search"
                            aria-label="Search">
@@ -25,11 +25,10 @@
                 </li>
 
                 <li class="nav-item dropdown flex-nowrap" id="user">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                    <a class="nav-link dropdown-toggle display_name" href="#" id="navbarDropdown" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="~/images/people.png" alt="登入者"
                              class="border border-dark rounded-circle user-icon">
-                        UserName
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item bg-light xl_accountinfo" href="#">我的帳戶</a></li>
@@ -47,7 +46,7 @@
                     </ul>
                 </li>
             </ul>
-            <ul class="nav justify-content-center">
+             <ul class="nav flex-nowrap text_overflow text_overflow">  
                 <li class="nav-item">
                     <a class="nav-link" href="#">禮物盒</a>
                 </li>
@@ -86,7 +85,7 @@
                 <div class="modal-header">
                     <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <img class="log-img" src="https://picsum.photos/300/200/?random=10" class="log-img card-img-top" alt="...">
+                <img class="log-img  card-img-top" src="https://picsum.photos/300/200/?random=10" alt="...">
                 <div class="modal-header d-flex align-items-center justify-content-center">
                     <h5 class="modal-title text-center" id="exampleModalLabel">
                         登入後可以將喜歡的作品加入最愛，<br>
