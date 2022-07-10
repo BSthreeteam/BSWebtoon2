@@ -24,5 +24,6 @@ namespace BSWebtoon.Front.Service.WeekUpdateService
                 new WeekUpDateDTO(){}
             };
         }
+
     }
 }

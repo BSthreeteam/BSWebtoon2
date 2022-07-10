@@ -1,4 +1,5 @@
-﻿using BSWebtoon.Front.ViewModels;
+﻿using BSWebtoon.Front.Models.DTO.Rcommend;
+using BSWebtoon.Front.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -12,8 +13,8 @@ namespace BSWebtoon.Front.Service.RecommendService
         void LikeCreate();
         void ReportCreate();
 
-        //Task<List<ClickCountViewModel>> ClickCount();
-
+        IEnumerable<RecommendDTO> ReadRecommend();
+        IEnumerable<HitWorkDTO> ReadHitWork();
         //IEnumerable<ActivityViewModel> ActivityRead();
     }
 }

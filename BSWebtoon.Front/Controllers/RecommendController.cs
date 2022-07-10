@@ -27,23 +27,11 @@ namespace BSWebtoon.Front.Controllers
         {
             return View();
         }
-        //public async Task<IActionResult> ReadClickRecord() //Recommend/ReadClickRecord
-        //{
-        //    //var BSContext = _context.Comic.Include(x => x.AuditEmployee);
-        //    //return View(await BSContext.ToListAsync());
-        //    //var BSContext = _repository.GetAll<ClickRecord>().GroupBy(c => c.ComicId).ToListAsync();
-        //    //foreach (var item in BSContext)
-        //    //{
-        //    //    var result = item.Count();
-        //    //}
-
-        //    return View(ClickCount);
-        //}
 
         public IActionResult AddActivityView() //Recommend/AddActivityView
         {
 
-            _recommendservice.ActivityCreate();
+            //_recommendservice.ActivityCreate();
             return View();
         }
         //public async Task<IActionResult> ReadActivity() //Recommend/ReadActivity
@@ -55,10 +43,10 @@ namespace BSWebtoon.Front.Controllers
         public IActionResult AddViewRecordView() //Recommend/AddViewRecordView
         {
 
-            _recommendservice.ViewRecordCreate();
-            _recommendservice.CommentCreate();
-            _recommendservice.LikeCreate();
-            _recommendservice.ReportCreate();
+            //_recommendservice.ViewRecordCreate();
+            //_recommendservice.CommentCreate();
+            //_recommendservice.LikeCreate();
+            //_recommendservice.ReportCreate();
             return View();
         }
         //public IActionResult ActivityView() //活動小雞
