@@ -1,10 +1,15 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+﻿ㄈ/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
 a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
+}
+
+.text_overflow {
+    white-space: nowrap;
+    overflow: auto;
 }
 
 /* Provide sufficient contrast against white background */
@@ -69,3 +74,33 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+
+
+
+.display_name::after {
+    border: 0px;
+    vertical-align: middle;
+}
+
+@media (min-width: 0px) and (max-width: 500px) {
+    .text_overflow {
+        justify-content: flex-start;
+
+    }
+
+    .display_name::after {
+        content: "▼";
+    }
+}
+
+@media (min-width: 500px) {
+    .text_overflow {
+        justify-content: center !important;
+    }
+
+    .display_name::after {
+        content: "UserName▼";
+    }
+}
+

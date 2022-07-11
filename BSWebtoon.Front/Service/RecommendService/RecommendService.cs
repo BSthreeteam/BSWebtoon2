@@ -1,13 +1,11 @@
 ﻿//using BSWebtoon.Model.ViewModels;
 using BSWebtoon.Model.Models;
 using BSWebtoon.Model.Repository;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BSWebtoon.Front.Service.RecommendService;
-using System.Linq;
 
 namespace BSWebtoon.Front.Service.RecommendService
 {
@@ -58,7 +56,6 @@ namespace BSWebtoon.Front.Service.RecommendService
 
 
 
-
         //public IEnumerable<ActivityViewModel> ActivityRead()
         //{
         //    foreach (var vr in _repository.GetAll<Activity>())
@@ -75,6 +72,7 @@ namespace BSWebtoon.Front.Service.RecommendService
         //        yield return data;
         //    }
         //}
+
 
 
 
