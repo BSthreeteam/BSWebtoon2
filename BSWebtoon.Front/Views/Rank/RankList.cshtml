@@ -1,5 +1,6 @@
 ﻿@model BSWebtoon.Front.Models.ViewModels.Rank.RankViewModel_ClickRecord
 
+
 @section topCss{
 <link rel="stylesheet" href="~/style/RankListstyle.css" />
 }
@@ -8,48 +9,53 @@
     <div class="box">
         <a href="#" class="number-one">
             <div class="rank_pic">
-            <img src="https://tw-a.kakaopagecdn.com/P/C/261/bg/2x/b62f3f9d-d3b1-4dc5-a521-5c1350ed0558.jpg"
-            alt="背景" class="rank_pic_bg">
-            <img src="https://tw-a.kakaopagecdn.com/P/C/261/c1/2x/a1608d93-8b88-48fc-a5fd-6871f5fba606.webp"
-            alt="我們能成為一家人嗎?" class="rank_pic_people">
+                <img src="https://tw-a.kakaopagecdn.com/P/C/261/bg/2x/b62f3f9d-d3b1-4dc5-a521-5c1350ed0558.jpg"
+                     alt="背景" class="rank_pic_bg">
+                <img src="https://tw-a.kakaopagecdn.com/P/C/261/c1/2x/a1608d93-8b88-48fc-a5fd-6871f5fba606.webp"
+                     alt="我們能成為一家人嗎?" class="rank_pic_people">
             </div>
             <div class="rank_text">
-            <span class="tag">新作</span>
-            <img src="https://tw-a.kakaopagecdn.com/P/C/261/t1/2x/97d6ffa2-e908-4424-8eda-5e9020c4879c.webp"
-            alt="標題" class="rank_pic_title">
-            <p>每次重生都被「家人」拋棄並死亡最後機會不再渴望親情，誓言展開報復</p>
-            <div class="rank_bgdiv">
-            <span class="rank rank_num">1</span>
-            <span class="rank rank_icon">-</span>
+                <span class="tag">新作</span>
+                <img src="https://tw-a.kakaopagecdn.com/P/C/261/t1/2x/97d6ffa2-e908-4424-8eda-5e9020c4879c.webp"
+                     alt="標題" class="rank_pic_title">
+                <p>每次重生都被「家人」拋棄並死亡最後機會不再渴望親情，誓言展開報復</p>
+                <div class="rank_bgdiv">
+                    <span class="rank rank_num">1</span>
+                    <span class="rank rank_icon">-</span>
+                </div>
             </div>
-            </div>
-         </a>
-            @foreach (var item in Model.OtherRank)
-            {
-                <a href="#" class="numbers">
-                    <div class="rank_pic">
+        </a>
+        
+        @foreach (var item in Model.OtherRank)
+        {
+            <a href="#" class="numbers">
+                <div class="rank_pic">
 
-                        @*<img src="https://tw-a.kakaopagecdn.com/P/C/270/bg/1x/e6f07925-f715-4ec6-a2ad-c50b2b86d0a9.jpg"
-                            alt="背景" class="rank_pic_bg">*@
+                    @*<img src="https://tw-a.kakaopagecdn.com/P/C/270/bg/1x/e6f07925-f715-4ec6-a2ad-c50b2b86d0a9.jpg"
+                        alt="背景" class="rank_pic_bg">*@
 
-                        <img src="@item.BgCover" alt="背景" class="rank_pic_bg">
-                        <img src="@item.ComicFigure"
-                         alt="@item.ComicName" class="rank_pic_people">
+                    <img src="@item.BgCover" alt="背景" class="rank_pic_bg">
+                    <img src="@item.ComicFigure"
+                     alt="@item.ComicName" class="rank_pic_people">
+                </div>
+
+                <div class="rank_text">
+                    <div class="rank_bgdiv">
+                       @* @for (var i = 10; i < 21; i++)
+                        {
+                            
+                            <span class="rank rank_num">@i</span>
+                        }*@
+                        <span class="rank rank_num">@item.ClickRecordId</span>
+                        <span class="rank rank_icon">@item.Diff</span>
                     </div>
-
-                    <div class="rank_text">
-                            <div class="rank_bgdiv">
-                                <span class="rank rank_num">@item.ClickRecordId</span>
-                                <span class="rank rank_icon">@item.Diff</span>
-                            </div>
-                        <div class="box-title">
-                            <img src="@item.ComicNameImage"
-                             alt="標題" class="rank_pic_title">
-                            <span class="tag">新作</span>
-                        </div>
+                    <div class="box-title">
+                        <img src="@item.ComicNameImage"
+                         alt="標題" class="rank_pic_title">
+                        <span class="tag">新作</span>
                     </div>
-                </a>
-           
+                </div>
+            </a>
         }
         @*<a href="#" class="numbers">
             <div class="rank_pic">
