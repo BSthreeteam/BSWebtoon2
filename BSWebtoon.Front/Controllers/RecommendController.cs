@@ -16,7 +16,7 @@ namespace BSWebtoon.Front.Controllers
 
         //private readonly BSRepository _repository;
 
-        private readonly BSRepository _repository;
+        //private readonly BSRepository _repository;
         public RecommendController(BSRepository repository, IRecommendService recommendService, BSWebtoonContext context)
         {
             _recommendservice = recommendService;
@@ -39,14 +39,14 @@ namespace BSWebtoon.Front.Controllers
         public IActionResult AddActivityView() //Recommend/AddActivityView
         {
 
-            _recommendservice.ActivityCreate();
+            //_recommendservice.ActivityCreate();
             return View();
         }
-        //public async Task<IActionResult> ReadActivity() //Recommend/ReadActivity
-        //{
-        //    var BSContext = _context.Activity.Include(x => x.PrincipalEmployeeNavigation);
-        //    return View(await BSContext.ToListAsync());
-        //}
+        public async Task<IActionResult> ReadActivity() //Recommend/ReadActivity
+        {
+            //var BSContext = _context.Activity.Include(x => x.PrincipalEmployeeNavigation);
+            return View(/*await BSContext.ToListAsync()*/);
+        }
 
         public IActionResult AddViewRecordView() //Recommend/AddViewRecordView
         {
@@ -57,10 +57,10 @@ namespace BSWebtoon.Front.Controllers
             //_recommendservice.ReportCreate();
             return View();
         }
-        //public IActionResult ActivityView() //活動小雞
-        //{
-        //    var vr = _recommendservice.ActivityRead();
-        //    return View(vr);
-        //}
+        public IActionResult ActivityView() //活動小雞
+        {
+            //var vr = _recommendservice.ActivityRead();
+            return View(/*vr*/);
+        }
     }
 }

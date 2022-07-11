@@ -1,5 +1,4 @@
-﻿using BSWebtoon.Front.ViewModel;
-using BSWebtoon.Model.Models;
+﻿using BSWebtoon.Model.Models;
 using BSWebtoon.Model.Repository;
 using System;
 using System.Collections.Generic;

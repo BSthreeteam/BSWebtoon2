@@ -56,6 +56,8 @@ namespace BSWebtoon.Front.Service.RecommendService
             _repository.SaveChange();
         }
 
+
+
         //public IEnumerable<ActivityViewModel> ActivityRead()
         //{
         //    foreach (var vr in _repository.GetAll<Activity>())

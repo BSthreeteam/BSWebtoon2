@@ -1,5 +1,4 @@
 ﻿using BSWebtoon.Front.Service.RankService;
-using BSWebtoon.Front.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 

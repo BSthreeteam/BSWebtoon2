@@ -14,17 +14,20 @@ namespace BSWebtoon.Front.Controllers
             _favoriteService = favoriteService;
             _readfavoriteService = readfavoriteService;
         }
-
-        public IActionResult AddFavoriteView()//Favorite/AddFavoriteView
+        public IActionResult RecordView()//Favorite/RecordView
         {
-            _favoriteService.FavoriteCreate();
             return View();
         }
-        //public IActionResult RemoveFavoriteView()//Favorite/RemoveFavoriteView
-        //{
-        //    //_favoriteService.FavoriteCreate();
-        //    return View();
-        //}
+        public IActionResult AddFavoriteView()//Favorite/AddFavoriteView
+        {
+            //_favoriteService.FavoriteCreate();
+            return View();
+        }
+        public IActionResult RemoveFavoriteView()//Favorite/RemoveFavoriteView
+        {
+            //_favoriteService.FavoriteCreate();
+            return View();
+        }
         //public IActionResult AddReadFavoriteList()//Favorite/AddReadFavoriteList
         //{
 

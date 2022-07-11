@@ -8,7 +8,6 @@ namespace BSWebtoon.Front.Controllers
     public class ComicController : Controller
     {
         private readonly IComicService _ComicService;
-        private readonly ComicService _comic;
         private readonly BSRepository _repository;
         public ComicController(BSRepository repository, IComicService ComicService)
         {

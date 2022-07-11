@@ -11,8 +11,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "WeekUpdate/WeekUpdate",
-      "launchUrl": "Favorite/AddReadFavoriteList",
+      "launchUrl": "weekUpdate/weekUpdate",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
