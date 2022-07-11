@@ -1,7 +1,10 @@
 ﻿using BSWebtoon.Front.Models.ViewModel.Loginoption;
 using BSWebtoon.Model.Models;
 using BSWebtoon.Model.Repository;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Facebook;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +15,12 @@ namespace BSWebtoon.Front.Service.MemberService
     public class MemberService : IMemberService
     {
         private readonly BSRepository _repository;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public MemberService(BSRepository repository)
+        public MemberService(BSRepository repository,IHttpContextAccessor httpContextAccessor)
         {
             _repository = repository;
+            _httpContextAccessor = httpContextAccessor;
         }
 
 
@@ -77,5 +82,15 @@ namespace BSWebtoon.Front.Service.MemberService
 
             _repository.SaveChange();
         }
+        public void LogoutAccount()
+        {
+            //基本上就是把cookie刪除
+            _httpContextAccessor.
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            //如果想在service 存取User
+            //_httpContextAccessor.HttpContext.User.
+        }
+
     }
 }

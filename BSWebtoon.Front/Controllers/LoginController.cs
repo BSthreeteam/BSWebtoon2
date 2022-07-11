@@ -60,8 +60,13 @@ namespace BSWebtoon.Front.Controllers
             });
 
             //用JSON格式觀察測試結果
-            return Json(claims);
+            //return Json(claims);
+            return Redirect("/");
         }
-
+        public IActionResult Logout()
+        {
+            _memberService.LogoutAccount();
+            return Redirect("/");
+        }
     }
 }

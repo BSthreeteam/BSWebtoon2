@@ -20,16 +20,21 @@
                            aria-label="Search">
                     <a class="nav-link" aria-current="page" href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
                 </form>
-                <li class="nav-item">
-                    <a data-bs-toggle="modal" href="#" data-bs-target="#exampleModal" class="nav-link">登入</a>
-                </li>
+                @*如果是登入的狀態下，登入按鈕消失*@
+                @if(User.Identity.IsAuthenticated){
+
+                }else{
+                    <li class="nav-item">
+                        <a data-bs-toggle="modal" href="#" data-bs-target="#exampleModal" class="nav-link">登入</a>
+                    </li>
+                }
 
                 <li class="nav-item dropdown" id="user">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="~/images/people.png" alt="登入者"
                              class="border border-dark rounded-circle user-icon">
-                        UserName
+                        @User.Identity.Name
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item bg-light xl_accountinfo" href="#">我的帳戶</a></li>
@@ -43,7 +48,7 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a id="logout" class="dropdown-item bg-light" href="#">登出</a></li>
+                        <li><a id="logout" class="dropdown-item bg-light"asp-controller="Login" asp-action="Logout">登出</a></li>
                     </ul>
                 </li>
             </ul>
@@ -119,7 +124,6 @@
                             <span></span>
                             <a href="/Login/LoginOption/@(loginOption.Scheme)" class="btn btn-light">
                                 <img src ="@loginOption.Icon"/>
-                                
                             </a>
                         }
 @*                        <a href="#"><img src="https://tw-a.kakaopagecdn.com/web/static/auth/login-ico-sns-google-abb03d27c5764dce9bb59f95ca5c8602.svg" alt="Google-login"></a>
