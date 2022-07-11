@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BSWebtoon.Model.Migrations
 {
-    public partial class YU : Migration
+    public partial class InitialDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -264,7 +264,8 @@ namespace BSWebtoon.Model.Migrations
                 name: "ClickRecord",
                 columns: table => new
                 {
-                    ClickRecordId = table.Column<int>(type: "int", nullable: false, comment: "點擊紀錄ID"),
+                    ClickRecordId = table.Column<int>(type: "int", nullable: false, comment: "點擊紀錄ID")
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     ComicId = table.Column<int>(type: "int", nullable: false, comment: "漫畫Id"),
                     CreateTime = table.Column<DateTime>(type: "datetime", nullable: false, comment: "點擊的時間"),
                     MemberId = table.Column<int>(type: "int", nullable: false, comment: "會員Id")
@@ -280,7 +281,7 @@ namespace BSWebtoon.Model.Migrations
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_ClickRecord_Member",
-                        column: x => x.ClickRecordId,
+                        column: x => x.MemberId,
                         principalTable: "Member",
                         principalColumn: "MemberId",
                         onDelete: ReferentialAction.Restrict);
@@ -573,6 +574,12 @@ namespace BSWebtoon.Model.Migrations
                 name: "IX_ClickRecord_ComicId",
                 table: "ClickRecord",
                 column: "ComicId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ClickRecord_MemberId",
+                table: "ClickRecord",
+                column: "MemberId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comic_AuditEmployeeId",

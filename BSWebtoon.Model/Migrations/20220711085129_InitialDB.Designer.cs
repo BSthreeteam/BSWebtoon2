@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BSWebtoon.Model.Migrations
 {
     [DbContext(typeof(BSWebtoonContext))]
-    [Migration("20220704140646_YU")]
-    partial class YU
+    [Migration("20220711085129_InitialDB")]
+    partial class InitialDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -112,7 +112,8 @@ namespace BSWebtoon.Model.Migrations
                     b.Property<int>("ClickRecordId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasComment("點擊紀錄ID");
+                        .HasComment("點擊紀錄ID")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("ComicId")
                         .HasColumnType("int")
@@ -127,6 +128,9 @@ namespace BSWebtoon.Model.Migrations
                         .HasComment("會員Id");
 
                     b.HasKey("ClickRecordId");
+
+                    b.HasIndex("MemberId")
+                        .IsUnique();
 
                     b.HasIndex(new[] { "ComicId" }, "IX_ClickRecord_ComicId");
 
@@ -901,21 +905,21 @@ namespace BSWebtoon.Model.Migrations
 
             modelBuilder.Entity("BSWebtoon.Model.Models.ClickRecord", b =>
                 {
-                    b.HasOne("BSWebtoon.Model.Models.Member", "ClickRecordNavigation")
-                        .WithOne("ClickRecord")
-                        .HasForeignKey("BSWebtoon.Model.Models.ClickRecord", "ClickRecordId")
-                        .HasConstraintName("FK_ClickRecord_Member")
-                        .IsRequired();
-
                     b.HasOne("BSWebtoon.Model.Models.Comic", "Comic")
                         .WithMany("ClickRecords")
                         .HasForeignKey("ComicId")
                         .HasConstraintName("FK_ClickRecord_Comic")
                         .IsRequired();
 
-                    b.Navigation("ClickRecordNavigation");
+                    b.HasOne("BSWebtoon.Model.Models.Member", "Member")
+                        .WithOne("ClickRecord")
+                        .HasForeignKey("BSWebtoon.Model.Models.ClickRecord", "MemberId")
+                        .HasConstraintName("FK_ClickRecord_Member")
+                        .IsRequired();
 
                     b.Navigation("Comic");
+
+                    b.Navigation("Member");
                 });
 
             modelBuilder.Entity("BSWebtoon.Model.Models.Comic", b =>

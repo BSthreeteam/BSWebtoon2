@@ -136,9 +136,9 @@ namespace BSWebtoon.Model.Models
 
                 entity.Property(e => e.MemberId).HasComment("會員Id");
 
-                entity.HasOne(d => d.ClickRecordNavigation)
+                entity.HasOne(d => d.Member)
                     .WithOne(p => p.ClickRecord)
-                    .HasForeignKey<ClickRecord>(d => d.ClickRecordId)
+                    .HasForeignKey<ClickRecord>(d => d.MemberId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ClickRecord_Member");
 

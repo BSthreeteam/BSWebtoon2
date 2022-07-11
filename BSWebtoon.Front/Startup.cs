@@ -20,7 +20,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BSWebtoon.Front.Service.RankService;
-using BSWebtoon.Front.Service.WeekUpdateService;
+//using BSWebtoon.Front.Service.WeekUpdateService;
 
 namespace BSWebtoon.Front
 {
