@@ -1,7 +1,5 @@
 ﻿
 
-<!doctype html>
-<html lang="en">
 
 @section topCss{
       <link rel="stylesheet" href="~/style/weeklyUpdataStyle.css" />
@@ -10,7 +8,6 @@
 <body data-bs-spy="scroll" data-bs-target="#navbar-id" data-bs-offset="140" class="scrollspy-example"
 tabindex="0" >
 
-    <!-- <div class="try"></div> -->
 
     <nav id="navbar-id" class="navbar navbar-light">
         <ul class="nav nav-pills">
@@ -42,70 +39,61 @@ tabindex="0" >
                 <a class="nav-link" href="#">完結</a>
             </li>
         </ul>
-        <!-- <a>新作</a>
-            <a class="a_Monday">一</a>
-            <a class="a_Tuesday">二</a>
-            <a>三</a>
-            <a>四</a>
-            <a>五</a>
-            <a>六</a>
-            <a>日</a>
-            <a>完結</a> -->
     </nav>
 
     <div class="weekly "  >
         <div class="container week_content ">
 
-            <!-- <div class="new_work">
-                <h2 class="new_work_title">新作</h2>
-                <div class="content">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores quod rerum laborum totam quisquam
-                    dolor maiores quibusdam saepe nemo ea? Officiis in iusto debitis quisquam error. Eos dignissimos ea
-                    qui dolorum delectus! Sed culpa nam officia, obcaecati placeat enim sunt adipisci quas, eaque ipsam
-                    quae assumenda earum quo ratione debitis consequuntur cupiditate nemo dolore neque reiciendis quos.
-
-                </div>
-            </div> -->
 
 
             <div class="Monday">
                 <h2 id="scrollspyHeading1" class="Monday_title">星期一</h2>
                 <div class="content">
-
-                    <template id="workLongTemplate">
-                        <div class="work_long">
-                            <div class="work_long_bg">
-                                <img
-                                    src="https://tw-a.kakaopagecdn.com/P/C/214/bg/1x/f870dd2e-59a1-4324-bbbe-8419d26f0cf6.webp">
-                            </div>
-                            <video loop="true" autoplay="true" muted="true" class="workV-long ">
-                                <source class="source"
+                    @foreach (var items in Model)
+                    {
+                        if (items.WeekDay == 1)
+                        {
+                            foreach (var item in items.WeekComicLongList)
+                            {
+                                <div class="work_long">
+                                    <div class="work_long_bg">
+                                        <img src="item.">
+                                    </div>
+                                    <video loop="true" autoplay="true" muted="true" class="workV-long ">
+                                        <source class="source"
                                     src="https://tw-a.kakaopagecdn.com/P/C/214/aclip/97caee36-c79a-4ec7-907d-f28cfd975c7c.webm">
-                            </video>
-                            <div class="title_long_img">
-                                <img
-                                    src="https://tw-a.kakaopagecdn.com/P/C/83/t2/2x/ccced92c-9b74-41be-9a7f-09065168657c.webp">
-                            </div>
+                                    </video>
+                                    <div class="title_long_img">
+                                        <img src="https://tw-a.kakaopagecdn.com/P/C/83/t2/2x/ccced92c-9b74-41be-9a7f-09065168657c.webp">
+                                    </div>
 
-                        </div>
-                    </template>
+                                </div>
 
-                    <template id="workTemplate">
-                        <div class="work">
-                            <div class="work_bg">
-                                <img src="https://tw-a.kakaopagecdn.com/P/C/148/bg/1x/f485a521-3410-48a7-a3de-793514f1237c.webp"
-                                    alt="">
-                            </div>
-                            <img class="work_pic"
-                                src="https://tw-a.kakaopagecdn.com/P/C/148/c2/2x/06e61fbe-0d6d-4145-9a9f-3723841ac527.webp">
+                            };
 
-                            <div class="title_img">
-                                <img src="https://tw-a.kakaopagecdn.com/P/C/205/t2/2x/8848e3ef-a605-412f-9d37-d544e22af515.png"
-                                    alt="">
-                            </div>
-                        </div>
-                    </template>
+                            foreach (var item in items.WeekComicList)
+                            {
+                                <div class="work">
+                                    <div class="work_bg">
+                                        <img src="https://tw-a.kakaopagecdn.com/P/C/148/bg/1x/f485a521-3410-48a7-a3de-793514f1237c.webp"
+                                 alt="">
+                                    </div>
+                                    <img class="work_pic"
+                             src="https://tw-a.kakaopagecdn.com/P/C/148/c2/2x/06e61fbe-0d6d-4145-9a9f-3723841ac527.webp">
 
+                                    <div class="title_img">
+                                        <img src="https://tw-a.kakaopagecdn.com/P/C/205/t2/2x/8848e3ef-a605-412f-9d37-d544e22af515.png"
+                                 alt="">
+                                    </div>
+                                </div>
+
+                            }
+
+
+                        };
+
+
+                    };
 
                     <template id="blackTemplate">
                         <div class="black">
@@ -126,68 +114,205 @@ tabindex="0" >
                             </div>
                         </div>
                     </template>
-
                 </div>
 
             </div>
             <div class="Tuesday">
                 <h2 id="scrollspyHeading2" class="Tuesday_title">星期二</h2>
                 <div class="content">
+                    <div class="work_long">
+                        <div class="work_long_bg">
+                            <img src="https://tw-a.kakaopagecdn.com/P/C/214/bg/1x/f870dd2e-59a1-4324-bbbe-8419d26f0cf6.webp">
+                        </div>
+                        <video loop="true" autoplay="true" muted="true" class="workV-long ">
+                            <source class="source"
+                                    src="https://tw-a.kakaopagecdn.com/P/C/214/aclip/97caee36-c79a-4ec7-907d-f28cfd975c7c.webm">
+                        </video>
+                        <div class="title_long_img">
+                            <img src="https://tw-a.kakaopagecdn.com/P/C/83/t2/2x/ccced92c-9b74-41be-9a7f-09065168657c.webp">
+                        </div>
+
+                    </div>
+
+                    <div class="work">
+                        <div class="work_bg">
+                            <img src="https://tw-a.kakaopagecdn.com/P/C/148/bg/1x/f485a521-3410-48a7-a3de-793514f1237c.webp"
+                                 alt="">
+                        </div>
+                        <img class="work_pic"
+                             src="https://tw-a.kakaopagecdn.com/P/C/148/c2/2x/06e61fbe-0d6d-4145-9a9f-3723841ac527.webp">
+
+                        <div class="title_img">
+                            <img src="https://tw-a.kakaopagecdn.com/P/C/205/t2/2x/8848e3ef-a605-412f-9d37-d544e22af515.png"
+                                 alt="">
+                        </div>
+                    </div>
 
                 </div>
             </div>
             <div class="Wednesday">
                 <h2 id="scrollspyHeading3" class="Wednesday_title">星期三</h2>
                 <div class="content">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores quod rerum laborum totam quisquam
-                    dolor maiores quibusdam saepe nemo ea? Officiis in iusto debitis quisquam error. Eos dignissimos ea
-                    qui dolorum delectus! Sed culpa nam officia, obcaecati placeat enim sunt adipisci quas, eaque ipsam
-                    quae assumenda earum quo ratione debitis consequuntur cupiditate nemo dolore neque reiciendis quos.
+                    <div class="work_long">
+                        <div class="work_long_bg">
+                            <img src="https://tw-a.kakaopagecdn.com/P/C/214/bg/1x/f870dd2e-59a1-4324-bbbe-8419d26f0cf6.webp">
+                        </div>
+                        <video loop="true" autoplay="true" muted="true" class="workV-long ">
+                            <source class="source"
+                                    src="https://tw-a.kakaopagecdn.com/P/C/214/aclip/97caee36-c79a-4ec7-907d-f28cfd975c7c.webm">
+                        </video>
+                        <div class="title_long_img">
+                            <img src="https://tw-a.kakaopagecdn.com/P/C/83/t2/2x/ccced92c-9b74-41be-9a7f-09065168657c.webp">
+                        </div>
+
+                    </div>
+
+                    <div class="work">
+                        <div class="work_bg">
+                            <img src="https://tw-a.kakaopagecdn.com/P/C/148/bg/1x/f485a521-3410-48a7-a3de-793514f1237c.webp"
+                                 alt="">
+                        </div>
+                        <img class="work_pic"
+                             src="https://tw-a.kakaopagecdn.com/P/C/148/c2/2x/06e61fbe-0d6d-4145-9a9f-3723841ac527.webp">
+
+                        <div class="title_img">
+                            <img src="https://tw-a.kakaopagecdn.com/P/C/205/t2/2x/8848e3ef-a605-412f-9d37-d544e22af515.png"
+                                 alt="">
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <div class="Thursday">
                 <h2 id="scrollspyHeading4" class="Thursday_title">星期四</h2>
                 <div class="content">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores quod rerum laborum totam quisquam
-                    dolor maiores quibusdam saepe nemo ea? Officiis in iusto debitis quisquam error. Eos dignissimos ea
-                    qui dolorum delectus! Sed culpa nam officia, obcaecati placeat enim sunt adipisci quas, eaque ipsam
-                    quae assumenda earum quo ratione debitis consequuntur cupiditate nemo dolore neque reiciendis quos.
+                    <div class="work_long">
+                        <div class="work_long_bg">
+                            <img src="https://tw-a.kakaopagecdn.com/P/C/214/bg/1x/f870dd2e-59a1-4324-bbbe-8419d26f0cf6.webp">
+                        </div>
+                        <video loop="true" autoplay="true" muted="true" class="workV-long ">
+                            <source class="source"
+                                    src="https://tw-a.kakaopagecdn.com/P/C/214/aclip/97caee36-c79a-4ec7-907d-f28cfd975c7c.webm">
+                        </video>
+                        <div class="title_long_img">
+                            <img src="https://tw-a.kakaopagecdn.com/P/C/83/t2/2x/ccced92c-9b74-41be-9a7f-09065168657c.webp">
+                        </div>
+
+                    </div>
+
+                    <div class="work">
+                        <div class="work_bg">
+                            <img src="https://tw-a.kakaopagecdn.com/P/C/148/bg/1x/f485a521-3410-48a7-a3de-793514f1237c.webp"
+                                 alt="">
+                        </div>
+                        <img class="work_pic"
+                             src="https://tw-a.kakaopagecdn.com/P/C/148/c2/2x/06e61fbe-0d6d-4145-9a9f-3723841ac527.webp">
+
+                        <div class="title_img">
+                            <img src="https://tw-a.kakaopagecdn.com/P/C/205/t2/2x/8848e3ef-a605-412f-9d37-d544e22af515.png"
+                                 alt="">
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <div class="Friday">
                 <h2 id="scrollspyHeading5" class="Friday_title">星期五</h2>
                 <div class="content">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores quod rerum laborum totam quisquam
-                    dolor maiores quibusdam saepe nemo ea? Officiis in iusto debitis quisquam error. Eos dignissimos ea
-                    qui dolorum delectus! Sed culpa nam officia, obcaecati placeat enim sunt adipisci quas, eaque ipsam
-                    quae assumenda earum quo ratione debitis consequuntur cupiditate nemo dolore neque reiciendis quos.
+                    <div class="work_long">
+                        <div class="work_long_bg">
+                            <img src="https://tw-a.kakaopagecdn.com/P/C/214/bg/1x/f870dd2e-59a1-4324-bbbe-8419d26f0cf6.webp">
+                        </div>
+                        <video loop="true" autoplay="true" muted="true" class="workV-long ">
+                            <source class="source"
+                                    src="https://tw-a.kakaopagecdn.com/P/C/214/aclip/97caee36-c79a-4ec7-907d-f28cfd975c7c.webm">
+                        </video>
+                        <div class="title_long_img">
+                            <img src="https://tw-a.kakaopagecdn.com/P/C/83/t2/2x/ccced92c-9b74-41be-9a7f-09065168657c.webp">
+                        </div>
+
+                    </div>
+
+                    <div class="work">
+                        <div class="work_bg">
+                            <img src="https://tw-a.kakaopagecdn.com/P/C/148/bg/1x/f485a521-3410-48a7-a3de-793514f1237c.webp"
+                                 alt="">
+                        </div>
+                        <img class="work_pic"
+                             src="https://tw-a.kakaopagecdn.com/P/C/148/c2/2x/06e61fbe-0d6d-4145-9a9f-3723841ac527.webp">
+
+                        <div class="title_img">
+                            <img src="https://tw-a.kakaopagecdn.com/P/C/205/t2/2x/8848e3ef-a605-412f-9d37-d544e22af515.png"
+                                 alt="">
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <div class="Saturday">
                 <h2 id="scrollspyHeading6" class="Saturday_title">星期六</h2>
                 <div class="content">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores quod rerum laborum totam quisquam
-                    dolor maiores quibusdam saepe nemo ea? Officiis in iusto debitis quisquam error. Eos dignissimos ea
-                    qui dolorum delectus! Sed culpa nam officia, obcaecati placeat enim sunt adipisci quas, eaque ipsam
-                    quae assumenda earum quo ratione debitis consequuntur cupiditate nemo dolore neque reiciendis quos.
+                    <div class="work_long">
+                        <div class="work_long_bg">
+                            <img src="https://tw-a.kakaopagecdn.com/P/C/214/bg/1x/f870dd2e-59a1-4324-bbbe-8419d26f0cf6.webp">
+                        </div>
+                        <video loop="true" autoplay="true" muted="true" class="workV-long ">
+                            <source class="source"
+                                    src="https://tw-a.kakaopagecdn.com/P/C/214/aclip/97caee36-c79a-4ec7-907d-f28cfd975c7c.webm">
+                        </video>
+                        <div class="title_long_img">
+                            <img src="https://tw-a.kakaopagecdn.com/P/C/83/t2/2x/ccced92c-9b74-41be-9a7f-09065168657c.webp">
+                        </div>
+
+                    </div>
+
+                    <div class="work">
+                        <div class="work_bg">
+                            <img src="https://tw-a.kakaopagecdn.com/P/C/148/bg/1x/f485a521-3410-48a7-a3de-793514f1237c.webp"
+                                 alt="">
+                        </div>
+                        <img class="work_pic"
+                             src="https://tw-a.kakaopagecdn.com/P/C/148/c2/2x/06e61fbe-0d6d-4145-9a9f-3723841ac527.webp">
+
+                        <div class="title_img">
+                            <img src="https://tw-a.kakaopagecdn.com/P/C/205/t2/2x/8848e3ef-a605-412f-9d37-d544e22af515.png"
+                                 alt="">
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <div class="Sunday">
                 <h2 id="scrollspyHeading7" class="Sunday_title">星期日</h2>
                 <div class="content">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores quod rerum laborum totam quisquam
-                    dolor maiores quibusdam saepe nemo ea? Officiis in iusto debitis quisquam error. Eos dignissimos ea
-                    qui dolorum delectus! Sed culpa nam officia, obcaecati placeat enim sunt adipisci quas, eaque ipsam
-                    quae assumenda earum quo ratione debitis consequuntur cupiditate nemo dolore neque reiciendis quos.
-                </div>
-            </div>
-            <div class="finish">
-                <h2 class="finish_title">完結</h2>
-                <div class="content">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores quod rerum laborum totam quisquam
-                    dolor maiores quibusdam saepe nemo ea? Officiis in iusto debitis quisquam error. Eos dignissimos ea
-                    qui dolorum delectus! Sed culpa nam officia, obcaecati placeat enim sunt adipisci quas, eaque ipsam
-                    quae assumenda earum quo ratione debitis consequuntur cupiditate nemo dolore neque reiciendis quos.
+                    <div class="work_long">
+                        <div class="work_long_bg">
+                            <img src="https://tw-a.kakaopagecdn.com/P/C/214/bg/1x/f870dd2e-59a1-4324-bbbe-8419d26f0cf6.webp">
+                        </div>
+                        <video loop="true" autoplay="true" muted="true" class="workV-long ">
+                            <source class="source"
+                                    src="https://tw-a.kakaopagecdn.com/P/C/214/aclip/97caee36-c79a-4ec7-907d-f28cfd975c7c.webm">
+                        </video>
+                        <div class="title_long_img">
+                            <img src="https://tw-a.kakaopagecdn.com/P/C/83/t2/2x/ccced92c-9b74-41be-9a7f-09065168657c.webp">
+                        </div>
+
+                    </div>
+
+                    <div class="work">
+                        <div class="work_bg">
+                            <img src="https://tw-a.kakaopagecdn.com/P/C/148/bg/1x/f485a521-3410-48a7-a3de-793514f1237c.webp"
+                                 alt="">
+                        </div>
+                        <img class="work_pic"
+                             src="https://tw-a.kakaopagecdn.com/P/C/148/c2/2x/06e61fbe-0d6d-4145-9a9f-3723841ac527.webp">
+
+                        <div class="title_img">
+                            <img src="https://tw-a.kakaopagecdn.com/P/C/205/t2/2x/8848e3ef-a605-412f-9d37-d544e22af515.png"
+                                 alt="">
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
@@ -202,119 +327,58 @@ tabindex="0" >
         crossorigin="anonymous"></script>
 
     <script>
-        let week_content = document.querySelector(".week_content")
-        let nav_new_work = document.querySelector(".nav_new_work")
-        let new_work = document.querySelector(".new_work .content")
+        //let week_content = document.querySelector(".week_content")
         let mon = document.querySelector(".Monday .content")
         let teus = document.querySelector(".Tuesday .content")
-        let workLongTemplate = document.getElementById("workLongTemplate")
-        let workTemplate = document.getElementById("workTemplate")
+        let wednes = document.querySelector(".Wednesday .content")
+        let thurs = document.querySelector(".Thursday .content")
+        let fri = document.querySelector(".Friday .content")
+        let satur = document.querySelector(".Saturday .content")
+        let sun = document.querySelector(".Sunday .content")
+        //let workLongTemplate = document.getElementById("workLongTemplate")
+        //let workTemplate = document.getElementById("workTemplate")
         let blackTemplate = document.getElementById("blackTemplate")
-        // let a_Monday = document.querySelector(".a_Monday")
-        // let a_Tuesday = document.querySelector(".a_Tuesday")
         let Monday_title = document.querySelector(".Monday_title")
         let Tuesday_title = document.querySelector(".Tuesday_title")
 
 
-        // let observer = new IntersectionObserver((entries) => {
-        //     entries.forEach((entry) => {
-        //         console.log(entry.target)
-        //         if (entry.isIntersecting && entry.target == Monday_title) {
-        //             a_Monday.classList.add("text-warning")
-        //             console.log(a_Monday)
-
-        //         }
-        //     })
-        // })
-        // observer.observe(Monday_title)
-        // observer.observe(Tuesday_title)
 
         
 
         window.onload = () => {
 
 
-            mon.append(createCardlong());
-            for (let i = 1; i <= 15; i++) {
-                mon.append(createCard())
-            }
+            //mon.append(createCardlong());
+            //for (let i = 1; i <= 15; i++) {
+            //    mon.append(createCard())
+            //}
             mon.append(createBlack())
 
-            teus.append(createCardlong());
-            for (let i = 1; i <= 30; i++) {
-                teus.append(createCard())
-            }
+            //teus.append(createCardlong());
+            //for (let i = 1; i <= 30; i++) {
+            //    teus.append(createCard())
+            //}
             teus.append(createBlack())
+            wednes.append(createBlack())
+            thurs.append(createBlack())
+            fri.append(createBlack())
+            satur.append(createBlack())
+            sun.append(createBlack())
+
 
             let teus_long = document.querySelector(".Tuesday .work_long");
-            teus_long.setAttribute("style", "grid-column: 2/3;")
+            teus_long.setAttribute("style", "grid-column: 3/4;")
 
-            // a_Monday.addEventListener("click", () => {
-            //     Monday_title.scrollIntoView(true, { behavior: "auto" });
+            let wednes_long = document.querySelector(".Wednesday .work_long");
+            wednes_long.setAttribute("style", "grid-column: 2/3;")
 
-            // })
-            // a_Tuesday.addEventListener("click", () => {
-            //     Tuesday_title.scrollIntoView(true, { behavior: "auto" });
-            // })
+            let fri_long = document.querySelector(".Friday .work_long");
+            fri_long.setAttribute("style", "grid-column: 3/4;")
 
-            nav_new_work.addEventListener("click", () => {
-                createNewWork();
-            })
+            let satur_long = document.querySelector(".Saturday .work_long");
+            satur_long.setAttribute("style", "grid-column: 2/3;")
 
 
-
-        }
-
-
-
-        function createNewWork() {
-            week_content.innerHTML = ""
-
-            let div_new_work = document.createElement("div")
-            div_new_work.setAttribute("Class", "new_work")
-
-            let div_p_pic = document.createElement("div")
-            div_p_pic.setAttribute("Class", "p_pic")
-
-            let div_material = document.createElement("div")
-            div_material.setAttribute("Class", "material")
-
-            let div_date = document.createElement("div")
-            div_date.setAttribute("Class", "date")
-
-            let p_date = document.createElement("p")
-            p_date.innerText = "06.30"
-
-
-
-            let material_img = document.createElement("img")
-            material_img.setAttribute("src", "https://tw-a.kakaopagecdn.com/P/C/205/t2/2x/8848e3ef-a605-412f-9d37-d544e22af515.png")
-
-            let material_p = document.createElement("p")
-            material_p.innerText = "一切都是為了安穩度日 但故事幕後黑手的丈夫 竟遞來無數的糖衣炸彈"
-
-            let material_author = document.createElement("p")
-            material_author = "Furik​, Kim Jiho​, suncy"
-
-
-
-
-            let img_p_pic = document.createElement("img")
-            img_p_pic.setAttribute("src", "https://tw-a.kakaopagecdn.com/P/C/222/c1/2x/463ddb5e-6db5-4489-be34-ded5fa97b005.webp")
-
-            let div_pic = document.createElement("div")
-            div_pic.setAttribute("Class", "pic")
-
-            let img_pic = document.createElement("img")
-            img_pic.setAttribute("src", "https://tw-a.kakaopagecdn.com/P/C/222/bg/2x/cb94f722-5ad2-4633-80be-689ab4655231.webp")
-
-            div_date.appendChild(p_date)
-            div_material.append(div_date, material_img, material_p, material_author)
-
-            div_p_pic.append(div_material, img_p_pic)
-            div_pic.appendChild(img_pic)
-            div_new_work.append(div_p_pic, div_pic)
-            week_content.append(div_new_work)
 
 
 
@@ -323,23 +387,25 @@ tabindex="0" >
 
 
 
-        function createCardlong() {
-            let cloneCard = workLongTemplate.content.cloneNode(true);
-            cloneCard.querySelector("img").src = "https://tw-a.kakaopagecdn.com/P/C/214/bg/1x/f870dd2e-59a1-4324-bbbe-8419d26f0cf6.webp"
-            cloneCard.querySelector("source").src = "https://tw-a.kakaopagecdn.com/P/C/214/aclip/97caee36-c79a-4ec7-907d-f28cfd975c7c.webm"
-            cloneCard.querySelector(".title_long_img").src = "https://tw-a.kakaopagecdn.com/P/C/83/t2/2x/ccced92c-9b74-41be-9a7f-09065168657c.webp";
-            return cloneCard
-        }
 
 
-        function createCard() {
-            let cloneCard = workTemplate.content.cloneNode(true);
-            cloneCard.querySelector("img").src = "https://tw-a.kakaopagecdn.com/P/C/148/bg/1x/f485a521-3410-48a7-a3de-793514f1237c.webp"
-            cloneCard.querySelector(".work_pic").src = "https://tw-a.kakaopagecdn.com/P/C/148/c2/2x/06e61fbe-0d6d-4145-9a9f-3723841ac527.webp"
-            cloneCard.querySelector(".title_img").src = "https://tw-a.kakaopagecdn.com/P/C/205/t2/2x/8848e3ef-a605-412f-9d37-d544e22af515.png";
+        //function createCardlong() {
+        //    let cloneCard = workLongTemplate.content.cloneNode(true);
+        //    cloneCard.querySelector("img").src = "https://tw-a.kakaopagecdn.com/P/C/214/bg/1x/f870dd2e-59a1-4324-bbbe-8419d26f0cf6.webp"
+        //    cloneCard.querySelector("source").src = "https://tw-a.kakaopagecdn.com/P/C/214/aclip/97caee36-c79a-4ec7-907d-f28cfd975c7c.webm"
+        //    cloneCard.querySelector(".title_long_img").src = "https://tw-a.kakaopagecdn.com/P/C/83/t2/2x/ccced92c-9b74-41be-9a7f-09065168657c.webp";
+        //    return cloneCard
+        //}
 
-            return cloneCard
-        }
+
+        //function createCard() {
+        //    let cloneCard = workTemplate.content.cloneNode(true);
+        //    cloneCard.querySelector("img").src = "https://tw-a.kakaopagecdn.com/P/C/148/bg/1x/f485a521-3410-48a7-a3de-793514f1237c.webp"
+        //    cloneCard.querySelector(".work_pic").src = "https://tw-a.kakaopagecdn.com/P/C/148/c2/2x/06e61fbe-0d6d-4145-9a9f-3723841ac527.webp"
+        //    cloneCard.querySelector(".title_img").src = "https://tw-a.kakaopagecdn.com/P/C/205/t2/2x/8848e3ef-a605-412f-9d37-d544e22af515.png";
+
+        //    return cloneCard
+        //}
 
         function createBlack() {
             let cloneblack = blackTemplate.content.cloneNode(true);
@@ -355,4 +421,3 @@ tabindex="0" >
 
 </body>
 
-</html>

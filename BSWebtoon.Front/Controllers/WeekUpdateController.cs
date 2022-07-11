@@ -28,15 +28,24 @@ namespace BSWebtoon.Front.Controllers
                 var weekComicSoruse = new WeekUpdateViewModel
                 {
                     WeekDay = weekUpdate.WeekDay,
-                    WeekComicList = weekUpdate.WeekUpDateList.Select(x => new WeekUpdateViewModel.WeekUpdateData
+                    WeekComicLongList = weekUpdate.WeekUpDateList.Where(c =>c.WeekVideoWrb != null).Select(c => new WeekUpdateViewModel.WeekUpdateDataLing
                     {
-                        ComicId = x.ComicId,
-                        BgCover = x.BgCover,
-                        ComicNameImage = x.ComicNameImage,
-                        ComicStatus = x.ComicStatus,
-                        ComicWeekFigure = x.ComicWeekFigure,
-                        UpdateWeek = x.UpdateWeek,
-                        WeekVideoWrb = x.WeekVideoWrb
+                        ComicId = c.ComicId,
+                        BgCover = c.BgCover,
+                        ComicNameImage = c.ComicNameImage,
+                        ComicStatus = c.ComicStatus,
+                        UpdateWeek = c.UpdateWeek,
+                        WeekVideoWrb = c.WeekVideoWrb
+
+                    }).ToList(),
+                    WeekComicList = weekUpdate.WeekUpDateList.Select(c => new WeekUpdateViewModel.WeekUpdateData
+                    {
+                        ComicId = c.ComicId,
+                        BgCover = c.BgCover,
+                        ComicNameImage = c.ComicNameImage,
+                        ComicStatus = c.ComicStatus,
+                        ComicWeekFigure = c.ComicWeekFigure,
+                        UpdateWeek = c.UpdateWeek
                     }).ToList()
                     
                 };
