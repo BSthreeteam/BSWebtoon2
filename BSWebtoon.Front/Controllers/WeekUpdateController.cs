@@ -2,7 +2,7 @@
 using BSWebtoon.Front.Service.WeekUpdateService;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace BSWebtoon.Front.Controllers
 {
@@ -15,6 +15,32 @@ namespace BSWebtoon.Front.Controllers
             _weekUpdateService = weekUpdateService;
         }
 
+        public IActionResult WeekUpdate()
+        {
+            var weekUpdates = _weekUpdateService.ReadWeekComic();
 
+            foreach (var weekUpdate in weekUpdates)
+            {
+                var result = new WeekUpdateViewModel
+                {
+                    WeekDay = weekUpdate.WeekDay,
+                    //WeekComicList = new WeekUpdateViewModel.WeekUpdateData
+                    //{
+
+                    //}
+
+
+
+
+
+
+
+                };
+
+
+            }
+
+            return View();
+        }
     }
 }

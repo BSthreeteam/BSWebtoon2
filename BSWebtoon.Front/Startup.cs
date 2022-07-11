@@ -48,6 +48,7 @@ namespace BSWebtoon.Front
             services.AddScoped<IComicService, ComicService>();
             services.AddScoped<IMemberService, MemberService>();
             services.AddScoped<IFavoriteService, FavoriteService>();
+            services.AddScoped<IWeekUpdateService, WeekUpdateService>();
             services.AddDbContext<BSWebtoonContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("BSWebtoonContext")));
         }
