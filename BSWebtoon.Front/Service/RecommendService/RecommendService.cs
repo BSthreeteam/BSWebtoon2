@@ -8,7 +8,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using BSWebtoon.Front.Service.RecommendService;
 using System.Linq;
-using BSWebtoon.Front.Models.ViewModel.Activity;
 
 namespace BSWebtoon.Front.Service.RecommendService
 {
@@ -59,23 +58,23 @@ namespace BSWebtoon.Front.Service.RecommendService
 
 
 
-        public IEnumerable<ActivityViewModel> ActivityRead()
-        {
-            foreach (var vr in _repository.GetAll<Activity>())
-            {
-                var data = new ActivityViewModel()
-                {
-                    //ActivityName = _repository.GetAll<Coupon>().First(m => m.ActivityId == vr.ActivityId).ActivityName,
-                    //ActivityId = _repository.GetAll<Coupon>().First(m => m.ActivityId == vr.ActivityId).ActivityName,
-                    ActivityName = vr.ActivityName,
-                    ActivityStartTime = vr.ActivityStartTime,
-                    ActivityEndTime = vr.ActivityEndTime,
-                    CreateTime = vr.CreateTime,
-                    ActivityImage = vr.ActivityImage
-                };
-                yield return data;
-            }
-        }
+
+        //public IEnumerable<ActivityViewModel> ActivityRead()
+        //{
+        //    foreach (var vr in _repository.GetAll<Activity>())
+        //    {
+        //        var data = new ActivityViewModel()
+        //        {
+        //            //ActivityName = _repository.GetAll<Coupon>().First(m => m.ActivityId == vr.ActivityId).ActivityName,
+        //            //ActivityId = _repository.GetAll<Coupon>().First(m => m.ActivityId == vr.ActivityId).ActivityName,
+        //            ActivityName = vr.ActivityName,
+        //            ActivityStartTime = vr.ActivityStartTime,
+        //            ActivityEndTime = vr.ActivityEndTime,
+        //            CreateTime = vr.CreateTime,
+        //        };
+        //        yield return data;
+        //    }
+        //}
 
 
 
