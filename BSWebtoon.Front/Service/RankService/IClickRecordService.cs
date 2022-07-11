@@ -1,5 +1,4 @@
-﻿using BSWebtoon.Front.ViewModel;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace BSWebtoon.Front.Service.RankService
 {

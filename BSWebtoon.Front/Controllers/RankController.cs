@@ -1,5 +1,4 @@
 ﻿using BSWebtoon.Front.Service.RankService;
-using BSWebtoon.Front.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -18,7 +17,7 @@ namespace BSWebtoon.Front.Controllers
 
         public IActionResult Rank() //Rank/Rank 
         {
-           _ClickRecordService.ClickRecordCreate();
+           //_ClickRecordService.ClickRecordCreate();
            //_ClickRecordService.UpdateRank();
             return View();
         }

@@ -6,5 +6,6 @@
         void MemberCreate();
 
         void MemberUpdateData();
+        void LogoutAccount();
     }
 }

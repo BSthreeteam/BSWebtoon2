@@ -40,5 +40,8 @@ namespace BSWebtoon.Front.Controllers
         //    return View(_comic.WordPageRead().ToList());
         //}
 
+        //    return View(_comic.WordPageRead().ToList());
+        //}
+
     }
 }
