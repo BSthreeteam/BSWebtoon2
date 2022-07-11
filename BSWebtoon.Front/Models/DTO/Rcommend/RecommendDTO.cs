@@ -11,6 +11,7 @@
         public string ComicBgCover { get; set; }
         public string ActivityBgColor { get; set; }
         public string BannerVideoWeb { get; set; }
+        public string ComicFigure { get; set; }
         public string ActivityImage { get; set; }
         //public int ComicStatus { get; set; }
 

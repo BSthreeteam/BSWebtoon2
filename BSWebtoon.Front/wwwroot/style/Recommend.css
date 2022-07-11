@@ -3,7 +3,7 @@
     top: 85px;
     left: 0;
     right: 0;
-    z-index: 10;
+    z-index: 9;
     background-color: #000;
     padding: 5px;
 }
@@ -12,6 +12,14 @@
     position: relative;
     top: 130px;
     padding: 10px 0px;
+}
+
+.activity_name{
+    font-weight:900;
+    font-size:50px;
+    text-align:center;
+    height:fit-content;
+    margin-top:auto;
 }
 
 .nav-selected {
@@ -43,8 +51,7 @@
     .txt-part .title-pic {
         width: 100%;
         position: absolute;
-        top:-30%;
-        left:-15%;
+        bottom: 60%;
     }
 
     .txt-part #tag {
@@ -55,8 +62,9 @@
         padding: 2px 5px;
     }
 
-    .txt-part p {
-        margin-top:30%;
+    .txt-part .txt-part-introduction {
+        height:55%;
+        margin-top:auto;
     }
 
 
@@ -98,6 +106,8 @@
     position: absolute;
     z-index: 0;
     width: 100%;
+    transition: all .5s ease-out;
+    /*transform: translateX(0%);*/
 }
 
 .recommend-pic {
@@ -108,6 +118,8 @@
     /*margin-left: auto;*/
     vertical-align: bottom;
     z-index: 2;
+    transition: all 0.5s ease-out;
+    /*transform: translateX(0%);*/
 }
 
 
@@ -138,7 +150,7 @@
 }
 */
 
-.userinfo,
+/*.userinfo,
 .comic {
     margin: auto;
     color: #fff;
@@ -163,3 +175,4 @@
 .detail {
     padding: 200px 0px;
 }
+*/

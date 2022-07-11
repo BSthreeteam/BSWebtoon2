@@ -206,8 +206,8 @@ namespace BSWebtoon.Front.Service.RecommendService
         {
             // 活動 新作 人氣
 
-            // 活動
-            var activityList = _repository.GetAll<Activity>()/*.ToList()*/;
+            // 活動 軟刪除
+            var activityList = _repository.GetAll<Activity>().Where(a => a.IsDelete == false)/*.Where(a => a.ActivityStartTime < DateTime.Now && a.ActivityEndTime > DateTime.Now)*//*.ToList()*/;
 
             //// 確保有影片
             //var filterComics = _repository.GetAll<Comic>().Where(c => c.BannerVideoWeb != "");
@@ -231,20 +231,22 @@ namespace BSWebtoon.Front.Service.RecommendService
 
             List<RecommendDTO> addNewWorkList = newWorkList.Select(c => new RecommendDTO { 
                 RecommendTag = "新作",
-                Introduction = c.Introduction,
+                Introduction = $"{c.Introduction.Substring(0, 50)}...",
                 Name = c.ComicChineseName,
                 NameImage = c.ComicNameImage,
                 ComicBgCover = c.BgCover,
                 BannerVideoWeb = c.BannerVideoWeb,
+                ComicFigure = c.ComicFigure,
             }).ToList();
 
             List<RecommendDTO> addPopularityList = popularityList.Select(c => new RecommendDTO {
                 RecommendTag = "人氣",
-                Introduction = c.Introduction,
+                Introduction = $"{c.Introduction.Substring(0, 50)}...",
                 Name = c.ComicChineseName,
                 NameImage = c.ComicNameImage,
                 ComicBgCover = c.BgCover,
                 BannerVideoWeb = c.BannerVideoWeb,
+                ComicFigure= c.ComicFigure,
             }).ToList();
 
             result.AddRange(addActivityList);

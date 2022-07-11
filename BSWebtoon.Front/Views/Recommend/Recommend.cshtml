@@ -4,10 +4,10 @@
 @{
     ViewData["Title"] = "Recommend";
 }
+
 @section topCss{
 <link rel="stylesheet" href="~/style/Recommend.css" />
 }
-
 <ul class="nav justify-content-center nav-top">
     <li class="nav-item">
         @*<a class="nav-link nav_recommend" href="#">推薦</a>*@
@@ -20,36 +20,57 @@
 </ul>
 
 <div class="container-fluid main-context">
-</div>
-@*<div class="row flex-grow-1 xl_user m-auto">
-</div>
-*@
-<div class="container w-1200">
-    <template id="body-recommend">
-        <a class="work_a" href="#">
-            <div class="row row-recommend w-1200">
-                <div class="txt-part">
-                    <span id="tag">123</span>
-                    <img src="https://picsum.photos/300/100/?random=10" class="title-pic">
-                    <p>上了次數支持，用途宅宅，亞洲效果大多我。</p>
+    <div class="container w-1200">
+        @foreach (var item in Model)
+        {
+            <a class="work_a" href="WorksPage/WorksPage">
+                <div class="row row-recommend w-1200">
+                    <div class="txt-part">
+                        <span id="tag">@item.RecommendTag</span>
+                        @if (@item.NameImage != null)
+                        {
+                            <img src="@item.NameImage" class="title-pic" alt="@item.Name">
+                        }
+                        else
+                        {
+                            <h2 class="activity_name">@item.Name</h2>
+                        }
+                        <div class="txt-part-introduction">
+                            @Html.Raw(@item.Introduction)
+                        </div>
+                    </div>
+                    <div class="transform-part transform-part-public">
+                    </div>
+                    <div class="transform-part2 transform-part-public">
+                    </div>
+                    <div class="pic-part" style="background-color:@item.ActivityBgColor;">
+                        <img src="@item.ComicBgCover" class="recommend-pic-bg" @*alt="@item.Name"*@>
+                        @switch (@item.BannerVideoWeb != string.Empty && @item.BannerVideoWeb != null)
+                        {
+                            case true:
+                                <video src="@item.BannerVideoWeb" class="recommend-pic" autoplay loop></video>
+                                break;
+                            case false:
+                                switch (@item.ComicFigure != null)
+                                {
+                                    case true:
+                                        <img src="@item.ComicFigure" class="recommend-pic">
+                                        break;
+                                    case false:
+                                        <img src="@item.ActivityImage" class="recommend-pic">
+                                        break;
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+                    </div>
                 </div>
-                <div class="transform-part transform-part-public">
-                </div>
-                <div class="transform-part2 transform-part-public">
-                </div>
-                <div class="pic-part">
-                    <img src="https://tw-a.kakaopagecdn.com/P/C/209/bg/2x/2f809479-ecf8-4795-a401-ed8825370af3.webp" class="recommend-pic-bg" alt="">
-                    <video src="https://tw-a.kakaopagecdn.com/P/C/209/c1a/55729505-a52c-470a-a8e0-09c7dab6047c.webm" class="recommend-pic" autoplay loop></video>
-                    <img src="" alt="" class="recommend-pic" style="display:none;">
-                </div>
-            </div>
-        </a>
-    </template>
+            </a>
+        }
+    </div>
 </div>
 
-<!-- <div class="container-fluid main-body"> -->
-<!-- </div> -->
 @section endJS{
-@*<script src="~/json/01.js"></script>*@
 <script src="~/js/Recommend.js"></script>
 }
