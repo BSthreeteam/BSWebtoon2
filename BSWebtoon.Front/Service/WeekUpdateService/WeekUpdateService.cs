@@ -19,8 +19,8 @@ namespace BSWebtoon.Front.Service.WeekUpdateService
         public List<WeekUpDateDTO> ReadWeekComic()
         {
             //var comicorderby = WeekUpDate.GroupBy(c => c.ComicId).ToDictionary(c => c.Key, c => c.Count()).OrderByDescending(c => c.Value)/*.Select(c => c.Key)*/;
-            var comicList = _repository.GetAll<Comic>().Where(c => c.ComicStatus != 1 && c.AuditType == 1).OrderBy(c => c.ComicId);//撇除完結類
             //var comicorderby = comicClickRecords.OrderByDescending(c => c.Value).Select(c => c.Key);
+            var comicList = _repository.GetAll<Comic>().Where(c => c.ComicStatus != 1 && c.AuditType == 1).OrderBy(c => c.ComicId);//撇除完結類
             var clickRecordGroup = _repository.GetAll<ClickRecord>().GroupBy(x => x.ComicId);
 
             var result = new List<WeekUpDateDTO>();
