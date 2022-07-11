@@ -436,7 +436,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656572963/TombRaiderKing/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure   ="https://tw-a.kakaopagecdn.com/P/C/46/c2/2x/4853fbd7-b76b-4438-bac4-0ae54fa25a04.webp"
                            ,ComicWeekFigure =""
                            ,BgColor       ="#575a6f",PublishDate=new DateTime(2021,7,2),LastPublishDate=new DateTime(2021,7,26),FinallyPublishDate= new DateTime(2022,7,20),UpdateWeek=2
                            ,Publisher     ="Polarfox",Painter="Yooani",Author="Will Bright"
@@ -2489,7 +2489,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656572963/TombRaiderKing/4.webp"
                            ,HotBgCover = ""
                            ,ComicFigure   =""
-                           ,ComicWeekFigure =""
+                           ,ComicWeekFigure ="https://tw-a.kakaopagecdn.com/P/C/46/c2/2x/4853fbd7-b76b-4438-bac4-0ae54fa25a04.webp"
                            ,BgColor       ="#575a6f",PublishDate=new DateTime(2021,12,2),LastPublishDate=new DateTime(2021,12,26),FinallyPublishDate= new DateTime(2021,12,20),UpdateWeek=7
                            ,Publisher     ="Polarfox",Painter="Yooani",Author="Will Bright"
                            ,Introduction  ="「不但不是主角，還偏偏是書裡最惡毒的女人...」為了擺脫租屋生活而開始閱讀武俠小說《南宮世家少主》，卻穿越成為了小說裡最惡毒的女人——唐海媛。唐海媛這個天下第一惡女為了得到欽慕的男人，不惜毒殺思慕之人的情人、挑撥武林高手們、成為魔教的走狗並導致武林動盪。「絕不能和原本的故事內容一樣，白白送死!!」偶然吃了萬年參而變成小說世界裡的最強者，武俠小說最強惡女「唐海媛」的重生記!"
@@ -2791,9 +2791,6 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotVideo = "https://res.cloudinary.com/dmns6twmt/video/upload/v1657176900/I%27mLoveBoss/7.webm"
                            ,AuditType     =1,AuditEmployeeId=2,AuditFailReason="NULL",AuditTime=new DateTime(2021,12,2),ComicStatus=3},
 
-                
-                
-
 
             };
             foreach (var c in comics)
@@ -2848,9 +2845,12 @@ namespace BSWebtoon.Front.Service.ComicService
 
         public void ComicTagListUpdate()
         {
-            var updateTagList = _repository.GetAll<ComicTagList>().Where(x => x.TageListId == 2).FirstOrDefault();
-            updateTagList.ComicId = 2;
-            _repository.Update(updateTagList);
+            //var updateTagList = _repository.GetAll<ComicTagList>().Where(x => x.TageListId == 2).FirstOrDefault();
+            var updateComic = _repository.GetAll<Comic>().Where(x => x.ComicId == 84).FirstOrDefault();
+            //updateTagList.ComicId = 2;
+            updateComic.ComicWeekFigure="https://tw-a.kakaopagecdn.com/P/C/46/c2/2x/4853fbd7-b76b-4438-bac4-0ae54fa25a04.webp";
+            //_repository.Update(updateTagList);
+            _repository.Update(updateComic);
             _repository.SaveChange();
 
         }
@@ -5280,6 +5280,7 @@ namespace BSWebtoon.Front.Service.ComicService
             //    };
             //}
         }
+
         public void EpUpdate()
         {
             var p1 = _repository.GetAll<Episode>().Where(x => x.EpId == 1).FirstOrDefault();

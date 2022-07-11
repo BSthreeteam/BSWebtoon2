@@ -1,0 +1,136 @@
+﻿@model BSWebtoon.Front.Models.ViewModels.Rank.RankViewModel_ClickRecord
+
+@section topCss{
+<link rel="stylesheet" href="~/style/RankListstyle.css" />
+}
+
+<div class="container p-0">
+    <div class="box">
+        <a href="#" class="number-one">
+            <div class="rank_pic">
+            <img src="https://tw-a.kakaopagecdn.com/P/C/261/bg/2x/b62f3f9d-d3b1-4dc5-a521-5c1350ed0558.jpg"
+            alt="背景" class="rank_pic_bg">
+            <img src="https://tw-a.kakaopagecdn.com/P/C/261/c1/2x/a1608d93-8b88-48fc-a5fd-6871f5fba606.webp"
+            alt="我們能成為一家人嗎?" class="rank_pic_people">
+            </div>
+            <div class="rank_text">
+            <span class="tag">新作</span>
+            <img src="https://tw-a.kakaopagecdn.com/P/C/261/t1/2x/97d6ffa2-e908-4424-8eda-5e9020c4879c.webp"
+            alt="標題" class="rank_pic_title">
+            <p>每次重生都被「家人」拋棄並死亡最後機會不再渴望親情，誓言展開報復</p>
+            <div class="rank_bgdiv">
+            <span class="rank rank_num">1</span>
+            <span class="rank rank_icon">-</span>
+            </div>
+            </div>
+         </a>
+            @foreach (var item in Model.OtherRank)
+            {
+                <a href="#" class="numbers">
+                    <div class="rank_pic">
+
+                        @*<img src="https://tw-a.kakaopagecdn.com/P/C/270/bg/1x/e6f07925-f715-4ec6-a2ad-c50b2b86d0a9.jpg"
+                            alt="背景" class="rank_pic_bg">*@
+
+                        <img src="@item.BgCover" alt="背景" class="rank_pic_bg">
+                        <img src="@item.ComicFigure"
+                         alt="@item.ComicName" class="rank_pic_people">
+                    </div>
+
+                    <div class="rank_text">
+                            <div class="rank_bgdiv">
+                                <span class="rank rank_num">@item.ClickRecordId</span>
+                                <span class="rank rank_icon">@item.Diff</span>
+                            </div>
+                        <div class="box-title">
+                            <img src="@item.ComicNameImage"
+                             alt="標題" class="rank_pic_title">
+                            <span class="tag">新作</span>
+                        </div>
+                    </div>
+                </a>
+           
+        }
+        @*<a href="#" class="numbers">
+            <div class="rank_pic">
+            <img src="https://tw-a.kakaopagecdn.com/P/C/270/bg/1x/e6f07925-f715-4ec6-a2ad-c50b2b86d0a9.jpg"
+            alt="背景" class="rank_pic_bg">
+            <img src="https://tw-a.kakaopagecdn.com/P/C/270/c2/2x/4122cbca-b90c-4100-b30d-21af44f41106.png"
+            alt="圖林的莉莉安" class="rank_pic_people">
+            </div>
+            <div class="rank_text">
+            <div class="rank_bgdiv">
+            <span class="rank rank_num">1</span>
+            <span class="rank rank_icon"><span class="up_icon">▲</span>2</span>
+            </div>
+            <div class="box-title">
+            <img src="https://tw-a.kakaopagecdn.com/P/C/270/t2/2x/79dde0a6-c4af-450f-8655-1435f661d974.png"
+            alt="標題" class="rank_pic_title">
+            <span class="tag">新作</span>
+            <span class="tag">新作</span>
+            <span class="tag">新作</span>
+            </div>
+            </div>
+            </a>
+            <a href="#" class="numbers">
+            <div class="rank_pic">
+            <img src="https://tw-a.kakaopagecdn.com/P/C/270/bg/1x/e6f07925-f715-4ec6-a2ad-c50b2b86d0a9.jpg"
+            alt="背景" class="rank_pic_bg">
+            <img src="https://tw-a.kakaopagecdn.com/P/C/270/c2/2x/4122cbca-b90c-4100-b30d-21af44f41106.png"
+            alt="圖林的莉莉安" class="rank_pic_people">
+            </div>
+            <div class="rank_text">
+            <div class="rank_bgdiv">
+            <span class="rank rank_num">1</span>
+            <span class="rank rank_icon">-</span>
+            </div>
+            <div class="box-title">
+            <img src="https://tw-a.kakaopagecdn.com/P/C/270/t2/2x/79dde0a6-c4af-450f-8655-1435f661d974.png"
+            alt="標題" class="rank_pic_title">
+            <span class="tag">新作</span>
+            <span class="tag">新作</span>
+            </div>
+            </div>
+            </a>
+            <a href="#" class="numbers">
+            <div class="rank_pic">
+            <img src="https://tw-a.kakaopagecdn.com/P/C/270/bg/1x/e6f07925-f715-4ec6-a2ad-c50b2b86d0a9.jpg"
+            alt="背景" class="rank_pic_bg">
+            <img src="https://tw-a.kakaopagecdn.com/P/C/270/c2/2x/4122cbca-b90c-4100-b30d-21af44f41106.png"
+            alt="圖林的莉莉安" class="rank_pic_people">
+            </div>
+            <div class="rank_text">
+            <div class="rank_bgdiv">
+            <span class="rank rank_num">1</span>
+            <span class="rank rank_icon"><span class="down_icon">▼</span>2</span>
+            </div>
+            <div class="box-title">
+            <img src="https://tw-a.kakaopagecdn.com/P/C/270/t2/2x/79dde0a6-c4af-450f-8655-1435f661d974.png"
+            alt="標題" class="rank_pic_title">
+            <span class="tag">新作</span>
+            <span class="tag">新作</span>
+            </div>
+            </div>
+            </a>
+            <a href="#" class="numbers">
+            <div class="rank_pic">
+            <img src="https://tw-a.kakaopagecdn.com/P/C/270/bg/1x/e6f07925-f715-4ec6-a2ad-c50b2b86d0a9.jpg"
+            alt="背景" class="rank_pic_bg">
+            <img src="https://tw-a.kakaopagecdn.com/P/C/270/c2/2x/4122cbca-b90c-4100-b30d-21af44f41106.png"
+            alt="圖林的莉莉安" class="rank_pic_people">
+            </div>
+            <div class="rank_text">
+            <div class="rank_bgdiv">
+            <span class="rank rank_num">1</span>
+            <span class="rank rank_icon">-</span>
+            </div>
+            <div class="box-title">
+            <img src="https://tw-a.kakaopagecdn.com/P/C/270/t2/2x/79dde0a6-c4af-450f-8655-1435f661d974.png"
+            alt="標題" class="rank_pic_title">
+            <span class="tag">新作</span>
+            <span class="tag">新作</span>
+            </div>
+            </div>
+            </a>*@
+    </div>
+</div>

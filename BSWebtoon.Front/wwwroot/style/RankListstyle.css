@@ -1,0 +1,238 @@
+body {
+    background-color: #000;
+}
+
+.navbar {
+    position: relative;
+    top: 100px;
+    left: 0;
+    background-color: #000;
+    max-width: 1140px;
+    margin: auto;
+}
+
+.nav-link {
+    background-color: #000;
+    color: #fff;
+}
+
+    .nav-link:hover {
+        background-color: #fff;
+        border-radius: 50%;
+        color: #000;
+    }
+
+.container {
+    margin: auto;
+    margin-top: 100px;
+}
+
+.box {
+    max-width: 1200px;
+    width: 100%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+}
+
+.number-one {
+    color: #fff;
+    width: 100%;
+    height: fit-content;
+    position: relative;
+    grid-row: 1/2;
+    grid-column: 1/4;
+    overflow: hidden;
+}
+
+    .number-one:hover,
+    .numbers:hover {
+        color: #fff;
+    }
+
+    .number-one .rank_pic {
+        position: relative;
+        text-align: center;
+    }
+
+    .number-one .rank_pic_bg {
+        position: absolute;
+        z-index: -1;
+        width: 100%;
+        left: 0;
+        right: 0;
+    }
+
+    .number-one .rank_pic_people,
+    .numbers .rank_pic_people,
+    .numbers .rank_pic_title {
+        width: 100%;
+    }
+
+    .number-one .rank_pic_title {
+        width: 50%;
+    }
+
+    .number-one .rank_text {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 30px 10px 0px;
+        box-sizing: border-box;
+        background: linear-gradient(to top, #000, transparent);
+        z-index: 1;
+        font-size: 15px;
+    }
+
+    .number-one .tag {
+        position: absolute;
+        top: 0;
+        background-color: #f00;
+        padding: 0px 5px;
+        border-radius: 20px;
+        font-weight: 600;
+    }
+
+    .number-one p {
+        position: relative;
+        margin-top: 10px;
+        width: 50%;
+    }
+
+    .number-one .rank_bgdiv {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        font-size: 60px;
+        font-weight: 900;
+        background-color: #f00;
+        border-radius: 20px;
+        margin: 20px 50px;
+        height: 30px;
+    }
+
+    .number-one .rank_icon {
+        position: relative;
+        top: -150%;
+        margin-left: 70px;
+        margin-right: 10px;
+        font-size: 30px;
+    }
+
+    .number-one .rank_num {
+        position: absolute;
+        bottom: -50%;
+    }
+
+.numbers {
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    width: 100%;
+    height: fit-content;
+}
+
+    .numbers .rank_pic_bg {
+        position: absolute;
+        z-index: -1;
+    }
+
+    .numbers .rank_text {
+        text-align: center;
+    }
+
+    .numbers .box-title {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to top, #000, transparent);
+    }
+
+    .numbers .rank {
+        margin-left: 10px;
+    }
+
+    .numbers .rank_icon {
+        margin-left: 30px;
+        margin-right: 10px;
+        font-size: 15px;
+    }
+
+    .numbers .up_icon, .down_icon {
+        font-size: 10px;
+        color: #f00;
+    }
+
+    .numbers .down_icon {
+        color: #0af;
+    }
+
+    .numbers .rank_bgdiv {
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 20px;
+        font-size: 20px;
+        font-weight: 900;
+        background-color: #000;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+    }
+
+    .numbers .tag {
+        display: inline-block;
+        background-color: #f00;
+        padding: 0px 5px;
+        border-radius: 20px;
+        font-weight: 600;
+        margin: 10px 0px;
+    }
+
+@media screen and (min-width:768px) {
+    .navbar {
+        position: relative;
+        top: 100px;
+        left: 0;
+        background-color: #000;
+        max-width: 768px;
+        margin: auto;
+    }
+
+    .box {
+        width: 100%;
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .number-one {
+        position: relative;
+        grid-row: 1/2;
+        grid-column: 1/5;
+    }
+
+        .number-one .rank_pic_people {
+            width: fit-content;
+        }
+
+        .number-one .rank_pic_title {
+            width: fit-content;
+        }
+
+        .number-one p {
+            font-size: 20px;
+        }
+
+        .number-one .tag {
+            top: -5%;
+        }
+
+        .number-one .rank_text {
+            padding: 10px 20px;
+        }
+}
+

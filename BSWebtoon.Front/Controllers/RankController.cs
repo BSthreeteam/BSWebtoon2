@@ -19,16 +19,17 @@ namespace BSWebtoon.Front.Controllers
         public IActionResult Rank() //Rank/Rank 
         {
            _ClickRecordService.ClickRecordCreate();
+          
            //_ClickRecordService.UpdateRank();
             return View();
         }
 
-        public IActionResult RankShowList() //Rank/RankShowList 
+        public IActionResult RankList() //Rank/RankList 
         {
             var rank =_ClickRecordService.ReadAllRank();
-            var firstRank = rank.First();
             var restult = new RankViewModel_ClickRecord
             {
+                
                 //FirstRank = new RankViewModel_ClickRecord.ClickRecordRank
                 //{
                 //    ClickRecordId = firstRank.ClickRecordId,
@@ -40,21 +41,23 @@ namespace BSWebtoon.Front.Controllers
                 //    BannerVideoWeb = firstRank.BannerVideoWeb
                 //},
                 OtherRank = rank.Skip(1).Take(99).Select(other => new RankViewModel_ClickRecord.ClickRecordRank
-                {
+                {                    
                     ClickRecordId = other.ClickRecordId,
                     ComicName = other.ComicName,
                     ComicNameImage = other.ComicNameImage,
-                    ComicFigure = other.ComicFigure,
+                    ComicFigure = other.ComicWeekFigure,
                     BgCover = other.BgCover,
                     Introduction = other.Introduction,
                     BannerVideoWeb = other.BannerVideoWeb,
-                    Diff=other.Diff
+                    Diff = other.Diff
                 }).ToList()
 
             };
-            
+
             return View(restult);
         }
+
+
 
     }
 }

@@ -23,10 +23,10 @@ namespace BSWebtoon.Front.Controllers
         }
         public IActionResult AddComicTagView() //Comic/AddComicTagView
         {
-            _ComicService.ComicTagCreate();
-            _ComicService.ComicCreate();
-            _ComicService.ComicTagListCreate();
-            //_ComicService.ComicTagListUpdate();
+            //_ComicService.ComicTagCreate();
+            //_ComicService.ComicCreate();
+            //_ComicService.ComicTagListCreate();
+            _ComicService.ComicTagListUpdate();
             return View();
         }
         public IActionResult AddEpView() //Comic/AddEpView

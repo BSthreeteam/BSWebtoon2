@@ -6,6 +6,7 @@ namespace BSWebtoon.Front.Service.RankService
     public interface IClickRecordService
     {
         void ClickRecordCreate();
+        
         //void UpdateRank();
 
         List<AllTagRankDTO> ReadAllRank();

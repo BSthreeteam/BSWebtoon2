@@ -51,23 +51,27 @@ namespace BSWebtoon.Front.Service.RankService
         }
 
 
-        public List<AllTagRankDTO> ReadAllRank()    
+        public List<AllTagRankDTO>  ReadAllRank()
         {
+
             var oldClickRecords = _repository.GetAll<ClickRecord>()
                 .Where(c => c.CreateTime < new DateTime(2022, 8, 4).AddDays(-7) && c.CreateTime >= new DateTime(2022, 8, 4).AddDays(-14));
-            
-            var oldGroupBy = oldClickRecords.GroupBy(c => c.ComicId).OrderByDescending(c => c.Count(gp => gp.ComicId == c.Key)).ThenBy(c => c.Key).Select(c => c.Key);
+
+            var oldGroupBy = oldClickRecords
+                .GroupBy(c => c.ComicId)
+                .OrderByDescending(c => c.Count(gp => gp.ComicId == c.Key))
+                .ThenBy(c => c.Key).Select(c => c.Key);
 
             var newClickRecords = _repository.GetAll<ClickRecord>()
                 .Where(c => c.CreateTime < new DateTime(2022, 8, 4) && c.CreateTime >= new DateTime(2022, 8, 4).AddDays(-7));
+
+            var newGroupBy = newClickRecords
+                .GroupBy(c => c.ComicId)
+                .OrderByDescending(c => c.Count(gp => gp.ComicId == c.Key))
+                .ThenBy(c => c.Key).Select(c => c.Key);
+
+            var newrank = _repository.GetAll<Comic>().Where(n => newGroupBy.Any(nc => nc == n.ComicId) && n.AuditType == 1).ToList();//.Select(n => n.ComicId);
             
-            var newGroupBy= newClickRecords.GroupBy(c => c.ComicId).OrderByDescending(c => c.Count(gp => gp.ComicId == c.Key)).ThenBy(c => c.Key).Select(c => c.Key);
-
-            var newrank = _repository.GetAll<Comic>().Where(n => newGroupBy.Any(nc=>nc==n.ComicId) && n.AuditType==1).ToList();//.Select(n => n.ComicId);
-
-            var tagListSource = _repository.GetAll<ComicTagList>().Where(ts => newrank.Any(nc => nc.ComicId == ts.ComicId)).ToList();
-
-            var mainTag = _repository.GetAll<ComicTag>().Where(x => tagListSource.Any(y => y.TagId == x.TagId)).First(x => x.IsMainTag);
 
             List<int> oldSource = new List<int>();
             List<int> newSource = new List<int>();
@@ -79,15 +83,15 @@ namespace BSWebtoon.Front.Service.RankService
 
             var result = newrank.Select(comicrank => new AllTagRankDTO
             {
+                
                 ComicId = comicrank.ComicId,
                 ComicName = comicrank.ComicChineseName,
                 ComicNameImage = comicrank.ComicNameImage,
-                ComicFigure = comicrank.ComicFigure,
+                ComicWeekFigure = comicrank.ComicWeekFigure,
                 BgCover = comicrank.BgCover,
                 Introduction = comicrank.Introduction,
                 BannerVideoWeb = comicrank.BannerVideoWeb,
-                TagName= mainTag.TagName,
-                Diff = oldSource.IndexOf(comicrank.ComicId) == -1 ? 0 : oldSource.IndexOf(comicrank.ComicId)+1 - newSource.IndexOf(comicrank.ComicId)+1
+                Diff = oldSource.IndexOf(comicrank.ComicId) == -1 ? 0 : oldSource.IndexOf(comicrank.ComicId) + 1 - newSource.IndexOf(comicrank.ComicId) + 1
             }).ToList();
             return result;
 
@@ -95,6 +99,21 @@ namespace BSWebtoon.Front.Service.RankService
 
 
 
+             //TagName= mainTag.TagName,
+            //原本在74行
+            //foreach(var aaa in newrank)
+            //{
+            //    var tagListSource = _repository.GetAll<ComicTagList>().Where(t => t.ComicId == aaa.ComicId);
+
+            //};
+            //var bbb = tagListSource.ToList();
+
+            //var tagListSource = _repository.GetAll<ComicTagList>().Where(t => newrank.Any(nc => nc.ComicId == t.ComicId)).Select(t => t.TagId).ToList();
+
+            //var mainTag = _repository.GetAll<ComicTag>().Where(x => tagListSource.Any(y => y == x.TagId)).First(x => x.IsMainTag);
+
+            //var tagListSource = _repository.GetAll<ComicTagList>().Where(t => t.ComicId == newrank.Select(n => n.ComicId)))/*.Select(t => t.TagId).ToList();
+            //var mainTag = _repository.GetAll<ComicTag>().Where(x => tagListSource.Any(y => y.TagId == x.TagId)).First(x => x.IsMainTag);
 
 
 
@@ -151,12 +170,12 @@ namespace BSWebtoon.Front.Service.RankService
 
         public List<CategoryTagRank> ReadOtherTagRank()
         {
-            var  allRank = ReadAllRank();
+            var allRank = ReadAllRank();
 
-            var result = allRank.GroupBy(m => m.TagName).Select(m=> new CategoryTagRank
+            var result = allRank.GroupBy(m => m.TagName).Select(m => new CategoryTagRank
             {
-                CategoryTagName=m.Key,
-                CategoryRankList=m.ToList()
+                CategoryTagName = m.Key,
+                CategoryRankList = m.ToList()
             }).ToList();
             return result;
 
