@@ -54,6 +54,7 @@ namespace BSWebtoon.Front
             services.AddScoped<IFavoriteService, FavoriteService>();
             services.AddHttpContextAccessor();
 
+            services.AddScoped<IWeekUpdateService, WeekUpdateService>();
             services.AddDbContext<BSWebtoonContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("BSWebtoonContext")));
             //第三方登入(yu)

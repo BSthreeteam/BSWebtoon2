@@ -1,10 +1,14 @@
-﻿//using BSWebtoon.Front.Models.DTO.WeekUpData;
+﻿using BSWebtoon.Front.Models.DTO.WeekUpData;
+using BSWebtoon.Front.Models.DTO.WeekUpDate;
 using System.Collections.Generic;
 
 namespace BSWebtoon.Front.Service.WeekUpdateService
 {
     public interface IWeekUpdateService
     {
-        //public List<WeekUpDateDTO> ReadComic();
+        public List<WeekUpDateDTO> ReadWeekComic();
+
+        public List<NewComicDTO> ReadNewComic();
+        public List<FinishComicDTO> ReadFinishComic();
     }
 }
