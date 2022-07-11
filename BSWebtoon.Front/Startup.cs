@@ -45,7 +45,7 @@ namespace BSWebtoon.Front
             services.AddScoped<IRechargeService, RechargeService>();
             services.AddScoped<ICouponService, CouponService>();
             services.AddScoped<IClickRecordService, ClickRecordService>();
-            services.AddScoped<IWeekUpdateService, WeekUpdateService>();
+            //services.AddScoped<IWeekUpdateService, WeekUpdateService>();
             services.AddScoped<FavoriteService, FavoriteService>();
             services.AddScoped<ClickRecordService, ClickRecordService>();
             //services.AddDbContext<BSWeBtoonContext, BSWeBtoonContext>();
@@ -86,7 +86,14 @@ namespace BSWebtoon.Front
                      options.ClientId = Configuration[$"Authentication:{provider}:ClientId"];
                      options.ClientSecret = Configuration[$"Authentication:{provider}:ClientSecret"];
 
-                 }); 
+                 })
+                .AddLine(options =>
+                {
+                    var provider = "Line";
+                    options.ClientId = Configuration[$"Authentication:{provider}:ClientId"];
+                    options.ClientSecret = Configuration[$"Authentication:{provider}:ClientSecret"];
+
+                }); 
                 }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
