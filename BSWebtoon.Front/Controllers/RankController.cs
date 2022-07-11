@@ -29,7 +29,7 @@ namespace BSWebtoon.Front.Controllers
             var rank =_ClickRecordService.ReadAllRank();
             var restult = new RankViewModel_ClickRecord
             {
-                
+
                 //FirstRank = new RankViewModel_ClickRecord.ClickRecordRank
                 //{
                 //    ClickRecordId = firstRank.ClickRecordId,
