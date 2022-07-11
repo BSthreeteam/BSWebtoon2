@@ -79,8 +79,15 @@ namespace BSWebtoon.Front
                     var provider = "FB";
                     options.AppId = Configuration[$"Authentication:{provider}:ClientId"];
                     options.AppSecret = Configuration[$"Authentication:{provider}:ClientSecret"];
-                });
-        }
+                })
+                .AddGoogle(options =>
+                 {
+                     var provider = "Google";
+                     options.ClientId = Configuration[$"Authentication:{provider}:ClientId"];
+                     options.ClientSecret = Configuration[$"Authentication:{provider}:ClientSecret"];
+
+                 }); 
+                }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
