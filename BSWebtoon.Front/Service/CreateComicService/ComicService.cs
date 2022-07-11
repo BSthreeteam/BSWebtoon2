@@ -102,13 +102,13 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,AuditType     =1,AuditEmployeeId=1,AuditFailReason="NULL",AuditTime=new DateTime(2021,6,28),ComicStatus=1},
 
                 //星期一有影片
-                new Comic {ComicChineseName="留級玩家",ComicEnglishName="Recording Hall"
+                new Comic {ComicChineseName="留級玩家",ComicEnglishName="ThePlayerWhoCan'tLevelUp"
                            ,ComicNameImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1656607506/ThePlayerWhoCan%27tLevelUp/5.png"
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656581295/ThePlayerWhoCan%27tLevelUp/4.webp"
                            ,HotBgCover = ""
                            ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656580998/ThePlayerWhoCan%27tLevelUp/2.webp"
-                           ,ComicWeekFigure =""
+                           ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1657520006/ThePlayerWhoCan%27tLevelUp/9.webp"
                            ,BgColor       ="#351f29",PublishDate=new DateTime(2021,6,28),LastPublishDate=new DateTime(2021,7,22),FinallyPublishDate=new DateTime(2022,7,18),UpdateWeek=1
                            ,Publisher     ="DAON STUDIO",Painter="binu",Author="Siya"
                            ,Introduction  ="因為穿越進自己寫的小說，我成了欺負男主角的繼姐!別擔心，我一定會讓你變得幸福。因為這本小說的作者就是我!「我從來都沒把姐姐當成是我的家人。」雖然我覺得自己很認真在實踐讓男主角幸福的計畫，但為什麼他沒把我當成家人看呢?在他成為公爵前，我真的能順利活下來嗎?"
@@ -437,7 +437,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656572963/TombRaiderKing/4.webp"
                            ,HotBgCover = ""
                            ,ComicFigure   =""
-                           ,ComicWeekFigure =""
+                           ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1657520466/TombRaiderKing/9.webp"
                            ,BgColor       ="#575a6f",PublishDate=new DateTime(2021,7,2),LastPublishDate=new DateTime(2021,7,26),FinallyPublishDate= new DateTime(2022,7,20),UpdateWeek=2
                            ,Publisher     ="Polarfox",Painter="Yooani",Author="Will Bright"
                            ,Introduction  ="「不但不是主角，還偏偏是書裡最惡毒的女人...」為了擺脫租屋生活而開始閱讀武俠小說《南宮世家少主》，卻穿越成為了小說裡最惡毒的女人——唐海媛。唐海媛這個天下第一惡女為了得到欽慕的男人，不惜毒殺思慕之人的情人、挑撥武林高手們、成為魔教的走狗並導致武林動盪。「絕不能和原本的故事內容一樣，白白送死!!」偶然吃了萬年參而變成小說世界裡的最強者，武俠小說最強惡女「唐海媛」的重生記!"
@@ -1050,7 +1050,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656581295/ThePlayerWhoCan%27tLevelUp/4.webp"
                            ,HotBgCover = ""
                            ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656580998/ThePlayerWhoCan%27tLevelUp/2.webp"
-                           ,ComicWeekFigure =""
+                           ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1657520006/ThePlayerWhoCan%27tLevelUp/9.webp"
                            ,BgColor       ="#351f29",PublishDate=new DateTime(2021,8,2),LastPublishDate=new DateTime(2021,8,26),FinallyPublishDate= new DateTime(2021,8,20),UpdateWeek=3
                            ,Publisher     ="DAON STUDIO",Painter="binu",Author="Siya"
                            ,Introduction  ="因為穿越進自己寫的小說，我成了欺負男主角的繼姐!別擔心，我一定會讓你變得幸福。因為這本小說的作者就是我!「我從來都沒把姐姐當成是我的家人。」雖然我覺得自己很認真在實踐讓男主角幸福的計畫，但為什麼他沒把我當成家人看呢?在他成為公爵前，我真的能順利活下來嗎?"
@@ -1371,7 +1371,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656572963/TombRaiderKing/4.webp"
                            ,HotBgCover = ""
                            ,ComicFigure   =""
-                           ,ComicWeekFigure =""
+                           ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1657520466/TombRaiderKing/9.webp"
                            ,BgColor       ="#575a6f",PublishDate=new DateTime(2021,9,2),LastPublishDate=new DateTime(2021,9,26),FinallyPublishDate= new DateTime(2021,9,20),UpdateWeek=4
                            ,Publisher     ="Polarfox",Painter="Yooani",Author="Will Bright"
                            ,Introduction  ="「不但不是主角，還偏偏是書裡最惡毒的女人...」為了擺脫租屋生活而開始閱讀武俠小說《南宮世家少主》，卻穿越成為了小說裡最惡毒的女人——唐海媛。唐海媛這個天下第一惡女為了得到欽慕的男人，不惜毒殺思慕之人的情人、挑撥武林高手們、成為魔教的走狗並導致武林動盪。「絕不能和原本的故事內容一樣，白白送死!!」偶然吃了萬年參而變成小說世界裡的最強者，武俠小說最強惡女「唐海媛」的重生記!"
@@ -1545,7 +1545,7 @@ namespace BSWebtoon.Front.Service.ComicService
 
 
                 //星期列表與作品頁
-                //星期五
+                //星期五(星期一)
                 new Comic {
 
                             ComicChineseName="再次我的生活",ComicEnglishName="AgainMyLife"
@@ -1598,14 +1598,14 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotVideo = ""
                            ,AuditType     =1,AuditEmployeeId=1,AuditFailReason="NULL",AuditTime=new DateTime(2021,10,28),ComicStatus=1},
 
-                //星期五有影片
+                //星期五有影片(星期一)
                 new Comic {ComicChineseName="留級玩家",ComicEnglishName="Recording Hall"
                            ,ComicNameImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1656607506/ThePlayerWhoCan%27tLevelUp/5.png"
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656581295/ThePlayerWhoCan%27tLevelUp/4.webp"
                            ,HotBgCover = ""
                            ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656580998/ThePlayerWhoCan%27tLevelUp/2.webp"
-                           ,ComicWeekFigure =""
+                           ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1657520006/ThePlayerWhoCan%27tLevelUp/9.webp"
                            ,BgColor       ="#351f29",PublishDate=new DateTime(2021,10,28),LastPublishDate=new DateTime(2022,11,14),FinallyPublishDate=new DateTime(2022,11,10),UpdateWeek=5
                            ,Publisher     ="DAON STUDIO",Painter="binu",Author="Siya"
                            ,Introduction  ="因為穿越進自己寫的小說，我成了欺負男主角的繼姐!別擔心，我一定會讓你變得幸福。因為這本小說的作者就是我!「我從來都沒把姐姐當成是我的家人。」雖然我覺得自己很認真在實踐讓男主角幸福的計畫，但為什麼他沒把我當成家人看呢?在他成為公爵前，我真的能順利活下來嗎?"
@@ -1930,7 +1930,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656572963/TombRaiderKing/4.webp"
                            ,HotBgCover = ""
                            ,ComicFigure   =""
-                           ,ComicWeekFigure =""
+                           ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1657520466/TombRaiderKing/9.webp"
                            ,BgColor       ="#575a6f",PublishDate=new DateTime(2021,11,2),LastPublishDate=new DateTime(2021,11,26),FinallyPublishDate= new DateTime(2022,11,20),UpdateWeek=6
                            ,Publisher     ="Polarfox",Painter="Yooani",Author="Will Bright"
                            ,Introduction  ="「不但不是主角，還偏偏是書裡最惡毒的女人...」為了擺脫租屋生活而開始閱讀武俠小說《南宮世家少主》，卻穿越成為了小說裡最惡毒的女人——唐海媛。唐海媛這個天下第一惡女為了得到欽慕的男人，不惜毒殺思慕之人的情人、挑撥武林高手們、成為魔教的走狗並導致武林動盪。「絕不能和原本的故事內容一樣，白白送死!!」偶然吃了萬年參而變成小說世界裡的最強者，武俠小說最強惡女「唐海媛」的重生記!"
@@ -2489,7 +2489,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656572963/TombRaiderKing/4.webp"
                            ,HotBgCover = ""
                            ,ComicFigure   =""
-                           ,ComicWeekFigure =""
+                           ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1657520466/TombRaiderKing/9.webp"
                            ,BgColor       ="#575a6f",PublishDate=new DateTime(2021,12,2),LastPublishDate=new DateTime(2021,12,26),FinallyPublishDate= new DateTime(2021,12,20),UpdateWeek=7
                            ,Publisher     ="Polarfox",Painter="Yooani",Author="Will Bright"
                            ,Introduction  ="「不但不是主角，還偏偏是書裡最惡毒的女人...」為了擺脫租屋生活而開始閱讀武俠小說《南宮世家少主》，卻穿越成為了小說裡最惡毒的女人——唐海媛。唐海媛這個天下第一惡女為了得到欽慕的男人，不惜毒殺思慕之人的情人、挑撥武林高手們、成為魔教的走狗並導致武林動盪。「絕不能和原本的故事內容一樣，白白送死!!」偶然吃了萬年參而變成小說世界裡的最強者，武俠小說最強惡女「唐海媛」的重生記!"
@@ -4882,30 +4882,30 @@ namespace BSWebtoon.Front.Service.ComicService
 
 
                  ///////160
-                new Episode(){ ComicId = 159, EpTitle = "第1話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599552/TombRaiderKing/EP01.jpg", UpdateTime=new DateTime(2021,05,05),UploadTime=new DateTime(2021,04,20),AuditTypeId=1,AuditEmployeeId=1,AuditTime=new DateTime(2021,05,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
-                new Episode(){ ComicId = 159, EpTitle = "第2話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599661/TombRaiderKing/EP02.jpg", UpdateTime=new DateTime(2021,06,05),UploadTime=new DateTime(2021,05,01),AuditTypeId=1,AuditEmployeeId=6,AuditTime=new DateTime(2021,06,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
-                new Episode(){ ComicId = 159, EpTitle = "第3話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599713/TombRaiderKing/EP03.jpg", UpdateTime=new DateTime(2021,07,05),UploadTime=new DateTime(2021,06,01),AuditTypeId=1,AuditEmployeeId=2,AuditTime=new DateTime(2021,07,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
-                new Episode(){ ComicId = 159, EpTitle = "第4話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599753/TombRaiderKing/EP04.jpg", UpdateTime=new DateTime(2021,08,05),UploadTime=new DateTime(2021,07,01),AuditTypeId=1,AuditEmployeeId=10,AuditTime=new DateTime(2021,08,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-                new Episode(){ ComicId = 159, EpTitle = "第5話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599785/TombRaiderKing/EP05.jpg", UpdateTime=new DateTime(2021,09,05),UploadTime=new DateTime(2021,08,01),AuditTypeId=1,AuditEmployeeId=13,AuditTime=new DateTime(2021,09,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-                new Episode(){ ComicId = 159, EpTitle = "第6話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599819/TombRaiderKing/EP06.jpg", UpdateTime=new DateTime(2021,10,05),UploadTime=new DateTime(2021,09,01),AuditTypeId=1,AuditEmployeeId=11,AuditTime=new DateTime(2021,10,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-                new Episode(){ ComicId = 159, EpTitle = "第7話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599847/TombRaiderKing/EP07.jpg", UpdateTime=new DateTime(2021,11,05),UploadTime=new DateTime(2021,10,01),AuditTypeId=1,AuditEmployeeId=19,AuditTime=new DateTime(2021,11,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-                new Episode(){ ComicId = 159, EpTitle = "第8話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599877/TombRaiderKing/EP08.jpg", UpdateTime=new DateTime(2021,12,05),UploadTime=new DateTime(2021,11,01),AuditTypeId=1,AuditEmployeeId=11,AuditTime=new DateTime(2022,12,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-                new Episode(){ ComicId = 159, EpTitle = "第9話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599936/TombRaiderKing/EP09.jpg", UpdateTime=new DateTime(2022,01,05),UploadTime=new DateTime(2021,12,01),AuditTypeId=1,AuditEmployeeId=3,AuditTime=new DateTime(2022,01,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-                new Episode(){ ComicId = 159, EpTitle = "第10話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599964/TombRaiderKing/EP10.jpg", UpdateTime=new DateTime(2022,02,05),UploadTime=new DateTime(2022,01,01),AuditTypeId=1,AuditEmployeeId=5,AuditTime=new DateTime(2022,02,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
+                new Episode(){ ComicId = 160, EpTitle = "第1話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599552/TombRaiderKing/EP01.jpg", UpdateTime=new DateTime(2021,05,05),UploadTime=new DateTime(2021,04,20),AuditTypeId=1,AuditEmployeeId=1,AuditTime=new DateTime(2021,05,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
+                new Episode(){ ComicId = 160, EpTitle = "第2話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599661/TombRaiderKing/EP02.jpg", UpdateTime=new DateTime(2021,06,05),UploadTime=new DateTime(2021,05,01),AuditTypeId=1,AuditEmployeeId=6,AuditTime=new DateTime(2021,06,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
+                new Episode(){ ComicId = 160, EpTitle = "第3話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599713/TombRaiderKing/EP03.jpg", UpdateTime=new DateTime(2021,07,05),UploadTime=new DateTime(2021,06,01),AuditTypeId=1,AuditEmployeeId=2,AuditTime=new DateTime(2021,07,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
+                new Episode(){ ComicId = 160, EpTitle = "第4話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599753/TombRaiderKing/EP04.jpg", UpdateTime=new DateTime(2021,08,05),UploadTime=new DateTime(2021,07,01),AuditTypeId=1,AuditEmployeeId=10,AuditTime=new DateTime(2021,08,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
+                new Episode(){ ComicId = 160, EpTitle = "第5話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599785/TombRaiderKing/EP05.jpg", UpdateTime=new DateTime(2021,09,05),UploadTime=new DateTime(2021,08,01),AuditTypeId=1,AuditEmployeeId=13,AuditTime=new DateTime(2021,09,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
+                new Episode(){ ComicId = 160, EpTitle = "第6話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599819/TombRaiderKing/EP06.jpg", UpdateTime=new DateTime(2021,10,05),UploadTime=new DateTime(2021,09,01),AuditTypeId=1,AuditEmployeeId=11,AuditTime=new DateTime(2021,10,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
+                new Episode(){ ComicId = 160, EpTitle = "第7話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599847/TombRaiderKing/EP07.jpg", UpdateTime=new DateTime(2021,11,05),UploadTime=new DateTime(2021,10,01),AuditTypeId=1,AuditEmployeeId=19,AuditTime=new DateTime(2021,11,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
+                new Episode(){ ComicId = 160, EpTitle = "第8話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599877/TombRaiderKing/EP08.jpg", UpdateTime=new DateTime(2021,12,05),UploadTime=new DateTime(2021,11,01),AuditTypeId=1,AuditEmployeeId=11,AuditTime=new DateTime(2022,12,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
+                new Episode(){ ComicId = 160, EpTitle = "第9話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599936/TombRaiderKing/EP09.jpg", UpdateTime=new DateTime(2022,01,05),UploadTime=new DateTime(2021,12,01),AuditTypeId=1,AuditEmployeeId=3,AuditTime=new DateTime(2022,01,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
+                new Episode(){ ComicId = 160, EpTitle = "第10話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599964/TombRaiderKing/EP10.jpg", UpdateTime=new DateTime(2022,02,05),UploadTime=new DateTime(2022,01,01),AuditTypeId=1,AuditEmployeeId=5,AuditTime=new DateTime(2022,02,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
 
 
                 
                  ///////161
-                new Episode(){ ComicId = 159, EpTitle = "第1話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599552/TombRaiderKing/EP01.jpg", UpdateTime=new DateTime(2021,05,05),UploadTime=new DateTime(2021,04,20),AuditTypeId=1,AuditEmployeeId=1,AuditTime=new DateTime(2021,05,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
-                new Episode(){ ComicId = 159, EpTitle = "第2話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599661/TombRaiderKing/EP02.jpg", UpdateTime=new DateTime(2021,06,05),UploadTime=new DateTime(2021,05,01),AuditTypeId=1,AuditEmployeeId=6,AuditTime=new DateTime(2021,06,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
-                new Episode(){ ComicId = 159, EpTitle = "第3話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599713/TombRaiderKing/EP03.jpg", UpdateTime=new DateTime(2021,07,05),UploadTime=new DateTime(2021,06,01),AuditTypeId=1,AuditEmployeeId=2,AuditTime=new DateTime(2021,07,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
-                new Episode(){ ComicId = 159, EpTitle = "第4話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599753/TombRaiderKing/EP04.jpg", UpdateTime=new DateTime(2021,08,05),UploadTime=new DateTime(2021,07,01),AuditTypeId=1,AuditEmployeeId=10,AuditTime=new DateTime(2021,08,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-                new Episode(){ ComicId = 159, EpTitle = "第5話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599785/TombRaiderKing/EP05.jpg", UpdateTime=new DateTime(2021,09,05),UploadTime=new DateTime(2021,08,01),AuditTypeId=1,AuditEmployeeId=13,AuditTime=new DateTime(2021,09,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-                new Episode(){ ComicId = 159, EpTitle = "第6話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599819/TombRaiderKing/EP06.jpg", UpdateTime=new DateTime(2021,10,05),UploadTime=new DateTime(2021,09,01),AuditTypeId=1,AuditEmployeeId=11,AuditTime=new DateTime(2021,10,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-                new Episode(){ ComicId = 159, EpTitle = "第7話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599847/TombRaiderKing/EP07.jpg", UpdateTime=new DateTime(2021,11,05),UploadTime=new DateTime(2021,10,01),AuditTypeId=1,AuditEmployeeId=19,AuditTime=new DateTime(2021,11,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-                new Episode(){ ComicId = 159, EpTitle = "第8話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599877/TombRaiderKing/EP08.jpg", UpdateTime=new DateTime(2021,12,05),UploadTime=new DateTime(2021,11,01),AuditTypeId=1,AuditEmployeeId=11,AuditTime=new DateTime(2022,12,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-                new Episode(){ ComicId = 159, EpTitle = "第9話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599936/TombRaiderKing/EP09.jpg", UpdateTime=new DateTime(2022,01,05),UploadTime=new DateTime(2021,12,01),AuditTypeId=1,AuditEmployeeId=3,AuditTime=new DateTime(2022,01,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-                new Episode(){ ComicId = 159, EpTitle = "第10話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599964/TombRaiderKing/EP10.jpg", UpdateTime=new DateTime(2022,02,05),UploadTime=new DateTime(2022,01,01),AuditTypeId=1,AuditEmployeeId=5,AuditTime=new DateTime(2022,02,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
+                new Episode(){ ComicId = 161, EpTitle = "第1話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599552/TombRaiderKing/EP01.jpg", UpdateTime=new DateTime(2021,05,05),UploadTime=new DateTime(2021,04,20),AuditTypeId=1,AuditEmployeeId=1,AuditTime=new DateTime(2021,05,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
+                new Episode(){ ComicId = 161, EpTitle = "第2話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599661/TombRaiderKing/EP02.jpg", UpdateTime=new DateTime(2021,06,05),UploadTime=new DateTime(2021,05,01),AuditTypeId=1,AuditEmployeeId=6,AuditTime=new DateTime(2021,06,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
+                new Episode(){ ComicId = 161, EpTitle = "第3話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599713/TombRaiderKing/EP03.jpg", UpdateTime=new DateTime(2021,07,05),UploadTime=new DateTime(2021,06,01),AuditTypeId=1,AuditEmployeeId=2,AuditTime=new DateTime(2021,07,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
+                new Episode(){ ComicId = 161, EpTitle = "第4話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599753/TombRaiderKing/EP04.jpg", UpdateTime=new DateTime(2021,08,05),UploadTime=new DateTime(2021,07,01),AuditTypeId=1,AuditEmployeeId=10,AuditTime=new DateTime(2021,08,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
+                new Episode(){ ComicId = 161, EpTitle = "第5話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599785/TombRaiderKing/EP05.jpg", UpdateTime=new DateTime(2021,09,05),UploadTime=new DateTime(2021,08,01),AuditTypeId=1,AuditEmployeeId=13,AuditTime=new DateTime(2021,09,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
+                new Episode(){ ComicId = 161, EpTitle = "第6話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599819/TombRaiderKing/EP06.jpg", UpdateTime=new DateTime(2021,10,05),UploadTime=new DateTime(2021,09,01),AuditTypeId=1,AuditEmployeeId=11,AuditTime=new DateTime(2021,10,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
+                new Episode(){ ComicId = 161, EpTitle = "第7話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599847/TombRaiderKing/EP07.jpg", UpdateTime=new DateTime(2021,11,05),UploadTime=new DateTime(2021,10,01),AuditTypeId=1,AuditEmployeeId=19,AuditTime=new DateTime(2021,11,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
+                new Episode(){ ComicId = 161, EpTitle = "第8話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599877/TombRaiderKing/EP08.jpg", UpdateTime=new DateTime(2021,12,05),UploadTime=new DateTime(2021,11,01),AuditTypeId=1,AuditEmployeeId=11,AuditTime=new DateTime(2022,12,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
+                new Episode(){ ComicId = 161, EpTitle = "第9話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599936/TombRaiderKing/EP09.jpg", UpdateTime=new DateTime(2022,01,05),UploadTime=new DateTime(2021,12,01),AuditTypeId=1,AuditEmployeeId=3,AuditTime=new DateTime(2022,01,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
+                new Episode(){ ComicId = 161, EpTitle = "第10話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599964/TombRaiderKing/EP10.jpg", UpdateTime=new DateTime(2022,02,05),UploadTime=new DateTime(2022,01,01),AuditTypeId=1,AuditEmployeeId=5,AuditTime=new DateTime(2022,02,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
 
 
 

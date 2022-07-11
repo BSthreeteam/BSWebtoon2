@@ -66,5 +66,16 @@ namespace BSWebtoon.Front.Service.FavoriteService
                        BgColor = comic.BgColor
                    };
         }
+
+
+
+        public void FavoriteDelete()
+        {
+            var p2 = _repository.GetAll<Favorite>().Where(f => f.MemberId == 1).FirstOrDefault();
+            _repository.Delete(p2);
+            _repository.SaveChange();
+        }
+
+
     }
 }
