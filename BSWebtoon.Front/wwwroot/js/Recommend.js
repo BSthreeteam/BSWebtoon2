@@ -1,61 +1,61 @@
 
-let xl_user = document.querySelector(".xl_user");
-let md_user = document.querySelector(".md_user");
-let useraccount = document.querySelector("#useraccount");
-let xl_screen = document.querySelector("#xl_screen");
-let md_screen = document.querySelector("#md_screen");
-let my_comic = document.querySelector("#my_comic")
-let md_accountinfo = document.querySelector(".md_accountinfo");
-let md_my_comic = document.querySelector(".md_my_comic")
-let xl_accountinfo = document.querySelector(".xl_accountinfo");
-let xl_my_comic = document.querySelector(".xl_my_comic");
-let sub_nav = document.querySelector('.sub-nav')
-let main_nav = document.querySelector('.main-nav')
-let xl_customer_service = document.querySelector('.xl_customer_service')
+//let xl_user = document.querySelector(".xl_user");
+//let md_user = document.querySelector(".md_user");
+//let useraccount = document.querySelector("#useraccount");
+//let xl_screen = document.querySelector("#xl_screen");
+//let md_screen = document.querySelector("#md_screen");
+//let my_comic = document.querySelector("#my_comic")
+//let md_accountinfo = document.querySelector(".md_accountinfo");
+//let md_my_comic = document.querySelector(".md_my_comic")
+//let xl_accountinfo = document.querySelector(".xl_accountinfo");
+//let xl_my_comic = document.querySelector(".xl_my_comic");
+//let sub_nav = document.querySelector('.sub-nav')
+//let main_nav = document.querySelector('.main-nav')
+//let xl_customer_service = document.querySelector('.xl_customer_service')
 
  //changescreen();
 window.onload = function () {
-    HomeReady();
-    getcloneContent();
-    xl_user.style.display = "none";
-    xl_accountinfo.addEventListener("click", () => {
-        xl_user.innerText = "";
-        main_nav.style.display = "none";
-        sub_nav.style.display = "none";
-        main_body.style.display = "none";
-        xl_user.style.display = "block";
-        xl_user.appendChild(getcloneContent());
+    //HomeReady();
+//    getcloneContent();
+//    xl_user.style.display = "none";
+//    xl_accountinfo.addEventListener("click", () => {
+//        xl_user.innerText = "";
+//        main_nav.style.display = "none";
+//        sub_nav.style.display = "none";
+//        main_body.style.display = "none";
+//        xl_user.style.display = "block";
+//        xl_user.appendChild(getcloneContent());
 
-    })
+//    })
 
-    xl_my_comic.addEventListener("click", () => {
-        xl_user.innerText = "";
-        main_nav.style.display = "none";
-        sub_nav.style.display = "none";
-        main_body.style.display = "none";
-        xl_user.style.display = "block";
-        xl_user.appendChild(getclonecomic())
-    })
-    xl_customer_service.addEventListener("click", () => {
-        xl_user.innerText = "";
-        main_nav.style.display = "none";
-        sub_nav.style.display = "none";
-        main_body.style.display = "none";
-        xl_user.style.display = "block";
-        let terms = document.querySelector("#terms").content.cloneNode(true);
-        xl_user.appendChild(terms)
-    })
+//    xl_my_comic.addEventListener("click", () => {
+//        xl_user.innerText = "";
+//        main_nav.style.display = "none";
+//        sub_nav.style.display = "none";
+//        main_body.style.display = "none";
+//        xl_user.style.display = "block";
+//        xl_user.appendChild(getclonecomic())
+//    })
+//    xl_customer_service.addEventListener("click", () => {
+//        xl_user.innerText = "";
+//        main_nav.style.display = "none";
+//        sub_nav.style.display = "none";
+//        main_body.style.display = "none";
+//        xl_user.style.display = "block";
+//        let terms = document.querySelector("#terms").content.cloneNode(true);
+//        xl_user.appendChild(terms)
+//    })
 }
 
-function getcloneContent() {
-    cloneContent = useraccount.content.cloneNode(true);
-    return cloneContent;
-}
+//function getcloneContent() {
+//    cloneContent = useraccount.content.cloneNode(true);
+//    return cloneContent;
+//}
 
-function getclonecomic() {
-    let clonecomic = my_comic.content.cloneNode(true);
-    return clonecomic;
-}
+//function getclonecomic() {
+//    let clonecomic = my_comic.content.cloneNode(true);
+//    return clonecomic;
+//}
 
 //let login = document.getElementById('login');
 //let user = document.getElementById('user');
@@ -88,23 +88,23 @@ let main_context = document.querySelector('.main-context')
 
 let nav_recommend = document.querySelector('.nav_recommend');
 nav_recommend.addEventListener('click', () => {
-    HomeReady();
+    //HomeReady();
 })
 
-let nav_hot = document.querySelector('.nav_hot');
-nav_hot.addEventListener('click', () => {
-    nav_hot.classList.remove('text-white')
-    nav_hot.classList.add('nav-selected')
-    nav_hot.classList.add('text-black')
-    nav_recommend.classList.remove('nav-selected')
-    nav_recommend.classList.add('text-white')
-    main_context.innerHTML = "";
-    HotArray.forEach((data, index) => {
-        data.cardArray.forEach(card => {
-            main_context.appendChild(getHotClone(card.videoName, card.videoTitleURL, card.videoBgURL, card.videoURL));
-        })
-    })
-})
+//let nav_hot = document.querySelector('.nav_hot');
+//nav_hot.addEventListener('click', () => {
+//    nav_hot.classList.remove('text-white')
+//    nav_hot.classList.add('nav-selected')
+//    nav_hot.classList.add('text-black')
+//    nav_recommend.classList.remove('nav-selected')
+//    nav_recommend.classList.add('text-white')
+//    main_context.innerHTML = "";
+//    HotArray.forEach((data, index) => {
+//        data.cardArray.forEach(card => {
+//            main_context.appendChild(getHotClone(card.videoName, card.videoTitleURL, card.videoBgURL, card.videoURL));
+//        })
+//    })
+//})
 
 //function getNavClone(text, index) {
 //    let clone = subNavTemplate.content.cloneNode(true);
@@ -114,19 +114,19 @@ nav_hot.addEventListener('click', () => {
 //    return clone;
 //}
 
-function HomeReady() {
-    nav_recommend.classList.remove('text-white')
-    nav_recommend.classList.add('nav-selected')
-    nav_recommend.classList.add('text-black')
-    nav_hot.classList.remove('nav-selected')
-    nav_hot.classList.add('text-white')
-    main_context.innerHTML = "";
-    RecommendArray.forEach((data, index) => {
-        data.cardArray.forEach(card => {
-            main_context.appendChild(getRecommendcarClone(card.title, card.text, card.tag, card.mainPicURL, card.bgPicURL));
-        })
-    })
-}
+//function HomeReady() {
+//    nav_recommend.classList.remove('text-white')
+//    nav_recommend.classList.add('nav-selected')
+//    nav_recommend.classList.add('text-black')
+//    //nav_hot.classList.remove('nav-selected')
+//    //nav_hot.classList.add('text-white')
+//    main_context.innerHTML = "";
+//    RecommendArray.forEach((data, index) => {
+//        data.cardArray.forEach(card => {
+//            main_context.appendChild(getRecommendcarClone(card.title, card.text, card.tag, card.mainPicURL, card.bgPicURL));
+//        })
+//    })
+//}
 
 function getRecommendcarClone(titlePicURL, text, tag, mainPicURL, bgPicURL) {
     let cloneCard = body_recommendTemplate.content.cloneNode(true);
@@ -136,7 +136,7 @@ function getRecommendcarClone(titlePicURL, text, tag, mainPicURL, bgPicURL) {
     let clone_a = cloneCard.querySelector('.work_a')
     let clone_mainPicURL = cloneCard.querySelector('.recommend-pic')
     let clone_bgPicURL = cloneCard.querySelector('.recommend-pic-bg')
-    clone_titlePicURL.src = "https://picsum.photos/300/100/?random=10";
+    clone_titlePicURL.src = "https://tw-a.kakaopagecdn.com/P/C/209/t2/2x/f4a048a2-6be1-43f2-9136-94acb88c0283.png";
     clone_text.innerHTML = text;
     clone_tag.innerHTML = tag;
     clone_mainPicURL.src = mainPicURL;
@@ -166,14 +166,14 @@ function getRecommendcarClone(titlePicURL, text, tag, mainPicURL, bgPicURL) {
     return cloneCard;
 }
 
-function getHotClone(alt, videoTitleURL, videoBgURL, videoURL) {
-    let cloneCard = body_hotTemplate.content.cloneNode(true);
-    let clone_video_title = cloneCard.querySelector('.video-title')
-    let clone_video_bg = cloneCard.querySelector('.video-bg')
-    let clone_video = cloneCard.querySelector('video')
-    clone_video_title.src = videoTitleURL;
-    clone_video_title.alt = alt;
-    clone_video_bg.src = videoBgURL;
-    clone_video.src = videoURL;
-    return cloneCard;
-}
+//function getHotClone(alt, videoTitleURL, videoBgURL, videoURL) {
+//    let cloneCard = body_hotTemplate.content.cloneNode(true);
+//    let clone_video_title = cloneCard.querySelector('.video-title')
+//    let clone_video_bg = cloneCard.querySelector('.video-bg')
+//    let clone_video = cloneCard.querySelector('video')
+//    clone_video_title.src = videoTitleURL;
+//    clone_video_title.alt = alt;
+//    clone_video_bg.src = videoBgURL;
+//    clone_video.src = videoURL;
+//    return cloneCard;
+//}

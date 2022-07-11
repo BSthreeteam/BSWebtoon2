@@ -25,13 +25,21 @@ namespace BSWebtoon.Front.Controllers
 
         public IActionResult Recommend()
         {
-            return View();
+
+            var recommendSource = _recommendservice.ReadRecommend();
+            return View(recommendSource);
+        }
+        public IActionResult HitWork()
+        {
+
+            var hitWorkSource =  _recommendservice.ReadHitWork();
+            return View(hitWorkSource);
         }
 
         public IActionResult AddActivityView() //Recommend/AddActivityView
         {
 
-            //_recommendservice.ActivityCreate();
+            _recommendservice.ActivityCreate();
             return View();
         }
         //public async Task<IActionResult> ReadActivity() //Recommend/ReadActivity
