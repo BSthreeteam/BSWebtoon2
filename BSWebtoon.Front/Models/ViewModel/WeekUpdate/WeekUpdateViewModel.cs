@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
-namespace BSWebtoon.Front.Models.ViewModels.WeekUpdate
+namespace BSWebtoon.Front.Models.ViewModel.WeekUpdate
 {
     public class WeekUpdateViewModel
     {

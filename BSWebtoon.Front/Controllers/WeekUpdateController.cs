@@ -1,9 +1,8 @@
-﻿using BSWebtoon.Front.Models.ViewModels.WeekUpdate;
+﻿using BSWebtoon.Front.Models.ViewModel.WeekUpdate;
 using BSWebtoon.Front.Service.WeekUpdateService;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
-using static BSWebtoon.Front.Models.ViewModels.WeekUpdate.WeekUpdateViewModel;
 
 namespace BSWebtoon.Front.Controllers
 {
@@ -24,11 +23,11 @@ namespace BSWebtoon.Front.Controllers
             var result = new List<WeekUpdateViewModel>();
             foreach (var weekUpdate in weekUpdates)
             {
-
+                ;
                 var weekComicSoruse = new WeekUpdateViewModel
                 {
                     WeekDay = weekUpdate.WeekDay,
-                    WeekComicLongList = weekUpdate.WeekUpDateList.Where(c =>c.WeekVideoWrb != null).Select(c => new WeekUpdateViewModel.WeekUpdateDataLing
+                    WeekComicLongList = weekUpdate.WeekUpDateList.Where(c =>c.WeekVideoWrb != string.Empty).Select(c => new WeekUpdateViewModel.WeekUpdateDataLing
                     {
                         ComicId = c.ComicId,
                         BgCover = c.BgCover,
@@ -38,7 +37,7 @@ namespace BSWebtoon.Front.Controllers
                         WeekVideoWrb = c.WeekVideoWrb
 
                     }).ToList(),
-                    WeekComicList = weekUpdate.WeekUpDateList.Select(c => new WeekUpdateViewModel.WeekUpdateData
+                    WeekComicList = weekUpdate.WeekUpDateList.Where(c => c.WeekVideoWrb == string.Empty).Select(c => new WeekUpdateViewModel.WeekUpdateData
                     {
                         ComicId = c.ComicId,
                         BgCover = c.BgCover,

@@ -1,5 +1,4 @@
-﻿using BSWebtoon.Front.Models.DTO.WeekUpData;
-using BSWebtoon.Front.Models.DTO.WeekUpDate;
+﻿using BSWebtoon.Front.Models.DTO.WeekUpDate;
 using BSWebtoon.Model.Models;
 using BSWebtoon.Model.Repository;
 using System.Collections.Generic;

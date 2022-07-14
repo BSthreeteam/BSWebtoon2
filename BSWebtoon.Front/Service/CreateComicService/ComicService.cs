@@ -620,7 +620,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656999287/ShortLivedDaughterInLaw%27sEscapePlan/4.jpg"
                            ,HotBgCover = ""
                            ,ComicFigure   =""
-                           ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/video/upload/v1656999028/ShortLivedDaughterInLaw%27sEscapePlan/1.webm"
+                           ,ComicWeekFigure ="https://tw-a.kakaopagecdn.com/P/C/259/c2/2x/c7a664a5-700b-4977-8cd3-88ef9ddaed0b.webp"
                            ,BgColor       ="#3a6052",PublishDate=new DateTime(2021,7,2),LastPublishDate=new DateTime(2021,7,26),FinallyPublishDate= new DateTime(2021,7,13),UpdateWeek=2
                            ,Publisher     ="Yeondam",Painter="BASAK",Author="Yunajin"
                            ,Introduction  ="為什麼偏偏穿越到這種小說裡啊?!我就是小說中那位父母留下繁重債務後就死於事故，並且還注定在成年時便因病身亡的可憐少女——拉莉亞。這部小說的幕後黑手依卡勒德公爵為了欺瞞那些牽制自己的勢力，將我帶回家當他媳婦。我還是在偷偷存錢之後，找機會逃跑吧!可是治病的方法找到了、逃跑的資金也準備充足了...我的丈夫卻不知為何對我超執著?!他不是對誰都毫無感情的冷血之人嗎?而且我不是公公手上用完就丟的牌嗎?他為什麼會突然想救活我?!"
@@ -1188,7 +1188,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656999287/ShortLivedDaughterInLaw%27sEscapePlan/4.jpg"
                            ,HotBgCover = ""
                            ,ComicFigure   =""
-                           ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/video/upload/v1656999028/ShortLivedDaughterInLaw%27sEscapePlan/1.webm"
+                           ,ComicWeekFigure ="https://tw-a.kakaopagecdn.com/P/C/259/c2/2x/c7a664a5-700b-4977-8cd3-88ef9ddaed0b.webp"
                            ,BgColor       ="#3a6052",PublishDate=new DateTime(2021,9,2),LastPublishDate=new DateTime(2021,9,26),FinallyPublishDate= new DateTime(2021,9,20),UpdateWeek=4
                            ,Publisher     ="Yeondam",Painter="BASAK",Author="Yunajin"
                            ,Introduction  ="為什麼偏偏穿越到這種小說裡啊?!我就是小說中那位父母留下繁重債務後就死於事故，並且還注定在成年時便因病身亡的可憐少女——拉莉亞。這部小說的幕後黑手依卡勒德公爵為了欺瞞那些牽制自己的勢力，將我帶回家當他媳婦。我還是在偷偷存錢之後，找機會逃跑吧!可是治病的方法找到了、逃跑的資金也準備充足了...我的丈夫卻不知為何對我超執著?!他不是對誰都毫無感情的冷血之人嗎?而且我不是公公手上用完就丟的牌嗎?他為什麼會突然想救活我?!"
@@ -2113,7 +2113,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656999287/ShortLivedDaughterInLaw%27sEscapePlan/4.jpg"
                            ,HotBgCover = ""
                            ,ComicFigure   =""
-                           ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/video/upload/v1656999028/ShortLivedDaughterInLaw%27sEscapePlan/1.webm"
+                           ,ComicWeekFigure ="https://tw-a.kakaopagecdn.com/P/C/259/c2/2x/c7a664a5-700b-4977-8cd3-88ef9ddaed0b.webp"
                            ,BgColor       ="#3a6052",PublishDate=new DateTime(2021,11,2),LastPublishDate=new DateTime(2021,11,26),FinallyPublishDate= new DateTime(2022,11,20),UpdateWeek=6
                            ,Publisher     ="Yeondam",Painter="BASAK",Author="Yunajin"
                            ,Introduction  ="為什麼偏偏穿越到這種小說裡啊?!我就是小說中那位父母留下繁重債務後就死於事故，並且還注定在成年時便因病身亡的可憐少女——拉莉亞。這部小說的幕後黑手依卡勒德公爵為了欺瞞那些牽制自己的勢力，將我帶回家當他媳婦。我還是在偷偷存錢之後，找機會逃跑吧!可是治病的方法找到了、逃跑的資金也準備充足了...我的丈夫卻不知為何對我超執著?!他不是對誰都毫無感情的冷血之人嗎?而且我不是公公手上用完就丟的牌嗎?他為什麼會突然想救活我?!"

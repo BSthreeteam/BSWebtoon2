@@ -1,4 +1,6 @@
-﻿namespace BSWebtoon.Front.Models.DTO.WeekUpDate
+﻿using System.Collections.Generic;
+
+namespace BSWebtoon.Front.Models.DTO.WeekUpDate
 {
     public class FinishComicDTO
     {
