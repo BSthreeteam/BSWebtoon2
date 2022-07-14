@@ -5,7 +5,7 @@ namespace BSWebtoon.Front.Models.ViewModels.Rank
 {
     public class RankViewModel_ClickRecord
     {
-        //public ClickRecordRank FirstRank { get; set; } 
+       public ClickRecordRank FirstRank { get; set; } 
         public List<ClickRecordRank> OtherRank { get; set; } 
         
         public class ClickRecordRank

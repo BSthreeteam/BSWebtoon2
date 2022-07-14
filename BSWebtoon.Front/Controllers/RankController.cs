@@ -1,4 +1,5 @@
-﻿using BSWebtoon.Front.Models.ViewModels.Rank;
+﻿using BSWebtoon.Front.Models.DTO.Rank;
+using BSWebtoon.Front.Models.ViewModels.Rank;
 using BSWebtoon.Front.Service.RankService;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -26,22 +27,27 @@ namespace BSWebtoon.Front.Controllers
 
         public IActionResult RankList() //Rank/RankList 
         {
-            var rank =_ClickRecordService.ReadAllRank();
-            var restult = new RankViewModel_ClickRecord
-            {
+            
 
-                //FirstRank = new RankViewModel_ClickRecord.ClickRecordRank
-                //{
-                //    ClickRecordId = firstRank.ClickRecordId,
-                //    ComicName = firstRank.ComicName,
-                //    ComicNameImage = firstRank.ComicNameImage,
-                //    ComicFigure = firstRank.ComicFigure,
-                //    BgCover = firstRank.BgCover,
-                //    Introduction = firstRank.Introduction,
-                //    BannerVideoWeb = firstRank.BannerVideoWeb
-                //},
+
+            var rank= _ClickRecordService.ReadOtherTagRank();
+            var firstComic = rank.First();
+            var restult2 = new RankViewModel_ClickRecord
+            {
+                FirstRank = new RankViewModel_ClickRecord.ClickRecordRank
+                {
+                    TagName = firstComic.TagName,
+                    ClickRecordId = firstComic.ClickRecordId,
+                    ComicName = firstComic.ComicName,
+                    ComicNameImage = firstComic.ComicNameImage,
+                    ComicFigure = firstComic.ComicWeekFigure,
+                    BgCover = firstComic.BgCover,
+                    Introduction = firstComic.Introduction,
+                    BannerVideoWeb = firstComic.BannerVideoWeb
+                },
                 OtherRank = rank.Skip(1).Take(99).Select(other => new RankViewModel_ClickRecord.ClickRecordRank
-                {                    
+                {
+                    TagName = other.TagName,
                     ClickRecordId = other.ClickRecordId,
                     ComicName = other.ComicName,
                     ComicNameImage = other.ComicNameImage,
@@ -52,9 +58,11 @@ namespace BSWebtoon.Front.Controllers
                     Diff = other.Diff
                 }).ToList()
 
+
             };
 
-            return View(restult);
+            return View(restult2);
+
         }
 
 

@@ -5,6 +5,39 @@
 <link rel="stylesheet" href="~/style/RankListstyle.css" />
 }
 
+<nav class="navbar navbar-expand-lg  text-white">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 m-auto">
+                <li class="nav-item all">
+                    <a class="nav-link" href="#">全部</a>
+                </li>
+                <li class="nav-item fantasy_love">
+                    <a class="nav-link" href="#">奇幻愛情</a>
+                </li>
+                <li class="nav-item action_adventure">
+                    <a class="nav-link" href="#">動作冒險</a>
+                </li>
+
+                <li class="nav-item love">
+                    <a class="nav-link" href="#">愛情</a>
+                </li>
+
+                <li class="nav-item plot">
+                    <a class="nav-link" href="#">劇情</a>
+                </li>
+
+                <li class="nav-item BL_GL">
+                    <a class="nav-link" href="#">BL/GL</a>
+                </li>
+
+                <li class="nav-item Suspenseful_horror">
+                    <a class="nav-link" href="#">懸疑恐怖</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 <div class="container p-0">
     <div class="box">
         <a href="#" class="number-one">
@@ -25,7 +58,7 @@
                 </div>
             </div>
         </a>
-        
+
         @foreach (var item in Model.OtherRank)
         {
             <a href="#" class="numbers">
@@ -41,11 +74,11 @@
 
                 <div class="rank_text">
                     <div class="rank_bgdiv">
-                       @* @for (var i = 10; i < 21; i++)
-                        {
-                            
+                        @* @for (var i = 10; i < 21; i++)
+                            {
+
                             <span class="rank rank_num">@i</span>
-                        }*@
+                            }*@
                         <span class="rank rank_num">@item.ClickRecordId</span>
                         <span class="rank rank_icon">@item.Diff</span>
                     </div>

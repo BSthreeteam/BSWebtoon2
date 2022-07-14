@@ -15,7 +15,7 @@ namespace BSWebtoon.Model.Models
             Episodes = new HashSet<Episode>();
             Favorites = new HashSet<Favorite>();
         }
-         
+
         public int ComicId { get; set; }
         public string ComicChineseName { get; set; }
         public string ComicEnglishName { get; set; }

@@ -5,16 +5,16 @@ using System.Collections.Generic;
 using System.Linq;
 using static BSWebtoon.Front.Models.ViewModels.WeekUpdate.WeekUpdateViewModel;
 
-//namespace BSWebtoon.Front.Controllers
-//{
-//    public class WeekUpdateController : Controller
-//    {
-//        //private readonly IWeekUpdateService _weekUpdateService;
+namespace BSWebtoon.Front.Controllers
+{
+    public class WeekUpdateController : Controller
+    {
+        private readonly IWeekUpdateService _weekUpdateService;
 
-//        //public WeekUpdateController(IWeekUpdateService weekUpdateService)
-//        //{
-//        //    _weekUpdateService = weekUpdateService;
-//        //}
+        public WeekUpdateController(IWeekUpdateService weekUpdateService)
+        {
+            _weekUpdateService = weekUpdateService;
+        }
 
         public IActionResult WeekUpdate()
         {

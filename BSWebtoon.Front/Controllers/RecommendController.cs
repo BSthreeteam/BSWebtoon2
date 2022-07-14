@@ -28,7 +28,7 @@ namespace BSWebtoon.Front.Controllers
         {
             return View();
         }
-        public async Task<IActionResult> ReadClickRecord() //Recommend/ReadClickRecord
+        public  IActionResult ReadClickRecord() //Recommend/ReadClickRecord
         {
             //var BSContext = _context.Comic.Include(x => x.AuditEmployee);
             //return View(await BSContext.ToListAsync());
