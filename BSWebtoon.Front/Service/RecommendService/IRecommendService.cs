@@ -5,7 +5,7 @@
         void ActivityCreate();
         void ViewRecordCreate();
         void CommentCreate();
-        void LikeCreate();
+        void CommentLikeCreate();
         void ReportCreate();
 
         //Task<List<ClickCountViewModel>> ClickCount();
