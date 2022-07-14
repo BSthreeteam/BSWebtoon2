@@ -1,4 +1,4 @@
-﻿using BSWebtoon.Front.ViewModels;
+﻿using BSWebtoon.Front.Models.DTO.FavoriteDTO;
 using BSWebtoon.Model.Models;
 using BSWebtoon.Model.Repository;
 using System.Collections.Generic;
@@ -53,13 +53,13 @@ namespace BSWebtoon.Front.Service.FavoriteService
             _repository.SaveChange();
         }
 
-        public IEnumerable<FavoriteViewModel> GetFavorite()
+        public IEnumerable<FavoriteDTO> GetFavorite()
         {
             return from member in _repository.GetAll<Member>()
                    join comic in _repository.GetAll<Comic>()
                    on member.MemberId equals comic.ComicId
                    where member.MemberId == 1
-                   select new FavoriteViewModel
+                   select new FavoriteDTO
                    {
                        ComicFigure = comic.ComicFigure,
                        ComicNameImage = comic.ComicNameImage,
