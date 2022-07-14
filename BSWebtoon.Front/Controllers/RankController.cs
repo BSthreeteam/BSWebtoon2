@@ -27,12 +27,10 @@ namespace BSWebtoon.Front.Controllers
 
         public IActionResult RankList() //Rank/RankList 
         {
-            
-
 
             var rank= _ClickRecordService.ReadOtherTagRank();
             var firstComic = rank.First();
-            var restult2 = new RankViewModel_ClickRecord
+            var restult = new RankViewModel_ClickRecord
             {
                 FirstRank = new RankViewModel_ClickRecord.ClickRecordRank
                 {
@@ -61,7 +59,7 @@ namespace BSWebtoon.Front.Controllers
 
             };
 
-            return View(restult2);
+            return View(restult);
 
         }
 

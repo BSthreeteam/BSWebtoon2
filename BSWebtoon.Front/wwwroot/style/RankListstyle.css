@@ -18,7 +18,7 @@ body {
 
     .nav-link:hover {
         background-color: #fff;
-        border-radius: 50%;
+        border-radius: 50px;
         color: #000;
     }
 
@@ -235,4 +235,3 @@ body {
             padding: 10px 20px;
         }
 }
-
