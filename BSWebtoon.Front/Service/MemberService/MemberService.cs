@@ -78,7 +78,7 @@ namespace BSWebtoon.Front.Service.MemberService
         {
             var p1 = _repository.GetAll<Member>().Where(x => x.MemberId == 1).FirstOrDefault();
             p1.LoginTypeId = 1;
-            //_repository.Update(p1);
+            _repository.Update(p1);
 
             _repository.SaveChange();
         }
