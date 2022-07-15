@@ -58,6 +58,7 @@ namespace BSWebtoon.Front.Service.WeekUpdateService
 
             var result = new List<NewComicDTO>();
 
+
             result = newComicSource.Select(c => new NewComicDTO
             {
                 ComicId = c.ComicId,

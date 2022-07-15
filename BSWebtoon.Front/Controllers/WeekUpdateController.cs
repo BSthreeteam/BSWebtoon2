@@ -23,11 +23,11 @@ namespace BSWebtoon.Front.Controllers
             var result = new List<WeekUpdateViewModel>();
             foreach (var weekUpdate in weekUpdates)
             {
-                ;
+
                 var weekComicSoruse = new WeekUpdateViewModel
                 {
                     WeekDay = weekUpdate.WeekDay,
-                    WeekComicLongList = weekUpdate.WeekUpDateList.Where(c =>c.WeekVideoWrb != string.Empty).Select(c => new WeekUpdateViewModel.WeekUpdateDataLing
+                    WeekComicLongList = weekUpdate.WeekUpDateList.Where(c => c.WeekVideoWrb != string.Empty).Select(c => new WeekUpdateViewModel.WeekUpdateDataLing
                     {
                         ComicId = c.ComicId,
                         BgCover = c.BgCover,
@@ -46,13 +46,36 @@ namespace BSWebtoon.Front.Controllers
                         ComicWeekFigure = c.ComicWeekFigure,
                         UpdateWeek = c.UpdateWeek
                     }).ToList()
-                    
+
                 };
                 result.Add(weekComicSoruse);
             }
-            
+
             return View(result);
 
         }
+        public IActionResult NewComic()
+        {
+            var newComics = _weekUpdateService.ReadNewComic();
+
+            var result = new List<NewComicViewModel>();
+
+            result = newComics.Select(c => new NewComicViewModel
+            {
+                    Author = c.Author,
+                    PublishDate = c.PublishDate,
+                    BgCover = c.BgCover,
+                    ComicFigure = c.ComicFigure,
+                    ComicId =c.ComicId,
+                    ComicNameImage =c.ComicNameImage,
+                    Introduction = c.Introduction,
+                    Painter = c.Painter
+            }).ToList();
+
+            return View(result);
+
+
+
+        }
     }
-}
+}    
