@@ -86,7 +86,7 @@ namespace BSWebtoon.Front.Service.RankService
 
             var result = newrank.Select(comicrank => new AllTagRankDTO
             {
-
+                ComicFigure= comicrank.ComicFigure,
                 ComicId = comicrank.ComicId,
                 ComicName = comicrank.ComicChineseName,
                 ComicNameImage = comicrank.ComicNameImage,
@@ -240,7 +240,8 @@ namespace BSWebtoon.Front.Service.RankService
                             ComicWeekFigure = item.ComicWeekFigure,
                             BgCover = item.BgCover,
                             AuditType = item.AuditType,
-                            Introduction = item.Introduction
+                            Introduction = item.Introduction,
+                            ComicFigure = item.ComicFigure,
                         });
                     }
 
@@ -260,7 +261,8 @@ namespace BSWebtoon.Front.Service.RankService
                             ComicWeekFigure = item.ComicWeekFigure,
                             BgCover = item.BgCover,
                             AuditType = item.AuditType,
-                            Introduction = item.Introduction
+                            Introduction = item.Introduction,
+                            ComicFigure = item.ComicFigure,
                         });
                         
                     }
@@ -299,6 +301,7 @@ namespace BSWebtoon.Front.Service.RankService
                                 BannerVideoWeb = item.BannerVideoWeb,
                                 ComicNameImage = item.ComicNameImage,
                                 ComicWeekFigure = item.ComicWeekFigure,
+                                ComicFigure = item.ComicFigure,
                                 Introduction = item.Introduction,
                                 BgCover = item.BgCover,
                                 AuditType = item.AuditType,
@@ -322,6 +325,7 @@ namespace BSWebtoon.Front.Service.RankService
                                 BannerVideoWeb = item.BannerVideoWeb,
                                 ComicNameImage = item.ComicNameImage,
                                 ComicWeekFigure = item.ComicWeekFigure,
+                                ComicFigure = item.ComicFigure,
                                 Introduction = item.Introduction,
                                 BgCover = item.BgCover,
                                 AuditType = item.AuditType,

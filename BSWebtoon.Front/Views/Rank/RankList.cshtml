@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="~/style/RankListstyle.css" />
 }
 
-<nav class="navbar navbar-expand-lg  text-white">
+<nav class="navbar navbar-expand-lg ">
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 m-auto">
@@ -57,32 +57,80 @@
         </div>
     </div>
 </nav>
-<div class="container p-0 ">
+<div class="container p-0 output ">
     <div class="output box">
+        <a href="#" class="number-one">
+            <div class="rank_pic">
+                <img src="@Model.FirstRank.BgCover" alt="背景" class="rank_pic_bg">
+                <video>
+                    <source src="@Model.FirstRank.BannerVideoWeb" type="video/webm">
+                </video>
+            </div>
+            <div class="rank_text">
+                <span class="tag">新作</span>
+                <img src="@Model.FirstRank.ComicNameImage"
+                     alt="標題" class="rank_pic_title">
+                <p>@Model.FirstRank.Introduction</p>
+                <div class="rank_bgdiv">
+                    <span class="rank rank_num">1</span>
+                    <span class="rank rank_icon">@Model.FirstRank.Diff</span>
+                </div>
+            </div>
+        </a>
+        @foreach (var item in Model.OtherRank)
+    {
+        <a href="#" class="numbers">
+            <div class="rank_pic">
+                @*<img src="https://tw-a.kakaopagecdn.com/P/C/270/bg/1x/e6f07925-f715-4ec6-a2ad-c50b2b86d0a9.jpg"
+                    alt="背景" class="rank_pic_bg">*@
+
+                <img src="@item.BgCover" alt="背景" class="rank_pic_bg">
+                <img src="@item.ComicWeekFigure"
+                 alt="@item.ComicName" class="rank_pic_people">
+            </div>
+
+            <div class="rank_text">
+                <div class="rank_bgdiv">
+                    @* @for (var i = 10; i < 21; i++)
+                        {
+
+                        <span class="rank rank_num">@i</span>
+                        }*@
+                    <span class="rank rank_num">@item.ClickRecordId</span>
+                    <span class="rank rank_icon">@item.Diff</span>
+                </div>
+                <div class="box-title">
+                    <img src="@item.ComicNameImage"
+                     alt="標題" class="rank_pic_title">
+                    <span class="tag">新作</span>
+                </div>
+            </div>
+        </a>
+    }
     </div>
 </div>
 
 <template id="bestseller">
-    <a href="#" class="number-one">
-        <div class="rank_pic">
-            @*<img src="https://tw-a.kakaopagecdn.com/P/C/261/bg/2x/b62f3f9d-d3b1-4dc5-a521-5c1350ed0558.jpg"
-                 alt="背景" class="rank_pic_bg">*@
-            <img src="@Model.FirstRank.BgColor"
-                 alt="背景" class="rank_pic_bg">
-            <img src="@Model.FirstRank.ComicFigure"
-                 alt="@Model.FirstRank.ComicName" class="rank_pic_people">
-        </div>
-        <div class="rank_text">
-            <span class="tag">新作</span>
-            <img src="@Model.FirstRank.ComicNameImage"
-                 alt="標題" class="rank_pic_title">
-            <p>@Model.FirstRank.Introduction</p>
-            <div class="rank_bgdiv">
-                <span class="rank rank_num">1</span>
-                <span class="rank rank_icon">@Model.FirstRank.Diff</span>
+    <div class="box">
+        <a href="#" class="number-one">
+            <div class="rank_pic">
+                <img src="@Model.FirstRank.BgCover" alt="背景" class="rank_pic_bg">
+                <video >
+                    <source src="@Model.FirstRank.BannerVideoWeb" type="video/webm">
+                </video>
             </div>
-        </div>
-    </a>
+            <div class="rank_text">
+                <span class="tag">新作</span>
+                <img src="@Model.FirstRank.ComicNameImage"
+                     alt="標題" class="rank_pic_title">
+                <p>@Model.FirstRank.Introduction</p>
+                <div class="rank_bgdiv">
+                    <span class="rank rank_num">1</span>
+                    <span class="rank rank_icon">@Model.FirstRank.Diff</span>
+                </div>
+            </div>
+        </a>
+    </div>
     @foreach (var item in Model.OtherRank)
     {
         <a href="#" class="numbers">
@@ -91,7 +139,7 @@
                     alt="背景" class="rank_pic_bg">*@
 
                 <img src="@item.BgCover" alt="背景" class="rank_pic_bg">
-                <img src="@item.ComicFigure"
+                <img src="@item.ComicWeekFigure"
                  alt="@item.ComicName" class="rank_pic_people">
             </div>
 
@@ -241,6 +289,7 @@
     </div>
     </template>
     </div>*@
+
 @section endJS{
-    <script src="~/js/RankList.js"></script>
+<script src="~/js/RankList.js"></script>
 }

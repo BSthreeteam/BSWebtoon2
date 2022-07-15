@@ -2,12 +2,12 @@ body {
     background-color: #000;
 }
 
-.navbar {
-    position: relative;
-    top: 100px;
+nav {
+    position: fixed;
+    top: 80px;
     left: 0;
     background-color: #000;
-    max-width: 1140px;
+    max-width: 1200px;
     margin: auto;
 }
 
@@ -16,11 +16,11 @@ body {
     color: #fff;
 }
 
-    .nav-link:hover {
-        background-color: #fff;
-        border-radius: 50px;
-        color: #000;
-    }
+.nav-link:hover {
+    background-color: #fff;
+    border-radius: 50px;
+    color: #000;
+}
 
 .container {
     margin: auto;
@@ -46,23 +46,23 @@ body {
     overflow: hidden;
 }
 
-    .number-one:hover,
-    .numbers:hover {
-        color: #fff;
-    }
+.number-one:hover,
+.numbers:hover {
+    color: #fff;
+}
 
-    .number-one .rank_pic {
-        position: relative;
-        text-align: center;
-    }
+.number-one .rank_pic {
+    position: relative;
+    text-align: center;
+}
 
-    .number-one .rank_pic_bg {
-        position: absolute;
-        z-index: -1;
-        width: 100%;
-        left: 0;
-        right: 0;
-    }
+.number-one .rank_pic_bg {
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    left: 0;
+    right: 0;
+}
 
     .number-one .rank_pic_people,
     .numbers .rank_pic_people,
@@ -192,10 +192,10 @@ body {
         margin: 10px 0px;
     }
 
-@media screen and (min-width:768px) {
+@media screen and (max-width:768px) {
     .navbar {
-        position: relative;
-        top: 100px;
+        position: fixed;
+        top: 80px;
         left: 0;
         background-color: #000;
         max-width: 768px;

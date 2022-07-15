@@ -38,10 +38,14 @@ namespace BSWebtoon.Front.Controllers
                     ClickRecordId = firstComic.ClickRecordId,
                     ComicName = firstComic.ComicName,
                     ComicNameImage = firstComic.ComicNameImage,
-                    ComicFigure = firstComic.ComicWeekFigure,
+                    ComicWeekFigure = firstComic.ComicWeekFigure,
                     BgCover = firstComic.BgCover,
-                    Introduction = firstComic.Introduction,
-                    BannerVideoWeb = firstComic.BannerVideoWeb
+                    Introduction = firstComic.Introduction.Substring(0,20),
+                    BannerVideoWeb = firstComic.BannerVideoWeb,
+                    ComicFigure = firstComic.ComicFigure
+
+
+
                 },
                 OtherRank = rank.Skip(1).Take(99).Select(other => new RankViewModel_ClickRecord.ClickRecordRank
                 {
@@ -49,7 +53,7 @@ namespace BSWebtoon.Front.Controllers
                     ClickRecordId = other.ClickRecordId,
                     ComicName = other.ComicName,
                     ComicNameImage = other.ComicNameImage,
-                    ComicFigure = other.ComicWeekFigure,
+                    ComicWeekFigure = other.ComicWeekFigure,
                     BgCover = other.BgCover,
                     Introduction = other.Introduction,
                     BannerVideoWeb = other.BannerVideoWeb,

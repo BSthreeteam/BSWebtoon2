@@ -14,6 +14,7 @@ namespace BSWebtoon.Front.Models.ViewModels.Rank
             public int ComicId { get; set; }
             public string ComicName { get; set; }
             public string ComicNameImage { get; set; }
+            public string ComicWeekFigure { get; set; }
             public string ComicFigure { get; set; }
             public string BgCover { get; set; }
             public string BgColor { get; set; }
