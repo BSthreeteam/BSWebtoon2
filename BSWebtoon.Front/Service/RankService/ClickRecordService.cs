@@ -86,11 +86,11 @@ namespace BSWebtoon.Front.Service.RankService
 
             var result = newrank.Select(comicrank => new AllTagRankDTO
             {
-                ComicFigure= comicrank.ComicFigure,
                 ComicId = comicrank.ComicId,
                 ComicName = comicrank.ComicChineseName,
                 ComicNameImage = comicrank.ComicNameImage,
                 ComicWeekFigure = comicrank.ComicWeekFigure,
+                ComicFigure = comicrank.ComicFigure,
                 BgCover = comicrank.BgCover,
                 Introduction = comicrank.Introduction,
                 BannerVideoWeb = comicrank.BannerVideoWeb,

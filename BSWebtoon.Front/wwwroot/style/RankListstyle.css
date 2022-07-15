@@ -2,13 +2,16 @@ body {
     background-color: #000;
 }
 
-nav {
+.rankListNav {
     position: fixed;
     top: 80px;
     left: 0;
+    right:0;
     background-color: #000;
     max-width: 1200px;
     margin: auto;
+    z-index:2;
+    justify-content:center;
 }
 
 .nav-link {
@@ -24,7 +27,7 @@ nav {
 
 .container {
     margin: auto;
-    margin-top: 100px;
+    margin-top: 60px;
 }
 
 .box {
