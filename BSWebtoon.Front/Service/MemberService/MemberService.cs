@@ -104,7 +104,7 @@ namespace BSWebtoon.Front.Service.MemberService
             //確認member資料裡是否有紀錄
             var memberFound = _repository.GetAll<Member>().Where(x => x.AccountName.Contains($"{input.NameIdentifier}") && x.NickName.Contains($"{input.AccountName}")).Select(x => x.MemberId).FirstOrDefault().ToString();
             
-            if (memberFound == null)//如果沒有就添加資料到資料庫
+            if (memberFound == "0")//如果沒有就添加資料到資料庫
             {
                 var provider = (int)Enum.Parse(typeof(LoginTypes), input.Provider);
 
