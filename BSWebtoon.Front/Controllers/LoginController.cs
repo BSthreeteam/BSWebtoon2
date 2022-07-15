@@ -3,7 +3,9 @@ using BSWebtoon.Model.Repository;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using static BSWebtoon.Front.Models.DTO.Login.LoginAccountDTO;
 
 namespace BSWebtoon.Front.Controllers
 {
@@ -24,14 +26,16 @@ namespace BSWebtoon.Front.Controllers
         }
         public IActionResult AddLoginTypeView() //Login/AddLoginTypeView
         {
-            _memberService.LoginTypeCreate();
+            //_memberService.LoginTypeCreate();
             //_memberService.MemberUpdateData();
+
+            
             return View();
         }
         [HttpGet("~/Login/LoginOption/{scheme}")]
         public IActionResult LoginOption([FromRoute] string scheme)
         {
-            //其他第三方的驗證
+            //第三方的驗證
             var properties = new AuthenticationProperties
             {
                 //【驗證】完，要重新導向到的網址
@@ -43,25 +47,32 @@ namespace BSWebtoon.Front.Controllers
         public async Task<IActionResult> HandleResponse() // 挑戰完的 重導到此
         {
             //將 request請求 驗證
-            var result = await HttpContext.AuthenticateAsync(
-                );
-
+            var result = await HttpContext.AuthenticateAsync();
 
             var claims =
-            //result.Principal //驗證結果 裡出現了ClaimsPrincipal聲明主體
-            //.Identities.FirstOrDefault()?
-            //result.Principal.Claims
             User.Claims.Select(claim => new
             {
-                claim.Issuer,
+                claim.Issuer,//發行者
                 claim.OriginalIssuer,
-                claim.Type,
-                claim.Value,
+                claim.Type,//提供宣告的語意內容，也就是它指出宣告的用途。
+                claim.Value,//顧名思義 質
             });
 
-            //用JSON格式觀察測試結果
-            //return Json(claims);
-            return Redirect("/");
+            var NameIdentifiers = claims.First(x => x.Type == ClaimTypes.NameIdentifier);
+            var AccountName = claims.First(x => x.Type == ClaimTypes.Name);
+            var Email = claims.First(x => x.Type == ClaimTypes.Email);
+
+            var iutputDTO = new Login3rdInputDTO
+            {
+                Provider = NameIdentifiers.Issuer.ToLower(),
+                NameIdentifier = NameIdentifiers.Value,
+                AccountName = AccountName.Value,//用戶名稱
+                Email = Email.Value,
+
+            };
+            await _memberService.LoginAccount(iutputDTO);
+
+            return LocalRedirect("/");
         }
         public IActionResult Logout()
         {
