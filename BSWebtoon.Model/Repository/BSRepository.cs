@@ -1,5 +1,6 @@
 ﻿using BSWebtoon.Model.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace BSWebtoon.Model.Repository
         }
 
         private BSWebtoonContext _context;
+
         public void Create<T>(T value) where T : class
         {
             _context.Entry(value).State = EntityState.Added;

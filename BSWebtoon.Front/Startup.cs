@@ -96,6 +96,7 @@ namespace BSWebtoon.Front
                     var provider = "Line";
                     options.ClientId = Configuration[$"Authentication:{provider}:ClientId"];
                     options.ClientSecret = Configuration[$"Authentication:{provider}:ClientSecret"];
+                    options.Scope.Add("email");
 
                 }); 
                 }

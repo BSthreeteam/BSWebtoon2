@@ -29,6 +29,7 @@ namespace BSWebtoon.Front.Controllers
             var recommendSource = _recommendservice.ReadRecommend();
             return View(recommendSource);
         }
+        public  IActionResult ReadClickRecord() //Recommend/ReadClickRecord
         public IActionResult HitWork()
         {
 
@@ -61,6 +62,17 @@ namespace BSWebtoon.Front.Controllers
         {
             //var vr = _recommendservice.ActivityRead();
             return View(/*vr*/);
+        }
+
+
+        public IActionResult SearchComic()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult SearchComic(string comicname ,string tagname)//先顯示漫畫名稱在顯示漫畫tag
+        {
+            return View();
         }
     }
 }

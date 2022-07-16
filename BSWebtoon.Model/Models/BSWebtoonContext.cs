@@ -44,7 +44,7 @@ namespace BSWebtoon.Model.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=(localdb)\\mssqllocaldb;Database=BSWeBtoon;");
+                optionsBuilder.UseSqlServer("Data Source=(localdb)\\mssqllocaldb;Database=BSWebtoon;");
             }
         }
 
@@ -124,9 +124,7 @@ namespace BSWebtoon.Model.Models
 
                 entity.HasIndex(e => e.ComicId, "IX_ClickRecord_ComicId");
 
-                entity.Property(e => e.ClickRecordId)
-                    .ValueGeneratedOnAdd()
-                    .HasComment("點擊紀錄ID");
+                entity.Property(e => e.ClickRecordId).HasComment("點擊紀錄ID");
 
                 entity.Property(e => e.ComicId).HasComment("漫畫Id");
 
@@ -136,17 +134,17 @@ namespace BSWebtoon.Model.Models
 
                 entity.Property(e => e.MemberId).HasComment("會員Id");
 
-                entity.HasOne(d => d.ClickRecordNavigation)
-                    .WithOne(p => p.ClickRecord)
-                    .HasForeignKey<ClickRecord>(d => d.ClickRecordId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_ClickRecord_Member");
-
                 entity.HasOne(d => d.Comic)
                     .WithMany(p => p.ClickRecords)
                     .HasForeignKey(d => d.ComicId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ClickRecord_Comic");
+
+                entity.HasOne(d => d.Member)
+                    .WithMany(p => p.ClickRecords)
+                    .HasForeignKey(d => d.MemberId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ClickRecord_Member1");
             });
 
             modelBuilder.Entity<Comic>(entity =>

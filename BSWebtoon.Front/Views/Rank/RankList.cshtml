@@ -1,120 +1,297 @@
-﻿@model IEnumerable<BSWebtoon.Front.ViewModel.RankViewModel>
+﻿@model BSWebtoon.Front.Models.ViewModels.Rank.RankViewModel_ClickRecord
 
-@{
-    ViewData["Title"] = "RankList";
+
+@section topCss{
+<link rel="stylesheet" href="~/style/RankListstyle.css" />
 }
 
-@*<h1>RankList</h1>*@
+<navbar class="navbar navbar-expand-lg ">
+    <div class="rankListNav">
+        <ul class="nav flex-nowrap text_overflow text_overflow ">
+            <li class="btn nav-item all">
+                <button class="nav-link">
+                    全部
+                </button>
+            </li>
+            <li class="btn nav-item fantasy">
+                <button class="nav-link">
+                    奇幻
+                </button>
+            </li>
+            <li class="btn nav-item fantasy_love">
+                <button class="nav-link">
+                    奇幻愛情
+                </button>
+            </li>
+            <li class="btn nav-item action_adventure">
+                <button class="nav-link">
+                    動作冒險
+                </button>
+            </li>
 
-@section topCSS{
-    <style>
-        .table{
-            margin-top:80px;
-        }
-        .pic{
-            width:20%;
-        }
-        .NameImage,.Figure{
-            width:60%;
-        }
-        .Cover{
-            width:50%;
-            height:50%;
-        }
-    </style>
-}
+            <li class="btn nav-item love">
+                <button class="nav-link">
+                    愛情
+                </button>
+            </li>
 
+            <li class="btn nav-item plot">
+                <button class="nav-link">
+                    劇情
+                </button>
+            </li>
 
-@*<p>
-    <a asp-action="Create">Create New</a>
-</p>*@
-<table class="table text-white">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ComicId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ComicName)
-            </th>
-            <th class"pic">
-                @Html.DisplayNameFor(model => model.ComicNameImage)
-            </th class"pic">
-            <th class"pic">
-                @Html.DisplayNameFor(model => model.ComicFigure)
-            </th>
-            <th class"pic">
-                @Html.DisplayNameFor(model => model.BgCover)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BgColor)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Introduction)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TagName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ClickCount)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ComicId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ComicName)
-            </td>
-            <td >
-                <img src="@item.ComicNameImage" class="NameImage"/>
-            </td>
-            <td >
-                <img src="@item.ComicFigure" class="Figure"/>
-            </td>
-            <td >
-                <img src="@item.BgCover" class="Cover"/>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BgColor)
-            </td>
-            <td class"context"> 
-                @Html.DisplayFor(modelItem => item.Introduction)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TagName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ClickCount)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
+            <li class="btn nav-item BL_GL">
+                <button class="nav-link">
+                    BL/GL
+                </button>
+            </li>
 
-@*@foreach (var item in Model)
+            <li class="btn nav-item Suspenseful_horror">
+                <button class="nav-link">
+                    懸疑恐怖
+                </button>
+            </li>
+        </ul>
+    </div>
+</navbar>
+
+<div class="container p-0 output ">
+    <div class="output box">
+        <a href="#" class="number-one">
+            <div class="rank_pic">
+                <img src="@Model.FirstRank.BgCover" alt="背景" class="rank_pic_bg">
+                @if (@Model.FirstRank.BannerVideoWeb != null)
+                {
+                    <video>
+                        <source src="@Model.FirstRank.BannerVideoWeb" type="video/webm">
+                    </video>
+                }
+                else
+                {
+                    <img src="@Model.FirstRank.ComicFigure" alt="@Model.FirstRank.ComicName" class="rank_pic_people">
+                }
+            </div>
+            <div class="rank_text">
+                <span class="tag">新作</span>
+                <img src="@Model.FirstRank.ComicNameImage"
+                     alt="標題" class="rank_pic_title">
+                <p>@Model.FirstRank.Introduction</p>
+                <div class="rank_bgdiv">
+                    <span class="rank rank_num">1</span>
+                    <span class="rank rank_icon">@Model.FirstRank.Diff</span>
+                </div>
+            </div>
+        </a>
+        @foreach (var item in Model.OtherRank)
         {
-            <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ClickCount)
-            </td>
-        </tr>
+            <a href="#" class="numbers">
+                <div class="rank_pic">
+                    @*<img src="https://tw-a.kakaopagecdn.com/P/C/270/bg/1x/e6f07925-f715-4ec6-a2ad-c50b2b86d0a9.jpg"
+                        alt="背景" class="rank_pic_bg">*@
+
+                    <img src="@item.BgCover" alt="背景" class="rank_pic_bg">
+                    <img src="@item.ComicWeekFigure" alt="@item.ComicName" class="rank_pic_people">
+                </div>
+
+                <div class="rank_text">
+                    <div class="rank_bgdiv">
+                        @* @for (var i = 10; i < 21; i++)
+                            {
+
+                            <span class="rank rank_num">@i</span>
+                            }*@
+                        <span class="rank rank_num">@item.ClickRecordId</span>
+                        <span class="rank rank_icon">@item.Diff</span>
+                    </div>
+                    <div class="box-title">
+                        <img src="@item.ComicNameImage"
+                         alt="標題" class="rank_pic_title">
+                        <span class="tag">新作</span>
+                    </div>
+                </div>
+            </a>
         }
-    </tbody>
-</table>*@
+    </div>
+</div>
+
+<template id="bestseller">
+    <div class="box">
+        <a href="#" class="number-one">
+            <div class="rank_pic">
+                <img src="@Model.FirstRank.BgCover" alt="背景" class="rank_pic_bg">
+                <video>
+                    <source src="@Model.FirstRank.BannerVideoWeb" type="video/webm">
+                </video>
+            </div>
+            <div class="rank_text">
+                <span class="tag">新作</span>
+                <img src="@Model.FirstRank.ComicNameImage"
+                     alt="標題" class="rank_pic_title">
+                <p>@Model.FirstRank.Introduction</p>
+                <div class="rank_bgdiv">
+                    <span class="rank rank_num">1</span>
+                    <span class="rank rank_icon">@Model.FirstRank.Diff</span>
+                </div>
+            </div>
+        </a>
+    </div>
+    @foreach (var item in Model.OtherRank)
+    {
+        <a href="#" class="numbers">
+            <div class="rank_pic">
+                @*<img src="https://tw-a.kakaopagecdn.com/P/C/270/bg/1x/e6f07925-f715-4ec6-a2ad-c50b2b86d0a9.jpg"
+                    alt="背景" class="rank_pic_bg">*@
+
+                <img src="@item.BgCover" alt="背景" class="rank_pic_bg">
+                <img src="@item.ComicWeekFigure"
+                 alt="@item.ComicName" class="rank_pic_people">
+            </div>
+
+            <div class="rank_text">
+                <div class="rank_bgdiv">
+                    <span class="rank rank_num">@item.ClickRecordId</span>
+                    <span class="rank rank_icon">@item.Diff</span>
+                </div>
+                <div class="box-title">
+                    <img src="@item.ComicNameImage"
+                     alt="標題" class="rank_pic_title">
+                    <span class="tag">新作</span>
+                </div>
+            </div>
+        </a>
+    }
+</template>
 
 
 
 
-@*@section endJS{
-    <script>
-        if
-    </script>
-}*@
+@*<div class="container p-0 output">
+    <template id="bestseller">
+    <div class="box">
+    <a href="#" class="number-one">
+    <div class="rank_pic">
+    <img src="https://tw-a.kakaopagecdn.com/P/C/261/bg/2x/b62f3f9d-d3b1-4dc5-a521-5c1350ed0558.jpg"
+    alt="背景" class="rank_pic_bg">
+    <img src="https://tw-a.kakaopagecdn.com/P/C/261/c1/2x/a1608d93-8b88-48fc-a5fd-6871f5fba606.webp"
+    alt="我們能成為一家人嗎?" class="rank_pic_people">
+    </div>
+    <div class="rank_text">
+    <span class="tag">新作</span>
+    <img src="https://tw-a.kakaopagecdn.com/P/C/261/t1/2x/97d6ffa2-e908-4424-8eda-5e9020c4879c.webp"
+    alt="標題" class="rank_pic_title">
+    <p>每次重生都被「家人」拋棄並死亡最後機會不再渴望親情，誓言展開報復</p>
+    <div class="rank_bgdiv">
+    <span class="rank rank_num">1</span>
+    <span class="rank rank_icon">-</span>
+    </div>
+    </div>
+    </a>
+    <a href="#" class="numbers">
+    <div class="rank_pic">
+    <img src="https://tw-a.kakaopagecdn.com/P/C/270/bg/1x/e6f07925-f715-4ec6-a2ad-c50b2b86d0a9.jpg"
+    alt="背景" class="rank_pic_bg">
+    <img src="https://tw-a.kakaopagecdn.com/P/C/270/c2/2x/4122cbca-b90c-4100-b30d-21af44f41106.png"
+    alt="圖林的莉莉安" class="rank_pic_people">
+    </div>
+    <div class="rank_text">
+    <div class="rank_bgdiv">
+    <span class="rank rank_num">1</span>
+    <span class="rank rank_icon">-</span>
+    </div>
+    <div class="box-title">
+    <img src="https://tw-a.kakaopagecdn.com/P/C/270/t2/2x/79dde0a6-c4af-450f-8655-1435f661d974.png"
+    alt="標題" class="rank_pic_title">
+    <span class="tag">新作</span>
+    <!-- <span class="tag">新作</span> -->
+    </div>
+    </div>
+    </a>
+    <a href="#" class="numbers">
+    <div class="rank_pic">
+    <img src="https://tw-a.kakaopagecdn.com/P/C/270/bg/1x/e6f07925-f715-4ec6-a2ad-c50b2b86d0a9.jpg"
+    alt="背景" class="rank_pic_bg">
+    <img src="https://tw-a.kakaopagecdn.com/P/C/270/c2/2x/4122cbca-b90c-4100-b30d-21af44f41106.png"
+    alt="圖林的莉莉安" class="rank_pic_people">
+    </div>
+    <div class="rank_text">
+    <div class="rank_bgdiv">
+    <span class="rank rank_num">1</span>
+    <span class="rank rank_icon"><span class="up_icon">▲</span>2</span>
+    </div>
+    <div class="box-title">
+    <img src="https://tw-a.kakaopagecdn.com/P/C/270/t2/2x/79dde0a6-c4af-450f-8655-1435f661d974.png"
+    alt="標題" class="rank_pic_title">
+    <span class="tag">新作</span>
+    <span class="tag">新作</span>
+    <span class="tag">新作</span>
+    </div>
+    </div>
+    </a>
+    <a href="#" class="numbers">
+    <div class="rank_pic">
+    <img src="https://tw-a.kakaopagecdn.com/P/C/270/bg/1x/e6f07925-f715-4ec6-a2ad-c50b2b86d0a9.jpg"
+    alt="背景" class="rank_pic_bg">
+    <img src="https://tw-a.kakaopagecdn.com/P/C/270/c2/2x/4122cbca-b90c-4100-b30d-21af44f41106.png"
+    alt="圖林的莉莉安" class="rank_pic_people">
+    </div>
+    <div class="rank_text">
+    <div class="rank_bgdiv">
+    <span class="rank rank_num">1</span>
+    <span class="rank rank_icon">-</span>
+    </div>
+    <div class="box-title">
+    <img src="https://tw-a.kakaopagecdn.com/P/C/270/t2/2x/79dde0a6-c4af-450f-8655-1435f661d974.png"
+    alt="標題" class="rank_pic_title">
+    <span class="tag">新作</span>
+    <span class="tag">新作</span>
+    </div>
+    </div>
+    </a>
+    <a href="#" class="numbers">
+    <div class="rank_pic">
+    <img src="https://tw-a.kakaopagecdn.com/P/C/270/bg/1x/e6f07925-f715-4ec6-a2ad-c50b2b86d0a9.jpg"
+    alt="背景" class="rank_pic_bg">
+    <img src="https://tw-a.kakaopagecdn.com/P/C/270/c2/2x/4122cbca-b90c-4100-b30d-21af44f41106.png"
+    alt="圖林的莉莉安" class="rank_pic_people">
+    </div>
+    <div class="rank_text">
+    <div class="rank_bgdiv">
+    <span class="rank rank_num">1</span>
+    <span class="rank rank_icon"><span class="down_icon">▼</span>2</span>
+    </div>
+    <div class="box-title">
+    <img src="https://tw-a.kakaopagecdn.com/P/C/270/t2/2x/79dde0a6-c4af-450f-8655-1435f661d974.png"
+    alt="標題" class="rank_pic_title">
+    <span class="tag">新作</span>
+    <span class="tag">新作</span>
+    </div>
+    </div>
+    </a>
+    <a href="#" class="numbers">
+    <div class="rank_pic">
+    <img src="https://tw-a.kakaopagecdn.com/P/C/270/bg/1x/e6f07925-f715-4ec6-a2ad-c50b2b86d0a9.jpg"
+    alt="背景" class="rank_pic_bg">
+    <img src="https://tw-a.kakaopagecdn.com/P/C/270/c2/2x/4122cbca-b90c-4100-b30d-21af44f41106.png"
+    alt="圖林的莉莉安" class="rank_pic_people">
+    </div>
+    <div class="rank_text">
+    <div class="rank_bgdiv">
+    <span class="rank rank_num">1</span>
+    <span class="rank rank_icon">-</span>
+    </div>
+    <div class="box-title">
+    <img src="https://tw-a.kakaopagecdn.com/P/C/270/t2/2x/79dde0a6-c4af-450f-8655-1435f661d974.png"
+    alt="標題" class="rank_pic_title">
+    <span class="tag">新作</span>
+    <span class="tag">新作</span>
+    </div>
+    </div>
+    </a>
+    </div>
+    </template>
+    </div>*@
+
+@section endJS{
+<script src="~/js/RankList.js"></script>
+}

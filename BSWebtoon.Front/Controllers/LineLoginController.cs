@@ -30,7 +30,13 @@ namespace BSWebtoon.Front.Controllers
         public IActionResult Index()
         {
             State = Guid.NewGuid();
-            ViewData["LineAuth"] = $"https://access.line.me/oauth2/v2.1/authorize?" +
+            //ViewData["LineAuth"] = $"https://access.line.me/oauth2/v2.1/authorize?" +
+            //    $"client_id={_appId}" +
+            //    $"&response_type=code" +
+            //    $"&redirect_uri={RedirectUrl}" +
+            //    $"&scope={HttpUtility.UrlEncode("profile openid email")}" +
+            //    $"&state={State}";
+            var s = $"https://access.line.me/oauth2/v2.1/authorize?" +
                 $"client_id={_appId}" +
                 $"&response_type=code" +
                 $"&redirect_uri={RedirectUrl}" +
@@ -38,7 +44,7 @@ namespace BSWebtoon.Front.Controllers
                 $"&state={State}";
 
           
-            return View();
+            return Redirect(s);
         }
 
         public async Task<IActionResult> SignInLine(string code, Guid state, string error, string error_description)
@@ -90,6 +96,7 @@ namespace BSWebtoon.Front.Controllers
 
 
             return View();
+            //return Redirect("/");
         }
 
         public class LINELoginResource
