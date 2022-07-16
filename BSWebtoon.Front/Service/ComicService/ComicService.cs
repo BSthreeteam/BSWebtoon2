@@ -2848,7 +2848,7 @@ namespace BSWebtoon.Front.Service.ComicService
         public void ComicTagListUpdate()
         {
             //var updateTagList = _repository.GetAll<ComicTagList>().Where(x => x.TageListId == 2).FirstOrDefault();
-            var updateComic = _repository.GetAll<Comic>().Where(x => x.ComicId == 84).FirstOrDefault();
+            var updateComic = _repository.GetAll<Comic>().Where(x => x.ComicId == 138).FirstOrDefault();
             //updateTagList.ComicId = 2;
             updateComic.ComicWeekFigure="https://tw-a.kakaopagecdn.com/P/C/46/c2/2x/4853fbd7-b76b-4438-bac4-0ae54fa25a04.webp";
             //_repository.Update(updateTagList);
