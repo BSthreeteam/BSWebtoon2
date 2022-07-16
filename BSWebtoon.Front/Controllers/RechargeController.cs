@@ -15,7 +15,7 @@ namespace BSWebtoon.Front.Controllers
 
         public IActionResult CashPlanView() //Recharge/CashPlanView
         {
-            _rechargeService.CashPlanCreate();
+            //_rechargeService.CashPlanCreate();
             return View();
         }
 
