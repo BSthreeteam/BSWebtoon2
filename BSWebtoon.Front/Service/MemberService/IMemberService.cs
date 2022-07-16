@@ -1,4 +1,7 @@
-﻿namespace BSWebtoon.Front.Service.MemberService
+﻿using System.Threading.Tasks;
+using static BSWebtoon.Front.Models.DTO.Login.LoginAccountDTO;
+
+namespace BSWebtoon.Front.Service.MemberService
 {
     public interface IMemberService
     {
@@ -7,5 +10,7 @@
 
         void MemberUpdateData();
         void LogoutAccount();
+        Task<Login3rdOutputDTO> LoginAccount(Login3rdInputDTO input);
+
     }
 }

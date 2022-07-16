@@ -8,7 +8,9 @@ using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Security.Claims;
+using System.Threading.Tasks;
+using static BSWebtoon.Front.Models.DTO.Login.LoginAccountDTO;
 
 namespace BSWebtoon.Front.Service.MemberService
 {
@@ -17,7 +19,7 @@ namespace BSWebtoon.Front.Service.MemberService
         private readonly BSRepository _repository;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public MemberService(BSRepository repository,IHttpContextAccessor httpContextAccessor)
+        public MemberService(BSRepository repository, IHttpContextAccessor httpContextAccessor)
         {
             _repository = repository;
             _httpContextAccessor = httpContextAccessor;
@@ -87,10 +89,45 @@ namespace BSWebtoon.Front.Service.MemberService
             //基本上就是把cookie刪除
             _httpContextAccessor.
             HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        }
+        public enum LoginTypes
+        {
+            google = 1, line = 2, facebook = 3
+        }
+        public async Task<Login3rdOutputDTO> LoginAccount(Login3rdInputDTO input)
+        {
+            var result = new Login3rdOutputDTO
+            {
+                IsSuccess = false
+            };
+            //確認member資料裡是否有紀錄
+            var memberFound = _repository.GetAll<Member>().Where(x => x.AccountName.Contains($"{input.NameIdentifier}") && x.NickName.Contains($"{input.AccountName}")).Select(x => x.MemberId).FirstOrDefault().ToString();
+            
+            if (memberFound == "0")//如果沒有就添加資料到資料庫
+            {
+                var provider = (int)Enum.Parse(typeof(LoginTypes), input.Provider);
 
-            //如果想在service 存取User
-            //_httpContextAccessor.HttpContext.User.
+                var newmember = new Member
+                {
+                    LoginTypeId = provider,
+                    AccountName = input.NameIdentifier,
+                    NickName = input.AccountName,
+                    Email = input.Email,
+                    CreateTime = DateTime.UtcNow,
+                    IsDarkTheme = true
+                };
+                _repository.Create(newmember);
+                _repository.SaveChange();
+
+
+            }
+
+            result.IsSuccess = true;
+
+
+            return result;
         }
 
     }
 }
+ 
