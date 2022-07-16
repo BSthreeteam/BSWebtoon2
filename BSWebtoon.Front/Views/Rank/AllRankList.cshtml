@@ -63,11 +63,16 @@
         <a href="#" class="number-one">
             <div class="rank_pic">
                 <img src="@Model.FirstRank.BgCover" alt="背景" class="rank_pic_bg">
-                <img src="@Model.FirstRank.ComicFigure"
-                     alt="@Model.FirstRank.ComicName" class="rank_pic_title">
-                @*<video>
-                    <source src="@Model.FirstRank.BannerVideoWeb" type="video/webm">
-                </video>*@
+                @if (@Model.FirstRank.BannerVideoWeb != string.Empty)
+                {
+                    <video>
+                        <source src="@Model.FirstRank.BannerVideoWeb" type="video/webm" class="rank_pic_people">
+                    </video>
+                }
+                else
+                {
+                    <img src="@Model.FirstRank.ComicFigure" alt="@Model.FirstRank.ComicName" class="rank_pic_people">
+                }
             </div>
             <div class="rank_text">
                 <span class="tag">新作</span>
@@ -102,8 +107,7 @@
                         <span class="rank rank_icon">@item.Diff</span>
                     </div>
                     <div class="box-title">
-                        <img src="@item.ComicNameImage"
-                     alt="標題" class="rank_pic_title">
+                        <img src="@item.ComicNameImage"  alt="標題" class="rank_pic_title">
                         <span class="tag">新作</span>
                     </div>
                 </div>
@@ -117,9 +121,16 @@
         <a href="#" class="number-one">
             <div class="rank_pic">
                 <img src="@Model.FirstRank.BgCover" alt="背景" class="rank_pic_bg">
-                <video>
-                    <source src="@Model.FirstRank.BannerVideoWeb" type="video/webm">
-                </video>
+                @if (@Model.FirstRank.BannerVideoWeb != string.Empty)
+                {
+                    <video>
+                        <source src="@Model.FirstRank.BannerVideoWeb" type="video/webm" class="rank_pic_people">
+                    </video>
+                }
+                else
+                {
+                    <img src="@Model.FirstRank.ComicFigure" alt="@Model.FirstRank.ComicName" class="rank_pic_people">
+                }
             </div>
             <div class="rank_text">
                 <span class="tag">新作</span>

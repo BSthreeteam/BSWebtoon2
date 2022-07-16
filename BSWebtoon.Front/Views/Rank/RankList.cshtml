@@ -6,55 +6,53 @@
 }
 
 <navbar class="navbar navbar-expand-lg ">
-    <div class="container-fluid rankListNav">
-        @*<div class="collapse navbar-collapse" id="navbarSupportedContent">*@
-            <ul class="nav flex-nowrap text_overflow text_overflow ">
-                <li class="btn nav-item all">
-                    <button class="nav-link">
-                        全部
-                    </button>
-                </li>
-                <li class="btn nav-item fantasy">
-                    <button class="nav-link">
-                        奇幻
-                    </button>
-                </li>
-                <li class="btn nav-item fantasy_love">
-                    <button class="nav-link">
-                        奇幻愛情
-                    </button>
-                </li>
-                <li class="btn nav-item action_adventure">
-                    <button class="nav-link">
-                        動作冒險
-                    </button>
-                </li>
+    <div class="rankListNav">
+        <ul class="nav flex-nowrap text_overflow text_overflow ">
+            <li class="btn nav-item all">
+                <button class="nav-link">
+                    全部
+                </button>
+            </li>
+            <li class="btn nav-item fantasy">
+                <button class="nav-link">
+                    奇幻
+                </button>
+            </li>
+            <li class="btn nav-item fantasy_love">
+                <button class="nav-link">
+                    奇幻愛情
+                </button>
+            </li>
+            <li class="btn nav-item action_adventure">
+                <button class="nav-link">
+                    動作冒險
+                </button>
+            </li>
 
-                <li class="btn nav-item love">
-                    <button class="nav-link">
-                        愛情
-                    </button>
-                </li>
+            <li class="btn nav-item love">
+                <button class="nav-link">
+                    愛情
+                </button>
+            </li>
 
-                <li class="btn nav-item plot">
-                    <button class="nav-link">
-                        劇情
-                    </button>
-                </li>
+            <li class="btn nav-item plot">
+                <button class="nav-link">
+                    劇情
+                </button>
+            </li>
 
-                <li class="btn nav-item BL_GL">
-                    <button class="nav-link">
-                        BL/GL
-                    </button>
-                </li>
+            <li class="btn nav-item BL_GL">
+                <button class="nav-link">
+                    BL/GL
+                </button>
+            </li>
 
-                <li class="btn nav-item Suspenseful_horror">
-                    <button class="nav-link">
-                        懸疑恐怖
-                    </button>
-                </li>
-            </ul>
-        @*</div>*@
+            <li class="btn nav-item Suspenseful_horror">
+                <button class="nav-link">
+                    懸疑恐怖
+                </button>
+            </li>
+        </ul>
     </div>
 </navbar>
 
@@ -63,9 +61,16 @@
         <a href="#" class="number-one">
             <div class="rank_pic">
                 <img src="@Model.FirstRank.BgCover" alt="背景" class="rank_pic_bg">
-                <video>
-                    <source src="@Model.FirstRank.BannerVideoWeb" type="video/webm">
-                </video>
+                @if (@Model.FirstRank.BannerVideoWeb != null)
+                {
+                    <video>
+                        <source src="@Model.FirstRank.BannerVideoWeb" type="video/webm">
+                    </video>
+                }
+                else
+                {
+                    <img src="@Model.FirstRank.ComicFigure" alt="@Model.FirstRank.ComicName" class="rank_pic_people">
+                }
             </div>
             <div class="rank_text">
                 <span class="tag">新作</span>
@@ -86,8 +91,7 @@
                         alt="背景" class="rank_pic_bg">*@
 
                     <img src="@item.BgCover" alt="背景" class="rank_pic_bg">
-                    <img src="@item.ComicWeekFigure"
-                 alt="@item.ComicName" class="rank_pic_people">
+                    <img src="@item.ComicWeekFigure" alt="@item.ComicName" class="rank_pic_people">
                 </div>
 
                 <div class="rank_text">
@@ -102,7 +106,7 @@
                     </div>
                     <div class="box-title">
                         <img src="@item.ComicNameImage"
-                     alt="標題" class="rank_pic_title">
+                         alt="標題" class="rank_pic_title">
                         <span class="tag">新作</span>
                     </div>
                 </div>
@@ -146,11 +150,6 @@
 
             <div class="rank_text">
                 <div class="rank_bgdiv">
-                    @* @for (var i = 10; i < 21; i++)
-                        {
-
-                        <span class="rank rank_num">@i</span>
-                        }*@
                     <span class="rank rank_num">@item.ClickRecordId</span>
                     <span class="rank rank_icon">@item.Diff</span>
                 </div>
