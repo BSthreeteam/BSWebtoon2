@@ -22,13 +22,6 @@
                 </form>
                 @*如果是登入的狀態下，登入按鈕消失*@
                 @if(User.Identity.IsAuthenticated){
-
-                }else{
-                    <li class="nav-item">
-                        <a data-bs-toggle="modal" href="#" data-bs-target="#exampleModal" class="nav-link">登入</a>
-                    </li>
-                }
-
                 <li class="nav-item dropdown flex-nowrap" id="user">
                     <a class="nav-link dropdown-toggle display_name" href="#" id="navbarDropdown" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">
@@ -49,9 +42,16 @@
                             <hr class="dropdown-divider">
                         </li>
                         <li><a class="dropdown-item bg-light xl_customer_service" href="#">客服中心</a></li>
-                        <li><a id="logout" class="dropdown-item bg-light" href="#">登出</a></li>
+                        <li><a id="logout" class="dropdown-item bg-light" href="Login/Logout">登出</a></li>
                     </ul>
                 </li>
+
+                }else{
+                    <li class="nav-item">
+                        <a data-bs-toggle="modal" href="#" data-bs-target="#exampleModal" class="nav-link">登入</a>
+                    </li>
+                }
+
             </ul>
              <ul class="nav flex-nowrap text_overflow text_overflow justify-content-center">  
                 <li class="nav-item">
