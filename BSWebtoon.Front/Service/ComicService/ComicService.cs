@@ -1,5 +1,4 @@
-﻿using BSWebtoon.Front.ViewModels;
-using BSWebtoon.Model.Models;
+﻿using BSWebtoon.Model.Models;
 using BSWebtoon.Model.Repository;
 using System;
 using System.Collections.Generic;
@@ -5373,16 +5372,16 @@ namespace BSWebtoon.Front.Service.ComicService
 
             //    };
             //}
-        }
+        //}
 
-        public void EpUpdate()
-        {
-            var p1 = _repository.GetAll<Episode>().Where(x => x.EpId == 1).FirstOrDefault();
-            p1.EpCover = "https://tw-a.kakaopagecdn.com/P/EO/46/14940/tn/2x/ad6f27c3-0d1b-4402-9d23-a25dfb4adddd.jpg";
-            var p2 = _repository.GetAll<Episode>().Where(x => x.EpId == 2).FirstOrDefault();
-            p2.EpCover = "https://tw-a.kakaopagecdn.com/P/EO/46/14826/tn/2x/bbc85024-ca09-4084-8213-c92c7ec0dd27.jpg";
+        //public void EpUpdate()
+        //{
+        //    var p1 = _repository.GetAll<Episode>().Where(x => x.EpId == 1).FirstOrDefault();
+        //    p1.EpCover = "https://tw-a.kakaopagecdn.com/P/EO/46/14940/tn/2x/ad6f27c3-0d1b-4402-9d23-a25dfb4adddd.jpg";
+        //    var p2 = _repository.GetAll<Episode>().Where(x => x.EpId == 2).FirstOrDefault();
+        //    p2.EpCover = "https://tw-a.kakaopagecdn.com/P/EO/46/14826/tn/2x/bbc85024-ca09-4084-8213-c92c7ec0dd27.jpg";
 
-            _repository.SaveChange();
-        }
+        //    _repository.SaveChange();
+        //}
     }
 }
