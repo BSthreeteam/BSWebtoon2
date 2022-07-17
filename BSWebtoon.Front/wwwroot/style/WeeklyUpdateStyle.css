@@ -132,7 +132,24 @@
     .work .title_img img {
         width: 100%;
         position: relative;
-        bottom: 8px;
+        bottom: 25px;
+    }
+
+.work_status {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 4;
+    text-align: center;
+}
+
+    .work_status span {
+        color: #fff;
+        font-size: 5px;
+        background-color: #f00;
+        padding: 0px 10px;
+        border-radius: 30px;
     }
 
 
