@@ -14,7 +14,7 @@ namespace BSWebtoon.Front.Models.ViewModel.WeekUpdate
             public string Author { get; set; }
             public string Painter { get; set; }
             public string Introduction { get; set; }
-            public DateTime PublishDate { get; set; }
+            public string PublishDate { get; set; }
 
 
     }

@@ -62,7 +62,7 @@ namespace BSWebtoon.Front.Service.WeekUpdateService
             result = newComicSource.Select(c => new NewComicDTO
             {
                 ComicId = c.ComicId,
-                ComicNameImage = c.ComicFigure,
+                ComicNameImage = c.ComicNameImage,
                 BgCover = c.BgCover,
                 ComicFigure = c.ComicFigure,
                 Author = c.Author,
@@ -91,7 +91,7 @@ namespace BSWebtoon.Front.Service.WeekUpdateService
                 finishComicList.Add(new FinishComicDTO
                 {
                     ComicId = finishComic.ComicId,
-                    ComicNameImage = finishComic.ComicFigure,
+                    ComicNameImage = finishComic.ComicNameImage,
                     BgCover = finishComic.BgCover,
                     ComicFigure = finishComic.ComicFigure,
                     Author = finishComic.Author,

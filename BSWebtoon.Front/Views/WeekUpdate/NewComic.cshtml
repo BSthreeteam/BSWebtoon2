@@ -1,6 +1,11 @@
 ﻿
+@{
+    ViewData["Title"] = "NewComic";
+}
+
+
 @section topCss{
-<link rel="stylesheet" href="~/style/" />
+<link rel="stylesheet" href="~/style/WeeklyNewComicStyle.css" />
 }
 
     <nav id="navbar-id" class="navbar navbar-light">
@@ -35,39 +40,42 @@
         </ul>
     </nav>
 
-    <div class="weekly">
-        <div class="container week_content ">
+<div class="weekly">
+    <div class="container week_content ">
 
-            <div class="content">
+        @foreach (var item in Model)
+        {
+            <div class="workContent">
 
                 <div class="pic_bgc">
-                    <img src="https://tw-a.kakaopagecdn.com/P/C/222/bg/2x/cb94f722-5ad2-4633-80be-689ab4655231.webp">
+                    <img src="@item.BgCover">
                 </div>
                 <div class="comic_information">
 
                     <div class="material">
                         <div class="date">
-                            <p>06.30</p>
+                            <p>@item.PublishDate</p>
                         </div>
                         <div class="title_pic">
-                            <img src="https://tw-a.kakaopagecdn.com/P/C/205/t2/2x/8848e3ef-a605-412f-9d37-d544e22af515.png"alt="">
+                            <img src="@item.ComicNameImage" alt="">
                         </div>
                         <div class="comic_introduce">
-                            <p>一切都是為了安穩度日 但故事幕後黑手的丈夫 竟遞來無數的糖衣炸彈</p>
+                            <p>@item.Introduction</p>
                         </div>
-                        <p class="author">Furik​, Kim Jiho​, suncy​</p>
+                        <p class="author">@item.Author,@item.Painter​</p>
                     </div>
 
                     <div class="p_pic">
-                        <img src="https://tw-a.kakaopagecdn.com/P/C/222/c1/2x/463ddb5e-6db5-4489-be34-ded5fa97b005.webp"
-                        alt="">
+                        <img src="@item.ComicFigure" alt="">
                     </div>
                 </div>
-
             </div>
-
-        </div>
-    </div>
-
+        }
 
     </div>
+</div>
+
+
+@section endJS{
+<script src="~/js/WeekNewComic.js"></script>
+}

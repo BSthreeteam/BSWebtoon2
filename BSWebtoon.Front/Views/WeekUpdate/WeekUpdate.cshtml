@@ -1,5 +1,9 @@
-﻿@section topCss{
-<link rel="stylesheet" href="~/style/WeeklyUpdataStyle.css" />
+﻿@{
+    ViewData["Title"] = "WeekUpdate";
+}
+
+@section topCss{
+<link rel="stylesheet" href="~/style/WeeklyUpdateStyle.css" />
 }
 
 <body data-bs-spy="scroll" data-bs-target="#navbar-id" data-bs-offset="140" class="scrollspy-example"tabindex="0">
@@ -373,61 +377,10 @@
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-            crossorigin="anonymous">
-    </script>
-
-    <script>
-        let mon = document.querySelector(".Monday .content")
-        let teus = document.querySelector(".Tuesday .content")
-        let wednes = document.querySelector(".Wednesday .content")
-        let thurs = document.querySelector(".Thursday .content")
-        let fri = document.querySelector(".Friday .content")
-        let satur = document.querySelector(".Saturday .content")
-        let sun = document.querySelector(".Sunday .content")
-        let blackTemplate = document.getElementById("blackTemplate")
-
-
-
-
-
-        window.onload = () => {
-
-
-            mon.append(createBlack())
-
-            teus.append(createBlack())
-            wednes.append(createBlack())
-            thurs.append(createBlack())
-            fri.append(createBlack())
-            satur.append(createBlack())
-            sun.append(createBlack())
-
-
-            let teus_long = document.querySelector(".Tuesday .work_long");
-            teus_long.setAttribute("style", "grid-column: 3/4;")
-
-            let wednes_long = document.querySelector(".Wednesday .work_long");
-            wednes_long.setAttribute("style", "grid-column: 2/3;")
-
-            let fri_long = document.querySelector(".Friday .work_long");
-            fri_long.setAttribute("style", "grid-column: 3/4;")
-
-            let satur_long = document.querySelector(".Saturday .work_long");
-            satur_long.setAttribute("style", "grid-column: 2/3;")
-
-        }
-
-
-
-        function createBlack() {
-            let cloneblack = blackTemplate.content.cloneNode(true);
-            return cloneblack
-        }
-
-    </script>
-
-
 </body>
+
+@section endJS{
+<script src="~/js/WeekUpdate.js"></script>
+
+}
 

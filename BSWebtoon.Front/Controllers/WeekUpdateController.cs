@@ -63,7 +63,7 @@ namespace BSWebtoon.Front.Controllers
             result = newComics.Select(c => new NewComicViewModel
             {
                     Author = c.Author,
-                    PublishDate = c.PublishDate,
+                    PublishDate = c.PublishDate.ToString("MM.dd"),
                     BgCover = c.BgCover,
                     ComicFigure = c.ComicFigure,
                     ComicId =c.ComicId,

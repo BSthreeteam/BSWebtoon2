@@ -34,7 +34,7 @@
     margin: auto;
 }
 
-.content {
+.workContent {
     width: 100%;
     position: relative;
     margin: auto;
@@ -70,7 +70,7 @@
 .material .date {
     width: fit-content;
     background-color: #f00;
-    border-radius: 50%;
+    border-radius: 30px;
 }
 
     .material .date p {
@@ -80,15 +80,15 @@
     }
 
 .material .title_pic {
-    width: 80%;
+    width: 60%;
     position: absolute;
-    top: -70px;
-    left: 5px;
+    top: -10px;
+    left: 0px;
 }
 
 .material .comic_introduce {
     width: 100px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     color: #fff;
 }
 
@@ -132,7 +132,7 @@
     }
 
     .material .title_pic {
-        top: -90px;
+        top: -30px;
         left: 10px;
     }
 
@@ -148,11 +148,14 @@
     }
 
     .material .title_pic {
-        top: -130px;
+        top: -50px;
     }
 
     .material .comic_introduce {
-        margin-bottom: 140px;
+        margin-bottom: 130px;
+    }
+    .comic_introduce p {
+        font-size: 10%;
     }
 }
 
@@ -162,12 +165,12 @@
     }
 
     .material .title_pic {
-        top: -160px;
+        top: -60px;
     }
 
     .material .comic_introduce {
-        width: 30%;
-        margin-bottom: 100px;
+        width: 40%;
+        margin-bottom: 120px;
     }
 
         .material .comic_introduce p {
