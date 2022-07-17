@@ -20,7 +20,7 @@ namespace BSWebtoon.Front.Controllers
         }
         public IActionResult AddFavoriteView()//Favorite/AddFavoriteView
         {
-            //_favoriteService.FavoriteCreate();
+            _favoriteService.FavoriteCreate();
             return View();
         }
         public IActionResult RemoveFavoriteView()//Favorite/RemoveFavoriteView
@@ -28,6 +28,13 @@ namespace BSWebtoon.Front.Controllers
             //_favoriteService.FavoriteCreate();
             return View();
         }
+
+        //public IActionResult RemoveFavoriteView()//Favorite/RemoveFavoriteView
+        //{
+        //    _favoriteService.FavoriteDelete();
+        //    return View();
+        //}
+
         //public IActionResult AddReadFavoriteList()//Favorite/AddReadFavoriteList
         //{
 
