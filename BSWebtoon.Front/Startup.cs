@@ -20,10 +20,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BSWebtoon.Front.Service.RankService;
-using BSWebtoon.Front.Service.WeekUpdateService;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using BSWebtoon.Front.Service.WeekUpdateService;
 
 namespace BSWebtoon.Front
 {
@@ -53,11 +53,11 @@ namespace BSWebtoon.Front
             services.AddScoped<ClickRecordService, ClickRecordService>();
             //services.AddDbContext<BSWeBtoonContext, BSWeBtoonContext>();
             services.AddScoped<IComicService, ComicService>();
+            services.AddScoped<IWeekUpdateService, WeekUpdateService>();
             services.AddScoped<IMemberService, MemberService>();
             services.AddScoped<IFavoriteService, FavoriteService>();
             services.AddHttpContextAccessor();
 
-            services.AddScoped<IWeekUpdateService, WeekUpdateService>();
             services.AddDbContext<BSWebtoonContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("BSWebtoonContext")));
             //第三方登入(yu)
