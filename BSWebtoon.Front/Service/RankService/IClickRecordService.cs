@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using BSWebtoon.Front.Models.DTO.Rank;
+using System.Collections.Generic;
 
 namespace BSWebtoon.Front.Service.RankService
 {
     public interface IClickRecordService
     {
         void ClickRecordCreate();
-        void UpdateRank();
+        
+        //void UpdateRank();
 
-        //string ReadRank();
-        //IEnumerable<RankViewModel> ReadRank();
-        //void ReadRank();
+        List<AllTagRankDTO> ReadAllRank();
+        List<CategoryRankDTO> ReadOtherTagRank();
     }
 }

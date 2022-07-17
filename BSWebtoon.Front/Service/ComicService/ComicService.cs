@@ -2793,9 +2793,6 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotVideo = "https://res.cloudinary.com/dmns6twmt/video/upload/v1657176900/I%27mLoveBoss/7.webm"
                            ,AuditType     =1,AuditEmployeeId=2,AuditFailReason="NULL",AuditTime=new DateTime(2021,12,2),ComicStatus=3},
 
-                
-                
-
 
             };
             foreach (var c in comics)
@@ -2850,9 +2847,12 @@ namespace BSWebtoon.Front.Service.ComicService
 
         public void ComicTagListUpdate()
         {
-            var updateTagList = _repository.GetAll<ComicTagList>().Where(x => x.TageListId == 2).FirstOrDefault();
-            updateTagList.ComicId = 2;
-            _repository.Update(updateTagList);
+            //var updateTagList = _repository.GetAll<ComicTagList>().Where(x => x.TageListId == 2).FirstOrDefault();
+            var updateComic = _repository.GetAll<Comic>().Where(x => x.ComicId == 138).FirstOrDefault();
+            //updateTagList.ComicId = 2;
+            updateComic.ComicWeekFigure="https://tw-a.kakaopagecdn.com/P/C/46/c2/2x/4853fbd7-b76b-4438-bac4-0ae54fa25a04.webp";
+            //_repository.Update(updateTagList);
+            _repository.Update(updateComic);
             _repository.SaveChange();
 
         }
@@ -5288,11 +5288,12 @@ namespace BSWebtoon.Front.Service.ComicService
 
         public WorkpageViewModel WordPageRead(int comicId)
         {
-            var comicSource = _repository.GetAll<Comic>().First(x => x.ComicId == comicId);
+            var comicSource = _repository.GetAll<Comic>().Where(c=>c.AuditType==1).First(x => x.ComicId == comicId);
             var tagListSource = _repository.GetAll<ComicTagList>().Where(x => x.ComicId == comicSource.ComicId).ToList();
             var mainTag = _repository.GetAll<ComicTag>().Where(x => tagListSource.Any(y => y.TagId == x.TagId)).First(x => x.IsMainTag == true);
             var couponSource = _repository.GetAll<Coupon>().First(x => x.CouponTypeId == 1 && x.MemberId == 1 && x.ComicId == comicId);
             var epSource = _repository.GetAll<Episode>().Where(x => x.ComicId == comicId).ToList();
+
 
             return new WorkpageViewModel
             {
@@ -5350,6 +5351,7 @@ namespace BSWebtoon.Front.Service.ComicService
             //    };
             //}
         }
+
         public void EpUpdate()
         {
             var p1 = _repository.GetAll<Episode>().Where(x => x.EpId == 1).FirstOrDefault();

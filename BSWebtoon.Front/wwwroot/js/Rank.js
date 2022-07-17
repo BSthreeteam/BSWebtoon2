@@ -4,7 +4,7 @@ let xhr = new XMLHttpRequest();
 xhr.onload = function () {
     jsdata = JSON.parse(xhr.responseText);
     console.log(jsdata);
-    document.getElementsByClassName("all_a")[0].click();
+    document.getElementsByClassName("all_a")[0]/*.click()*/;
 }
 xhr.open("GET", url);
 xhr.send();
