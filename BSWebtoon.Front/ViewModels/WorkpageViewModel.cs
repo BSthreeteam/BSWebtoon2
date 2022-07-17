@@ -19,6 +19,9 @@ namespace BSWebtoon.Front.ViewModels
             public string EpTitle { get; set; }
             public string EpCover { get; set; }
             public DateTime UploadTime { get; set; }
+            public bool IsCountdownCoupon { get; set; }
+            public bool IsFree { get; set; }
+
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using BSWebtoon.Front.ViewModels;
+using System.Collections.Generic;
 
 namespace BSWebtoon.Front.Service.ComicService
 {
@@ -11,5 +12,7 @@ namespace BSWebtoon.Front.Service.ComicService
         void EpCreate();
         void EpContentCreate();
         void EpUpdate();
+
+        WorkpageViewModel WorkPageRead(int comicId);
     }
 }

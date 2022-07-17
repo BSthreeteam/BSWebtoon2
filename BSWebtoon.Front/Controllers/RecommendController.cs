@@ -29,7 +29,7 @@ namespace BSWebtoon.Front.Controllers
             var recommendSource = _recommendservice.ReadRecommend();
             return View(recommendSource);
         }
-        public  IActionResult ReadClickRecord() //Recommend/ReadClickRecord
+        //public IActionResult ReadClickRecord() //Recommend/ReadClickRecord
         public IActionResult HitWork()
         {
 
@@ -43,11 +43,11 @@ namespace BSWebtoon.Front.Controllers
             _recommendservice.ActivityCreate();
             return View();
         }
-        public async Task<IActionResult> ReadActivity() //Recommend/ReadActivity
-        {
-            //var BSContext = _context.Activity.Include(x => x.PrincipalEmployeeNavigation);
-            return View(/*await BSContext.ToListAsync()*/);
-        }
+        //public async Task<IActionResult> ReadActivity() //Recommend/ReadActivity
+        //{
+        //    //var BSContext = _context.Activity.Include(x => x.PrincipalEmployeeNavigation);
+        //    return View(/*await BSContext.ToListAsync()*/);
+        //}
 
         public IActionResult AddViewRecordView() //Recommend/AddViewRecordView
         {
