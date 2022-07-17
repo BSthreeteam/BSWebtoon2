@@ -3,12 +3,12 @@
     ViewBag.Title = "SearchByName";
 }
 
-<h2>Search</h2>
-<form action="/search/searchComic" method="post" class="">
-    <label for="name">收尋名字</label>
-    <input type="text" id="name" name="username" /> @*for配id  name是提交資料用的 所以跟Accountcontroller傳入參數有關 ActionResult SearchByName(string username)*@
+<h2 class="bg-white">Search</h2>
+<form action="/search/searchComic" method="post" class="bg-white">
+    <label for="name" class="text-white">收尋名字</label>
+    <input type="text" id="name" name="username" class="text-white" /> @*for配id  name是提交資料用的 所以跟Accountcontroller傳入參數有關 ActionResult SearchByName(string username)*@
     <br />
-    <input type="submit" value="收尋" class="btn btn-default" />
+    <input type="submit" value="收尋" class="btn btn-primary" />
 </form>
 
 
