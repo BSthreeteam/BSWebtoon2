@@ -18,7 +18,7 @@ namespace BSWebtoon.Front.Controllers
         {
             return View();
         }
-        public IActionResult SearchComic()
+        public IActionResult SearchComic()//Search/SearchComic
         {
             return View();
         }
@@ -40,7 +40,7 @@ namespace BSWebtoon.Front.Controllers
             //SELECT*
             //FROM Comic C
             //WHERE C.ComicChineseName = N'小不點皇后'
-            return View();
+            return View("SearchResult", comicname);
         }
     }
 }
