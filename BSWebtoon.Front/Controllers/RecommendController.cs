@@ -52,27 +52,16 @@ namespace BSWebtoon.Front.Controllers
         public IActionResult AddViewRecordView() //Recommend/AddViewRecordView
         {
 
-            //_recommendservice.ViewRecordCreate();
-            //_recommendservice.CommentCreate();
-            //_recommendservice.LikeCreate();
-            //_recommendservice.ReportCreate();
+            _recommendservice.ViewRecordCreate();
+            _recommendservice.CommentCreate();
+            _recommendservice.CommentLikeCreate();
+            _recommendservice.ReportCreate();
             return View();
         }
         public IActionResult ActivityView() //活動小雞
         {
             //var vr = _recommendservice.ActivityRead();
             return View(/*vr*/);
-        }
-
-
-        public IActionResult SearchComic()
-        {
-            return View();
-        }
-        [HttpPost]
-        public IActionResult SearchComic(string comicname ,string tagname)//先顯示漫畫名稱在顯示漫畫tag
-        {
-            return View();
         }
     }
 }

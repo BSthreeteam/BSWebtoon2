@@ -1,0 +1,534 @@
+#body_bgc {
+    background-color: #000000;
+    position: relative;
+    height: 100vh;
+}
+
+#top {
+    color: #fff;
+    font-size: 20px;
+    padding-top: 15px;
+    font-weight: 600;
+    display: flex;
+    margin-top: 80px;
+    justify-content: center;
+}
+
+h2 {
+    width: 630px;
+    color: #FFFCEC;
+    display: flex;
+    margin: auto;
+    font-size: 15px;
+    justify-content: space-between;
+}
+
+    h2 p {
+        color: #777;
+    }
+
+hr {
+    margin: auto;
+    max-width: 630px;
+    color: #ccc;
+}
+
+.container {
+    width: 630px;
+    color: #FFFCEC;
+    display: flex;
+    margin: auto;
+    margin-top: 15px;
+    font-size: 15px;
+    justify-content: space-between;
+}
+
+    .container p {
+        font-size: 17px;
+        color: #ddd;
+    }
+
+    .container span {
+        font-size: 14px;
+        color: #a6a6a6;
+    }
+
+img {
+    width: 6px;
+    height: 12px;
+    margin-bottom: 3px;
+}
+
+.box {
+    width: 100%;
+    height: 260px;
+    background-color: #000000;
+    color: #FFFCEC;
+}
+
+    .box h3 {
+        max-width: 630px;
+        font-size: 18px;
+        margin: auto;
+        padding-top: 35px;
+    }
+
+.form-check {
+    max-width: 630px;
+    font-size: 15px;
+    margin: auto;
+    padding-top: 20px;
+}
+
+.btn {
+    width: calc(100%/3);
+    height: 45px;
+    background-color: #fff;
+    border-radius: 50px;
+    margin-top: 30px;
+    margin-left: 5%;
+}
+
+.btn_cancel {
+    font-size: 18px;
+    background-color: #1c1c1c;
+    color: #FFFCEC;
+    font-weight: 600;
+    border: 2px solid #FFFCEC;
+}
+
+
+.btn_confirm {
+    font-size: 18px;
+    background-color: #FFFCEC;
+    color: #1c1c1c;
+    font-weight: 600;
+    border: 2px solid #1c1c1c;
+}
+
+.span {
+    margin-top: 50px;
+}
+
+.font {
+    text-decoration: none;
+}
+
+/* ------------------------------------------- */
+#volet_clos {
+    position: fixed;
+    top: 292px;
+    bottom: 0%;
+    width: 100%;
+}
+
+#volet {
+    width: 250px;
+    width: 100%;
+}
+
+/* 初始定位 */
+#volet {
+    position: absolute;
+    bottom: -100%;
+    transition: all .5s ease-in;
+}
+
+    #volet a.ouvrir,
+    #volet a.fermer {
+        position: absolute;
+        right: -88px;
+        top: 150px;
+    }
+
+    /* 點擊過後改變 target  */
+    #volet a.fermer {
+        display: none;
+    }
+
+    #volet:target {
+        left: 0px;
+        top: 150px;
+    }
+
+        #volet:target a.fermer {
+            display: block;
+        }
+
+        #volet:target a.ouvrir {
+            display: none;
+        }
+
+#volet_clos:target #volet {
+    left: 0px;
+    top: 500px;
+}
+
+#volet a.ouvrir,
+#volet a.fermer {
+    position: absolute;
+    right: calc(40%);
+    top: -40px;
+    padding: 10px 25px;
+    background: #555;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    width: 120px;
+}
+
+#body_bgc {
+    background-color: #000000;
+    position: relative;
+    height: 100vh;
+}
+
+#top {
+    color: #fff;
+    font-size: 20px;
+    padding-top: 15px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+}
+
+h2 {
+    width: 630px;
+    color: #FFFCEC;
+    display: flex;
+    margin: auto;
+    font-size: 15px;
+    justify-content: space-between;
+}
+
+    h2 p {
+        color: #777;
+    }
+
+hr {
+    margin: auto;
+    max-width: 630px;
+    color: #ccc;
+}
+
+.container {
+    width: 630px;
+    color: #FFFCEC;
+    display: flex;
+    margin: auto;
+    margin-top: 15px;
+    font-size: 15px;
+    justify-content: space-between;
+}
+
+    .container p {
+        font-size: 17px;
+        color: #ddd;
+    }
+
+    .container span {
+        font-size: 14px;
+        color: #a6a6a6;
+    }
+
+img {
+    width: 6px;
+    height: 12px;
+    margin-bottom: 3px;
+}
+
+.box {
+    width: 100%;
+    height: 260px;
+    background-color: #000000;
+    color: #FFFCEC;
+}
+
+    .box h3 {
+        max-width: 630px;
+        font-size: 18px;
+        margin: auto;
+        padding-top: 35px;
+    }
+
+.form-check {
+    max-width: 630px;
+    font-size: 15px;
+    margin: auto;
+    padding-top: 20px;
+}
+
+.btn {
+    width: calc(100%/3);
+    height: 45px;
+    background-color: #fff;
+    border-radius: 50px;
+    margin-top: 30px;
+    margin-left: 5%;
+}
+
+.btn_cancel {
+    font-size: 18px;
+    background-color: #1c1c1c;
+    color: #FFFCEC;
+    font-weight: 600;
+    border: 2px solid #FFFCEC;
+}
+
+
+.btn_confirm {
+    font-size: 18px;
+    background-color: #FFFCEC;
+    color: #1c1c1c;
+    font-weight: 600;
+    border: 2px solid #000000;
+}
+
+.span {
+    margin-top: 50px;
+}
+
+.font {
+    text-decoration: none;
+}
+
+/* ------------------------------------------- */
+#volet_clos {
+    position: fixed;
+    top: 292px;
+    bottom: 0%;
+    width: 100%;
+}
+
+#volet {
+    width: 250px;
+    width: 100%;
+}
+
+/* 初始定位 */
+#volet {
+    position: absolute;
+    bottom: -100%;
+    transition: all .5s ease-in;
+}
+
+    #volet a.ouvrir,
+    #volet a.fermer {
+        position: absolute;
+        right: -88px;
+        top: 150px;
+    }
+
+    /* 點擊過後改變 target  */
+    #volet a.fermer {
+        display: none;
+    }
+
+    #volet:target {
+        left: 0px;
+        top: 150px;
+    }
+
+        #volet:target a.fermer {
+            display: block;
+        }
+
+        #volet:target a.ouvrir {
+            display: none;
+        }
+
+#volet_clos:target #volet {
+    left: 0px;
+    top: 500px;
+}
+
+#volet a.ouvrir,
+#volet a.fermer {
+    position: absolute;
+    right: calc(40%);
+    top: -40px;
+    padding: 10px 25px;
+    background: #555;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    width: 120px;
+}
+
+#body_bgc {
+    background-color: #000000;
+    position: relative;
+    height: 100vh;
+}
+
+#top {
+    color: #fff;
+    font-size: 20px;
+    padding-top: 15px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+}
+
+h2 {
+    width: 630px;
+    color: #FFFCEC;
+    display: flex;
+    margin: auto;
+    font-size: 15px;
+    justify-content: space-between;
+}
+
+    h2 p {
+        color: #777;
+    }
+
+hr {
+    margin: auto;
+    max-width: 630px;
+    color: #ccc;
+}
+
+.container {
+    width: 630px;
+    color: #FFFCEC;
+    display: flex;
+    margin: auto;
+    margin-top: 15px;
+    font-size: 15px;
+    justify-content: space-between;
+}
+
+    .container p {
+        font-size: 17px;
+        color: #ddd;
+    }
+
+    .container span {
+        font-size: 14px;
+        color: #a6a6a6;
+    }
+
+img {
+    width: 6px;
+    height: 12px;
+    margin-bottom: 3px;
+}
+
+.box {
+    width: 100%;
+    height: 260px;
+    background-color: #000000;
+    color: #FFFCEC;
+}
+
+    .box h3 {
+        max-width: 630px;
+        font-size: 18px;
+        margin: auto;
+        padding-top: 35px;
+    }
+
+.form-check {
+    max-width: 630px;
+    font-size: 15px;
+    margin: auto;
+    padding-top: 20px;
+}
+
+.btn {
+    width: calc(100%/3);
+    height: 45px;
+    background-color: #fff;
+    border-radius: 50px;
+    margin-top: 30px;
+    margin-left: 5%;
+}
+
+.btn_cancel {
+    font-size: 18px;
+    background-color: #000000;
+    color: #FFFCEC;
+    font-weight: 600;
+    border: 2px solid #FFFCEC;
+}
+
+
+.btn_confirm {
+    font-size: 18px;
+    background-color: #FFFCEC;
+    color: #1c1c1c;
+    font-weight: 600;
+    border: 2px solid #000000;
+}
+
+.span {
+    margin-top: 50px;
+}
+
+.font {
+    text-decoration: none;
+}
+
+/* ------------------------------------------- */
+#volet_clos {
+    position: fixed;
+    top: 292px;
+    bottom: 0%;
+    width: 100%;
+}
+
+#volet {
+    width: 250px;
+    width: 100%;
+}
+
+/* 初始定位 */
+#volet {
+    position: absolute;
+    bottom: -100%;
+    transition: all .5s ease-in;
+}
+
+    #volet a.ouvrir,
+    #volet a.fermer {
+        position: absolute;
+        right: -88px;
+        top: 150px;
+    }
+
+    /* 點擊過後改變 target  */
+    #volet a.fermer {
+        display: none;
+    }
+
+    #volet:target {
+        left: 0px;
+        top: 150px;
+    }
+
+        #volet:target a.fermer {
+            display: block;
+        }
+
+        #volet:target a.ouvrir {
+            display: none;
+        }
+
+#volet_clos:target #volet {
+    left: 0px;
+    top: 500px;
+}
+
+#volet a.ouvrir,
+#volet a.fermer {
+    position: absolute;
+    right: calc(40%);
+    top: -40px;
+    padding: 10px 25px;
+    background: #555;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    width: 120px;
+}
