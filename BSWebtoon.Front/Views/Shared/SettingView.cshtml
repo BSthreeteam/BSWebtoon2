@@ -1,0 +1,76 @@
+﻿@{
+    ViewData["Title"] = "Setting";
+}
+
+@section topCss{
+    <link rel="stylesheet" href="~/style/Setting.css" />
+}
+    <div id="body_bgc">
+        <h1 id="top">設定</h1>
+            <h2><p>偏好設定</p></h2>
+
+            <hr>
+
+        <div class="container">
+            <p>螢幕顯示設定</p>
+            <a href="#volet" aria-hidden="true" class="ouvrir font">
+                <span>
+                    深/淺色模式
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2IiBoZWlnaHQ9IjEyIiB2aWV3Qm94PSIwIDAgNiAxMiI+CiAgICA8ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxnIGZpbGw9IiM3NzciPgogICAgICAgICAgICA8cGF0aCBkPSJNLjcwNyAxMS40ODVMMCAxMC43NzhsNC41MzUtNC41MzZMMCAxLjcwNy43MDcgMWw0LjUzNSA0LjUzNS43MDguNzA3LTUuMjQzIDUuMjQzeiIvPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+Cg=="
+                     alt="">
+                </span>
+            </a>
+        </div>
+
+        <div class="span"></div>
+        <h2><p>閱覽作品設定</p></h2>
+
+        <hr>
+
+        <div class="container">
+            <p>話次排序設定</p>
+            <span>
+                依更新日期排序
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2IiBoZWlnaHQ9IjEyIiB2aWV3Qm94PSIwIDAgNiAxMiI+CiAgICA8ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxnIGZpbGw9IiM3NzciPgogICAgICAgICAgICA8cGF0aCBkPSJNLjcwNyAxMS40ODVMMCAxMC43NzhsNC41MzUtNC41MzZMMCAxLjcwNy43MDcgMWw0LjUzNSA0LjUzNS43MDguNzA3LTUuMjQzIDUuMjQzeiIvPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+Cg=="
+                 alt="">
+            </span>
+        </div>
+
+        <br><br>
+
+        <!-- ------------------------------------- -->
+        <div id="volet_clos">
+            <div id="volet">
+                <div class="box" id="box">
+                    <div class="box_display">
+                        <h3>螢幕顯示設定</h3>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            深色模式
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            淺色模式
+                        </label>
+                        <br>
+
+                        <a href="#volet_clos" aria-hidden="true" class="">
+                            <button class="btn btn_cancel">取消</button>
+                        </a>
+
+                        <a href="#volet_clos" aria-hidden="true" class="">
+                            <button class="btn btn_confirm" onClick="bgcolor()">確認</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section endJS{
+    <script src="~/js/Setting.js"></script>
+}
