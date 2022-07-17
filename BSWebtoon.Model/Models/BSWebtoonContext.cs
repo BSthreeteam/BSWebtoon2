@@ -134,11 +134,7 @@ namespace BSWebtoon.Model.Models
 
                 entity.Property(e => e.MemberId).HasComment("會員Id");
 
-                entity.HasOne(d => d.Member)
-                    .WithOne(p => p.ClickRecord)
-                    .HasForeignKey<ClickRecord>(d => d.MemberId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_ClickRecord_Member");
+
 
                 entity.HasOne(d => d.Comic)
                     .WithMany(p => p.ClickRecords)
@@ -150,7 +146,7 @@ namespace BSWebtoon.Model.Models
                     .WithMany(p => p.ClickRecords)
                     .HasForeignKey(d => d.MemberId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_ClickRecord_Member1");
+                    .HasConstraintName("FK_ClickRecord_Member");
             });
 
             modelBuilder.Entity<Comic>(entity =>

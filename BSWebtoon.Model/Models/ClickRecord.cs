@@ -12,7 +12,7 @@ namespace BSWebtoon.Model.Models
         public DateTime CreateTime { get; set; }
         public int MemberId { get; set; }
 
-        public virtual Member Member { get; set; }
+        //public virtual Member Member { get; set; }
         public virtual Comic Comic { get; set; }
         public virtual Member Member { get; set; }
     }
