@@ -106,9 +106,9 @@
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-bs-label="Close"></button>
                 </div>
-                <img class="log-img  card-img-top" src="https://picsum.photos/300/200/?random=10" alt="...">
+                <img class="log-img  card-img-top" src="/images/kureyonshinchan.jpg" alt="...">
                 <div class="modal-header d-flex align-items-center justify-content-center">
                     <h5 class="modal-title text-center" id="exampleModalLabel">
                         登入後可以將喜歡的作品加入最愛，<br>
@@ -122,16 +122,11 @@
                         @foreach (var loginOption in loginOptions)
                         {
                             <span></span>
-                            <a href="/Login/LoginOption/@(loginOption.Scheme)" class="btn btn-light">
+                            <a href="/Login/LoginOption/@(loginOption.Scheme)" class="m-1">
                                 <img src ="@loginOption.Icon"/>
                             </a>
                         }
-@*                        <span></span>
-                        <a asp-controller="LineLogin" asp-action="Index"><img src="https://tw-a.kakaopagecdn.com/web/static/auth/login-ico-sns-line-0e091239442121e27f11b2d164eeef8a.svg" alt="Line-login"></a>
-*@@*                        <a href="#"><img src="https://tw-a.kakaopagecdn.com/web/static/auth/login-ico-sns-google-abb03d27c5764dce9bb59f95ca5c8602.svg" alt="Google-login"></a>
-                        <span></span>
-                        <a href="#"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NSIgaGVpZ2h0PSI1NSIgdmlld0JveD0iMCAwIDU1IDU1Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTkzIC02MzcpIHRyYW5zbGF0ZSgwIDUyMSkgdHJhbnNsYXRlKDI2IDExNikgdHJhbnNsYXRlKDY3KSI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxyZWN0IHdpZHRoPSI1NSIgaGVpZ2h0PSI1NSIgZmlsbD0iIzE4NzdGMiIgcng9IjI3LjUiLz4KICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggZmlsbD0iI0ZGRkZGRSIgZD0iTTI3LjUgMTNDMTkuNDkyIDEzIDEzIDE5LjUzMiAxMyAyNy41ODkgMTMgMzQuODcgMTguMzAyIDQwLjkwNiAyNS4yMzQgNDJWMzEuODA2aC0zLjY4MXYtNC4yMTdoMy42ODF2LTMuMjE0YzAtMy42NTcgMi4xNjUtNS42NzYgNS40NzctNS42NzYgMS41ODcgMCAzLjI0Ni4yODUgMy4yNDYuMjg1djMuNTloLTEuODI4Yy0xLjgwMiAwLTIuMzYzIDEuMTI0LTIuMzYzIDIuMjc4djIuNzM3aDQuMDIxbC0uNjQzIDQuMjE3aC0zLjM3OFY0MkMzNi42OTggNDAuOTA2IDQyIDM0Ljg3IDQyIDI3LjU4OSA0MiAxOS41MzIgMzUuNTA4IDEzIDI3LjUgMTN6Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="FB-login"></a>
-*@                    </div>
+                    </div>
                 </div>
 
                 <div class="modal-footer">
