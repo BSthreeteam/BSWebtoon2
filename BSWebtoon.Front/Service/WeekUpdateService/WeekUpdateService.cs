@@ -94,6 +94,7 @@ namespace BSWebtoon.Front.Service.WeekUpdateService
                     ComicNameImage = finishComic.ComicNameImage,
                     BgCover = finishComic.BgCover,
                     ComicFigure = finishComic.ComicFigure,
+                    ComicWeekFigure = finishComic.ComicWeekFigure,
                     Author = finishComic.Author,
                     Painter = finishComic.Painter,
                     Introduction = finishComic.Introduction,

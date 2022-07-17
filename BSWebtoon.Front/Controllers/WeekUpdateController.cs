@@ -62,20 +62,53 @@ namespace BSWebtoon.Front.Controllers
 
             result = newComics.Select(c => new NewComicViewModel
             {
-                    Author = c.Author,
-                    PublishDate = c.PublishDate.ToString("MM.dd"),
-                    BgCover = c.BgCover,
-                    ComicFigure = c.ComicFigure,
-                    ComicId =c.ComicId,
-                    ComicNameImage =c.ComicNameImage,
-                    Introduction = c.Introduction,
-                    Painter = c.Painter
+                Author = c.Author,
+                PublishDate = c.PublishDate.ToString("MM.dd"),
+                BgCover = c.BgCover,
+                ComicFigure = c.ComicFigure,
+                ComicId = c.ComicId,
+                ComicNameImage = c.ComicNameImage,
+                Introduction = c.Introduction,
+                Painter = c.Painter
             }).ToList();
 
             return View(result);
 
 
 
+        }
+        public IActionResult FinishComic()
+        {
+            var finishComics = _weekUpdateService.ReadFinishComic();
+            var finishComicBig = finishComics.First();
+
+            var result = new FinishComicViewModel();
+
+            result = new FinishComicViewModel()
+            {
+                FinishComicBig = new FinishComicViewModel.FinishComicBigData
+                {
+                    Author = finishComicBig.Author,
+                    BgCover = finishComicBig.BgCover,
+                    ComicFigure = finishComicBig.ComicFigure,
+                    ComicId = finishComicBig.ComicId,
+                    ComicNameImage = finishComicBig.ComicNameImage,
+                    Introduction = finishComicBig.Introduction.Substring(0,40),
+                    Painter = finishComicBig.Painter
+
+                },
+
+                FinishComicList = finishComics.Skip(1).Select(c => new FinishComicViewModel.FinishComicData
+                {
+                    BgCover = c.BgCover,
+                    ComicWeekFigure = c.ComicWeekFigure,
+                    ComicId = c.ComicId,
+                    ComicNameImage = c.ComicNameImage
+                }).ToList()
+            };
+
+
+            return View(result);
         }
     }
 }    
