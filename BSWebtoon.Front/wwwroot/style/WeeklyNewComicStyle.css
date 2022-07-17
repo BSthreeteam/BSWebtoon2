@@ -1,0 +1,179 @@
+#navbar-id {
+    background-color: #000;
+    width: 100%;
+    /* width: 300px; */
+    color: #fff;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    z-index: 5;
+    position: fixed;
+    top: 80px;
+}
+
+.nav-pills .nav-link {
+    color: #fff;
+}
+
+    .nav-pills .nav-link.active {
+        color: #000;
+        background-color: #fff;
+        border-radius: 50%;
+        padding: 8px 12px;
+    }
+
+
+
+
+
+.weekly {
+    background-color: #000;
+    position: relative;
+    top: 135px;
+    width: 100%;
+    margin: auto;
+}
+
+.workContent {
+    width: 100%;
+    position: relative;
+    margin: auto;
+}
+
+.pic_bgc {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+}
+
+    .pic_bgc img {
+        width: 100%;
+    }
+
+.comic_information {
+    width: 100%;
+    display: flex;
+    position: relative;
+    z-index: 1;
+}
+
+    .comic_information .material {
+        width: 50%;
+        padding: 10px 0px 5px 30px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+.material .date {
+    width: fit-content;
+    background-color: #f00;
+    border-radius: 30px;
+}
+
+    .material .date p {
+        color: #fff;
+        padding: 5px;
+        margin-bottom: 0px;
+    }
+
+.material .title_pic {
+    width: 60%;
+    position: absolute;
+    top: -10px;
+    left: 0px;
+}
+
+.material .comic_introduce {
+    width: 100px;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+    .material .comic_introduce p {
+        font-size: 5%;
+    }
+
+.material .author {
+    font-size: 12px;
+    position: absolute;
+    bottom: 0;
+    color: #fff;
+}
+
+.title_pic img {
+    width: 100%;
+}
+
+
+.comic_information .p_pic {
+    width: 50%;
+    padding: 5px 5px 0px 5px;
+}
+
+.p_pic img {
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+@media screen and (min-width:768px) {
+    .comic_information .material {
+        padding: 10px 0px 5px 40px;
+    }
+
+    .material .title_pic {
+        top: -30px;
+        left: 10px;
+    }
+
+    .material .comic_introduce {
+        margin-bottom: 70px;
+    }
+}
+
+
+@media screen and (min-width:992px) {
+    .comic_information .material {
+        padding: 10px 0px 5px 60px;
+    }
+
+    .material .title_pic {
+        top: -50px;
+    }
+
+    .material .comic_introduce {
+        margin-bottom: 130px;
+    }
+    .comic_introduce p {
+        font-size: 10%;
+    }
+}
+
+@media screen and (min-width:1200px) {
+    .week_content {
+        width: 1200px;
+    }
+
+    .material .title_pic {
+        top: -60px;
+    }
+
+    .material .comic_introduce {
+        width: 40%;
+        margin-bottom: 120px;
+    }
+
+        .material .comic_introduce p {
+            font-size: 20px;
+        }
+}
