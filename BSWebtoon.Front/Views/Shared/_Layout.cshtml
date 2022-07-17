@@ -18,18 +18,11 @@
                 <form class="d-flex">
                     <input class="form-control me-2 bg-transparent inputSearchBorder" type="search" placeholder="Search"
                            aria-label="Search">
-                    <a class="nav-link" aria-current="page" href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+                    <a class="nav-link" aria-current="page" href="/"><i class="fa-solid fa-magnifying-glass"></i></a>
                 </form>
                 @*如果是登入的狀態下，登入按鈕消失*@
                 @if(User.Identity.IsAuthenticated){
-
-                }else{
-                    <li class="nav-item">
-                        <a data-bs-toggle="modal" href="#" data-bs-target="#exampleModal" class="nav-link">登入</a>
-                    </li>
-                }
-
-                <li class="nav-item dropdown flex-nowrap" id="user">
+                    <li class="nav-item dropdown flex-nowrap" id="user">
                     <a class="nav-link dropdown-toggle display_name" href="#" id="navbarDropdown" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="~/images/people.png" alt="登入者"
@@ -51,6 +44,13 @@
                         <li><a id="logout" class="dropdown-item bg-light"asp-controller="Login" asp-action="Logout">登出</a></li>
                     </ul>
                 </li>
+                }else{
+                    <li class="nav-item">
+                        <a data-bs-toggle="modal" href="#" data-bs-target="#exampleModal" class="nav-link">登入</a>
+                    </li>
+                }
+
+                
             </ul>
              <ul class="nav flex-nowrap text_overflow text_overflow">  
                 <li class="nav-item">

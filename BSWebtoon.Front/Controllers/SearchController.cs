@@ -29,18 +29,11 @@ namespace BSWebtoon.Front.Controllers
             {
                 return Content("請輸入你想查詢的相關資訊");
             }
-            //var comic = _repository.GetAll<Comic>();
-            var searchname = _bSWebtoonContext.Comics.FirstOrDefault(x => x.ComicChineseName == comicname);
-
-            //var searchComic = _repository.GetAll<Comic>();
-            //var user = _repository.Users.FirstOrDefault(x => x.Name.ToUpper() == username.ToUpper());
-            //return View("SearchResult", user);
+            var searchcomic = _bSWebtoonContext.Comics.Where(x => x.ComicChineseName.Contains(comicname)).ToList();
+            
 
 
-            //SELECT*
-            //FROM Comic C
-            //WHERE C.ComicChineseName = N'小不點皇后'
-            return View("SearchResult", comicname);
+            return View("SearchResult", searchcomic);
         }
     }
 }
