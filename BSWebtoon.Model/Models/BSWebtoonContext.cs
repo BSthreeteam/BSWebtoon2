@@ -134,8 +134,6 @@ namespace BSWebtoon.Model.Models
 
                 entity.Property(e => e.MemberId).HasComment("會員Id");
 
-
-
                 entity.HasOne(d => d.Comic)
                     .WithMany(p => p.ClickRecords)
                     .HasForeignKey(d => d.ComicId)
@@ -146,7 +144,7 @@ namespace BSWebtoon.Model.Models
                     .WithMany(p => p.ClickRecords)
                     .HasForeignKey(d => d.MemberId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_ClickRecord_Member");
+                    .HasConstraintName("FK_ClickRecord_Member1");
             });
 
             modelBuilder.Entity<Comic>(entity =>
@@ -621,9 +619,7 @@ namespace BSWebtoon.Model.Models
 
                 entity.HasIndex(e => e.LoginTypeId, "IX_Member_LoginTypeId");
 
-                entity.Property(e => e.AccessToken)
-                    .IsRequired()
-                    .HasComment("記錄在該登入模式下的相關資料");
+                entity.Property(e => e.AccessToken).HasComment("記錄在該登入模式下的相關資料");
 
                 entity.Property(e => e.AccountName)
                     .IsRequired()
@@ -641,9 +637,13 @@ namespace BSWebtoon.Model.Models
                     .IsRequired()
                     .HasComment("Email");
 
-                entity.Property(e => e.IsDarkTheme).HasComment("是否為深色模式");
+                entity.Property(e => e.IsDarkTheme).HasComment("是否為深色模式(0=>白色 1=>黑色)");
 
                 entity.Property(e => e.LoginTypeId).HasComment("登入類型");
+
+                entity.Property(e => e.NameIdentifier)
+                    .IsRequired()
+                    .HasComment("第三方登入Id");
 
                 entity.Property(e => e.NickName)
                     .IsRequired()

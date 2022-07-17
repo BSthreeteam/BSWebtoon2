@@ -14,9 +14,6 @@ namespace BSWebtoon.Front.Controllers
         private readonly IRecommendService _recommendservice;
         private readonly BSWebtoonContext _context;
 
-        //private readonly BSRepository _repository;
-
-        //private readonly BSRepository _repository;
         public RecommendController(BSRepository repository, IRecommendService recommendService, BSWebtoonContext context)
         {
             _recommendservice = recommendService;
@@ -28,7 +25,7 @@ namespace BSWebtoon.Front.Controllers
         {
             return View();
         }
-        public  IActionResult ReadClickRecord() //Recommend/ReadClickRecord
+        public IActionResult ReadClickRecord() //Recommend/ReadClickRecord
         {
             //var BSContext = _context.Comic.Include(x => x.AuditEmployee);
             //return View(await BSContext.ToListAsync());
