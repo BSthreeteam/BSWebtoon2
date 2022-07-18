@@ -112,6 +112,7 @@ namespace BSWebtoon.Front.Service.MemberService
                     LoginTypeId = provider,
                     NameIdentifier = input.NameIdentifier,
                     AccountName = input.AccountName,
+                    NickName = input.NickName,
                     Email = input.Email,
                     CreateTime = DateTime.UtcNow,
                     IsDarkTheme = true
