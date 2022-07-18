@@ -14,47 +14,51 @@
 <body>
     <div class="container w-1200">
         <nav class="row w-1200">
-            <ul class="nav justify-content-end flex-nowrap  align-items-center" style=" white-space:nowrap;">
-                <form class="d-flex">
-                    <input class="form-control me-2 bg-transparent inputSearchBorder" type="search" placeholder="Search"
-                           aria-label="Search">
-                    <a class="nav-link" aria-current="page" href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+
+            <ul class="nav justify-content-end flex-nowrap text-white  align-items-center" style=" white-space:nowrap;">
+                <form class="d-flex text-white" action="/search/searchComic" method="post" name="find">
+                    <input class="form-control me-2 bg-transparent inputSearchBorder text-white" type="search" placeholder="Search"
+                           aria-label="Search" id="name" name="comicname">
+                    <a class="nav-link" aria-current="page" action="/search/searchComic" @*href="#"*@ type="submit"><i class="fa-solid fa-magnifying-glass"></i></a>
                 </form>
                 @*如果是登入的狀態下，登入按鈕消失*@
-                @if(User.Identity.IsAuthenticated){
-                <li class="nav-item dropdown flex-nowrap" id="user">
-                    <a class="nav-link dropdown-toggle display_name" href="#" id="navbarDropdown" role="button"
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item dropdown flex-nowrap" id="user">
+                        <a class="nav-link dropdown-toggle display_name" href="#" id="navbarDropdown" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="~/images/people.png" alt="登入者"
+                            <img src="~/images/people.png" alt="登入者"
                              class="border border-dark rounded-circle user-icon">
-                        @User.Identity.Name
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item bg-light xl_accountinfo" href="#">我的帳戶</a></li>
-                        @*<li><a class="dropdown-item bg-light xl_my_comic" href="#">我的漫畫</a></li>*@
-                        <li><a class="dropdown-item bg-light xl_my_love" href="/Favorite/AddFavoriteView">我的最愛</a></li>
-                        <li><a class="dropdown-item bg-light xl_history" href="#">瀏覽紀錄</a></li>
-                        <li><a class="dropdown-item bg-light xl_my_coin" href="#">金幣/閱讀券明細</a></li>
-                        <li><a class="dropdown-item bg-light xl_stored_value" href="/Recharge/CashPlanView">儲值金幣</a></li>
-                        <li><a class="dropdown-item bg-light xl_history" href="#">瀏覽紀錄</a></li>
-                        <li><a class="dropdown-item bg-light xl_my_set" href="/Setting/SettingView">我的設定</a></li>
-                        <li><a class="dropdown-item bg-light xl_customer_service" href="#">客服中心</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item bg-light xl_customer_service" href="#">客服中心</a></li>
-                        <li><a id="logout" class="dropdown-item bg-light" href="Login/Logout">登出</a></li>
-                    </ul>
-                </li>
+                            @User.Identity.Name
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item bg-light xl_accountinfo" href="#">我的帳戶</a></li>
+                            @*<li><a class="dropdown-item bg-light xl_my_comic" href="#">我的漫畫</a></li>*@
+                            <li><a class="dropdown-item bg-light xl_my_love" href="/Favorite/AddFavoriteView">我的最愛</a></li>
+                            <li><a class="dropdown-item bg-light xl_history" href="#">瀏覽紀錄</a></li>
+                            <li><a class="dropdown-item bg-light xl_my_coin" href="#">金幣/閱讀券明細</a></li>
+                            <li><a class="dropdown-item bg-light xl_stored_value" href="/Recharge/CashPlanView">儲值金幣</a></li>
+                            <li><a class="dropdown-item bg-light xl_history" href="#">瀏覽紀錄</a></li>
+                            <li><a class="dropdown-item bg-light xl_my_set" href="/Setting/SettingView">我的設定</a></li>
+                            <li><a class="dropdown-item bg-light xl_customer_service" href="#">客服中心</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item bg-light xl_customer_service" href="#">客服中心</a></li>
+                            <li><a id="logout" class="dropdown-item bg-light" href="Login/Logout">登出</a></li>
+                        </ul>
+                    </li>
 
-                }else{
+                }
+                else
+                {
                     <li class="nav-item">
                         <a data-bs-toggle="modal" href="#" data-bs-target="#exampleModal" class="nav-link">登入</a>
                     </li>
                 }
 
             </ul>
-             <ul class="nav flex-nowrap text_overflow text_overflow justify-content-center">  
+            <ul class="nav flex-nowrap text_overflow text_overflow justify-content-center">
                 <li class="nav-item">
                     <a class="nav-link" href="#">禮物盒</a>
                 </li>
@@ -68,7 +72,7 @@
                 </li>
                 <li class="nav-item">
                     @*<a class="nav-link" href="#">排行榜</a>*@
-                    @Html.ActionLink("排行榜", "Rank", "Rank", new {},new {@class="nav-link text-secondary"})
+                    @Html.ActionLink("排行榜", "AllRankList", "Rank", new {},new {@class="nav-link text-secondary"})
                 </li>
                 <li class="nav-item">
                     @* <a class="nav-link" href="#">我的漫畫</a>*@
@@ -125,14 +129,14 @@
                         {
                             <span></span>
                             <a href="/Login/LoginOption/@(loginOption.Scheme)" class="m-1">
-                                <img src ="@loginOption.Icon"/>
+                                <img src="@loginOption.Icon" />
                             </a>
                         }
                     </div>
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                 </div>
             </div>
         </div>

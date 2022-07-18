@@ -5,293 +5,256 @@
 <link rel="stylesheet" href="~/style/RankListstyle.css" />
 }
 
-<navbar class="navbar navbar-expand-lg ">
-    <div class="rankListNav">
-        <ul class="nav flex-nowrap text_overflow text_overflow ">
-            <li class="btn nav-item all">
-                <button class="nav-link">
-                    全部
-                </button>
-            </li>
-            <li class="btn nav-item fantasy">
-                <button class="nav-link">
-                    奇幻
-                </button>
-            </li>
-            <li class="btn nav-item fantasy_love">
-                <button class="nav-link">
-                    奇幻愛情
-                </button>
-            </li>
-            <li class="btn nav-item action_adventure">
-                <button class="nav-link">
-                    動作冒險
-                </button>
-            </li>
+@*<nav id="navbar-id" class="navbar navbar-light">
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            <a class="nav-link nav_new_work" href="#">全部</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">奇幻</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " href="#">奇幻愛情</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">動作冒險</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">愛情</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">劇情</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">GL/BL</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">懸疑恐怖</a>
+        </li>
+    </ul>
 
-            <li class="btn nav-item love">
-                <button class="nav-link">
-                    愛情
-                </button>
-            </li>
+</nav>
 
-            <li class="btn nav-item plot">
-                <button class="nav-link">
-                    劇情
-                </button>
-            </li>
+<div class="Rank ">
+    <div class="container Rank_content">
+        <div class="content">
+            <div class="work_big">
+                <div class="work_big_bg">
+                    <img src="https://tw-a.kakaopagecdn.com/P/C/148/bg/1x/f485a521-3410-48a7-a3de-793514f1237c.webp"
+                         alt="">
+                </div>
+                <div class="comic_material">
+                    <div class="work_big_title">
+                        <img src="https://tw-a.kakaopagecdn.com/P/C/205/t2/2x/8848e3ef-a605-412f-9d37-d544e22af515.png"
+                             alt="">
+                    </div>
+                    <div class="introduction">我和朋友接吻了，但我們都是女的!這段曖昧不明的關係究竟該如何定義?</div>
+                </div>
+                <div class="work_big_Ranking">
+                    <p class="Ranking_num">1</p>
+                    <i class="fa-solid fa-caret-up"></i>
+                    <p class="diff">12</p>
+                </div>
+                <div class="work_big_pic">
+                    <img src="https://tw-a.kakaopagecdn.com/P/C/127/c1/2x/b7ff7f30-08cd-469d-abb2-a8de31bbc117.webp">
+                </div>
+            </div>
 
-            <li class="btn nav-item BL_GL">
-                <button class="nav-link">
-                    BL/GL
-                </button>
-            </li>
+            <template id="workTemplate">
+                <div class="work">
+                    <div class="work_bg">
+                        <img src="https://tw-a.kakaopagecdn.com/P/C/148/bg/1x/f485a521-3410-48a7-a3de-793514f1237c.webp"
+                             alt="">
+                    </div>
+                    <img class="work_pic"
+                         src="https://tw-a.kakaopagecdn.com/P/C/148/c2/2x/06e61fbe-0d6d-4145-9a9f-3723841ac527.webp">
 
-            <li class="btn nav-item Suspenseful_horror">
-                <button class="nav-link">
-                    懸疑恐怖
-                </button>
-            </li>
-        </ul>
+                    <div class="title_img">
+                        <img src="https://tw-a.kakaopagecdn.com/P/C/205/t2/2x/8848e3ef-a605-412f-9d37-d544e22af515.png"
+                             alt="">
+                    </div>
+                    <div class="work_status">
+                        <span>UP</span>
+                    </div>
+                    <div class="work_Ranking">
+                        <p class="Ranking_num">1</p>
+                        <i class="fa-solid fa-caret-down"></i>
+                        <!-- <i class="fa-solid fa-caret-up"></i>
+                        <p class="diff">-</p>    -->
+                        <p class="diff">-</p>
+                    </div>
+                </div>
+            </template>
+
+
+            <template id="blackTemplate">
+                <div class="black">
+                    <div class="black">
+                        <div class="row">
+                            <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                                <div class="img-box"></div>
+                            </div>
+                            <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                                <div class="img-box"></div>
+                            </div>
+                            <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                                <div class="img-box"></div>
+                            </div>
+                            <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                                <div class="img-box"></div>
+                            </div>
+                            <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                                <div class="img-box"></div>
+                            </div>
+                        </div>
+                    </div>
+            </template>
+        </div>
     </div>
-</navbar>
+</div>*@
 
-<div class="container p-0 output ">
-    <div class="output box">
-        <a href="#" class="number-one">
-            <div class="rank_pic">
-                <img src="@Model.FirstRank.BgCover" alt="背景" class="rank_pic_bg">
-                @if (@Model.FirstRank.BannerVideoWeb != null)
-                {
-                    <video>
-                        <source src="@Model.FirstRank.BannerVideoWeb" type="video/webm">
-                    </video>
-                }
-                else
-                {
-                    <img src="@Model.FirstRank.ComicFigure" alt="@Model.FirstRank.ComicName" class="rank_pic_people">
-                }
-            </div>
-            <div class="rank_text">
-                <span class="tag">新作</span>
-                <img src="@Model.FirstRank.ComicNameImage"
-                     alt="標題" class="rank_pic_title">
-                <p>@Model.FirstRank.Introduction</p>
-                <div class="rank_bgdiv">
-                    <span class="rank rank_num">1</span>
-                    <span class="rank rank_icon">@Model.FirstRank.Diff</span>
+<nav id="navbar-id" class="navbar navbar-light">
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            <a class="nav-link nav_new_work all" href="/Rank/AllRankList">全部</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link fantasy bg-white text-black" href="#">奇幻</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link fantasy_love" href="#">愛情</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link action_adventure " href="#">動作冒險</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link plot" href="#">劇情</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link BL_GL" href="#">GL/BL</a>
+        </li>
+        @*<li class="nav-item Suspenseful_horror">
+            <a class="nav-link " href="#">懸疑恐怖</a>
+            </li>*@
+    </ul>
+</nav>
+
+<div class="Rank ">
+    <div class="container Rank_content">
+        <div class="content">
+            <a class="work_big" href="#">
+                <div class="work_big_bg">
+                    <img src="@Model.FirstRank.BgCover" alt="背景" class="rank_pic_bg">
+                    @*<img src="https://tw-a.kakaopagecdn.com/P/C/148/bg/1x/f485a521-3410-48a7-a3de-793514f1237c.webp"
+                        alt="">*@
                 </div>
-            </div>
-        </a>
-        @foreach (var item in Model.OtherRank)
-        {
-            <a href="#" class="numbers">
-                <div class="rank_pic">
-                    @*<img src="https://tw-a.kakaopagecdn.com/P/C/270/bg/1x/e6f07925-f715-4ec6-a2ad-c50b2b86d0a9.jpg"
-                        alt="背景" class="rank_pic_bg">*@
-
-                    <img src="@item.BgCover" alt="背景" class="rank_pic_bg">
-                    <img src="@item.ComicWeekFigure" alt="@item.ComicName" class="rank_pic_people">
+                <div class="comic_material">
+                    <div class="work_big_title">
+                        <img src="@Model.FirstRank.ComicNameImage" alt="標題" class="rank_pic_title">
+                        @*<img src="https://tw-a.kakaopagecdn.com/P/C/205/t2/2x/8848e3ef-a605-412f-9d37-d544e22af515.png"
+                             alt="">*@
+                    </div>
+                    <div class="introduction">
+                        @Model.FirstRank.Introduction
+                        @*我和朋友接吻了，但我們都是女的!這段曖昧不明的關係究竟該如何定義?*@
+                    </div>
                 </div>
-
-                <div class="rank_text">
-                    <div class="rank_bgdiv">
-                        @* @for (var i = 10; i < 21; i++)
-                            {
-
-                            <span class="rank rank_num">@i</span>
-                            }*@
-                        <span class="rank rank_num">@item.ClickRecordId</span>
-                        <span class="rank rank_icon">@item.Diff</span>
-                    </div>
-                    <div class="box-title">
-                        <img src="@item.ComicNameImage"
-                         alt="標題" class="rank_pic_title">
-                        <span class="tag">新作</span>
-                    </div>
+                <div class="work_big_Ranking">
+                    <p class="Ranking_num">1</p>
+                    <i class="fa-solid fa-caret-up"></i>
+                    <p class="diff">@Model.FirstRank.Diff</p>
+                </div>
+                <div class="work_big_pic">
+                    @if (@Model.FirstRank.BannerVideoWeb != null)
+                    {
+                        <video>
+                            <source src="@Model.FirstRank.BannerVideoWeb" type="video/webm">
+                        </video>
+                    }
+                    else
+                    {
+                        <img src="@Model.FirstRank.ComicFigure" alt="@Model.FirstRank.ComicName" class="rank_pic_people">
+                    }
                 </div>
             </a>
-        }
+
+            <template id="workTemplate">
+                @foreach(var item in Model.OtherRank)
+                {
+                    <a class="work" href="#">
+                        <div class="work_bg">
+                            <img src="@item.BgCover" alt="背景" >
+                            @*<img src="https://tw-a.kakaopagecdn.com/P/C/148/bg/1x/f485a521-3410-48a7-a3de-793514f1237c.webp"
+                                 alt="">*@
+                        </div>
+                        <img class="work_pic"
+                             src="@item.ComicWeekFigure" alt="@item.ComicName" >
+
+                        <div class="title_img">
+                            <img src="@item.ComicNameImage"
+                                 alt="@item.ComicName">
+                        </div>
+                        <div class="work_status">
+                            <span>UP</span>
+                        </div>
+                        <div class="work_Ranking">
+                            <p class="Ranking_num">2</p>
+                            @if(@item.Diff>0)
+                            {
+                                <i class="fa-solid fa-caret-up"></i>
+                                <p class="diff">@item.Diff</p>
+                            }
+                            else if(@item.Diff==0)
+                            {
+                                <i class="fa-solid fa-caret-up"></i>
+                                <p class="diff">-</p>
+                                
+                            }
+                            else
+                            {
+                                <i class="fa-solid fa-caret-down"></i>
+                                <p class="diff">@item.Diff</p>
+                            }
+                            
+                        </div>
+                    </a>
+                }
+            </template>
+
+
+            <template id="blackTemplate">
+                <div class="black">
+                    <div class="black">
+                        <div class="row">
+                            <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                                <div class="img-box"></div>
+                            </div>
+                            <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                                <div class="img-box"></div>
+                            </div>
+                            <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                                <div class="img-box"></div>
+                            </div>
+                            <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                                <div class="img-box"></div>
+                            </div>
+                            <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                                <div class="img-box"></div>
+                            </div>
+                        </div>
+                    </div>
+            </template>
+        </div>
     </div>
 </div>
 
-<template id="bestseller">
-    <div class="box">
-        <a href="#" class="number-one">
-            <div class="rank_pic">
-                <img src="@Model.FirstRank.BgCover" alt="背景" class="rank_pic_bg">
-                <video>
-                    <source src="@Model.FirstRank.BannerVideoWeb" type="video/webm">
-                </video>
-            </div>
-            <div class="rank_text">
-                <span class="tag">新作</span>
-                <img src="@Model.FirstRank.ComicNameImage"
-                     alt="標題" class="rank_pic_title">
-                <p>@Model.FirstRank.Introduction</p>
-                <div class="rank_bgdiv">
-                    <span class="rank rank_num">1</span>
-                    <span class="rank rank_icon">@Model.FirstRank.Diff</span>
-                </div>
-            </div>
-        </a>
-    </div>
-    @foreach (var item in Model.OtherRank)
-    {
-        <a href="#" class="numbers">
-            <div class="rank_pic">
-                @*<img src="https://tw-a.kakaopagecdn.com/P/C/270/bg/1x/e6f07925-f715-4ec6-a2ad-c50b2b86d0a9.jpg"
-                    alt="背景" class="rank_pic_bg">*@
-
-                <img src="@item.BgCover" alt="背景" class="rank_pic_bg">
-                <img src="@item.ComicWeekFigure"
-                 alt="@item.ComicName" class="rank_pic_people">
-            </div>
-
-            <div class="rank_text">
-                <div class="rank_bgdiv">
-                    <span class="rank rank_num">@item.ClickRecordId</span>
-                    <span class="rank rank_icon">@item.Diff</span>
-                </div>
-                <div class="box-title">
-                    <img src="@item.ComicNameImage"
-                     alt="標題" class="rank_pic_title">
-                    <span class="tag">新作</span>
-                </div>
-            </div>
-        </a>
-    }
-</template>
 
 
 
 
-@*<div class="container p-0 output">
-    <template id="bestseller">
-    <div class="box">
-    <a href="#" class="number-one">
-    <div class="rank_pic">
-    <img src="https://tw-a.kakaopagecdn.com/P/C/261/bg/2x/b62f3f9d-d3b1-4dc5-a521-5c1350ed0558.jpg"
-    alt="背景" class="rank_pic_bg">
-    <img src="https://tw-a.kakaopagecdn.com/P/C/261/c1/2x/a1608d93-8b88-48fc-a5fd-6871f5fba606.webp"
-    alt="我們能成為一家人嗎?" class="rank_pic_people">
-    </div>
-    <div class="rank_text">
-    <span class="tag">新作</span>
-    <img src="https://tw-a.kakaopagecdn.com/P/C/261/t1/2x/97d6ffa2-e908-4424-8eda-5e9020c4879c.webp"
-    alt="標題" class="rank_pic_title">
-    <p>每次重生都被「家人」拋棄並死亡最後機會不再渴望親情，誓言展開報復</p>
-    <div class="rank_bgdiv">
-    <span class="rank rank_num">1</span>
-    <span class="rank rank_icon">-</span>
-    </div>
-    </div>
-    </a>
-    <a href="#" class="numbers">
-    <div class="rank_pic">
-    <img src="https://tw-a.kakaopagecdn.com/P/C/270/bg/1x/e6f07925-f715-4ec6-a2ad-c50b2b86d0a9.jpg"
-    alt="背景" class="rank_pic_bg">
-    <img src="https://tw-a.kakaopagecdn.com/P/C/270/c2/2x/4122cbca-b90c-4100-b30d-21af44f41106.png"
-    alt="圖林的莉莉安" class="rank_pic_people">
-    </div>
-    <div class="rank_text">
-    <div class="rank_bgdiv">
-    <span class="rank rank_num">1</span>
-    <span class="rank rank_icon">-</span>
-    </div>
-    <div class="box-title">
-    <img src="https://tw-a.kakaopagecdn.com/P/C/270/t2/2x/79dde0a6-c4af-450f-8655-1435f661d974.png"
-    alt="標題" class="rank_pic_title">
-    <span class="tag">新作</span>
-    <!-- <span class="tag">新作</span> -->
-    </div>
-    </div>
-    </a>
-    <a href="#" class="numbers">
-    <div class="rank_pic">
-    <img src="https://tw-a.kakaopagecdn.com/P/C/270/bg/1x/e6f07925-f715-4ec6-a2ad-c50b2b86d0a9.jpg"
-    alt="背景" class="rank_pic_bg">
-    <img src="https://tw-a.kakaopagecdn.com/P/C/270/c2/2x/4122cbca-b90c-4100-b30d-21af44f41106.png"
-    alt="圖林的莉莉安" class="rank_pic_people">
-    </div>
-    <div class="rank_text">
-    <div class="rank_bgdiv">
-    <span class="rank rank_num">1</span>
-    <span class="rank rank_icon"><span class="up_icon">▲</span>2</span>
-    </div>
-    <div class="box-title">
-    <img src="https://tw-a.kakaopagecdn.com/P/C/270/t2/2x/79dde0a6-c4af-450f-8655-1435f661d974.png"
-    alt="標題" class="rank_pic_title">
-    <span class="tag">新作</span>
-    <span class="tag">新作</span>
-    <span class="tag">新作</span>
-    </div>
-    </div>
-    </a>
-    <a href="#" class="numbers">
-    <div class="rank_pic">
-    <img src="https://tw-a.kakaopagecdn.com/P/C/270/bg/1x/e6f07925-f715-4ec6-a2ad-c50b2b86d0a9.jpg"
-    alt="背景" class="rank_pic_bg">
-    <img src="https://tw-a.kakaopagecdn.com/P/C/270/c2/2x/4122cbca-b90c-4100-b30d-21af44f41106.png"
-    alt="圖林的莉莉安" class="rank_pic_people">
-    </div>
-    <div class="rank_text">
-    <div class="rank_bgdiv">
-    <span class="rank rank_num">1</span>
-    <span class="rank rank_icon">-</span>
-    </div>
-    <div class="box-title">
-    <img src="https://tw-a.kakaopagecdn.com/P/C/270/t2/2x/79dde0a6-c4af-450f-8655-1435f661d974.png"
-    alt="標題" class="rank_pic_title">
-    <span class="tag">新作</span>
-    <span class="tag">新作</span>
-    </div>
-    </div>
-    </a>
-    <a href="#" class="numbers">
-    <div class="rank_pic">
-    <img src="https://tw-a.kakaopagecdn.com/P/C/270/bg/1x/e6f07925-f715-4ec6-a2ad-c50b2b86d0a9.jpg"
-    alt="背景" class="rank_pic_bg">
-    <img src="https://tw-a.kakaopagecdn.com/P/C/270/c2/2x/4122cbca-b90c-4100-b30d-21af44f41106.png"
-    alt="圖林的莉莉安" class="rank_pic_people">
-    </div>
-    <div class="rank_text">
-    <div class="rank_bgdiv">
-    <span class="rank rank_num">1</span>
-    <span class="rank rank_icon"><span class="down_icon">▼</span>2</span>
-    </div>
-    <div class="box-title">
-    <img src="https://tw-a.kakaopagecdn.com/P/C/270/t2/2x/79dde0a6-c4af-450f-8655-1435f661d974.png"
-    alt="標題" class="rank_pic_title">
-    <span class="tag">新作</span>
-    <span class="tag">新作</span>
-    </div>
-    </div>
-    </a>
-    <a href="#" class="numbers">
-    <div class="rank_pic">
-    <img src="https://tw-a.kakaopagecdn.com/P/C/270/bg/1x/e6f07925-f715-4ec6-a2ad-c50b2b86d0a9.jpg"
-    alt="背景" class="rank_pic_bg">
-    <img src="https://tw-a.kakaopagecdn.com/P/C/270/c2/2x/4122cbca-b90c-4100-b30d-21af44f41106.png"
-    alt="圖林的莉莉安" class="rank_pic_people">
-    </div>
-    <div class="rank_text">
-    <div class="rank_bgdiv">
-    <span class="rank rank_num">1</span>
-    <span class="rank rank_icon">-</span>
-    </div>
-    <div class="box-title">
-    <img src="https://tw-a.kakaopagecdn.com/P/C/270/t2/2x/79dde0a6-c4af-450f-8655-1435f661d974.png"
-    alt="標題" class="rank_pic_title">
-    <span class="tag">新作</span>
-    <span class="tag">新作</span>
-    </div>
-    </div>
-    </a>
-    </div>
-    </template>
-    </div>*@
+
 
 @section endJS{
+<script src="https://kit.fontawesome.com/2dbc4e25d3.js" crossorigin="anonymous"></script>
 <script src="~/js/RankList.js"></script>
 }

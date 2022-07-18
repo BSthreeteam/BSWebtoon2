@@ -170,7 +170,7 @@ namespace BSWebtoon.Front.Service.RankService
             //       };
         }
 
-        
+
         public List<CategoryRankDTO> ReadOtherTagRank()
         {
 
@@ -193,12 +193,12 @@ namespace BSWebtoon.Front.Service.RankService
                 var tagListResult = conn.Query<CategoryTagRankDTO>(sql);
 
                 //計算排名區間
-                var newRankEndDate  = new DateTime(2022, 07, 29);
+                var newRankEndDate = new DateTime(2022, 07, 29);
                 var newRankStartDate = newRankEndDate.AddDays(-7);//7/22
 
                 var oldRankEndDate = newRankStartDate.AddDays(-1);//
                 var oldRankStartDate = oldRankEndDate.AddDays(-6);//7/15
-                
+
                 //找出每個漫畫上上周的點擊數
                 string oldClickRecord = @$"SELECT  CR.ComicId, COUNT(CR.ComicId) AS ClickRecordCount
                                           FROM ClickRecord CR 
@@ -264,7 +264,7 @@ namespace BSWebtoon.Front.Service.RankService
                             Introduction = item.Introduction,
                             ComicFigure = item.ComicFigure,
                         });
-                        
+
                     }
 
                 }
@@ -279,8 +279,8 @@ namespace BSWebtoon.Front.Service.RankService
                 {
                     //在舊Integrate中尋找與新Integrate 相同的類別的所有資料 
                     var oldTagGroupList = oldClickGroup.Where(o => o.Key == newgroup.Key).FirstOrDefault();
-                   //如果舊的有該類別則
-                    if(oldTagGroupList != default)
+                    //如果舊的有該類別則
+                    if (oldTagGroupList != default)
                     {
                         //選擇舊Integrate的漫畫select出相關資訊
                         var oldTagGroup = oldTagGroupList.Select(o => o).ToList();
@@ -307,7 +307,7 @@ namespace BSWebtoon.Front.Service.RankService
                                 AuditType = item.AuditType,
                                 TagName = newgroup.Key,
                                 //差距排名
-                                Diff= oldComicList.IndexOf(item.ComicId)==-1?0: newComicList.IndexOf(item.ComicId)+1 - oldComicList.IndexOf(item.ComicId)+1
+                                Diff = oldComicList.IndexOf(item.ComicId) == -1 ? 0 : newComicList.IndexOf(item.ComicId) + 1 - oldComicList.IndexOf(item.ComicId) + 1
                             });
                         }
                     }
@@ -331,16 +331,16 @@ namespace BSWebtoon.Front.Service.RankService
                                 AuditType = item.AuditType,
                                 TagName = newgroup.Key,
                                 //差距排名為new
-                                Diff=0
+                                Diff = 0
                             });
                         }
                     }
-                 
+
                 }
 
             }
-            
-            
+
+
             return result;
 
         }

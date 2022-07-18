@@ -10,7 +10,7 @@ namespace BSWebtoon.Front.Service.WeekUpdateService
     {
         private readonly BSRepository _repository;
 
-        public WeekUpdateService(BSRepository repository, BSWebtoonContext context)
+        public WeekUpdateService(BSRepository repository)
         {
             _repository = repository;
         }
@@ -54,7 +54,7 @@ namespace BSWebtoon.Front.Service.WeekUpdateService
 
         public List<NewComicDTO> ReadNewComic()
         {
-            var newComicSource = _repository.GetAll<Comic>().Where(c => c.ComicStatus == 4 && c.AuditType==1).OrderByDescending(c => c.PublishDate);
+            var newComicSource = _repository.GetAll<Comic>().Where(c => c.ComicStatus == 4 && c.AuditType == 1).OrderByDescending(c => c.PublishDate);
 
             var result = new List<NewComicDTO>();
 
@@ -78,7 +78,7 @@ namespace BSWebtoon.Front.Service.WeekUpdateService
         }
         public List<FinishComicDTO> ReadFinishComic()
         {
-            var finishComicSource = _repository.GetAll<Comic>().Where(c => c.ComicStatus == 1 && c.AuditType==1);
+            var finishComicSource = _repository.GetAll<Comic>().Where(c => c.ComicStatus == 1 && c.AuditType == 1);
             var clickRecordGroup = _repository.GetAll<ClickRecord>().GroupBy(c => c.ComicId);
 
             var finishComicList = new List<FinishComicDTO>();
@@ -94,6 +94,7 @@ namespace BSWebtoon.Front.Service.WeekUpdateService
                     ComicNameImage = finishComic.ComicNameImage,
                     BgCover = finishComic.BgCover,
                     ComicFigure = finishComic.ComicFigure,
+                    ComicWeekFigure = finishComic.ComicWeekFigure,
                     Author = finishComic.Author,
                     Painter = finishComic.Painter,
                     Introduction = finishComic.Introduction,
@@ -110,12 +111,5 @@ namespace BSWebtoon.Front.Service.WeekUpdateService
 
 
         }
-
-
-
-
-
-
-
     }
 }

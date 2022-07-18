@@ -1,5 +1,4 @@
 ﻿using BSWebtoon.Front.Service.FavoriteService;
-using BSWebtoon.Model.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BSWebtoon.Front.Controllers

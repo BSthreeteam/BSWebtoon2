@@ -1,6 +1,9 @@
 ﻿@{
     ViewData["Title"] = "WeekUpdate";
 }
+@{
+    var t = DateTime.Now.DayOfWeek ; 
+}
 
 @section topCss{
 <link rel="stylesheet" href="~/style/WeeklyUpdateStyle.css" />
@@ -15,25 +18,25 @@
                 <a class="nav-link nav_new_work" href="#">新作</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#scrollspyHeading1">一</a>
+                <a class="nav-link nav_Monday" href="#scrollspyHeading1">一</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="#scrollspyHeading2">二</a>
+                <a class="nav-link nav_Tuesday" href="#scrollspyHeading2">二</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#scrollspyHeading3">三</a>
+                <a class="nav-link nav_Wednesday" href="#scrollspyHeading3">三</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#scrollspyHeading4">四</a>
+                <a class="nav-link nav_Thursday" href="#scrollspyHeading4">四</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#scrollspyHeading5">五</a>
+                <a class="nav-link nav_Friday" href="#scrollspyHeading5">五</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#scrollspyHeading6">六</a>
+                <a class="nav-link nav_Saturday" href="#scrollspyHeading6">六</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#scrollspyHeading7">日</a>
+                <a class="nav-link nav_Sunday" href="#scrollspyHeading7">日</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">完結</a>
@@ -55,7 +58,7 @@
                         {
                             foreach (var item in items.WeekComicLongList)
                             {
-                                <div class="work_long">
+                                <a class="work_long" href="#">
                                     <div class="work_long_bg">
                                         <img src="@item.BgCover">
                                     </div>
@@ -67,22 +70,28 @@
                                         <img src="@item.ComicNameImage">
                                     </div>
 
-                                </div>
+                                </a>
 
                             };
 
                             foreach (var item in items.WeekComicList)
                             {
-                                <div class="work">
+                                <a class="work" href="#">
                                     <div class="work_bg">
-                                        <img src="@item.BgCover"alt="">
+                                        <img src="@item.BgCover" alt="">
                                     </div>
-                                    <img class="work_pic"src="@item.ComicWeekFigure">
+                                    <img class="work_pic" src="@item.ComicWeekFigure">
 
                                     <div class="title_img">
-                                        <img src="@item.ComicNameImage"alt="">
+                                        <img src="@item.ComicNameImage" alt="">
                                     </div>
-                                </div>
+                                    @if(item.ComicStatus == 3 && t == DayOfWeek.Monday){
+                                    <div class="work_status">
+                                        <span>UP</span>
+                                    </div>
+
+                                    }
+                                </a>
 
                             };
 
@@ -123,7 +132,7 @@
                         {
                             foreach (var item in items.WeekComicLongList)
                             {
-                                <div class="work_long">
+                                <a class="work_long" href="#">
                                     <div class="work_long_bg">
                                         <img src="@item.BgCover">
                                     </div>
@@ -135,13 +144,13 @@
                                         <img src="@item.ComicNameImage">
                                     </div>
 
-                                </div>
+                                </a>
 
                             };
 
                             foreach (var item in items.WeekComicList)
                             {
-                                <div class="work">
+                                <a class="work" href="#">
                                     <div class="work_bg">
                                         <img src="@item.BgCover"alt="">
                                     </div>
@@ -150,7 +159,13 @@
                                     <div class="title_img">
                                         <img src="@item.ComicNameImage"alt="">
                                     </div>
-                                </div>
+                                    @if(item.ComicStatus == 3 && t == DayOfWeek.Tuesday){
+                                    <div class="work_status">
+                                        <span>UP</span>
+                                    </div>
+
+                                    }
+                                </a>
                             };
                         }
                     }
@@ -166,7 +181,7 @@
                         {
                             foreach (var item in items.WeekComicLongList)
                             {
-                                <div class="work_long">
+                                <a class="work_long" href="#">
                                     <div class="work_long_bg">
                                         <img src="@item.BgCover">
                                     </div>
@@ -177,13 +192,13 @@
                                         <img src="@item.ComicNameImage">
                                     </div>
 
-                                </div>
+                                </a>
 
                             };
 
                             foreach (var item in items.WeekComicList)
                             {
-                                <div class="work">
+                                <a class="work" href="#">
                                     <div class="work_bg">
                                         <img src="@item.BgCover"alt="">
                                     </div>
@@ -192,7 +207,13 @@
                                     <div class="title_img">
                                         <img src="@item.ComicNameImage" alt="">
                                     </div>
-                                </div>
+                                    @if(item.ComicStatus == 3 && t == DayOfWeek.Wednesday){
+                                    <div class="work_status">
+                                        <span>UP</span>
+                                    </div>
+
+                                    }
+                                </a>
 
                             };
 
@@ -210,7 +231,7 @@
                         {
                             foreach (var item in items.WeekComicLongList)
                             {
-                                <div class="work_long">
+                                <a class="work_long" href="#">
                                     <div class="work_long_bg">
                                         <img src="@item.BgCover">
                                     </div>
@@ -221,13 +242,14 @@
                                         <img src="@item.ComicNameImage">
                                     </div>
 
-                                </div>
+
+                                </a>
 
                             };
 
                             foreach (var item in items.WeekComicList)
                             {
-                                <div class="work">
+                                <a class="work" href="#">
                                     <div class="work_bg">
                                         <img src="@item.BgCover"alt="">
                                     </div>
@@ -236,7 +258,13 @@
                                     <div class="title_img">
                                         <img src="@item.ComicNameImage"alt="">
                                     </div>
-                                </div>
+                                    @if(item.ComicStatus == 3 && t == DayOfWeek.Thursday){
+                                    <div class="work_status">
+                                        <span>UP</span>
+                                    </div>
+
+                                    }
+                                </a>
                             };
                         }
                     }
@@ -252,7 +280,7 @@
                         {
                             foreach (var item in items.WeekComicLongList)
                             {
-                                <div class="work_long">
+                                <a class="work_long" href="#">
                                     <div class="work_long_bg">
                                         <img src="@item.BgCover">
                                     </div>
@@ -263,13 +291,13 @@
                                         <img src="@item.ComicNameImage">
                                     </div>
 
-                                </div>
+                                </a>
 
                             };
 
                             foreach (var item in items.WeekComicList)
                             {
-                                <div class="work">
+                                <a class="work" href="#">
                                     <div class="work_bg">
                                         <img src="@item.BgCover"alt="">
                                     </div>
@@ -278,7 +306,13 @@
                                     <div class="title_img">
                                         <img src="@item.ComicNameImage"alt="">
                                     </div>
-                                </div>
+                                    @if(item.ComicStatus == 3 && t == DayOfWeek.Friday){
+                                    <div class="work_status">
+                                        <span>UP</span>
+                                    </div>
+
+                                    }
+                                </a>
                             };
                         }
                     }
@@ -294,7 +328,7 @@
                         {
                             foreach (var item in items.WeekComicLongList)
                             {
-                                <div class="work_long">
+                                <a class="work_long" href="#">
                                     <div class="work_long_bg">
                                         <img src="@item.BgCover">
                                     </div>
@@ -305,13 +339,13 @@
                                         <img src="@item.ComicNameImage">
                                     </div>
 
-                                </div>
+                                </a>
 
                             };
 
                             foreach (var item in items.WeekComicList)
                             {
-                                <div class="work">
+                                <a class="work" href="#">
                                     <div class="work_bg">
                                         <img src="@item.BgCover"alt="">
                                     </div>
@@ -320,7 +354,13 @@
                                     <div class="title_img">
                                         <img src="@item.ComicNameImage"alt="">
                                     </div>
-                                </div>
+                                    @if(item.ComicStatus == 3 && t == DayOfWeek.Saturday){
+                                    <div class="work_status">
+                                        <span>UP</span>
+                                    </div>
+
+                                    }
+                                </a>
                             };
                         }
                     }
@@ -336,7 +376,7 @@
                         {
                             foreach (var item in items.WeekComicLongList)
                             {
-                                <div class="work_long">
+                                <a class="work_long" href="#">
                                     <div class="work_long_bg">
                                         <img src="@item.BgCover">
                                     </div>
@@ -347,13 +387,13 @@
                                         <img src="@item.ComicNameImage">
                                     </div>
 
-                                </div>
+                                </a>
 
                             };
 
                             foreach (var item in items.WeekComicList)
                             {
-                                <div class="work">
+                                <a class="work" href="#">
                                     <div class="work_bg">
                                         <img src="@item.BgCover"alt="">
                                     </div>
@@ -362,7 +402,13 @@
                                     <div class="title_img">
                                         <img src="@item.ComicNameImage"alt="">
                                     </div>
-                                </div>
+                                    @if(item.ComicStatus == 3 && t == DayOfWeek.Sunday){
+                                    <div class="work_status">
+                                        <span>UP</span>
+                                    </div>
+
+                                    }
+                                </a>
 
                             };
                         }
