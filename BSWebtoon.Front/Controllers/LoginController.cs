@@ -67,6 +67,7 @@ namespace BSWebtoon.Front.Controllers
                 Provider = NameIdentifiers.Issuer.ToLower(),
                 NameIdentifier = NameIdentifiers.Value,
                 AccountName = AccountName.Value,//用戶名稱
+                NickName = AccountName.Value,
                 Email = Email.Value,
 
             };
