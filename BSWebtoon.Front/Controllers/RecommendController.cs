@@ -37,7 +37,7 @@ namespace BSWebtoon.Front.Controllers
         public IActionResult AddActivityView() //Recommend/AddActivityView
         {
 
-            _recommendservice.ActivityCreate();
+            //_recommendservice.ActivityCreate();
             return View();
         }
         //public async Task<IActionResult> ReadActivity() //Recommend/ReadActivity
@@ -49,10 +49,10 @@ namespace BSWebtoon.Front.Controllers
         public IActionResult AddViewRecordView() //Recommend/AddViewRecordView
         {
 
-            _recommendservice.ViewRecordCreate();
-            _recommendservice.CommentCreate();
-            _recommendservice.CommentLikeCreate();
-            _recommendservice.ReportCreate();
+            //_recommendservice.ViewRecordCreate();
+            //_recommendservice.CommentCreate();
+            //_recommendservice.CommentLikeCreate();
+            //_recommendservice.ReportCreate();
             return View();
         }
         public IActionResult ActivityView() //活動小雞
