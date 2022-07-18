@@ -90,7 +90,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,HotBgCover = ""
                            ,ComicFigure   =""
-                           ,ComicWeekFigure =""
+                           ,ComicWeekFigure ="https://tw-a.kakaopagecdn.com/P/C/122/c2/2x/27658c20-605e-4c30-8b7f-0bcc44376857.webp"
                            ,BgColor       ="#310a0b",PublishDate=new DateTime(2021,6,28),LastPublishDate=new DateTime(2022,7,5),FinallyPublishDate=new DateTime(2022,7,1),UpdateWeek=1
                            ,Publisher     ="DAON STUDIO",Painter="CHIWA",Author="KIM SUO"
                            ,Introduction  ="喪失記憶的少女「迪雅」，原本在諾斯男爵府擔任女傭，日復一日地受盡折磨。沒想到，出了名殘酷的皇帝「凱勒」，竟在某天強行將迪雅帶至皇宮中，並詢問她認不認得自己。那天之後，迪雅便待在皇宮中，熟悉皇室的日常...某個月圓之夜，迪雅被一股神祕的力量牽引至城外，並撞見了渾身浴血的凱勒..."
@@ -1032,7 +1032,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,HotBgCover = ""
                            ,ComicFigure   =""
-                           ,ComicWeekFigure =""
+                           ,ComicWeekFigure ="https://tw-a.kakaopagecdn.com/P/C/122/c2/2x/27658c20-605e-4c30-8b7f-0bcc44376857.webp"
                            ,BgColor       ="#310a0b",PublishDate=new DateTime(2021,8,2),LastPublishDate=new DateTime(2021,8,26),FinallyPublishDate= new DateTime(2021,8,20),UpdateWeek=3
                            ,Publisher     ="DAON STUDIO",Painter="CHIWA",Author="KIM SUO"
                            ,Introduction  ="喪失記憶的少女「迪雅」，原本在諾斯男爵府擔任女傭，日復一日地受盡折磨。沒想到，出了名殘酷的皇帝「凱勒」，竟在某天強行將迪雅帶至皇宮中，並詢問她認不認得自己。那天之後，迪雅便待在皇宮中，熟悉皇室的日常...某個月圓之夜，迪雅被一股神祕的力量牽引至城外，並撞見了渾身浴血的凱勒..."
@@ -1587,7 +1587,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,HotBgCover = ""
                            ,ComicFigure   =""
-                           ,ComicWeekFigure =""
+                           ,ComicWeekFigure ="https://tw-a.kakaopagecdn.com/P/C/122/c2/2x/27658c20-605e-4c30-8b7f-0bcc44376857.webp"
                            ,BgColor       ="#310a0b",PublishDate=new DateTime(2021,10,28),LastPublishDate=new DateTime(2022,11,14),FinallyPublishDate=new DateTime(2022,11,10),UpdateWeek=5
                            ,Publisher     ="DAON STUDIO",Painter="CHIWA",Author="KIM SUO"
                            ,Introduction  ="喪失記憶的少女「迪雅」，原本在諾斯男爵府擔任女傭，日復一日地受盡折磨。沒想到，出了名殘酷的皇帝「凱勒」，竟在某天強行將迪雅帶至皇宮中，並詢問她認不認得自己。那天之後，迪雅便待在皇宮中，熟悉皇室的日常...某個月圓之夜，迪雅被一股神祕的力量牽引至城外，並撞見了渾身浴血的凱勒..."
