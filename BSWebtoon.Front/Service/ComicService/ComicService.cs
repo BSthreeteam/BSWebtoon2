@@ -5311,85 +5311,86 @@ namespace BSWebtoon.Front.Service.ComicService
         }
 
 
-        public WorkpageViewModel WorkPageRead(int comicId)
-        {
-            // 倒數券 我的最愛 觀看紀錄 點擊數 留言
-
-            // 審核 1通過 2未審核 3失敗 4審核中 
-            var comicSource = _repository.GetAll<Comic>().Where(c=>c.AuditType==1).First(x => x.ComicId == comicId);
-            var tagListSource = _repository.GetAll<ComicTagList>().Where(x => x.ComicId == comicSource.ComicId).ToList();
-            var mainTag = _repository.GetAll<ComicTag>().Where(x => tagListSource.Any(y => y.TagId == x.TagId)).First(x => x.IsMainTag == true);
-            var couponSource = _repository.GetAll<Coupon>().First(x => x.CouponTypeId == 1 && x.MemberId == 1 && x.ComicId == comicId);
-            var epSource = _repository.GetAll<Episode>().Where(x => x.AuditTypeId == 1 && x.ComicId == comicId).ToList();
-
-
-            return new WorkpageViewModel
-            {
-                ComicChineseName = comicSource.ComicChineseName,
-                ComicFigure = comicSource.ComicFigure,
-                Tag = mainTag.TagName,
-                BgCover = comicSource.BgCover,
-                Publisher = comicSource.Publisher,
-                Author = comicSource.Author,
-                ReadTicket = couponSource.Quantity,
-                EpList = epSource.Select(x => new WorkpageViewModel.EpData
-                {
-                    EpTitle = x.EpTitle,
-                    EpCover = x.EpCover,
-                    UploadTime = x.UploadTime,
-                    IsCountdownCoupon = x.IsCountdownCoupon,
-                    IsFree = x.IsFree
-                })
-            };
-
-
-        //return from comic in _repository.GetAll<Comic>()
-        //       join tag in _repository.GetAll<ComicTagList>()
-        //       on comic.ComicId equals tag.ComicId
-        //       join tagList in _repository.GetAll<ComicTag>()
-        //       on tag.TagId equals tagList.TagId
-        //       join coupon in _repository.GetAll<Coupon>()
-        //       on comic.ComicId equals coupon.ComicId
-        //       join member in _repository.GetAll<Member>()
-        //       on coupon.MemberId equals member.MemberId
-        //       join ep in _repository.GetAll<Episode>()
-        //       on comic.ComicId equals ep.ComicId
-        //       where coupon.MemberId == 1 && coupon.CouponTypeId == 1
-        //       where tagList.IsMainTag == true
-        //       select new WorkpageViewModel
-        //       {
-        //           ComicChineseName = comic.ComicChineseName,
-        //           ComicFigure = comic.ComicFigure,
-        //           Tag = tagList.TagName,
-        //           BgCover = comic.BgCover,
-        //           Publisher = comic.Publisher,
-        //           Author = comic.Author,
-        //           ReadTicket = coupon.Quantity,
-        //           EpCover = ep.EpCover
-
-        //       };
-        //foreach(var item in _repository.GetAll<Comic>())
+        //public WorkpageViewModel WorkPageRead(int comicId)
         //{
-        //    yield return new WorkpageViewModel()
+        //    // 倒數券 我的最愛 觀看紀錄 點擊數 留言
+
+        //    // 審核 1通過 2未審核 3失敗 4審核中 
+        //    var comicSource = _repository.GetAll<Comic>().Where(c => c.AuditType == 1).First(x => x.ComicId == comicId);
+        //    var tagListSource = _repository.GetAll<ComicTagList>().Where(x => x.ComicId == comicSource.ComicId).ToList();
+        //    var mainTag = _repository.GetAll<ComicTag>().Where(x => tagListSource.Any(y => y.TagId == x.TagId)).First(x => x.IsMainTag == true);
+        //    var couponSource = _repository.GetAll<Coupon>().First(x => x.CouponTypeId == 1 && x.MemberId == 1 && x.ComicId == comicId);
+        //    var epSource = _repository.GetAll<Episode>().Where(x => x.AuditTypeId == 1 && x.ComicId == comicId).ToList();
+
+
+        //    return new WorkpageViewModel
         //    {
-        //        ComicChineseName = item.ComicChineseName,
-        //        ComicFigure = item.ComicFigure,
-        //        BgCover = item.BgCover,
-        //        Publisher = item.Publisher,
-        //        Author = item.Author,
-
+        //        ComicChineseName = comicSource.ComicChineseName,
+        //        ComicFigure = comicSource.ComicFigure,
+        //        Tag = mainTag.TagName,
+        //        BgCover = comicSource.BgCover,
+        //        Publisher = comicSource.Publisher,
+        //        Author = comicSource.Author,
+        //        ReadTicket = couponSource.Quantity,
+        //        EpList = epSource.Select(x => new WorkpageViewModel.EpData
+        //        {
+        //            EpTitle = x.EpTitle,
+        //            EpCover = x.EpCover,
+        //            UploadTime = x.UploadTime,
+        //            IsCountdownCoupon = x.IsCountdownCoupon,
+        //            IsFree = x.IsFree
+        //        })
         //    };
-        //}
-        //}
 
-        //public void EpUpdate()
-        //{
-        //    var p1 = _repository.GetAll<Episode>().Where(x => x.EpId == 1).FirstOrDefault();
-        //    p1.EpCover = "https://tw-a.kakaopagecdn.com/P/EO/46/14940/tn/2x/ad6f27c3-0d1b-4402-9d23-a25dfb4adddd.jpg";
-        //    var p2 = _repository.GetAll<Episode>().Where(x => x.EpId == 2).FirstOrDefault();
-        //    p2.EpCover = "https://tw-a.kakaopagecdn.com/P/EO/46/14826/tn/2x/bbc85024-ca09-4084-8213-c92c7ec0dd27.jpg";
 
-        //    _repository.SaveChange();
+        //    //return from comic in _repository.GetAll<Comic>()
+        //    //       join tag in _repository.GetAll<ComicTagList>()
+        //    //       on comic.ComicId equals tag.ComicId
+        //    //       join tagList in _repository.GetAll<ComicTag>()
+        //    //       on tag.TagId equals tagList.TagId
+        //    //       join coupon in _repository.GetAll<Coupon>()
+        //    //       on comic.ComicId equals coupon.ComicId
+        //    //       join member in _repository.GetAll<Member>()
+        //    //       on coupon.MemberId equals member.MemberId
+        //    //       join ep in _repository.GetAll<Episode>()
+        //    //       on comic.ComicId equals ep.ComicId
+        //    //       where coupon.MemberId == 1 && coupon.CouponTypeId == 1
+        //    //       where tagList.IsMainTag == true
+        //    //       select new WorkpageViewModel
+        //    //       {
+        //    //           ComicChineseName = comic.ComicChineseName,
+        //    //           ComicFigure = comic.ComicFigure,
+        //    //           Tag = tagList.TagName,
+        //    //           BgCover = comic.BgCover,
+        //    //           Publisher = comic.Publisher,
+        //    //           Author = comic.Author,
+        //    //           ReadTicket = coupon.Quantity,
+        //    //           EpCover = ep.EpCover
+
+        //    //       };
+        //    //foreach(var item in _repository.GetAll<Comic>())
+        //    //{
+        //    //    yield return new WorkpageViewModel()
+        //    //    {
+        //    //        ComicChineseName = item.ComicChineseName,
+        //    //        ComicFigure = item.ComicFigure,
+        //    //        BgCover = item.BgCover,
+        //    //        Publisher = item.Publisher,
+        //    //        Author = item.Author,
+
+        //    //    };
+        //    //}
+        //    //}
+
+        //    //public void EpUpdate()
+        //    //{
+        //    //    var p1 = _repository.GetAll<Episode>().Where(x => x.EpId == 1).FirstOrDefault();
+        //    //    p1.EpCover = "https://tw-a.kakaopagecdn.com/P/EO/46/14940/tn/2x/ad6f27c3-0d1b-4402-9d23-a25dfb4adddd.jpg";
+        //    //    var p2 = _repository.GetAll<Episode>().Where(x => x.EpId == 2).FirstOrDefault();
+        //    //    p2.EpCover = "https://tw-a.kakaopagecdn.com/P/EO/46/14826/tn/2x/bbc85024-ca09-4084-8213-c92c7ec0dd27.jpg";
+
+        //    //    _repository.SaveChange();
+        //    //}
         //}
     }
 }

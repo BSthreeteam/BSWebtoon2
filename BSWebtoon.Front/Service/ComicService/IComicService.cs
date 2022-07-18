@@ -11,8 +11,8 @@ namespace BSWebtoon.Front.Service.ComicService
         //void ComicTagListUpdate();
         void EpCreate();
         void EpContentCreate();
-        void EpUpdate();
+        //void EpUpdate();
 
-        WorkpageViewModel WorkPageRead(int comicId);
+        //WorkpageViewModel WorkPageRead(int comicId);
     }
 }
