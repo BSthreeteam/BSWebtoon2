@@ -18,9 +18,9 @@ namespace BSWebtoon.Front.Controllers
 
         public IActionResult Rank() //Rank/Rank 
         {
-           _ClickRecordService.ClickRecordCreate();
-          
-           //_ClickRecordService.UpdateRank();
+            //_ClickRecordService.ClickRecordCreate();
+
+            //_ClickRecordService.UpdateRank();
             return View();
         }
 
