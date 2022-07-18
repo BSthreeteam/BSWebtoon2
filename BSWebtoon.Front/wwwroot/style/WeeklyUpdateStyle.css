@@ -51,6 +51,7 @@
     aspect-ratio: 1 / 2;
     position: relative;
     grid-row: 1/3;
+    text-decoration: none;
 }
 
 .work_long_bg {
@@ -92,6 +93,7 @@
 .work {
     aspect-ratio: 1 / 2;
     position: relative;
+    text-decoration: none;
 }
 
 .work_bg {

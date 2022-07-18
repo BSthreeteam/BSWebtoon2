@@ -41,7 +41,7 @@
         <div class="container FinishComic_content">
             <div class="content">
 
-            <div class="work_big">
+            <a class="work_big" href="#">
                 <div class="work_big_bg">
                     <img src="@Model.FinishComicBig.BgCover"alt="">
                 </div>
@@ -57,14 +57,14 @@
                 </div>
                 <p class="author">@Model.FinishComicBig.Author, @Model.FinishComicBig.Painter</p>
 
-            </div>
+            </a>
 
 
             @foreach (var item in Model.FinishComicList)
             {
 
 
-                <div class="work">
+                <a class="work" href="#">
                     <div class="work_bg">
                         <img src="@item.BgCover"alt="">
                     </div>
@@ -76,7 +76,7 @@
                     </div>
 
 
-                </div>
+                </a>
 
             }
 

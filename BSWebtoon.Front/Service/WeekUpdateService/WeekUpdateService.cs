@@ -10,7 +10,7 @@ namespace BSWebtoon.Front.Service.WeekUpdateService
     {
         private readonly BSRepository _repository;
 
-        public WeekUpdateService(BSRepository repository, BSWebtoonContext context)
+        public WeekUpdateService(BSRepository repository)
         {
             _repository = repository;
         }
