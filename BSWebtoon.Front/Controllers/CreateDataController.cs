@@ -37,7 +37,7 @@ namespace BSWebtoon.Front.Controllers
         {
             return View();
         }
-        public IActionResult CreateData()
+        public IActionResult CreateData() //CreateData/CreateData 我沒有見View 但是可以進入資料庫
         {
             _memberService.LoginTypeCreate();
             _memberService.MemberCreate();
