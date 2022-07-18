@@ -3,10 +3,12 @@ let workTemplate = document.getElementById("workTemplate")
 let blackTemplate = document.getElementById("blackTemplate")
 
 window.onload = () => {
-    for (let i = 1; i <= 99; i++) {
+
+
+    for (let i = 1; i <= 15; i++) {
         week_content.append(createCard())
     }
-    week_content.append(createBlack())
+    //week_content.append(createBlack())
 }
 
 function createCard() {
@@ -18,7 +20,7 @@ function createCard() {
     return cloneCard
 }
 
-function createBlack() {
-    let cloneblack = blackTemplate.content.cloneNode(true);
-    return cloneblack
-}
+//function createBlack() {
+//    let cloneblack = blackTemplate.content.cloneNode(true);
+//    return cloneblack
+//}

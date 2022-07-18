@@ -1,32 +1,9 @@
-#navbar-id {
-    background-color: #000;
-    width: 100%;
-    color: #fff;
-    margin: auto;
-    display: flex;
-    justify-content: space-around;
-    z-index: 5;
-    position: fixed;
-    top: 80px;
-}
-
-.nav-pills .nav-link {
-    color: #fff;
-}
-
-    .nav-pills .nav-link.active {
-        color: #000;
-        background-color: #fff;
-    }
-
 .Rank {
     background-color: #000;
     position: relative;
     top: 135px;
     width: 100%;
 }
-
-
 
 .content {
     background-color: #000;
@@ -40,105 +17,12 @@
     overflow: hidden;
 }
 
-.work_big {
-    position: relative;
-    grid-column: 1/4;
-    grid-row: 1/3;
-}
-
-.work_big_bg {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    position: absolute;
-}
-
-    .work_big_bg img {
-        width: 100%;
-    }
-
-
-.work_big_pic {
-    width: 100%;
-    text-align: end;
-    position: relative;
-    z-index: 1;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-image: linear-gradient(to top, rgb(0, 0, 0) 20%, transparent 100%);
-}
-
-    .work_big_pic img {
-        padding: 10px 0px 0px 10px;
-        width: 70%;
-    }
-
-.work_big .comic_material {
+.comic_material {
     width: 50%;
     position: absolute;
     z-index: 2;
     bottom: 0;
 }
-
-.work_big_title {
-    width: 80%;
-}
-
-    .work_big_title img {
-        width: 100%;
-    }
-
-.work_big .introduction {
-    color: #fff;
-    padding: 15px;
-}
-
-
-
-.work_big_Ranking {
-    display: flex;
-    height: 20px;
-    position: absolute;
-    z-index: 2;
-    right: 5px;
-    bottom: 20px;
-    background-color: #f00;
-    border-radius: 30px;
-    padding: 0px 10px 0px 5px;
-}
-
-    .work_big_Ranking .Ranking_num {
-        bottom: 20px;
-        position: relative;
-        color: #fff;
-        margin-bottom: 0px;
-        font-size: 30px;
-        font-weight: bolder;
-    }
-
-    .work_big_Ranking i {
-        color: #fff;
-        font-weight: bolder;
-        font-size: 10px;
-        margin: auto;
-        padding-left: 20px;
-    }
-
-    .work_big_Ranking .diff {
-        color: #fff;
-        margin-bottom: 0px;
-        font-size: 15px;
-        font-weight: bolder;
-        padding-left: 10px;
-        position: relative;
-        bottom: 2px;
-        margin: auto;
-    }
-
-
-
-
 
 .work {
     aspect-ratio: 1 / 2;
@@ -260,12 +144,12 @@
     }
 
         /*  .black .comics_nont:first-child {
-    padding-left: 0;
-}
+            padding-left: 0;
+        }
 
-.black .comics_nont:last-child {
-    padding-right: 0;
-} */
+        .black .comics_nont:last-child {
+            padding-right: 0;
+        } */
 
         .black .comics_nont .img-box {
             height: 100%;
@@ -276,6 +160,11 @@
             position: relative;
             z-index: -1;
         }
+
+
+
+
+
 
 @media screen and (min-width:768px) {
     .content {
@@ -377,3 +266,4 @@
         aspect-ratio: 1 / 2;
     }
 }
+
