@@ -177,10 +177,9 @@
         }
         else
         {
-
+            <div class="content">
             @foreach (var item in Model.SearchList)
             {
-                <div class="content">
                     <a class="work" href="#">
                         <div class="work_bg">
                             <img src="@item.BgCover" alt="@item.ComicName">
@@ -193,8 +192,8 @@
                             <span>UP</span>
                         </div>
                     </a>
-                </div>
             }
+            </div>
 
         }
 
