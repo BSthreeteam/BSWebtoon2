@@ -23,7 +23,7 @@ namespace BSWebtoon.Front.Service.RankService
         public void ClickRecordCreate()
         {
             var clickRecod = new List<ClickRecord> {
-                new ClickRecord {ClickRecordId=1,ComicId=1,CreateTime=new DateTime(2022,07,21),MemberId=1},
+                new ClickRecord {ClickRecordId=1,ComicId=1,CreateTime=new DateTime(2022,07,21),MemberId=6},
                 new ClickRecord {ClickRecordId=2,ComicId=1,CreateTime=new DateTime(2022,07,23),MemberId=3},
                 new ClickRecord {ClickRecordId=3,ComicId=3,CreateTime=new DateTime(2022,07,18),MemberId=2},
                 new ClickRecord {ClickRecordId=4,ComicId=15,CreateTime=new DateTime(2022,07,18),MemberId=15},
@@ -43,7 +43,7 @@ namespace BSWebtoon.Front.Service.RankService
                 new ClickRecord {ClickRecordId=18,ComicId=6,CreateTime=new DateTime(2022,07,30),MemberId=2},
                 new ClickRecord {ClickRecordId=19,ComicId=1,CreateTime=new DateTime(2022,07,21),MemberId=8},
                 new ClickRecord {ClickRecordId=20,ComicId=2,CreateTime=new DateTime(2022,07,23),MemberId=9},
-            };
+            }; 
             foreach (ClickRecord click in clickRecod)
             {
                 _repository.Create(click);

@@ -5311,31 +5311,36 @@ namespace BSWebtoon.Front.Service.ComicService
         }
 
 
-        //public WorkpageViewModel WordPageRead(int comicId)
-        //{
-        //    var comicSource = _repository.GetAll<Comic>().Where(c=>c.AuditType==1).First(x => x.ComicId == comicId);
-        //    var tagListSource = _repository.GetAll<ComicTagList>().Where(x => x.ComicId == comicSource.ComicId).ToList();
-        //    var mainTag = _repository.GetAll<ComicTag>().Where(x => tagListSource.Any(y => y.TagId == x.TagId)).First(x => x.IsMainTag == true);
-        //    var couponSource = _repository.GetAll<Coupon>().First(x => x.CouponTypeId == 1 && x.MemberId == 1 && x.ComicId == comicId);
-        //    var epSource = _repository.GetAll<Episode>().Where(x => x.ComicId == comicId).ToList();
+        public WorkpageViewModel WorkPageRead(int comicId)
+        {
+            // 倒數券 我的最愛 觀看紀錄 點擊數 留言
+
+            // 審核 1通過 2未審核 3失敗 4審核中 
+            var comicSource = _repository.GetAll<Comic>().Where(c=>c.AuditType==1).First(x => x.ComicId == comicId);
+            var tagListSource = _repository.GetAll<ComicTagList>().Where(x => x.ComicId == comicSource.ComicId).ToList();
+            var mainTag = _repository.GetAll<ComicTag>().Where(x => tagListSource.Any(y => y.TagId == x.TagId)).First(x => x.IsMainTag == true);
+            var couponSource = _repository.GetAll<Coupon>().First(x => x.CouponTypeId == 1 && x.MemberId == 1 && x.ComicId == comicId);
+            var epSource = _repository.GetAll<Episode>().Where(x => x.AuditTypeId == 1 && x.ComicId == comicId).ToList();
 
 
-        //    return new WorkpageViewModel
-        //    {
-        //        ComicChineseName = comicSource.ComicChineseName,
-        //        ComicFigure = comicSource.ComicFigure,
-        //        Tag = mainTag.TagName,
-        //        BgCover = comicSource.BgCover,
-        //        Publisher = comicSource.Publisher,
-        //        Author = comicSource.Author,
-        //        ReadTicket = couponSource.Quantity,
-        //        EpList = epSource.Select(x => new WorkpageViewModel.EpData
-        //        {
-        //            EpTitle = x.EpTitle,
-        //            EpCover = x.EpCover,
-        //            UploadTime = x.UploadTime
-        //        })
-        //    };
+            return new WorkpageViewModel
+            {
+                ComicChineseName = comicSource.ComicChineseName,
+                ComicFigure = comicSource.ComicFigure,
+                Tag = mainTag.TagName,
+                BgCover = comicSource.BgCover,
+                Publisher = comicSource.Publisher,
+                Author = comicSource.Author,
+                ReadTicket = couponSource.Quantity,
+                EpList = epSource.Select(x => new WorkpageViewModel.EpData
+                {
+                    EpTitle = x.EpTitle,
+                    EpCover = x.EpCover,
+                    UploadTime = x.UploadTime,
+                    IsCountdownCoupon = x.IsCountdownCoupon,
+                    IsFree = x.IsFree
+                })
+            };
 
 
         //return from comic in _repository.GetAll<Comic>()

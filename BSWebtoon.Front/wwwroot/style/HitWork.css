@@ -1,7 +1,17 @@
-.nav-top, .main-context{
+.nav-top {
+    position: fixed;
+    top: 85px;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background-color: #000;
+    padding:5px;
+}
+
+.main-context {
     position: relative;
-    top: 80px;
-    padding:10px 0px;
+    top: 130px;
+    padding: 10px 0px;
 }
 
 .nav-selected {
@@ -10,7 +20,7 @@
     border-radius: 50px;
 }
 
-.row-recommend {
+/*.row-recommend {
     max-width: 1200px;
     margin: auto;
     position: relative;
@@ -81,7 +91,7 @@
     vertical-align: bottom;
     z-index: 2;
 }
-
+*/
 
 
 .hot {
