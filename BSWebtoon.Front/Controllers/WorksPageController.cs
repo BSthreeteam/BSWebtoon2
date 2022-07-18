@@ -12,9 +12,9 @@ namespace BSWebtoon.Front.Controllers
             _comicService = comicService;
         }
         [HttpGet]
-        public IActionResult WorksPage(int ComicId) //WorksPage/WorksPage/1
+        public IActionResult WorksPage(int Id) //WorksPage/WorksPage/1
         {
-            var workPageComic = _comicService.WorkPageRead(ComicId);
+            var workPageComic = _comicService.WorkPageRead(Id);
             //return View(workPageComic);
             return View();
         }

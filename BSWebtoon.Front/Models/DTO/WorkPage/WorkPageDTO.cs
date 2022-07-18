@@ -4,6 +4,7 @@ namespace BSWebtoon.Front.Models.DTO.WorkPage
 {
     public class WorkPageDTO
     {
+        public int MemberId { get; set; }
         //作品頁
         public int ComicId { get; set; }
         public string ComicChineseName { get; set; }
@@ -69,7 +70,7 @@ namespace BSWebtoon.Front.Models.DTO.WorkPage
         public class CommentData
         {
             public int CommentId { get; set; }
-            public int MemberId { get; set; }
+            public int CommentMemberId { get; set; }
             public int EpId { get; set; }
             public int ReplyToCommentId { get; set; }
             public bool IsSpoiler { get; set; }
