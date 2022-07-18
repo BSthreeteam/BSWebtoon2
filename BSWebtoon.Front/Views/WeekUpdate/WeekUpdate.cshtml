@@ -1,6 +1,9 @@
 ﻿@{
     ViewData["Title"] = "WeekUpdate";
 }
+@{
+    var t = DateTime.Now.DayOfWeek ; 
+}
 
 @section topCss{
 <link rel="stylesheet" href="~/style/WeeklyUpdateStyle.css" />
@@ -82,9 +85,12 @@
                                     <div class="title_img">
                                         <img src="@item.ComicNameImage" alt="">
                                     </div>
+                                    @if(item.ComicStatus == 3 && t == DayOfWeek.Monday){
                                     <div class="work_status">
                                         <span>UP</span>
                                     </div>
+
+                                    }
                                 </div>
 
                             };
@@ -153,6 +159,12 @@
                                     <div class="title_img">
                                         <img src="@item.ComicNameImage"alt="">
                                     </div>
+                                    @if(item.ComicStatus == 3 && t == DayOfWeek.Tuesday){
+                                    <div class="work_status">
+                                        <span>UP</span>
+                                    </div>
+
+                                    }
                                 </div>
                             };
                         }
@@ -195,6 +207,12 @@
                                     <div class="title_img">
                                         <img src="@item.ComicNameImage" alt="">
                                     </div>
+                                    @if(item.ComicStatus == 3 && t == DayOfWeek.Wednesday){
+                                    <div class="work_status">
+                                        <span>UP</span>
+                                    </div>
+
+                                    }
                                 </div>
 
                             };
@@ -224,6 +242,7 @@
                                         <img src="@item.ComicNameImage">
                                     </div>
 
+
                                 </div>
 
                             };
@@ -239,6 +258,12 @@
                                     <div class="title_img">
                                         <img src="@item.ComicNameImage"alt="">
                                     </div>
+                                    @if(item.ComicStatus == 3 && t == DayOfWeek.Thursday){
+                                    <div class="work_status">
+                                        <span>UP</span>
+                                    </div>
+
+                                    }
                                 </div>
                             };
                         }
@@ -281,6 +306,12 @@
                                     <div class="title_img">
                                         <img src="@item.ComicNameImage"alt="">
                                     </div>
+                                    @if(item.ComicStatus == 3 && t == DayOfWeek.Friday){
+                                    <div class="work_status">
+                                        <span>UP</span>
+                                    </div>
+
+                                    }
                                 </div>
                             };
                         }
@@ -323,6 +354,12 @@
                                     <div class="title_img">
                                         <img src="@item.ComicNameImage"alt="">
                                     </div>
+                                    @if(item.ComicStatus == 3 && t == DayOfWeek.Saturday){
+                                    <div class="work_status">
+                                        <span>UP</span>
+                                    </div>
+
+                                    }
                                 </div>
                             };
                         }
@@ -365,6 +402,12 @@
                                     <div class="title_img">
                                         <img src="@item.ComicNameImage"alt="">
                                     </div>
+                                    @if(item.ComicStatus == 3 && t == DayOfWeek.Sunday){
+                                    <div class="work_status">
+                                        <span>UP</span>
+                                    </div>
+
+                                    }
                                 </div>
 
                             };
