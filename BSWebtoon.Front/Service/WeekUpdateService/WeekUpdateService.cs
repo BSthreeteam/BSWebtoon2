@@ -54,7 +54,7 @@ namespace BSWebtoon.Front.Service.WeekUpdateService
 
         public List<NewComicDTO> ReadNewComic()
         {
-            var newComicSource = _repository.GetAll<Comic>().Where(c => c.ComicStatus == 4 && c.AuditType==1).OrderByDescending(c => c.PublishDate);
+            var newComicSource = _repository.GetAll<Comic>().Where(c => c.ComicStatus == 4 && c.AuditType == 1).OrderByDescending(c => c.PublishDate);
 
             var result = new List<NewComicDTO>();
 
@@ -78,7 +78,7 @@ namespace BSWebtoon.Front.Service.WeekUpdateService
         }
         public List<FinishComicDTO> ReadFinishComic()
         {
-            var finishComicSource = _repository.GetAll<Comic>().Where(c => c.ComicStatus == 1 && c.AuditType==1);
+            var finishComicSource = _repository.GetAll<Comic>().Where(c => c.ComicStatus == 1 && c.AuditType == 1);
             var clickRecordGroup = _repository.GetAll<ClickRecord>().GroupBy(c => c.ComicId);
 
             var finishComicList = new List<FinishComicDTO>();
@@ -110,12 +110,5 @@ namespace BSWebtoon.Front.Service.WeekUpdateService
 
 
         }
-
-
-
-
-
-
-
     }
 }

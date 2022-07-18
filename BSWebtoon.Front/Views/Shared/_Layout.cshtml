@@ -21,40 +21,50 @@
                     <a class="nav-link" aria-current="page" action="/search/searchComic" @*href="#"*@ type="submit"><i class="fa-solid fa-magnifying-glass"></i></a>
                 </form>
                 @*如果是登入的狀態下，登入按鈕消失*@
-                @if (User.Identity.IsAuthenticated)
-                {
-
-                    <li class="nav-item dropdown flex-nowrap" id="user">
-                        <a class="nav-link dropdown-toggle display_name" href="#" id="navbarDropdown" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="~/images/people.png" alt="登入者"
-                             class="border border-dark rounded-circle user-icon">
-                            @User.Identity.Name
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item bg-light xl_accountinfo" href="#">我的帳戶</a></li>
-                            <li><a class="dropdown-item bg-light xl_my_comic" href="/Favorite/RecordView">我的漫畫</a></li>
-                            <li><a class="dropdown-item bg-light xl_my_love" href="/Favorite/AddFavoriteView">我的最愛</a></li>
-                            <li><a class="dropdown-item bg-light xl_my_coin" href="#">金幣/閱讀券明細</a></li>
-                            <li><a class="dropdown-item bg-light xl_stored_value" href="/Recharge/CashPlanView">儲值金幣</a></li>
-                            <li><a class="dropdown-item bg-light xl_history" href="#">瀏覽紀錄</a></li>
-                            <li><a class="dropdown-item bg-light xl_my_set" href="/Setting/SettingView">我的設定</a></li>
-                            <li><a class="dropdown-item bg-light xl_customer_service" href="#">客服中心</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a id="logout" class="dropdown-item bg-light" asp-controller="Login" asp-action="Logout">登出</a></li>
-                        </ul>
+                @if(User.Identity.IsAuthenticated){
+                <li class="nav-item dropdown flex-nowrap" id="user">
+                    <a class="nav-link dropdown-toggle display_name" href="#" id="navbarDropdown" role="button"
                     </li>
                 }
-                else
-                {
+
+                        @User.Identity.Name
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item bg-light xl_accountinfo" href="#">我的帳戶</a></li>
+                        @*<li><a class="dropdown-item bg-light xl_my_comic" href="#">我的漫畫</a></li>*@
+                        <li><a class="dropdown-item bg-light xl_my_love" href="/Favorite/AddFavoriteView">我的最愛</a></li>
+                        <li><a class="dropdown-item bg-light xl_history" href="#">瀏覽紀錄</a></li>
+                        <li><a class="dropdown-item bg-light xl_my_coin" href="#">金幣/閱讀券明細</a></li>
+                        <li><a class="dropdown-item bg-light xl_stored_value" href="/Recharge/CashPlanView">儲值金幣</a></li>
+                        <li><a class="dropdown-item bg-light xl_history" href="#">瀏覽紀錄</a></li>
+                        <li><a class="dropdown-item bg-light xl_my_set" href="/Setting/SettingView">我的設定</a></li>
+                        <li><a class="dropdown-item bg-light xl_customer_service" href="#">客服中心</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item bg-light xl_customer_service" href="#">客服中心</a></li>
+                        <li><a id="logout" class="dropdown-item bg-light" href="Login/Logout">登出</a></li>
+                    </ul>
+                </li>
+
+                }else{
                     <li class="nav-item">
                         <a data-bs-toggle="modal" href="#" data-bs-target="#exampleModal" class="nav-link">登入</a>
                     </li>
                 }
+
+                            <hr class="dropdown-divider">
+             <ul class="nav flex-nowrap text_overflow text_overflow justify-content-center">  
+                        <li><a id="logout" class="dropdown-item bg-light"asp-controller="Login" asp-action="Logout">登出</a></li>
+                    </ul>
+                </li>
+                    <li class="nav-item">
+             <ul class="nav flex-nowrap text_overflow text_overflow">  
+                    </li>
+                }
+
             </ul>
-            <ul class="nav flex-nowrap text_overflow text_overflow">
+             <ul class="nav flex-nowrap text_overflow text_overflow">  
                 <li class="nav-item">
                     <a class="nav-link" href="#">禮物盒</a>
                 </li>
