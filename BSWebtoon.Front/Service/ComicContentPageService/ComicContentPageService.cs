@@ -25,6 +25,15 @@ namespace BSWebtoon.Front.Service.ContentPageService
                 ImagePath = c.ImagePath,
                 Page = c.Page
             });
+            var countdownCouponComic = _repository.GetAll<EpContent>().Where(c => EpSource.IsCountdownCoupon == true && c.EpId == EpSource.EpId);
+            
+            //var freeComic = _repository.GetAll<EpContent>().Where(c => EpSource.IsFree == true && c.EpId == EpSource.EpId).Select(c => new WorkContentDTO
+            //{
+            //    EpId = c.EpId,
+            //    EpContentId = c.EpContentId,
+            //    ImagePath = c.ImagePath,
+            //    Page = c.Page
+            //});
 
             //var CountdownCouponComic = comicSource.Where(c => c.IsCountdownCoupon == true);
 
