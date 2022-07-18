@@ -225,15 +225,17 @@ namespace BSWebtoon.Front.Service.RecommendService
 
             var result = new List<RecommendDTO>();
 
-            List<RecommendDTO> addActivityList = activityList.Select(c => new RecommendDTO { 
+            List<RecommendDTO> addActivityList = activityList.Select(a => new RecommendDTO { 
+                Id = a.ActivityId,
                 RecommendTag = "活動",
-                Introduction = c.ActivityContent,
-                Name = c.ActivityName,
-                ActivityBgColor = c.ActivityBgColor,
-                ActivityImage = c.ActivityImage,
+                Introduction = a.ActivityContent,
+                Name = a.ActivityName,
+                ActivityBgColor = a.ActivityBgColor,
+                ActivityImage = a.ActivityImage,
             }).ToList();
 
             List<RecommendDTO> addNewWorkList = newWorkList.Select(c => new RecommendDTO { 
+                Id = c.ComicId,
                 RecommendTag = "新作",
                 Introduction = $"{c.Introduction.Substring(0, 50)}...",
                 Name = c.ComicChineseName,
@@ -244,6 +246,7 @@ namespace BSWebtoon.Front.Service.RecommendService
             }).ToList();
 
             List<RecommendDTO> addPopularityList = popularityList.Select(c => new RecommendDTO {
+                Id = c.ComicId,
                 RecommendTag = "人氣",
                 Introduction = $"{c.Introduction.Substring(0, 50)}...",
                 Name = c.ComicChineseName,

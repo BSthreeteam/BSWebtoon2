@@ -25,7 +25,6 @@ namespace BSWebtoon.Front.Controllers
 
         public IActionResult Recommend()
         {
-
             var recommendSource = _recommendservice.ReadRecommend();
             return View(recommendSource);
         }

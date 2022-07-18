@@ -1,4 +1,5 @@
-﻿using BSWebtoon.Model.Models;
+﻿using BSWebtoon.Front.Models.DTO.WorkPage;
+using BSWebtoon.Model.Models;
 using BSWebtoon.Model.Repository;
 using System;
 using System.Collections.Generic;
@@ -40,8 +41,6 @@ namespace BSWebtoon.Front.Service.ComicService
             }
             _repository.SaveChange();
         }
-
-        
         public void ComicCreate()
         {
             List<Comic> comics = new List<Comic>
@@ -157,7 +156,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656579187/Bom%27sExpresso/2.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656579075/Bom%27sExpresso/1.webp"
                            ,BgColor       ="#646661",PublishDate=new DateTime(2021,6,30),LastPublishDate=new DateTime(2021,7,26),FinallyPublishDate= new DateTime(2021,7,25),UpdateWeek=1
-                           
+
                            ,Publisher     ="CARROTOON",Painter="Dolcenabi",Author="GwonDohee"
                            ,Introduction  ="結束經營9年的「春日咖啡館」，春率只好開始尋覓新的工作職缺。而求職時在因緣際會之下，春率成為了長相帥氣、實力高超卻非常難搞的Jake.K的助理，只是為什麼他看起來那麼眼熟...?春率的初次職場生活究竟能不能順利度過呢?「現在也差不多該想起來了吧?春日咖啡館、常客、高中生。」"
                            ,BannerVideoWeb = ""
@@ -174,7 +173,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656584929/CrushOnYou/2.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656584858/CrushOnYou/1.webp"
                            ,BgColor       ="#695350",PublishDate=new DateTime(2021,6,28),LastPublishDate=new DateTime(2021,7,26),FinallyPublishDate= new DateTime(2021,7,20),UpdateWeek=1
-                           ,Publisher     ="Comics family",Painter="gillzone",Author="gillzone"                           
+                           ,Publisher     ="Comics family",Painter="gillzone",Author="gillzone"
                            ,Introduction  ="因為無法愛人，於是更加渴望愛情的武烈；愛意過於強烈，無法自拔的必浩；以及在兩個男人之間陷入兩難的敏希。是命運還是孽緣?答案不得而知。三人看似有結果卻又不然的三種暗戀——《戀人未滿》"
                            ,BannerVideoWeb = ""
                            ,WeekVideoWrb = ""
@@ -462,7 +461,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotVideo = ""
                            ,AuditType     =1,AuditEmployeeId=2,AuditFailReason="NULL",AuditTime=new DateTime(2021,7,22),ComicStatus=3},
 
-                
+
                 new Comic {ComicChineseName="目標是成為長命百歲的千金大小姐",ComicEnglishName="IDreamOfHealthWealthAndALongLife"
                            ,ComicNameImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1656607743/IDreamOfHealthWealthAndALongLife/5.png"
                            ,HotComicNameImage = ""
@@ -2802,7 +2801,6 @@ namespace BSWebtoon.Front.Service.ComicService
             //var employees = new Employee() {EmployeeId=2 ,EmployeeName = "Kei", HireDate = new DateTime(2022, 6, 27), Account = "lkk975036543@hmail.com", Password = "098765432zxcvbn" };
             //_repository.Delete(employees);
         }
-
         public void ComicTagListCreate()
         {
             List<ComicTagList> comictaglists = new List<ComicTagList>
@@ -2843,19 +2841,17 @@ namespace BSWebtoon.Front.Service.ComicService
             _repository.SaveChange();
 
         }
-
         public void ComicTagListUpdate()
         {
             //var updateTagList = _repository.GetAll<ComicTagList>().Where(x => x.TageListId == 2).FirstOrDefault();
             var updateComic = _repository.GetAll<Comic>().Where(x => x.ComicId == 138).FirstOrDefault();
             //updateTagList.ComicId = 2;
-            updateComic.ComicWeekFigure="https://tw-a.kakaopagecdn.com/P/C/46/c2/2x/4853fbd7-b76b-4438-bac4-0ae54fa25a04.webp";
+            updateComic.ComicWeekFigure = "https://tw-a.kakaopagecdn.com/P/C/46/c2/2x/4853fbd7-b76b-4438-bac4-0ae54fa25a04.webp";
             //_repository.Update(updateTagList);
             _repository.Update(updateComic);
             _repository.SaveChange();
 
         }
-
         public void EpCreate()
         {
             var epList = new List<Episode>
@@ -2871,7 +2867,7 @@ namespace BSWebtoon.Front.Service.ComicService
                   new Episode(){ ComicId = 1, EpTitle = "第8話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599877/TombRaiderKing/EP08.jpg", UpdateTime=new DateTime(2021,12,05),UploadTime=new DateTime(2021,11,01),AuditTypeId=1,AuditEmployeeId=11,AuditTime=new DateTime(2022,12,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
                   new Episode(){ ComicId = 1, EpTitle = "第9話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599936/TombRaiderKing/EP09.jpg", UpdateTime=new DateTime(2022,01,05),UploadTime=new DateTime(2021,12,01),AuditTypeId=1,AuditEmployeeId=3,AuditTime=new DateTime(2022,01,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
                   new Episode(){ ComicId = 1, EpTitle = "第10話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599964/TombRaiderKing/EP10.jpg", UpdateTime=new DateTime(2022,02,05),UploadTime=new DateTime(2022,01,01),AuditTypeId=1,AuditEmployeeId=5,AuditTime=new DateTime(2022,02,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-                  
+
                   new Episode(){ ComicId = 2, EpTitle = "第1話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600076/WornAndTornNewbie/EP01.jpg", UpdateTime=new DateTime(2021,06,28),UploadTime=new DateTime(2021,04,20),AuditTypeId=1,AuditEmployeeId=4,AuditTime=new DateTime(2021,06,28),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
                   new Episode(){ ComicId = 2, EpTitle = "第2話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600157/WornAndTornNewbie/EP02.jpg", UpdateTime=new DateTime(2021,06,29),UploadTime=new DateTime(2021,05,01),AuditTypeId=1,AuditEmployeeId=7,AuditTime=new DateTime(2021,06,29),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
                   new Episode(){ ComicId = 2, EpTitle = "第3話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600190/WornAndTornNewbie/EP03.jpg", UpdateTime=new DateTime(2021,07,05),UploadTime=new DateTime(2021,06,01),AuditTypeId=1,AuditEmployeeId=8,AuditTime=new DateTime(2021,07,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
@@ -2882,7 +2878,7 @@ namespace BSWebtoon.Front.Service.ComicService
                   new Episode(){ ComicId = 2, EpTitle = "第8話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600421/WornAndTornNewbie/EP08.jpg", UpdateTime=new DateTime(2021,12,05),UploadTime=new DateTime(2021,11,01),AuditTypeId=1,AuditEmployeeId=15,AuditTime=new DateTime(2022,12,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
                   new Episode(){ ComicId = 2, EpTitle = "第9話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600458/WornAndTornNewbie/EP09.jpg", UpdateTime=new DateTime(2022,01,05),UploadTime=new DateTime(2021,12,01),AuditTypeId=1,AuditEmployeeId=14,AuditTime=new DateTime(2022,01,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
                   new Episode(){ ComicId = 2, EpTitle = "第10話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600499/WornAndTornNewbie/EP10.jpg", UpdateTime=new DateTime(2022,02,05),UploadTime=new DateTime(2022,01,01),AuditTypeId=1,AuditEmployeeId=19,AuditTime=new DateTime(2022,02,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-                
+
                   new Episode(){ ComicId = 3, EpTitle = "第1話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599552/TombRaiderKing/EP01.jpg", UpdateTime=new DateTime(2021,06,28),UploadTime=new DateTime(2021,04,20),AuditTypeId=1,AuditEmployeeId=1,AuditTime=new DateTime(2021,06,28),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
                   new Episode(){ ComicId = 3, EpTitle = "第2話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599661/TombRaiderKing/EP02.jpg", UpdateTime=new DateTime(2021,06,29),UploadTime=new DateTime(2021,05,01),AuditTypeId=1,AuditEmployeeId=6,AuditTime=new DateTime(2021,06,29),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
                   new Episode(){ ComicId = 3, EpTitle = "第3話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599713/TombRaiderKing/EP03.jpg", UpdateTime=new DateTime(2021,07,05),UploadTime=new DateTime(2021,06,01),AuditTypeId=1,AuditEmployeeId=2,AuditTime=new DateTime(2021,07,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
@@ -2893,7 +2889,7 @@ namespace BSWebtoon.Front.Service.ComicService
                   new Episode(){ ComicId = 3, EpTitle = "第8話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599877/TombRaiderKing/EP08.jpg", UpdateTime=new DateTime(2021,12,05),UploadTime=new DateTime(2021,11,01),AuditTypeId=1,AuditEmployeeId=11,AuditTime=new DateTime(2022,12,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
                   new Episode(){ ComicId = 3, EpTitle = "第9話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599936/TombRaiderKing/EP09.jpg", UpdateTime=new DateTime(2022,01,05),UploadTime=new DateTime(2021,12,01),AuditTypeId=1,AuditEmployeeId=3,AuditTime=new DateTime(2022,01,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
                   new Episode(){ ComicId = 3, EpTitle = "第10話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599964/TombRaiderKing/EP10.jpg", UpdateTime=new DateTime(2022,02,05),UploadTime=new DateTime(2022,01,01),AuditTypeId=1,AuditEmployeeId=5,AuditTime=new DateTime(2022,02,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-                  
+
                   new Episode(){ ComicId = 4, EpTitle = "第1話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600076/WornAndTornNewbie/EP01.jpg", UpdateTime=new DateTime(2021,06,28),UploadTime=new DateTime(2021,04,20),AuditTypeId=1,AuditEmployeeId=4,AuditTime=new DateTime(2021,06,28),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
                   new Episode(){ ComicId = 4, EpTitle = "第2話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600157/WornAndTornNewbie/EP02.jpg", UpdateTime=new DateTime(2021,06,29),UploadTime=new DateTime(2021,05,01),AuditTypeId=1,AuditEmployeeId=7,AuditTime=new DateTime(2021,06,29),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
                   new Episode(){ ComicId = 4, EpTitle = "第3話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600190/WornAndTornNewbie/EP03.jpg", UpdateTime=new DateTime(2021,07,05),UploadTime=new DateTime(2021,06,01),AuditTypeId=1,AuditEmployeeId=8,AuditTime=new DateTime(2021,07,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
@@ -2904,8 +2900,8 @@ namespace BSWebtoon.Front.Service.ComicService
                   new Episode(){ ComicId = 4, EpTitle = "第8話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600421/WornAndTornNewbie/EP08.jpg", UpdateTime=new DateTime(2021,12,05),UploadTime=new DateTime(2021,11,01),AuditTypeId=1,AuditEmployeeId=15,AuditTime=new DateTime(2022,12,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
                   new Episode(){ ComicId = 4, EpTitle = "第9話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600458/WornAndTornNewbie/EP09.jpg", UpdateTime=new DateTime(2022,01,05),UploadTime=new DateTime(2021,12,01),AuditTypeId=1,AuditEmployeeId=14,AuditTime=new DateTime(2022,01,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
                   new Episode(){ ComicId = 4, EpTitle = "第10話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600499/WornAndTornNewbie/EP10.jpg", UpdateTime=new DateTime(2022,02,05),UploadTime=new DateTime(2022,01,01),AuditTypeId=1,AuditEmployeeId=19,AuditTime=new DateTime(2022,02,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-                  
-                  
+
+
                   new Episode(){ ComicId = 5, EpTitle = "第1話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599552/TombRaiderKing/EP01.jpg", UpdateTime=new DateTime(2021,06,28),UploadTime=new DateTime(2021,04,20),AuditTypeId=1,AuditEmployeeId=1,AuditTime=new DateTime(2021,06,28),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
                   new Episode(){ ComicId = 5, EpTitle = "第2話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599661/TombRaiderKing/EP02.jpg", UpdateTime=new DateTime(2021,06,29),UploadTime=new DateTime(2021,05,01),AuditTypeId=1,AuditEmployeeId=6,AuditTime=new DateTime(2021,06,29),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
                   new Episode(){ ComicId = 5, EpTitle = "第3話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599713/TombRaiderKing/EP03.jpg", UpdateTime=new DateTime(2021,07,05),UploadTime=new DateTime(2021,06,01),AuditTypeId=1,AuditEmployeeId=2,AuditTime=new DateTime(2021,07,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
@@ -2916,7 +2912,7 @@ namespace BSWebtoon.Front.Service.ComicService
                   new Episode(){ ComicId = 5, EpTitle = "第8話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599877/TombRaiderKing/EP08.jpg", UpdateTime=new DateTime(2021,12,05),UploadTime=new DateTime(2021,11,01),AuditTypeId=1,AuditEmployeeId=11,AuditTime=new DateTime(2022,12,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
                   new Episode(){ ComicId = 5, EpTitle = "第9話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599936/TombRaiderKing/EP09.jpg", UpdateTime=new DateTime(2022,01,05),UploadTime=new DateTime(2021,12,01),AuditTypeId=1,AuditEmployeeId=3,AuditTime=new DateTime(2022,01,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
                   new Episode(){ ComicId = 5, EpTitle = "第10話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599964/TombRaiderKing/EP10.jpg", UpdateTime=new DateTime(2022,02,05),UploadTime=new DateTime(2022,01,01),AuditTypeId=1,AuditEmployeeId=5,AuditTime=new DateTime(2022,02,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-                  
+
                     new Episode(){ ComicId = 6, EpTitle = "第1話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600076/WornAndTornNewbie/EP01.jpg", UpdateTime=new DateTime(2021,06,28),UploadTime=new DateTime(2021,04,20),AuditTypeId=1,AuditEmployeeId=4,AuditTime=new DateTime(2021,06,28),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
                     new Episode(){ ComicId = 6, EpTitle = "第2話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600157/WornAndTornNewbie/EP02.jpg", UpdateTime=new DateTime(2021,06,29),UploadTime=new DateTime(2021,05,01),AuditTypeId=1,AuditEmployeeId=7,AuditTime=new DateTime(2021,06,29),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
                     new Episode(){ ComicId = 6, EpTitle = "第3話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600190/WornAndTornNewbie/EP03.jpg", UpdateTime=new DateTime(2021,07,05),UploadTime=new DateTime(2021,06,01),AuditTypeId=1,AuditEmployeeId=8,AuditTime=new DateTime(2021,07,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
@@ -2927,7 +2923,7 @@ namespace BSWebtoon.Front.Service.ComicService
                     new Episode(){ ComicId = 6, EpTitle = "第8話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600421/WornAndTornNewbie/EP08.jpg", UpdateTime=new DateTime(2021,12,05),UploadTime=new DateTime(2021,11,01),AuditTypeId=1,AuditEmployeeId=15,AuditTime=new DateTime(2022,12,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
                     new Episode(){ ComicId = 6, EpTitle = "第9話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600458/WornAndTornNewbie/EP09.jpg", UpdateTime=new DateTime(2022,01,05),UploadTime=new DateTime(2021,12,01),AuditTypeId=1,AuditEmployeeId=14,AuditTime=new DateTime(2022,01,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
                     new Episode(){ ComicId = 6, EpTitle = "第10話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600499/WornAndTornNewbie/EP10.jpg", UpdateTime=new DateTime(2022,02,05),UploadTime=new DateTime(2022,01,01),AuditTypeId=1,AuditEmployeeId=19,AuditTime=new DateTime(2022,02,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-                    
+
                      new Episode(){ ComicId = 7, EpTitle = "第1話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599552/TombRaiderKing/EP01.jpg", UpdateTime=new DateTime(2021,06,28),UploadTime=new DateTime(2021,04,20),AuditTypeId=1,AuditEmployeeId=1,AuditTime=new DateTime(2021,06,28),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
                      new Episode(){ ComicId = 7, EpTitle = "第2話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599661/TombRaiderKing/EP02.jpg", UpdateTime=new DateTime(2021,06,29),UploadTime=new DateTime(2021,05,01),AuditTypeId=1,AuditEmployeeId=6,AuditTime=new DateTime(2021,06,29),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
                      new Episode(){ ComicId = 7, EpTitle = "第3話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599713/TombRaiderKing/EP03.jpg", UpdateTime=new DateTime(2021,07,05),UploadTime=new DateTime(2021,06,01),AuditTypeId=1,AuditEmployeeId=2,AuditTime=new DateTime(2021,07,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
@@ -2938,7 +2934,7 @@ namespace BSWebtoon.Front.Service.ComicService
                      new Episode(){ ComicId = 7, EpTitle = "第8話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599877/TombRaiderKing/EP08.jpg", UpdateTime=new DateTime(2021,12,05),UploadTime=new DateTime(2021,11,01),AuditTypeId=1,AuditEmployeeId=11,AuditTime=new DateTime(2022,12,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
                      new Episode(){ ComicId = 7, EpTitle = "第9話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599936/TombRaiderKing/EP09.jpg", UpdateTime=new DateTime(2022,01,05),UploadTime=new DateTime(2021,12,01),AuditTypeId=1,AuditEmployeeId=3,AuditTime=new DateTime(2022,01,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
                      new Episode(){ ComicId = 7, EpTitle = "第10話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599964/TombRaiderKing/EP10.jpg", UpdateTime=new DateTime(2022,02,05),UploadTime=new DateTime(2022,01,01),AuditTypeId=1,AuditEmployeeId=5,AuditTime=new DateTime(2022,02,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-                     
+
                      new Episode(){ ComicId = 8, EpTitle = "第1話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600076/WornAndTornNewbie/EP01.jpg", UpdateTime=new DateTime(2021,06,28),UploadTime=new DateTime(2021,04,20),AuditTypeId=1,AuditEmployeeId=4,AuditTime=new DateTime(2021,06,28),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
                      new Episode(){ ComicId = 8, EpTitle = "第2話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600157/WornAndTornNewbie/EP02.jpg", UpdateTime=new DateTime(2021,06,29),UploadTime=new DateTime(2021,05,01),AuditTypeId=1,AuditEmployeeId=7,AuditTime=new DateTime(2021,06,29),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
                      new Episode(){ ComicId = 8, EpTitle = "第3話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600190/WornAndTornNewbie/EP03.jpg", UpdateTime=new DateTime(2021,07,05),UploadTime=new DateTime(2021,06,01),AuditTypeId=1,AuditEmployeeId=8,AuditTime=new DateTime(2021,07,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
@@ -2949,7 +2945,7 @@ namespace BSWebtoon.Front.Service.ComicService
                      new Episode(){ ComicId = 8, EpTitle = "第8話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600421/WornAndTornNewbie/EP08.jpg", UpdateTime=new DateTime(2021,12,05),UploadTime=new DateTime(2021,11,01),AuditTypeId=1,AuditEmployeeId=15,AuditTime=new DateTime(2022,12,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
                      new Episode(){ ComicId = 8, EpTitle = "第9話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600458/WornAndTornNewbie/EP09.jpg", UpdateTime=new DateTime(2022,01,05),UploadTime=new DateTime(2021,12,01),AuditTypeId=1,AuditEmployeeId=14,AuditTime=new DateTime(2022,01,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
                      new Episode(){ ComicId = 8, EpTitle = "第10話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600499/WornAndTornNewbie/EP10.jpg", UpdateTime=new DateTime(2022,02,05),UploadTime=new DateTime(2022,01,01),AuditTypeId=1,AuditEmployeeId=19,AuditTime=new DateTime(2022,02,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-                     
+
                      new Episode(){ ComicId = 9, EpTitle = "第1話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599552/TombRaiderKing/EP01.jpg", UpdateTime=new DateTime(2021,06,28),UploadTime=new DateTime(2021,04,20),AuditTypeId=1,AuditEmployeeId=1,AuditTime=new DateTime(2021,06,28),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
                      new Episode(){ ComicId = 9, EpTitle = "第2話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599661/TombRaiderKing/EP02.jpg", UpdateTime=new DateTime(2021,06,29),UploadTime=new DateTime(2021,05,01),AuditTypeId=1,AuditEmployeeId=6,AuditTime=new DateTime(2021,06,29),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
                      new Episode(){ ComicId = 9, EpTitle = "第3話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599713/TombRaiderKing/EP03.jpg", UpdateTime=new DateTime(2021,07,05),UploadTime=new DateTime(2021,06,01),AuditTypeId=1,AuditEmployeeId=2,AuditTime=new DateTime(2021,07,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
@@ -2960,7 +2956,7 @@ namespace BSWebtoon.Front.Service.ComicService
                      new Episode(){ ComicId = 9, EpTitle = "第8話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599877/TombRaiderKing/EP08.jpg", UpdateTime=new DateTime(2021,12,05),UploadTime=new DateTime(2021,11,01),AuditTypeId=1,AuditEmployeeId=11,AuditTime=new DateTime(2022,12,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
                      new Episode(){ ComicId = 9, EpTitle = "第9話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599936/TombRaiderKing/EP09.jpg", UpdateTime=new DateTime(2022,01,05),UploadTime=new DateTime(2021,12,01),AuditTypeId=1,AuditEmployeeId=3,AuditTime=new DateTime(2022,01,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
                      new Episode(){ ComicId = 9, EpTitle = "第10話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599964/TombRaiderKing/EP10.jpg", UpdateTime=new DateTime(2022,02,05),UploadTime=new DateTime(2022,01,01),AuditTypeId=1,AuditEmployeeId=5,AuditTime=new DateTime(2022,02,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-                     
+
                        new Episode(){ ComicId = 10, EpTitle = "第1話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600076/WornAndTornNewbie/EP01.jpg", UpdateTime=new DateTime(2021,06,28),UploadTime=new DateTime(2021,04,20),AuditTypeId=1,AuditEmployeeId=4,AuditTime=new DateTime(2021,06,28),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
                        new Episode(){ ComicId = 10, EpTitle = "第2話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600157/WornAndTornNewbie/EP02.jpg", UpdateTime=new DateTime(2021,06,29),UploadTime=new DateTime(2021,05,01),AuditTypeId=1,AuditEmployeeId=7,AuditTime=new DateTime(2021,06,29),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
                        new Episode(){ ComicId = 10, EpTitle = "第3話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600190/WornAndTornNewbie/EP03.jpg", UpdateTime=new DateTime(2021,07,05),UploadTime=new DateTime(2021,06,01),AuditTypeId=1,AuditEmployeeId=8,AuditTime=new DateTime(2021,07,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
@@ -2983,8 +2979,8 @@ namespace BSWebtoon.Front.Service.ComicService
                        new Episode(){ ComicId = 11, EpTitle = "第8話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599877/TombRaiderKing/EP08.jpg", UpdateTime=new DateTime(2021,12,05),UploadTime=new DateTime(2021,11,01),AuditTypeId=1,AuditEmployeeId=11,AuditTime=new DateTime(2022,12,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
                        new Episode(){ ComicId = 11, EpTitle = "第9話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599936/TombRaiderKing/EP09.jpg", UpdateTime=new DateTime(2022,01,05),UploadTime=new DateTime(2021,12,01),AuditTypeId=1,AuditEmployeeId=3,AuditTime=new DateTime(2022,01,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
                        new Episode(){ ComicId = 11, EpTitle = "第10話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599964/TombRaiderKing/EP10.jpg", UpdateTime=new DateTime(2022,02,05),UploadTime=new DateTime(2022,01,01),AuditTypeId=1,AuditEmployeeId=5,AuditTime=new DateTime(2022,02,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-                      
-                       
+
+
                        new Episode(){ ComicId = 12, EpTitle = "第1話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600076/WornAndTornNewbie/EP01.jpg", UpdateTime=new DateTime(2021,06,28),UploadTime=new DateTime(2021,04,20),AuditTypeId=1,AuditEmployeeId=4,AuditTime=new DateTime(2021,06,28),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
                        new Episode(){ ComicId = 12, EpTitle = "第2話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600157/WornAndTornNewbie/EP02.jpg", UpdateTime=new DateTime(2021,06,29),UploadTime=new DateTime(2021,05,01),AuditTypeId=1,AuditEmployeeId=7,AuditTime=new DateTime(2021,06,29),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
                        new Episode(){ ComicId = 12, EpTitle = "第3話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600190/WornAndTornNewbie/EP03.jpg", UpdateTime=new DateTime(2021,07,05),UploadTime=new DateTime(2021,06,01),AuditTypeId=1,AuditEmployeeId=8,AuditTime=new DateTime(2021,07,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
@@ -2995,7 +2991,7 @@ namespace BSWebtoon.Front.Service.ComicService
                        new Episode(){ ComicId = 12, EpTitle = "第8話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600421/WornAndTornNewbie/EP08.jpg", UpdateTime=new DateTime(2021,12,05),UploadTime=new DateTime(2021,11,01),AuditTypeId=1,AuditEmployeeId=15,AuditTime=new DateTime(2022,12,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
                        new Episode(){ ComicId = 12, EpTitle = "第9話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600458/WornAndTornNewbie/EP09.jpg", UpdateTime=new DateTime(2022,01,05),UploadTime=new DateTime(2021,12,01),AuditTypeId=1,AuditEmployeeId=14,AuditTime=new DateTime(2022,01,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
                        new Episode(){ ComicId = 12, EpTitle = "第10話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600499/WornAndTornNewbie/EP10.jpg", UpdateTime=new DateTime(2022,02,05),UploadTime=new DateTime(2022,01,01),AuditTypeId=1,AuditEmployeeId=19,AuditTime=new DateTime(2022,02,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-                        
+
                    new Episode(){ ComicId = 13, EpTitle = "第1話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599552/TombRaiderKing/EP01.jpg", UpdateTime=new DateTime(2021,06,28),UploadTime=new DateTime(2021,04,20),AuditTypeId=1,AuditEmployeeId=1,AuditTime=new DateTime(2021,06,28),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
                    new Episode(){ ComicId = 13, EpTitle = "第2話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599661/TombRaiderKing/EP02.jpg", UpdateTime=new DateTime(2021,06,29),UploadTime=new DateTime(2021,05,01),AuditTypeId=1,AuditEmployeeId=6,AuditTime=new DateTime(2021,06,29),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
                    new Episode(){ ComicId = 13, EpTitle = "第3話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599713/TombRaiderKing/EP03.jpg", UpdateTime=new DateTime(2021,07,05),UploadTime=new DateTime(2021,06,01),AuditTypeId=1,AuditEmployeeId=2,AuditTime=new DateTime(2021,07,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
@@ -3006,7 +3002,7 @@ namespace BSWebtoon.Front.Service.ComicService
                    new Episode(){ ComicId = 13, EpTitle = "第8話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599877/TombRaiderKing/EP08.jpg", UpdateTime=new DateTime(2021,12,05),UploadTime=new DateTime(2021,11,01),AuditTypeId=1,AuditEmployeeId=11,AuditTime=new DateTime(2022,12,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
                    new Episode(){ ComicId = 13, EpTitle = "第9話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599936/TombRaiderKing/EP09.jpg", UpdateTime=new DateTime(2022,01,05),UploadTime=new DateTime(2021,12,01),AuditTypeId=1,AuditEmployeeId=3,AuditTime=new DateTime(2022,01,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
                    new Episode(){ ComicId = 13, EpTitle = "第10話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599964/TombRaiderKing/EP10.jpg", UpdateTime=new DateTime(2022,02,05),UploadTime=new DateTime(2022,01,01),AuditTypeId=1,AuditEmployeeId=5,AuditTime=new DateTime(2022,02,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-           
+
            new Episode(){ ComicId = 14, EpTitle = "第1話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600076/WornAndTornNewbie/EP01.jpg", UpdateTime=new DateTime(2021,06,28),UploadTime=new DateTime(2021,04,20),AuditTypeId=1,AuditEmployeeId=4,AuditTime=new DateTime(2021,06,28),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
            new Episode(){ ComicId = 14, EpTitle = "第2話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600157/WornAndTornNewbie/EP02.jpg", UpdateTime=new DateTime(2021,06,29),UploadTime=new DateTime(2021,05,01),AuditTypeId=1,AuditEmployeeId=7,AuditTime=new DateTime(2021,06,29),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
            new Episode(){ ComicId = 14, EpTitle = "第3話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600190/WornAndTornNewbie/EP03.jpg", UpdateTime=new DateTime(2021,07,05),UploadTime=new DateTime(2021,06,01),AuditTypeId=1,AuditEmployeeId=8,AuditTime=new DateTime(2021,07,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
@@ -3017,7 +3013,7 @@ namespace BSWebtoon.Front.Service.ComicService
            new Episode(){ ComicId = 14, EpTitle = "第8話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600421/WornAndTornNewbie/EP08.jpg", UpdateTime=new DateTime(2021,12,05),UploadTime=new DateTime(2021,11,01),AuditTypeId=1,AuditEmployeeId=15,AuditTime=new DateTime(2022,12,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
            new Episode(){ ComicId = 14, EpTitle = "第9話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600458/WornAndTornNewbie/EP09.jpg", UpdateTime=new DateTime(2022,01,05),UploadTime=new DateTime(2021,12,01),AuditTypeId=1,AuditEmployeeId=14,AuditTime=new DateTime(2022,01,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
            new Episode(){ ComicId = 14, EpTitle = "第10話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600499/WornAndTornNewbie/EP10.jpg", UpdateTime=new DateTime(2022,02,05),UploadTime=new DateTime(2022,01,01),AuditTypeId=1,AuditEmployeeId=19,AuditTime=new DateTime(2022,02,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-           
+
            new Episode(){ ComicId = 15, EpTitle = "第1話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599552/TombRaiderKing/EP01.jpg", UpdateTime=new DateTime(2021,06,28),UploadTime=new DateTime(2021,04,20),AuditTypeId=1,AuditEmployeeId=1,AuditTime=new DateTime(2021,06,28),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
            new Episode(){ ComicId = 15, EpTitle = "第2話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599661/TombRaiderKing/EP02.jpg", UpdateTime=new DateTime(2021,06,29),UploadTime=new DateTime(2021,05,01),AuditTypeId=1,AuditEmployeeId=6,AuditTime=new DateTime(2021,06,29),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
            new Episode(){ ComicId = 15, EpTitle = "第3話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599713/TombRaiderKing/EP03.jpg", UpdateTime=new DateTime(2021,07,05),UploadTime=new DateTime(2021,06,01),AuditTypeId=1,AuditEmployeeId=2,AuditTime=new DateTime(2021,07,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
@@ -3028,7 +3024,7 @@ namespace BSWebtoon.Front.Service.ComicService
            new Episode(){ ComicId = 15, EpTitle = "第8話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599877/TombRaiderKing/EP08.jpg", UpdateTime=new DateTime(2021,12,05),UploadTime=new DateTime(2021,11,01),AuditTypeId=1,AuditEmployeeId=11,AuditTime=new DateTime(2022,12,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
            new Episode(){ ComicId = 15, EpTitle = "第9話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599936/TombRaiderKing/EP09.jpg", UpdateTime=new DateTime(2022,01,05),UploadTime=new DateTime(2021,12,01),AuditTypeId=1,AuditEmployeeId=3,AuditTime=new DateTime(2022,01,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
            new Episode(){ ComicId = 15, EpTitle = "第10話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599964/TombRaiderKing/EP10.jpg", UpdateTime=new DateTime(2022,02,05),UploadTime=new DateTime(2022,01,01),AuditTypeId=1,AuditEmployeeId=5,AuditTime=new DateTime(2022,02,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-           
+
            new Episode(){ ComicId = 16, EpTitle = "第1話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600076/WornAndTornNewbie/EP01.jpg", UpdateTime=new DateTime(2021,06,28),UploadTime=new DateTime(2021,04,20),AuditTypeId=1,AuditEmployeeId=4,AuditTime=new DateTime(2021,06,28),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
            new Episode(){ ComicId = 16, EpTitle = "第2話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600157/WornAndTornNewbie/EP02.jpg", UpdateTime=new DateTime(2021,06,29),UploadTime=new DateTime(2021,05,01),AuditTypeId=1,AuditEmployeeId=7,AuditTime=new DateTime(2021,06,29),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
            new Episode(){ ComicId = 16, EpTitle = "第3話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600190/WornAndTornNewbie/EP03.jpg", UpdateTime=new DateTime(2021,07,05),UploadTime=new DateTime(2021,06,01),AuditTypeId=1,AuditEmployeeId=8,AuditTime=new DateTime(2021,07,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
@@ -3039,7 +3035,7 @@ namespace BSWebtoon.Front.Service.ComicService
            new Episode(){ ComicId = 16, EpTitle = "第8話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600421/WornAndTornNewbie/EP08.jpg", UpdateTime=new DateTime(2021,12,05),UploadTime=new DateTime(2021,11,01),AuditTypeId=1,AuditEmployeeId=15,AuditTime=new DateTime(2022,12,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
            new Episode(){ ComicId = 16, EpTitle = "第9話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600458/WornAndTornNewbie/EP09.jpg", UpdateTime=new DateTime(2022,01,05),UploadTime=new DateTime(2021,12,01),AuditTypeId=1,AuditEmployeeId=14,AuditTime=new DateTime(2022,01,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
            new Episode(){ ComicId = 16, EpTitle = "第10話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600499/WornAndTornNewbie/EP10.jpg", UpdateTime=new DateTime(2022,02,05),UploadTime=new DateTime(2022,01,01),AuditTypeId=1,AuditEmployeeId=19,AuditTime=new DateTime(2022,02,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-           
+
            new Episode(){ ComicId = 17, EpTitle = "第1話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599552/TombRaiderKing/EP01.jpg", UpdateTime=new DateTime(2021,06,28),UploadTime=new DateTime(2021,04,20),AuditTypeId=1,AuditEmployeeId=1,AuditTime=new DateTime(2021,06,28),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
            new Episode(){ ComicId = 17, EpTitle = "第2話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599661/TombRaiderKing/EP02.jpg", UpdateTime=new DateTime(2021,06,29),UploadTime=new DateTime(2021,05,01),AuditTypeId=1,AuditEmployeeId=6,AuditTime=new DateTime(2021,06,29),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
            new Episode(){ ComicId = 17, EpTitle = "第3話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599713/TombRaiderKing/EP03.jpg", UpdateTime=new DateTime(2021,07,05),UploadTime=new DateTime(2021,06,01),AuditTypeId=1,AuditEmployeeId=2,AuditTime=new DateTime(2021,07,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
@@ -3050,7 +3046,7 @@ namespace BSWebtoon.Front.Service.ComicService
            new Episode(){ ComicId = 17, EpTitle = "第8話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599877/TombRaiderKing/EP08.jpg", UpdateTime=new DateTime(2021,12,05),UploadTime=new DateTime(2021,11,01),AuditTypeId=1,AuditEmployeeId=11,AuditTime=new DateTime(2022,12,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
            new Episode(){ ComicId = 17, EpTitle = "第9話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599936/TombRaiderKing/EP09.jpg", UpdateTime=new DateTime(2022,01,05),UploadTime=new DateTime(2021,12,01),AuditTypeId=1,AuditEmployeeId=3,AuditTime=new DateTime(2022,01,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
            new Episode(){ ComicId = 17, EpTitle = "第10話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599964/TombRaiderKing/EP10.jpg", UpdateTime=new DateTime(2022,02,05),UploadTime=new DateTime(2022,01,01),AuditTypeId=1,AuditEmployeeId=5,AuditTime=new DateTime(2022,02,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-           
+
            new Episode(){ ComicId = 18, EpTitle = "第1話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600076/WornAndTornNewbie/EP01.jpg", UpdateTime=new DateTime(2021,06,28),UploadTime=new DateTime(2021,04,20),AuditTypeId=1,AuditEmployeeId=4,AuditTime=new DateTime(2021,06,28),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
            new Episode(){ ComicId = 18, EpTitle = "第2話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600157/WornAndTornNewbie/EP02.jpg", UpdateTime=new DateTime(2021,06,29),UploadTime=new DateTime(2021,05,01),AuditTypeId=1,AuditEmployeeId=7,AuditTime=new DateTime(2021,06,29),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
            new Episode(){ ComicId = 18, EpTitle = "第3話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600190/WornAndTornNewbie/EP03.jpg", UpdateTime=new DateTime(2021,07,05),UploadTime=new DateTime(2021,06,01),AuditTypeId=1,AuditEmployeeId=8,AuditTime=new DateTime(2021,07,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
@@ -3061,7 +3057,7 @@ namespace BSWebtoon.Front.Service.ComicService
            new Episode(){ ComicId = 18, EpTitle = "第8話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600421/WornAndTornNewbie/EP08.jpg", UpdateTime=new DateTime(2021,12,05),UploadTime=new DateTime(2021,11,01),AuditTypeId=1,AuditEmployeeId=15,AuditTime=new DateTime(2022,12,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
            new Episode(){ ComicId = 18, EpTitle = "第9話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600458/WornAndTornNewbie/EP09.jpg", UpdateTime=new DateTime(2022,01,05),UploadTime=new DateTime(2021,12,01),AuditTypeId=1,AuditEmployeeId=14,AuditTime=new DateTime(2022,01,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
            new Episode(){ ComicId = 18, EpTitle = "第10話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600499/WornAndTornNewbie/EP10.jpg", UpdateTime=new DateTime(2022,02,05),UploadTime=new DateTime(2022,01,01),AuditTypeId=1,AuditEmployeeId=19,AuditTime=new DateTime(2022,02,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-           
+
               new Episode(){ ComicId = 19, EpTitle = "第1話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599552/TombRaiderKing/EP01.jpg", UpdateTime=new DateTime(2021,06,28),UploadTime=new DateTime(2021,04,20),AuditTypeId=1,AuditEmployeeId=1,AuditTime=new DateTime(2021,06,28),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
               new Episode(){ ComicId = 19, EpTitle = "第2話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599661/TombRaiderKing/EP02.jpg", UpdateTime=new DateTime(2021,06,29),UploadTime=new DateTime(2021,05,01),AuditTypeId=1,AuditEmployeeId=6,AuditTime=new DateTime(2021,06,29),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
               new Episode(){ ComicId = 19, EpTitle = "第3話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599713/TombRaiderKing/EP03.jpg", UpdateTime=new DateTime(2021,07,05),UploadTime=new DateTime(2021,06,01),AuditTypeId=1,AuditEmployeeId=2,AuditTime=new DateTime(2021,07,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
@@ -3072,8 +3068,8 @@ namespace BSWebtoon.Front.Service.ComicService
               new Episode(){ ComicId = 19, EpTitle = "第8話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599877/TombRaiderKing/EP08.jpg", UpdateTime=new DateTime(2021,12,05),UploadTime=new DateTime(2021,11,01),AuditTypeId=1,AuditEmployeeId=11,AuditTime=new DateTime(2022,12,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
               new Episode(){ ComicId = 19, EpTitle = "第9話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599936/TombRaiderKing/EP09.jpg", UpdateTime=new DateTime(2022,01,05),UploadTime=new DateTime(2021,12,01),AuditTypeId=1,AuditEmployeeId=3,AuditTime=new DateTime(2022,01,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
               new Episode(){ ComicId = 19, EpTitle = "第10話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599964/TombRaiderKing/EP10.jpg", UpdateTime=new DateTime(2022,02,05),UploadTime=new DateTime(2022,01,01),AuditTypeId=1,AuditEmployeeId=5,AuditTime=new DateTime(2022,02,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-              
-              
+
+
               new Episode(){ ComicId = 20, EpTitle = "第1話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600076/WornAndTornNewbie/EP01.jpg", UpdateTime=new DateTime(2021,06,28),UploadTime=new DateTime(2021,04,20),AuditTypeId=1,AuditEmployeeId=4,AuditTime=new DateTime(2021,06,28),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
               new Episode(){ ComicId = 20, EpTitle = "第2話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600157/WornAndTornNewbie/EP02.jpg", UpdateTime=new DateTime(2021,06,29),UploadTime=new DateTime(2021,05,01),AuditTypeId=1,AuditEmployeeId=7,AuditTime=new DateTime(2021,06,29),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
               new Episode(){ ComicId = 20, EpTitle = "第3話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600190/WornAndTornNewbie/EP03.jpg", UpdateTime=new DateTime(2021,07,05),UploadTime=new DateTime(2021,06,01),AuditTypeId=1,AuditEmployeeId=8,AuditTime=new DateTime(2021,07,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
@@ -3096,7 +3092,7 @@ namespace BSWebtoon.Front.Service.ComicService
              new Episode(){ ComicId = 21, EpTitle = "第8話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599877/TombRaiderKing/EP08.jpg", UpdateTime=new DateTime(2021,12,05),UploadTime=new DateTime(2021,11,01),AuditTypeId=1,AuditEmployeeId=11,AuditTime=new DateTime(2022,12,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
              new Episode(){ ComicId = 21, EpTitle = "第9話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599936/TombRaiderKing/EP09.jpg", UpdateTime=new DateTime(2022,01,05),UploadTime=new DateTime(2021,12,01),AuditTypeId=1,AuditEmployeeId=3,AuditTime=new DateTime(2022,01,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
              new Episode(){ ComicId = 21, EpTitle = "第10話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599964/TombRaiderKing/EP10.jpg", UpdateTime=new DateTime(2022,02,05),UploadTime=new DateTime(2022,01,01),AuditTypeId=1,AuditEmployeeId=5,AuditTime=new DateTime(2022,02,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-             
+
              new Episode(){ ComicId = 22, EpTitle = "第1話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600076/WornAndTornNewbie/EP01.jpg", UpdateTime=new DateTime(2021,06,28),UploadTime=new DateTime(2021,04,20),AuditTypeId=1,AuditEmployeeId=4,AuditTime=new DateTime(2021,06,28),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
              new Episode(){ ComicId = 22, EpTitle = "第2話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600157/WornAndTornNewbie/EP02.jpg", UpdateTime=new DateTime(2021,06,29),UploadTime=new DateTime(2021,05,01),AuditTypeId=1,AuditEmployeeId=7,AuditTime=new DateTime(2021,06,29),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
              new Episode(){ ComicId = 22, EpTitle = "第3話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600190/WornAndTornNewbie/EP03.jpg", UpdateTime=new DateTime(2021,07,05),UploadTime=new DateTime(2021,06,01),AuditTypeId=1,AuditEmployeeId=8,AuditTime=new DateTime(2021,07,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
@@ -3124,7 +3120,7 @@ namespace BSWebtoon.Front.Service.ComicService
               new Episode(){ ComicId = 23, EpTitle = "第8話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599877/TombRaiderKing/EP08.jpg", UpdateTime=new DateTime(2021,12,05),UploadTime=new DateTime(2021,11,01),AuditTypeId=1,AuditEmployeeId=11,AuditTime=new DateTime(2022,12,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
               new Episode(){ ComicId = 23, EpTitle = "第9話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599936/TombRaiderKing/EP09.jpg", UpdateTime=new DateTime(2022,01,05),UploadTime=new DateTime(2021,12,01),AuditTypeId=1,AuditEmployeeId=3,AuditTime=new DateTime(2022,01,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
               new Episode(){ ComicId = 23, EpTitle = "第10話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599964/TombRaiderKing/EP10.jpg", UpdateTime=new DateTime(2022,02,05),UploadTime=new DateTime(2022,01,01),AuditTypeId=1,AuditEmployeeId=5,AuditTime=new DateTime(2022,02,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-              
+
               new Episode(){ ComicId = 24, EpTitle = "第1話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600076/WornAndTornNewbie/EP01.jpg", UpdateTime=new DateTime(2021,07,02),UploadTime=new DateTime(2021,04,20),AuditTypeId=1,AuditEmployeeId=4,AuditTime=new DateTime(2021,07,02),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
               new Episode(){ ComicId = 24, EpTitle = "第2話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600157/WornAndTornNewbie/EP02.jpg", UpdateTime=new DateTime(2021,07,03),UploadTime=new DateTime(2021,05,01),AuditTypeId=1,AuditEmployeeId=7,AuditTime=new DateTime(2021,07,03),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
               new Episode(){ ComicId = 24, EpTitle = "第3話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600190/WornAndTornNewbie/EP03.jpg", UpdateTime=new DateTime(2021,07,05),UploadTime=new DateTime(2021,06,01),AuditTypeId=1,AuditEmployeeId=8,AuditTime=new DateTime(2021,07,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
@@ -3135,8 +3131,8 @@ namespace BSWebtoon.Front.Service.ComicService
               new Episode(){ ComicId = 24, EpTitle = "第8話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600421/WornAndTornNewbie/EP08.jpg", UpdateTime=new DateTime(2021,12,05),UploadTime=new DateTime(2021,11,01),AuditTypeId=1,AuditEmployeeId=15,AuditTime=new DateTime(2022,12,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
               new Episode(){ ComicId = 24, EpTitle = "第9話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600458/WornAndTornNewbie/EP09.jpg", UpdateTime=new DateTime(2022,01,05),UploadTime=new DateTime(2021,12,01),AuditTypeId=1,AuditEmployeeId=14,AuditTime=new DateTime(2022,01,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
               new Episode(){ ComicId = 24, EpTitle = "第10話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600499/WornAndTornNewbie/EP10.jpg", UpdateTime=new DateTime(2022,02,05),UploadTime=new DateTime(2022,01,01),AuditTypeId=1,AuditEmployeeId=19,AuditTime=new DateTime(2022,02,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-           
-           
+
+
               new Episode(){ ComicId = 25, EpTitle = "第1話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599552/TombRaiderKing/EP01.jpg", UpdateTime=new DateTime(2021,07,02),UploadTime=new DateTime(2021,04,20),AuditTypeId=1,AuditEmployeeId=1,AuditTime=new DateTime(2021,07,02),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
               new Episode(){ ComicId = 25, EpTitle = "第2話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599661/TombRaiderKing/EP02.jpg", UpdateTime=new DateTime(2021,07,03),UploadTime=new DateTime(2021,05,01),AuditTypeId=1,AuditEmployeeId=6,AuditTime=new DateTime(2021,07,03),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
               new Episode(){ ComicId = 25, EpTitle = "第3話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599713/TombRaiderKing/EP03.jpg", UpdateTime=new DateTime(2021,07,05),UploadTime=new DateTime(2021,06,01),AuditTypeId=1,AuditEmployeeId=2,AuditTime=new DateTime(2021,07,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
@@ -3147,7 +3143,7 @@ namespace BSWebtoon.Front.Service.ComicService
               new Episode(){ ComicId = 25, EpTitle = "第8話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599877/TombRaiderKing/EP08.jpg", UpdateTime=new DateTime(2021,12,05),UploadTime=new DateTime(2021,11,01),AuditTypeId=1,AuditEmployeeId=11,AuditTime=new DateTime(2022,12,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
               new Episode(){ ComicId = 25, EpTitle = "第9話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599936/TombRaiderKing/EP09.jpg", UpdateTime=new DateTime(2022,01,05),UploadTime=new DateTime(2021,12,01),AuditTypeId=1,AuditEmployeeId=3,AuditTime=new DateTime(2022,01,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
               new Episode(){ ComicId = 25, EpTitle = "第10話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599964/TombRaiderKing/EP10.jpg", UpdateTime=new DateTime(2022,02,05),UploadTime=new DateTime(2022,01,01),AuditTypeId=1,AuditEmployeeId=5,AuditTime=new DateTime(2022,02,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-              
+
               new Episode(){ ComicId = 26, EpTitle = "第1話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600076/WornAndTornNewbie/EP01.jpg", UpdateTime=new DateTime(2021,07,02),UploadTime=new DateTime(2021,04,20),AuditTypeId=1,AuditEmployeeId=4,AuditTime=new DateTime(2021,07,02),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
               new Episode(){ ComicId = 26, EpTitle = "第2話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600157/WornAndTornNewbie/EP02.jpg", UpdateTime=new DateTime(2021,07,03),UploadTime=new DateTime(2021,05,01),AuditTypeId=1,AuditEmployeeId=7,AuditTime=new DateTime(2021,07,03),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
               new Episode(){ ComicId = 26, EpTitle = "第3話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600190/WornAndTornNewbie/EP03.jpg", UpdateTime=new DateTime(2021,07,05),UploadTime=new DateTime(2021,06,01),AuditTypeId=1,AuditEmployeeId=8,AuditTime=new DateTime(2021,07,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
@@ -3158,9 +3154,9 @@ namespace BSWebtoon.Front.Service.ComicService
               new Episode(){ ComicId = 26, EpTitle = "第8話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600421/WornAndTornNewbie/EP08.jpg", UpdateTime=new DateTime(2021,12,05),UploadTime=new DateTime(2021,11,01),AuditTypeId=1,AuditEmployeeId=15,AuditTime=new DateTime(2022,12,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
               new Episode(){ ComicId = 26, EpTitle = "第9話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600458/WornAndTornNewbie/EP09.jpg", UpdateTime=new DateTime(2022,01,05),UploadTime=new DateTime(2021,12,01),AuditTypeId=1,AuditEmployeeId=14,AuditTime=new DateTime(2022,01,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
               new Episode(){ ComicId = 26, EpTitle = "第10話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600499/WornAndTornNewbie/EP10.jpg", UpdateTime=new DateTime(2022,02,05),UploadTime=new DateTime(2022,01,01),AuditTypeId=1,AuditEmployeeId=19,AuditTime=new DateTime(2022,02,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-           
-           
-           
+
+
+
               new Episode(){ ComicId = 27, EpTitle = "第1話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599552/TombRaiderKing/EP01.jpg", UpdateTime=new DateTime(2021,07,02),UploadTime=new DateTime(2021,04,20),AuditTypeId=1,AuditEmployeeId=1,AuditTime=new DateTime(2021,07,02),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
               new Episode(){ ComicId = 27, EpTitle = "第2話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599661/TombRaiderKing/EP02.jpg", UpdateTime=new DateTime(2021,07,03),UploadTime=new DateTime(2021,05,01),AuditTypeId=1,AuditEmployeeId=6,AuditTime=new DateTime(2021,07,03),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
               new Episode(){ ComicId = 27, EpTitle = "第3話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599713/TombRaiderKing/EP03.jpg", UpdateTime=new DateTime(2021,07,05),UploadTime=new DateTime(2021,06,01),AuditTypeId=1,AuditEmployeeId=2,AuditTime=new DateTime(2021,07,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
@@ -3171,8 +3167,8 @@ namespace BSWebtoon.Front.Service.ComicService
               new Episode(){ ComicId = 27, EpTitle = "第8話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599877/TombRaiderKing/EP08.jpg", UpdateTime=new DateTime(2021,12,05),UploadTime=new DateTime(2021,11,01),AuditTypeId=1,AuditEmployeeId=11,AuditTime=new DateTime(2022,12,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
               new Episode(){ ComicId = 27, EpTitle = "第9話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599936/TombRaiderKing/EP09.jpg", UpdateTime=new DateTime(2022,01,05),UploadTime=new DateTime(2021,12,01),AuditTypeId=1,AuditEmployeeId=3,AuditTime=new DateTime(2022,01,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
               new Episode(){ ComicId = 27, EpTitle = "第10話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599964/TombRaiderKing/EP10.jpg", UpdateTime=new DateTime(2022,02,05),UploadTime=new DateTime(2022,01,01),AuditTypeId=1,AuditEmployeeId=5,AuditTime=new DateTime(2022,02,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-              
-              
+
+
               new Episode(){ ComicId = 28, EpTitle = "第1話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600076/WornAndTornNewbie/EP01.jpg", UpdateTime=new DateTime(2021,07,02),UploadTime=new DateTime(2021,04,20),AuditTypeId=1,AuditEmployeeId=4,AuditTime=new DateTime(2021,07,02),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
               new Episode(){ ComicId = 28, EpTitle = "第2話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600157/WornAndTornNewbie/EP02.jpg", UpdateTime=new DateTime(2021,07,03),UploadTime=new DateTime(2021,05,01),AuditTypeId=1,AuditEmployeeId=7,AuditTime=new DateTime(2021,07,03),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
               new Episode(){ ComicId = 28, EpTitle = "第3話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600190/WornAndTornNewbie/EP03.jpg", UpdateTime=new DateTime(2021,07,05),UploadTime=new DateTime(2021,06,01),AuditTypeId=1,AuditEmployeeId=8,AuditTime=new DateTime(2021,07,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
@@ -3183,8 +3179,8 @@ namespace BSWebtoon.Front.Service.ComicService
               new Episode(){ ComicId = 28, EpTitle = "第8話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600421/WornAndTornNewbie/EP08.jpg", UpdateTime=new DateTime(2021,12,05),UploadTime=new DateTime(2021,11,01),AuditTypeId=1,AuditEmployeeId=15,AuditTime=new DateTime(2022,12,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
               new Episode(){ ComicId = 28, EpTitle = "第9話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600458/WornAndTornNewbie/EP09.jpg", UpdateTime=new DateTime(2022,01,05),UploadTime=new DateTime(2021,12,01),AuditTypeId=1,AuditEmployeeId=14,AuditTime=new DateTime(2022,01,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
               new Episode(){ ComicId = 28, EpTitle = "第10話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600499/WornAndTornNewbie/EP10.jpg", UpdateTime=new DateTime(2022,02,05),UploadTime=new DateTime(2022,01,01),AuditTypeId=1,AuditEmployeeId=19,AuditTime=new DateTime(2022,02,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-           
-           
+
+
               new Episode(){ ComicId = 29, EpTitle = "第1話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599552/TombRaiderKing/EP01.jpg", UpdateTime=new DateTime(2021,07,02),UploadTime=new DateTime(2021,04,20),AuditTypeId=1,AuditEmployeeId=1,AuditTime=new DateTime(2021,07,02),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
               new Episode(){ ComicId = 29, EpTitle = "第2話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599661/TombRaiderKing/EP02.jpg", UpdateTime=new DateTime(2021,07,03),UploadTime=new DateTime(2021,05,01),AuditTypeId=1,AuditEmployeeId=6,AuditTime=new DateTime(2021,07,03),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
               new Episode(){ ComicId = 29, EpTitle = "第3話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599713/TombRaiderKing/EP03.jpg", UpdateTime=new DateTime(2021,07,05),UploadTime=new DateTime(2021,06,01),AuditTypeId=1,AuditEmployeeId=2,AuditTime=new DateTime(2021,07,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
@@ -3207,8 +3203,8 @@ namespace BSWebtoon.Front.Service.ComicService
               new Episode(){ ComicId = 30, EpTitle = "第8話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600421/WornAndTornNewbie/EP08.jpg", UpdateTime=new DateTime(2021,12,05),UploadTime=new DateTime(2021,11,01),AuditTypeId=1,AuditEmployeeId=15,AuditTime=new DateTime(2022,12,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
               new Episode(){ ComicId = 30, EpTitle = "第9話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600458/WornAndTornNewbie/EP09.jpg", UpdateTime=new DateTime(2022,01,05),UploadTime=new DateTime(2021,12,01),AuditTypeId=1,AuditEmployeeId=14,AuditTime=new DateTime(2022,01,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
               new Episode(){ ComicId = 30, EpTitle = "第10話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600499/WornAndTornNewbie/EP10.jpg", UpdateTime=new DateTime(2022,02,05),UploadTime=new DateTime(2022,01,01),AuditTypeId=1,AuditEmployeeId=19,AuditTime=new DateTime(2022,02,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-           
-           
+
+
               new Episode(){ ComicId = 31, EpTitle = "第1話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599552/TombRaiderKing/EP01.jpg", UpdateTime=new DateTime(2021,07,02),UploadTime=new DateTime(2021,04,20),AuditTypeId=1,AuditEmployeeId=1,AuditTime=new DateTime(2021,07,02),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
               new Episode(){ ComicId = 31, EpTitle = "第2話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599661/TombRaiderKing/EP02.jpg", UpdateTime=new DateTime(2021,07,03),UploadTime=new DateTime(2021,05,01),AuditTypeId=1,AuditEmployeeId=6,AuditTime=new DateTime(2021,07,03),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
               new Episode(){ ComicId = 31, EpTitle = "第3話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599713/TombRaiderKing/EP03.jpg", UpdateTime=new DateTime(2021,07,05),UploadTime=new DateTime(2021,06,01),AuditTypeId=1,AuditEmployeeId=2,AuditTime=new DateTime(2021,07,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
@@ -3219,7 +3215,7 @@ namespace BSWebtoon.Front.Service.ComicService
               new Episode(){ ComicId = 31, EpTitle = "第8話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599877/TombRaiderKing/EP08.jpg", UpdateTime=new DateTime(2021,12,05),UploadTime=new DateTime(2021,11,01),AuditTypeId=1,AuditEmployeeId=11,AuditTime=new DateTime(2022,12,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
               new Episode(){ ComicId = 31, EpTitle = "第9話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599936/TombRaiderKing/EP09.jpg", UpdateTime=new DateTime(2022,01,05),UploadTime=new DateTime(2021,12,01),AuditTypeId=1,AuditEmployeeId=3,AuditTime=new DateTime(2022,01,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
               new Episode(){ ComicId = 31, EpTitle = "第10話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599964/TombRaiderKing/EP10.jpg", UpdateTime=new DateTime(2022,02,05),UploadTime=new DateTime(2022,01,01),AuditTypeId=1,AuditEmployeeId=5,AuditTime=new DateTime(2022,02,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-              
+
               new Episode(){ ComicId = 32, EpTitle = "第1話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600076/WornAndTornNewbie/EP01.jpg", UpdateTime=new DateTime(2021,07,02),UploadTime=new DateTime(2021,04,20),AuditTypeId=1,AuditEmployeeId=4,AuditTime=new DateTime(2021,07,02),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
               new Episode(){ ComicId = 32, EpTitle = "第2話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600157/WornAndTornNewbie/EP02.jpg", UpdateTime=new DateTime(2021,07,03),UploadTime=new DateTime(2021,05,01),AuditTypeId=1,AuditEmployeeId=7,AuditTime=new DateTime(2021,07,03),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
               new Episode(){ ComicId = 32, EpTitle = "第3話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600190/WornAndTornNewbie/EP03.jpg", UpdateTime=new DateTime(2021,07,05),UploadTime=new DateTime(2021,06,01),AuditTypeId=1,AuditEmployeeId=8,AuditTime=new DateTime(2021,07,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
@@ -3230,7 +3226,7 @@ namespace BSWebtoon.Front.Service.ComicService
               new Episode(){ ComicId = 32, EpTitle = "第8話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600421/WornAndTornNewbie/EP08.jpg", UpdateTime=new DateTime(2021,12,05),UploadTime=new DateTime(2021,11,01),AuditTypeId=1,AuditEmployeeId=15,AuditTime=new DateTime(2022,12,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
               new Episode(){ ComicId = 32, EpTitle = "第9話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600458/WornAndTornNewbie/EP09.jpg", UpdateTime=new DateTime(2022,01,05),UploadTime=new DateTime(2021,12,01),AuditTypeId=1,AuditEmployeeId=14,AuditTime=new DateTime(2022,01,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
               new Episode(){ ComicId = 32, EpTitle = "第10話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600499/WornAndTornNewbie/EP10.jpg", UpdateTime=new DateTime(2022,02,05),UploadTime=new DateTime(2022,01,01),AuditTypeId=1,AuditEmployeeId=19,AuditTime=new DateTime(2022,02,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-           
+
               new Episode(){ ComicId = 33, EpTitle = "第1話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599552/TombRaiderKing/EP01.jpg", UpdateTime=new DateTime(2021,07,02),UploadTime=new DateTime(2021,04,20),AuditTypeId=1,AuditEmployeeId=1,AuditTime=new DateTime(2021,07,02),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
               new Episode(){ ComicId = 33, EpTitle = "第2話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599661/TombRaiderKing/EP02.jpg", UpdateTime=new DateTime(2021,07,03),UploadTime=new DateTime(2021,05,01),AuditTypeId=1,AuditEmployeeId=6,AuditTime=new DateTime(2021,07,03),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
               new Episode(){ ComicId = 33, EpTitle = "第3話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599713/TombRaiderKing/EP03.jpg", UpdateTime=new DateTime(2021,07,05),UploadTime=new DateTime(2021,06,01),AuditTypeId=1,AuditEmployeeId=2,AuditTime=new DateTime(2021,07,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
@@ -3241,7 +3237,7 @@ namespace BSWebtoon.Front.Service.ComicService
               new Episode(){ ComicId = 33, EpTitle = "第8話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599877/TombRaiderKing/EP08.jpg", UpdateTime=new DateTime(2021,12,05),UploadTime=new DateTime(2021,11,01),AuditTypeId=1,AuditEmployeeId=11,AuditTime=new DateTime(2022,12,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
               new Episode(){ ComicId = 33, EpTitle = "第9話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599936/TombRaiderKing/EP09.jpg", UpdateTime=new DateTime(2022,01,05),UploadTime=new DateTime(2021,12,01),AuditTypeId=1,AuditEmployeeId=3,AuditTime=new DateTime(2022,01,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
               new Episode(){ ComicId = 33, EpTitle = "第10話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599964/TombRaiderKing/EP10.jpg", UpdateTime=new DateTime(2022,02,05),UploadTime=new DateTime(2022,01,01),AuditTypeId=1,AuditEmployeeId=5,AuditTime=new DateTime(2022,02,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-              
+
               new Episode(){ ComicId = 34, EpTitle = "第1話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600076/WornAndTornNewbie/EP01.jpg", UpdateTime=new DateTime(2021,07,02),UploadTime=new DateTime(2021,04,20),AuditTypeId=1,AuditEmployeeId=4,AuditTime=new DateTime(2021,07,02),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
               new Episode(){ ComicId = 34, EpTitle = "第2話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600157/WornAndTornNewbie/EP02.jpg", UpdateTime=new DateTime(2021,07,03),UploadTime=new DateTime(2021,05,01),AuditTypeId=1,AuditEmployeeId=7,AuditTime=new DateTime(2021,07,03),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
               new Episode(){ ComicId = 34, EpTitle = "第3話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600190/WornAndTornNewbie/EP03.jpg", UpdateTime=new DateTime(2021,07,05),UploadTime=new DateTime(2021,06,01),AuditTypeId=1,AuditEmployeeId=8,AuditTime=new DateTime(2021,07,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
@@ -3267,8 +3263,8 @@ namespace BSWebtoon.Front.Service.ComicService
               new Episode(){ ComicId = 35, EpTitle = "第8話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599877/TombRaiderKing/EP08.jpg", UpdateTime=new DateTime(2021,12,05),UploadTime=new DateTime(2021,11,01),AuditTypeId=1,AuditEmployeeId=11,AuditTime=new DateTime(2022,12,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
               new Episode(){ ComicId = 35, EpTitle = "第9話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599936/TombRaiderKing/EP09.jpg", UpdateTime=new DateTime(2022,01,05),UploadTime=new DateTime(2021,12,01),AuditTypeId=1,AuditEmployeeId=3,AuditTime=new DateTime(2022,01,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
               new Episode(){ ComicId = 35, EpTitle = "第10話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599964/TombRaiderKing/EP10.jpg", UpdateTime=new DateTime(2022,02,05),UploadTime=new DateTime(2022,01,01),AuditTypeId=1,AuditEmployeeId=5,AuditTime=new DateTime(2022,02,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-              
-              
+
+
               new Episode(){ ComicId = 36, EpTitle = "第1話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600076/WornAndTornNewbie/EP01.jpg", UpdateTime=new DateTime(2021,07,02),UploadTime=new DateTime(2021,04,20),AuditTypeId=1,AuditEmployeeId=4,AuditTime=new DateTime(2021,07,02),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
               new Episode(){ ComicId = 36, EpTitle = "第2話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600157/WornAndTornNewbie/EP02.jpg", UpdateTime=new DateTime(2021,07,03),UploadTime=new DateTime(2021,05,01),AuditTypeId=1,AuditEmployeeId=7,AuditTime=new DateTime(2021,07,03),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
               new Episode(){ ComicId = 36, EpTitle = "第3話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600190/WornAndTornNewbie/EP03.jpg", UpdateTime=new DateTime(2021,07,05),UploadTime=new DateTime(2021,06,01),AuditTypeId=1,AuditEmployeeId=8,AuditTime=new DateTime(2021,07,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
@@ -3279,7 +3275,7 @@ namespace BSWebtoon.Front.Service.ComicService
               new Episode(){ ComicId = 36, EpTitle = "第8話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600421/WornAndTornNewbie/EP08.jpg", UpdateTime=new DateTime(2021,12,05),UploadTime=new DateTime(2021,11,01),AuditTypeId=1,AuditEmployeeId=15,AuditTime=new DateTime(2022,12,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
               new Episode(){ ComicId = 36, EpTitle = "第9話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600458/WornAndTornNewbie/EP09.jpg", UpdateTime=new DateTime(2022,01,05),UploadTime=new DateTime(2021,12,01),AuditTypeId=1,AuditEmployeeId=14,AuditTime=new DateTime(2022,01,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
               new Episode(){ ComicId = 36, EpTitle = "第10話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600499/WornAndTornNewbie/EP10.jpg", UpdateTime=new DateTime(2022,02,05),UploadTime=new DateTime(2022,01,01),AuditTypeId=1,AuditEmployeeId=19,AuditTime=new DateTime(2022,02,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-           
+
               new Episode(){ ComicId = 37, EpTitle = "第1話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599552/TombRaiderKing/EP01.jpg", UpdateTime=new DateTime(2021,07,02),UploadTime=new DateTime(2021,04,20),AuditTypeId=1,AuditEmployeeId=1,AuditTime=new DateTime(2021,07,02),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
               new Episode(){ ComicId = 37, EpTitle = "第2話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599661/TombRaiderKing/EP02.jpg", UpdateTime=new DateTime(2021,07,03),UploadTime=new DateTime(2021,05,01),AuditTypeId=1,AuditEmployeeId=6,AuditTime=new DateTime(2021,07,03),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
               new Episode(){ ComicId = 37, EpTitle = "第3話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599713/TombRaiderKing/EP03.jpg", UpdateTime=new DateTime(2021,07,05),UploadTime=new DateTime(2021,06,01),AuditTypeId=1,AuditEmployeeId=2,AuditTime=new DateTime(2021,07,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
@@ -3290,8 +3286,8 @@ namespace BSWebtoon.Front.Service.ComicService
               new Episode(){ ComicId = 37, EpTitle = "第8話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599877/TombRaiderKing/EP08.jpg", UpdateTime=new DateTime(2021,12,05),UploadTime=new DateTime(2021,11,01),AuditTypeId=1,AuditEmployeeId=11,AuditTime=new DateTime(2022,12,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
               new Episode(){ ComicId = 37, EpTitle = "第9話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599936/TombRaiderKing/EP09.jpg", UpdateTime=new DateTime(2022,01,05),UploadTime=new DateTime(2021,12,01),AuditTypeId=1,AuditEmployeeId=3,AuditTime=new DateTime(2022,01,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
               new Episode(){ ComicId = 37, EpTitle = "第10話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599964/TombRaiderKing/EP10.jpg", UpdateTime=new DateTime(2022,02,05),UploadTime=new DateTime(2022,01,01),AuditTypeId=1,AuditEmployeeId=5,AuditTime=new DateTime(2022,02,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-              
-              
+
+
               new Episode(){ ComicId = 38, EpTitle = "第1話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600076/WornAndTornNewbie/EP01.jpg", UpdateTime=new DateTime(2021,07,02),UploadTime=new DateTime(2021,04,20),AuditTypeId=1,AuditEmployeeId=4,AuditTime=new DateTime(2021,07,02),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
               new Episode(){ ComicId = 38, EpTitle = "第2話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600157/WornAndTornNewbie/EP02.jpg", UpdateTime=new DateTime(2021,07,03),UploadTime=new DateTime(2021,05,01),AuditTypeId=1,AuditEmployeeId=7,AuditTime=new DateTime(2021,07,03),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
               new Episode(){ ComicId = 38, EpTitle = "第3話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600190/WornAndTornNewbie/EP03.jpg", UpdateTime=new DateTime(2021,07,05),UploadTime=new DateTime(2021,06,01),AuditTypeId=1,AuditEmployeeId=8,AuditTime=new DateTime(2021,07,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
@@ -3302,7 +3298,7 @@ namespace BSWebtoon.Front.Service.ComicService
               new Episode(){ ComicId = 38, EpTitle = "第8話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600421/WornAndTornNewbie/EP08.jpg", UpdateTime=new DateTime(2021,12,05),UploadTime=new DateTime(2021,11,01),AuditTypeId=1,AuditEmployeeId=15,AuditTime=new DateTime(2022,12,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
               new Episode(){ ComicId = 38, EpTitle = "第9話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600458/WornAndTornNewbie/EP09.jpg", UpdateTime=new DateTime(2022,01,05),UploadTime=new DateTime(2021,12,01),AuditTypeId=1,AuditEmployeeId=14,AuditTime=new DateTime(2022,01,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
               new Episode(){ ComicId = 38, EpTitle = "第10話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656600499/WornAndTornNewbie/EP10.jpg", UpdateTime=new DateTime(2022,02,05),UploadTime=new DateTime(2022,01,01),AuditTypeId=1,AuditEmployeeId=19,AuditTime=new DateTime(2022,02,05),AuditFailReason="",IsCountdownCoupon=true,IsFree=false},
-              
+
               new Episode(){ ComicId = 39, EpTitle = "第1話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599552/TombRaiderKing/EP01.jpg", UpdateTime=new DateTime(2021,07,02),UploadTime=new DateTime(2021,04,20),AuditTypeId=1,AuditEmployeeId=1,AuditTime=new DateTime(2021,07,02),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
               new Episode(){ ComicId = 39, EpTitle = "第2話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599661/TombRaiderKing/EP02.jpg", UpdateTime=new DateTime(2021,07,03),UploadTime=new DateTime(2021,05,01),AuditTypeId=1,AuditEmployeeId=6,AuditTime=new DateTime(2021,07,03),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
               new Episode(){ ComicId = 39, EpTitle = "第3話", EpCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656599713/TombRaiderKing/EP03.jpg", UpdateTime=new DateTime(2021,07,05),UploadTime=new DateTime(2021,06,01),AuditTypeId=1,AuditEmployeeId=2,AuditTime=new DateTime(2021,07,05),AuditFailReason="",IsCountdownCoupon=false,IsFree=true},
@@ -4919,8 +4915,6 @@ namespace BSWebtoon.Front.Service.ComicService
             }
             _repository.SaveChange();
         }
-
-
         //阿傑的
         public void EpContentCreate()
         {
@@ -5287,15 +5281,23 @@ namespace BSWebtoon.Front.Service.ComicService
 
 
             var a = _repository.GetAll<Episode>();
-            foreach(var ep in a)
+            foreach (var ep in a)
             {
                 _repository.Create(
-                    new EpContent() { /*EpContentId=1,  */EpId = ep.EpId, 
-                        ImagePath = "https://res.cloudinary.com/dmns6twmt/image/upload/v1657124292/Activity/EC01.png", Page = 1 }
+                    new EpContent()
+                    { /*EpContentId=1,  */
+                        EpId = ep.EpId,
+                        ImagePath = "https://res.cloudinary.com/dmns6twmt/image/upload/v1657124292/Activity/EC01.png",
+                        Page = 1
+                    }
                 );
                 _repository.Create(
-                    new EpContent() { /*EpContentId=2,  */EpId = ep.EpId, 
-                        ImagePath = "https://res.cloudinary.com/dmns6twmt/image/upload/v1657124335/Activity/EC02.png", Page = 2 }
+                    new EpContent()
+                    { /*EpContentId=2,  */
+                        EpId = ep.EpId,
+                        ImagePath = "https://res.cloudinary.com/dmns6twmt/image/upload/v1657124335/Activity/EC02.png",
+                        Page = 2
+                    }
                 );
             }
 
@@ -5303,36 +5305,36 @@ namespace BSWebtoon.Front.Service.ComicService
         }
 
 
-        public WorkpageViewModel WorkPageRead(int comicId)
+        public WorkPageDTO WorkPageRead(int comicId)
         {
-            // 倒數券 我的最愛 觀看紀錄 點擊數 留言
+            //倒數券 我的最愛 觀看紀錄 點擊數 留言
 
-            // 審核 1通過 2未審核 3失敗 4審核中 
-            var comicSource = _repository.GetAll<Comic>().Where(c=>c.AuditType==1).First(x => x.ComicId == comicId);
-            var tagListSource = _repository.GetAll<ComicTagList>().Where(x => x.ComicId == comicSource.ComicId).ToList();
-            var mainTag = _repository.GetAll<ComicTag>().Where(x => tagListSource.Any(y => y.TagId == x.TagId)).First(x => x.IsMainTag == true);
-            var couponSource = _repository.GetAll<Coupon>().First(x => x.CouponTypeId == 1 && x.MemberId == 1 && x.ComicId == comicId);
-            var epSource = _repository.GetAll<Episode>().Where(x => x.AuditTypeId == 1 && x.ComicId == comicId).ToList();
+            //審核 1通過 2未審核 3失敗 4審核中
+            //var comicSource = _repository.GetAll<Comic>().Where(c => c.AuditType == 1).First(x => x.ComicId == comicId);
+            //var tagListSource = _repository.GetAll<ComicTagList>().Where(x => x.ComicId == comicSource.ComicId).ToList();
+            //var mainTag = _repository.GetAll<ComicTag>().Where(x => tagListSource.Any(y => y.TagId == x.TagId)).First(x => x.IsMainTag == true);
+            //var couponSource = _repository.GetAll<Coupon>().First(x => x.CouponTypeId == 1 && x.MemberId == 1 && x.ComicId == comicId);
+            //var epSource = _repository.GetAll<Episode>().Where(x => x.AuditTypeId == 1 && x.ComicId == comicId).ToList();
 
-
-            return new WorkpageViewModel
-            {
-                ComicChineseName = comicSource.ComicChineseName,
-                ComicFigure = comicSource.ComicFigure,
-                Tag = mainTag.TagName,
-                BgCover = comicSource.BgCover,
-                Publisher = comicSource.Publisher,
-                Author = comicSource.Author,
-                ReadTicket = couponSource.Quantity,
-                EpList = epSource.Select(x => new WorkpageViewModel.EpData
-                {
-                    EpTitle = x.EpTitle,
-                    EpCover = x.EpCover,
-                    UploadTime = x.UploadTime,
-                    IsCountdownCoupon = x.IsCountdownCoupon,
-                    IsFree = x.IsFree
-                })
-            };
+            return new WorkPageDTO() { };
+            //return new WorkpageViewModel
+            //{
+            //    ComicChineseName = comicSource.ComicChineseName,
+            //    ComicFigure = comicSource.ComicFigure,
+            //    Tag = mainTag.TagName,
+            //    BgCover = comicSource.BgCover,
+            //    Publisher = comicSource.Publisher,
+            //    Author = comicSource.Author,
+            //    ReadTicket = couponSource.Quantity,
+            //    EpList = epSource.Select(x => new WorkpageViewModel.EpData
+            //    {
+            //        EpTitle = x.EpTitle,
+            //        EpCover = x.EpCover,
+            //        UploadTime = x.UploadTime,
+            //        IsCountdownCoupon = x.IsCountdownCoupon,
+            //        IsFree = x.IsFree
+            //    })
+            //};
 
 
             //return from comic in _repository.GetAll<Comic>()
@@ -5360,7 +5362,7 @@ namespace BSWebtoon.Front.Service.ComicService
             //           EpCover = ep.EpCover
 
             //       };
-            //foreach(var item in _repository.GetAll<Comic>())
+            //foreach (var item in _repository.GetAll<Comic>())
             //{
             //    yield return new WorkpageViewModel()
             //    {
@@ -5372,16 +5374,17 @@ namespace BSWebtoon.Front.Service.ComicService
 
             //    };
             //}
-        //}
+        }
 
-        //public void EpUpdate()
-        //{
-        //    var p1 = _repository.GetAll<Episode>().Where(x => x.EpId == 1).FirstOrDefault();
-        //    p1.EpCover = "https://tw-a.kakaopagecdn.com/P/EO/46/14940/tn/2x/ad6f27c3-0d1b-4402-9d23-a25dfb4adddd.jpg";
-        //    var p2 = _repository.GetAll<Episode>().Where(x => x.EpId == 2).FirstOrDefault();
-        //    p2.EpCover = "https://tw-a.kakaopagecdn.com/P/EO/46/14826/tn/2x/bbc85024-ca09-4084-8213-c92c7ec0dd27.jpg";
+        //    //public void EpUpdate()
+        //    //{
+        //    //    var p1 = _repository.GetAll<Episode>().Where(x => x.EpId == 1).FirstOrDefault();
+        //    //    p1.EpCover = "https://tw-a.kakaopagecdn.com/P/EO/46/14940/tn/2x/ad6f27c3-0d1b-4402-9d23-a25dfb4adddd.jpg";
+        //    //    var p2 = _repository.GetAll<Episode>().Where(x => x.EpId == 2).FirstOrDefault();
+        //    //    p2.EpCover = "https://tw-a.kakaopagecdn.com/P/EO/46/14826/tn/2x/bbc85024-ca09-4084-8213-c92c7ec0dd27.jpg";
 
-        //    _repository.SaveChange();
+        //    //    _repository.SaveChange();
+        //    //}
         //}
     }
 }

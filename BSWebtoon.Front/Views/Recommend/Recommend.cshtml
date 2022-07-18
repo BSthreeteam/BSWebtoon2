@@ -23,7 +23,7 @@
     <div class="container w-1200">
         @foreach (var item in Model)
         {
-            <a class="work_a" href="WorksPage/WorksPage">
+            <a class="work_a" href="WorksPage/WorksPage/@item.Id" >
                 <div class="row row-recommend w-1200">
                     <div class="txt-part">
                         <span id="tag">@item.RecommendTag</span>

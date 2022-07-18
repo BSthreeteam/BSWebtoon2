@@ -2,7 +2,7 @@
 {
     public class RecommendDTO
     {
-        //public int ComicId { get; set; }
+        public int Id { get; set; }
         //public int RecommendId { get; set; }
         public string RecommendTag { get; set; }
         public string Introduction { get; set; }
