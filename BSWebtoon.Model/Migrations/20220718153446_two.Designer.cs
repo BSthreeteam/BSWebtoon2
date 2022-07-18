@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BSWebtoon.Model.Migrations
 {
     [DbContext(typeof(BSWebtoonContext))]
-    [Migration("20220718145303_one")]
-    partial class one
+    [Migration("20220718153446_two")]
+    partial class two
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
