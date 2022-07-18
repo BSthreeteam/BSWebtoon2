@@ -110,8 +110,8 @@ namespace BSWebtoon.Front.Service.MemberService
                 var newmember = new Member
                 {
                     LoginTypeId = provider,
-                    AccountName = input.NameIdentifier,
-                    NickName = input.AccountName,
+                    NameIdentifier = input.NameIdentifier,
+                    AccountName = input.AccountName,
                     Email = input.Email,
                     CreateTime = DateTime.UtcNow,
                     IsDarkTheme = true
