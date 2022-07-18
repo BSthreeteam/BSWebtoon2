@@ -1,4 +1,6 @@
-﻿using BSWebtoon.Model.Models;
+﻿using BSWebtoon.Front.Models.ViewModel.Search;
+using BSWebtoon.Front.Service.SearchService;
+using BSWebtoon.Model.Models;
 using BSWebtoon.Model.Repository;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -7,12 +9,10 @@ namespace BSWebtoon.Front.Controllers
 {
     public class SearchController : Controller
     {
-        private readonly BSRepository _repository;
-        private readonly BSWebtoonContext _bSWebtoonContext;
-        public SearchController(BSRepository repository, BSWebtoonContext bSWebtoonContext)
+        private readonly ISearchService _searchService;
+        public SearchController(ISearchService searchService)
         {
-            _repository = repository;
-            _bSWebtoonContext = bSWebtoonContext;
+            _searchService = searchService;
         }
         public IActionResult Index()
         {
@@ -23,17 +23,30 @@ namespace BSWebtoon.Front.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult SearchComic(string comicname/*, string tagname*/)//先顯示漫畫名稱在顯示漫畫tag
+        public IActionResult SearchComic(string comicname)
         {
             if (comicname == string.Empty)
             {
                 return Content("請輸入你想查詢的相關資訊");
             }
-            var searchcomic = _bSWebtoonContext.Comics.Where(x => x.ComicChineseName.Contains(comicname)).ToList();
-            
+            var searchcomic = _searchService.FindComic(comicname);
 
+            var restult = new SearchViewModel
+            {
+                SearchList = searchcomic.Select(comic => new SearchViewModel.Search
+                {
+                    TagName = comic.TagName,
+                    ComicName = comic.ComicName,
+                    ComicNameImage = comic.ComicNameImage,
+                    ComicWeekFigure = comic.ComicWeekFigure,
+                    BgCover = comic.BgCover,
+                    BannerVideoWeb = comic.BannerVideoWeb,
+                    ComicFigure = comic.ComicFigure
+                }).ToList()
+            };
+            //return View(restult);
 
-            return View("SearchResult", searchcomic);
+            return View("SearchResult", restult);
         }
     }
 }
