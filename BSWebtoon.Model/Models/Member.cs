@@ -19,6 +19,7 @@ namespace BSWebtoon.Model.Models
         }
 
         public int MemberId { get; set; }
+        public string NameIdentifier { get; set; }
         public string AccountName { get; set; }
         public string NickName { get; set; }
         public decimal Balance { get; set; }

@@ -31,7 +31,7 @@ namespace BSWebtoon.Front.Controllers
         {
             //_ComicService.EpCreate();
             //_ComicService.EpContentCreate();
-            _ComicService.EpUpdate();
+            //_ComicService.EpUpdate();
             return View();
         }
         //public IActionResult WorkPageReadView()//Comic/WorkPageReadView

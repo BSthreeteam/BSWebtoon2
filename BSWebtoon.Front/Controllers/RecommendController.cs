@@ -14,44 +14,37 @@ namespace BSWebtoon.Front.Controllers
         private readonly IRecommendService _recommendservice;
         private readonly BSWebtoonContext _context;
 
-        //private readonly BSRepository _repository;
-
-        //private readonly BSRepository _repository;
         public RecommendController(BSRepository repository, IRecommendService recommendService, BSWebtoonContext context)
         {
             _recommendservice = recommendService;
-            _context = context;
         }
 
 
         public IActionResult Recommend()
         {
-            return View();
-        }
-        public  IActionResult ReadClickRecord() //Recommend/ReadClickRecord
-        {
-            //var BSContext = _context.Comic.Include(x => x.AuditEmployee);
-            //return View(await BSContext.ToListAsync());
-            //var BSContext = _repository.GetAll<ClickRecord>().GroupBy(c => c.ComicId).ToListAsync();
-            //foreach (var item in BSContext)
-            //{
-            //    var result = item.Count();
-            //}
-            //var ClickCount = await _recommendservice.ClickCount();
 
-            return View(/*ClickCount*/);
+            var recommendSource = _recommendservice.ReadRecommend();
+            return View(recommendSource);
+        }
+        //public IActionResult ReadClickRecord() //Recommend/ReadClickRecord
+        public IActionResult HitWork()
+        {
+
+            var hitWorkSource =  _recommendservice.ReadHitWork();
+            return View(hitWorkSource);
         }
 
         public IActionResult AddActivityView() //Recommend/AddActivityView
         {
+
             _recommendservice.ActivityCreate();
             return View();
         }
-        public async Task<IActionResult> ReadActivity() //Recommend/ReadActivity
-        {
-            //var BSContext = _context.Activity.Include(x => x.PrincipalEmployeeNavigation);
-            return View(/*await BSContext.ToListAsync()*/);
-        }
+        //public async Task<IActionResult> ReadActivity() //Recommend/ReadActivity
+        //{
+        //    //var BSContext = _context.Activity.Include(x => x.PrincipalEmployeeNavigation);
+        //    return View(/*await BSContext.ToListAsync()*/);
+        //}
 
         public IActionResult AddViewRecordView() //Recommend/AddViewRecordView
         {
