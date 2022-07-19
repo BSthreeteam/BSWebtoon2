@@ -21,18 +21,37 @@ namespace BSWebtoon.Front.Service.ComicService
         {
             List<ComicTag> comictags = new List<ComicTag>
             {
-                new ComicTag {TagName="奇幻"    ,IsMainTag=true ,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,20)},
-
-                new ComicTag {TagName="愛情"    ,IsMainTag=true ,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,21)},
-                new ComicTag {TagName="奇幻愛情",IsMainTag=false,IsDelete=false,AuditEmployeeId=2,AuditDate=new DateTime(2021,6,22)},
-
-                new ComicTag {TagName="動作冒險",IsMainTag=true ,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,23)},
-                new ComicTag {TagName="劇情"    ,IsMainTag=true ,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,23)},
-
-                new ComicTag {TagName="BL/GL"  ,IsMainTag=true ,IsDelete=false,AuditEmployeeId=2,AuditDate=new DateTime(2021,6,24)},
-                new ComicTag {TagName="懸疑恐怖",IsMainTag=false,IsDelete=false,AuditEmployeeId=2,AuditDate=new DateTime(2021,6,24)},
+                //主標籤
+                new ComicTag {/*TagId=1,*/TagName="奇幻"    ,IsMainTag=true ,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,20)},
+                new ComicTag {/*TagId=2,*/TagName="愛情"    ,IsMainTag=true ,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,21)},
+                new ComicTag {/*TagId=3,*/TagName="動作冒險",IsMainTag=true ,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,23)},
+                new ComicTag {/*TagId=4,*/TagName="劇情"    ,IsMainTag=true ,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,23)},
+                new ComicTag {/*TagId=5,*/TagName="BL/GL"  ,IsMainTag=true ,IsDelete=false,AuditEmployeeId=2,AuditDate=new DateTime(2021,6,24)},
+                new ComicTag {/*TagId=6,*/TagName="懸疑恐怖",IsMainTag=true,IsDelete=false,AuditEmployeeId=2,AuditDate=new DateTime(2021,6,24)},
 
 
+                //副標籤
+                new ComicTag {/*TagId=7,*/TagName="精采絕倫",IsMainTag=false,IsDelete=false,AuditEmployeeId=2,AuditDate=new DateTime(2021,6,24)},
+                new ComicTag {/*TagId=8,*/TagName="奇幻愛情",IsMainTag=false,IsDelete=false,AuditEmployeeId=2,AuditDate=new DateTime(2021,6,22)},
+                new ComicTag {/*TagId=9,*/TagName="專業",IsMainTag=false,IsDelete=false,AuditEmployeeId=2,AuditDate=new DateTime(2021,6,24)},
+                new ComicTag {/*TagId=10,*/TagName="復仇",IsMainTag=false,IsDelete=false,AuditEmployeeId=2,AuditDate=new DateTime(2021,6,24)},
+                new ComicTag {/*TagId=11,*/TagName="怦然心動",IsMainTag=false,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,20)},
+                new ComicTag {/*TagId=12,*/TagName="緊張刺激",IsMainTag=false,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,20)},
+                new ComicTag {/*TagId=13,*/TagName="淒美愛情",IsMainTag=false,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,20)},               
+                new ComicTag {/*TagId=14,*/TagName="糾葛",IsMainTag=false,IsDelete=false,AuditEmployeeId=2,AuditDate=new DateTime(2021,6,20)},
+                new ComicTag {/*TagId=15,*/TagName="三角關係",IsMainTag=false,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,20)},
+                new ComicTag {/*TagId=16,*/TagName="刻劃細膩",IsMainTag=false,IsDelete=false,AuditEmployeeId=2,AuditDate=new DateTime(2021,6,20)},
+                new ComicTag {/*TagId=17,*/TagName="揪心",IsMainTag=false,IsDelete=false,AuditEmployeeId=2,AuditDate=new DateTime(2021,6,20)},
+
+                new ComicTag {/*TagId=18,*/TagName="改變命運",IsMainTag=false,IsDelete=false,AuditEmployeeId=2,AuditDate=new DateTime(2021,6,20)},
+
+
+                new ComicTag {/*TagId=19,*/TagName="",IsMainTag=false,IsDelete=false,AuditEmployeeId=2,AuditDate=new DateTime(2021,6,20)},
+                new ComicTag {/*TagId=20,*/TagName="",IsMainTag=false,IsDelete=false,AuditEmployeeId=2,AuditDate=new DateTime(2021,6,20)},
+                new ComicTag {/*TagId=21,*/TagName="",IsMainTag=false,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,20)},
+                new ComicTag {/*TagId=22,*/TagName="",IsMainTag=false,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,20)},
+                new ComicTag {/*TagId=23,*/TagName="",IsMainTag=false,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,20)},
+                new ComicTag {/*TagId=24,*/TagName="",IsMainTag=false,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,20)},
             };
             foreach (var tags in comictags)
             {
@@ -55,7 +74,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656571331/AgainMyLife/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656570608/AgainMyLife/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656570608/AgainMyLife/1.webp"
                            ,BgColor       ="#1b2260",PublishDate=new DateTime(2021,6,28),LastPublishDate=new DateTime(2021,7,14),FinallyPublishDate=new DateTime(2021,7,10),UpdateWeek=1
                            ,Publisher     ="YJ Comics",Painter="SUN YONG MIN",Author="Lee hae nal"
@@ -89,7 +108,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,BgCover        ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656576002/ATyrant%27sFirstLove/4.webp"
                            ,HotComicNameImage = ""
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure   ="https://tw-a.kakaopagecdn.com/P/C/122/c2/2x/27658c20-605e-4c30-8b7f-0bcc44376857.webp"
                            ,ComicWeekFigure ="https://tw-a.kakaopagecdn.com/P/C/122/c2/2x/27658c20-605e-4c30-8b7f-0bcc44376857.webp"
                            ,BgColor       ="#310a0b",PublishDate=new DateTime(2021,6,28),LastPublishDate=new DateTime(2022,7,5),FinallyPublishDate=new DateTime(2022,7,1),UpdateWeek=1
                            ,Publisher     ="DAON STUDIO",Painter="CHIWA",Author="KIM SUO"
@@ -122,7 +141,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656599274/BeforeFootprintAblation/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656598550/BeforeFootprintAblation/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656598550/BeforeFootprintAblation/1.webp"
                            ,BgColor       ="##9b8263",PublishDate=new DateTime(2021,6,28),LastPublishDate=new DateTime(2021,7,20),FinallyPublishDate = new DateTime(2021,7,10),UpdateWeek=1
                            ,Publisher     ="KAKAO WEBTOON Studio",Painter="Tess",Author="Tess"
@@ -138,7 +157,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656587899/BlackWinter/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656587574/BlackWinter/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656587574/BlackWinter/1.webp"
                            ,BgColor       ="#1a151e",PublishDate=new DateTime(2021,6,28),LastPublishDate=new DateTime(2021,9,26),FinallyPublishDate= new DateTime(2021,9,20),UpdateWeek=1
                            ,Publisher     ="KAKAO WEBTOON Studio",Painter="Tess",Author="Tess"
@@ -187,7 +206,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656598156/DadPleaseMarryMe/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656597992/DadPleaseMarryMe/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656597992/DadPleaseMarryMe/1.webp"
                            ,BgColor       ="#2c3846",PublishDate=new DateTime(2021,6,28),LastPublishDate=new DateTime(2021,8,26),FinallyPublishDate= new DateTime(2021,7,26),UpdateWeek=1
                            ,Publisher     ="Yeondam X DAON",Painter="via",Author="dalseul"
@@ -203,7 +222,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656574627/GlassBlock/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656574474/GlassBlock/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656574474/GlassBlock/1.webp"
                            ,BgColor       ="#283e36",PublishDate=new DateTime(2021,6,28),LastPublishDate=new DateTime(2021,7,30),FinallyPublishDate= new DateTime(2022,7,26),UpdateWeek=1
                            ,Publisher     ="KAKAO WEBTOON Studio",Painter="Joho",Author="Joho"
@@ -229,9 +248,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,ComicVideoWeb =""
                            ,HotVideo = ""
                            ,AuditType     =1,AuditEmployeeId=1,AuditFailReason="NULL",AuditTime=new DateTime(2021,6,28),ComicStatus=3},
-
-
-
+                 
                  //星期列表與作品頁
                 //星期三(屬於星期一)
 
@@ -241,7 +258,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582961/MookHyangDarkLady/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582728/MookHyangDarkLady/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582728/MookHyangDarkLady/1.webp"
                            ,BgColor       ="#418ab3",PublishDate=new DateTime(2021,6,28),LastPublishDate=new DateTime(2021,8,26),FinallyPublishDate= new DateTime(2021,7,26),UpdateWeek=1
                            ,Publisher     ="D&C WEBTOON Biz",Painter="Mon(Antstudio)",Author="Kim Roah"
@@ -253,13 +270,12 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,AuditType     =1,AuditEmployeeId=2,AuditFailReason="NULL",AuditTime=new DateTime(2021,6,28),ComicStatus=3},
 
 
-
                 new Comic {ComicChineseName="我有三個暴君哥哥",ComicEnglishName="MyThreeTyrantBrothers"
                            ,ComicNameImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1656607226/MyThreeTyrantBrothers/5.png"
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582063/MyThreeTyrantBrothers/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656581853/MyThreeTyrantBrothers/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656581853/MyThreeTyrantBrothers/1.webp"
                            ,BgColor       ="#9fa925",PublishDate=new DateTime(2021,6,28),LastPublishDate=new DateTime(2021,8,26),FinallyPublishDate= new DateTime(2021,7,26),UpdateWeek=1
                            ,Publisher     ="DAON STUDIO",Painter="Parkha, Eun Du",Author="jomil​"
@@ -277,7 +293,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656577313/PrincessInTheRough/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656576943/PrincessInTheRough/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656576943/PrincessInTheRough/1.webp"
                            ,BgColor       ="#605342",PublishDate=new DateTime(2021,6,28),LastPublishDate=new DateTime(2021,8,26),FinallyPublishDate= new DateTime(2021,7,26),UpdateWeek=1
                            ,Publisher     ="Mstoryhub",Painter="HAERUA",Author="HARASYO"
@@ -312,7 +328,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656575576/RevengeWedding/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656575339/RevengeWedding/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656575339/RevengeWedding/1.webp"
                            ,BgColor       ="#28202b",PublishDate=new DateTime(2021,6,28),LastPublishDate=new DateTime(2021,8,26),FinallyPublishDate= new DateTime(2021,7,26),UpdateWeek=1
                            ,Publisher     ="DAON STUDIO",Painter="SaRyong​",Author="ByulSatangYang"
@@ -346,7 +362,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656580517/SSS-ClassRevivalHunter/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656580224/SSS-ClassRevivalHunter/1.png"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656580224/SSS-ClassRevivalHunter/1.png"
                            ,BgColor       ="#1c1f26",PublishDate=new DateTime(2021,6,28),LastPublishDate=new DateTime(2021,8,26),FinallyPublishDate= new DateTime(2021,7,26),UpdateWeek=1
                            ,Publisher     ="Fansia",Painter="Bill K",Author="Sinnoa"
@@ -435,7 +451,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656572963/TombRaiderKing/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1657520466/TombRaiderKing/9.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1657520466/TombRaiderKing/9.webp"
                            ,BgColor       ="#575a6f",PublishDate=new DateTime(2021,7,2),LastPublishDate=new DateTime(2021,7,26),FinallyPublishDate= new DateTime(2022,7,20),UpdateWeek=2
                            ,Publisher     ="Polarfox",Painter="Yooani",Author="Will Bright"
@@ -451,7 +467,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656584749/IBecameTheVillain%27sMother/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656584432/IBecameTheVillain%27sMother/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656584432/IBecameTheVillain%27sMother/1.webp"
                            ,BgColor       ="#225040",PublishDate=new DateTime(2021,7,2),LastPublishDate=new DateTime(2021,7,26),FinallyPublishDate= new DateTime(2021,7,20),UpdateWeek=2
                            ,Publisher     ="DAON STUDIO",Painter="Iro",Author="Yulji"
@@ -500,7 +516,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656597845/JustLeaveMe/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656597626/JustLeaveMe/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656597626/JustLeaveMe/1.webp"
                            ,BgColor       ="#121212",PublishDate=new DateTime(2021,7,2),LastPublishDate=new DateTime(2021,7,26),FinallyPublishDate= new DateTime(2021,7,20),UpdateWeek=2
                            ,Publisher     ="Yeondam X DAON",Painter="chero",Author="JAEUNHYANG"
@@ -516,7 +532,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656591172/LadyChefRoyale/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656590985/LadyChefRoyale/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656590985/LadyChefRoyale/1.webp"
                            ,BgColor       ="#dd6b79",PublishDate=new DateTime(2021,7,2),LastPublishDate=new DateTime(2021,7,26),FinallyPublishDate= new DateTime(2021,7,23),UpdateWeek=2
                            ,Publisher     ="Dreamtoon",Painter="PAYA",Author="Lysha"
@@ -564,7 +580,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582317/MadanNoShashu/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582133/MadanNoShashu/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582133/MadanNoShashu/1.webp"
                            ,BgColor       ="#060b28",PublishDate=new DateTime(2021,7,2),LastPublishDate=new DateTime(2021,7,26),FinallyPublishDate= new DateTime(2021,7,13),UpdateWeek=2
                            ,Publisher     ="intime",Painter="GLPI",Author="Respect"
@@ -597,7 +613,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582961/MookHyangDarkLady/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582728/MookHyangDarkLady/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582728/MookHyangDarkLady/1.webp"
                            ,BgColor       ="#1a0c19",PublishDate=new DateTime(2021,7,2),LastPublishDate=new DateTime(2021,7,26),FinallyPublishDate= new DateTime(2022,7,20),UpdateWeek=2
                            ,Publisher     ="Polarfox",Painter="Yooani",Author="Will Bright"
@@ -618,8 +634,8 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656999287/ShortLivedDaughterInLaw%27sEscapePlan/4.jpg"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
-                           ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/video/upload/v1656999028/ShortLivedDaughterInLaw%27sEscapePlan/1.webm"
+                           ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1658203980/ShortLivedDaughterInLaw%27sEscapePlan/1.webp"
+                           ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1658203980/ShortLivedDaughterInLaw%27sEscapePlan/1.webp"
                            ,BgColor       ="#3a6052",PublishDate=new DateTime(2021,7,2),LastPublishDate=new DateTime(2021,7,26),FinallyPublishDate= new DateTime(2021,7,13),UpdateWeek=2
                            ,Publisher     ="Yeondam",Painter="BASAK",Author="Yunajin"
                            ,Introduction  ="為什麼偏偏穿越到這種小說裡啊?!我就是小說中那位父母留下繁重債務後就死於事故，並且還注定在成年時便因病身亡的可憐少女——拉莉亞。這部小說的幕後黑手依卡勒德公爵為了欺瞞那些牽制自己的勢力，將我帶回家當他媳婦。我還是在偷偷存錢之後，找機會逃跑吧!可是治病的方法找到了、逃跑的資金也準備充足了...我的丈夫卻不知為何對我超執著?!他不是對誰都毫無感情的冷血之人嗎?而且我不是公公手上用完就丟的牌嗎?他為什麼會突然想救活我?!"
@@ -634,7 +650,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656587434/TheGreatWish/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656587082/TheGreatWish/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656587082/TheGreatWish/1.webp"
                            ,BgColor       ="#11242e",PublishDate=new DateTime(2021,7,2),LastPublishDate=new DateTime(2021,7,26),FinallyPublishDate= new DateTime(2021,7,13),UpdateWeek=2
                            ,Publisher     ="Dreamtoon",Painter="Skye",Author="Skye"
@@ -650,7 +666,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656588311/TheJinx%27sLover/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656588126/TheJinx%27sLover/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656588126/TheJinx%27sLover/1.webp"
                            ,BgColor       ="#ab9a9f",PublishDate=new DateTime(2021,7,2),LastPublishDate=new DateTime(2021,7,26),FinallyPublishDate= new DateTime(2021,7,13),UpdateWeek=2
                            ,Publisher     ="KAKAO WEBTOON Studio",Painter="Koo seul",Author="Koo seul"
@@ -666,7 +682,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656574093/TheMaxLeveHeroStrikesBack/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656573894/TheMaxLeveHeroStrikesBack/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656573894/TheMaxLeveHeroStrikesBack/1.webp"
                            ,BgColor       ="#394b78",PublishDate=new DateTime(2021,7,2),LastPublishDate=new DateTime(2021,7,26),FinallyPublishDate= new DateTime(2021,7,13),UpdateWeek=2
                            ,Publisher     ="golemfactory",Painter="Yudo",Author="Devil's tail"
@@ -682,7 +698,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656593728/TheMaxLevelReturner/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656593513/TheMaxLevelReturner/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656593513/TheMaxLevelReturner/1.webp"
                            ,BgColor       ="#273961",PublishDate=new DateTime(2021,7,2),LastPublishDate=new DateTime(2021,7,26),FinallyPublishDate= new DateTime(2021,7,13),UpdateWeek=2
                            ,Publisher     ="golemfactory",Painter="Vertwo",Author="Honey"
@@ -746,7 +762,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656589140/WaitWhereTheShootingStarFalls/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656588444/WaitWhereTheShootingStarFalls/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656588444/WaitWhereTheShootingStarFalls/1.webp"
                            ,BgColor       ="#171918",PublishDate=new DateTime(2021,7,2),LastPublishDate=new DateTime(2021,7,26),FinallyPublishDate= new DateTime(2021,7,13),UpdateWeek=2
                            ,Publisher     ="KAKAO WEBTOON Studio",Painter="Mr.General Store",Author="Mr.General Store"
@@ -779,7 +795,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656590842/Woman%27sBestFriend/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656589219/Woman%27sBestFriend/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656589219/Woman%27sBestFriend/1.webp"
                             ,BgColor       ="#e45850",PublishDate=new DateTime(2021,7,2),LastPublishDate=new DateTime(2021,7,26),FinallyPublishDate= new DateTime(2021,7,13),UpdateWeek=2
                            ,Publisher     ="Dreamtoon",Painter="Dodam",Author="Hyun Sung Lee"
@@ -805,7 +821,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582961/MookHyangDarkLady/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582728/MookHyangDarkLady/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582728/MookHyangDarkLady/1.webp"
                            ,BgColor       ="#418ab3",PublishDate=new DateTime(2021,8,2),LastPublishDate=new DateTime(2021,8,26),FinallyPublishDate= new DateTime(2021,8,20),UpdateWeek=3
                            ,Publisher     ="D&C WEBTOON Biz",Painter="Mon(Antstudio)",Author="Kim Roah"
@@ -823,7 +839,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582063/MyThreeTyrantBrothers/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656581853/MyThreeTyrantBrothers/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656581853/MyThreeTyrantBrothers/1.webp"
                            ,BgColor       ="#9fa925",PublishDate=new DateTime(2021,8,2),LastPublishDate=new DateTime(2021,8,26),FinallyPublishDate= new DateTime(2021,8,20),UpdateWeek=3
                            ,Publisher     ="DAON STUDIO",Painter="Parkha, Eun Du",Author="jomil​"
@@ -841,7 +857,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656577313/PrincessInTheRough/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656576943/PrincessInTheRough/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656576943/PrincessInTheRough/1.webp"
                            ,BgColor       ="#605342",PublishDate=new DateTime(2021,8,2),LastPublishDate=new DateTime(2021,8,26),FinallyPublishDate= new DateTime(2021,8,20),UpdateWeek=3
                            ,Publisher     ="Mstoryhub",Painter="HAERUA",Author="HARASYO"
@@ -876,7 +892,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656575576/RevengeWedding/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656575339/RevengeWedding/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656575339/RevengeWedding/1.webp"
                            ,BgColor       ="#28202b",PublishDate=new DateTime(2021,8,2),LastPublishDate=new DateTime(2021,8,26),FinallyPublishDate= new DateTime(2021,8,20),UpdateWeek=3
                            ,Publisher     ="DAON STUDIO",Painter="SaRyong​",Author="ByulSatangYang"
@@ -910,7 +926,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656580517/SSS-ClassRevivalHunter/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656580224/SSS-ClassRevivalHunter/1.png"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656580224/SSS-ClassRevivalHunter/1.png"
                            ,BgColor       ="#1c1f26",PublishDate=new DateTime(2021,8,2),LastPublishDate=new DateTime(2021,8,26),FinallyPublishDate= new DateTime(2021,8,20),UpdateWeek=3
                            ,Publisher     ="Fansia",Painter="Bill K",Author="Sinnoa"
@@ -997,7 +1013,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656571331/AgainMyLife/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656570608/AgainMyLife/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656570608/AgainMyLife/1.webp"
                            ,BgColor       ="#1b2260",PublishDate=new DateTime(2021,8,2),LastPublishDate=new DateTime(2021,8,26),FinallyPublishDate= new DateTime(2021,8,20),UpdateWeek=3
                            ,Publisher     ="YJ Comics",Painter="SUN YONG MIN",Author="Lee hae nal"
@@ -1031,7 +1047,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,BgCover        ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656576002/ATyrant%27sFirstLove/4.webp"
                            ,HotComicNameImage = ""
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure   ="https://tw-a.kakaopagecdn.com/P/C/122/c2/2x/27658c20-605e-4c30-8b7f-0bcc44376857.webp"
                            ,ComicWeekFigure ="https://tw-a.kakaopagecdn.com/P/C/122/c2/2x/27658c20-605e-4c30-8b7f-0bcc44376857.webp"
                            ,BgColor       ="#310a0b",PublishDate=new DateTime(2021,8,2),LastPublishDate=new DateTime(2021,8,26),FinallyPublishDate= new DateTime(2021,8,20),UpdateWeek=3
                            ,Publisher     ="DAON STUDIO",Painter="CHIWA",Author="KIM SUO"
@@ -1064,7 +1080,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656599274/BeforeFootprintAblation/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656598550/BeforeFootprintAblation/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656598550/BeforeFootprintAblation/1.webp"
                            ,BgColor       ="##9b8263",PublishDate=new DateTime(2021,8,2),LastPublishDate=new DateTime(2021,8,26),FinallyPublishDate= new DateTime(2021,8,20),UpdateWeek=3
                            ,Publisher     ="KAKAO WEBTOON Studio",Painter="Tess",Author="Tess"
@@ -1080,7 +1096,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656587899/BlackWinter/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656587574/BlackWinter/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656587574/BlackWinter/1.webp"
                            ,BgColor       ="#1a151e",PublishDate=new DateTime(2021,8,2),LastPublishDate=new DateTime(2021,8,26),FinallyPublishDate= new DateTime(2021,8,20),UpdateWeek=3
                            ,Publisher     ="KAKAO WEBTOON Studio",Painter="Tess",Author="Tess"
@@ -1129,7 +1145,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656598156/DadPleaseMarryMe/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656597992/DadPleaseMarryMe/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656597992/DadPleaseMarryMe/1.webp"
                            ,BgColor       ="#2c3846",PublishDate=new DateTime(2021,8,2),LastPublishDate=new DateTime(2021,8,26),FinallyPublishDate= new DateTime(2021,8,20),UpdateWeek=3
                            ,Publisher     ="Yeondam X DAON",Painter="via",Author="dalseul"
@@ -1145,7 +1161,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656574627/GlassBlock/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656574474/GlassBlock/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656574474/GlassBlock/1.webp"
                            ,BgColor       ="#283e36",PublishDate=new DateTime(2021,8,2),LastPublishDate=new DateTime(2021,8,26),FinallyPublishDate= new DateTime(2021,8,20),UpdateWeek=3
                            ,Publisher     ="KAKAO WEBTOON Studio",Painter="Joho",Author="Joho"
@@ -1186,8 +1202,8 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656999287/ShortLivedDaughterInLaw%27sEscapePlan/4.jpg"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
-                           ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/video/upload/v1656999028/ShortLivedDaughterInLaw%27sEscapePlan/1.webm"
+                           ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1658203980/ShortLivedDaughterInLaw%27sEscapePlan/1.webp"
+                           ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1658203980/ShortLivedDaughterInLaw%27sEscapePlan/1.webp"
                            ,BgColor       ="#3a6052",PublishDate=new DateTime(2021,9,2),LastPublishDate=new DateTime(2021,9,26),FinallyPublishDate= new DateTime(2021,9,20),UpdateWeek=4
                            ,Publisher     ="Yeondam",Painter="BASAK",Author="Yunajin"
                            ,Introduction  ="為什麼偏偏穿越到這種小說裡啊?!我就是小說中那位父母留下繁重債務後就死於事故，並且還注定在成年時便因病身亡的可憐少女——拉莉亞。這部小說的幕後黑手依卡勒德公爵為了欺瞞那些牽制自己的勢力，將我帶回家當他媳婦。我還是在偷偷存錢之後，找機會逃跑吧!可是治病的方法找到了、逃跑的資金也準備充足了...我的丈夫卻不知為何對我超執著?!他不是對誰都毫無感情的冷血之人嗎?而且我不是公公手上用完就丟的牌嗎?他為什麼會突然想救活我?!"
@@ -1202,7 +1218,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656587434/TheGreatWish/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure   ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656587082/TheGreatWish/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656587082/TheGreatWish/1.webp"
                            ,BgColor       ="#11242e",PublishDate=new DateTime(2021,9,2),LastPublishDate=new DateTime(2021,9,26),FinallyPublishDate= new DateTime(2021,9,20),UpdateWeek=4
                            ,Publisher     ="Dreamtoon",Painter="Skye",Author="Skye"
@@ -1218,7 +1234,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656588311/TheJinx%27sLover/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656588126/TheJinx%27sLover/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656588126/TheJinx%27sLover/1.webp"
                            ,BgColor       ="#ab9a9f",PublishDate=new DateTime(2021,9,2),LastPublishDate=new DateTime(2021,9,26),FinallyPublishDate= new DateTime(2021,9,20),UpdateWeek=4
                            ,Publisher     ="KAKAO WEBTOON Studio",Painter="Koo seul",Author="Koo seul"
@@ -1234,7 +1250,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656574093/TheMaxLeveHeroStrikesBack/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656573894/TheMaxLeveHeroStrikesBack/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656573894/TheMaxLeveHeroStrikesBack/1.webp"
                            ,BgColor       ="#394b78",PublishDate=new DateTime(2021,9,2),LastPublishDate=new DateTime(2021,9,26),FinallyPublishDate= new DateTime(2021,9,20),UpdateWeek=4
                            ,Publisher     ="golemfactory",Painter="Yudo",Author="Devil's tail"
@@ -1250,7 +1266,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656593728/TheMaxLevelReturner/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656593513/TheMaxLevelReturner/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656593513/TheMaxLevelReturner/1.webp"
                            ,BgColor       ="#273961",PublishDate=new DateTime(2021,9,2),LastPublishDate=new DateTime(2021,9,26),FinallyPublishDate= new DateTime(2021,9,20),UpdateWeek=4
                            ,Publisher     ="golemfactory",Painter="Vertwo",Author="Honey"
@@ -1314,7 +1330,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656589140/WaitWhereTheShootingStarFalls/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656588444/WaitWhereTheShootingStarFalls/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656588444/WaitWhereTheShootingStarFalls/1.webp"
                            ,BgColor       ="#171918",PublishDate=new DateTime(2021,9,2),LastPublishDate=new DateTime(2021,9,26),FinallyPublishDate= new DateTime(2021,9,20),UpdateWeek=4
                            ,Publisher     ="KAKAO WEBTOON Studio",Painter="Mr.General Store",Author="Mr.General Store"
@@ -1347,7 +1363,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656590842/Woman%27sBestFriend/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656589219/Woman%27sBestFriend/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656589219/Woman%27sBestFriend/1.webp"
                             ,BgColor       ="#e45850",PublishDate=new DateTime(2021,9,2),LastPublishDate=new DateTime(2021,9,26),FinallyPublishDate= new DateTime(2021,9,20),UpdateWeek=4
                            ,Publisher     ="Dreamtoon",Painter="Dodam",Author="Hyun Sung Lee"
@@ -1369,7 +1385,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656572963/TombRaiderKing/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1657520466/TombRaiderKing/9.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1657520466/TombRaiderKing/9.webp"
                            ,BgColor       ="#575a6f",PublishDate=new DateTime(2021,9,2),LastPublishDate=new DateTime(2021,9,26),FinallyPublishDate= new DateTime(2021,9,20),UpdateWeek=4
                            ,Publisher     ="Polarfox",Painter="Yooani",Author="Will Bright"
@@ -1385,7 +1401,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656584749/IBecameTheVillain%27sMother/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656584432/IBecameTheVillain%27sMother/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656584432/IBecameTheVillain%27sMother/1.webp"
                            ,BgColor       ="#225040",PublishDate=new DateTime(2021,9,2),LastPublishDate=new DateTime(2021,9,26),FinallyPublishDate= new DateTime(2021,9,20),UpdateWeek=4
                            ,Publisher     ="DAON STUDIO",Painter="Iro",Author="Yulji"
@@ -1433,7 +1449,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656597845/JustLeaveMe/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656597626/JustLeaveMe/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656597626/JustLeaveMe/1.webp"
                            ,BgColor       ="#121212",PublishDate=new DateTime(2021,9,2),LastPublishDate=new DateTime(2021,9,26),FinallyPublishDate= new DateTime(2021,9,20),UpdateWeek=4
                            ,Publisher     ="Yeondam X DAON",Painter="chero",Author="JAEUNHYANG"
@@ -1449,7 +1465,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656591172/LadyChefRoyale/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656590985/LadyChefRoyale/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656590985/LadyChefRoyale/1.webp"
                            ,BgColor       ="#dd6b79",PublishDate=new DateTime(2021,9,2),LastPublishDate=new DateTime(2021,9,26),FinallyPublishDate= new DateTime(2021,9,20),UpdateWeek=4
                            ,Publisher     ="Dreamtoon",Painter="PAYA",Author="Lysha"
@@ -1497,7 +1513,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582317/MadanNoShashu/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582133/MadanNoShashu/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582133/MadanNoShashu/1.webp"
                            ,BgColor       ="#060b28",PublishDate=new DateTime(2021,9,2),LastPublishDate=new DateTime(2021,9,26),FinallyPublishDate= new DateTime(2021,9,20),UpdateWeek=4
                            ,Publisher     ="intime",Painter="GLPI",Author="Respect"
@@ -1530,7 +1546,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582961/MookHyangDarkLady/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582728/MookHyangDarkLady/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582728/MookHyangDarkLady/1.webp"
                            ,BgColor       ="#1a0c19",PublishDate=new DateTime(2021,9,2),LastPublishDate=new DateTime(2021,9,26),FinallyPublishDate= new DateTime(2021,9,20),UpdateWeek=4
                            ,Publisher     ="Polarfox",Painter="Yooani",Author="Will Bright"
@@ -1552,7 +1568,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656571331/AgainMyLife/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656570608/AgainMyLife/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656570608/AgainMyLife/1.webp"
                            ,BgColor       ="#1b2260",PublishDate=new DateTime(2021,10,28),LastPublishDate=new DateTime(2022,11,14),FinallyPublishDate=new DateTime(2022,11,10),UpdateWeek=5
                            ,Publisher     ="YJ Comics",Painter="SUN YONG MIN",Author="Lee hae nal"
@@ -1586,7 +1602,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,BgCover        ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656576002/ATyrant%27sFirstLove/4.webp"
                            ,HotComicNameImage = ""
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://tw-a.kakaopagecdn.com/P/C/122/c2/2x/27658c20-605e-4c30-8b7f-0bcc44376857.webp"
                            ,ComicWeekFigure ="https://tw-a.kakaopagecdn.com/P/C/122/c2/2x/27658c20-605e-4c30-8b7f-0bcc44376857.webp"
                            ,BgColor       ="#310a0b",PublishDate=new DateTime(2021,10,28),LastPublishDate=new DateTime(2022,11,14),FinallyPublishDate=new DateTime(2022,11,10),UpdateWeek=5
                            ,Publisher     ="DAON STUDIO",Painter="CHIWA",Author="KIM SUO"
@@ -1619,7 +1635,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656599274/BeforeFootprintAblation/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656598550/BeforeFootprintAblation/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656598550/BeforeFootprintAblation/1.webp"
                            ,BgColor       ="#9b8263",PublishDate=new DateTime(2021,10,28),LastPublishDate=new DateTime(2022,11,14),FinallyPublishDate=new DateTime(2022,11,10),UpdateWeek=5
                            ,Publisher     ="KAKAO WEBTOON Studio",Painter="Tess",Author="Tess"
@@ -1635,7 +1651,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656587899/BlackWinter/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656587574/BlackWinter/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656587574/BlackWinter/1.webp"
                            ,BgColor       ="#1a151e",PublishDate=new DateTime(2021,10,28),LastPublishDate=new DateTime(2022,11,14),FinallyPublishDate=new DateTime(2022,11,10),UpdateWeek=5
                            ,Publisher     ="KAKAO WEBTOON Studio",Painter="Tess",Author="Tess"
@@ -1684,7 +1700,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656598156/DadPleaseMarryMe/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656597992/DadPleaseMarryMe/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656597992/DadPleaseMarryMe/1.webp"
                            ,BgColor       ="#2c3846",PublishDate=new DateTime(2021,10,30),LastPublishDate=new DateTime(2022,11,14),FinallyPublishDate=new DateTime(2022,11,10),UpdateWeek=5
                            ,Publisher     ="Yeondam X DAON",Painter="via",Author="dalseul"
@@ -1700,7 +1716,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656574627/GlassBlock/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656574474/GlassBlock/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656574474/GlassBlock/1.webp"
                            ,BgColor       ="#283e36",PublishDate=new DateTime(2021,10,28),LastPublishDate=new DateTime(2022,11,14),FinallyPublishDate=new DateTime(2022,11,10),UpdateWeek=5
                            ,Publisher     ="KAKAO WEBTOON Studio",Painter="Joho",Author="Joho"
@@ -1737,7 +1753,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582961/MookHyangDarkLady/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582728/MookHyangDarkLady/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582728/MookHyangDarkLady/1.webp"
                            ,BgColor       ="#418ab3",PublishDate=new DateTime(2021,10,28),LastPublishDate=new DateTime(2022,11,14),FinallyPublishDate=new DateTime(2022,11,10),UpdateWeek=5
                            ,Publisher     ="D&C WEBTOON Biz",Painter="Mon(Antstudio)",Author="Kim Roah"
@@ -1755,7 +1771,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582063/MyThreeTyrantBrothers/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656581853/MyThreeTyrantBrothers/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656581853/MyThreeTyrantBrothers/1.webp"
                            ,BgColor       ="#9fa925",PublishDate=new DateTime(2021,10,28),LastPublishDate=new DateTime(2022,11,14),FinallyPublishDate=new DateTime(2022,11,10),UpdateWeek=5
                            ,Publisher     ="DAON STUDIO",Painter="Parkha, Eun Du",Author="jomil​"
@@ -1773,7 +1789,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656577313/PrincessInTheRough/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656576943/PrincessInTheRough/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656576943/PrincessInTheRough/1.webp"
                            ,BgColor       ="#605342",PublishDate=new DateTime(2021,10,28),LastPublishDate=new DateTime(2022,11,14),FinallyPublishDate=new DateTime(2022,11,10),UpdateWeek=5
                            ,Publisher     ="Mstoryhub",Painter="HAERUA",Author="HARASYO"
@@ -1807,7 +1823,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656575576/RevengeWedding/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656575339/RevengeWedding/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656575339/RevengeWedding/1.webp"
                            ,BgColor       ="#28202b",PublishDate=new DateTime(2021,10,28),LastPublishDate=new DateTime(2022,11,14),FinallyPublishDate=new DateTime(2022,11,10),UpdateWeek=5
                            ,Publisher     ="DAON STUDIO",Painter="SaRyong​",Author="ByulSatangYang"
@@ -1840,7 +1856,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656580517/SSS-ClassRevivalHunter/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656580224/SSS-ClassRevivalHunter/1.png"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656580224/SSS-ClassRevivalHunter/1.png"
                            ,BgColor       ="#1c1f26",PublishDate=new DateTime(2021,10,28),LastPublishDate=new DateTime(2022,11,14),FinallyPublishDate=new DateTime(2022,11,10),UpdateWeek=5
                            ,Publisher     ="Fansia",Painter="Bill K",Author="Sinnoa"
@@ -1928,7 +1944,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656572963/TombRaiderKing/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1657520466/TombRaiderKing/9.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1657520466/TombRaiderKing/9.webp"
                            ,BgColor       ="#575a6f",PublishDate=new DateTime(2021,11,2),LastPublishDate=new DateTime(2021,11,26),FinallyPublishDate= new DateTime(2022,11,20),UpdateWeek=6
                            ,Publisher     ="Polarfox",Painter="Yooani",Author="Will Bright"
@@ -1944,7 +1960,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656584749/IBecameTheVillain%27sMother/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656584432/IBecameTheVillain%27sMother/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656584432/IBecameTheVillain%27sMother/1.webp"
                            ,BgColor       ="#225040",PublishDate=new DateTime(2021,11,2),LastPublishDate=new DateTime(2021,11,26),FinallyPublishDate= new DateTime(2022,11,20),UpdateWeek=6
                            ,Publisher     ="DAON STUDIO",Painter="Iro",Author="Yulji"
@@ -1992,7 +2008,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656597845/JustLeaveMe/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656597626/JustLeaveMe/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656597626/JustLeaveMe/1.webp"
                            ,BgColor       ="#121212",PublishDate=new DateTime(2021,11,2),LastPublishDate=new DateTime(2021,11,26),FinallyPublishDate= new DateTime(2022,11,20),UpdateWeek=6
                            ,Publisher     ="Yeondam X DAON",Painter="chero",Author="JAEUNHYANG"
@@ -2008,7 +2024,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656591172/LadyChefRoyale/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656590985/LadyChefRoyale/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656590985/LadyChefRoyale/1.webp"
                            ,BgColor       ="#dd6b79",PublishDate=new DateTime(2021,11,2),LastPublishDate=new DateTime(2021,11,26),FinallyPublishDate= new DateTime(2022,11,20),UpdateWeek=6
                            ,Publisher     ="Dreamtoon",Painter="PAYA",Author="Lysha"
@@ -2056,7 +2072,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582317/MadanNoShashu/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582133/MadanNoShashu/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582133/MadanNoShashu/1.webp"
                            ,BgColor       ="#060b28",PublishDate=new DateTime(2021,11,2),LastPublishDate=new DateTime(2021,11,26),FinallyPublishDate= new DateTime(2022,11,20),UpdateWeek=6
                            ,Publisher     ="intime",Painter="GLPI",Author="Respect"
@@ -2089,7 +2105,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582961/MookHyangDarkLady/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582728/MookHyangDarkLady/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582728/MookHyangDarkLady/1.webp"
                            ,BgColor       ="#1a0c19",PublishDate=new DateTime(2021,11,2),LastPublishDate=new DateTime(2021,11,26),FinallyPublishDate= new DateTime(2022,11,20),UpdateWeek=6
                            ,Publisher     ="Polarfox",Painter="Yooani",Author="Will Bright"
@@ -2111,7 +2127,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656999287/ShortLivedDaughterInLaw%27sEscapePlan/4.jpg"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/video/upload/v1656999028/ShortLivedDaughterInLaw%27sEscapePlan/1.webm"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/video/upload/v1656999028/ShortLivedDaughterInLaw%27sEscapePlan/1.webm"
                            ,BgColor       ="#3a6052",PublishDate=new DateTime(2021,11,2),LastPublishDate=new DateTime(2021,11,26),FinallyPublishDate= new DateTime(2022,11,20),UpdateWeek=6
                            ,Publisher     ="Yeondam",Painter="BASAK",Author="Yunajin"
@@ -2127,7 +2143,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656587434/TheGreatWish/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656587082/TheGreatWish/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656587082/TheGreatWish/1.webp"
                            ,BgColor       ="#11242e",PublishDate=new DateTime(2021,11,2),LastPublishDate=new DateTime(2021,11,26),FinallyPublishDate= new DateTime(2022,11,20),UpdateWeek=6
                            ,Publisher     ="Dreamtoon",Painter="Skye",Author="Skye"
@@ -2143,7 +2159,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656588311/TheJinx%27sLover/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656588126/TheJinx%27sLover/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656588126/TheJinx%27sLover/1.webp"
                            ,BgColor       ="#ab9a9f",PublishDate=new DateTime(2021,11,2),LastPublishDate=new DateTime(2021,11,26),FinallyPublishDate= new DateTime(2022,11,20),UpdateWeek=6
                            ,Publisher     ="KAKAO WEBTOON Studio",Painter="Koo seul",Author="Koo seul"
@@ -2159,7 +2175,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656574093/TheMaxLeveHeroStrikesBack/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656573894/TheMaxLeveHeroStrikesBack/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656573894/TheMaxLeveHeroStrikesBack/1.webp"
                            ,BgColor       ="#394b78",PublishDate=new DateTime(2021,11,2),LastPublishDate=new DateTime(2021,11,26),FinallyPublishDate= new DateTime(2022,11,20),UpdateWeek=6
                            ,Publisher     ="golemfactory",Painter="Yudo",Author="Devil's tail"
@@ -2175,7 +2191,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656593728/TheMaxLevelReturner/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656593513/TheMaxLevelReturner/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656593513/TheMaxLevelReturner/1.webp"
                            ,BgColor       ="#273961",PublishDate=new DateTime(2021,11,2),LastPublishDate=new DateTime(2021,11,26),FinallyPublishDate= new DateTime(2022,11,20),UpdateWeek=6
                            ,Publisher     ="golemfactory",Painter="Vertwo",Author="Honey"
@@ -2239,7 +2255,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656589140/WaitWhereTheShootingStarFalls/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656588444/WaitWhereTheShootingStarFalls/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656588444/WaitWhereTheShootingStarFalls/1.webp"
                            ,BgColor       ="#171918",PublishDate=new DateTime(2021,11,2),LastPublishDate=new DateTime(2021,11,26),FinallyPublishDate= new DateTime(2022,11,20),UpdateWeek=6
                            ,Publisher     ="KAKAO WEBTOON Studio",Painter="Mr.General Store",Author="Mr.General Store"
@@ -2272,7 +2288,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656590842/Woman%27sBestFriend/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656589219/Woman%27sBestFriend/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656589219/Woman%27sBestFriend/1.webp"
                             ,BgColor       ="#e45850",PublishDate=new DateTime(2021,11,2),LastPublishDate=new DateTime(2021,11,26),FinallyPublishDate= new DateTime(2022,11,20),UpdateWeek=6
                            ,Publisher     ="Dreamtoon",Painter="Dodam",Author="Hyun Sung Lee"
@@ -2295,7 +2311,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582961/MookHyangDarkLady/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582728/MookHyangDarkLady/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582728/MookHyangDarkLady/1.webp"
                            ,BgColor       ="#418ab3",PublishDate=new DateTime(2021,12,2),LastPublishDate=new DateTime(2021,12,26),FinallyPublishDate= new DateTime(2021,12,20),UpdateWeek=7
                            ,Publisher     ="D&C WEBTOON Biz",Painter="Mon(Antstudio)",Author="Kim Roah"
@@ -2313,7 +2329,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582063/MyThreeTyrantBrothers/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656581853/MyThreeTyrantBrothers/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656581853/MyThreeTyrantBrothers/1.webp"
                            ,BgColor       ="#9fa925",PublishDate=new DateTime(2021,12,2),LastPublishDate=new DateTime(2021,12,26),FinallyPublishDate= new DateTime(2021,12,20),UpdateWeek=7
                            ,Publisher     ="DAON STUDIO",Painter="Parkha, Eun Du",Author="jomil​"
@@ -2331,7 +2347,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656577313/PrincessInTheRough/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656576943/PrincessInTheRough/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656576943/PrincessInTheRough/1.webp"
                            ,BgColor       ="#605342",PublishDate=new DateTime(2021,12,2),LastPublishDate=new DateTime(2021,12,26),FinallyPublishDate= new DateTime(2021,12,20),UpdateWeek=7
                            ,Publisher     ="Mstoryhub",Painter="HAERUA",Author="HARASYO"
@@ -2366,7 +2382,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656575576/RevengeWedding/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656575339/RevengeWedding/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656575339/RevengeWedding/1.webp"
                            ,BgColor       ="#28202b",PublishDate=new DateTime(2021,12,2),LastPublishDate=new DateTime(2021,12,26),FinallyPublishDate= new DateTime(2021,12,20),UpdateWeek=7
                            ,Publisher     ="DAON STUDIO",Painter="SaRyong​",Author="ByulSatangYang"
@@ -2400,7 +2416,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656580517/SSS-ClassRevivalHunter/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656580224/SSS-ClassRevivalHunter/1.png"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656580224/SSS-ClassRevivalHunter/1.png"
                            ,BgColor       ="#1c1f26",PublishDate=new DateTime(2021,12,2),LastPublishDate=new DateTime(2021,12,26),FinallyPublishDate= new DateTime(2021,12,20),UpdateWeek=7
                            ,Publisher     ="Fansia",Painter="Bill K",Author="Sinnoa"
@@ -2487,7 +2503,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656572963/TombRaiderKing/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1657520466/TombRaiderKing/9.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1657520466/TombRaiderKing/9.webp"
                            ,BgColor       ="#575a6f",PublishDate=new DateTime(2021,12,2),LastPublishDate=new DateTime(2021,12,26),FinallyPublishDate= new DateTime(2021,12,20),UpdateWeek=7
                            ,Publisher     ="Polarfox",Painter="Yooani",Author="Will Bright"
@@ -2503,7 +2519,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656584749/IBecameTheVillain%27sMother/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656584432/IBecameTheVillain%27sMother/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656584432/IBecameTheVillain%27sMother/1.webp"
                            ,BgColor       ="#225040",PublishDate=new DateTime(2021,12,2),LastPublishDate=new DateTime(2021,12,26),FinallyPublishDate= new DateTime(2021,12,20),UpdateWeek=7
                            ,Publisher     ="DAON STUDIO",Painter="Iro",Author="Yulji"
@@ -2551,7 +2567,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656597845/JustLeaveMe/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656597626/JustLeaveMe/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656597626/JustLeaveMe/1.webp"
                            ,BgColor       ="#121212",PublishDate=new DateTime(2021,12,2),LastPublishDate=new DateTime(2021,12,26),FinallyPublishDate= new DateTime(2021,12,20),UpdateWeek=7
                            ,Publisher     ="Yeondam X DAON",Painter="chero",Author="JAEUNHYANG"
@@ -2567,7 +2583,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656591172/LadyChefRoyale/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656590985/LadyChefRoyale/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656590985/LadyChefRoyale/1.webp"
                            ,BgColor       ="#dd6b79",PublishDate=new DateTime(2021,12,2),LastPublishDate=new DateTime(2021,12,26),FinallyPublishDate= new DateTime(2021,12,20),UpdateWeek=7
                            ,Publisher     ="Dreamtoon",Painter="PAYA",Author="Lysha"
@@ -2615,7 +2631,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582317/MadanNoShashu/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582133/MadanNoShashu/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582133/MadanNoShashu/1.webp"
                            ,BgColor       ="#060b28",PublishDate=new DateTime(2021,12,2),LastPublishDate=new DateTime(2021,12,26),FinallyPublishDate= new DateTime(2021,12,20),UpdateWeek=7
                            ,Publisher     ="intime",Painter="GLPI",Author="Respect"
@@ -2648,7 +2664,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = ""
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582961/MookHyangDarkLady/4.webp"
                            ,HotBgCover = ""
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582728/MookHyangDarkLady/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1656582728/MookHyangDarkLady/1.webp"
                            ,BgColor       ="#1a0c19",PublishDate=new DateTime(2021,12,2),LastPublishDate=new DateTime(2021,12,26),FinallyPublishDate= new DateTime(2021,12,20),UpdateWeek=7
                            ,Publisher     ="Polarfox",Painter="Yooani",Author="Will Bright"
@@ -2727,7 +2743,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656961648/IUpgradeAlone/6.png"
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1657101892/IUpgradeAlone/4.jpg"
                            ,HotBgCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656961763/IUpgradeAlone/8.jpg"
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1657101751/IUpgradeAlone/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1657101751/IUpgradeAlone/1.webp"
                            ,BgColor       ="#0d192d",PublishDate=new DateTime(2021,12,2),LastPublishDate=new DateTime(2021,12,26),FinallyPublishDate= new DateTime(2021,12,20),UpdateWeek=7
                            ,Publisher     ="D&C WEBTOON Biz",Painter="DUBU(REDICE STUDIO)",Author="Chugong"
@@ -2744,7 +2760,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656961381/ExorcismNoodleShop/6.png"
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1657100986/ExorcismNoodleShop/4.webp"
                            ,HotBgCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656961476/ExorcismNoodleShop/8.jpg"
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1657100843/ExorcismNoodleShop/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1657100843/ExorcismNoodleShop/1.webp"
                            ,BgColor       ="#122023",PublishDate=new DateTime(2021,12,2),LastPublishDate=new DateTime(2021,12,26),FinallyPublishDate= new DateTime(2021,12,20),UpdateWeek=4
                            ,Publisher     ="KAKAO WEBTOON Studio",Painter="Jang E",Author="Jang E"
@@ -2762,7 +2778,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656960787/Dr.BRAIN/6.png"
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1657099341/Dr.BRAIN/4.jpg"
                            ,HotBgCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656960950/Dr.BRAIN/8.jpg"
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1657099231/Dr.BRAIN/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1657099231/Dr.BRAIN/1.webp"
                            ,BgColor       ="#2b323c",PublishDate=new DateTime(2021,12,2),LastPublishDate=new DateTime(2021,12,26),FinallyPublishDate= new DateTime(2021,12,20),UpdateWeek=7
                            ,Publisher     ="KAKAO WEBTOON Studio",Painter="Hongjacga",Author="Hongjacga"
@@ -2781,7 +2797,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotComicNameImage = "https://res.cloudinary.com/dmns6twmt/image/upload/v1657176804/I%27mLoveBoss/6.png"
                            ,BgCover       ="https://res.cloudinary.com/dmns6twmt/image/upload/v1657176491/I%27mLoveBoss/4.jpg"
                            ,HotBgCover = "https://res.cloudinary.com/dmns6twmt/image/upload/v1657176849/I%27mLoveBoss/8.jpg"
-                           ,ComicFigure   =""
+                           ,ComicFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1657176399/I%27mLoveBoss/1.webp"
                            ,ComicWeekFigure ="https://res.cloudinary.com/dmns6twmt/image/upload/v1657176399/I%27mLoveBoss/1.webp"
                            ,BgColor       ="#362d41",PublishDate=new DateTime(2021,12,2),LastPublishDate=new DateTime(2021,12,26),FinallyPublishDate= new DateTime(2021,12,20),UpdateWeek=5
                            ,Publisher     ="Yeondam",Painter="NARAK",Author="Haehwa"
@@ -2807,32 +2823,105 @@ namespace BSWebtoon.Front.Service.ComicService
         {
             List<ComicTagList> comictaglists = new List<ComicTagList>
             {
-                new ComicTagList {TagId=1,ComicId=1},
-                new ComicTagList {TagId=1,ComicId=2},
-                new ComicTagList {TagId=1,ComicId=3},
-                new ComicTagList {TagId=1,ComicId=4},
+                new ComicTagList {TagId=5,ComicId=1},
+                new ComicTagList {TagId=8,ComicId=1},
+                new ComicTagList {TagId=9,ComicId=1},
+                new ComicTagList {TagId=10,ComicId=1},
+
+                new ComicTagList {TagId=4,ComicId=2},
+                new ComicTagList {TagId=8,ComicId=2},
+                new ComicTagList {TagId=9,ComicId=2},
+                new ComicTagList {TagId=10,ComicId=2},
+
+                new ComicTagList {TagId=2,ComicId=3},
+                new ComicTagList {TagId=8,ComicId=3},
+                new ComicTagList {TagId=11,ComicId=3},
+
+                new ComicTagList {TagId=4,ComicId=4},
+                new ComicTagList {TagId=8,ComicId=4},
+                new ComicTagList {TagId=10,ComicId=4},
+                new ComicTagList {TagId=12,ComicId=4},
 
                 new ComicTagList {TagId=2,ComicId=5},
+                new ComicTagList {TagId=11,ComicId=5},
+                new ComicTagList {TagId=13,ComicId=5},
+                new ComicTagList {TagId=14,ComicId=5},
+
                 new ComicTagList {TagId=2,ComicId=6},
+                new ComicTagList {TagId=11,ComicId=6},
+                new ComicTagList {TagId=13,ComicId=6},
+                new ComicTagList {TagId=14,ComicId=6},
+                
+
                 new ComicTagList {TagId=2,ComicId=7},
+                new ComicTagList {TagId=11,ComicId=7},
+                new ComicTagList {TagId=12,ComicId=7},
+                new ComicTagList {TagId=15,ComicId=7},
+
                 new ComicTagList {TagId=2,ComicId=8},
+                new ComicTagList {TagId=15,ComicId=8},
+                new ComicTagList {TagId=16,ComicId=8},
+                new ComicTagList {TagId=17,ComicId=8},
 
-                new ComicTagList {TagId=3,ComicId=9},
-                new ComicTagList {TagId=3,ComicId=10},
-                new ComicTagList {TagId=3,ComicId=11},
-                new ComicTagList {TagId=3,ComicId=12},
+                new ComicTagList {TagId=1,ComicId=9},
+                new ComicTagList {TagId=8,ComicId=9},
+                new ComicTagList {TagId=11,ComicId=9},
+                new ComicTagList {TagId=14,ComicId=9},
 
-                new ComicTagList {TagId=4,ComicId=13},
-                new ComicTagList {TagId=4,ComicId=14},
-                new ComicTagList {TagId=4,ComicId=15},
-                new ComicTagList {TagId=4,ComicId=16},
+                new ComicTagList {TagId=2,ComicId=10},
+                new ComicTagList {TagId=13,ComicId=10},
+                new ComicTagList {TagId=16,ComicId=10},
+                new ComicTagList {TagId=18,ComicId=10},
 
-                new ComicTagList {TagId=5,ComicId=17},
-                new ComicTagList {TagId=5,ComicId=18},
+                new ComicTagList {TagId=2,ComicId=11},
+                new ComicTagList {TagId=8,ComicId=11},
+                new ComicTagList {TagId=17,ComicId=11},
+                new ComicTagList {TagId=18,ComicId=11},
 
-                new ComicTagList {TagId=6,ComicId=19},
-                new ComicTagList {TagId=7,ComicId=20},
+                new ComicTagList {TagId=1,ComicId=12},
+                new ComicTagList {TagId=7,ComicId=12},
+                new ComicTagList {TagId=8,ComicId=12},
+                new ComicTagList {TagId=18,ComicId=12},
 
+                new ComicTagList {TagId=1,ComicId=13},
+                new ComicTagList {TagId=7,ComicId=13},
+                new ComicTagList {TagId=12,ComicId=13},
+                new ComicTagList {TagId=16,ComicId=13},
+
+                new ComicTagList {TagId=,ComicId=14},
+                new ComicTagList {TagId=,ComicId=14},
+                new ComicTagList {TagId=,ComicId=14},
+                new ComicTagList {TagId=,ComicId=14},
+
+                new ComicTagList {TagId=,ComicId=15},
+                new ComicTagList {TagId=,ComicId=15},
+                new ComicTagList {TagId=,ComicId=15},
+                new ComicTagList {TagId=,ComicId=15},
+
+                new ComicTagList {TagId=,ComicId=16},
+                new ComicTagList {TagId=,ComicId=16},
+                new ComicTagList {TagId=,ComicId=16},
+                new ComicTagList {TagId=,ComicId=16},
+
+                new ComicTagList {TagId=,ComicId=17},
+                new ComicTagList {TagId=,ComicId=17},
+                new ComicTagList {TagId=,ComicId=17},
+                new ComicTagList {TagId=,ComicId=17},
+
+                new ComicTagList {TagId=,ComicId=18},
+                new ComicTagList {TagId=,ComicId=18},
+                new ComicTagList {TagId=,ComicId=18},
+                new ComicTagList {TagId=,ComicId=18},
+
+                new ComicTagList {TagId=,ComicId=19},
+                new ComicTagList {TagId=,ComicId=19},
+                new ComicTagList {TagId=,ComicId=19},
+                new ComicTagList {TagId=,ComicId=19},
+
+                new ComicTagList {TagId=,ComicId=20},
+                new ComicTagList {TagId=,ComicId=20},
+                new ComicTagList {TagId=,ComicId=20},
+                new ComicTagList {TagId=,ComicId=20},
 
             };
 
