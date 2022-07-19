@@ -8,7 +8,7 @@ let sun_con = document.querySelector(".Sunday .content")
 let blackTemplate = document.getElementById("blackTemplate")
 
 let date_week = new Date();
-//let nav_a_week = document.querySelector(".nav_a_week");
+
 let mon = document.querySelector(".nav_Monday")
 let tues = document.querySelector(".nav_Tuesday")
 let wednes = document.querySelector(".nav_Wednesday")
@@ -53,7 +53,7 @@ window.onload = () => {
     satur_long.setAttribute("style", "grid-column: 2/3;")
 
 
-/*    nav_a_week.addEventListener("click", () => {*/
+
         weeklyArray.forEach((day, index) => {
 
             if (date_week.getDay() == index) {
@@ -62,7 +62,7 @@ window.onload = () => {
 
 
         })
-/*    })*/
+
 
 
 
