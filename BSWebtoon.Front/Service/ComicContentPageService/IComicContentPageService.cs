@@ -5,6 +5,6 @@ namespace BSWebtoon.Front.Service.ContentPageService
 {
     public interface IComicContentPageService
     {
-        public List<WorkContentDTO> ReadComicContent(int ComicId);
+        public List<WorkContentDTO> ReadComicContent(int ComicId, string useerName);
     }
 }

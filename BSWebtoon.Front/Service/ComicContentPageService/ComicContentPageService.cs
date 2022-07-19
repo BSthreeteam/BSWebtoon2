@@ -15,7 +15,23 @@ namespace BSWebtoon.Front.Service.ContentPageService
             _repository = repository;
         }
 
-        public List<WorkContentDTO> ReadComicContent(int EpId)
+        public List<WorkContentDTO> ReadComicContent(int EpId,string useerName)
+        {
+            if(useerName == null){
+                return null;
+            }
+            else
+            {
+                ReadContext(EpId);
+            }
+
+
+
+
+            return null;
+        }
+
+        public void ReadContext(int EpId)
         {
             var EpSource = _repository.GetAll<Episode>().Where(c => c.EpId == EpId).First();
             var freeComic = _repository.GetAll<EpContent>().Where(c => EpSource.IsFree == true && c.EpId == EpSource.EpId).Select(c => new WorkContentDTO
@@ -26,22 +42,10 @@ namespace BSWebtoon.Front.Service.ContentPageService
                 Page = c.Page
             });
             var countdownCouponComic = _repository.GetAll<EpContent>().Where(c => EpSource.IsCountdownCoupon == true && c.EpId == EpSource.EpId);
-            
-            //var freeComic = _repository.GetAll<EpContent>().Where(c => EpSource.IsFree == true && c.EpId == EpSource.EpId).Select(c => new WorkContentDTO
-            //{
-            //    EpId = c.EpId,
-            //    EpContentId = c.EpContentId,
-            //    ImagePath = c.ImagePath,
-            //    Page = c.Page
-            //});
-
-            //var CountdownCouponComic = comicSource.Where(c => c.IsCountdownCoupon == true);
+            //var Iscoupon = _repository.GetAll<Coupon>().Where(c => c)
 
 
 
-
-
-            return null;
         }
     }
 }
