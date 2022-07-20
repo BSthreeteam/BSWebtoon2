@@ -8,12 +8,10 @@ namespace BSWebtoon.Front.Service.ComicService
 {
     public class ComicService : IComicService
     {
-        private readonly BSWebtoonContext _context;
         private readonly BSRepository _repository;
 
-        public ComicService(BSWebtoonContext context, BSRepository repository)
+        public ComicService(BSRepository repository)
         {
-            _context = context;
             _repository = repository;
         }
 
@@ -2856,7 +2854,8 @@ namespace BSWebtoon.Front.Service.ComicService
 
         }
 
-        public void EpCreate()
+        //[Http]
+        public void EpCreate(/*int Comicid*/)
         {
             var epList = new List<Episode>
             {
@@ -4913,6 +4912,12 @@ namespace BSWebtoon.Front.Service.ComicService
 
 
             };
+            var comicSource = _repository.GetAll<Comic>()/*.Where(c => c.ComicId == Comicid).FirstOrDefault()*/;
+            if (comicSource == null)
+            {
+                //return null;
+            }
+
             foreach (var episode in epList)
             {
                 _repository.Create(episode);
@@ -5286,9 +5291,10 @@ namespace BSWebtoon.Front.Service.ComicService
             //}
 
 
-            var a = _repository.GetAll<Episode>();
-            foreach (var ep in a)
+            var eps = _repository.GetAll<Episode>();
+            foreach (var ep in eps)
             {
+
                 _repository.Create(
                     new EpContent()
                     { /*EpContentId=1,  */
