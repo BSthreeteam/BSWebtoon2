@@ -13,9 +13,16 @@ namespace BSWebtoon.Front.Controllers
             _rechargeService = rechargeService;
         }
 
+        [HttpGet]
         public IActionResult CashPlanView() //Recharge/CashPlanView
         {
             //_rechargeService.CashPlanCreate();
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CashPlanView(string ans) //Recharge/CashPlanView
+        {
             return View();
         }
 

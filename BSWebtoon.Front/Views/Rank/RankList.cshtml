@@ -165,7 +165,7 @@
                     <p class="diff">@Model.FirstRank.Diff</p>
                 </div>
                 <div class="work_big_pic">
-                    @if (@Model.FirstRank.BannerVideoWeb != null)
+                    @if (@Model.FirstRank.BannerVideoWeb != string.Empty)
                     {
                         <video>
                             <source src="@Model.FirstRank.BannerVideoWeb" type="video/webm">
