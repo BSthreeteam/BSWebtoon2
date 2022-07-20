@@ -42,16 +42,27 @@ namespace BSWebtoon.Front.Service.ComicService
                 new ComicTag {/*TagId=15,*/TagName="三角關係",IsMainTag=false,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,20)},
                 new ComicTag {/*TagId=16,*/TagName="刻劃細膩",IsMainTag=false,IsDelete=false,AuditEmployeeId=2,AuditDate=new DateTime(2021,6,20)},
                 new ComicTag {/*TagId=17,*/TagName="揪心",IsMainTag=false,IsDelete=false,AuditEmployeeId=2,AuditDate=new DateTime(2021,6,20)},
-
                 new ComicTag {/*TagId=18,*/TagName="改變命運",IsMainTag=false,IsDelete=false,AuditEmployeeId=2,AuditDate=new DateTime(2021,6,20)},
+                new ComicTag {/*TagId=19,*/TagName="欲罷不能",IsMainTag=false,IsDelete=false,AuditEmployeeId=2,AuditDate=new DateTime(2021,6,20)},
+                new ComicTag {/*TagId=20,*/TagName="成長",IsMainTag=false,IsDelete=false,AuditEmployeeId=2,AuditDate=new DateTime(2021,6,20)},
+                new ComicTag {/*TagId=21,*/TagName="大格局",IsMainTag=false,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,20)},
+                new ComicTag {/*TagId=22,*/TagName="食指大動",IsMainTag=false,IsDelete=false,AuditEmployeeId=2,AuditDate=new DateTime(2021,6,20)},
+                new ComicTag {/*TagId=23,*/TagName="津津有味",IsMainTag=false,IsDelete=false,AuditEmployeeId=2,AuditDate=new DateTime(2021,6,20)},
+                new ComicTag {/*TagId=24,*/TagName="爆笑",IsMainTag=false,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,20)},
+                new ComicTag {/*TagId=25,*/TagName="職場生活",IsMainTag=false,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,20)},
+                new ComicTag {/*TagId=26,*/TagName="浪漫喜劇",IsMainTag=false,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,20)},
+                new ComicTag {/*TagId=27,*/TagName="清新",IsMainTag=false,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,20)},
+                new ComicTag {/*TagId=28,*/TagName="活潑可愛",IsMainTag=false,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,20)},
 
-
-                new ComicTag {/*TagId=19,*/TagName="",IsMainTag=false,IsDelete=false,AuditEmployeeId=2,AuditDate=new DateTime(2021,6,20)},
-                new ComicTag {/*TagId=20,*/TagName="",IsMainTag=false,IsDelete=false,AuditEmployeeId=2,AuditDate=new DateTime(2021,6,20)},
-                new ComicTag {/*TagId=21,*/TagName="",IsMainTag=false,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,20)},
-                new ComicTag {/*TagId=22,*/TagName="",IsMainTag=false,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,20)},
-                new ComicTag {/*TagId=23,*/TagName="",IsMainTag=false,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,20)},
-                new ComicTag {/*TagId=24,*/TagName="",IsMainTag=false,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,20)},
+                new ComicTag {/*TagId=29,*/TagName="",IsMainTag=false,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,20)},
+                new ComicTag {/*TagId=30,*/TagName="",IsMainTag=false,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,20)},
+                new ComicTag {/*TagId=31,*/TagName="",IsMainTag=false,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,20)},
+                new ComicTag {/*TagId=32,*/TagName="",IsMainTag=false,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,20)},
+                new ComicTag {/*TagId=33,*/TagName="",IsMainTag=false,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,20)},
+                new ComicTag {/*TagId=34,*/TagName="",IsMainTag=false,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,20)},
+                new ComicTag {/*TagId=35,*/TagName="",IsMainTag=false,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,20)},
+                new ComicTag {/*TagId=36,*/TagName="",IsMainTag=false,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,20)},
+                new ComicTag {/*TagId=37,*/TagName="",IsMainTag=false,IsDelete=false,AuditEmployeeId=1,AuditDate=new DateTime(2021,6,20)},
             };
             foreach (var tags in comictags)
             {
@@ -216,7 +227,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,ComicVideoWeb =""
                            ,HotVideo = ""
                            ,AuditType     =1,AuditEmployeeId=1,AuditFailReason="NULL",AuditTime=new DateTime(2021,6,28),ComicStatus=3},
-
+                //10
                 new Comic {ComicChineseName="琉璃之壁",ComicEnglishName="GlassBlock"
                            ,ComicNameImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1656607414/GlassBlock/5.png"
                            ,HotComicNameImage = ""
@@ -232,7 +243,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,ComicVideoWeb =""
                            ,HotVideo = ""
                            ,AuditType     =1,AuditEmployeeId=1,AuditFailReason="NULL",AuditTime=new DateTime(2021,6,28),ComicStatus=3},
-                //11
+ 
                 new Comic {ComicChineseName="我想活下去",ComicEnglishName="I'mAllOutOfHealth"
                            ,ComicNameImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1656607105/I%27mAllOutOfHealth/5.png"
                            ,HotComicNameImage = ""
@@ -304,7 +315,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotVideo = ""
                            ,AuditType     =1,AuditEmployeeId=2,AuditFailReason="NULL",AuditTime=new DateTime(2021,6,28),ComicStatus=3},
 
-
+                //15
                 new Comic {ComicChineseName="小不點皇后",ComicEnglishName="OurLittleEmpress"
                            ,ComicNameImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1656605394/OurLittleEmpress/5.png"
                            ,HotComicNameImage = ""
@@ -321,8 +332,6 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotVideo = ""
                            ,AuditType     =1,AuditEmployeeId=2,AuditFailReason="NULL",AuditTime=new DateTime(2021,6,28),ComicStatus=3},
 
-
-
                 new Comic {ComicChineseName="婚禮復仇記",ComicEnglishName="RevengeWedding"
                            ,ComicNameImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1656605358/RevengeWedding/5.png"
                            ,HotComicNameImage = ""
@@ -338,8 +347,6 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,ComicVideoWeb ="https://res.cloudinary.com/dmns6twmt/video/upload/v1656575490/RevengeWedding/3.webm"
                            ,HotVideo = ""
                            ,AuditType     =1,AuditEmployeeId=2,AuditFailReason="NULL",AuditTime=new DateTime(2021,6,28),ComicStatus=3},
-
-
 
                 new Comic {ComicChineseName="結了婚再說",ComicEnglishName="SaveItForTheHoneymoon"
                            ,ComicNameImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1656607844/SaveItForTheHoneymoon/5.png"
@@ -389,6 +396,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotVideo = ""
                            ,AuditType     =1,AuditEmployeeId=2,AuditFailReason="NULL",AuditTime=new DateTime(2021,6,28),ComicStatus=3},
 
+                //20
                 new Comic {ComicChineseName="穆艾拉的調查官",ComicEnglishName="TheDetectiveOfMuiella"
                            ,ComicNameImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1656607783/TheDetectiveOfMuiella/5.png"
                            ,HotComicNameImage = ""
@@ -405,6 +413,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotVideo = ""
                            ,AuditType     =1,AuditEmployeeId=2,AuditFailReason="NULL",AuditTime=new DateTime(2021,6,28),ComicStatus=1},
 
+                //21
                 new Comic {ComicChineseName="與惡魔共舞",ComicEnglishName="TheDevil'sTango"
                            ,ComicNameImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1656607940/TheDevil%27sTango/5.png"
                            ,HotComicNameImage = ""
@@ -437,9 +446,6 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,ComicVideoWeb =""
                            ,HotVideo = ""
                            ,AuditType     =1,AuditEmployeeId=2,AuditFailReason="NULL",AuditTime=new DateTime(2021,6,28),ComicStatus=3},
-
-
-
 
 
                 //星期列表與作品頁
@@ -478,7 +484,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotVideo = ""
                            ,AuditType     =1,AuditEmployeeId=2,AuditFailReason="NULL",AuditTime=new DateTime(2021,7,22),ComicStatus=3},
 
-
+                //25
                 new Comic {ComicChineseName="目標是成為長命百歲的千金大小姐",ComicEnglishName="IDreamOfHealthWealthAndALongLife"
                            ,ComicNameImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1656607743/IDreamOfHealthWealthAndALongLife/5.png"
                            ,HotComicNameImage = ""
@@ -495,6 +501,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotVideo = ""
                            ,AuditType     =1,AuditEmployeeId=2,AuditFailReason="NULL",AuditTime=new DateTime(2021,7,2),ComicStatus=3},
 
+                
                 new Comic {ComicChineseName="原來都是誤會一場",ComicEnglishName="ItWasAllAMistake"
                            ,ComicNameImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1656605156/ItWasAllAMistake/5.png"
                            ,HotComicNameImage = ""
@@ -510,7 +517,8 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,ComicVideoWeb =""
                            ,HotVideo = ""
                            ,AuditType     =1,AuditEmployeeId=2,AuditFailReason="NULL",AuditTime=new DateTime(2021,7,2),ComicStatus=1},
-
+                
+                 
                 new Comic {ComicChineseName="就離開我吧",ComicEnglishName="JustLeaveMe"
                            ,ComicNameImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1656605448/JustLeaveMe/5.png"
                            ,HotComicNameImage = ""
@@ -527,6 +535,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotVideo = ""
                            ,AuditType     =1,AuditEmployeeId=2,AuditFailReason="NULL",AuditTime=new DateTime(2021,7,2),ComicStatus=1},
 
+                 
                 new Comic {ComicChineseName="千金大廚來上菜",ComicEnglishName="LadyChefRoyale"
                            ,ComicNameImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1656605055/LadyChefRoyale/5.png"
                            ,HotComicNameImage = ""
@@ -542,7 +551,8 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,ComicVideoWeb ="https://res.cloudinary.com/dmns6twmt/video/upload/v1656591103/LadyChefRoyale/3.webm"
                            ,HotVideo = ""
                            ,AuditType     =1,AuditEmployeeId=2,AuditFailReason="NULL",AuditTime=new DateTime(2021,7,2),ComicStatus=3},
-
+                
+                 
                 new Comic {ComicChineseName="交界地帶的動物醫院",ComicEnglishName="LegendaryBeastsAnimalHospital"
                            ,ComicNameImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1656604897/LegendaryBeastsAnimalHospital/5.png"
                            ,HotComicNameImage = ""
@@ -559,6 +569,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotVideo = ""
                            ,AuditType     =1,AuditEmployeeId=2,AuditFailReason="NULL",AuditTime=new DateTime(2021,7,2),ComicStatus=1},
 
+                //30
                 new Comic {ComicChineseName="與神共進",ComicEnglishName="LevelUpWithTheGods"
                            ,ComicNameImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1656607981/LevelUpWithTheGods/5.png"
                            ,HotComicNameImage = ""
@@ -607,7 +618,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotVideo = ""
                            ,AuditType     =1,AuditEmployeeId=2,AuditFailReason="NULL",AuditTime=new DateTime(2021,7,2),ComicStatus=3},
 
-                //33
+
                 new Comic {ComicChineseName="墨劍留香",ComicEnglishName="MookHyangDarkLady"
                            ,ComicNameImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1656605276/MookHyangDarkLady/5.png"
                            ,HotComicNameImage = ""
@@ -629,6 +640,7 @@ namespace BSWebtoon.Front.Service.ComicService
                 //星期四(屬於星期二)
 
                 //星期四(屬於星期二)有影片
+                //34
                 new Comic {ComicChineseName="短命媳婦的逃跑計畫",ComicEnglishName="ShortLivedDaughterInLaw'sEscapePlan"
                            ,ComicNameImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1656999779/ShortLivedDaughterInLaw%27sEscapePlan/5.png"
                            ,HotComicNameImage = ""
@@ -645,6 +657,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotVideo = ""
                            ,AuditType     =1,AuditEmployeeId=2,AuditFailReason="NULL",AuditTime=new DateTime(2021,7,2),ComicStatus=3},
 
+                //35
                 new Comic {ComicChineseName="偉大的夙願",ComicEnglishName="TheGreatWish"
                            ,ComicNameImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1656606723/TheGreatWish/5.png"
                            ,HotComicNameImage = ""
@@ -660,7 +673,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,ComicVideoWeb ="https://res.cloudinary.com/dmns6twmt/video/upload/v1656587373/TheGreatWish/3.webm"
                            ,HotVideo = ""
                            ,AuditType     =1,AuditEmployeeId=2,AuditFailReason="NULL",AuditTime=new DateTime(2021,7,2),ComicStatus=3},
-
+                //36
                 new Comic {ComicChineseName="魔咒情人",ComicEnglishName="TheJinx'sLover"
                            ,ComicNameImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1656608208/TheJinx%27sLover/5.png"
                            ,HotComicNameImage = ""
@@ -676,7 +689,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,ComicVideoWeb =""
                            ,HotVideo = ""
                            ,AuditType     =1,AuditEmployeeId=2,AuditFailReason="NULL",AuditTime=new DateTime(2021,7,2),ComicStatus=3},
-
+                //37
                 new Comic {ComicChineseName="英雄大人滿級回歸",ComicEnglishName="TheMaxLeveHeroStrikesBack"
                            ,ComicNameImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1656608010/TheMaxLeveHeroStrikesBack/5.png"
                            ,HotComicNameImage = ""
@@ -692,7 +705,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,ComicVideoWeb =""
                            ,HotVideo = ""
                            ,AuditType     =1,AuditEmployeeId=2,AuditFailReason="NULL",AuditTime=new DateTime(2021,7,2),ComicStatus=3},
-
+                //38
                 new Comic {ComicChineseName="永恆世界歸還者",ComicEnglishName="TheMaxLevelReturner"
                            ,ComicNameImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1656607372/TheMaxLevelReturner/5.png"
                            ,HotComicNameImage = ""
@@ -708,7 +721,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,ComicVideoWeb =""
                            ,HotVideo = ""
                            ,AuditType     =1,AuditEmployeeId=2,AuditFailReason="NULL",AuditTime=new DateTime(2021,7,2),ComicStatus=3},
-
+                //39
                 new Comic {ComicChineseName="皇女殿下的娃娃屋",ComicEnglishName="ThePrincess'sDollShop"
                            ,ComicNameImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1656607589/ThePrincess%27sDollShop/5.png"
                            ,HotComicNameImage = ""
@@ -724,7 +737,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,ComicVideoWeb =""
                            ,HotVideo = ""
                            ,AuditType     =1,AuditEmployeeId=2,AuditFailReason="NULL",AuditTime=new DateTime(2021,7,2),ComicStatus=3},
-
+                //40
                 new Comic {ComicChineseName="我在馴服暴君後落跑了",ComicEnglishName="TheTamingOfTheTyrant"
                            ,ComicNameImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1656607049/TheTamingOfTheTyrant/5.png"
                            ,HotComicNameImage = ""
@@ -805,11 +818,6 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,ComicVideoWeb ="https://res.cloudinary.com/dmns6twmt/video/upload/v1656590753/Woman%27sBestFriend/3.webm"
                            ,HotVideo = ""
                            ,AuditType     =1,AuditEmployeeId=1,AuditFailReason="NULL",AuditTime=new DateTime(2021,7,2),ComicStatus=3},
-
-
-
-
-
 
 
                 //星期列表與作品頁
@@ -1411,7 +1419,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,ComicVideoWeb ="https://res.cloudinary.com/dmns6twmt/video/upload/v1656584694/IBecameTheVillain%27sMother/3.webm"
                            ,HotVideo = ""
                            ,AuditType     =1,AuditEmployeeId=2,AuditFailReason="NULL",AuditTime=new DateTime(2021,9,22),ComicStatus=3},
-
+                //80
                 new Comic {ComicChineseName="目標是成為長命百歲的千金大小姐",ComicEnglishName="IDreamOfHealthWealthAndALongLife"
                            ,ComicNameImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1656607743/IDreamOfHealthWealthAndALongLife/5.png"
                            ,HotComicNameImage = ""
@@ -1491,7 +1499,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,ComicVideoWeb =""
                            ,HotVideo = ""
                            ,AuditType     =1,AuditEmployeeId=2,AuditFailReason="NULL",AuditTime=new DateTime(2021,9,2),ComicStatus=1},
-
+                //85
                 new Comic {ComicChineseName="與神共進",ComicEnglishName="LevelUpWithTheGods"
                            ,ComicNameImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1656607981/LevelUpWithTheGods/5.png"
                            ,HotComicNameImage = ""
@@ -2719,7 +2727,7 @@ namespace BSWebtoon.Front.Service.ComicService
 
 
                 //強檔鉅獻 5部
-
+                //155
                 new Comic {ComicChineseName="綠蔭之冠",ComicEnglishName="TheViridescentTiara"
                            ,ComicNameImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657168578/TheViridescentTiara/5.png"
                            ,HotComicNameImage = "https://res.cloudinary.com/dmns6twmt/image/upload/v1657172141/TheViridescentTiara/6.png"
@@ -2888,40 +2896,215 @@ namespace BSWebtoon.Front.Service.ComicService
                 new ComicTagList {TagId=12,ComicId=13},
                 new ComicTagList {TagId=16,ComicId=13},
 
-                new ComicTagList {TagId=,ComicId=14},
-                new ComicTagList {TagId=,ComicId=14},
-                new ComicTagList {TagId=,ComicId=14},
-                new ComicTagList {TagId=,ComicId=14},
+                new ComicTagList {TagId=1,ComicId=14},
+                new ComicTagList {TagId=19,ComicId=14},
+                new ComicTagList {TagId=20,ComicId=14},
+                new ComicTagList {TagId=21,ComicId=14},
 
-                new ComicTagList {TagId=,ComicId=15},
-                new ComicTagList {TagId=,ComicId=15},
-                new ComicTagList {TagId=,ComicId=15},
-                new ComicTagList {TagId=,ComicId=15},
+                new ComicTagList {TagId=1,ComicId=15},
+                new ComicTagList {TagId=20,ComicId=15},
+                new ComicTagList {TagId=21,ComicId=15},
+                new ComicTagList {TagId=19,ComicId=15},
 
-                new ComicTagList {TagId=,ComicId=16},
-                new ComicTagList {TagId=,ComicId=16},
-                new ComicTagList {TagId=,ComicId=16},
-                new ComicTagList {TagId=,ComicId=16},
+                new ComicTagList {TagId=4,ComicId=16},
+                new ComicTagList {TagId=19,ComicId=16},
+                new ComicTagList {TagId=21,ComicId=16},
+                new ComicTagList {TagId=10,ComicId=16},
 
-                new ComicTagList {TagId=,ComicId=17},
-                new ComicTagList {TagId=,ComicId=17},
-                new ComicTagList {TagId=,ComicId=17},
-                new ComicTagList {TagId=,ComicId=17},
+                new ComicTagList {TagId=2,ComicId=17},
+                new ComicTagList {TagId=11,ComicId=17},
+                new ComicTagList {TagId=8,ComicId=17},
+                new ComicTagList {TagId=19,ComicId=17},
 
-                new ComicTagList {TagId=,ComicId=18},
-                new ComicTagList {TagId=,ComicId=18},
-                new ComicTagList {TagId=,ComicId=18},
-                new ComicTagList {TagId=,ComicId=18},
+                new ComicTagList {TagId=3,ComicId=18},
+                new ComicTagList {TagId=7,ComicId=18},
+                new ComicTagList {TagId=19,ComicId=18},
+                new ComicTagList {TagId=16,ComicId=18},
 
-                new ComicTagList {TagId=,ComicId=19},
-                new ComicTagList {TagId=,ComicId=19},
-                new ComicTagList {TagId=,ComicId=19},
-                new ComicTagList {TagId=,ComicId=19},
+                new ComicTagList {TagId=6,ComicId=19},
+                new ComicTagList {TagId=12,ComicId=19},
+                new ComicTagList {TagId=16,ComicId=19},
+                new ComicTagList {TagId=7,ComicId=19},
 
-                new ComicTagList {TagId=,ComicId=20},
-                new ComicTagList {TagId=,ComicId=20},
-                new ComicTagList {TagId=,ComicId=20},
-                new ComicTagList {TagId=,ComicId=20},
+                new ComicTagList {TagId=6,ComicId=20},
+                new ComicTagList {TagId=8,ComicId=20},
+                new ComicTagList {TagId=12,ComicId=20},
+                new ComicTagList {TagId=16,ComicId=20},
+
+                new ComicTagList {TagId=5,ComicId=21},
+                new ComicTagList {TagId=21,ComicId=21},
+                new ComicTagList {TagId=16,ComicId=21},
+                new ComicTagList {TagId=14,ComicId=21},
+
+                new ComicTagList {TagId=1,ComicId=22},
+                new ComicTagList {TagId=18,ComicId=22},
+                new ComicTagList {TagId=21,ComicId=22},
+                new ComicTagList {TagId=16,ComicId=22},
+
+                new ComicTagList {TagId=6,ComicId=23},
+                new ComicTagList {TagId=9,ComicId=23},
+                new ComicTagList {TagId=10,ComicId=23},
+                new ComicTagList {TagId=12,ComicId=23},
+
+                new ComicTagList {TagId=1,ComicId=24},
+                new ComicTagList {TagId=18,ComicId=24},
+                new ComicTagList {TagId=16,ComicId=24},
+                new ComicTagList {TagId=19,ComicId=24},
+
+                new ComicTagList {TagId=1,ComicId=25},
+                new ComicTagList {TagId=11,ComicId=25},
+                new ComicTagList {TagId=8,ComicId=25},
+
+
+                new ComicTagList {TagId=2,ComicId=26},
+                new ComicTagList {TagId=18,ComicId=26},
+                new ComicTagList {TagId=14,ComicId=26},
+                new ComicTagList {TagId=17,ComicId=26},
+
+                new ComicTagList {TagId=4,ComicId=27},
+                new ComicTagList {TagId=17,ComicId=27},
+                new ComicTagList {TagId=8,ComicId=27},
+                new ComicTagList {TagId=20,ComicId=27},
+
+                new ComicTagList {TagId=1,ComicId=28},
+                new ComicTagList {TagId=20,ComicId=28},
+                new ComicTagList {TagId=23,ComicId=28},
+                new ComicTagList {TagId=21,ComicId=28},
+
+                new ComicTagList {TagId=4,ComicId=29},
+                new ComicTagList {TagId=24,ComicId=29},
+                new ComicTagList {TagId=25,ComicId=29},
+                new ComicTagList {TagId=7,ComicId=29},
+
+                new ComicTagList {TagId=3,ComicId=30},
+                new ComicTagList {TagId=18,ComicId=30},
+                new ComicTagList {TagId=19,ComicId=30},
+                new ComicTagList {TagId=21,ComicId=30},
+
+                new ComicTagList {TagId=3,ComicId=31},
+                new ComicTagList {TagId=12,ComicId=31},
+                new ComicTagList {TagId=18,ComicId=31},
+                new ComicTagList {TagId=20,ComicId=31},
+
+                new ComicTagList {TagId=4,ComicId=32},
+                new ComicTagList {TagId=24,ComicId=32},
+                new ComicTagList {TagId=18,ComicId=32},
+                new ComicTagList {TagId=20,ComicId=32},
+
+                new ComicTagList {TagId=3,ComicId=33},
+                new ComicTagList {TagId=23,ComicId=33},
+                new ComicTagList {TagId=21,ComicId=33},
+                new ComicTagList {TagId=7,ComicId=33},
+
+                new ComicTagList {TagId=6,ComicId=34},
+                new ComicTagList {TagId=12,ComicId=34},
+                new ComicTagList {TagId=18,ComicId=34},
+                new ComicTagList {TagId=10,ComicId=34},
+
+                new ComicTagList {TagId=1,ComicId=35},
+                new ComicTagList {TagId=19,ComicId=35},
+                new ComicTagList {TagId=20,ComicId=35},
+                new ComicTagList {TagId=21,ComicId=35},
+
+                new ComicTagList {TagId=2,ComicId=36},
+                new ComicTagList {TagId=26,ComicId=36},
+                new ComicTagList {TagId=27,ComicId=36},
+                new ComicTagList {TagId=28,ComicId=36},
+
+                new ComicTagList {TagId=3,ComicId=37},
+                new ComicTagList {TagId=10,ComicId=37},
+                new ComicTagList {TagId=7,ComicId=37},
+                new ComicTagList {TagId=12,ComicId=37},
+
+                new ComicTagList {TagId=3,ComicId=38},
+                new ComicTagList {TagId=12,ComicId=38},
+                new ComicTagList {TagId=7,ComicId=38},
+                new ComicTagList {TagId=19,ComicId=38},
+
+                new ComicTagList {TagId=4,ComicId=39},
+                new ComicTagList {TagId=18,ComicId=39},
+                new ComicTagList {TagId=20,ComicId=39},
+                new ComicTagList {TagId=21,ComicId=39},
+
+                new ComicTagList {TagId=6,ComicId=40},
+                new ComicTagList {TagId=15,ComicId=40},
+                new ComicTagList {TagId=10,ComicId=40},
+                new ComicTagList {TagId=7,ComicId=40},
+      
+                new ComicTagList {TagId=1,ComicId=41},
+                new ComicTagList {TagId=26,ComicId=41},
+                new ComicTagList {TagId=24,ComicId=41},
+                new ComicTagList {TagId=19,ComicId=41},
+
+                new ComicTagList {TagId=4,ComicId=42},
+                new ComicTagList {TagId=8,ComicId=42},
+                new ComicTagList {TagId=16,ComicId=42},
+                new ComicTagList {TagId=26,ComicId=42},
+
+                new ComicTagList {TagId=5,ComicId=43},
+                new ComicTagList {TagId=17,ComicId=43},
+                new ComicTagList {TagId=7,ComicId=43},
+                new ComicTagList {TagId=14,ComicId=43},
+
+                new ComicTagList {TagId=2,ComicId=44},
+                new ComicTagList {TagId=11,ComicId=44},
+                new ComicTagList {TagId=25,ComicId=44},
+                new ComicTagList {TagId=26,ComicId=44},
+
+                new ComicTagList {TagId=2,ComicId=45},
+                new ComicTagList {TagId=7,ComicId=45},
+                new ComicTagList {TagId=19,ComicId=45},
+                new ComicTagList {TagId=18,ComicId=45},
+
+                new ComicTagList {TagId=4,ComicId=46},
+                new ComicTagList {TagId=28,ComicId=46},
+                new ComicTagList {TagId=20,ComicId=46},
+                new ComicTagList {TagId=16,ComicId=46},
+
+                new ComicTagList {TagId=1,ComicId=47},
+                new ComicTagList {TagId=19,ComicId=47},
+                new ComicTagList {TagId=20,ComicId=47},
+                new ComicTagList {TagId=21,ComicId=47},
+
+                new ComicTagList {TagId=1,ComicId=48},
+                new ComicTagList {TagId=27,ComicId=48},
+                new ComicTagList {TagId=28,ComicId=48},
+                new ComicTagList {TagId=20,ComicId=48},
+
+                new ComicTagList {TagId=6,ComicId=49},
+                new ComicTagList {TagId=10,ComicId=49},
+                new ComicTagList {TagId=7,ComicId=49},
+                new ComicTagList {TagId=16,ComicId=49},
+
+                new ComicTagList {TagId=4,ComicId=50},
+                new ComicTagList {TagId=11,ComicId=50},
+                new ComicTagList {TagId=8,ComicId=50},
+                new ComicTagList {TagId=19,ComicId=50},
+
+                new ComicTagList {TagId=2,ComicId=155},
+                new ComicTagList {TagId=7,ComicId=155},
+                new ComicTagList {TagId=18,ComicId=155},
+                new ComicTagList {TagId=17,ComicId=155},
+
+                new ComicTagList {TagId=4,ComicId=156},
+                new ComicTagList {TagId=21,ComicId=156},
+                new ComicTagList {TagId=20,ComicId=156},
+                new ComicTagList {TagId=19,ComicId=156},
+
+                new ComicTagList {TagId=3,ComicId=157},
+                new ComicTagList {TagId=7,ComicId=157},
+                new ComicTagList {TagId=12,ComicId=157},
+                new ComicTagList {TagId=23,ComicId=157},
+
+                new ComicTagList {TagId=4,ComicId=158},
+                new ComicTagList {TagId=7,ComicId=158},
+                new ComicTagList {TagId=12,ComicId=158},
+                new ComicTagList {TagId=19,ComicId=158},
+
+                new ComicTagList {TagId=2,ComicId=159},
+                new ComicTagList {TagId=11,ComicId=159},
+                new ComicTagList {TagId=26,ComicId=159},
+                new ComicTagList {TagId=28,ComicId=159},
 
             };
 
