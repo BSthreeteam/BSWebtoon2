@@ -1,0 +1,36 @@
+﻿@using BSWebtoon.Front.Models.DTO.Rcommend
+@model IEnumerable<HitWorkDTO>
+
+@{
+    ViewData["Title"] = "HitWork";
+}
+
+@section topCss{
+<link rel="stylesheet" href="~/style/HitWork.css" />
+}
+<ul class="nav justify-content-center nav-top">
+    <li class="nav-item">
+        @*<a class="nav-link nav_recommend" href="#">推薦</a>*@
+        @Html.ActionLink("推薦", "Recommend", "Recommend", new {},new {@class="nav-link nav_recommend"})
+    </li>
+    <li class="nav-item">
+        @*<a class="nav-link nav_hot" href="#">強檔巨獻</a>*@
+        @Html.ActionLink("強檔鉅獻", "HitWork", "Recommend", new {},new {@class="nav-link nav_hot nav-selected text-black"})
+    </li>
+</ul>
+<div class="container-fluid main-context">
+
+    @foreach (var item in Model)
+    {
+        <div class="container w-1200">
+            <div class="row hot w-1200">
+                <img src="@item.HotBgCover"
+                 alt="背景圖" class="video-bg">
+                <video src="@item.HotVideo"
+                   autoplay loop></video>
+                <img src="@item.HotComicNameImage"
+                 alt="@item.ComicChineseName" class="video-title">
+            </div>
+        </div>
+    }
+</div>

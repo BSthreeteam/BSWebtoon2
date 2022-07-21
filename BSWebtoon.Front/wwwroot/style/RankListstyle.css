@@ -1,240 +1,379 @@
-body {
+#navbar-id {
     background-color: #000;
-}
-
-.rankListNav {
+    width: 100%;
+    color: #fff;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    z-index: 5;
     position: fixed;
     top: 80px;
-    left: 0;
-    right:0;
-    background-color: #000;
-    max-width: 1200px;
-    margin: auto;
-    z-index:2;
-    justify-content:center;
 }
 
-.nav-link {
-    background-color: #000;
+.nav-pills .nav-link {
     color: #fff;
 }
 
-.nav-link:hover {
-    background-color: #fff;
-    border-radius: 50px;
-    color: #000;
-}
+    .nav-pills .nav-link.active {
+        color: #000;
+        background-color: #fff;
+    }
 
-.container {
-    margin: auto;
-    margin-top: 60px;
-}
-
-.box {
-    max-width: 1200px;
+.Rank {
+    background-color: #000;
+    position: relative;
+    top: 135px;
     width: 100%;
+}
+
+
+
+.content {
+    background-color: #000;
     margin: auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-}
-
-.number-one {
-    color: #fff;
-    width: 100%;
-    height: fit-content;
+    grid-template-rows: repeat(2, 1fr);
+    column-gap: 10px;
+    row-gap: 2px;
     position: relative;
-    grid-row: 1/2;
-    grid-column: 1/4;
     overflow: hidden;
 }
 
-.number-one:hover,
-.numbers:hover {
-    color: #fff;
+.work_big {
+    position: relative;
+    grid-column: 1/4;
+    grid-row: 1/3;
 }
 
-.number-one .rank_pic {
+.work_big_bg {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+}
+
+    .work_big_bg img {
+        width: 100%;
+    }
+
+
+.work_big_pic {
+    width: 100%;
+    text-align: end;
     position: relative;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: linear-gradient(to top, rgb(0, 0, 0) 20%, transparent 100%);
+}
+
+    .work_big_pic img {
+        padding: 10px 0px 0px 10px;
+        width: 70%;
+    }
+
+.work_big .comic_material {
+    width: 50%;
+    position: absolute;
+    z-index: 2;
+    bottom: 0;
+}
+
+.work_big_title {
+    width: 80%;
+}
+
+    .work_big_title img {
+        width: 100%;
+    }
+
+.work_big .introduction {
+    color: #fff;
+    padding: 15px;
+}
+
+
+
+.work_big_Ranking {
+    display: flex;
+    height: 20px;
+    position: absolute;
+    z-index: 2;
+    right: 5px;
+    bottom: 20px;
+    background-color: #f00;
+    border-radius: 30px;
+    padding: 0px 10px 0px 5px;
+}
+
+    .work_big_Ranking .Ranking_num {
+        bottom: 20px;
+        position: relative;
+        color: #fff;
+        margin-bottom: 0px;
+        font-size: 30px;
+        font-weight: bolder;
+    }
+
+    .work_big_Ranking i {
+        color: #fff;
+        font-weight: bolder;
+        font-size: 10px;
+        margin: auto;
+        padding-left: 20px;
+    }
+
+    .work_big_Ranking .diff {
+        color: #fff;
+        margin-bottom: 0px;
+        font-size: 15px;
+        font-weight: bolder;
+        padding-left: 10px;
+        position: relative;
+        bottom: 2px;
+        margin: auto;
+    }
+
+
+
+
+
+.work {
+    aspect-ratio: 1 / 2;
+    position: relative;
+}
+
+.work_bg {
+    aspect-ratio: 1 / 2;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    z-index: 2;
+}
+
+    .work_bg img {
+        position: absolute;
+        right: -50%;
+    }
+
+.work_pic {
+    vertical-align: middle;
+    max-width: 100%;
+    position: relative;
+    z-index: 3;
+}
+
+.work .title_img {
+    width: 100%;
+    position: absolute;
+    z-index: 4;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: linear-gradient(to top, rgb(0, 0, 0) 30%, transparent 100%);
+    margin: auto;
     text-align: center;
 }
 
-.number-one .rank_pic_bg {
+    .work .title_img img {
+        width: 100%;
+        position: relative;
+        bottom: 25px;
+    }
+
+.work_status {
     position: absolute;
-    z-index: -1;
-    width: 100%;
+    bottom: 0;
     left: 0;
     right: 0;
+    z-index: 4;
+    text-align: center;
 }
 
-    .number-one .rank_pic_people,
-    .numbers .rank_pic_people,
-    .numbers .rank_pic_title {
-        width: 100%;
-    }
-
-    .number-one .rank_pic_title {
-        width: 50%;
-    }
-
-    .number-one .rank_text {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        padding: 30px 10px 0px;
-        box-sizing: border-box;
-        background: linear-gradient(to top, #000, transparent);
-        z-index: 1;
-        font-size: 15px;
-    }
-
-    .number-one .tag {
-        position: absolute;
-        top: 0;
+    .work_status span {
+        color: #fff;
+        font-size: 5px;
         background-color: #f00;
-        padding: 0px 5px;
-        border-radius: 20px;
-        font-weight: 600;
+        padding: 0px 10px;
+        border-radius: 30px;
     }
 
-    .number-one p {
-        position: relative;
-        margin-top: 10px;
-        width: 50%;
-    }
-
-    .number-one .rank_bgdiv {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        font-size: 60px;
-        font-weight: 900;
-        background-color: #f00;
-        border-radius: 20px;
-        margin: 20px 50px;
-        height: 30px;
-    }
-
-    .number-one .rank_icon {
-        position: relative;
-        top: -150%;
-        margin-left: 70px;
-        margin-right: 10px;
-        font-size: 30px;
-    }
-
-    .number-one .rank_num {
-        position: absolute;
-        bottom: -50%;
-    }
-
-.numbers {
-    position: relative;
-    overflow: hidden;
-    color: #fff;
-    width: 100%;
-    height: fit-content;
+.work_Ranking {
+    display: flex;
+    position: absolute;
+    z-index: 3;
+    left: 10px;
+    top: 20px;
+    background-color: #f00;
+    border-radius: 30px;
+    padding: 0px 20px 0px 10px;
 }
 
-    .numbers .rank_pic_bg {
-        position: absolute;
-        z-index: -1;
+    .work_Ranking .Ranking_num {
+        color: #fff;
+        margin-bottom: 0px;
+        font-weight: bolder;
+        margin: auto;
     }
 
-    .numbers .rank_text {
-        text-align: center;
-    }
-
-    .numbers .box-title {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: linear-gradient(to top, #000, transparent);
-    }
-
-    .numbers .rank {
-        margin-left: 10px;
-    }
-
-    .numbers .rank_icon {
-        margin-left: 30px;
-        margin-right: 10px;
-        font-size: 15px;
-    }
-
-    .numbers .up_icon, .down_icon {
+    .work_Ranking i {
+        color: #fff;
+        font-weight: bolder;
         font-size: 10px;
-        color: #f00;
+        margin: auto;
+        padding-left: 30px;
     }
 
-    .numbers .down_icon {
-        color: #0af;
+    .work_Ranking .diff {
+        color: #fff;
+        margin-bottom: 0px;
+        font-weight: bolder;
+        padding-left: 5px;
+        font-size: 10px;
+        margin: auto;
     }
 
-    .numbers .rank_bgdiv {
-        position: absolute;
-        top: 0;
-        left: 0;
-        margin: 20px;
-        font-size: 20px;
-        font-weight: 900;
-        background-color: #000;
-        border-radius: 20px;
-        display: flex;
-        align-items: center;
+
+
+
+
+.black {
+    position: absolute;
+    z-index: 1;
+    bottom: 0px;
+    width: 100%;
+}
+
+    .black .row {
+        flex-wrap: nowrap;
+        margin-left: -5px;
+        margin-right: -5px;
     }
 
-    .numbers .tag {
-        display: inline-block;
-        background-color: #f00;
+    .black .comics_nont {
+        /* width: 100%; */
+        aspect-ratio: 1 / 2;
         padding: 0px 5px;
-        border-radius: 20px;
-        font-weight: 600;
-        margin: 10px 0px;
     }
 
-@media screen and (max-width:768px) {
-    .navbar {
-        position: fixed;
-        top: 80px;
-        left: 0;
-        background-color: #000;
-        max-width: 768px;
-        margin: auto;
-    }
+        /*  .black .comics_nont:first-child {
+    padding-left: 0;
+}
 
-    .box {
-        width: 100%;
-        margin: auto;
-        display: grid;
+.black .comics_nont:last-child {
+    padding-right: 0;
+} */
+
+        .black .comics_nont .img-box {
+            height: 100%;
+            background-color: #ccc;
+        }
+
+        .black .comics_nont img {
+            position: relative;
+            z-index: -1;
+        }
+
+@media screen and (min-width:768px) {
+    .content {
         grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, 1fr);
     }
 
-    .number-one {
-        position: relative;
-        grid-row: 1/2;
+    .work_big_pic img {
+        padding: 30px 0px 0px 30px;
+    }
+
+    .work_big {
         grid-column: 1/5;
     }
 
-        .number-one .rank_pic_people {
-            width: fit-content;
+    .work_big_Ranking .diff {
+        color: #fff;
+        margin-bottom: 0px;
+        font-size: 15px;
+        font-weight: bolder;
+        padding-left: 10px;
+        position: relative;
+        bottom: 2px;
+        margin: auto;
+    }
+}
+
+
+@media screen and (min-width:992px) {
+    .content {
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    }
+
+    .col-lg-2_5 {
+        flex: 0 0 auto;
+        width: 20%;
+    }
+
+    .work_big {
+        grid-column: 1/6;
+    }
+
+    .work_big_Ranking .diff {
+        color: #fff;
+        margin-bottom: 0px;
+        font-size: 15px;
+        font-weight: bolder;
+        padding-left: 10px;
+        position: relative;
+        bottom: 1px;
+        margin: auto;
+    }
+}
+
+@media screen and (min-width:1200px) {
+    .Rank_content {
+        width: 1200px;
+    }
+
+    .work_big_Ranking {
+        height: 40px;
+        padding: 0px 20px 0px 10px;
+    }
+
+        .work_big_Ranking .Ranking_num {
+            bottom: 30px;
+            position: relative;
+            color: #fff;
+            margin-bottom: 0px;
+            font-size: 50px;
+            font-weight: bolder;
         }
 
-        .number-one .rank_pic_title {
-            width: fit-content;
-        }
-
-        .number-one p {
+        .work_big_Ranking i {
+            color: #fff;
+            font-weight: bolder;
             font-size: 20px;
+            margin: auto;
+            padding-left: 60px;
+            padding-right: 3px;
         }
 
-        .number-one .tag {
-            top: -5%;
+        .work_big_Ranking .diff {
+            color: #fff;
+            margin-bottom: 0px;
+            font-size: 20px;
+            font-weight: bolder;
+            padding-left: 10px;
+            position: relative;
+            bottom: 4px;
+            margin: auto;
         }
 
-        .number-one .rank_text {
-            padding: 10px 20px;
-        }
+
+    .black .comics_nont {
+        /* aspect-ratio: 1 / 2.1;
+                padding: 18px 8px 0px 8px; */
+        aspect-ratio: 1 / 2;
+    }
 }

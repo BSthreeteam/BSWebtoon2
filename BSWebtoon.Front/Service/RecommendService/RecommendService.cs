@@ -1,11 +1,13 @@
 ﻿//using BSWebtoon.Model.ViewModels;
 using BSWebtoon.Model.Models;
 using BSWebtoon.Model.Repository;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BSWebtoon.Front.Service.RecommendService;
+using BSWebtoon.Front.Models.DTO.Rcommend;
 
 namespace BSWebtoon.Front.Service.RecommendService
 {
@@ -22,28 +24,28 @@ namespace BSWebtoon.Front.Service.RecommendService
         public void ActivityCreate()
         {
             var activityList = new List<Activity> {
-                new Activity { /*ActivityId=1, */ActivityName = "端午佳節",ActivityStartTime=new DateTime(2022,06,03),ActivityEndTime=new DateTime(2022,09,20),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047931/ActivityIMG/AT02.png",ActivityBgColor="#517664",ActivityContent="<h2>禮輕情意粽</h2><br><p>端午節放假!<br>看本漫畫放鬆自己吧!</p>",PrincipalEmployee=19,CreateTime=new DateTime(2022,05,22),IsDelete = true},
-                new Activity { /*ActivityId=2, */ActivityName = "BuildSchoolDEMO",ActivityStartTime=new DateTime(2022,06,05),ActivityEndTime=new DateTime(2022,09,30),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047961/ActivityIMG/AT03.png",ActivityBgColor="#CF9B68",ActivityContent="<h2>DEMO Day</h2><br><p>祝大家有個美好的未來!</p>",PrincipalEmployee=2,CreateTime=new DateTime(2022,05,28),IsDelete = true},
-                new Activity { /*ActivityId=3, */ActivityName = "中秋節",ActivityStartTime=new DateTime(2022,06,01),ActivityEndTime=new DateTime(2022,09,25),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047891/ActivityIMG/AT01.png",ActivityBgColor="#CF9B68",ActivityContent="<h2>過中秋</h2><br><p>各位有吃到~~~好吃的麻糬嗎?</p>",PrincipalEmployee=16,CreateTime=new DateTime(2022,05,26),IsDelete = true},
+                new Activity { ActivityName = "端午佳節",ActivityStartTime=new DateTime(2022,06,03),ActivityEndTime=new DateTime(2022,09,20),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047931/ActivityIMG/AT02.png",ActivityBgColor="#517664",ActivityContent="<h2>禮輕情意粽</h2><br><p>端午節放假!<br>看本漫畫放鬆自己吧!</p>",PrincipalEmployee=19,CreateTime=new DateTime(2022,05,22),IsDelete = false},
+                new Activity { ActivityName = "BuildSchoolDEMO",ActivityStartTime=new DateTime(2022,06,05),ActivityEndTime=new DateTime(2022,09,30),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047961/ActivityIMG/AT03.png",ActivityBgColor="#CF9B68",ActivityContent="<h2>DEMO Day</h2><br><p>祝大家有個美好的未來!</p>",PrincipalEmployee=2,CreateTime=new DateTime(2022,05,28),IsDelete = false},
+                new Activity { ActivityName = "中秋節",ActivityStartTime=new DateTime(2022,06,01),ActivityEndTime=new DateTime(2022,09,25),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047891/ActivityIMG/AT01.png",ActivityBgColor="#CF9B68",ActivityContent="<h2>過中秋</h2><br><p>各位有吃到~~~好吃的麻糬嗎?</p>",PrincipalEmployee=16,CreateTime=new DateTime(2022,05,26),IsDelete = false},
 
 
-                new Activity { /*ActivityId=4, */ActivityName = "元旦",ActivityStartTime=new DateTime(2021,12,28),ActivityEndTime=new DateTime(2022,01,05),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047891/ActivityIMG/AT01.png",ActivityBgColor="#517664",ActivityContent="<h2>元旦囉!</h2><br><p>大家有去跨年嗎?</p>",PrincipalEmployee=1,CreateTime=new DateTime(2021,12,15),IsDelete = false},
-                new Activity { /*ActivityId=5, */ActivityName = "春節連假",ActivityStartTime=new DateTime(2022,01,29),ActivityEndTime=new DateTime(2022,02,06),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047931/ActivityIMG/AT02.png",ActivityBgColor="#517664",ActivityContent="<h2>大吉大利過新年，事業成功輝煌年！</h2><br><p>過新年~<br>放鬆一下吧!</p>",PrincipalEmployee=1,CreateTime=new DateTime(2022,01,15),IsDelete = false},
-                new Activity { /*ActivityId=6, */ActivityName = "除夕",ActivityStartTime=new DateTime(2022,01,27),ActivityEndTime=new DateTime(2022,02,05),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047961/ActivityIMG/AT03.png",ActivityBgColor="#CF9B68",ActivityContent="<h2>除夕夜</h2><br><p>農曆過年來休閒看漫畫吧!</p>",PrincipalEmployee=2,CreateTime=new DateTime(2022,01,15),IsDelete = false},
-                new Activity { /*ActivityId=7, */ActivityName = "西洋情人節",ActivityStartTime=new DateTime(2022,02,08),ActivityEndTime=new DateTime(2022,02,24),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047891/ActivityIMG/AT01.png",ActivityBgColor="#517664",ActivityContent="<h2>情人節</h2><br><p>花無言，愛有語，浪漫七夕大酬賓!</p>",PrincipalEmployee=3,CreateTime=new DateTime(2022,02,02),IsDelete = false},
-                new Activity { /*ActivityId=8, */ActivityName = "元宵節",ActivityStartTime=new DateTime(2022,02,11),ActivityEndTime=new DateTime(2022,02,18),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047931/ActivityIMG/AT02.png",ActivityBgColor="#517664",ActivityContent="<h2>過元宵</h2><br><p>提著燈籠賞燈趣!</p>",PrincipalEmployee=5,CreateTime=new DateTime(2022,02,08),IsDelete = false},
-                new Activity { /*ActivityId=9, */ActivityName = "愚人節",ActivityStartTime=new DateTime(2022,03,28),ActivityEndTime=new DateTime(2022,04,8),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047961/ActivityIMG/AT03.png",ActivityBgColor="#517664",ActivityContent="<h2>愚人節</h2><br><p>今天被騙不能生氣喔!</p>",PrincipalEmployee=2,CreateTime=new DateTime(2022,03,20),IsDelete = false},
-                new Activity { /*ActivityId=10,*/ActivityName = "兒童節",ActivityStartTime=new DateTime(2022,04,01),ActivityEndTime=new DateTime(2022,04,07),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047891/ActivityIMG/AT01.png",ActivityBgColor="#CF9B68",ActivityContent="<h2>兒童&清明節</h2><br><p>大家在活動時要注意安全喔!</p>",PrincipalEmployee=15,CreateTime=new DateTime(2022,03,20),IsDelete = false},
-                new Activity { /*ActivityId=11,*/ActivityName = "勞動節",ActivityStartTime=new DateTime(2022,04,26),ActivityEndTime=new DateTime(2022,05,03),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047931/ActivityIMG/AT02.png",ActivityBgColor="#CF9B68",ActivityContent="<h2>勞動節</h2><br><p>辛苦了!給自己放個假吧!</p>",PrincipalEmployee=7,CreateTime=new DateTime(2022,04,22),IsDelete = false},
-                new Activity { /*ActivityId=12,*/ActivityName = "母親節",ActivityStartTime=new DateTime(2022,05,05),ActivityEndTime=new DateTime(2022,05,12),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047961/ActivityIMG/AT03.png",ActivityBgColor="#CF9B68",ActivityContent="<h2>母親節</h2><br><p>感謝全天下的母親吧~~~</p>",PrincipalEmployee=10,CreateTime=new DateTime(2022,05,02),IsDelete = false},
-                new Activity { /*ActivityId=13,*/ActivityName = "中元節",ActivityStartTime=new DateTime(2022,08,06),ActivityEndTime=new DateTime(2022,08,16),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047891/ActivityIMG/AT01.png",ActivityBgColor="#CF9B68",ActivityContent="<h2>中元!中元!</h2><br><p>普渡拜拜用乖乖，大家才會「乖」!</p>",PrincipalEmployee=14,CreateTime=new DateTime(2022,08,03),IsDelete = false},
-                new Activity { /*ActivityId=14,*/ActivityName = "父親節",ActivityStartTime=new DateTime(2022,08,02),ActivityEndTime=new DateTime(2022,08,16),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047931/ActivityIMG/AT02.png",ActivityBgColor="#CF9B68",ActivityContent="<h2>給親愛的父親的話~</h2><br><p>你用慈愛，醞釀家的甜蜜!感謝您~~</p>",PrincipalEmployee=2,CreateTime=new DateTime(2022,07,28),IsDelete = false},
-                new Activity { /*ActivityId=15,*/ActivityName = "教師節",ActivityStartTime=new DateTime(2022,09,24),ActivityEndTime=new DateTime(2022,09,30),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047891/ActivityIMG/AT01.png",ActivityBgColor="#CF9B68",ActivityContent="<h2>教師們~</h2><br><p>勤勤懇懇育桃李，兢兢業業做園丁!</p>",PrincipalEmployee=11,CreateTime=new DateTime(2022,09,13),IsDelete = false},
-                new Activity { /*ActivityId=16,*/ActivityName = "重陽節",ActivityStartTime=new DateTime(2022,10,01),ActivityEndTime=new DateTime(2022,10,12),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047931/ActivityIMG/AT02.png",ActivityBgColor="#CF9B68",ActivityContent="<h2>重陽節</h2><br><p>待到重陽日，還來就菊花</p>",PrincipalEmployee=8,CreateTime=new DateTime(2022,09,27),IsDelete = false},
-                new Activity { /*ActivityId=17,*/ActivityName = "雙十國慶日",ActivityStartTime=new DateTime(2022,10,05),ActivityEndTime=new DateTime(2022,10,12),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047961/ActivityIMG/AT03.png",ActivityBgColor="#CF9B68",ActivityContent="<h2>國慶!國慶!</h2><br><p>建國紀念看漫畫!</p>",PrincipalEmployee=4,CreateTime=new DateTime(2022,10,01),IsDelete = false},
-                new Activity { /*ActivityId=18,*/ActivityName = "光復節",ActivityStartTime=new DateTime(2022,10,20),ActivityEndTime=new DateTime(2022,10,30),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047891/ActivityIMG/AT01.png",ActivityBgColor="#CF9B68",ActivityContent="<h2>光復節</h2><br><p>沒有放假真可惜!</p>",PrincipalEmployee=6,CreateTime=new DateTime(2022,10,11),IsDelete = false},
-                new Activity { /*ActivityId=19,*/ActivityName = "萬聖節",ActivityStartTime=new DateTime(2022,10,26),ActivityEndTime=new DateTime(2022,11,06),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047931/ActivityIMG/AT02.png",ActivityBgColor="#CF9B68",ActivityContent="<h2>萬聖節</h2><br><p>萬聖節魔幻禮品，漫畫任你看~等待大膽的你!</p>",PrincipalEmployee=17,CreateTime=new DateTime(2022,10,22),IsDelete = false},
-                new Activity { /*ActivityId=20,*/ActivityName = "聖誕節",ActivityStartTime=new DateTime(2022,12,20),ActivityEndTime=new DateTime(2022,12,31),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047961/ActivityIMG/AT03.png",ActivityBgColor="#CF9B68",ActivityContent="<h2>聖誕節</h2><br><p>華麗聖誕狂響曲~喜迎新春獻賀禮</p>",PrincipalEmployee=16,CreateTime=new DateTime(2022,12,15),IsDelete = false},
+                new Activity { ActivityName = "元旦",ActivityStartTime=new DateTime(2021,12,28),ActivityEndTime=new DateTime(2022,01,05),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047891/ActivityIMG/AT01.png",ActivityBgColor="#517664",ActivityContent="<h2>元旦囉!</h2><br><p>大家有去跨年嗎?</p>",PrincipalEmployee=1,CreateTime=new DateTime(2021,12,15),IsDelete = true},
+                new Activity { ActivityName = "春節連假",ActivityStartTime=new DateTime(2022,01,29),ActivityEndTime=new DateTime(2022,02,06),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047931/ActivityIMG/AT02.png",ActivityBgColor="#517664",ActivityContent="<h2>大吉大利過新年，事業成功輝煌年！</h2><br><p>過新年~<br>放鬆一下吧!</p>",PrincipalEmployee=1,CreateTime=new DateTime(2022,01,15),IsDelete = true},
+                new Activity { ActivityName = "除夕",ActivityStartTime=new DateTime(2022,01,27),ActivityEndTime=new DateTime(2022,02,05),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047961/ActivityIMG/AT03.png",ActivityBgColor="#CF9B68",ActivityContent="<h2>除夕夜</h2><br><p>農曆過年來休閒看漫畫吧!</p>",PrincipalEmployee=2,CreateTime=new DateTime(2022,01,15),IsDelete = true},
+                new Activity { ActivityName = "西洋情人節",ActivityStartTime=new DateTime(2022,02,08),ActivityEndTime=new DateTime(2022,02,24),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047891/ActivityIMG/AT01.png",ActivityBgColor="#517664",ActivityContent="<h2>情人節</h2><br><p>花無言，愛有語，浪漫七夕大酬賓!</p>",PrincipalEmployee=3,CreateTime=new DateTime(2022,02,02),IsDelete = true},
+                new Activity { ActivityName = "元宵節",ActivityStartTime=new DateTime(2022,02,11),ActivityEndTime=new DateTime(2022,02,18),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047931/ActivityIMG/AT02.png",ActivityBgColor="#517664",ActivityContent="<h2>過元宵</h2><br><p>提著燈籠賞燈趣!</p>",PrincipalEmployee=5,CreateTime=new DateTime(2022,02,08),IsDelete = true},
+                new Activity { ActivityName = "愚人節",ActivityStartTime=new DateTime(2022,03,28),ActivityEndTime=new DateTime(2022,04,8),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047961/ActivityIMG/AT03.png",ActivityBgColor="#517664",ActivityContent="<h2>愚人節</h2><br><p>今天被騙不能生氣喔!</p>",PrincipalEmployee=2,CreateTime=new DateTime(2022,03,20),IsDelete = true},
+                new Activity { ActivityName = "兒童節",ActivityStartTime=new DateTime(2022,04,01),ActivityEndTime=new DateTime(2022,04,07),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047891/ActivityIMG/AT01.png",ActivityBgColor="#CF9B68",ActivityContent="<h2>兒童&清明節</h2><br><p>大家在活動時要注意安全喔!</p>",PrincipalEmployee=15,CreateTime=new DateTime(2022,03,20),IsDelete = true},
+                new Activity { ActivityName = "勞動節",ActivityStartTime=new DateTime(2022,04,26),ActivityEndTime=new DateTime(2022,05,03),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047931/ActivityIMG/AT02.png",ActivityBgColor="#CF9B68",ActivityContent="<h2>勞動節</h2><br><p>辛苦了!給自己放個假吧!</p>",PrincipalEmployee=7,CreateTime=new DateTime(2022,04,22),IsDelete = true},
+                new Activity { ActivityName = "母親節",ActivityStartTime=new DateTime(2022,05,05),ActivityEndTime=new DateTime(2022,05,12),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047961/ActivityIMG/AT03.png",ActivityBgColor="#CF9B68",ActivityContent="<h2>母親節</h2><br><p>感謝全天下的母親吧~~~</p>",PrincipalEmployee=10,CreateTime=new DateTime(2022,05,02),IsDelete = true},
+                new Activity { ActivityName = "中元節",ActivityStartTime=new DateTime(2022,08,06),ActivityEndTime=new DateTime(2022,08,16),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047891/ActivityIMG/AT01.png",ActivityBgColor="#CF9B68",ActivityContent="<h2>中元!中元!</h2><br><p>普渡拜拜用乖乖，大家才會「乖」!</p>",PrincipalEmployee=14,CreateTime=new DateTime(2022,08,03),IsDelete = true},
+                new Activity { ActivityName = "父親節",ActivityStartTime=new DateTime(2022,08,02),ActivityEndTime=new DateTime(2022,08,16),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047931/ActivityIMG/AT02.png",ActivityBgColor="#CF9B68",ActivityContent="<h2>給親愛的父親的話~</h2><br><p>你用慈愛，醞釀家的甜蜜!感謝您~~</p>",PrincipalEmployee=2,CreateTime=new DateTime(2022,07,28),IsDelete = true},
+                new Activity { ActivityName = "教師節",ActivityStartTime=new DateTime(2022,09,24),ActivityEndTime=new DateTime(2022,09,30),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047891/ActivityIMG/AT01.png",ActivityBgColor="#CF9B68",ActivityContent="<h2>教師們~</h2><br><p>勤勤懇懇育桃李，兢兢業業做園丁!</p>",PrincipalEmployee=11,CreateTime=new DateTime(2022,09,13),IsDelete = true},
+                new Activity { ActivityName = "重陽節",ActivityStartTime=new DateTime(2022,10,01),ActivityEndTime=new DateTime(2022,10,12),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047931/ActivityIMG/AT02.png",ActivityBgColor="#CF9B68",ActivityContent="<h2>重陽節</h2><br><p>待到重陽日，還來就菊花</p>",PrincipalEmployee=8,CreateTime=new DateTime(2022,09,27),IsDelete = true},
+                new Activity { ActivityName = "雙十國慶日",ActivityStartTime=new DateTime(2022,10,05),ActivityEndTime=new DateTime(2022,10,12),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047961/ActivityIMG/AT03.png",ActivityBgColor="#CF9B68",ActivityContent="<h2>國慶!國慶!</h2><br><p>建國紀念看漫畫!</p>",PrincipalEmployee=4,CreateTime=new DateTime(2022,10,01),IsDelete = true},
+                new Activity { ActivityName = "光復節",ActivityStartTime=new DateTime(2022,10,20),ActivityEndTime=new DateTime(2022,10,30),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047891/ActivityIMG/AT01.png",ActivityBgColor="#CF9B68",ActivityContent="<h2>光復節</h2><br><p>沒有放假真可惜!</p>",PrincipalEmployee=6,CreateTime=new DateTime(2022,10,11),IsDelete = true},
+                new Activity { ActivityName = "萬聖節",ActivityStartTime=new DateTime(2022,10,26),ActivityEndTime=new DateTime(2022,11,06),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047931/ActivityIMG/AT02.png",ActivityBgColor="#CF9B68",ActivityContent="<h2>萬聖節</h2><br><p>萬聖節魔幻禮品，漫畫任你看~等待大膽的你!</p>",PrincipalEmployee=17,CreateTime=new DateTime(2022,10,22),IsDelete = true},
+                new Activity { ActivityName = "聖誕節",ActivityStartTime=new DateTime(2022,12,20),ActivityEndTime=new DateTime(2022,12,31),ActivityImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047961/ActivityIMG/AT03.png",ActivityBgColor="#CF9B68",ActivityContent="<h2>聖誕節</h2><br><p>華麗聖誕狂響曲~喜迎新春獻賀禮</p>",PrincipalEmployee=16,CreateTime=new DateTime(2022,12,15),IsDelete = true},
             };
             //var data = new Activity() { ActivityName = "BuildSchoolDEMO", ActivityStartTime = new DateTime(2022, 08, 01), ActivityEndTime = new DateTime(2022, 08, 15), ActivityImage = "jpg", ActivityBgColor = "#CF9B68", ActivityContent = "<h2>DEMO Day</h2><br><p>祝大家有個美好的未來!</p>", PrincipalEmployee = 2, CreateTime = new DateTime(2022, 08, 01), IsDelete = false };
             foreach (Activity activity in activityList)
@@ -74,10 +76,6 @@ namespace BSWebtoon.Front.Service.RecommendService
         //        yield return data;
         //    }
         //}
-
-
-
-
 
 
         public void ViewRecordCreate()
@@ -116,26 +114,26 @@ namespace BSWebtoon.Front.Service.RecommendService
         {
             var commentList = new List<Comment>()
             {
-                new Comment(){/*CommentId=1,*/MemberId=1,EpId=1,ReplyToCommentId=null,IsSpoiler=false,CreateTime=new DateTime(2022,01,15,13,45,07),Context="超好看!!!老師太厲害了!",IsDelete=false},
-                new Comment(){/*CommentId=2,*/MemberId=2,EpId=2,ReplyToCommentId=2,IsSpoiler=true,CreateTime=new DateTime(2022,02,15,18,30,16),Context="女主角超心機  不過我喜歡<br>哈哈哈",IsDelete=false},
-                new Comment(){/*CommentId=3,*/MemberId=5,EpId=6,ReplyToCommentId=null,IsSpoiler=false,CreateTime=new DateTime(2022,03,01,18,59,56),Context="這部男女主角是寫得很慘沒錯，但女主的行動邏輯真的很難達成共鳴，甚至我覺得有些雙標（小聲大部分都是靠嘴遁帶過，有點莫名奇妙就變團寵",IsDelete=false},
-                new Comment(){/*CommentId=4,*/MemberId=19,EpId=5,ReplyToCommentId=null,IsSpoiler=true,CreateTime=new DateTime(2022,03,04,20,12,05),Context="公爵人渣欸 出軌還囚禁正妻把自己女兒丟去育幼院 好扯的開局",IsDelete=true},
-                new Comment(){/*CommentId=5,*/MemberId=12,EpId=6,ReplyToCommentId=3,IsSpoiler=false,CreateTime=new DateTime(2022,02,24,22,54,15),Context="超好看!!!老師太厲害了!",IsDelete=false},
-                new Comment(){/*CommentId=6,*/MemberId=20,EpId=4,ReplyToCommentId=null,IsSpoiler=false,CreateTime=new DateTime(2022,01,31,23,32,56),Context="好過分喔，這什麼小説(´；ω；｀) ，憑甚麼渣爸就能擁有美滿結局?",IsDelete=false},
-                new Comment(){/*CommentId=7,*/MemberId=2,EpId=4,ReplyToCommentId=1,IsSpoiler=false,CreateTime=new DateTime(2022,04,01,13,47,23),Context="梅麗莎大人可以娶我嗎",IsDelete=false},
-                new Comment(){/*CommentId=8,*/MemberId=7,EpId=5,ReplyToCommentId=null,IsSpoiler=false,CreateTime=new DateTime(2022,02,08,10,22,54),Context="原著的故事如果從尤斯托的視角來看應該更悲傷吧⋯一心一意追隨的女皇因為一些原因墮落成這個樣子，而自己為了帝國只能親手殺了她😢那個落寞的眼神，分明就是喜歡尤莉婭的",IsDelete=false},
-                new Comment(){/*CommentId=9,*/MemberId=6,EpId=6,ReplyToCommentId=null,IsSpoiler=false,CreateTime=new DateTime(2022,04,13,01,56,23),Context="最近的穿越方式越來越簡單了啊，喝酒就可以了🤣",IsDelete=false},
-                new Comment(){/*CommentId=10,*/MemberId=18,EpId=8,ReplyToCommentId=15,IsSpoiler=false,CreateTime=new DateTime(2022,03,29,21,45,59),Context="卡車司機終於要失業了嗎",IsDelete=false},
-                new Comment(){/*CommentId=11,*/MemberId=10,EpId=1,ReplyToCommentId=null,IsSpoiler=false,CreateTime=new DateTime(2022,01,16,16,21,50),Context="話說這部前面會讓我想到隔壁 絕色公主，穿越前的角色都玩很“大”呢",IsDelete=false},
-                new Comment(){/*CommentId=12,*/MemberId=15,EpId=1,ReplyToCommentId=16,IsSpoiler=false,CreateTime=new DateTime(2022,02,10,17,10,01),Context="封面好帥(´ ▽｀).。ｏ♡",IsDelete=false},
-                new Comment(){/*CommentId=13,*/MemberId=12,EpId=1,ReplyToCommentId=15,IsSpoiler=false,CreateTime=new DateTime(2022,02,01,07,23,00),Context="大家到底怎麼憑小說描述就可以知道主角長怎樣的",IsDelete=false},
-                new Comment(){/*CommentId=14,*/MemberId=5,EpId=2,ReplyToCommentId=null,IsSpoiler=true,CreateTime=new DateTime(2022,02,22,02,01,03),Context="「如染上鮮血般嫣紅的雙唇」不是，妳一看就不符合啊！",IsDelete=false},
-                new Comment(){/*CommentId=15,*/MemberId=7,EpId=4,ReplyToCommentId=null,IsSpoiler=false,CreateTime=new DateTime(2022,03,03,15,15,14),Context="主角“塔瑪”超可愛!!",IsDelete=false},
-                new Comment(){/*CommentId=16,*/MemberId=8,EpId=5,ReplyToCommentId=20,IsSpoiler=false,CreateTime=new DateTime(2022,03,31,16,29,26),Context="黑髮紅眼就是香！",IsDelete=false},
-                new Comment(){/*CommentId=17,*/MemberId=13,EpId=6,ReplyToCommentId=null,IsSpoiler=false,CreateTime=new DateTime(2022,02,27,20,44,43),Context="要看之前可以先Google搜尋一下「我是這家的孩子」，Dcard那邊有討論原版劇情。總之就是原版小說後面的發展很雷！漫畫不知是否會改動，要花金幣之前最好慎思……",IsDelete=true},
-                new Comment(){/*CommentId=18,*/MemberId=6,EpId=8,ReplyToCommentId=null,IsSpoiler=false,CreateTime=new DateTime(2022,01,25,18,36,21),Context="女主好乖，乖巧地說自己叫粉紅瞳孔好可愛❤️",IsDelete=false},
-                new Comment(){/*CommentId=19,*/MemberId=14,EpId=2,ReplyToCommentId=null,IsSpoiler=false,CreateTime=new DateTime(2022,01,29,10,53,50),Context="翻譯太妙了wwww",IsDelete=false},
-                new Comment(){/*CommentId=20,*/MemberId=20,EpId=8,ReplyToCommentId=null,IsSpoiler=false,CreateTime=new DateTime(2022,01,11,18,06,24),Context="希望劇情不要跟小說一樣雷",IsDelete=false},
+                new Comment(){MemberId=1,EpId=1,ReplyToCommentId=null,IsSpoiler=false,CreateTime=new DateTime(2022,01,15,13,45,07),Context="超好看!!!老師太厲害了!",IsDelete=false},
+                new Comment(){MemberId=2,EpId=2,ReplyToCommentId=null,IsSpoiler=true,CreateTime=new DateTime(2022,02,15,18,30,16),Context="女主角超心機  不過我喜歡<br>哈哈哈",IsDelete=false},
+                new Comment(){MemberId=5,EpId=6,ReplyToCommentId=null,IsSpoiler=false,CreateTime=new DateTime(2022,03,01,18,59,56),Context="這部男女主角是寫得很慘沒錯，但女主的行動邏輯真的很難達成共鳴，甚至我覺得有些雙標（小聲大部分都是靠嘴遁帶過，有點莫名奇妙就變團寵",IsDelete=false},
+                new Comment(){MemberId=19,EpId=5,ReplyToCommentId=null,IsSpoiler=true,CreateTime=new DateTime(2022,03,04,20,12,05),Context="公爵人渣欸 出軌還囚禁正妻把自己女兒丟去育幼院 好扯的開局",IsDelete=true},
+                new Comment(){MemberId=12,EpId=6,ReplyToCommentId=3,IsSpoiler=false,CreateTime=new DateTime(2022,02,24,22,54,15),Context="超好看!!!老師太厲害了!",IsDelete=false},
+                new Comment(){MemberId=20,EpId=4,ReplyToCommentId=null,IsSpoiler=false,CreateTime=new DateTime(2022,01,31,23,32,56),Context="好過分喔，這什麼小説(´；ω；｀) ，憑甚麼渣爸就能擁有美滿結局?",IsDelete=false},
+                new Comment(){MemberId=2,EpId=1,ReplyToCommentId=1,IsSpoiler=false,CreateTime=new DateTime(2022,04,01,13,47,23),Context="梅麗莎大人可以娶我嗎",IsDelete=false},
+                new Comment(){MemberId=7,EpId=5,ReplyToCommentId=null,IsSpoiler=false,CreateTime=new DateTime(2022,02,08,10,22,54),Context="原著的故事如果從尤斯托的視角來看應該更悲傷吧⋯一心一意追隨的女皇因為一些原因墮落成這個樣子，而自己為了帝國只能親手殺了她😢那個落寞的眼神，分明就是喜歡尤莉婭的",IsDelete=false},
+                new Comment(){MemberId=6,EpId=6,ReplyToCommentId=null,IsSpoiler=false,CreateTime=new DateTime(2022,04,13,01,56,23),Context="最近的穿越方式越來越簡單了啊，喝酒就可以了🤣",IsDelete=false},
+                new Comment(){MemberId=18,EpId=4,ReplyToCommentId=6,IsSpoiler=false,CreateTime=new DateTime(2022,03,29,21,45,59),Context="卡車司機終於要失業了嗎",IsDelete=false},
+                new Comment(){MemberId=10,EpId=1,ReplyToCommentId=null,IsSpoiler=false,CreateTime=new DateTime(2022,01,16,16,21,50),Context="話說這部前面會讓我想到隔壁 絕色公主，穿越前的角色都玩很“大”呢",IsDelete=false},
+                new Comment(){MemberId=15,EpId=5,ReplyToCommentId=4,IsSpoiler=false,CreateTime=new DateTime(2022,02,10,17,10,01),Context="封面好帥(´ ▽｀).。ｏ♡",IsDelete=false},
+                new Comment(){MemberId=12,EpId=5,ReplyToCommentId=12,IsSpoiler=false,CreateTime=new DateTime(2022,02,01,07,23,00),Context="大家到底怎麼憑小說描述就可以知道主角長怎樣的",IsDelete=false},
+                new Comment(){MemberId=5,EpId=2,ReplyToCommentId=null,IsSpoiler=true,CreateTime=new DateTime(2022,02,22,02,01,03),Context="「如染上鮮血般嫣紅的雙唇」不是，妳一看就不符合啊！",IsDelete=false},
+                new Comment(){MemberId=7,EpId=4,ReplyToCommentId=null,IsSpoiler=false,CreateTime=new DateTime(2022,03,03,15,15,14),Context="主角“塔瑪”超可愛!!",IsDelete=false},
+                new Comment(){MemberId=8,EpId=5,ReplyToCommentId=8,IsSpoiler=false,CreateTime=new DateTime(2022,03,31,16,29,26),Context="黑髮紅眼就是香！",IsDelete=false},
+                new Comment(){MemberId=13,EpId=6,ReplyToCommentId=null,IsSpoiler=false,CreateTime=new DateTime(2022,02,27,20,44,43),Context="要看之前可以先Google搜尋一下「我是這家的孩子」，Dcard那邊有討論原版劇情。總之就是原版小說後面的發展很雷！漫畫不知是否會改動，要花金幣之前最好慎思……",IsDelete=true},
+                new Comment(){MemberId=6,EpId=8,ReplyToCommentId=null,IsSpoiler=false,CreateTime=new DateTime(2022,01,25,18,36,21),Context="女主好乖，乖巧地說自己叫粉紅瞳孔好可愛❤️",IsDelete=false},
+                new Comment(){MemberId=14,EpId=2,ReplyToCommentId=null,IsSpoiler=false,CreateTime=new DateTime(2022,01,29,10,53,50),Context="翻譯太妙了wwww",IsDelete=false},
+                new Comment(){MemberId=20,EpId=8,ReplyToCommentId=null,IsSpoiler=false,CreateTime=new DateTime(2022,01,11,18,06,24),Context="希望劇情不要跟小說一樣雷",IsDelete=false},
             };
             foreach (Comment comment in commentList)
             {
@@ -148,26 +146,26 @@ namespace BSWebtoon.Front.Service.RecommendService
         {
             var likeList = new List<CommentLikeRecord>
             {
-                new CommentLikeRecord(){ /*CommentLikesId=1,*/MemberId=1, CommentId=1, CreateTime=new DateTime(2022,05,01,05,47,02), IsLike = true},
-                new CommentLikeRecord(){ /*CommentLikesId=2,*/MemberId=5, CommentId=2, CreateTime=new DateTime(2022,05,04,18,35,00), IsLike = true},
-                new CommentLikeRecord(){ /*CommentLikesId=3,*/MemberId=6, CommentId=11, CreateTime=new DateTime(2022,08,01,13,47,15), IsLike = true},
-                new CommentLikeRecord(){ /*CommentLikesId=4,*/MemberId=5, CommentId=20, CreateTime=new DateTime(2022,06,04,19,15,51), IsLike = true},
-                new CommentLikeRecord(){ /*CommentLikesId=5,*/MemberId=15, CommentId=15, CreateTime=new DateTime(2022,07,01,20,52,22), IsLike = false},
-                new CommentLikeRecord(){ /*CommentLikesId=6,*/MemberId=3, CommentId=15, CreateTime=new DateTime(2022,05,04,12,06,55), IsLike = false},
-                new CommentLikeRecord(){ /*CommentLikesId=7,*/MemberId=18, CommentId=12, CreateTime=new DateTime(2022,06,01,11,04,04), IsLike = true},
-                new CommentLikeRecord(){ /*CommentLikesId=8,*/MemberId=2, CommentId=14, CreateTime=new DateTime(2022,06,04,10,39,16), IsLike = true},
-                new CommentLikeRecord(){ /*CommentLikesId=9,*/MemberId=4, CommentId=16, CreateTime=new DateTime(2022,07,01,20,26,45), IsLike = true},
-                new CommentLikeRecord(){ /*CommentLikesId=10,*/MemberId=8, CommentId=5, CreateTime=new DateTime(2022,08,04,15,31,28), IsLike = true},
-                new CommentLikeRecord(){ /*CommentLikesId=11,*/MemberId=4, CommentId=10, CreateTime=new DateTime(2022,08,01,17,59,58), IsLike = true},
-                new CommentLikeRecord(){ /*CommentLikesId=12,*/MemberId=9, CommentId=5, CreateTime=new DateTime(2022,06,04,16,35,51), IsLike = true},
-                new CommentLikeRecord(){ /*CommentLikesId=13,*/MemberId=10, CommentId=6, CreateTime=new DateTime(2022,06,01,14,15,23), IsLike = true},
-                new CommentLikeRecord(){ /*CommentLikesId=14,*/MemberId=18, CommentId=4, CreateTime=new DateTime(2022,06,04,13,53,54), IsLike = true},
-                new CommentLikeRecord(){ /*CommentLikesId=15,*/MemberId=13, CommentId=3, CreateTime=new DateTime(2022,05,01,17,46,05), IsLike = true},
-                new CommentLikeRecord(){ /*CommentLikesId=16,*/MemberId=20, CommentId=5, CreateTime=new DateTime(2022,06,04,12,28,06), IsLike = true},
-                new CommentLikeRecord(){ /*CommentLikesId=17,*/MemberId=16, CommentId=19, CreateTime=new DateTime(2022,05,01,12,46,59), IsLike = false},
-                new CommentLikeRecord(){ /*CommentLikesId=18,*/MemberId=5, CommentId=13, CreateTime=new DateTime(2022,05,04,22,35,21), IsLike = true},
-                new CommentLikeRecord(){ /*CommentLikesId=19,*/MemberId=3, CommentId=14, CreateTime=new DateTime(2022,06,01,23,44,49), IsLike = true},
-                new CommentLikeRecord(){ /*CommentLikesId=20,*/MemberId=6, CommentId=11, CreateTime=new DateTime(2022,07,04,12,38,54), IsLike = true},
+                new CommentLikeRecord(){ MemberId=1, CommentId=1, CreateTime=new DateTime(2022,05,01,05,47,02), IsLike = true},
+                new CommentLikeRecord(){ MemberId=5, CommentId=2, CreateTime=new DateTime(2022,05,04,18,35,00), IsLike = true},
+                new CommentLikeRecord(){ MemberId=6, CommentId=11, CreateTime=new DateTime(2022,08,01,13,47,15), IsLike = true},
+                new CommentLikeRecord(){ MemberId=5, CommentId=20, CreateTime=new DateTime(2022,06,04,19,15,51), IsLike = true},
+                new CommentLikeRecord(){ MemberId=15, CommentId=15, CreateTime=new DateTime(2022,07,01,20,52,22), IsLike = true},
+                new CommentLikeRecord(){ MemberId=3, CommentId=15, CreateTime=new DateTime(2022,05,04,12,06,55), IsLike = true},
+                new CommentLikeRecord(){ MemberId=18, CommentId=12, CreateTime=new DateTime(2022,06,01,11,04,04), IsLike = true},
+                new CommentLikeRecord(){ MemberId=2, CommentId=14, CreateTime=new DateTime(2022,06,04,10,39,16), IsLike = true},
+                new CommentLikeRecord(){ MemberId=4, CommentId=16, CreateTime=new DateTime(2022,07,01,20,26,45), IsLike = true},
+                new CommentLikeRecord(){ MemberId=8, CommentId=5, CreateTime=new DateTime(2022,08,04,15,31,28), IsLike = true},
+                new CommentLikeRecord(){ MemberId=4, CommentId=10, CreateTime=new DateTime(2022,08,01,17,59,58), IsLike = true},
+                new CommentLikeRecord(){ MemberId=9, CommentId=5, CreateTime=new DateTime(2022,06,04,16,35,51), IsLike = true},
+                new CommentLikeRecord(){ MemberId=10, CommentId=6, CreateTime=new DateTime(2022,06,01,14,15,23), IsLike = true},
+                new CommentLikeRecord(){ MemberId=18, CommentId=4, CreateTime=new DateTime(2022,06,04,13,53,54), IsLike = true},
+                new CommentLikeRecord(){ MemberId=13, CommentId=3, CreateTime=new DateTime(2022,05,01,17,46,05), IsLike = true},
+                new CommentLikeRecord(){ MemberId=20, CommentId=5, CreateTime=new DateTime(2022,06,04,12,28,06), IsLike = true},
+                new CommentLikeRecord(){ MemberId=16, CommentId=19, CreateTime=new DateTime(2022,05,01,12,46,59), IsLike = true},
+                new CommentLikeRecord(){ MemberId=5, CommentId=13, CreateTime=new DateTime(2022,05,04,22,35,21), IsLike = true},
+                new CommentLikeRecord(){ MemberId=3, CommentId=14, CreateTime=new DateTime(2022,06,01,23,44,49), IsLike = true},
+                new CommentLikeRecord(){ MemberId=6, CommentId=11, CreateTime=new DateTime(2022,07,04,12,38,54), IsLike = true},
             };
             foreach (CommentLikeRecord Like in likeList)
             {
@@ -206,6 +204,77 @@ namespace BSWebtoon.Front.Service.RecommendService
                 _repository.Create(report);
             }
             _repository.SaveChange();
+        }
+
+        public IEnumerable<RecommendDTO> ReadRecommend()
+        {
+            // 活動 新作 人氣
+
+            // 活動 軟刪除
+            var activityList = _repository.GetAll<Activity>().Where(a => a.IsDelete == false)/*.Where(a => a.ActivityStartTime < DateTime.Now && a.ActivityEndTime > DateTime.Now)*//*.ToList()*/;
+
+            //// 確保有影片
+            //var filterComics = _repository.GetAll<Comic>().Where(c => c.BannerVideoWeb != "");
+
+            // 新作 ComicStatus == 4
+            var newWorkList = _repository.GetAll<Comic>().Where(c => c.ComicStatus == 4)/*.ToList()*/;
+
+            // 人氣
+            var popularityGroupBy = _repository.GetAll<ClickRecord>().GroupBy(c => c.ComicId).OrderByDescending(c => c.Count(gp => gp.ComicId == c.Key)).ThenBy(c => c.Key).Select(c => c.Key);
+            var popularityList = _repository.GetAll<Comic>().Where(c => popularityGroupBy.Any(g => g == c.ComicId))/*.ToList()*/;
+
+            var result = new List<RecommendDTO>();
+
+            List<RecommendDTO> addActivityList = activityList.Select(c => new RecommendDTO { 
+                RecommendTag = "活動",
+                Introduction = c.ActivityContent,
+                Name = c.ActivityName,
+                ActivityBgColor = c.ActivityBgColor,
+                ActivityImage = c.ActivityImage,
+            }).ToList();
+
+            List<RecommendDTO> addNewWorkList = newWorkList.Select(c => new RecommendDTO { 
+                RecommendTag = "新作",
+                Introduction = $"{c.Introduction.Substring(0, 50)}...",
+                Name = c.ComicChineseName,
+                NameImage = c.ComicNameImage,
+                ComicBgCover = c.BgCover,
+                BannerVideoWeb = c.BannerVideoWeb,
+                ComicFigure = c.ComicFigure,
+            }).ToList();
+
+            List<RecommendDTO> addPopularityList = popularityList.Select(c => new RecommendDTO {
+                RecommendTag = "人氣",
+                Introduction = $"{c.Introduction.Substring(0, 50)}...",
+                Name = c.ComicChineseName,
+                NameImage = c.ComicNameImage,
+                ComicBgCover = c.BgCover,
+                BannerVideoWeb = c.BannerVideoWeb,
+                ComicFigure= c.ComicFigure,
+            }).ToList();
+
+            result.AddRange(addActivityList);
+            result.AddRange(addNewWorkList);
+            result.AddRange(addPopularityList);
+
+            return result;
+        }
+
+        public IEnumerable<HitWorkDTO> ReadHitWork()
+        {
+            var hitWorkList = _repository.GetAll<Comic>().Where(c => c.HotComicNameImage != "" && c.HotBgCover != "" && c.HotVideo != "");
+
+            var result = new List<HitWorkDTO>();
+
+            result = hitWorkList.Select(c => new HitWorkDTO { 
+                ComicId = c.ComicId,
+                ComicChineseName = c.ComicChineseName,
+                HotComicNameImage = c.HotComicNameImage,
+                HotBgCover = c.HotBgCover,
+                HotVideo = c.HotVideo
+            }).ToList();
+
+            return result;
         }
 
         //public async Task<List<ClickCountViewModel>> ClickCount()

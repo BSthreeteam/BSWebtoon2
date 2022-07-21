@@ -1,0 +1,147 @@
+.nav-top {
+    position: fixed;
+    top: 85px;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background-color: #000;
+    padding:5px;
+}
+
+.main-context {
+    position: relative;
+    top: 130px;
+    padding: 10px 0px;
+}
+
+.nav-selected {
+    background-color: #fff;
+    display: inline-block;
+    border-radius: 50px;
+}
+
+/*.row-recommend {
+    max-width: 1200px;
+    margin: auto;
+    position: relative;
+    background-color: #000;
+    color: #fff;
+    overflow: hidden;
+    aspect-ratio: 2/0.8;
+}
+
+.txt-part {
+    width: 30%;
+    height: 100%;
+    padding: 0;
+    position: absolute;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+}
+
+    .txt-part .title-pic {
+        width: 100%;
+        position: static;
+    }
+
+.transform-part-public {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    padding: 0;
+    background-color: #000;
+    transform: skew(-20deg);
+    vertical-align: bottom;
+}
+
+.transform-part {
+    z-index: 3;
+}
+
+.transform-part2 {
+    right: -30%;
+    z-index: 1;
+}
+
+.row:nth-of-type(even) .transform-part-public {
+    transform: skew(20deg);
+}
+
+.pic-part {
+    width: 70%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    justify-content: center;
+    margin-left: auto;
+}
+
+.recommend-pic-bg {
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+}
+
+.recommend-pic {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    left: 0;
+    vertical-align: bottom;
+    z-index: 2;
+}
+*/
+
+
+.hot {
+    max-width: 600px;
+    width: 100%;
+    height: fit-content;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.video-bg {
+    position: absolute;
+    z-index: -1;
+}
+
+.video-title {
+    position: absolute;
+    bottom: 10%;
+    z-index:2;
+}
+
+.terms_p p {
+    color: #fff;
+}
+
+
+.userinfo,
+.comic {
+    margin: auto;
+    color: #fff;
+    padding: 15px;
+}
+
+.xl_user {
+    padding-top: 60px;
+}
+
+.record li {
+    list-style: none;
+    padding: 0PX 15px;
+}
+
+.record a {
+    text-decoration: none;
+    color: #fff;
+    flex-wrap: wrap;
+}
+
+.detail {
+    padding: 200px 0px;
+}

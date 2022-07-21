@@ -38,8 +38,8 @@ namespace BSWebtoon.Model.Models
         public string WeekVideoWrb { get; set; }
         public string ComicVideoWeb { get; set; }
         public string HotVideo { get; set; }
-        public int AuditType { get; set; }
-        public int AuditEmployeeId { get; set; }
+        public int? AuditType { get; set; }
+        public int? AuditEmployeeId { get; set; }
         public string AuditFailReason { get; set; }
         public DateTime? AuditTime { get; set; }
         public int ComicStatus { get; set; }

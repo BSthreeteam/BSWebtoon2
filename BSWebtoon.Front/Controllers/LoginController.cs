@@ -21,7 +21,7 @@ namespace BSWebtoon.Front.Controllers
         }
         public IActionResult AddMemberView()//Login/AddMemberView(我沒有建View，執行了找不到View沒關係，資料還是會進資料庫!!)
         {
-            _memberService.MemberCreate();
+            //_memberService.MemberCreate();
             return View();
         }
         public IActionResult AddLoginTypeView() //Login/AddLoginTypeView
@@ -29,7 +29,7 @@ namespace BSWebtoon.Front.Controllers
             //_memberService.LoginTypeCreate();
             //_memberService.MemberUpdateData();
 
-            
+
             return View();
         }
         [HttpGet("~/Login/LoginOption/{scheme}")]
@@ -67,6 +67,7 @@ namespace BSWebtoon.Front.Controllers
                 Provider = NameIdentifiers.Issuer.ToLower(),
                 NameIdentifier = NameIdentifiers.Value,
                 AccountName = AccountName.Value,//用戶名稱
+                NickName = AccountName.Value,
                 Email = Email.Value,
 
             };

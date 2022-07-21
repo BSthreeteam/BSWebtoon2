@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BSWebtoon.Model.Migrations
 {
-    public partial class InitialDB : Migration
+    public partial class inital : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -31,9 +31,7 @@ namespace BSWebtoon.Model.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TagName = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "關鍵名稱"),
                     IsMainTag = table.Column<bool>(type: "bit", nullable: false, comment: "是否為主要的Tag"),
-                    IsDelete = table.Column<bool>(type: "bit", nullable: false, comment: "是否刪除該標籤"),
-                    AuditEmployeeId = table.Column<int>(type: "int", nullable: false, comment: "審核人員(也是上傳人員)"),
-                    AuditDate = table.Column<DateTime>(type: "datetime", nullable: true, comment: "審核日期")
+                    IsDelete = table.Column<bool>(type: "bit", nullable: false, comment: "是否刪除該標籤")
                 },
                 constraints: table =>
                 {
@@ -143,7 +141,7 @@ namespace BSWebtoon.Model.Migrations
                     HotBgCover = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "強檔劇獻背景圖"),
                     ComicFigure = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "人物圖"),
                     ComicWeekFigure = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "星期列表人物圖"),
-                    BgColor = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "背景色"),
+                    BgColor = table.Column<string>(type: "nvarchar(max)", nullable: true, comment: "背景色"),
                     PublishDate = table.Column<DateTime>(type: "datetime", nullable: false, comment: "發行日期"),
                     LastPublishDate = table.Column<DateTime>(type: "datetime", nullable: false, comment: "最後更新日期"),
                     FinallyPublishDate = table.Column<DateTime>(type: "datetime", nullable: true, comment: "完結日期"),
@@ -156,8 +154,8 @@ namespace BSWebtoon.Model.Migrations
                     WeekVideoWrb = table.Column<string>(type: "nvarchar(max)", nullable: true, comment: "星期列表影片"),
                     ComicVideoWeb = table.Column<string>(type: "nvarchar(max)", nullable: true, comment: "長影片"),
                     HotVideo = table.Column<string>(type: "nvarchar(max)", nullable: true, comment: "強檔劇獻影片"),
-                    AuditType = table.Column<int>(type: "int", nullable: false, comment: "審核狀態"),
-                    AuditEmployeeId = table.Column<int>(type: "int", nullable: false, comment: "審核人員(也是上傳人員)"),
+                    AuditType = table.Column<int>(type: "int", nullable: true, comment: "審核狀態"),
+                    AuditEmployeeId = table.Column<int>(type: "int", nullable: true, comment: "審核人員(也是上傳人員)"),
                     AuditFailReason = table.Column<string>(type: "nvarchar(max)", nullable: true, comment: "審核失敗原因"),
                     AuditTime = table.Column<DateTime>(type: "datetime", nullable: true, comment: "審核時間"),
                     ComicStatus = table.Column<int>(type: "int", nullable: false, comment: "漫畫狀態")
@@ -179,14 +177,15 @@ namespace BSWebtoon.Model.Migrations
                 {
                     MemberId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    NameIdentifier = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "第三方登入Id"),
                     AccountName = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "帳號名稱"),
                     NickName = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "暱稱"),
                     Balance = table.Column<decimal>(type: "money", nullable: false, comment: "餘額"),
                     LoginTypeId = table.Column<int>(type: "int", nullable: false, comment: "登入類型"),
-                    IsDarkTheme = table.Column<bool>(type: "bit", nullable: false, comment: "是否為深色模式"),
+                    IsDarkTheme = table.Column<bool>(type: "bit", nullable: false, comment: "是否為深色模式(0=>白色 1=>黑色)"),
                     CreateTime = table.Column<DateTime>(type: "datetime", nullable: false, comment: "創建時間"),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "Email"),
-                    AccessToken = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "記錄在該登入模式下的相關資料")
+                    AccessToken = table.Column<string>(type: "nvarchar(max)", nullable: true, comment: "記錄在該登入模式下的相關資料")
                 },
                 constraints: table =>
                 {
@@ -236,9 +235,9 @@ namespace BSWebtoon.Model.Migrations
                     EpCover = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "集數封面照"),
                     UpdateTime = table.Column<DateTime>(type: "datetime", nullable: false, comment: "更新時間"),
                     UploadTime = table.Column<DateTime>(type: "datetime", nullable: false, comment: "作者上傳的時間"),
-                    AuditTypeId = table.Column<int>(type: "int", nullable: false, comment: "審核狀態ID"),
-                    AuditEmployeeId = table.Column<int>(type: "int", nullable: false, comment: "審核人員(也是上傳人員)"),
-                    AuditTime = table.Column<DateTime>(type: "datetime", nullable: false, comment: "審核時間"),
+                    AuditType = table.Column<int>(type: "int", nullable: true, comment: "審核狀態ID"),
+                    AuditEmployeeId = table.Column<int>(type: "int", nullable: true, comment: "審核人員(也是上傳人員)"),
+                    AuditTime = table.Column<DateTime>(type: "datetime", nullable: true, comment: "審核時間"),
                     AuditFailReason = table.Column<string>(type: "nvarchar(max)", nullable: true, comment: "審核不通過原因"),
                     IsCountdownCoupon = table.Column<bool>(type: "bit", nullable: false, comment: "是否可使用倒數免費券"),
                     IsFree = table.Column<bool>(type: "bit", nullable: false, comment: "是否為免費")
@@ -264,7 +263,8 @@ namespace BSWebtoon.Model.Migrations
                 name: "ClickRecord",
                 columns: table => new
                 {
-                    ClickRecordId = table.Column<int>(type: "int", nullable: false, comment: "點擊紀錄ID"),
+                    ClickRecordId = table.Column<int>(type: "int", nullable: false, comment: "點擊紀錄ID")
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     ComicId = table.Column<int>(type: "int", nullable: false, comment: "漫畫Id"),
                     CreateTime = table.Column<DateTime>(type: "datetime", nullable: false, comment: "點擊的時間"),
                     MemberId = table.Column<int>(type: "int", nullable: false, comment: "會員Id")
@@ -279,8 +279,8 @@ namespace BSWebtoon.Model.Migrations
                         principalColumn: "ComicId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_ClickRecord_Member",
-                        column: x => x.ClickRecordId,
+                        name: "FK_ClickRecord_Member1",
+                        column: x => x.MemberId,
                         principalTable: "Member",
                         principalColumn: "MemberId",
                         onDelete: ReferentialAction.Restrict);
@@ -323,7 +323,8 @@ namespace BSWebtoon.Model.Migrations
                     CreateTime = table.Column<DateTime>(type: "datetime", nullable: true, comment: "儲值時間"),
                     PaymentId = table.Column<int>(type: "int", nullable: false, comment: "付款方式ID"),
                     CashPlanContent = table.Column<int>(type: "int", nullable: false, comment: "儲值方案內容(EX:1200金幣)"),
-                    Price = table.Column<int>(type: "int", nullable: false, comment: "價錢")
+                    Price = table.Column<int>(type: "int", nullable: false, comment: "價錢"),
+                    PayState = table.Column<int>(type: "int", nullable: false, comment: "付款狀態(1.付款完成2.付款失敗3.未付款)")
                 },
                 constraints: table =>
                 {
@@ -479,8 +480,8 @@ namespace BSWebtoon.Model.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CommentId = table.Column<int>(type: "int", nullable: false, comment: "評論Id"),
                     CreateTime = table.Column<DateTime>(type: "datetime", nullable: false, comment: "檢舉日期"),
-                    AuditType = table.Column<int>(type: "int", nullable: false, comment: "審核狀態"),
-                    AuditEmployeeId = table.Column<int>(type: "int", nullable: false, comment: "審核人員"),
+                    AuditType = table.Column<int>(type: "int", nullable: true, comment: "審核狀態"),
+                    AuditEmployeeId = table.Column<int>(type: "int", nullable: true, comment: "審核人員"),
                     AuditTime = table.Column<DateTime>(type: "datetime", nullable: true, comment: "審核時間"),
                     Reason = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "檢舉詳細理由")
                 },
@@ -573,6 +574,11 @@ namespace BSWebtoon.Model.Migrations
                 name: "IX_ClickRecord_ComicId",
                 table: "ClickRecord",
                 column: "ComicId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ClickRecord_MemberId",
+                table: "ClickRecord",
+                column: "MemberId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comic_AuditEmployeeId",

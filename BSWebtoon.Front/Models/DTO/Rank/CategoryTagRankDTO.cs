@@ -1,5 +1,5 @@
 ﻿using BSWebtoon.Front.Models.DTO.Comic;
-using BSWebtoon.Model.Models;
+//using BSWebtoon.Model.Models;
 using System.Collections.Generic;
 
 namespace BSWebtoon.Front.Models.DTO.Rank

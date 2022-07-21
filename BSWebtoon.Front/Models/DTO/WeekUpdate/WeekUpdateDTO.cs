@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BSWebtoon.Front.Models.DTO.WeekUpData
+namespace BSWebtoon.Front.Models.DTO.WeekUpDate
 {
     public class WeekUpDateDTO
     {

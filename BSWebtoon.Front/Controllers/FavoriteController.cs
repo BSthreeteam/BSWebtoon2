@@ -1,5 +1,4 @@
 ﻿using BSWebtoon.Front.Service.FavoriteService;
-using BSWebtoon.Model.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BSWebtoon.Front.Controllers
@@ -20,7 +19,7 @@ namespace BSWebtoon.Front.Controllers
         }
         public IActionResult AddFavoriteView()//Favorite/AddFavoriteView
         {
-            _favoriteService.FavoriteCreate();
+            //_favoriteService.FavoriteCreate();
             return View();
         }
         public IActionResult RemoveFavoriteView()//Favorite/RemoveFavoriteView

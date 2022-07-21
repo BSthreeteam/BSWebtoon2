@@ -10,8 +10,8 @@ namespace BSWebtoon.Model.Models
         public int ReportId { get; set; }
         public int CommentId { get; set; }
         public DateTime CreateTime { get; set; }
-        public int AuditType { get; set; }
-        public int AuditEmployeeId { get; set; }
+        public int? AuditType { get; set; }
+        public int? AuditEmployeeId { get; set; }
         public DateTime? AuditTime { get; set; }
         public string Reason { get; set; }
 

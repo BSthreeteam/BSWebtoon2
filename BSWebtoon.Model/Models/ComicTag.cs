@@ -16,8 +16,6 @@ namespace BSWebtoon.Model.Models
         public string TagName { get; set; }
         public bool IsMainTag { get; set; }
         public bool IsDelete { get; set; }
-        public int AuditEmployeeId { get; set; }
-        public DateTime? AuditDate { get; set; }
 
         public virtual ICollection<ComicTagList> ComicTagLists { get; set; }
     }

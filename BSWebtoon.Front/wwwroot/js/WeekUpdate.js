@@ -1,27 +1,68 @@
+let mon_con = document.querySelector(".Monday .content")
+let tues_con = document.querySelector(".Tuesday .content")
+let wednes_con = document.querySelector(".Wednesday .content")
+let thurs_con = document.querySelector(".Thursday .content")
+let fri_con = document.querySelector(".Friday .content")
+let satur_con = document.querySelector(".Saturday .content")
+let sun_con = document.querySelector(".Sunday .content")
+let blackTemplate = document.getElementById("blackTemplate")
+
+let date_week = new Date();
+
+let mon = document.querySelector(".nav_Monday")
+let tues = document.querySelector(".nav_Tuesday")
+let wednes = document.querySelector(".nav_Wednesday")
+let thurs = document.querySelector(".nav_Thursday")
+let fri = document.querySelector(".nav_Friday")
+let satur = document.querySelector(".nav_Saturday ")
+let sun = document.querySelector(".nav_Sunday")
+let weeklyArray = [sun, mon, tues, wednes, thurs, fri, satur];
 
 
-let mon = document.querySelector(".Monday .content")
-let teus = document.querySelector(".Tuesday .content")
-let workLongTemplate = document.getElementById("workLongTemplate")
-let workTemplate = document.getElementById("workTemplate")
-// let a_Monday = document.querySelector(".a_Monday")
-// let a_Tuesday = document.querySelector(".a_Tuesday")
-let Monday_title = document.querySelector(".Monday_title")
-let Tuesday_title = document.querySelector(".Tuesday_title")
+
+
+
+
+
+
+
 
 window.onload = () => {
-    mon.append(createCardlong());
-    for (let i = 1; i <= 15; i++) {
-        mon.append(createCard())
-    }
 
-    teus.append(createCardlong());
-    for (let i = 1; i <= 30; i++) {
-        teus.append(createCard())
-    }
+
+    mon_con.append(createBlack())
+
+    tues_con.append(createBlack())
+    wednes_con.append(createBlack())
+    thurs_con.append(createBlack())
+    fri_con.append(createBlack())
+    satur_con.append(createBlack())
+    sun_con.append(createBlack())
+
 
     let teus_long = document.querySelector(".Tuesday .work_long");
-    teus_long.setAttribute("style", "grid-column: 2/3;")
+    teus_long.setAttribute("style", "grid-column: 3/4;")
+
+    let wednes_long = document.querySelector(".Wednesday .work_long");
+    wednes_long.setAttribute("style", "grid-column: 2/3;")
+
+    let fri_long = document.querySelector(".Friday .work_long");
+    fri_long.setAttribute("style", "grid-column: 3/4;")
+
+    let satur_long = document.querySelector(".Saturday .work_long");
+    satur_long.setAttribute("style", "grid-column: 2/3;")
+
+
+
+        weeklyArray.forEach((day, index) => {
+
+            if (date_week.getDay() == index) {
+                day.click()
+            }
+
+
+        })
+
 
 
 
@@ -29,21 +70,7 @@ window.onload = () => {
 
 
 
-
-function createCardlong() {
-    let cloneCard = workLongTemplate.content.cloneNode(true);
-    cloneCard.querySelector("img").src = "https://tw-a.kakaopagecdn.com/P/C/214/bg/1x/f870dd2e-59a1-4324-bbbe-8419d26f0cf6.webp"
-    cloneCard.querySelector("source").src = "https://tw-a.kakaopagecdn.com/P/C/214/aclip/97caee36-c79a-4ec7-907d-f28cfd975c7c.webm"
-    cloneCard.querySelector(".title_long").innerText = "身為黑暗英雄的女兒";
-    return cloneCard
-}
-
-
-function createCard() {
-    let cloneCard = workTemplate.content.cloneNode(true);
-    cloneCard.querySelector("img").src = "https://tw-a.kakaopagecdn.com/P/C/148/bg/1x/f485a521-3410-48a7-a3de-793514f1237c.webp"
-    cloneCard.querySelector(".work_pic").src = "https://tw-a.kakaopagecdn.com/P/C/148/c2/2x/06e61fbe-0d6d-4145-9a9f-3723841ac527.webp"
-    cloneCard.querySelector("p").innerText = "無法親近的千金";
-
-    return cloneCard
+function createBlack() {
+    let cloneblack = blackTemplate.content.cloneNode(true);
+    return cloneblack
 }

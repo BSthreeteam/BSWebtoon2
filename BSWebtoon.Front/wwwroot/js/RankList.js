@@ -1,49 +1,24 @@
-let btn_all = document.querySelector(".all");
-let btn_fantasy = document.querySelector(".fantasy");
-let btn_fantasy_love = document.querySelector(".fantasy_love");
-let btn_love = document.querySelector(".love");
-let btn_plot = document.querySelector(".plot");
-let btn_BL_GL = document.querySelector(".BL_GL");
-let btn_Suspenseful_horror = document.querySelector(".Suspenseful_horror");
-let btn_action_adventure = document.querySelector(".action_adventure");
-let bestseller = document.querySelector("#bestseller");
-let output = document.querySelector(".output");
-let cloneCard = bestseller.content.cloneNode(true);
-window.onload = function () {
-    btn_all.addEventListener("click", () => {
-        output.innerHTML = "";
-        output.appendChild(getcloneCard());
-    })
-    btn_fantasy.addEventListener("click", () => {
-        output.innerHTML = "";
-        output.appendChild(getcloneCard());
-    })
-    btn_fantasy_love.addEventListener("click", () => {
-        output.innerHTML = "";
-        output.appendChild(getcloneCard());
-    })
-    btn_love.addEventListener("click", () => {
-        output.innerHTML = "";
-        output.appendChild(getcloneCard());
-    })
-    btn_action_adventure.addEventListener("click", () => {
-        output.innerHTML = "";
-        output.appendChild(getcloneCard());
-    })
-    btn_plot.addEventListener("click", () => {
-        output.innerHTML = "";
-        output.appendChild(getcloneCard());
-    })
-    btn_BL_GL.addEventListener("click", () => {
-        output.innerHTML = "";
-        output.appendChild(getcloneCard());
-    })
-    btn_Suspenseful_horror.addEventListener("click", () => {
-        output.innerHTML = "";
-        output.appendChild(getcloneCard());
-    })
+let week_content = document.querySelector(".content")
+let workTemplate = document.getElementById("workTemplate")
+let blackTemplate = document.getElementById("blackTemplate")
+
+window.onload = () => {
+    for (let i = 1; i <= 99; i++) {
+        week_content.append(createCard())
+    }
+    week_content.append(createBlack())
 }
-function getcloneCard() {
-    let cloneCard = bestseller.content.cloneNode(true);
-    return cloneCard;
+
+function createCard() {
+    let cloneCard = workTemplate.content.cloneNode(true);
+    //cloneCard.querySelector("img").src = "https://tw-a.kakaopagecdn.com/P/C/148/bg/1x/f485a521-3410-48a7-a3de-793514f1237c.webp"
+    //cloneCard.querySelector(".work_pic").src = "https://tw-a.kakaopagecdn.com/P/C/148/c2/2x/06e61fbe-0d6d-4145-9a9f-3723841ac527.webp"
+    //cloneCard.querySelector(".title_img").src = "https://tw-a.kakaopagecdn.com/P/C/205/t2/2x/8848e3ef-a605-412f-9d37-d544e22af515.png";
+
+    return cloneCard
+}
+
+function createBlack() {
+    let cloneblack = blackTemplate.content.cloneNode(true);
+    return cloneblack
 }

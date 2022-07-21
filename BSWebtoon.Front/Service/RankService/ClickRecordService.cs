@@ -23,27 +23,27 @@ namespace BSWebtoon.Front.Service.RankService
         public void ClickRecordCreate()
         {
             var clickRecod = new List<ClickRecord> {
-                new ClickRecord {ClickRecordId=1,ComicId=1,CreateTime=new DateTime(2022,07,21),MemberId=1},
-                new ClickRecord {ClickRecordId=2,ComicId=1,CreateTime=new DateTime(2022,07,23),MemberId=3},
-                new ClickRecord {ClickRecordId=3,ComicId=3,CreateTime=new DateTime(2022,07,18),MemberId=2},
-                new ClickRecord {ClickRecordId=4,ComicId=15,CreateTime=new DateTime(2022,07,18),MemberId=15},
-                new ClickRecord {ClickRecordId=5,ComicId=1,CreateTime=new DateTime(2022,07,19),MemberId=17},
-                new ClickRecord {ClickRecordId=6,ComicId=5,CreateTime=new DateTime(2022,07,20),MemberId=4},
-                new ClickRecord {ClickRecordId=7,ComicId=7,CreateTime=new DateTime(2022,07,17),MemberId=7},
-                new ClickRecord {ClickRecordId=8,ComicId=14,CreateTime=new DateTime(2022,07,15),MemberId=18},
-                new ClickRecord {ClickRecordId=9,ComicId=2,CreateTime=new DateTime(2022,07,25),MemberId=16},
-                new ClickRecord {ClickRecordId=10,ComicId=3,CreateTime=new DateTime(2022,07,27),MemberId=19},
-                new ClickRecord {ClickRecordId=11,ComicId=4,CreateTime=new DateTime(2022,07,29),MemberId=10},
-                new ClickRecord {ClickRecordId=12,ComicId=17,CreateTime=new DateTime(2022,07,24),MemberId=16},
-                new ClickRecord {ClickRecordId=13,ComicId=8,CreateTime=new DateTime(2022,07,22),MemberId=12},
-                new ClickRecord {ClickRecordId=14,ComicId=10,CreateTime=new DateTime(2022,07,23),MemberId=5},
-                new ClickRecord {ClickRecordId=15,ComicId=16,CreateTime=new DateTime(2022,07,31),MemberId=7},
-                new ClickRecord {ClickRecordId=16,ComicId=17,CreateTime=new DateTime(2022,07,26),MemberId=16},
-                new ClickRecord {ClickRecordId=17,ComicId=18,CreateTime=new DateTime(2022,07,29),MemberId=12},
-                new ClickRecord {ClickRecordId=18,ComicId=6,CreateTime=new DateTime(2022,07,30),MemberId=2},
-                new ClickRecord {ClickRecordId=19,ComicId=1,CreateTime=new DateTime(2022,07,21),MemberId=8},
-                new ClickRecord {ClickRecordId=20,ComicId=2,CreateTime=new DateTime(2022,07,23),MemberId=9},
-            };
+                new ClickRecord {ComicId=1,CreateTime=new DateTime(2022,07,21),MemberId=6},
+                new ClickRecord {ComicId=1,CreateTime=new DateTime(2022,07,23),MemberId=3},
+                new ClickRecord {ComicId=3,CreateTime=new DateTime(2022,07,18),MemberId=2},
+                new ClickRecord {ComicId=15,CreateTime=new DateTime(2022,07,18),MemberId=15},
+                new ClickRecord {ComicId=1,CreateTime=new DateTime(2022,07,19),MemberId=17},
+                new ClickRecord {ComicId=5,CreateTime=new DateTime(2022,07,20),MemberId=4},
+                new ClickRecord {ComicId=7,CreateTime=new DateTime(2022,07,17),MemberId=7},
+                new ClickRecord {ComicId=14,CreateTime=new DateTime(2022,07,15),MemberId=18},
+                new ClickRecord {ComicId=2,CreateTime=new DateTime(2022,07,25),MemberId=16},
+                new ClickRecord {ComicId=3,CreateTime=new DateTime(2022,07,27),MemberId=19},
+                new ClickRecord {ComicId=4,CreateTime=new DateTime(2022,07,29),MemberId=10},
+                new ClickRecord {ComicId=17,CreateTime=new DateTime(2022,07,24),MemberId=16},
+                new ClickRecord {ComicId=8,CreateTime=new DateTime(2022,07,22),MemberId=12},
+                new ClickRecord {ComicId=10,CreateTime=new DateTime(2022,07,23),MemberId=5},
+                new ClickRecord {ComicId=16,CreateTime=new DateTime(2022,07,31),MemberId=7},
+                new ClickRecord {ComicId=17,CreateTime=new DateTime(2022,07,26),MemberId=16},
+                new ClickRecord {ComicId=18,CreateTime=new DateTime(2022,07,29),MemberId=12},
+                new ClickRecord {ComicId=6,CreateTime=new DateTime(2022,07,30),MemberId=2},
+                new ClickRecord {ComicId=1,CreateTime=new DateTime(2022,07,21),MemberId=8},
+                new ClickRecord {ComicId=2,CreateTime=new DateTime(2022,07,23),MemberId=9},
+            }; 
             foreach (ClickRecord click in clickRecod)
             {
                 _repository.Create(click);
@@ -170,7 +170,7 @@ namespace BSWebtoon.Front.Service.RankService
             //       };
         }
 
-        
+
         public List<CategoryRankDTO> ReadOtherTagRank()
         {
 
@@ -193,12 +193,12 @@ namespace BSWebtoon.Front.Service.RankService
                 var tagListResult = conn.Query<CategoryTagRankDTO>(sql);
 
                 //計算排名區間
-                var newRankEndDate  = new DateTime(2022, 07, 29);
+                var newRankEndDate = new DateTime(2022, 07, 29);
                 var newRankStartDate = newRankEndDate.AddDays(-7);//7/22
 
                 var oldRankEndDate = newRankStartDate.AddDays(-1);//
                 var oldRankStartDate = oldRankEndDate.AddDays(-6);//7/15
-                
+
                 //找出每個漫畫上上周的點擊數
                 string oldClickRecord = @$"SELECT  CR.ComicId, COUNT(CR.ComicId) AS ClickRecordCount
                                           FROM ClickRecord CR 
@@ -264,7 +264,7 @@ namespace BSWebtoon.Front.Service.RankService
                             Introduction = item.Introduction,
                             ComicFigure = item.ComicFigure,
                         });
-                        
+
                     }
 
                 }
@@ -279,8 +279,8 @@ namespace BSWebtoon.Front.Service.RankService
                 {
                     //在舊Integrate中尋找與新Integrate 相同的類別的所有資料 
                     var oldTagGroupList = oldClickGroup.Where(o => o.Key == newgroup.Key).FirstOrDefault();
-                   //如果舊的有該類別則
-                    if(oldTagGroupList != default)
+                    //如果舊的有該類別則
+                    if (oldTagGroupList != default)
                     {
                         //選擇舊Integrate的漫畫select出相關資訊
                         var oldTagGroup = oldTagGroupList.Select(o => o).ToList();
@@ -307,7 +307,7 @@ namespace BSWebtoon.Front.Service.RankService
                                 AuditType = item.AuditType,
                                 TagName = newgroup.Key,
                                 //差距排名
-                                Diff= oldComicList.IndexOf(item.ComicId)==-1?0: newComicList.IndexOf(item.ComicId)+1 - oldComicList.IndexOf(item.ComicId)+1
+                                Diff = oldComicList.IndexOf(item.ComicId) == -1 ? 0 : newComicList.IndexOf(item.ComicId) + 1 - oldComicList.IndexOf(item.ComicId) + 1
                             });
                         }
                     }
@@ -331,16 +331,16 @@ namespace BSWebtoon.Front.Service.RankService
                                 AuditType = item.AuditType,
                                 TagName = newgroup.Key,
                                 //差距排名為new
-                                Diff=0
+                                Diff = 0
                             });
                         }
                     }
-                 
+
                 }
 
             }
-            
-            
+
+
             return result;
 
         }
