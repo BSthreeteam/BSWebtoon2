@@ -16,23 +16,31 @@ namespace BSWebtoon.Front.Service.ContentPageService
             _repository = repository;
         }
 
-        public List<WorkContentDTO> ReadComicContent(int EpId,string useerName)
+        public string IsLogin(string userName)
         {
-            if(useerName == null){
+            if (userName == null)
+            {
                 return null;
             }
             else
             {
-                var memberName = _repository.GetAll<Member>().Where(c => c.AccountName == useerName).Select(c => c.MemberId).First();
-                return ReadContext(EpId, memberName);
+                return userName;
             }
 
         }
 
-
-        public List<WorkContentDTO> ReadContext(int EpId,int memberName)
+        public List<WorkContentDTO> ReadEpContent(int EpId,string useerName)
         {
-            var couponSource = _repository.GetAll<Coupon>().Where(p => p.MemberId == memberName);//找出登入會員的所有卷
+            var memberId = _repository.GetAll<Member>().Where(c => c.AccountName == useerName).Select(c => c.MemberId).First();
+            return ReadContext(EpId, memberId);
+
+
+        }
+
+
+        public List<WorkContentDTO> ReadContext(int EpId, int memberId)
+        {
+            var couponSource = _repository.GetAll<Coupon>().Where(p => p.MemberId == memberId);//找出登入會員的所有卷
 
             var EpSource = _repository.GetAll<Episode>().Where(e => e.EpId == EpId).First();//找出點的那一集的所有資料
 
