@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BSWebtoon.Model.Migrations
 {
     [DbContext(typeof(BSWebtoonContext))]
-    [Migration("20220718163238_aaa")]
-    partial class aaa
+    [Migration("20220721153728_inital")]
+    partial class inital
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -144,7 +144,7 @@ namespace BSWebtoon.Model.Migrations
                         .HasComment("漫畫ID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AuditEmployeeId")
+                    b.Property<int?>("AuditEmployeeId")
                         .HasColumnType("int")
                         .HasComment("審核人員(也是上傳人員)");
 
@@ -156,7 +156,7 @@ namespace BSWebtoon.Model.Migrations
                         .HasColumnType("datetime")
                         .HasComment("審核時間");
 
-                    b.Property<int>("AuditType")
+                    b.Property<int?>("AuditType")
                         .HasColumnType("int")
                         .HasComment("審核狀態");
 
@@ -170,7 +170,6 @@ namespace BSWebtoon.Model.Migrations
                         .HasComment("短影片");
 
                     b.Property<string>("BgColor")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasComment("背景色");
 
@@ -274,14 +273,6 @@ namespace BSWebtoon.Model.Migrations
                         .HasColumnType("int")
                         .HasComment("關鍵表Id")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime?>("AuditDate")
-                        .HasColumnType("datetime")
-                        .HasComment("審核日期");
-
-                    b.Property<int>("AuditEmployeeId")
-                        .HasColumnType("int")
-                        .HasComment("審核人員(也是上傳人員)");
 
                     b.Property<bool>("IsDelete")
                         .HasColumnType("bit")
@@ -561,7 +552,7 @@ namespace BSWebtoon.Model.Migrations
                         .HasComment("集數ID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AuditEmployeeId")
+                    b.Property<int?>("AuditEmployeeId")
                         .HasColumnType("int")
                         .HasComment("審核人員(也是上傳人員)");
 
@@ -569,11 +560,11 @@ namespace BSWebtoon.Model.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasComment("審核不通過原因");
 
-                    b.Property<DateTime>("AuditTime")
+                    b.Property<DateTime?>("AuditTime")
                         .HasColumnType("datetime")
                         .HasComment("審核時間");
 
-                    b.Property<int>("AuditTypeId")
+                    b.Property<int?>("AuditType")
                         .HasColumnType("int")
                         .HasComment("審核狀態ID");
 
@@ -803,6 +794,10 @@ namespace BSWebtoon.Model.Migrations
                         .HasColumnType("int")
                         .HasComment("會員ID");
 
+                    b.Property<int>("PayState")
+                        .HasColumnType("int")
+                        .HasComment("付款狀態(1.付款完成2.付款失敗3.未付款)");
+
                     b.Property<int>("PaymentId")
                         .HasColumnType("int")
                         .HasComment("付款方式ID");
@@ -830,7 +825,7 @@ namespace BSWebtoon.Model.Migrations
                         .HasComment("檢舉Id")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AuditEmployeeId")
+                    b.Property<int?>("AuditEmployeeId")
                         .HasColumnType("int")
                         .HasComment("審核人員");
 
@@ -838,7 +833,7 @@ namespace BSWebtoon.Model.Migrations
                         .HasColumnType("datetime")
                         .HasComment("審核時間");
 
-                    b.Property<int>("AuditType")
+                    b.Property<int?>("AuditType")
                         .HasColumnType("int")
                         .HasComment("審核狀態");
 
@@ -930,8 +925,7 @@ namespace BSWebtoon.Model.Migrations
                     b.HasOne("BSWebtoon.Model.Models.Employee", "AuditEmployee")
                         .WithMany("Comics")
                         .HasForeignKey("AuditEmployeeId")
-                        .HasConstraintName("FK_Comic_Employee")
-                        .IsRequired();
+                        .HasConstraintName("FK_Comic_Employee");
 
                     b.Navigation("AuditEmployee");
                 });
@@ -1067,8 +1061,7 @@ namespace BSWebtoon.Model.Migrations
                     b.HasOne("BSWebtoon.Model.Models.Employee", "AuditEmployee")
                         .WithMany("Episodes")
                         .HasForeignKey("AuditEmployeeId")
-                        .HasConstraintName("FK_Episode_Employee")
-                        .IsRequired();
+                        .HasConstraintName("FK_Episode_Employee");
 
                     b.HasOne("BSWebtoon.Model.Models.Comic", "Comic")
                         .WithMany("Episodes")
@@ -1142,8 +1135,7 @@ namespace BSWebtoon.Model.Migrations
                     b.HasOne("BSWebtoon.Model.Models.Employee", "AuditEmployee")
                         .WithMany("Reports")
                         .HasForeignKey("AuditEmployeeId")
-                        .HasConstraintName("FK_Report_Employee")
-                        .IsRequired();
+                        .HasConstraintName("FK_Report_Employee");
 
                     b.HasOne("BSWebtoon.Model.Models.Comment", "Comment")
                         .WithMany("Reports")

@@ -1,5 +1,6 @@
 ﻿using BSWebtoon.Front.Models.ViewModel.WorkPage;
 using BSWebtoon.Front.Service.ComicService;
+using BSWebtoon.Front.Service.ContentPageService;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace BSWebtoon.Front.Controllers
     public class WorksPageController : Controller
     {
         private readonly IComicService _comicService;
+        private readonly IComicContentPageService _comicContentPageService;
 
         public WorksPageController(IComicService comicService)
         {
