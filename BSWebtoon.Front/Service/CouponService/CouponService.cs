@@ -42,9 +42,6 @@ namespace BSWebtoon.Front.Service.CouponService
                 new Coupon(){MemberId=18,ComicId=2,ActivityId=2,CouponTypeId=3,OriginQuantity=1,CreateTime=new DateTime(2022,10,12,8,10,30), Quantity=10 },
                 new Coupon(){MemberId=19,ComicId=10            ,CouponTypeId=2,OriginQuantity=8,CreateTime=new DateTime(2022,9,12,8,10,30),  Quantity=10 },
                 new Coupon(){MemberId=20,ComicId=2,ActivityId=2,CouponTypeId=1,OriginQuantity=1,CreateTime=new DateTime(2022,7,12,8,10,30),  Quantity=10 },
-
-
-
             };
 
             foreach (var coupon in coupons)
@@ -117,5 +114,32 @@ namespace BSWebtoon.Front.Service.CouponService
 
             _repository.SaveChange();
         }
+
+        public void CouponDataCreate(string userName, int comicId, int activityId, int couponTypeId, int getQuantity)
+        {
+            //memberId = 1;
+            var memberId = _repository.GetAll<Member>().Where(m => m.AccountName == userName).Select(m => m.MemberId).First();
+            //comicId = 1;
+            //couponTypeId = 1;
+            //var couponTest = _repository.GetAll<Coupon>().OrderByDescending(c => c.CreateTime).First();
+            var couponQuantity = _repository.GetAll<Coupon>()
+                .Where(c => c.MemberId == memberId && c.ComicId == comicId && c.CouponTypeId == couponTypeId)
+                .OrderByDescending(c => c.CreateTime).Select(c => c.Quantity).First();
+
+            var coupon = new Coupon()
+            {
+                MemberId = memberId,
+                ComicId = comicId,
+                ActivityId = activityId,
+                CouponTypeId = couponTypeId,
+                OriginQuantity = getQuantity,
+                CreateTime = DateTime.UtcNow,
+                Quantity = getQuantity + couponQuantity
+            };
+
+            _repository.Create(coupon);
+            _repository.SaveChange();
+        }
+
     }
 }

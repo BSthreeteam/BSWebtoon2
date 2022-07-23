@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-namespace BSWebtoon.Front.Models.DTO.WorkPage
+
+namespace BSWebtoon.Front.Models.ViewModel.WorkPage
 {
-    public class WorkPageDTO
+    public class WorkPageViewModel
     {
         public int MemberId { get; set; }
         //作品頁
@@ -79,5 +80,6 @@ namespace BSWebtoon.Front.Models.DTO.WorkPage
             public bool IsDelete { get; set; }
             public int CommentLikeCount { get; set; } //按讚數
         }
+
     }
 }

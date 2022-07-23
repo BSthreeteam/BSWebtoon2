@@ -4,6 +4,7 @@ using BSWebtoon.Model.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using static BSWebtoon.Front.Models.DTO.WorkPage.WorkPageDTO;
 
 namespace BSWebtoon.Front.Service.ComicService
 {
@@ -5305,77 +5306,96 @@ namespace BSWebtoon.Front.Service.ComicService
         }
 
 
-        public WorkPageDTO WorkPageRead(int comicId)
+        public WorkPageDTO WorkPageRead(int comicId,string userName)
         {
             //倒數券 我的最愛 觀看紀錄 點擊數 留言
-            comicId = 1;
+            comicId = 5;
             //審核 1通過 2未審核 3失敗 4審核中
-            //var memberSource = _repository.GetAll<Member>().Where(m => m.MemberId == 4).First();
-            //var comicSource = _repository.GetAll<Comic>().Where(c => c.AuditType == 1).First(x => x.ComicId == comicId);
-            //var tagListSource = _repository.GetAll<ComicTagList>().Where(x => x.ComicId == comicSource.ComicId);
-            //var mainTag = _repository.GetAll<ComicTag>().Where(x => tagListSource.Any(y => y.TagId == x.TagId)).First(x => x.IsMainTag == true);
-            //var couponTest = _repository.GetAll<Coupon>();
-            //var couponSource = _repository.GetAll<Coupon>().First(x => x.CouponTypeId == 1 && x.MemberId == memberSource.MemberId && x.ComicId == comicId);
-            //var epSource = _repository.GetAll<Episode>().Where(x => x.AuditTypeId == 1 && x.ComicId == comicId).ToList();
+            var memberId = _repository.GetAll<Member>().Where(m => m.AccountName == userName).Select(m => m.MemberId).FirstOrDefault();
+            var comicSource = _repository.GetAll<Comic>().Where(c => c.AuditType == 1).First(x => x.ComicId == comicId);
+            var tagListSource = _repository.GetAll<ComicTagList>().Where(x => x.ComicId == comicSource.ComicId);
+            var mainTag = _repository.GetAll<ComicTag>().Where(x => tagListSource.Any(y => y.TagId == x.TagId)).First(x => x.IsMainTag == true);
+            var couponTest = _repository.GetAll<Coupon>();
+            // 1通用券 2閱讀券 3倒數券 券有可能沒有 都沒有的話就只有倒數券
+            var readCouponSource = _repository.GetAll<Coupon>().FirstOrDefault(x => x.CouponTypeId == 2 && x.MemberId == memberId && x.ComicId == comicId);
+            //var CDCouponSource = _repository.GetAll<Coupon>().First(x => x.CouponTypeId == 3 && x.MemberId == memberId && x.ComicId == comicId);
 
-            return new WorkPageDTO() { };
-            //return new WorkpageViewModel
-            //{
-            //    ComicChineseName = comicSource.ComicChineseName,
-            //    ComicFigure = comicSource.ComicFigure,
-            //    Tag = mainTag.TagName,
-            //    BgCover = comicSource.BgCover,
-            //    Publisher = comicSource.Publisher,
-            //    Author = comicSource.Author,
-            //    ReadTicket = couponSource.Quantity,
-            //    EpList = epSource.Select(x => new WorkpageViewModel.EpData
-            //    {
-            //        EpTitle = x.EpTitle,
-            //        EpCover = x.EpCover,
-            //        UploadTime = x.UploadTime,
-            //        IsCountdownCoupon = x.IsCountdownCoupon,
-            //        IsFree = x.IsFree
-            //    })
-            //};
+            var epSource = _repository.GetAll<Episode>().Where(x => x.AuditTypeId == 1 && x.ComicId == comicId)/*.ToList()*/;
+
+            // 漫畫所有話次留言
+            var commentSource = _repository.GetAll<Comment>().Where(c => epSource.Any(e => /*e.EpId*/1 == c.EpId ))/*.ToList()*/;
+            var commentLikeSource = _repository.GetAll<CommentLikeRecord>().GroupBy(g => g.CommentId).Where(g => commentSource.Any(c => c.CommentId == g.Key)).Select(c => new List<int>() { c.Key ,c.Count()});
+            int ComicLikeCount = 0;
+            foreach (var like in commentLikeSource)
+            {
+                ComicLikeCount = ComicLikeCount + like[1];
+            };
+
+            var epContentSource = _repository.GetAll<EpContent>().Where(ec => epSource.Any(e => /*e.EpId*/1 == ec.EpId));
+            var viewRecordSource = _repository.GetAll<ViewRecord>().Where(v => epContentSource.Any(ec => ec.EpContentId == v.EpContentId)).OrderByDescending(v => v.ViewTime).FirstOrDefault();
+            //var ViewRecordEpTitle = _repository.GetAll<Episode>().Where(v => viewRecordSource.EpContent.EpId == v.EpId).Select(v => v.EpTitle).FirstOrDefault();
+            string ViewRecordEpTitle;
+            if (viewRecordSource == null)
+            {
+                ViewRecordEpTitle = "去看 第1話";
+            }
+            else
+            {
+                ViewRecordEpTitle = $"繼續看 {_repository.GetAll<Episode>().Where(v => viewRecordSource.EpContent.EpId == v.EpId).Select(v => v.EpTitle).FirstOrDefault().Trim()}";
+            }
 
 
-        //    //return from comic in _repository.GetAll<Comic>()
-        //    //       join tag in _repository.GetAll<ComicTagList>()
-        //    //       on comic.ComicId equals tag.ComicId
-        //    //       join tagList in _repository.GetAll<ComicTag>()
-        //    //       on tag.TagId equals tagList.TagId
-        //    //       join coupon in _repository.GetAll<Coupon>()
-        //    //       on comic.ComicId equals coupon.ComicId
-        //    //       join member in _repository.GetAll<Member>()
-        //    //       on coupon.MemberId equals member.MemberId
-        //    //       join ep in _repository.GetAll<Episode>()
-        //    //       on comic.ComicId equals ep.ComicId
-        //    //       where coupon.MemberId == 1 && coupon.CouponTypeId == 1
-        //    //       where tagList.IsMainTag == true
-        //    //       select new WorkpageViewModel
-        //    //       {
-        //    //           ComicChineseName = comic.ComicChineseName,
-        //    //           ComicFigure = comic.ComicFigure,
-        //    //           Tag = tagList.TagName,
-        //    //           BgCover = comic.BgCover,
-        //    //           Publisher = comic.Publisher,
-        //    //           Author = comic.Author,
-        //    //           ReadTicket = coupon.Quantity,
-        //    //           EpCover = ep.EpCover
+            var ViewCount = _repository.GetAll<ViewRecord>().Where(v => epContentSource.Any(ec => ec.EpContentId == v.EpContentId)).Count();
 
-            //       };
-            //foreach (var item in _repository.GetAll<Comic>())
-            //{
-            //    yield return new WorkpageViewModel()
-            //    {
-            //        ComicChineseName = item.ComicChineseName,
-            //        ComicFigure = item.ComicFigure,
-            //        BgCover = item.BgCover,
-            //        Publisher = item.Publisher,
-            //        Author = item.Author,
+            var comicIsLike = _repository.GetAll<Favorite>().Any(f => f.ComicId == comicId && f.MemberId == memberId);
 
-            //    };
-            //}
+            return new WorkPageDTO() { 
+                MemberId = memberId,
+                ComicId = comicSource.ComicId,
+                ComicChineseName = comicSource.ComicChineseName,
+                BgCover = comicSource.BgCover,
+                ComicFigure = comicSource.ComicFigure,
+                BgColor = comicSource.BgColor,
+                BannerVideoWeb = comicSource.BannerVideoWeb,
+                ComicVideoWeb = comicSource.ComicVideoWeb,
+                //ReadTicket = readCouponSource.Quantity + CDCouponSource.Quantity,
+                IslikeComic = comicIsLike,
+                MainTagName = mainTag.TagName,
+                ViewCount = ViewCount,
+                ComicLikeCount = ComicLikeCount,
+                ViewRecordEpTitle = ViewRecordEpTitle,
+
+                Publisher = comicSource.Publisher,
+                Painter = comicSource.Painter,
+                Author = comicSource.Author,
+
+                ComicStatus = comicSource.ComicStatus,
+                UpdateWeek = comicSource.UpdateWeek,
+                Introduction = comicSource.Introduction,
+
+                EpList = epSource.Select(ep => new EpData
+                {
+                    EpId = ep.EpId,
+                    ComicId = ep.ComicId,
+                    EpTitle = ep.EpTitle,
+                    EpCover = ep.EpCover,
+                    UploadTime = ep.UploadTime,
+                    IsCountdownCoupon = ep.IsCountdownCoupon,
+                    IsFree = ep.IsFree
+                }),
+
+                CommentList = commentSource.Select(c => new CommentData { 
+                    CommentId = c.CommentId,
+                    CommentMemberId = c.MemberId,
+                    EpId = c.EpId,
+                    ReplyToCommentId = c.ReplyToCommentId,
+                    IsSpoiler = c.IsSpoiler,
+                    CreateTime = c.CreateTime,
+                    Context = c.Context,
+                    IsDelete = c.IsDelete,
+                    CommentLikeCount = commentLikeSource.Where(cl => c.CommentId == cl[0]).Select(cl => cl[1]).First()
+                })
+            };
         }
 
         //    //public void EpUpdate()

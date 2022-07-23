@@ -1,4 +1,7 @@
-﻿@{
+﻿@using BSWebtoon.Front.Models.ViewModel.WorkPage
+@model WorkPageViewModel
+
+@{
     ViewData["Title"] = "WorksPage";
 }
 @section topCss{
@@ -19,15 +22,16 @@
     <div class="main_picture_bg">
         <div class="main_picture_box">
             <div class="free_watch">
-                <div class="read_ticket pe-2"><a class="text-white" href="#">閱讀券1張</a></div>
+                <div class="read_ticket pe-2"><a class="text-white" href="~/WorksPage/BuyCoupon">閱讀券1張</a></div>
                 <div class="seven_free">每7日免費看</div>
             </div>
             <video title="" autoplay="autoplay" muted="ture"
                    class="local_video object-contain w-full h-full pointer-events-auto">
-                <source src="https://tw-a.kakaopagecdn.com/P/C/96/c1a/f481dbdc-3c61-4c70-bedc-4150a22d54ad.webm"
+                <source src="@Model.BannerVideoWeb"
                         type="video/webm">
-                <source src="https://tw-a.kakaopagecdn.com/P/C/96/c1a/f481dbdc-3c61-4c70-bedc-4150a22d54ad.mov"
-                        type="video/quicktime">
+                @*                <source src="https://tw-a.kakaopagecdn.com/P/C/96/c1a/f481dbdc-3c61-4c70-bedc-4150a22d54ad.mov"
+                    type="video/quicktime">
+                *@
             </video>
             <!-- <img class="w-100" src="https://tw-a.kakaopagecdn.com/P/C/58/c1/2x/106d7904-7aa6-4dcc-bfdb-92b2d6fd401e.webp" alt=""> -->
         </div>
@@ -35,24 +39,25 @@
     <div class="big_video">
         <video title="" preload="auto" muted="ture"
                class="local_video_bg object-contain pointer-events-auto   d-none">
-            <source src="https://tw-a.kakaopagecdn.com/P/C/46/ip2/f901cf8c-0072-4dd4-b4c2-f11cc9edccdd.webm"
+            <source src="@Model.ComicVideoWeb"
                     type="video/webm">
-            <source src="https://tw-a.kakaopagecdn.com/P/C/36/ip1/abd98bbc-0794-4866-933d-b5ea985a45c9.mp4"
+@*            <source src="https://tw-a.kakaopagecdn.com/P/C/36/ip1/abd98bbc-0794-4866-933d-b5ea985a45c9.mp4"
                     type="video/quicktime">
-        </video>
+*@        </video>
     </div>
 
     <div class="comics_name_bg">
         <div class="comics_box mx-auto">
             <a class="comics_name_click" href="#">
                 <div class="comics_name">
-                    <h1>骨灰級菜鳥玩家</h1>
-                    <p><span>原著</span> BONIEE,Step on a LEGO</p>
-                    <p><span>發行</span> REDICE STUDIO</p>
+                    <h1>@Model.ComicChineseName</h1>
+                    <p><span>繪者</span> @Model.Painter</p>
+                    <p><span>作者</span> @Model.Author</p>
+                    <p><span>發行</span> @Model.Publisher</p>
                     <div class="comics_category">
-                        <p class="category"><span><i class="fa-solid fa-bars-staggered"></i></span>動作冒險</p>
-                        <p class="whatch"><span><i class="fa-regular fa-eye"></i></span> 843.9K</p>
-                        <p class="good"><span><i class="fa-regular fa-thumbs-up"></i></span> 82.1K</p>
+                        <p class="category"><span><i class="fa-solid fa-bars-staggered"></i></span>@Model.MainTagName</p>
+                        <p class="whatch"><span><i class="fa-regular fa-eye"></i></span> @Model.ViewCount </p>
+                        <p class="good"><span><i class="fa-regular fa-thumbs-up"></i></span> @Model.ComicLikeCount </p>
                     </div>
                 </div>
             </a>
@@ -98,7 +103,7 @@
         </div>
 
     </div>
-</section>    
+</section>
 <template id="mobile_title">
     <div class="mobile_title_box p-3">
         <h2 class="mo_ti fw-bolder">骨灰級菜鳥玩家</h2>

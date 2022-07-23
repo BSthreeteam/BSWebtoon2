@@ -13,6 +13,6 @@ namespace BSWebtoon.Front.Service.ComicService
         void EpContentCreate();
         //void EpUpdate();
 
-        WorkPageDTO WorkPageRead(int comicId);
+        WorkPageDTO WorkPageRead(int comicId,string userName);
     }
 }
