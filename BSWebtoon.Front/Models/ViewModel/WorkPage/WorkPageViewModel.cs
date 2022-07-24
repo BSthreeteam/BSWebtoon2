@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BSWebtoon.Front.ViewModels
+namespace BSWebtoon.Front.Models.ViewModel.WorkPage
 {
-    public class WorkpageViewModel
+    public class WorkPageViewModel
     {
+        public int MemberId { get; set; }
         //作品頁
         public int ComicId { get; set; }
         public string ComicChineseName { get; set; }
@@ -26,6 +27,8 @@ namespace BSWebtoon.Front.ViewModels
         /// 主標籤
         /// </summary>
         public string MainTagName { get; set; }
+        public List<string> TagNames { get; set; }
+
         /// <summary>
         /// 觀看數
         /// </summary>
@@ -47,7 +50,7 @@ namespace BSWebtoon.Front.ViewModels
 
         //資訊頁
         public int ComicStatus { get; set; }
-        public int UpdateWeek { get; set; }
+        public int? UpdateWeek { get; set; }
         public string Introduction { get; set; }
 
         //話次
@@ -70,14 +73,15 @@ namespace BSWebtoon.Front.ViewModels
         public class CommentData
         {
             public int CommentId { get; set; }
-            public int MemberId { get; set; }
+            public string CommentMemberName { get; set; }
             public int EpId { get; set; }
-            public int ReplyToCommentId { get; set; }
+            public int? ReplyToCommentId { get; set; }
             public bool IsSpoiler { get; set; }
             public DateTime CreateTime { get; set; }
             public string Context { get; set; }
             public bool IsDelete { get; set; }
             public int CommentLikeCount { get; set; } //按讚數
         }
+
     }
 }

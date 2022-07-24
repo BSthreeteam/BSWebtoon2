@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BSWebtoon.Front.Service.RecommendService;
-using BSWebtoon.Front.Models.DTO.Rcommend;
+using BSWebtoon.Front.Models.DTO.Recommend;
 
 namespace BSWebtoon.Front.Service.RecommendService
 {
@@ -225,15 +225,17 @@ namespace BSWebtoon.Front.Service.RecommendService
 
             var result = new List<RecommendDTO>();
 
-            List<RecommendDTO> addActivityList = activityList.Select(c => new RecommendDTO { 
+            List<RecommendDTO> addActivityList = activityList.Select(a => new RecommendDTO { 
+                ComicId = a.ActivityId,
                 RecommendTag = "活動",
-                Introduction = c.ActivityContent,
-                Name = c.ActivityName,
-                ActivityBgColor = c.ActivityBgColor,
-                ActivityImage = c.ActivityImage,
+                Introduction = a.ActivityContent,
+                Name = a.ActivityName,
+                ActivityBgColor = a.ActivityBgColor,
+                ActivityImage = a.ActivityImage,
             }).ToList();
 
             List<RecommendDTO> addNewWorkList = newWorkList.Select(c => new RecommendDTO { 
+                ComicId = c.ComicId,
                 RecommendTag = "新作",
                 Introduction = $"{c.Introduction.Substring(0, 50)}...",
                 Name = c.ComicChineseName,
@@ -244,6 +246,7 @@ namespace BSWebtoon.Front.Service.RecommendService
             }).ToList();
 
             List<RecommendDTO> addPopularityList = popularityList.Select(c => new RecommendDTO {
+                ComicId = c.ComicId,
                 RecommendTag = "人氣",
                 Introduction = $"{c.Introduction.Substring(0, 50)}...",
                 Name = c.ComicChineseName,
@@ -260,13 +263,13 @@ namespace BSWebtoon.Front.Service.RecommendService
             return result;
         }
 
-        public IEnumerable<HitWorkDTO> ReadHitWork()
+        public IEnumerable<HitWorkViewModel> ReadHitWork()
         {
             var hitWorkList = _repository.GetAll<Comic>().Where(c => c.HotComicNameImage != "" && c.HotBgCover != "" && c.HotVideo != "");
 
-            var result = new List<HitWorkDTO>();
+            var result = new List<HitWorkViewModel>();
 
-            result = hitWorkList.Select(c => new HitWorkDTO { 
+            result = hitWorkList.Select(c => new HitWorkViewModel { 
                 ComicId = c.ComicId,
                 ComicChineseName = c.ComicChineseName,
                 HotComicNameImage = c.HotComicNameImage,
