@@ -5591,7 +5591,7 @@ namespace BSWebtoon.Front.Service.ComicService
             };
 
             //var epContentSource = _repository.GetAll<EpContent>().Where(ec => epSource.Any(e => e.EpId == ec.EpId));
-            var viewRecordSource = _repository.GetAll<ViewRecord>().Where(v => v.IsDelete == false && epSource.Any(ep => ep.EpId == v.EpContentId)).OrderByDescending(v => v.ViewTime).FirstOrDefault();
+            var viewRecordSource = _repository.GetAll<ViewRecord>().Where(v => v.IsDelete == false && epSource.Any(ep => ep.EpId == v.EpId)).OrderByDescending(v => v.ViewTime).FirstOrDefault();
             string ViewRecordEpTitle;
             if (viewRecordSource == null)
             {
@@ -5599,11 +5599,11 @@ namespace BSWebtoon.Front.Service.ComicService
             }
             else
             {
-                ViewRecordEpTitle = $"繼續看 {_repository.GetAll<Episode>().Where(v => viewRecordSource.EpContent.EpId == v.EpId).Select(v => v.EpTitle).FirstOrDefault().Trim()}";
+                ViewRecordEpTitle = $"繼續看 {_repository.GetAll<Episode>().Where(v => viewRecordSource.EpId == v.EpId).Select(v => v.EpTitle).FirstOrDefault().Trim()}";
             }
 
 
-            var ViewCount = _repository.GetAll<ViewRecord>().Where(v => v.IsDelete == false && epSource.Any(ep => ep.EpId == v.EpContentId)).Count();
+            var ViewCount = _repository.GetAll<ViewRecord>().Where(v => v.IsDelete == false && epSource.Any(ep => ep.EpId == v.EpId)).Count();
 
             var comicIsLike = _repository.GetAll<Favorite>().Any(f => f.ComicId == comicId && f.MemberId == memberId);
 

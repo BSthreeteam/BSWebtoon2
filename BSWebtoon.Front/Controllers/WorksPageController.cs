@@ -26,7 +26,7 @@ namespace BSWebtoon.Front.Controllers
         public IActionResult WorksPage(int Id) //WorksPage/WorksPage/1
         {
             string name = User.Identity.Name;
-            var workPageComic = _comicService.WorkPageRead(Id,name);
+            var workPageComic = _comicService.WorkPageRead(Id, name);
 
             var result = new WorkPageViewModel
             {
@@ -81,32 +81,28 @@ namespace BSWebtoon.Front.Controllers
             //return View(workPageComic);
             return View(result);
         }
-        //public IActionResult WorksPage(int comicId)
-        //{
-        //    var workPageComic = _comicService.WorkPageRead(comicId);
-        //    return View(workPageComic);
-        //}
+
 
 
         public IActionResult ComicContent(int epId)
         {
-            //var userName = User.Identity.Name;
-            //var comiccontent = _comicContentPageService.ReadworkContent(epId, userName);
-            //    if (comiccontent != null)
-            //    {
-            //        return View(comiccontent);
+            var userName = User.Identity.Name;
+            var comiccontent = _comicContentPageService.ReadworkContent(epId, userName);
+            if (comiccontent != null)
+            {
 
-            //    }
-            //    else
-            //    {
-            //        return RedirectToAction();
-            //    }
+                return View(comiccontent);
 
-            //}
-            return View();
+            }
+            else
+            {
+                return RedirectToAction();
+            }
 
         }
 
-
     }
+
+
 }
+
