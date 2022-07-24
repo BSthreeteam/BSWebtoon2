@@ -27,6 +27,8 @@ namespace BSWebtoon.Front.Models.ViewModel.WorkPage
         /// 主標籤
         /// </summary>
         public string MainTagName { get; set; }
+        public List<string> TagNames { get; set; }
+
         /// <summary>
         /// 觀看數
         /// </summary>
@@ -71,7 +73,7 @@ namespace BSWebtoon.Front.Models.ViewModel.WorkPage
         public class CommentData
         {
             public int CommentId { get; set; }
-            public int CommentMemberId { get; set; }
+            public string CommentMemberName { get; set; }
             public int EpId { get; set; }
             public int? ReplyToCommentId { get; set; }
             public bool IsSpoiler { get; set; }

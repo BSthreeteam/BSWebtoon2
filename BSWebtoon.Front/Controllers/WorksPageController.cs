@@ -37,9 +37,10 @@ namespace BSWebtoon.Front.Controllers
                 BgColor = workPageComic.BgColor,
                 BannerVideoWeb = workPageComic.BannerVideoWeb,
                 ComicVideoWeb = workPageComic.ComicVideoWeb,
-                //ReadTicket = workPageComic.ReadTicket,
+                ReadTicket = workPageComic.ReadTicket,
                 IslikeComic = workPageComic.IslikeComic,
                 MainTagName = workPageComic.MainTagName,
+                TagNames = workPageComic.TagNames,
                 ViewCount = workPageComic.ViewCount,
                 ComicLikeCount = workPageComic.ComicLikeCount,
                 ViewRecordEpTitle = workPageComic.ViewRecordEpTitle,
@@ -66,7 +67,7 @@ namespace BSWebtoon.Front.Controllers
                 CommentList = workPageComic.CommentList.Select(c => new CommentData
                 {
                     CommentId = c.CommentId,
-                    CommentMemberId = c.CommentMemberId,
+                    CommentMemberName = c.CommentMemberName,
                     EpId = c.EpId,
                     ReplyToCommentId = c.ReplyToCommentId,
                     IsSpoiler = c.IsSpoiler,

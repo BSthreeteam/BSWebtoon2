@@ -35,7 +35,7 @@ namespace BSWebtoon.Front.Service.ComicService
                 new ComicTag {TagName="復仇",IsMainTag=false,IsDelete=false},
                 new ComicTag {TagName="怦然心動",IsMainTag=false,IsDelete=false},
                 new ComicTag {TagName="緊張刺激",IsMainTag=false,IsDelete=false},
-                new ComicTag {TagName="淒美愛情",IsMainTag=false,IsDelete=false},               
+                new ComicTag {TagName="淒美愛情",IsMainTag=false,IsDelete=false},
                 new ComicTag {TagName="糾葛",IsMainTag=false,IsDelete=false},
                 new ComicTag {TagName="三角關係",IsMainTag=false,IsDelete=false},
                 new ComicTag {TagName="刻劃細膩",IsMainTag=false,IsDelete=false},
@@ -52,9 +52,9 @@ namespace BSWebtoon.Front.Service.ComicService
                 new ComicTag {TagName="清新",IsMainTag=false,IsDelete=false},
                 new ComicTag {TagName="活潑可愛",IsMainTag=false,IsDelete=false},
 
-                
+
             };
-            var ordertag= comictags.OrderByDescending(x=>x.IsMainTag).ThenBy(x => x.TagName);
+            var ordertag = comictags.OrderByDescending(x => x.IsMainTag).ThenBy(x => x.TagName);
             foreach (var tags in ordertag)
             {
                 _repository.Create(tags);
@@ -234,7 +234,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,ComicVideoWeb =""
                            ,HotVideo = ""
                            ,AuditType     =1,AuditEmployeeId=1,AuditFailReason="NULL",AuditTime=new DateTime(2021,6,28),ComicStatus=3},
- 
+
                 new Comic {ComicChineseName="我想活下去",ComicEnglishName="I'mAllOutOfHealth"
                            ,ComicNameImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1656607105/I%27mAllOutOfHealth/5.png"
                            ,HotComicNameImage = ""
@@ -493,7 +493,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotVideo = ""
                            ,AuditType     =1,AuditEmployeeId=2,AuditFailReason="NULL",AuditTime=new DateTime(2021,7,2),ComicStatus=3},
 
-                
+
                 new Comic {ComicChineseName="原來都是誤會一場",ComicEnglishName="ItWasAllAMistake"
                            ,ComicNameImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1656605156/ItWasAllAMistake/5.png"
                            ,HotComicNameImage = ""
@@ -509,8 +509,8 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,ComicVideoWeb =""
                            ,HotVideo = ""
                            ,AuditType     =1,AuditEmployeeId=2,AuditFailReason="NULL",AuditTime=new DateTime(2021,7,2),ComicStatus=1},
-                
-                 
+
+
                 new Comic {ComicChineseName="就離開我吧",ComicEnglishName="JustLeaveMe"
                            ,ComicNameImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1656605448/JustLeaveMe/5.png"
                            ,HotComicNameImage = ""
@@ -527,7 +527,7 @@ namespace BSWebtoon.Front.Service.ComicService
                            ,HotVideo = ""
                            ,AuditType     =1,AuditEmployeeId=2,AuditFailReason="NULL",AuditTime=new DateTime(2021,7,2),ComicStatus=1},
 
-                 
+
                 new Comic {ComicChineseName="千金大廚來上菜",ComicEnglishName="LadyChefRoyale"
                            ,ComicNameImage="https://res.cloudinary.com/dmns6twmt/image/upload/v1656605055/LadyChefRoyale/5.png"
                            ,HotComicNameImage = ""
@@ -2840,29 +2840,29 @@ namespace BSWebtoon.Front.Service.ComicService
                 new ComicTagList {TagId=19,ComicId=11},
                 new ComicTagList {TagId=20,ComicId=11},
 
-                new ComicTagList {TagId=11,ComicId=26}, 
-                new ComicTagList {TagId=19,ComicId=26}, 
-                new ComicTagList {TagId=5,ComicId=26}, 
-                new ComicTagList {TagId=2,ComicId=26}, 
+                new ComicTagList {TagId=11,ComicId=26},
+                new ComicTagList {TagId=19,ComicId=26},
+                new ComicTagList {TagId=5,ComicId=26},
+                new ComicTagList {TagId=2,ComicId=26},
 
-                new ComicTagList {TagId=10,ComicId=153}, 
+                new ComicTagList {TagId=10,ComicId=153},
                 new ComicTagList {TagId=20,ComicId=153},
-                new ComicTagList {TagId=7,ComicId=153}, 
-                new ComicTagList {TagId=21,ComicId=153}, 
+                new ComicTagList {TagId=7,ComicId=153},
+                new ComicTagList {TagId=21,ComicId=153},
 
-                new ComicTagList {TagId=10,ComicId=63}, 
-                new ComicTagList {TagId=20,ComicId=63}, 
-                new ComicTagList {TagId=7,ComicId=63}, 
-                new ComicTagList {TagId=21,ComicId=63}, 
-                
+                new ComicTagList {TagId=10,ComicId=63},
+                new ComicTagList {TagId=20,ComicId=63},
+                new ComicTagList {TagId=7,ComicId=63},
+                new ComicTagList {TagId=21,ComicId=63},
 
-                new ComicTagList {TagId=10,ComicId=128}, 
-                new ComicTagList {TagId=20,ComicId=128}, 
-                new ComicTagList {TagId=12,ComicId=128}, 
-                new ComicTagList {TagId=14,ComicId=128}, 
 
-                new ComicTagList {TagId=10,ComicId=50}, 
-                new ComicTagList {TagId=15,ComicId=50}, 
+                new ComicTagList {TagId=10,ComicId=128},
+                new ComicTagList {TagId=20,ComicId=128},
+                new ComicTagList {TagId=12,ComicId=128},
+                new ComicTagList {TagId=14,ComicId=128},
+
+                new ComicTagList {TagId=10,ComicId=50},
+                new ComicTagList {TagId=15,ComicId=50},
                 new ComicTagList {TagId=18,ComicId=50},
                 new ComicTagList {TagId=4,ComicId=50},
 
@@ -2876,7 +2876,7 @@ namespace BSWebtoon.Front.Service.ComicService
                 new ComicTagList {TagId=4,ComicId=148},
                 new ComicTagList {TagId=17,ComicId=148},
 
-                new ComicTagList {TagId=8,ComicId=112}, 
+                new ComicTagList {TagId=8,ComicId=112},
                 new ComicTagList {TagId=3,ComicId=112},
                 new ComicTagList {TagId=19,ComicId=112},
                 new ComicTagList {TagId=17,ComicId=112},
@@ -3020,7 +3020,7 @@ namespace BSWebtoon.Front.Service.ComicService
                 new ComicTagList {TagId=14,ComicId=96},
                 new ComicTagList {TagId=5,ComicId=96},
                 new ComicTagList {TagId=3,ComicId=96},
-      
+
                 new ComicTagList {TagId=8,ComicId=52},
                 new ComicTagList {TagId=25,ComicId=52},
                 new ComicTagList {TagId=6,ComicId=52},
@@ -3079,7 +3079,7 @@ namespace BSWebtoon.Front.Service.ComicService
                 new ComicTagList {TagId=23,ComicId=147},
 
             };
-            var ordertagList = comictaglists.OrderBy(x => x.ComicId).ThenBy(x=>x.TagId);
+            var ordertagList = comictaglists.OrderBy(x => x.ComicId).ThenBy(x => x.TagId);
             foreach (var list in ordertagList)
             {
                 _repository.Create(list);
@@ -5560,33 +5560,37 @@ namespace BSWebtoon.Front.Service.ComicService
         }
 
 
-        public WorkPageDTO WorkPageRead(int comicId,string userName)
+        public WorkPageDTO WorkPageRead(int comicId, string userName)
         {
             //倒數券 我的最愛 觀看紀錄 點擊數 留言
-            comicId = 5;
+            //comicId = 108;
             //審核 1通過 2未審核 3失敗 4審核中
+            userName = "林淑芬";
             var memberId = _repository.GetAll<Member>().Where(m => m.AccountName == userName).Select(m => m.MemberId).FirstOrDefault();
             var comicSource = _repository.GetAll<Comic>().Where(c => c.AuditType == 1).First(x => x.ComicId == comicId);
             var tagListSource = _repository.GetAll<ComicTagList>().Where(x => x.ComicId == comicSource.ComicId);
+            var tagnames = _repository.GetAll<ComicTag>().Where(x => tagListSource.Any(y => y.TagId == x.TagId));
             var mainTag = _repository.GetAll<ComicTag>().Where(x => tagListSource.Any(y => y.TagId == x.TagId)).First(x => x.IsMainTag == true);
             var couponTest = _repository.GetAll<Coupon>();
             // 1通用券 2閱讀券 3倒數券 券有可能沒有 都沒有的話就只有倒數券
-            var readCouponSource = _repository.GetAll<Coupon>().FirstOrDefault(x => x.CouponTypeId == 2 && x.MemberId == memberId && x.ComicId == comicId);
+            var readCouponSource = _repository.GetAll<Coupon>().Where(x => x.CouponTypeId == 2 && x.MemberId == memberId && x.ComicId == comicId).Select(x => x.Quantity).FirstOrDefault();
             //var CDCouponSource = _repository.GetAll<Coupon>().First(x => x.CouponTypeId == 3 && x.MemberId == memberId && x.ComicId == comicId);
 
-            var epSource = _repository.GetAll<Episode>().Where(x => x.AuditTypeId == 1 && x.ComicId == comicId)/*.ToList()*/;
+            var epSource = _repository.GetAll<Episode>().Where(x => x.AuditType == 1 && x.ComicId == comicId).OrderBy(x => x.UploadTime)/*.ToList()*/;
 
             // 漫畫所有話次留言
-            var commentSource = _repository.GetAll<Comment>().Where(c => epSource.Any(e => /*e.EpId*/1 == c.EpId ))/*.ToList()*/;
-            var commentLikeSource = _repository.GetAll<CommentLikeRecord>().GroupBy(g => g.CommentId).Where(g => commentSource.Any(c => c.CommentId == g.Key)).Select(c => new List<int>() { c.Key ,c.Count()});
+            var commentSource = _repository.GetAll<Comment>().Where(c => epSource.Any(e => e.EpId == c.EpId))/*.ToList()*/;
             int ComicLikeCount = 0;
+            //IQueryable<List<int>> commentLikeSource;
+
+            var commentLikeSource = _repository.GetAll<CommentLikeRecord>().GroupBy(g => g.CommentId).Where(g => commentSource.Any(c => c.CommentId == g.Key)).Select(c => new CommentData {CommentId= c.Key,CommentLikeCount= c.Count() });
             foreach (var like in commentLikeSource)
             {
-                ComicLikeCount = ComicLikeCount + like[1];
+                ComicLikeCount = ComicLikeCount + like.CommentLikeCount;
             };
 
-            var epContentSource = _repository.GetAll<EpContent>().Where(ec => epSource.Any(e => /*e.EpId*/1 == ec.EpId));
-            var viewRecordSource = _repository.GetAll<ViewRecord>().Where(v => epContentSource.Any(ec => ec.EpContentId == v.EpContentId)).OrderByDescending(v => v.ViewTime).FirstOrDefault();
+            //var epContentSource = _repository.GetAll<EpContent>().Where(ec => epSource.Any(e => e.EpId == ec.EpId));
+            var viewRecordSource = _repository.GetAll<ViewRecord>().Where(v => v.IsDelete == false && epSource.Any(ep => ep.EpId == v.EpContentId)).OrderByDescending(v => v.ViewTime).FirstOrDefault();
             //var ViewRecordEpTitle = _repository.GetAll<Episode>().Where(v => viewRecordSource.EpContent.EpId == v.EpId).Select(v => v.EpTitle).FirstOrDefault();
             string ViewRecordEpTitle;
             if (viewRecordSource == null)
@@ -5599,11 +5603,12 @@ namespace BSWebtoon.Front.Service.ComicService
             }
 
 
-            var ViewCount = _repository.GetAll<ViewRecord>().Where(v => epContentSource.Any(ec => ec.EpContentId == v.EpContentId)).Count();
+            var ViewCount = _repository.GetAll<ViewRecord>().Where(v => epSource.Any(ep => ep.EpId == v.EpContentId)).Count();
 
             var comicIsLike = _repository.GetAll<Favorite>().Any(f => f.ComicId == comicId && f.MemberId == memberId);
 
-            return new WorkPageDTO() { 
+            return new WorkPageDTO()
+            {
                 MemberId = memberId,
                 ComicId = comicSource.ComicId,
                 ComicChineseName = comicSource.ComicChineseName,
@@ -5612,9 +5617,10 @@ namespace BSWebtoon.Front.Service.ComicService
                 BgColor = comicSource.BgColor,
                 BannerVideoWeb = comicSource.BannerVideoWeb,
                 ComicVideoWeb = comicSource.ComicVideoWeb,
-                //ReadTicket = readCouponSource.Quantity + CDCouponSource.Quantity,
+                ReadTicket = readCouponSource /*+ CDCouponSource.Quantity*/,
                 IslikeComic = comicIsLike,
                 MainTagName = mainTag.TagName,
+                TagNames = tagnames.Select(t => t.TagName).ToList(),
                 ViewCount = ViewCount,
                 ComicLikeCount = ComicLikeCount,
                 ViewRecordEpTitle = ViewRecordEpTitle,
@@ -5638,16 +5644,17 @@ namespace BSWebtoon.Front.Service.ComicService
                     IsFree = ep.IsFree
                 }),
 
-                CommentList = commentSource.Select(c => new CommentData { 
+                CommentList = commentSource.Select(c => new CommentData
+                {
                     CommentId = c.CommentId,
-                    CommentMemberId = c.MemberId,
+                    CommentMemberName = _repository.GetAll<Member>().Where(m => m.MemberId == c.MemberId).Select(m => m.NickName).First(),
                     EpId = c.EpId,
                     ReplyToCommentId = c.ReplyToCommentId,
                     IsSpoiler = c.IsSpoiler,
                     CreateTime = c.CreateTime,
                     Context = c.Context,
                     IsDelete = c.IsDelete,
-                    CommentLikeCount = commentLikeSource.Where(cl => c.CommentId == cl[0]).Select(cl => cl[1]).First()
+                    CommentLikeCount = commentLikeSource.Where(cl => c.CommentId == cl.CommentId).Select(cl => cl.CommentLikeCount).FirstOrDefault()
                 })
             };
         }

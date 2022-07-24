@@ -5,6 +5,33 @@
     ViewData["Title"] = "WorksPage";
 }
 @section topCss{
+<style>
+    .main_picture {
+        display: flex;
+        flex-direction: column;
+        color: var(--content-small-color);
+        opacity: 1;
+        background-image: url("@Model.BgCover");
+        background-repeat: no-repeat;
+        background-size: 100%;
+        /* position: relative; */
+    }
+
+        .main_picture .comics_name_bg {
+            background: linear-gradient(transparent 2%,@Model.BgColor);
+            padding-bottom: 50px;
+        }
+
+    .main_comics_episode .comics_episode {
+        background-color: @Model.BgColor;
+    }
+
+        .main_comics_episode .comics_episode .row .card {
+            border: 0px solid;
+            background-color: @Model.BgColor;
+        }
+
+</style>
 <link rel="stylesheet" href="~/style/WorkspageStyle.css" />
 }
 @*<h1>WorksPage</h1>*@
@@ -25,25 +52,26 @@
                 <div class="read_ticket pe-2"><a class="text-white" href="~/WorksPage/BuyCoupon">閱讀券1張</a></div>
                 <div class="seven_free">每7日免費看</div>
             </div>
-            <video title="" autoplay="autoplay" muted="ture"
-                   class="local_video object-contain w-full h-full pointer-events-auto">
-                <source src="@Model.BannerVideoWeb"
-                        type="video/webm">
-                @*                <source src="https://tw-a.kakaopagecdn.com/P/C/96/c1a/f481dbdc-3c61-4c70-bedc-4150a22d54ad.mov"
-                    type="video/quicktime">
-                *@
-            </video>
-            <!-- <img class="w-100" src="https://tw-a.kakaopagecdn.com/P/C/58/c1/2x/106d7904-7aa6-4dcc-bfdb-92b2d6fd401e.webp" alt=""> -->
+            @switch (@Model.BannerVideoWeb != string.Empty && @Model.BannerVideoWeb != null)
+            {
+                case true:
+                    <video title="" autoplay="autoplay" muted="ture" class="local_video object-contain w-full h-full pointer-events-auto">
+                        <source src="@Model.BannerVideoWeb" type="video/webm">
+                    </video>
+                    break;
+                case false:
+                    <img class="w-100" src="@Model.ComicFigure" alt="">
+                    break;
+            }
         </div>
     </div>
     <div class="big_video">
-        <video title="" preload="auto" muted="ture"
-               class="local_video_bg object-contain pointer-events-auto   d-none">
-            <source src="@Model.ComicVideoWeb"
-                    type="video/webm">
-@*            <source src="https://tw-a.kakaopagecdn.com/P/C/36/ip1/abd98bbc-0794-4866-933d-b5ea985a45c9.mp4"
-                    type="video/quicktime">
-*@        </video>
+        <video title="" preload="auto" muted="ture" class="local_video_bg object-contain pointer-events-auto   d-none">
+            <source src="@Model.ComicVideoWeb" type="video/webm">
+            @*            <source src="https://tw-a.kakaopagecdn.com/P/C/36/ip1/abd98bbc-0794-4866-933d-b5ea985a45c9.mp4"
+                type="video/quicktime">
+            *@
+        </video>
     </div>
 
     <div class="comics_name_bg">
@@ -86,20 +114,66 @@
             </nav>
             <div class="keep_reading_box">
                 <a href="#">
-                    <p class="keep_reading"><span>繼續看</span>序章</p>
+                    <p class="keep_reading">@*<span>繼續看</span>序章 *@@Model.ViewRecordEpTitle</p>
                 </a>
             </div>
             <div class="ep_row col-12 col-lg-8 col-xl-8">
+                @foreach (var ep in Model.EpList)
+                {
+
+                    <div class="col col-6 col-md-4 col-lg-3 col-xl-2">
+                        <a class="" href="#">
+                            <div class="card w-100" style="width: 18rem;">
+                                <img src="@ep.EpCover" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">@ep.EpTitle</h5>
+                                    <p class="card-text">@ep.UploadTime</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+
             </div>
             <div class="col-lg-4 col-xl-4">
                 <div class="comics_illustrate">
-                    <p>這款遊戲將在15年後終止服務，只有我知道遊戲的結局。「我是骨灰級玩家。」</p>
+                    <p>@Model.Introduction</p>
                 </div>
             </div>
         </div>
         <div class="message_box d-flex justify-content-center flex-column">
             <div class="message_name mx-auto">留言</div>
-
+            @foreach (var comment in Model.CommentList)
+            {
+                <div class="comment_text  mx-auto">
+                    <div class="row p-4">
+                        <div class="user  d-flex ">
+                            <span class="leval border-danger  text-white">BEST</span>
+                            <p class="username  mb-0 ms-3 text-white">@comment.CommentMemberName</p>
+                        </div>
+                        <div class="text">
+                            <p class="text-white ">
+                                @comment.Context
+                            </p>
+                            <button class="btn btn_icon">
+                                <i class="fa-solid fa-thumbs-up "></i>
+                                讚
+                                <span class="count">@comment.CommentLikeCount</span>
+                            </button>
+                            <button class="btn btn_icon">
+                                <i class="fa-solid fa-reply-all"></i>
+                                回覆
+                                <span class="count">66</span>
+                            </button>
+                            <button class="btn btn_icon">
+                                <i class="fa-solid fa-thumbs-down"></i>
+                                檢舉
+                                <span class="count">10</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
 
     </div>
@@ -109,79 +183,87 @@
         <h2 class="mo_ti fw-bolder">骨灰級菜鳥玩家</h2>
         <div class="ill_box">
             <div>
-                <span>文</span>
-                <p class="mo_word"> BONIEE</p>
+                <span>繪者</span>
+                <p class="mo_word">@Model.Painter</p>
             </div>
             <div>
-                <span>圖</span>
-                <p class="mo_pic"> BONIEE</p>
+                <span>作者</span>
+                <p class="mo_pic">@Model.Author</p>
             </div>
-            <div>
+            @*            <div>
                 <span>原著</span>
                 <p class="mo_author"> BONIEE,Step on a LEGO</p>
-            </div>
-            <div>
+                </div>
+            *@            <div>
                 <span>發行</span>
-                <p class="mo_publisher"> REDICE STUDIO</p>
+                <p class="mo_publisher">@Model.Publisher</p>
             </div>
         </div>
         <div class="story_box mt-5">
             <h3>故事大綱</h3>
-            <p>這款遊戲將在15年後終止服務，只有我知道遊戲的結局。「我是骨灰及玩家。」</p>
+            <p>@Model.Introduction</p>
         </div>
         <div class="keywords_box mt-5">
             <h4 class="mb-3">關鍵字</h4>
             <div>
-                <p>#刺激緊張</p>
-                <p>#瘋狂</p>
-                <p>#動作冒險</p>
-                <p>#改變命運</p>
+                @foreach (var tag in Model.TagNames)
+                {
+                    <p>#@tag</p>
+                }
+                @*  <p>#刺激緊張</p>
+                    <p>#瘋狂</p>
+                    <p>#動作冒險</p>
+                    <p>#改變命運</p>
+                *@
             </div>
         </div>
     </div>
 </template>
 <template id="comment">
-    <div class="comment_text  mx-auto">
+    @*    <div class="comment_text  mx-auto">
         <div class="row p-4">
-            <div class="user  d-flex ">
-                <span class="leval border-danger  text-white">BEST</span>
-                <p class="username  mb-0 ms-3 text-white">凍豆腐</p>
-            </div>
-            <div class="text">
-                <p class="text-white ">
-                    古代事業士兵烏日是因為，圍繞商品迅速很快突破似乎對你模式進一步人們手裡，暴力網頁班美元財政是怎麼想法指導屬性隨着算是民主自信另外，病人衛生工廠，總是行業聯繫最。
-                </p>
-                <button class="btn btn_icon">
-                    <i class="fa-solid fa-thumbs-up "></i>
-                    讚
-                    <span class="count">1.9k</span>
-                </button>
-                <button class="btn btn_icon">
-                    <i class="fa-solid fa-reply-all"></i>
-                    回覆
-                    <span class="count">66</span>
-                </button>
-                <button class="btn btn_icon">
-                    <i class="fa-solid fa-thumbs-down"></i>
-                    檢舉
-                    <span class="count">10</span>
-                </button>
-            </div>
+        <div class="user  d-flex ">
+        <span class="leval border-danger  text-white">BEST</span>
+        <p class="username  mb-0 ms-3 text-white">凍豆腐</p>
         </div>
-    </div>
+        <div class="text">
+        <p class="text-white ">
+        古代事業士兵烏日是因為，圍繞商品迅速很快突破似乎對你模式進一步人們手裡，暴力網頁班美元財政是怎麼想法指導屬性隨着算是民主自信另外，病人衛生工廠，總是行業聯繫最。
+        </p>
+        <button class="btn btn_icon">
+        <i class="fa-solid fa-thumbs-up "></i>
+        讚
+        <span class="count">1.9k</span>
+        </button>
+        <button class="btn btn_icon">
+        <i class="fa-solid fa-reply-all"></i>
+        回覆
+        <span class="count">66</span>
+        </button>
+        <button class="btn btn_icon">
+        <i class="fa-solid fa-thumbs-down"></i>
+        檢舉
+        <span class="count">10</span>
+        </button>
+        </div>
+        </div>
+        </div>
+    *@
 </template>
+
 <template id="ep_card">
-    <div class="col col-6 col-md-4 col-lg-3 col-xl-2">
+    @*    <div class="col col-6 col-md-4 col-lg-3 col-xl-2">
         <a class="" href="#">
-            <div class="card w-100" style="width: 18rem;">
-                <img src="https://picsum.photos/300/200/?random=64" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example.</p>
-                </div>
-            </div>
+        <div class="card w-100" style="width: 18rem;">
+        <img src="" class="card-img-top" alt="...">
+        <div class="card-body">
+        <h5 class="card-title"></h5>
+        <p class="card-text"></p>
+        </div>
+        </div>
         </a>
-    </div>
+        </div>
+    *@
 </template>
 <div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -211,5 +293,23 @@
         crossorigin="anonymous"></script>
 
 <script src="~/js/Workspage.js"></script>
+
+<script>
+    let collect_a = document.querySelector('.red');
+
+    ////點擊愛心，顏色變紅色
+    let check = document.querySelector('#heart');
+    check.checked = true
+    collect_a.addEventListener('click', () => {
+        if (check.checked) {
+            console.log('111')
+            collect_a.classList.add('text-danger');
+        }
+        else {
+            console.log('222')
+            collect_a.classList.remove('text-danger');
+        }
+    })
+</script>
 }
 
