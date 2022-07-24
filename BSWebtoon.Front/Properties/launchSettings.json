@@ -19,7 +19,6 @@
     "BSWebtoon.Front": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "Recharge/CashPlanView",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
