@@ -45,20 +45,20 @@ namespace BSWebtoon.Front.Controllers
             //_rechargeService.PaymentCreate();
             //_rechargeService.RechargeRecordCreate();
             //_Employeeservice.EmployeeCreate();
-            _ComicService.ComicTagCreate();
-            _ComicService.ComicCreate();
-            _ComicService.ComicTagListCreate();
+            //_ComicService.ComicTagCreate();
+            //_ComicService.ComicCreate();
+            //_ComicService.ComicTagListCreate();
             //_ComicService.EpCreate();
             //_ComicService.EpContentCreate();
             //_favoriteService.FavoriteCreate();
             //_ClickRecordService.ClickRecordCreate();
             //_recommendservice.ActivityCreate();
-            //_couponService.CouponCreate();
-            //_couponService.CouponUsedRecordCreate();
+            //_couponService.CouponCreate(); //不推假資料
+            //_couponService.CouponUsedRecordCreate(); //不推假資料
             //_recommendservice.ViewRecordCreate();
-            //_recommendservice.CommentCreate();
-            //_recommendservice.CommentLikeCreate();
-            //_recommendservice.ReportCreate();
+            _recommendservice.CommentCreate();
+            _recommendservice.CommentLikeCreate();
+            _recommendservice.ReportCreate();
 
             return View();
         }

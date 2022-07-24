@@ -14,6 +14,7 @@ namespace BSWebtoon.Model.Models
         public int PaymentId { get; set; }
         public int CashPlanContent { get; set; }
         public int Price { get; set; }
+        public int PayState { get; set; }
 
         public virtual CashPlan CashPlan { get; set; }
         public virtual Member Member { get; set; }
