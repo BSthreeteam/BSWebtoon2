@@ -11,11 +11,13 @@ namespace BSWebtoon.Front.Controllers
         {
             _couponService = couponService;
         }
-
+        [HttpPost]
         public IActionResult Coupon() //Coupon/Coupon
         {
             //_couponService.CouponCreate();
             //_couponService.CouponUsedRecordCreate();
+            string name = User.Identity.Name;
+            _couponService.CouponDataCreate(name, 1,1,1,1);
             return View();
         }
     }

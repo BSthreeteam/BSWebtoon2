@@ -1,6 +1,6 @@
-﻿namespace BSWebtoon.Front.Models.DTO.Rcommend
+﻿namespace BSWebtoon.Front.Models.ViewModel.Recommend
 {
-    public class HitWorkDTO
+    public class HitWorkViewModel
     {
         public int ComicId { get; set; }
         public string ComicChineseName { get; set; }

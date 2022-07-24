@@ -1,5 +1,5 @@
-﻿@using BSWebtoon.Front.Models.DTO.Rcommend
-@model IEnumerable<RecommendDTO>
+﻿@using BSWebtoon.Front.Models.ViewModel.Recommend
+@model List<RecommendViewModel>
 
 @{
     ViewData["Title"] = "Recommend";
@@ -23,7 +23,7 @@
     <div class="container w-1200">
         @foreach (var item in Model)
         {
-            <a class="work_a" href="WorksPage/WorksPage">
+            <a class="work_a" href="WorksPage/WorksPage/@item.ComicId" >
                 <div class="row row-recommend w-1200">
                     <div class="txt-part">
                         <span id="tag">@item.RecommendTag</span>

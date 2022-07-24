@@ -119,8 +119,6 @@ namespace BSWebtoon.Front.Service.MemberService
                 };
                 _repository.Create(newmember);
                 _repository.SaveChange();
-
-
             }
 
             result.IsSuccess = true;
