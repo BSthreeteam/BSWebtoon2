@@ -5,6 +5,8 @@
 <link rel="stylesheet" href="~/style/WorkspageStyle.css" />
 }
 @*<h1>WorksPage</h1>*@
+<partial name="LoginPartial"></partial>
+
 <header class="hearder_nav w-100">
     <a class="previous_page_a" href="javascript:history.go(-1)"><i class="fa-solid fa-arrow-left-long previous_page"></i></a>
     <div class="function_box">
@@ -167,7 +169,10 @@
 </template>
 <template id="ep_card">
     <div class="col col-6 col-md-4 col-lg-3 col-xl-2">
-        <a class="" href="#">
+        @if (@User.Identity.Name == null)
+        {
+
+             <a id="login" href="#">
             <div class="card w-100" style="width: 18rem;">
                 <img src="https://picsum.photos/300/200/?random=64" class="card-img-top" alt="...">
                 <div class="card-body">
@@ -176,6 +181,20 @@
                 </div>
             </div>
         </a>
+        }
+        else
+        {
+            <a class="" href="WorkPage/ComicContent">
+                <div class="card w-100" style="width: 18rem;">
+                    <img src="https://picsum.photos/300/200/?random=64" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example.</p>
+                    </div>
+                </div>
+            </a>
+            
+        }
     </div>
 </template>
 <div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -206,5 +225,11 @@
         crossorigin="anonymous"></script>
 
 <script src="~/js/Workspage.js"></script>
+<script>
+
+    var login=document.getElementById("login");
+    login.dataset.toggle="modal"
+    login.dataset.target="#exampleModal"
+</script>
 }
 

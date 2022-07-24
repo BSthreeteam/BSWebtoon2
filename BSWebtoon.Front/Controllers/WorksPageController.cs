@@ -22,28 +22,25 @@ namespace BSWebtoon.Front.Controllers
         //}
 
 
-        public IActionResult EpContent(int epId)
+        public IActionResult ComicContent(int epId)
         {
-            var userName = User.Identity.Name;
-            var IsLogin = _comicContentPageService.IsLogin(userName);
-            if(IsLogin == null)
-            {
-                return RedirectToAction();
-            }
-            else
-            {
-            var comiccontent = _comicContentPageService.ReadEpContent(epId, userName);
-                if(comiccontent != null)
-                {
-                    return View(comiccontent);
+            //var userName = User.Identity.Name;
+            //var comiccontent = _comicContentPageService.ReadworkContent(epId, userName);
+            //    if (comiccontent != null)
+            //    {
+            //        return View(comiccontent);
 
-                }
-                else
-                {
-                    return RedirectToAction();
-                }
+            //    }
+            //    else
+            //    {
+            //        return RedirectToAction();
+            //    }
 
-            }
+            //}
+            return View();
+
         }
+
+
     }
 }
