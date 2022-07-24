@@ -10,16 +10,21 @@ using System;
 using static BSWebtoon.Front.Models.DTO.NewebPay.NewebPayDTO;
 using System.Collections.Generic;
 using System.Linq;
+using BSWebtoon.Model.Repository;
+using BSWebtoon.Model.Models;
 
 namespace NewebPay.Controllers
 {
     public class NewebPayController : Controller
     {
+        private readonly BSRepository _repository;
+
         private readonly ILogger<NewebPayController> _logger;
 
-        public NewebPayController(ILogger<NewebPayController> logger)
+        public NewebPayController(ILogger<NewebPayController> logger, BSRepository repository)
         {
             _logger = logger;
+            _repository = repository;
         }
 
         public IActionResult Index() //NewebPay/Index
@@ -52,7 +57,7 @@ namespace NewebPay.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(new ErrorViewModel { RequestId = System.Diagnostics.Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
         /// <summary>
@@ -63,14 +68,18 @@ namespace NewebPay.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult SendToNewebPay(SendToNewebPayIn inModel)
         {
+            IConfiguration Config = new ConfigurationBuilder().AddJsonFile("appSettings.json").Build();
+
             SendToNewebPayOut outModel = new SendToNewebPayOut();
 
+            var typeName = _repository.GetAll<CashPlan>().Where(x => x.CashPlanId == int.Parse(inModel.ItemDesc)).Select(x => x.CashPlanContent).FirstOrDefault().ToString();
+            var typePrice = _repository.GetAll<CashPlan>().Where(x => x.CashPlanId == int.Parse(inModel.ItemDesc)).Select(x => x.Price).FirstOrDefault();
             // 藍新金流線上付款
 
-            //交易欄位
+            // 交易欄位
             List<KeyValuePair<string, string>> TradeInfo = new List<KeyValuePair<string, string>>();
             // 商店代號
-            TradeInfo.Add(new KeyValuePair<string, string>("MerchantID", inModel.MerchantID));
+            TradeInfo.Add(new KeyValuePair<string, string>("MerchantID", Config.GetSection("MerchantID").Value));
             // 回傳格式
             TradeInfo.Add(new KeyValuePair<string, string>("RespondType", "String"));
             // TimeStamp
@@ -78,45 +87,36 @@ namespace NewebPay.Controllers
             // 串接程式版本
             TradeInfo.Add(new KeyValuePair<string, string>("Version", "2.0"));
             // 商店訂單編號
-            TradeInfo.Add(new KeyValuePair<string, string>("MerchantOrderNo", inModel.MerchantOrderNo));
+            TradeInfo.Add(new KeyValuePair<string, string>("MerchantOrderNo", DateTime.Now.ToString("yyyyMMddHHmmss")));
             // 訂單金額
-            TradeInfo.Add(new KeyValuePair<string, string>("Amt", inModel.Amt));
+            TradeInfo.Add(new KeyValuePair<string, string>("Amt", $"{(int)typePrice}"));//等等
             // 商品資訊
-            TradeInfo.Add(new KeyValuePair<string, string>("ItemDesc", inModel.ItemDesc));
+            TradeInfo.Add(new KeyValuePair<string, string>("ItemDesc", $"{typeName}金幣"));//等等
             // 繳費有效期限(適用於非即時交易)
-            TradeInfo.Add(new KeyValuePair<string, string>("ExpireDate", inModel.ExpireDate));
+            //TradeInfo.Add(new KeyValuePair<string, string>("ExpireDate", inModel.ExpireDate));//我們是即時交易
             // 支付完成返回商店網址
             TradeInfo.Add(new KeyValuePair<string, string>("ReturnURL", inModel.ReturnURL));
             // 支付通知網址
-            TradeInfo.Add(new KeyValuePair<string, string>("NotifyURL", inModel.NotifyURL));
+            TradeInfo.Add(new KeyValuePair<string, string>("NotifyURL", $"{Request.Scheme}://{Request.Host}{Request.Path}Home/CallbackNotify"));
             // 商店取號網址
-            TradeInfo.Add(new KeyValuePair<string, string>("CustomerURL", inModel.CustomerURL));
+            TradeInfo.Add(new KeyValuePair<string, string>("CustomerURL", $"{Request.Scheme}://{Request.Host}{Request.Path}Home/CallbackCustomer"));
             // 支付取消返回商店網址
-            TradeInfo.Add(new KeyValuePair<string, string>("ClientBackURL", inModel.ClientBackURL));
+            TradeInfo.Add(new KeyValuePair<string, string>("ClientBackURL", $"{Request.Scheme}://{Request.Host}{Request.Path}Home/Privacy"));
             // 付款人電子信箱
-            TradeInfo.Add(new KeyValuePair<string, string>("Email", inModel.Email));
+            //TradeInfo.Add(new KeyValuePair<string, string>("Email", inModel.Email));//等等
             // 付款人電子信箱 是否開放修改(1=可修改 0=不可修改)
             TradeInfo.Add(new KeyValuePair<string, string>("EmailModify", "0"));
-
             //信用卡 付款
-            if (inModel.ChannelID == "CREDIT")
-            {
-                TradeInfo.Add(new KeyValuePair<string, string>("CREDIT", "1"));
-            }
-            //ATM 付款
-            //if (inModel.ChannelID == "VACC")
-            //{
-            //    TradeInfo.Add(new KeyValuePair<string, string>("VACC", "1"));
-            //}
+            TradeInfo.Add(new KeyValuePair<string, string>("CREDIT", "1"));
+
             string TradeInfoParam = string.Join("&", TradeInfo.Select(x => $"{x.Key}={x.Value}"));
 
             // API 傳送欄位
             // 商店代號
-            outModel.MerchantID = inModel.MerchantID;
+            outModel.MerchantID = Config.GetSection("MerchantID").Value;
             // 串接程式版本
             outModel.Version = "2.0";
             //交易資料 AES 加解密
-            IConfiguration Config = new ConfigurationBuilder().AddJsonFile("appSettings.json").Build();
             string HashKey = Config.GetSection("HashKey").Value;//API 串接金鑰
             string HashIV = Config.GetSection("HashIV").Value;//API 串接密碼
             string TradeInfoEncrypt = EncryptAESHex(TradeInfoParam, HashKey, HashIV);
@@ -131,7 +131,7 @@ namespace NewebPay.Controllers
         /// 支付完成返回網址
         /// </summary>
         /// <returns></returns>
-        public IActionResult CallbackReturn()
+        public IActionResult CallbackReturn()//hana你需要它!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         {
             // 接收參數
             StringBuilder receive = new StringBuilder();

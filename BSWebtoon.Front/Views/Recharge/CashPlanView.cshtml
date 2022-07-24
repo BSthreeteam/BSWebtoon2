@@ -17,7 +17,7 @@
 
 <h3 class="mb-4">金幣 <span>儲值</span></h3>
 
-<div class="container">
+<div class="container" id="app">
     @foreach (var item in Model.AllCashPlan)
     {
         <div class="form-check mt-3">
@@ -28,7 +28,7 @@
             </label>
         </div>
     }
-    <button id="btn_next" class="btn_next"> <span>下一步</span></button>
+    <button id="btn_next" class="btn_next" v-on:click="SendToNewebPay('CREDIT')"> <span>下一步</span></button>
 </div>
 
 <footer>
@@ -40,11 +40,11 @@
 </footer>
 
 
- <script src="~/js/CashPlan.js"  asp-append-version="true"/>
-  <hr>
+@* <script src="~/js/CashPlan.js"  asp-append-version="true"/>
+*@  <hr>
 
-  <button class="btn_next" v-on:click="SendToNewebPay('VACC')"> <span>下一步</span></button>
-
+@*  <button class="btn_next" v-on:click="SendToNewebPay('CREDIT')"> <span>下一步</span></button>
+*@
   <footer>
         <p>購買須知</p>
         <ul>
@@ -53,49 +53,58 @@
         </ul>
   </footer>
     
-
+  @section scripts {
     <script src ="https://unpkg.com/vue@3"></script>
+
     <script>
-        const app = Vue.createApp({
-            data() {
-                return {
-                    // 表單資料
-                    addForm: {
-                        MerchantID: '@ViewData["MerchantID"]' //商品代號
-                        , MerchantOrderNo: '@ViewData["MerchantOrderNo"]'
-                        , ItemDesc: '測試商品'
-                        , Amt: '100'
-                        , ExpireDate: '@ViewData["ExpireDate"]'
-                        , ReturnURL: '@ViewData["ReturnURL"]'
-                        , CustomerURL: '@ViewData["CustomerURL"]'
-                        , NotifyURL: '@ViewData["NotifyURL"]'
-                        , ClientBackURL: '@ViewData["ClientBackURL"]'
-                        , Email: 'mars@hungwin.com.tw'
-                    }
-                }
-            }
-            , methods: {
+
+        let btn_next = document.getElementById('btn_next');
+
+        window.onload = function () {
+            //btn_next.onclick = () => {
+
+            //}
+            const app = Vue.createApp({
+            //data() {
+            //    //return {
+            //    //    // 表單資料
+            //    //    addForm: {
+            //    //        MerchantID: '@ViewData["MerchantID"]' //商品代號
+            //    //        , MerchantOrderNo: '@ViewData["MerchantOrderNo"]'
+            //    //        , ItemDesc: '測試商品'
+            //    //        , Amt: '100'
+            //    //        , ExpireDate: '@ViewData["ExpireDate"]'
+            //    //        , ReturnURL: '@ViewData["ReturnURL"]'
+            //    //        , CustomerURL: '@ViewData["CustomerURL"]'
+            //    //        , NotifyURL: '@ViewData["NotifyURL"]'
+            //    //        , ClientBackURL: '@ViewData["ClientBackURL"]'
+            //    //        , Email: 'mars@hungwin.com.tw'
+            //    //    }
+            //    //}
+            //}
+            methods: {
                 // 傳送至藍新金流
                 SendToNewebPay(ChannelID) {
                     var self = this;
-
+                    let plan = document.querySelector('[name=cashplan]:checked').value;
                     // 組合表單資料
                     var postData = {};
                     postData['ChannelID'] = ChannelID;
-                    postData['MerchantID'] = self.addForm.MerchantID;
-                    postData['MerchantOrderNo'] = self.addForm.MerchantOrderNo;
-                    postData['ItemDesc'] = self.addForm.ItemDesc;
-                    postData['Amt'] = self.addForm.Amt;
-                    postData['ExpireDate'] = self.addForm.ExpireDate;
-                    postData['ReturnURL'] = self.addForm.ReturnURL;
-                    postData['CustomerURL'] = self.addForm.CustomerURL;
-                    postData['NotifyURL'] = self.addForm.NotifyURL;
-                    postData['ClientBackURL'] = self.addForm.ClientBackURL;
-                    postData['Email'] = self.addForm.Email;
+                    postData['ItemDesc'] = plan;//到後端用id找
+                    //postData['Amt'] = 1;//從後端找
+                    postData['ReturnURL'] = 'https://localhost:80/NewebPay/CallbackReturn';
+                    postData['ClientBackURL'] = 'https://localhost:80/NewebPay/Index';
+                    //postData['CustomerURL'] = self.addForm.CustomerURL;   //目前不確定
+                    //postData['NotifyURL'] = self.addForm.NotifyURL;   //目前不確定
+                    //postData['Email'] = self.addForm.Email;   //可從後端寫入
+
+                    //postData['MerchantID'] = self.addForm.MerchantID; //可從後端寫入
+                    //postData['MerchantOrderNo'] = self.addForm.MerchantOrderNo;   //可從後端寫入
+                    //postData['ExpireDate'] = self.addForm.ExpireDate; //可從後端寫入
 
                     // 使用 jQuery Ajax 傳送至後端
                     $.ajax({
-                        url: '@Url.Content("~/Home/SendToNewebPay")',
+                        url: '@Url.Content("~/NewebPay/SendToNewebPay")',
                         method: 'POST',
                         dataType: 'json',
                         data: { inModel: postData, __RequestVerificationToken: $('@Html.AntiForgeryToken()').val() },
@@ -125,4 +134,9 @@
             }
         });
         const vm = app.mount('#app');
+
+        }
+
     </script>
+}
+

@@ -43,22 +43,22 @@ namespace BSWebtoon.Front.Controllers
             };
             return View(result);
         }
-        [HttpPost]
-        public IActionResult CashPlan([FromBody] PlanGetRequestDTO request) //Recharge/CashPlan
-        {
-            var claims =
-            User.Claims.Select(claim => new
-            {
-                claim.Issuer,
-                claim.OriginalIssuer,
-                claim.Type,
-                claim.Value,
-            }); 
-            var NameIdentifiers = claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value;
-            var memberName = _repository.GetAll<Member>().Where(x => x.NameIdentifier == NameIdentifiers).Select(X => X.AccountName);
+        //[HttpPost]
+        //public IActionResult CashPlan([FromBody] PlanGetRequestDTO request) //Recharge/CashPlan
+        //{
+        //    var claims =
+        //    User.Claims.Select(claim => new
+        //    {
+        //        claim.Issuer,
+        //        claim.OriginalIssuer,
+        //        claim.Type,
+        //        claim.Value,
+        //    }); 
+        //    var NameIdentifiers = claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value;
+        //    var memberName = _repository.GetAll<Member>().Where(x => x.NameIdentifier == NameIdentifiers).Select(X => X.AccountName);
 
-            return Ok();
-        }
+        //    return Ok();
+        //}
 
         public IActionResult PaymentView() //Recharge/PaymentView
         {
