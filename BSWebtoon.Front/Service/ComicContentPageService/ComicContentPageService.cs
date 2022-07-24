@@ -145,7 +145,7 @@ namespace BSWebtoon.Front.Service.ContentPageService
 
         public void ViewRecordCreate(int EpId, int memberId)
         {
-            var viewRecord = new ViewRecord() { MemberId = memberId, EpContentId = EpId, ViewTime = DateTime.Now, IsDelete = false };//EpContentId要改
+            var viewRecord = new ViewRecord() { MemberId = memberId, EpId = EpId, ViewTime = DateTime.Now, IsDelete = false };//EpContentId要改
             _repository.Create(viewRecord);
 
             _repository.SaveChange();
