@@ -61,40 +61,47 @@ namespace BSWebtoon.Front.Controllers
             return View(restult);
         }
 
-        public IActionResult RankList() //Rank/RankList 
+        public IActionResult RankList(int id) //Rank/RankList 
         {
-            var rank = _ClickRecordService.ReadOtherTagRank();
-            var firstComic = rank.First();
-            var restult = new RankViewModel_ClickRecord
+            var rank = _ClickRecordService.ReadOtherTagRank(id);
+            if (rank.Count == 0)
             {
-                FirstRank = new RankViewModel_ClickRecord.ClickRecordRank
+                return View();
+            }
+            else
+            {
+                var firstComic = rank.First();
+                var restult = new RankViewModel_ClickRecord
                 {
-                    TagName = firstComic.TagName,
-                    ClickRecordId = firstComic.ClickRecordId,
-                    ComicName = firstComic.ComicName,
-                    ComicNameImage = firstComic.ComicNameImage,
-                    ComicWeekFigure = firstComic.ComicWeekFigure,
-                    BgCover = firstComic.BgCover,
-                    Introduction = firstComic.Introduction.Substring(0, 40),
-                    BannerVideoWeb = firstComic.BannerVideoWeb,
-                    ComicFigure = firstComic.ComicFigure
-                },
-                OtherRank = rank.Skip(1).Take(99).Select(other => new RankViewModel_ClickRecord.ClickRecordRank
-                {
-                    TagName = other.TagName,
-                    ClickRecordId = other.ClickRecordId,
-                    ComicName = other.ComicName,
-                    ComicNameImage = other.ComicNameImage,
-                    ComicWeekFigure = other.ComicWeekFigure,
-                    BgCover = other.BgCover,
-                    Introduction = other.Introduction,
-                    BannerVideoWeb = other.BannerVideoWeb,
-                    Diff = other.Diff
-                }).ToList()
+                    FirstRank = new RankViewModel_ClickRecord.ClickRecordRank
+                    {
+                        TagName = firstComic.TagName,
+                        ClickRecordId = firstComic.ClickRecordId,
+                        ComicName = firstComic.ComicName,
+                        ComicNameImage = firstComic.ComicNameImage,
+                        ComicWeekFigure = firstComic.ComicWeekFigure,
+                        BgCover = firstComic.BgCover,
+                        Introduction = firstComic.Introduction.Substring(0, 40),
+                        BannerVideoWeb = firstComic.BannerVideoWeb,
+                        ComicFigure = firstComic.ComicFigure
+                    },
+                    OtherRank = rank.Skip(1).Take(99).Select(other => new RankViewModel_ClickRecord.ClickRecordRank
+                    {
+                        TagName = other.TagName,
+                        ClickRecordId = other.ClickRecordId,
+                        ComicName = other.ComicName,
+                        ComicNameImage = other.ComicNameImage,
+                        ComicWeekFigure = other.ComicWeekFigure,
+                        BgCover = other.BgCover,
+                        Introduction = other.Introduction,
+                        BannerVideoWeb = other.BannerVideoWeb,
+                        Diff = other.Diff
+                    }).ToList()
 
 
-            };
-            return View(restult);
+                };
+                return View(restult);
+            }
         }
 
     }

@@ -25,7 +25,7 @@ namespace BSWebtoon.Front.Service.SearchService
 
             using (SqlConnection conn = new SqlConnection(_connectionStr))
             {
-                string sql = @$"SELECT T.TagName,c.*
+                string sql = @$"SELECT T.TagName,C.*
                                FROM  ComicTagList  TL 
                                INNER JOIN  Comic C ON  TL.ComicId= C.ComicId
                                INNER JOIN ComicTag T ON T.TagId=TL.TagId
@@ -45,8 +45,8 @@ namespace BSWebtoon.Front.Service.SearchService
                         Introduction = item.Introduction,
                         ComicFigure = item.ComicFigure,
                     });
-                    
                 }
+                
             }
             return result;
         }

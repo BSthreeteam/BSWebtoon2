@@ -1,0 +1,51 @@
+﻿@model BSWebtoon.Front.Models.ViewModels.Rank.RankViewModel_ClickRecord
+
+
+@section topCss{
+<link rel="stylesheet" href="~/style/RankListstyle.css" />
+}
+
+<nav id="navbar-id" class="navbar navbar-light">
+    <ul class="nav nav-pills">
+        <li class="nav-item ">
+            <a class="nav-link nav_new_work all bg-white text-black" href="/Rank/AllRankList">全部</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link fantasy"  href="/Rank/RankList/8">奇幻</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link fantasy_love"  href="/Rank/RankList/10">愛情</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link action_adventure "  href="/Rank/RankList/9">動作冒險</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link plot"  href="/Rank/RankList/11">劇情</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link BL_GL"  href="/Rank/RankList/13">GL/BL</a>
+        </li>
+        <li class="nav-item ">
+            <a class="nav-link horror "  href="/Rank/RankList/12">懸疑恐怖</a>
+        </li>
+    </ul>
+</nav>
+
+<div class="Rank ">
+    <div class="container Rank_content">
+        <div class="content">
+            <h2>該類型相關的漫畫帶開發中~~敬請期待</h2>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+@section endJS{
+<script src="https://kit.fontawesome.com/2dbc4e25d3.js" crossorigin="anonymous"></script>
+<script src="~/js/RankList.js"></script>
+}
