@@ -86,20 +86,20 @@ namespace BSWebtoon.Front.Controllers
 
         public IActionResult ComicContent(int epId)
         {
-            //var userName = User.Identity.Name;
-            //var comiccontent = _comicContentPageService.ReadworkContent(epId, userName);
-            //    if (comiccontent != null)
-            //    {
-            //        return View(comiccontent);
+            var userName = User.Identity.Name;
+            var comiccontent = _comicContentPageService.ReadworkContent(epId, userName);
+            if (comiccontent != null)
+            {
 
-            //    }
-            //    else
-            //    {
-            //        return RedirectToAction();
-            //    }
+                return View(comiccontent);
 
-            //}
-            return View();
+            }
+            else
+            {
+                return RedirectToAction();
+            }
+
+        }
 
         }
 
