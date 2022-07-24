@@ -70,9 +70,7 @@
     <div class="big_video">
         <video title="" preload="auto" muted="ture" class="local_video_bg object-contain pointer-events-auto   d-none">
             <source src="@Model.ComicVideoWeb" type="video/webm">
-            @*            <source src="https://tw-a.kakaopagecdn.com/P/C/36/ip1/abd98bbc-0794-4866-933d-b5ea985a45c9.mp4"
-                type="video/quicktime">
-            *@
+
         </video>
     </div>
 
@@ -116,24 +114,47 @@
             </nav>
             <div class="keep_reading_box">
                 <a href="#">
-                    <p class="keep_reading">@*<span>繼續看</span>序章 *@@Model.ViewRecordEpTitle</p>
+                    <p class="keep_reading">@Model.ViewRecordEpTitle</p>
                 </a>
             </div>
             <div class="ep_row col-12 col-lg-8 col-xl-8">
-                @foreach (var ep in Model.EpList)
+                @if (@User.Identity.Name == null)
                 {
-
-                    <div class="col col-6 col-md-4 col-lg-3 col-xl-2">
-                        <a class="" href="#">
-                            <div class="card w-100" style="width: 18rem;">
-                                <img src="@ep.EpCover" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">@ep.EpTitle</h5>
-                                    <p class="card-text">@ep.UploadTime</p>
+                    @foreach (var ep in Model.EpList)
+                    {
+                        <div class="col col-6 col-md-4 col-lg-3 col-xl-2">
+                            <a class="" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <div class="card w-100" style="width: 18rem;">
+                                    <img src="@ep.EpCover" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">@ep.EpTitle</h5>
+                                        <p class="card-text">@ep.UploadTime</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
+                            </a>
+                        </div>
+                    }
+
+
+                }
+                else
+                {
+                    @foreach (var ep in Model.EpList)
+                    {
+                        <div class="col col-6 col-md-4 col-lg-3 col-xl-2">
+                            <a class="" href="WorkPage/ComicContent">
+                                <div class="card w-100" style="width: 18rem;">
+                                    <img src="@ep.EpCover" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">@ep.EpTitle</h5>
+                                        <p class="card-text">@ep.UploadTime</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    }
+
+
                 }
 
             </div>
@@ -192,11 +213,7 @@
                 <span>作者</span>
                 <p class="mo_pic">@Model.Author</p>
             </div>
-            @*            <div>
-                <span>原著</span>
-                <p class="mo_author"> BONIEE,Step on a LEGO</p>
-                </div>
-            *@            <div>
+           <div>
                 <span>發行</span>
                 <p class="mo_publisher">@Model.Publisher</p>
             </div>
@@ -212,89 +229,20 @@
                 {
                     <p>#@tag</p>
                 }
-                @*  <p>#刺激緊張</p>
-                    <p>#瘋狂</p>
-                    <p>#動作冒險</p>
-                    <p>#改變命運</p>
-                *@
+
             </div>
         </div>
     </div>
 </template>
-<template id="comment">
-    @*    <div class="comment_text  mx-auto">
-        <div class="row p-4">
-        <div class="user  d-flex ">
-        <span class="leval border-danger  text-white">BEST</span>
-        <p class="username  mb-0 ms-3 text-white">凍豆腐</p>
-        </div>
-        <div class="text">
-        <p class="text-white ">
-        古代事業士兵烏日是因為，圍繞商品迅速很快突破似乎對你模式進一步人們手裡，暴力網頁班美元財政是怎麼想法指導屬性隨着算是民主自信另外，病人衛生工廠，總是行業聯繫最。
-        </p>
-        <button class="btn btn_icon">
-        <i class="fa-solid fa-thumbs-up "></i>
-        讚
-        <span class="count">1.9k</span>
-        </button>
-        <button class="btn btn_icon">
-        <i class="fa-solid fa-reply-all"></i>
-        回覆
-        <span class="count">66</span>
-        </button>
-        <button class="btn btn_icon">
-        <i class="fa-solid fa-thumbs-down"></i>
-        檢舉
-        <span class="count">10</span>
-        </button>
-        </div>
-        </div>
-        </div>
-    *@
-</template>
 
-<template id="ep_card">
-    <div class="col col-6 col-md-4 col-lg-3 col-xl-2">
-        @if (@User.Identity.Name == null)
-        {
 
-             <a id="login" href="#">
-            <div class="card w-100" style="width: 18rem;">
-                <img src="https://picsum.photos/300/200/?random=64" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example.</p>
-                </div>
-            </div>
-        </a>
-        }
-        else
-        {
-            <a class="" href="WorkPage/ComicContent">
-                <div class="card w-100" style="width: 18rem;">
-                    <img src="https://picsum.photos/300/200/?random=64" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example.</p>
-                    </div>
-                </div>
-            </a>
-            
-        }
-    </div>
-    @*    <div class="col col-6 col-md-4 col-lg-3 col-xl-2">
-        <a class="" href="#">
-        <div class="card w-100" style="width: 18rem;">
-        <img src="" class="card-img-top" alt="...">
-        <div class="card-body">
-        <h5 class="card-title"></h5>
-        <p class="card-text"></p>
-        </div>
-        </div>
-        </a>
-        </div>
-    *@
-</template>
+
+
+    
+        
+
+
+
 <div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -323,12 +271,7 @@
         crossorigin="anonymous"></script>
 
 <script src="~/js/Workspage.js"></script>
-<script>
 
-    var login=document.getElementById("login");
-    login.dataset.toggle="modal"
-    login.dataset.target="#exampleModal"
-</script>
 
 <script>
     let collect_a = document.querySelector('.red');
@@ -346,6 +289,10 @@
             collect_a.classList.remove('text-danger');
         }
     })
+
+    var login=document.getElementById("login");
+    login.dataset.toggle="modal"
+    login.dataset.target="#exampleModal"
 </script>
 }
 
