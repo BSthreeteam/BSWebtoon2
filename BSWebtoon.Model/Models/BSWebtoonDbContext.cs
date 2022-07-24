@@ -778,11 +778,11 @@ namespace BSWebtoon.Model.Models
 
                 entity.ToTable("ViewRecord");
 
-                entity.HasIndex(e => e.EpContentId, "IX_ViewRecord_EpContentId");
+                entity.HasIndex(e => e.EpId, "IX_ViewRecord_EpContentId");
 
                 entity.HasIndex(e => e.MemberId, "IX_ViewRecord_MemberId");
 
-                entity.Property(e => e.EpContentId).HasComment("漫畫圖片Id");
+                entity.Property(e => e.EpId).HasComment("集數Id");
 
                 entity.Property(e => e.MemberId).HasComment("會員");
 
@@ -790,11 +790,11 @@ namespace BSWebtoon.Model.Models
                     .HasColumnType("datetime")
                     .HasComment("觀看時間");
 
-                entity.HasOne(d => d.EpContent)
+                entity.HasOne(d => d.Ep)
                     .WithMany(p => p.ViewRecords)
-                    .HasForeignKey(d => d.EpContentId)
+                    .HasForeignKey(d => d.EpId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_ViewRecord_EpContent");
+                    .HasConstraintName("FK_ViewRecord_Episode");
 
                 entity.HasOne(d => d.Member)
                     .WithMany(p => p.ViewRecords)

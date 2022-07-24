@@ -56,9 +56,9 @@ namespace BSWebtoon.Front.Controllers
             //_couponService.CouponCreate(); //不推假資料
             //_couponService.CouponUsedRecordCreate(); //不推假資料
             //_recommendservice.ViewRecordCreate();
-            _recommendservice.CommentCreate();
-            _recommendservice.CommentLikeCreate();
-            _recommendservice.ReportCreate();
+            //_recommendservice.CommentCreate();
+            //_recommendservice.CommentLikeCreate();
+            //_recommendservice.ReportCreate();
 
             return View();
         }
