@@ -1,7 +1,9 @@
-﻿using BSWebtoon.Model.Models;
+﻿using BSWebtoon.Front.Models.DTO.CashPlan;
+using BSWebtoon.Model.Models;
 using BSWebtoon.Model.Repository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BSWebtoon.Front.Service.RechargeService
 {
@@ -98,6 +100,23 @@ namespace BSWebtoon.Front.Service.RechargeService
         //    _repository.SaveChange();
 
         //}
+        public List<CashPlanDTO> ReadCashPlan(string username)
+        {
+            var usernameBalance = _repository.GetAll<Member>().Where(x => x.AccountName == username).Select(x => x.Balance).First();
 
+            var CashPlanList = _repository.GetAll<CashPlan>().ToList();
+            var result = new List<CashPlanDTO>();
+
+            result = CashPlanList.Select(x => new CashPlanDTO
+            {
+               CashPlanId = x.CashPlanId,
+               CashPlanContent = x.CashPlanContent,
+               Price = x.Price,
+               Sort = x.Sort,
+               IsEnable = x.IsEnable,
+               Balance = (decimal)usernameBalance
+            }).ToList();
+            return result;
+        }
     }
 }
