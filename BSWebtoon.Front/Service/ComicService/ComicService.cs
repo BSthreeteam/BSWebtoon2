@@ -5592,7 +5592,6 @@ namespace BSWebtoon.Front.Service.ComicService
 
             //var epContentSource = _repository.GetAll<EpContent>().Where(ec => epSource.Any(e => e.EpId == ec.EpId));
             var viewRecordSource = _repository.GetAll<ViewRecord>().Where(v => v.IsDelete == false && epSource.Any(ep => ep.EpId == v.EpContentId)).OrderByDescending(v => v.ViewTime).FirstOrDefault();
-            //var ViewRecordEpTitle = _repository.GetAll<Episode>().Where(v => viewRecordSource.EpContent.EpId == v.EpId).Select(v => v.EpTitle).FirstOrDefault();
             string ViewRecordEpTitle;
             if (viewRecordSource == null)
             {
@@ -5604,7 +5603,7 @@ namespace BSWebtoon.Front.Service.ComicService
             }
 
 
-            var ViewCount = _repository.GetAll<ViewRecord>().Where(v => epSource.Any(ep => ep.EpId == v.EpContentId)).Count();
+            var ViewCount = _repository.GetAll<ViewRecord>().Where(v => v.IsDelete == false && epSource.Any(ep => ep.EpId == v.EpContentId)).Count();
 
             var comicIsLike = _repository.GetAll<Favorite>().Any(f => f.ComicId == comicId && f.MemberId == memberId);
 
