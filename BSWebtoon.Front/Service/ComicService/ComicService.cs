@@ -3092,12 +3092,27 @@ namespace BSWebtoon.Front.Service.ComicService
         public void ComicTagListUpdate()
         {
             //var updateTagList = _repository.GetAll<ComicTagList>().Where(x => x.TageListId == 2).FirstOrDefault();
-            var updateComic = _repository.GetAll<Comic>().Where(x => x.ComicId == 3 && x.ComicId == 4 && x.ComicId == 5 && x.ComicId == 6)
-                .FirstOrDefault();
+            var updateComic   = _repository.GetAll<Comic>().Where(x => x.ComicId == 65).FirstOrDefault();
+            var updateComic1  = _repository.GetAll<Comic>().Where(x => x.ComicId == 93).FirstOrDefault();
+            var updateComic2  = _repository.GetAll<Comic>().Where(x => x.ComicId == 94).FirstOrDefault();
+            var updateComic3  = _repository.GetAll<Comic>().Where(x => x.ComicId == 102).FirstOrDefault();
+            var updateComic4  = _repository.GetAll<Comic>().Where(x => x.ComicId == 117).FirstOrDefault();
+            var updateComic5  = _repository.GetAll<Comic>().Where(x => x.ComicId == 118).FirstOrDefault();
             //updateTagList.ComicId = 2;
-            updateComic.ComicFigure = "";
+            updateComic  .ComicVideoWeb = "";
+            updateComic1 .ComicVideoWeb = "";
+            updateComic2 .ComicVideoWeb = "";
+            updateComic3 .ComicVideoWeb = "https://res.cloudinary.com/dmns6twmt/video/upload/v1656594393/MasterVillainessTheInvincible/3.webm";
+            updateComic4 .ComicVideoWeb = "";
+            updateComic5 .ComicVideoWeb = "";
             //_repository.Update(updateTagList);
-            _repository.Update(updateComic);
+            _repository.Update(updateComic  );
+            _repository.Update(updateComic1 );
+            _repository.Update(updateComic2 );
+            _repository.Update(updateComic3 );
+            _repository.Update(updateComic4 );
+            _repository.Update(updateComic5 );
+            
             _repository.SaveChange();
 
         }
