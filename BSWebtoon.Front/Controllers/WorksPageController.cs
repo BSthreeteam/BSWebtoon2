@@ -4,7 +4,6 @@ using BSWebtoon.Front.Service.ContentPageService;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
-using static BSWebtoon.Front.Models.ViewModel.WorkPage.WorkPageViewModel;
 
 namespace BSWebtoon.Front.Controllers
 {
@@ -54,7 +53,7 @@ namespace BSWebtoon.Front.Controllers
                 UpdateWeek = workPageComic.UpdateWeek,
                 Introduction = workPageComic.Introduction,
 
-                EpList = workPageComic.EpList.Select(ep => new EpData
+                EpList = workPageComic.EpList.Select(ep => new WorkPageViewModel.EpData
                 {
                     EpId = ep.EpId,
                     ComicId = ep.ComicId,
@@ -65,7 +64,7 @@ namespace BSWebtoon.Front.Controllers
                     IsFree = ep.IsFree
                 }),
 
-                CommentList = workPageComic.CommentList.Select(c => new CommentData
+                CommentList = workPageComic.CommentList.Select(c => new WorkPageViewModel.CommentData
                 {
                     CommentId = c.CommentId,
                     CommentMemberName = c.CommentMemberName,
@@ -84,19 +83,34 @@ namespace BSWebtoon.Front.Controllers
 
 
 
-        public IActionResult ComicContent(int epId)
+        public IActionResult ComicContent(int Id)
         {
             var userName = User.Identity.Name;
-            var comiccontent = _comicContentPageService.ReadworkContent(epId, userName);
-            if (comiccontent != null)
+            var comicContent = _comicContentPageService.ReadworkContent(Id, userName);
+            var EpTitle = comicContent.Select(c => c.EpTitle).First();
+            if (comicContent != null)
             {
+                var comicContentList = comicContent.Select(c => new ComicContentViewModel
+                {
+                    EpTitle = EpTitle,
+                    ContentList = new List<ComicContentViewModel.Content>
+                    {
+                        new ComicContentViewModel.Content
+                        {
+                            ImagePath = c.ImagePath,
+                            Page = c.Page
+                        }
+                    }
 
-                return View(comiccontent);
+                }).ToList();
+                ;
+
+                return View(comicContentList);
 
             }
             else
             {
-                return RedirectToAction();
+                return RedirectToAction("BuyCoupon");
             }
 
         }

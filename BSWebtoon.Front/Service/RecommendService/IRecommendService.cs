@@ -1,5 +1,4 @@
 ﻿using BSWebtoon.Front.Models.DTO.Recommend;
-using BSWebtoon.Front.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

@@ -1,4 +1,4 @@
-﻿using BSWebtoon.Front.Models.DTO.WorkContent;
+﻿using BSWebtoon.Front.Models.DTO.WorkPage;
 using BSWebtoon.Model;
 using BSWebtoon.Model.Models;
 using BSWebtoon.Model.Repository;
@@ -30,10 +30,10 @@ namespace BSWebtoon.Front.Service.ContentPageService
 
         //}
 
-        public List<WorkContentDTO> ReadworkContent(int EpId,string useerName)
+        public List<WorkContentDTO> ReadworkContent(int EpId,string userName)
         {
 
-            var memberId = _repository.GetAll<Member>().Where(c => c.AccountName == useerName).Select(c => c.MemberId).First();
+            var memberId = _repository.GetAll<Member>().Where(c => c.AccountName == userName).Select(c => c.MemberId).First();
             return ReadContent(EpId, memberId);
 
 
@@ -65,6 +65,7 @@ namespace BSWebtoon.Front.Service.ContentPageService
                 var result = freeComic.Select(c => new WorkContentDTO() {
 
                     EpId = EpId,
+                    EpTitle = EpSource.EpTitle,
                     EpContentId = c.EpContentId,
                     ImagePath = c.ImagePath,
                     Page = c.Page
@@ -81,6 +82,7 @@ namespace BSWebtoon.Front.Service.ContentPageService
                 var result = countdownCouponComic.Select(c => new WorkContentDTO() {
 
                     EpId = EpId,
+                    EpTitle = EpSource.EpTitle,
                     EpContentId = c.EpContentId,
                     ImagePath = c.ImagePath,
                     Page = c.Page
@@ -99,6 +101,7 @@ namespace BSWebtoon.Front.Service.ContentPageService
                 var readCouponComic = _repository.GetAll<EpContent>().Select(c => new WorkContentDTO() {
 
                     EpId = EpId,
+                    EpTitle = EpSource.EpTitle,
                     EpContentId = c.EpContentId,
                     ImagePath = c.ImagePath,
                     Page = c.Page
@@ -121,6 +124,7 @@ namespace BSWebtoon.Front.Service.ContentPageService
                 var comicContent = _repository.GetAll<EpContent>().Select(c => new WorkContentDTO() {
 
                     EpId = EpId,
+                    EpTitle = EpSource.EpTitle,
                     EpContentId = c.EpContentId,
                     ImagePath = c.ImagePath,
                     Page = c.Page

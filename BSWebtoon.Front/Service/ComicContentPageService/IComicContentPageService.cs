@@ -1,4 +1,4 @@
-﻿using BSWebtoon.Front.Models.DTO.WorkContent;
+﻿using BSWebtoon.Front.Models.DTO.WorkPage;
 using System.Collections.Generic;
 
 namespace BSWebtoon.Front.Service.ContentPageService
