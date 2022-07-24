@@ -12,9 +12,9 @@ namespace BSWebtoon.Front.Controllers
     public class RecommendController : Controller
     {
         private readonly IRecommendService _recommendservice;
-        private readonly BSWebtoonContext _context;
+        private readonly BSWebtoonDbContext _context;
 
-        public RecommendController(BSRepository repository, IRecommendService recommendService, BSWebtoonContext context)
+        public RecommendController(BSRepository repository, IRecommendService recommendService, BSWebtoonDbContext context)
         {
             _recommendservice = recommendService;
         }

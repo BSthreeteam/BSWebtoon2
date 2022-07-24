@@ -25,11 +25,11 @@ namespace BSWebtoon.Front.Controllers
         [HttpPost]
         public IActionResult SearchComic(string comicname)
         {
-            if (comicname == string.Empty)
-            {
-                return Content("請輸入你想查詢的相關資訊");
-            }
             var searchcomic = _searchService.FindComic(comicname);
+            //if (comicname == string.Empty)
+            //{
+            //    return Content("請輸入你想查詢的書名或類別");
+            //}
 
             var restult = new SearchViewModel
             {
@@ -44,6 +44,7 @@ namespace BSWebtoon.Front.Controllers
                     ComicFigure = comic.ComicFigure
                 }).ToList()
             };
+
             //return View(restult);
 
             return View("SearchResult", restult);

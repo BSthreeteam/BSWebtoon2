@@ -21,34 +21,34 @@ namespace BSWebtoon.Front.Service.ComicService
             {
                 //主標籤 IsMainTag=true
                 //副標籤 IsMainTag=false
-                new ComicTag {/*TagId=1,*/TagName="奇幻"    ,IsMainTag=true ,IsDelete=false},
-                new ComicTag {/*TagId=2,*/TagName="愛情"    ,IsMainTag=true ,IsDelete=false},
-                new ComicTag {/*TagId=3,*/TagName="動作冒險",IsMainTag=true ,IsDelete=false},
-                new ComicTag {/*TagId=4,*/TagName="劇情"    ,IsMainTag=true ,IsDelete=false},
-                new ComicTag {/*TagId=5,*/TagName="BL/GL"  ,IsMainTag=true ,IsDelete=false},
-                new ComicTag {/*TagId=6,*/TagName="懸疑恐怖",IsMainTag=true,IsDelete=false},
-                new ComicTag {/*TagId=7,*/TagName="精采絕倫",IsMainTag=false,IsDelete=false},
-                new ComicTag {/*TagId=8,*/TagName="奇幻愛情",IsMainTag=false,IsDelete=false},
-                new ComicTag {/*TagId=9,*/TagName="專業",IsMainTag=false,IsDelete=false},
-                new ComicTag {/*TagId=10,*/TagName="復仇",IsMainTag=false,IsDelete=false},
-                new ComicTag {/*TagId=11,*/TagName="怦然心動",IsMainTag=false,IsDelete=false},
-                new ComicTag {/*TagId=12,*/TagName="緊張刺激",IsMainTag=false,IsDelete=false},
-                new ComicTag {/*TagId=13,*/TagName="淒美愛情",IsMainTag=false,IsDelete=false},               
-                new ComicTag {/*TagId=14,*/TagName="糾葛",IsMainTag=false,IsDelete=false},
-                new ComicTag {/*TagId=15,*/TagName="三角關係",IsMainTag=false,IsDelete=false},
-                new ComicTag {/*TagId=16,*/TagName="刻劃細膩",IsMainTag=false,IsDelete=false},
-                new ComicTag {/*TagId=17,*/TagName="揪心",IsMainTag=false,IsDelete=false},
-                new ComicTag {/*TagId=18,*/TagName="改變命運",IsMainTag=false,IsDelete=false},
-                new ComicTag {/*TagId=19,*/TagName="欲罷不能",IsMainTag=false,IsDelete=false},
-                new ComicTag {/*TagId=20,*/TagName="成長",IsMainTag=false,IsDelete=false},
-                new ComicTag {/*TagId=21,*/TagName="大格局",IsMainTag=false,IsDelete=false},
-                new ComicTag {/*TagId=22,*/TagName="食指大動",IsMainTag=false,IsDelete=false},
-                new ComicTag {/*TagId=23,*/TagName="津津有味",IsMainTag=false,IsDelete=false},
-                new ComicTag {/*TagId=24,*/TagName="爆笑",IsMainTag=false,IsDelete=false},
-                new ComicTag {/*TagId=25,*/TagName="職場生活",IsMainTag=false,IsDelete=false},
-                new ComicTag {/*TagId=26,*/TagName="浪漫喜劇",IsMainTag=false,IsDelete=false},
-                new ComicTag {/*TagId=27,*/TagName="清新",IsMainTag=false,IsDelete=false},
-                new ComicTag {/*TagId=28,*/TagName="活潑可愛",IsMainTag=false,IsDelete=false},
+                new ComicTag {TagName="奇幻"    ,IsMainTag=true ,IsDelete=false},
+                new ComicTag {TagName="愛情"    ,IsMainTag=true ,IsDelete=false},
+                new ComicTag {TagName="動作冒險",IsMainTag=true ,IsDelete=false},
+                new ComicTag {TagName="劇情"    ,IsMainTag=true ,IsDelete=false},
+                new ComicTag {TagName="BL/GL"  ,IsMainTag=true ,IsDelete=false},
+                new ComicTag {TagName="懸疑恐怖",IsMainTag=true,IsDelete=false},
+                new ComicTag {TagName="精采絕倫",IsMainTag=false,IsDelete=false},
+                new ComicTag {TagName="奇幻愛情",IsMainTag=false,IsDelete=false},
+                new ComicTag {TagName="專業",IsMainTag=false,IsDelete=false},
+                new ComicTag {TagName="復仇",IsMainTag=false,IsDelete=false},
+                new ComicTag {TagName="怦然心動",IsMainTag=false,IsDelete=false},
+                new ComicTag {TagName="緊張刺激",IsMainTag=false,IsDelete=false},
+                new ComicTag {TagName="淒美愛情",IsMainTag=false,IsDelete=false},               
+                new ComicTag {TagName="糾葛",IsMainTag=false,IsDelete=false},
+                new ComicTag {TagName="三角關係",IsMainTag=false,IsDelete=false},
+                new ComicTag {TagName="刻劃細膩",IsMainTag=false,IsDelete=false},
+                new ComicTag {TagName="揪心",IsMainTag=false,IsDelete=false},
+                new ComicTag {TagName="改變命運",IsMainTag=false,IsDelete=false},
+                new ComicTag {TagName="欲罷不能",IsMainTag=false,IsDelete=false},
+                new ComicTag {TagName="成長",IsMainTag=false,IsDelete=false},
+                new ComicTag {TagName="大格局",IsMainTag=false,IsDelete=false},
+                new ComicTag {TagName="食指大動",IsMainTag=false,IsDelete=false},
+                new ComicTag {TagName="津津有味",IsMainTag=false,IsDelete=false},
+                new ComicTag {TagName="爆笑",IsMainTag=false,IsDelete=false},
+                new ComicTag {TagName="職場生活",IsMainTag=false,IsDelete=false},
+                new ComicTag {TagName="浪漫喜劇",IsMainTag=false,IsDelete=false},
+                new ComicTag {TagName="清新",IsMainTag=false,IsDelete=false},
+                new ComicTag {TagName="活潑可愛",IsMainTag=false,IsDelete=false},
 
                 
             };
@@ -3092,9 +3092,10 @@ namespace BSWebtoon.Front.Service.ComicService
         public void ComicTagListUpdate()
         {
             //var updateTagList = _repository.GetAll<ComicTagList>().Where(x => x.TageListId == 2).FirstOrDefault();
-            var updateComic = _repository.GetAll<Comic>().Where(x => x.ComicId == 138).FirstOrDefault();
+            var updateComic = _repository.GetAll<Comic>().Where(x => x.ComicId == 3 && x.ComicId == 4 && x.ComicId == 5 && x.ComicId == 6)
+                .FirstOrDefault();
             //updateTagList.ComicId = 2;
-            updateComic.ComicWeekFigure = "https://tw-a.kakaopagecdn.com/P/C/46/c2/2x/4853fbd7-b76b-4438-bac4-0ae54fa25a04.webp";
+            updateComic.ComicFigure = "";
             //_repository.Update(updateTagList);
             _repository.Update(updateComic);
             _repository.SaveChange();
