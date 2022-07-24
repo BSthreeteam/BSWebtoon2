@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace BSWebtoon.Model.Models
 {
-    public partial class BSWebtoonContext : DbContext
+    public partial class BSWebtoonDbContext : DbContext
     {
-        public BSWebtoonContext()
+        public BSWebtoonDbContext()
         {
         }
 
-        public BSWebtoonContext(DbContextOptions<BSWebtoonContext> options)
+        public BSWebtoonDbContext(DbContextOptions<BSWebtoonDbContext> options)
             : base(options)
         {
         }
@@ -44,13 +44,13 @@ namespace BSWebtoon.Model.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=(localdb)\\mssqllocaldb;Database=BSWebtoon;");
+                optionsBuilder.UseSqlServer("Server=bswebtoon.database.windows.net; Database=BSWebtoonDb;User ID=bs;Password=P@ssword;");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
+            modelBuilder.HasAnnotation("Relational:Collation", "Chinese_Taiwan_Stroke_BIN");
 
             modelBuilder.Entity<Activity>(entity =>
             {
@@ -124,6 +124,8 @@ namespace BSWebtoon.Model.Models
 
                 entity.HasIndex(e => e.ComicId, "IX_ClickRecord_ComicId");
 
+                entity.HasIndex(e => e.MemberId, "IX_ClickRecord_MemberId");
+
                 entity.Property(e => e.ClickRecordId).HasComment("點擊紀錄ID");
 
                 entity.Property(e => e.ComicId).HasComment("漫畫Id");
@@ -185,9 +187,7 @@ namespace BSWebtoon.Model.Models
                     .IsRequired()
                     .HasComment("漫畫英文名稱");
 
-                entity.Property(e => e.ComicFigure)
-                    .IsRequired()
-                    .HasComment("人物圖");
+                entity.Property(e => e.ComicFigure).HasComment("人物圖");
 
                 entity.Property(e => e.ComicNameImage)
                     .IsRequired()
@@ -197,9 +197,7 @@ namespace BSWebtoon.Model.Models
 
                 entity.Property(e => e.ComicVideoWeb).HasComment("長影片");
 
-                entity.Property(e => e.ComicWeekFigure)
-                    .IsRequired()
-                    .HasComment("星期列表人物圖");
+                entity.Property(e => e.ComicWeekFigure).HasComment("星期列表人物圖");
 
                 entity.Property(e => e.FinallyPublishDate)
                     .HasColumnType("datetime")

@@ -5,245 +5,146 @@
 <link rel="stylesheet" href="~/style/RankListstyle.css" />
 }
 
-@*<nav id="navbar-id" class="navbar navbar-light">
-    <ul class="nav nav-pills">
-        <li class="nav-item">
-            <a class="nav-link nav_new_work" href="#">全部</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">奇幻</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link " href="#">奇幻愛情</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">動作冒險</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">愛情</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">劇情</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">GL/BL</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">懸疑恐怖</a>
-        </li>
-    </ul>
-
-</nav>
-
-<div class="Rank ">
-    <div class="container Rank_content">
-        <div class="content">
-            <div class="work_big">
-                <div class="work_big_bg">
-                    <img src="https://tw-a.kakaopagecdn.com/P/C/148/bg/1x/f485a521-3410-48a7-a3de-793514f1237c.webp"
-                         alt="">
-                </div>
-                <div class="comic_material">
-                    <div class="work_big_title">
-                        <img src="https://tw-a.kakaopagecdn.com/P/C/205/t2/2x/8848e3ef-a605-412f-9d37-d544e22af515.png"
-                             alt="">
-                    </div>
-                    <div class="introduction">我和朋友接吻了，但我們都是女的!這段曖昧不明的關係究竟該如何定義?</div>
-                </div>
-                <div class="work_big_Ranking">
-                    <p class="Ranking_num">1</p>
-                    <i class="fa-solid fa-caret-up"></i>
-                    <p class="diff">12</p>
-                </div>
-                <div class="work_big_pic">
-                    <img src="https://tw-a.kakaopagecdn.com/P/C/127/c1/2x/b7ff7f30-08cd-469d-abb2-a8de31bbc117.webp">
-                </div>
-            </div>
-
-            <template id="workTemplate">
-                <div class="work">
-                    <div class="work_bg">
-                        <img src="https://tw-a.kakaopagecdn.com/P/C/148/bg/1x/f485a521-3410-48a7-a3de-793514f1237c.webp"
-                             alt="">
-                    </div>
-                    <img class="work_pic"
-                         src="https://tw-a.kakaopagecdn.com/P/C/148/c2/2x/06e61fbe-0d6d-4145-9a9f-3723841ac527.webp">
-
-                    <div class="title_img">
-                        <img src="https://tw-a.kakaopagecdn.com/P/C/205/t2/2x/8848e3ef-a605-412f-9d37-d544e22af515.png"
-                             alt="">
-                    </div>
-                    <div class="work_status">
-                        <span>UP</span>
-                    </div>
-                    <div class="work_Ranking">
-                        <p class="Ranking_num">1</p>
-                        <i class="fa-solid fa-caret-down"></i>
-                        <!-- <i class="fa-solid fa-caret-up"></i>
-                        <p class="diff">-</p>    -->
-                        <p class="diff">-</p>
-                    </div>
-                </div>
-            </template>
-
-
-            <template id="blackTemplate">
-                <div class="black">
-                    <div class="black">
-                        <div class="row">
-                            <div class="comics_nont col-4 col-md-3 col-lg-2_5">
-                                <div class="img-box"></div>
-                            </div>
-                            <div class="comics_nont col-4 col-md-3 col-lg-2_5">
-                                <div class="img-box"></div>
-                            </div>
-                            <div class="comics_nont col-4 col-md-3 col-lg-2_5">
-                                <div class="img-box"></div>
-                            </div>
-                            <div class="comics_nont col-4 col-md-3 col-lg-2_5">
-                                <div class="img-box"></div>
-                            </div>
-                            <div class="comics_nont col-4 col-md-3 col-lg-2_5">
-                                <div class="img-box"></div>
-                            </div>
-                        </div>
-                    </div>
-            </template>
-        </div>
-    </div>
-</div>*@
 
 <nav id="navbar-id" class="navbar navbar-light">
-    <ul class="nav nav-pills">
+    <ul class="nav nav-pills" method="post">
         <li class="nav-item">
             <a class="nav-link nav_new_work all" href="/Rank/AllRankList">全部</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link fantasy bg-white text-black" href="#">奇幻</a>
+            <a class="nav-link fantasy bg-white text-black " href="/Rank/RankList/8">奇幻</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link fantasy_love" href="#">愛情</a>
+            <a class="nav-link love " href="/Rank/RankList/10">愛情</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link action_adventure " href="#">動作冒險</a>
+            <a class="nav-link adventure " href="/Rank/RankList/9">動作冒險</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link plot" href="#">劇情</a>
+            <a class="nav-link plot" href="/Rank/RankList/11">劇情</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link BL_GL" href="#">GL/BL</a>
+            <a class="nav-link BL" href="/Rank/RankList/13">GL/BL</a>
         </li>
-        @*<li class="nav-item Suspenseful_horror">
-            <a class="nav-link " href="#">懸疑恐怖</a>
-            </li>*@
+        <li class="nav-item ">
+            <a class="nav-link horror " href="/Rank/RankList/12">懸疑恐怖</a>
+        </li>
     </ul>
 </nav>
 
 <div class="Rank ">
     <div class="container Rank_content">
         <div class="content">
-            <a class="work_big" href="#">
-                <div class="work_big_bg">
-                    <img src="@Model.FirstRank.BgCover" alt="背景" class="rank_pic_bg">
-                    @*<img src="https://tw-a.kakaopagecdn.com/P/C/148/bg/1x/f485a521-3410-48a7-a3de-793514f1237c.webp"
-                        alt="">*@
-                </div>
-                <div class="comic_material">
-                    <div class="work_big_title">
-                        <img src="@Model.FirstRank.ComicNameImage" alt="標題" class="rank_pic_title">
-                        @*<img src="https://tw-a.kakaopagecdn.com/P/C/205/t2/2x/8848e3ef-a605-412f-9d37-d544e22af515.png"
-                             alt="">*@
+            @if (Model == null)
+            {
+                <h2 class="text-white">該類別開發中~~ 敬請期待~~</h2>
+            }
+            else
+            {
+                <a class="work_big" href="#">
+                    <div class="work_big_bg">
+                        <img src="@Model.FirstRank.BgCover" alt="背景" class="rank_pic_bg">
+                        @*<img src="https://tw-a.kakaopagecdn.com/P/C/148/bg/1x/f485a521-3410-48a7-a3de-793514f1237c.webp"
+                            alt="">*@
                     </div>
-                    <div class="introduction">
-                        @Model.FirstRank.Introduction
-                        @*我和朋友接吻了，但我們都是女的!這段曖昧不明的關係究竟該如何定義?*@
+                    <div class="comic_material">
+                        <div class="work_big_title">
+                            <img src="@Model.FirstRank.ComicNameImage" alt="標題" class="rank_pic_title">
+                            @*<img src="https://tw-a.kakaopagecdn.com/P/C/205/t2/2x/8848e3ef-a605-412f-9d37-d544e22af515.png"
+                                alt="">*@
+                        </div>
+                        <div class="introduction">
+                            @Model.FirstRank.Introduction
+                            @*我和朋友接吻了，但我們都是女的!這段曖昧不明的關係究竟該如何定義?*@
+                        </div>
                     </div>
-                </div>
-                <div class="work_big_Ranking">
-                    <p class="Ranking_num">1</p>
-                    <i class="fa-solid fa-caret-up"></i>
-                    <p class="diff">@Model.FirstRank.Diff</p>
-                </div>
-                <div class="work_big_pic">
-                    @if (@Model.FirstRank.BannerVideoWeb != string.Empty)
+                    <div class="work_big_Ranking">
+                        <p class="Ranking_num">1</p>
+                        <i class="fa-solid fa-caret-up"></i>
+                        <p class="diff">@Model.FirstRank.Diff</p>
+                    </div>
+                    <div class="work_big_pic">
+                        @if (@Model.FirstRank.BannerVideoWeb != string.Empty)
+                        {
+                            <video>
+                                <source src="@Model.FirstRank.BannerVideoWeb" type="video/webm">
+                            </video>
+                        }
+                        else
+                        {
+                            <img src="@Model.FirstRank.ComicFigure" alt="@Model.FirstRank.ComicName" class="rank_pic_people">
+                        }
+                    </div>
+                </a>
+
+                <template id="workTemplate">
+                    @foreach (var item in Model.OtherRank)
                     {
-                        <video>
-                            <source src="@Model.FirstRank.BannerVideoWeb" type="video/webm">
-                        </video>
+                        <a class="work" href="#">
+                            <div class="work_bg">
+                                <img src="@item.BgCover" alt="背景">
+                                @*<img src="https://tw-a.kakaopagecdn.com/P/C/148/bg/1x/f485a521-3410-48a7-a3de-793514f1237c.webp"
+                                    alt="">*@
+                            </div>
+                            <img class="work_pic"
+                         src="@item.ComicWeekFigure" alt="@item.ComicName">
+
+                            <div class="title_img">
+                                <img src="@item.ComicNameImage"
+                             alt="@item.ComicName">
+                            </div>
+                            <div class="work_status">
+                                <span>UP</span>
+                            </div>
+                            <div class="work_Ranking">
+                                <p class="Ranking_num">2</p>
+                                @if (@item.Diff > 0)
+                                {
+                                    <i class="fa-solid fa-caret-up"></i>
+                                    <p class="diff">@item.Diff</p>
+                                }
+                                else if (@item.Diff == 0)
+                                {
+                                    <i class="fa-solid fa-caret-up"></i>
+                                    <p class="diff">-</p>
+
+                                }
+                                else
+                                {
+                                    <i class="fa-solid fa-caret-down"></i>
+                                    <p class="diff">@item.Diff</p>
+                                }
+
+                            </div>
+                        </a>
                     }
-                    else
-                    {
-                        <img src="@Model.FirstRank.ComicFigure" alt="@Model.FirstRank.ComicName" class="rank_pic_people">
-                    }
-                </div>
-            </a>
-
-            <template id="workTemplate">
-                @foreach(var item in Model.OtherRank)
-                {
-                    <a class="work" href="#">
-                        <div class="work_bg">
-                            <img src="@item.BgCover" alt="背景" >
-                            @*<img src="https://tw-a.kakaopagecdn.com/P/C/148/bg/1x/f485a521-3410-48a7-a3de-793514f1237c.webp"
-                                 alt="">*@
-                        </div>
-                        <img class="work_pic"
-                             src="@item.ComicWeekFigure" alt="@item.ComicName" >
-
-                        <div class="title_img">
-                            <img src="@item.ComicNameImage"
-                                 alt="@item.ComicName">
-                        </div>
-                        <div class="work_status">
-                            <span>UP</span>
-                        </div>
-                        <div class="work_Ranking">
-                            <p class="Ranking_num">2</p>
-                            @if(@item.Diff>0)
-                            {
-                                <i class="fa-solid fa-caret-up"></i>
-                                <p class="diff">@item.Diff</p>
-                            }
-                            else if(@item.Diff==0)
-                            {
-                                <i class="fa-solid fa-caret-up"></i>
-                                <p class="diff">-</p>
-                                
-                            }
-                            else
-                            {
-                                <i class="fa-solid fa-caret-down"></i>
-                                <p class="diff">@item.Diff</p>
-                            }
-                            
-                        </div>
-                    </a>
-                }
-            </template>
+                </template>
 
 
-            <template id="blackTemplate">
-                <div class="black">
+                <template id="blackTemplate">
                     <div class="black">
-                        <div class="row">
-                            <div class="comics_nont col-4 col-md-3 col-lg-2_5">
-                                <div class="img-box"></div>
-                            </div>
-                            <div class="comics_nont col-4 col-md-3 col-lg-2_5">
-                                <div class="img-box"></div>
-                            </div>
-                            <div class="comics_nont col-4 col-md-3 col-lg-2_5">
-                                <div class="img-box"></div>
-                            </div>
-                            <div class="comics_nont col-4 col-md-3 col-lg-2_5">
-                                <div class="img-box"></div>
-                            </div>
-                            <div class="comics_nont col-4 col-md-3 col-lg-2_5">
-                                <div class="img-box"></div>
+                        <div class="black">
+                            <div class="row">
+                                <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                                    <div class="img-box"></div>
+                                </div>
+                                <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                                    <div class="img-box"></div>
+                                </div>
+                                <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                                    <div class="img-box"></div>
+                                </div>
+                                <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                                    <div class="img-box"></div>
+                                </div>
+                                <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                                    <div class="img-box"></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-            </template>
+                </template>
+
+            }
         </div>
     </div>
 </div>

@@ -1,8 +1,17 @@
 let week_content = document.querySelector(".content")
 let workTemplate = document.getElementById("workTemplate")
 let blackTemplate = document.getElementById("blackTemplate")
+let fantasy = doucumnet.querySelector(".fantasy")
+let love = doucumnet.querySelector(".love")
+let adventure = doucumnet.querySelector(".adventure")
+let plot = doucumnet.querySelector(".plot")
+let BL = doucumnet.querySelector(".BL")
+let horror = doucumnet.querySelector(".horror")
+let all = doucumnet.querySelector(".all")
+
 
 window.onload = () => {
+    
     for (let i = 1; i <= 99; i++) {
         week_content.append(createCard())
     }
