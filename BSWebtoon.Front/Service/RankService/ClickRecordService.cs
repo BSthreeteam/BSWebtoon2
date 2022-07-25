@@ -13,9 +13,9 @@ namespace BSWebtoon.Front.Service.RankService
     public class ClickRecordService : IClickRecordService
     {
         private static string _connectionStr = "Server=(localdb)\\mssqllocaldb;Database=BS;Trusted_Connection=True;MultipleActiveResultSets=true";
-        private readonly BSWebtoonContext _context;
+        private readonly BSWebtoonDbContext _context;
         private readonly BSRepository _repository;
-        public ClickRecordService(BSWebtoonContext context, BSRepository repository)
+        public ClickRecordService(BSWebtoonDbContext context, BSRepository repository)
         {
             _context = context;
             _repository = repository;
@@ -171,7 +171,7 @@ namespace BSWebtoon.Front.Service.RankService
         }
 
 
-        public List<CategoryRankDTO> ReadOtherTagRank()
+        public List<CategoryRankDTO> ReadOtherTagRank(int id)
         {
 
             var result = new List<CategoryRankDTO>();
@@ -179,7 +179,7 @@ namespace BSWebtoon.Front.Service.RankService
             using (SqlConnection conn = new SqlConnection(_connectionStr))
             {
                 //每部漫畫主要的標籤名稱
-                string sql = @"SELECT T.TagName,c.*
+                string sql = @$"SELECT T.TagName,c.*
                                FROM  ComicTagList  TL 
                                INNER JOIN  Comic C ON  TL.ComicId= C.ComicId
                                INNER JOIN ComicTag T ON T.TagId=TL.TagId
@@ -187,8 +187,8 @@ namespace BSWebtoon.Front.Service.RankService
 				                     SELECT T.TagName
 				                     FROM ComicTag T
 				                     INNER JOIN ComicTagList  TL ON T.TagId=TL.TagId
-				                     WHERE T.IsMainTag=1
-                               )";
+				                     WHERE T.IsMainTag=1 
+                               ) and   T.TagId= {id}";
                 //篩選出T.TagName,comic資料全部 的結果後放到CategoryTagRankDTO的表中
                 var tagListResult = conn.Query<CategoryTagRankDTO>(sql);
 
@@ -196,8 +196,9 @@ namespace BSWebtoon.Front.Service.RankService
                 var newRankEndDate = new DateTime(2022, 07, 29);
                 var newRankStartDate = newRankEndDate.AddDays(-7);//7/22
 
-                var oldRankEndDate = newRankStartDate.AddDays(-1);//
+                var oldRankEndDate = newRankStartDate.AddDays(-1);//7/21
                 var oldRankStartDate = oldRankEndDate.AddDays(-6);//7/15
+
 
                 //找出每個漫畫上上周的點擊數
                 string oldClickRecord = @$"SELECT  CR.ComicId, COUNT(CR.ComicId) AS ClickRecordCount
@@ -305,7 +306,8 @@ namespace BSWebtoon.Front.Service.RankService
                                 Introduction = item.Introduction,
                                 BgCover = item.BgCover,
                                 AuditType = item.AuditType,
-                                TagName = newgroup.Key,
+                                //TagName = newgroup.Key,
+                                TagName = id.ToString(),
                                 //差距排名
                                 Diff = oldComicList.IndexOf(item.ComicId) == -1 ? 0 : newComicList.IndexOf(item.ComicId) + 1 - oldComicList.IndexOf(item.ComicId) + 1
                             });
@@ -329,7 +331,8 @@ namespace BSWebtoon.Front.Service.RankService
                                 Introduction = item.Introduction,
                                 BgCover = item.BgCover,
                                 AuditType = item.AuditType,
-                                TagName = newgroup.Key,
+                                //TagName = newgroup.Key,
+                                TagName = id.ToString(),
                                 //差距排名為new
                                 Diff = 0
                             });
@@ -339,8 +342,6 @@ namespace BSWebtoon.Front.Service.RankService
                 }
 
             }
-
-
             return result;
 
         }

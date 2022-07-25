@@ -7,9 +7,9 @@ namespace BSWebtoon.Front.Service.EmployeeService
 {
     public class EmployeeService : IEmployeeService
     {
-        private readonly BSWebtoonContext _context;
+        private readonly BSWebtoonDbContext _context;
         private readonly BSRepository _repository;
-        public EmployeeService(BSWebtoonContext context, BSRepository repository)
+        public EmployeeService(BSWebtoonDbContext context, BSRepository repository)
         {
             _context = context;
             _repository = repository;

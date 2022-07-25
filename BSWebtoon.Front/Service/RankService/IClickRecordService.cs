@@ -10,6 +10,6 @@ namespace BSWebtoon.Front.Service.RankService
         //void UpdateRank();
 
         List<AllTagRankDTO> ReadAllRank();
-        List<CategoryRankDTO> ReadOtherTagRank();
+        List<CategoryRankDTO> ReadOtherTagRank(int id);
     }
 }
