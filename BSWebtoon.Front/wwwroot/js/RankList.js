@@ -1,29 +1,35 @@
 let week_content = document.querySelector(".content")
 let workTemplate = document.getElementById("workTemplate")
 let blackTemplate = document.getElementById("blackTemplate")
-let fantasy = doucumnet.querySelector(".fantasy")
-let love = doucumnet.querySelector(".love")
-let adventure = doucumnet.querySelector(".adventure")
-let plot = doucumnet.querySelector(".plot")
-let BL = doucumnet.querySelector(".BL")
-let horror = doucumnet.querySelector(".horror")
-let all = doucumnet.querySelector(".all")
+//let all = document.querySelector(".all")
+//let fantasy = document.querySelector(".fantasy")
+//let love = document.querySelector(".love")
+//let adventure = document.querySelector(".adventure")
+//let plot = document.querySelector(".plot")
+//let gl = document.querySelector(".gl")
+//let horror = document.querySelector(".horror")
+let btn = document.querySelectorAll(".btn");
+let li = document.querySelectorAll("")
+
+
 
 
 window.onload = () => {
-    
+
     for (let i = 1; i <= 99; i++) {
         week_content.append(createCard())
     }
     week_content.append(createBlack())
+
+    btn.addEventListener("click", () => {
+
+    })
+
 }
 
 function createCard() {
     let cloneCard = workTemplate.content.cloneNode(true);
-    //cloneCard.querySelector("img").src = "https://tw-a.kakaopagecdn.com/P/C/148/bg/1x/f485a521-3410-48a7-a3de-793514f1237c.webp"
-    //cloneCard.querySelector(".work_pic").src = "https://tw-a.kakaopagecdn.com/P/C/148/c2/2x/06e61fbe-0d6d-4145-9a9f-3723841ac527.webp"
-    //cloneCard.querySelector(".title_img").src = "https://tw-a.kakaopagecdn.com/P/C/205/t2/2x/8848e3ef-a605-412f-9d37-d544e22af515.png";
-
+    
     return cloneCard
 }
 

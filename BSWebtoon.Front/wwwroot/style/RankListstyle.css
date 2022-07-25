@@ -10,15 +10,15 @@
     top: 80px;
 }
 
+
 .nav-pills .nav-link {
     color: #fff;
 }
 
-.nav-pills .nav-link.active {
-    color: #000;
+.choosed {
     background-color: #fff;
+    color:#000;
 }
-
 .Rank {
     background-color: #000;
     position: relative;
