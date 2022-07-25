@@ -39,26 +39,26 @@ namespace BSWebtoon.Front.Controllers
         }
         public IActionResult CreateData() //CreateData/CreateData 我沒有見View 但是可以進入資料庫
         {
-            _memberService.LoginTypeCreate();
-            _memberService.MemberCreate();
-            _rechargeService.CashPlanCreate();
-            _rechargeService.PaymentCreate();
-            _rechargeService.RechargeRecordCreate();
-            _Employeeservice.EmployeeCreate();
-            _ComicService.ComicTagCreate();
-            _ComicService.ComicCreate();
-            _ComicService.ComicTagListCreate();
-            _ComicService.EpCreate();
-            _ComicService.EpContentCreate();
-            _favoriteService.FavoriteCreate();
-            _ClickRecordService.ClickRecordCreate();
-            _recommendservice.ActivityCreate();
-            _couponService.CouponCreate();
-            _couponService.CouponUsedRecordCreate();
-            _recommendservice.ViewRecordCreate();
-            _recommendservice.CommentCreate();
-            _recommendservice.CommentLikeCreate();
-            _recommendservice.ReportCreate();
+            //_memberService.LoginTypeCreate();
+            //_memberService.MemberCreate();
+            //_rechargeService.CashPlanCreate();
+            //_rechargeService.PaymentCreate();
+            //_rechargeService.RechargeRecordCreate();
+            //_Employeeservice.EmployeeCreate();
+            //_ComicService.ComicTagCreate();
+            //_ComicService.ComicCreate();
+            //_ComicService.ComicTagListCreate();
+            //_ComicService.EpCreate();
+            //_ComicService.EpContentCreate();
+            //_favoriteService.FavoriteCreate();
+            //_ClickRecordService.ClickRecordCreate();
+            //_recommendservice.ActivityCreate();
+            //_couponService.CouponCreate(); //不推假資料
+            //_couponService.CouponUsedRecordCreate(); //不推假資料
+            //_recommendservice.ViewRecordCreate();
+            //_recommendservice.CommentCreate();
+            //_recommendservice.CommentLikeCreate();
+            //_recommendservice.ReportCreate();
 
             return View();
         }

@@ -11,7 +11,7 @@ namespace BSWebtoon.Model.Repository
 {
     public class BSRepository
     {
-        public BSRepository(BSWebtoonContext context)
+        public BSRepository(BSWebtoonDbContext context)
         {
             if (context == null) { throw new ArgumentNullException(); }
             _context = context;
@@ -21,7 +21,7 @@ namespace BSWebtoon.Model.Repository
         {
         }
 
-        private BSWebtoonContext _context;
+        private BSWebtoonDbContext _context;
 
         public void Create<T>(T value) where T : class
         {

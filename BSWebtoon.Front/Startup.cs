@@ -64,8 +64,8 @@ namespace BSWebtoon.Front
 
             services.AddHttpContextAccessor();
 
-            services.AddDbContext<BSWebtoonContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("BSWebtoonContext")));
+            services.AddDbContext<BSWebtoonDbContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("BSWebtoonDbContext")));
             //第三方登入(yu)
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>

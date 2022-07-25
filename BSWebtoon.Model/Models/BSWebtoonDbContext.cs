@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace BSWebtoon.Model.Models
 {
-    public partial class BSWebtoonContext : DbContext
+    public partial class BSWebtoonDbContext : DbContext
     {
-        public BSWebtoonContext()
+        public BSWebtoonDbContext()
         {
         }
 
-        public BSWebtoonContext(DbContextOptions<BSWebtoonContext> options)
+        public BSWebtoonDbContext(DbContextOptions<BSWebtoonDbContext> options)
             : base(options)
         {
         }
@@ -44,13 +44,13 @@ namespace BSWebtoon.Model.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=(localdb)\\mssqllocaldb;Database=BSWebtoon;");
+                optionsBuilder.UseSqlServer("Server=bswebtoon.database.windows.net; Database=BSWebtoonDb;User ID=bs;Password=P@ssword;");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
+            modelBuilder.HasAnnotation("Relational:Collation", "Chinese_Taiwan_Stroke_BIN");
 
             modelBuilder.Entity<Activity>(entity =>
             {
@@ -124,6 +124,8 @@ namespace BSWebtoon.Model.Models
 
                 entity.HasIndex(e => e.ComicId, "IX_ClickRecord_ComicId");
 
+                entity.HasIndex(e => e.MemberId, "IX_ClickRecord_MemberId");
+
                 entity.Property(e => e.ClickRecordId).HasComment("點擊紀錄ID");
 
                 entity.Property(e => e.ComicId).HasComment("漫畫Id");
@@ -171,9 +173,7 @@ namespace BSWebtoon.Model.Models
 
                 entity.Property(e => e.BannerVideoWeb).HasComment("短影片");
 
-                entity.Property(e => e.BgColor)
-                    .IsRequired()
-                    .HasComment("背景色");
+                entity.Property(e => e.BgColor).HasComment("背景色");
 
                 entity.Property(e => e.BgCover)
                     .IsRequired()
@@ -187,9 +187,7 @@ namespace BSWebtoon.Model.Models
                     .IsRequired()
                     .HasComment("漫畫英文名稱");
 
-                entity.Property(e => e.ComicFigure)
-                    .IsRequired()
-                    .HasComment("人物圖");
+                entity.Property(e => e.ComicFigure).HasComment("人物圖");
 
                 entity.Property(e => e.ComicNameImage)
                     .IsRequired()
@@ -199,9 +197,7 @@ namespace BSWebtoon.Model.Models
 
                 entity.Property(e => e.ComicVideoWeb).HasComment("長影片");
 
-                entity.Property(e => e.ComicWeekFigure)
-                    .IsRequired()
-                    .HasComment("星期列表人物圖");
+                entity.Property(e => e.ComicWeekFigure).HasComment("星期列表人物圖");
 
                 entity.Property(e => e.FinallyPublishDate)
                     .HasColumnType("datetime")
@@ -242,7 +238,6 @@ namespace BSWebtoon.Model.Models
                 entity.HasOne(d => d.AuditEmployee)
                     .WithMany(p => p.Comics)
                     .HasForeignKey(d => d.AuditEmployeeId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Comic_Employee");
             });
 
@@ -254,12 +249,6 @@ namespace BSWebtoon.Model.Models
                 entity.ToTable("ComicTag");
 
                 entity.Property(e => e.TagId).HasComment("關鍵表Id");
-
-                entity.Property(e => e.AuditDate)
-                    .HasColumnType("datetime")
-                    .HasComment("審核日期");
-
-                entity.Property(e => e.AuditEmployeeId).HasComment("審核人員(也是上傳人員)");
 
                 entity.Property(e => e.IsDelete).HasComment("是否刪除該標籤");
 
@@ -538,7 +527,7 @@ namespace BSWebtoon.Model.Models
                     .HasColumnType("datetime")
                     .HasComment("審核時間");
 
-                entity.Property(e => e.AuditTypeId).HasComment("審核狀態ID");
+                entity.Property(e => e.AuditType).HasComment("審核狀態ID");
 
                 entity.Property(e => e.ComicId).HasComment("漫畫ID");
 
@@ -565,7 +554,6 @@ namespace BSWebtoon.Model.Models
                 entity.HasOne(d => d.AuditEmployee)
                     .WithMany(p => p.Episodes)
                     .HasForeignKey(d => d.AuditEmployeeId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Episode_Employee");
 
                 entity.HasOne(d => d.Comic)
@@ -720,6 +708,8 @@ namespace BSWebtoon.Model.Models
 
                 entity.Property(e => e.MemberId).HasComment("會員ID");
 
+                entity.Property(e => e.PayState).HasComment("付款狀態(1.付款完成2.付款失敗3.未付款)");
+
                 entity.Property(e => e.PaymentId).HasComment("付款方式ID");
 
                 entity.Property(e => e.Price).HasComment("價錢");
@@ -773,7 +763,6 @@ namespace BSWebtoon.Model.Models
                 entity.HasOne(d => d.AuditEmployee)
                     .WithMany(p => p.Reports)
                     .HasForeignKey(d => d.AuditEmployeeId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Report_Employee");
 
                 entity.HasOne(d => d.Comment)
@@ -789,11 +778,11 @@ namespace BSWebtoon.Model.Models
 
                 entity.ToTable("ViewRecord");
 
-                entity.HasIndex(e => e.EpContentId, "IX_ViewRecord_EpContentId");
+                entity.HasIndex(e => e.EpId, "IX_ViewRecord_EpContentId");
 
                 entity.HasIndex(e => e.MemberId, "IX_ViewRecord_MemberId");
 
-                entity.Property(e => e.EpContentId).HasComment("漫畫圖片Id");
+                entity.Property(e => e.EpId).HasComment("集數Id");
 
                 entity.Property(e => e.MemberId).HasComment("會員");
 
@@ -801,11 +790,11 @@ namespace BSWebtoon.Model.Models
                     .HasColumnType("datetime")
                     .HasComment("觀看時間");
 
-                entity.HasOne(d => d.EpContent)
+                entity.HasOne(d => d.Ep)
                     .WithMany(p => p.ViewRecords)
-                    .HasForeignKey(d => d.EpContentId)
+                    .HasForeignKey(d => d.EpId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_ViewRecord_EpContent");
+                    .HasConstraintName("FK_ViewRecord_Episode");
 
                 entity.HasOne(d => d.Member)
                     .WithMany(p => p.ViewRecords)

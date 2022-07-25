@@ -11,9 +11,9 @@ namespace BSWebtoon.Front.Service.SearchService
     public class SearchService : ISearchService
     {
         private static string _connectionStr = "Server=(localdb)\\mssqllocaldb;Database=BS;Trusted_Connection=True;MultipleActiveResultSets=true";
-        private readonly BSWebtoonContext _context;
+        private readonly BSWebtoonDbContext _context;
         private readonly BSRepository _repository;
-        public SearchService(BSWebtoonContext context, BSRepository repository)
+        public SearchService(BSWebtoonDbContext context, BSRepository repository)
         {
             _context = context;
             _repository = repository;
@@ -25,7 +25,7 @@ namespace BSWebtoon.Front.Service.SearchService
 
             using (SqlConnection conn = new SqlConnection(_connectionStr))
             {
-                string sql = @$"SELECT T.TagName,c.*
+                string sql = @$"SELECT T.TagName,C.*
                                FROM  ComicTagList  TL 
                                INNER JOIN  Comic C ON  TL.ComicId= C.ComicId
                                INNER JOIN ComicTag T ON T.TagId=TL.TagId
@@ -45,8 +45,8 @@ namespace BSWebtoon.Front.Service.SearchService
                         Introduction = item.Introduction,
                         ComicFigure = item.ComicFigure,
                     });
-                    
                 }
+                
             }
             return result;
         }
