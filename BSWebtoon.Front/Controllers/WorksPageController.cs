@@ -86,26 +86,24 @@ namespace BSWebtoon.Front.Controllers
         public IActionResult ComicContent(int Id)
         {
             var userName = User.Identity.Name;
-            var comicContent = _comicContentPageService.ReadworkContent(Id, userName);
-            var EpTitle = comicContent.Select(c => c.EpTitle).First();
-            if (comicContent != null)
+            var comicContents = _comicContentPageService.ReadworkContent(Id, userName);
+            var result = new ComicContentViewModel();
+            if (comicContents.Count() != 0)
             {
-                var comicContentList = comicContent.Select(c => new ComicContentViewModel
+                var EpTitle = comicContents.Select(c=>c.EpTitle).First();
+                result = new ComicContentViewModel()
                 {
                     EpTitle = EpTitle,
-                    ContentList = new List<ComicContentViewModel.Content>
+                    ContentList = comicContents.Select(c => new ComicContentViewModel.Content
                     {
-                        new ComicContentViewModel.Content
-                        {
-                            ImagePath = c.ImagePath,
-                            Page = c.Page
-                        }
-                    }
+                        ImagePath = c.ImagePath,
+                        Page = c.Page,
+                    }).ToList()
+                };
 
-                }).ToList();
-                ;
+                return View(result);
 
-                return View(comicContentList);
+
 
             }
             else
