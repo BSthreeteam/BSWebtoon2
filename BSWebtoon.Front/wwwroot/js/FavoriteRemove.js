@@ -1,91 +1,97 @@
-﻿    let double_check_block = document.getElementById('double_check_block');
-    let div_btns = document.querySelector('#div_btns');
-    let del_btn = document.querySelector('#del_btn');
+﻿let double_check_block = document.getElementById('double_check_block');
+let div_btns = document.querySelector('#div_btns');
+let del_btn = document.querySelector('#del_btn');
 
-    //放待刪除的陣列
-    var arr_to_be_del = [];
+//放待刪除的陣列
+var arr_to_be_del = [];
 
-    function init() {
-        double_check_block.style.transform = "translateY(100%)";
+function init() {
+    double_check_block.style.transform = "translateY(100%)";
     del_btn.classList.add("btn_lock");
     del_btn.setAttribute("disabled", '');
-                }
+}
 
-    //檢查id 有沒有被選過 沒有的話新增至帶刪除的array
-    function check_del_array(div_id) {
-        let repaet_index = -1;
+function countCheckboxes() {
+    var a = document.forms["main"];
+    var x = a.querySelectorAll('input[type="checkbox"]:checked');
+    alert(x.length);
+}
+
+//檢查id 有沒有被選過 沒有的話新增至帶刪除的array
+function check_del_array(div_id) {
+    let repaet_index = -1;
     let repeat = false;
-                    arr_to_be_del.forEach((item, index) => {
-                        if (item == div_id) {
-        repeat = true;
-    repaet_index = index;
-                        }
-                    });
+    arr_to_be_del.forEach((item, index) => {
+        if (item == div_id) {
+            repeat = true;
+            repaet_index = index;
+        }
+    });
     //沒重複
     if (repeat) {
         arr_to_be_del.splice(repaet_index, 1);
-                    } else { //有重複
+    } else { //有重複
         arr_to_be_del.push(div_id);
-                    }
+    }
     update_text();
     return repeat;
-                }
+}
 
-    function cancel_double_check_block() {
-        double_check_block.style.transform = "translateY(100%)";
-                }
+function cancel_double_check_block() {
+    double_check_block.style.transform = "translateY(100%)";
+}
 
-    function update_text() {
-        let del_btn = document.getElementById('del_btn');
+function update_text() {
+    let del_btn = document.getElementById('del_btn');
     let p = double_check_block.querySelector('p');
     let length = arr_to_be_del.length;
     del_btn.textContent = `刪除 ${length} 個作品`;
     p.innerText = `是否要刪除${length}個收藏的作品？`;
     if (length == 0) {
         del_btn.setAttribute("disabled", '');
-    del_btn.setAttribute("style", "background-color: #333333");
-                    } else {
+        del_btn.setAttribute("style", "background-color: #333333");
+    } else {
         del_btn.removeAttribute("disabled");
-    del_btn.setAttribute("style", "background-color: #ff3042");
-                    }
-                }
+        del_btn.setAttribute("style", "background-color: #ff3042");
+    }
+}
 
-    //選取圖片 新增至待刪除的陣列裡 並顯示刪除幾個作品
-    function select_img(img_node) {
-        let div_id = img_node.getAttribute("id");
+//選取圖片 新增至待刪除的陣列裡 並顯示刪除幾個作品
+function select_img(img_node) {
+    let div_id = img_node.getAttribute("id");
     let del_btn = document.getElementById('del_btn');
     let div_cover = img_node.querySelector('div');
     //offsetHeight 當下標籤的高度
     let height = img_node.querySelector('img').offsetHeight + 1;
     // console.log(height);
-    //不重複的話 新增到要刪除的陣列 並給上灰灰的
+
     if (!check_del_array(div_id)) {
         div_cover.classList.add("gray_block");
-    img_node.querySelector('div').setAttribute('style', `height: ${height}px;`);
-    img_node.querySelector('.check_btn').classList.add("check_btn_bag_red");
-                    } else {
+        img_node.querySelector('div').setAttribute('style', `height: ${height}px;`);
+        img_node.querySelector('.check_btn').classList.add("check_btn_bag_red");
+    } else {
         div_cover.classList.remove("gray_block");
-    img_node.querySelector('.check_btn').classList.remove("check_btn_bag_red");
-    img_node.querySelector('div').setAttribute('style', `height: 0px;`);
-                    }
-                }
+        img_node.querySelector('.check_btn').classList.remove("check_btn_bag_red");
+        img_node.querySelector('div').setAttribute('style', `height: 0px;`);
+    }
+}
 
-    //刪除圖片 
-    function remove_all(double_check = false) {
-                    // console.log(double_check)
-                    if (double_check) {
+//刪除圖片 
+function remove_all(double_check = false) {
+    // console.log(double_check)
+    if (double_check) {
         arr_to_be_del.forEach(del_item_id => {
             let del_tag = document.getElementById(del_item_id).parentNode.parentNode;
             del_tag.remove();
             console.log(del_item_id + '刪除成功~');
         });
-    //全部刪除 直接重新宣告成空的
-    arr_to_be_del = [];
-    double_check_block.style.transform = "translateY(100%)";
-                    } else {
+        //全部刪除 直接重新宣告成空的
+        arr_to_be_del = [];
+        double_check_block.style.transform = "translateY(100%)";
+    } else {
         double_check_block.style.transform = "translateY(0%)";
-                    }
+    }
     update_text();
-                }
+}
 
-    init();
+init();

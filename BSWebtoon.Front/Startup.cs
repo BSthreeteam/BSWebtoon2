@@ -134,6 +134,12 @@ namespace BSWebtoon.Front
                     name: "default",
                     pattern: "{controller=Recommend}/{action=Recommend}/{id?}");
             });
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllerRoute(
+            //        name: "default",
+            //        pattern: "{controller=AA}/{action=aa}/{id?}");
+            //});
         }
 
     }

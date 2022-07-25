@@ -5280,6 +5280,7 @@ namespace BSWebtoon.Front.Service.ComicService
                 ////new EpContent(){ EpContentId=319,  EpId=start+160,  ImagePath="", Page=1},
                 ////new EpContent(){ EpContentId=320,  EpId=start+160,  ImagePath="", Page=2},
             };
+
             //foreach (var epContent in epContentList)
             //{
             //    _repository.Create(epContent);
