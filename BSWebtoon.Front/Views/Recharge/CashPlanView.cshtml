@@ -43,8 +43,6 @@
 @* <script src="~/js/CashPlan.js"  asp-append-version="true"/>
 *@  <hr>
 
-@*  <button class="btn_next" v-on:click="SendToNewebPay('CREDIT')"> <span>下一步</span></button>
-*@
   <footer>
         <p>購買須知</p>
         <ul>
@@ -61,27 +59,7 @@
         let btn_next = document.getElementById('btn_next');
 
         window.onload = function () {
-            //btn_next.onclick = () => {
-
-            //}
             const app = Vue.createApp({
-            //data() {
-            //    //return {
-            //    //    // 表單資料
-            //    //    addForm: {
-            //    //        MerchantID: '@ViewData["MerchantID"]' //商品代號
-            //    //        , MerchantOrderNo: '@ViewData["MerchantOrderNo"]'
-            //    //        , ItemDesc: '測試商品'
-            //    //        , Amt: '100'
-            //    //        , ExpireDate: '@ViewData["ExpireDate"]'
-            //    //        , ReturnURL: '@ViewData["ReturnURL"]'
-            //    //        , CustomerURL: '@ViewData["CustomerURL"]'
-            //    //        , NotifyURL: '@ViewData["NotifyURL"]'
-            //    //        , ClientBackURL: '@ViewData["ClientBackURL"]'
-            //    //        , Email: 'mars@hungwin.com.tw'
-            //    //    }
-            //    //}
-            //}
             methods: {
                 // 傳送至藍新金流
                 SendToNewebPay(ChannelID) {
@@ -97,7 +75,6 @@
                     //postData['CustomerURL'] = self.addForm.CustomerURL;   //目前不確定
                     //postData['NotifyURL'] = self.addForm.NotifyURL;   //目前不確定
                     //postData['Email'] = self.addForm.Email;   //可從後端寫入
-
                     //postData['MerchantID'] = self.addForm.MerchantID; //可從後端寫入
                     //postData['MerchantOrderNo'] = self.addForm.MerchantOrderNo;   //可從後端寫入
                     //postData['ExpireDate'] = self.addForm.ExpireDate; //可從後端寫入
