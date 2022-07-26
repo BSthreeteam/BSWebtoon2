@@ -119,6 +119,7 @@ namespace NewebPay.Controllers
             TradeInfo.Add(new KeyValuePair<string, string>("EmailModify", "0"));
             //信用卡 付款
             TradeInfo.Add(new KeyValuePair<string, string>("CREDIT", "1"));
+            TradeInfo.Add(new KeyValuePair<string, string>("VACC", "1"));
 
             string TradeInfoParam = string.Join("&", TradeInfo.Select(x => $"{x.Key}={x.Value}"));
 
@@ -143,7 +144,7 @@ namespace NewebPay.Controllers
         /// </summary>
         /// <returns></returns>
 
-        public async Task<IActionResult> CallbackReturn()//hana你需要它!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        public async Task<IActionResult> CallbackReturn()//hana你需要它!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
         {
             // 接收參數
             StringBuilder receive = new StringBuilder();
@@ -167,18 +168,21 @@ namespace NewebPay.Controllers
             string response = await client.GetStringAsync("https://localhost:80/api/XX");
             // ---------- by hana  ------ 
 
-            var claims =
-            User.Claims.Select(claim => new
-            {
-                claim.Type,//提供宣告的語意內容，也就是它指出宣告的用途。
-                claim.Value,//顧名思義 質
-            });
+            //var claims =
+            //User.Claims.Select(claim => new
+            //{
+            //    claim.Type,//提供宣告的語意內容，也就是它指出宣告的用途。
+            //    claim.Value,//顧名思義 質
+            //});
 
             //var usernamebalance = _repository.GetAll<Member>().Where(x => x.NameIdentifier == userNameIdentifier).Select(x => x.MemberId).First();
             //var user_identifier = claims.First(x => x.Type == ClaimTypes.Name).Value;
             /* 要抓使用者ID 107839060559565923660-> 寫死*/
-            var NameIdentifiers = claims.First(x => x.Type == ClaimTypes.NameIdentifier);
+            var NameIdentifiers = User.Claims.First(x => x.Type == ClaimTypes.NameIdentifier);
+            
             var user_id = _repository.GetAll<Member>().Where(x => x.NameIdentifier == NameIdentifiers.Value).Select(x => x.MemberId).First();
+            
+            var typeName = _repository.GetAll<CashPlan>().Where(x => x.CashPlanId == int.Parse(inModel.ItemDesc)).Select(x => x.CashPlanContent).FirstOrDefault().ToString();
 
             var input_RechargeRecord = new RechargeRecord() { 
                 RechargeRecordId = 4,
