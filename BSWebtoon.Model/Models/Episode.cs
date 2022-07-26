@@ -13,6 +13,7 @@ namespace BSWebtoon.Model.Models
             CouponUsedRecords = new HashSet<CouponUsedRecord>();
             Coupons = new HashSet<Coupon>();
             EpContents = new HashSet<EpContent>();
+            ViewRecords = new HashSet<ViewRecord>();
         }
 
         public int EpId { get; set; }
@@ -34,5 +35,6 @@ namespace BSWebtoon.Model.Models
         public virtual ICollection<CouponUsedRecord> CouponUsedRecords { get; set; }
         public virtual ICollection<Coupon> Coupons { get; set; }
         public virtual ICollection<EpContent> EpContents { get; set; }
+        public virtual ICollection<ViewRecord> ViewRecords { get; set; }
     }
 }

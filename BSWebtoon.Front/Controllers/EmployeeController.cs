@@ -8,11 +8,11 @@ namespace BSWebtoon.Front.Controllers
     {
 
         private readonly IEmployeeService _Employeeservice;
-        private readonly BSRepository _repository;
-        public EmployeeController(BSRepository repository, IEmployeeService EmployeeService)
+        public EmployeeController(
+            IEmployeeService EmployeeService
+            )
         {
             _Employeeservice = EmployeeService;
-            _repository = repository;
         }
         public IActionResult AddEmployeeView() //Employee/AddEmployeeView
         {

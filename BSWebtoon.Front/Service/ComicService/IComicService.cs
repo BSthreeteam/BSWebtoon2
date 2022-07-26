@@ -1,5 +1,4 @@
-﻿using BSWebtoon.Front.ViewModels;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace BSWebtoon.Front.Service.ComicService
 {
