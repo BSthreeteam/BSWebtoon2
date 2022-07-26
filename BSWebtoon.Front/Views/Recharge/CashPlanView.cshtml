@@ -1,86 +1,109 @@
-﻿@{
+﻿@model BSWebtoon.Front.Models.ViewModel.CashPlan.CashPlanViewModel
+@{
     ViewData["Title"] = "CashPlanView";
 }
 
 @section topCss{
-      <link rel="stylesheet" href="~/style/CashPlanstyle.css" />
+<link rel="stylesheet" href="~/style/CashPlanstyle.css" />
 }
 
 
 <h1 class="top">儲值金幣</h1>
 
-  <h2>
+<h2>
     <p>現有金幣</p>
-    <span>1,000金幣</span>
-  </h2>
+    <span>@Model.Balance</span>
+</h2>
 
-  <h3>金幣 <span>儲值</span></h3>
+<h3 class="mb-4">金幣 <span>儲值</span></h3>
 
-  <hr>
-  <hr>
-  <form method = "post" action="/Recharge/CashPlanView">
-  <div class="container mt-3">
-    <div class="form-check">
-      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value ="1">
-      <label class="form-check-label white-font" for="flexRadioDefault1">
-        <p>3,600金幣</p>
-        <span>NT$ 90</span>
-      </label>
-    </div>
-  </div>
-  <div class="container mt-3">
-    <div class="form-check">
-      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value ="2">
-      <label class="form-check-label white-font" for="flexRadioDefault2">
-        <p>6,000金幣</p>
-        <span>NT$ 150</span>
-      </label>
-    </div>
-  </div>
-  <div class="container mt-3">
-    <div class="form-check">
-      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" value ="3">
-      <label class="form-check-label white-font" for="flexRadioDefault3">
-        <p>12,000金幣</p>
-        <span>NT$ 300</span>
-      </label>
-    </div>
-  </div>
-  <div class="container mt-3">
-    <div class="form-check">
-      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" value ="4">
-      <label class="form-check-label white-font" for="flexRadioDefault4">
-        <p>18,000金幣</p>
-        <span>NT$ 450</span>
-      </label>
-    </div>
-  </div>
-  <div class="container mt-3">
-    <div class="form-check">
-      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault5" value ="5">
-      <label class="form-check-label white-font" for="flexRadioDefault5">
-        <p>28,800金幣</p>
-        <span>NT$ 720</span>
-      </label>
-    </div>
-  </div>
-  <div class="container">
-    <p class="red-word">推薦</p>
-    <div class="form-check">
-      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault6" value ="6">
-      <label class="form-check-label white-font" for="flexRadioDefault6">
-        <p>36,000金幣</p>
-        <span>NT$ 900</span>
-      </label>
-    </div>
-  </div>
-  <hr>
-  <button type="submit" class="btn_next"> <span>下一步</span></button>
-  </form>
-  <footer>
-        <p>購買須知</p>
-        <ul>
-          <li class="li-color">首儲活動以外加贈的金幣於發送後30天內有效。</li>
-          <li class="li-color">廣告行銷活動等無償獲得的金幣無法申請退款。</li>
-        </ul>
-  </footer>
+<div class="container" id="app">
+    @foreach (var item in Model.AllCashPlan)
+    {
+        <div class="form-check mt-3">
+            <input class="form-check-input" type="radio" name="cashplan" value="@item.CashPlanId" />
+            <label class="form-check-label white-font">
+                <span class="price">@item.CashPlanContent</span>
+                <span class="dollar">@item.Price</span>
+            </label>
+        </div>
+    }
+    <button id="btn_next" class="btn_next" v-on:click="SendToNewebPay('CREDIT')"> <span>下一步</span></button>
+</div>
+
+<footer>
+    <p>購買須知</p>
+    <ul>
+        <li class="li-color">首儲活動以外加贈的金幣於發送後30天內有效。</li>
+        <li class="li-color">廣告行銷活動等無償獲得的金幣無法申請退款。</li>
+    </ul>
+</footer>
+
+
+    
+  @section scripts {
+    <script src ="https://unpkg.com/vue@3"></script>
+
+    <script>
+
+        let btn_next = document.getElementById('btn_next');
+
+        window.onload = function () {
+            const app = Vue.createApp({
+            methods: {
+                // 傳送至藍新金流
+                SendToNewebPay(ChannelID) {
+                    var self = this;
+                    let plan = document.querySelector('[name=cashplan]:checked').value;
+                    // 組合表單資料
+                    var postData = {};
+                    postData['ChannelID'] = ChannelID;
+                    postData['ItemDesc'] = plan;//到後端用id找
+                    //postData['Amt'] = 1;//從後端找
+                    postData['ReturnURL'] = 'https://localhost:80/NewebPay/CallbackReturn';
+                    postData['ClientBackURL'] = 'https://localhost:80/NewebPay/Index';
+                    //postData['CustomerURL'] = self.addForm.CustomerURL;   //目前不確定
+                    //postData['NotifyURL'] = self.addForm.NotifyURL;   //目前不確定
+                    //postData['Email'] = self.addForm.Email;   //可從後端寫入
+                    //postData['MerchantID'] = self.addForm.MerchantID; //可從後端寫入
+                    //postData['MerchantOrderNo'] = self.addForm.MerchantOrderNo;   //可從後端寫入
+                    //postData['ExpireDate'] = self.addForm.ExpireDate; //可從後端寫入
+
+                    // 使用 jQuery Ajax 傳送至後端
+                    $.ajax({
+                        url: '@Url.Content("~/NewebPay/SendToNewebPay")',
+                        method: 'POST',
+                        dataType: 'json',
+                        data: { inModel: postData, __RequestVerificationToken: $('@Html.AntiForgeryToken()').val() },
+                        success: function(returnObj) {
+                            // 呼叫藍新金流 API
+                            const form = document.createElement('form');
+                            form.method = 'post';
+                            form.action = 'https://ccore.newebpay.com/MPG/mpg_gateway';//藍新金流驗證網址(測試環境)
+
+                            for (const key in returnObj) {
+                                if (returnObj.hasOwnProperty(key)) {
+                                    const hiddenField = document.createElement('input');
+                                    hiddenField.type = 'hidden';
+                                    hiddenField.name = key;
+                                    hiddenField.value = returnObj[key];
+                                    form.appendChild(hiddenField);
+                                }
+                            }
+                            document.body.appendChild(form);
+                            form.submit();
+                        },
+                        error: function(err) {
+                            alert(err.status + " " + err.statusText + '\n' + err.responseText);
+                        }
+                    });
+                }
+            }
+        });
+        const vm = app.mount('#app');
+
+        }
+
+    </script>
+}
+

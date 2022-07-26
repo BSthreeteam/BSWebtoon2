@@ -60,6 +60,9 @@ namespace BSWebtoon.Front.Controllers
             var AccountName = claims.First(x => x.Type == ClaimTypes.Name);
             var Email = claims.First(x => x.Type == ClaimTypes.Email);
 
+
+
+
             var iutputDTO = new Login3rdInputDTO
             {
                 Provider = NameIdentifiers.Issuer.ToLower(),
@@ -75,7 +78,7 @@ namespace BSWebtoon.Front.Controllers
         }
         public IActionResult Logout()
         {
-            _memberService.LogoutAccount();
+            _memberService.LogoutAccountAsync();
             return Redirect("/");
         }
     }

@@ -5,7 +5,7 @@ body {
 .top {
     color: #fff;
     font-size: 20px;
-    margin-top: 50px;
+    margin-top: 15px;
     /* margin-left: 30%; */
     font-weight: 600;
     display: flex;
@@ -42,11 +42,6 @@ h3 {
         color: #333;
     }
 
-hr {
-    margin: auto;
-    max-width: 630px;
-    color: #ccc;
-}
 
 .red-word {
     color: red;
@@ -71,12 +66,23 @@ hr {
     max-width: 630px;
 }
 
-    .form-check span {
-        color: #c6a66d;
-        font-size: 20px;
-        height: 40px;
-    }
-
+/*.form-check .price {
+    color: #c6a66d;
+    font-size: 20px;
+}
+*/
+.price::after {
+    content: "\91d1\5e63";
+    color: #c6a66d;
+    font-size: 20px;
+    margin-left:5px;
+}
+.dollar::before {
+    content: "NT$";
+    color: #c6a66d;
+    font-size: 20px;
+    margin-right: 5px;
+}
 .gold-word {
     color: #c6a66d;
     font-size: 13px;
@@ -114,14 +120,6 @@ footer {
     }
 
 
-video {
-    position: absolute;
-    margin: auto;
-    max-width: 630px;
-    margin-left: 15%;
-    z-index: -1;
-}
-
 footer {
     margin-top: 50px;
 }
@@ -130,3 +128,10 @@ footer {
     color: #777;
 }
 
+h3::after {
+    content: "";
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+    display: block;
+    justify-content: center;
+}
