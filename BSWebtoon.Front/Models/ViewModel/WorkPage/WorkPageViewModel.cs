@@ -61,8 +61,7 @@ namespace BSWebtoon.Front.Models.ViewModel.WorkPage
             public int ComicId { get; set; }
             public string EpTitle { get; set; }
             public string EpCover { get; set; }
-            public DateTime UploadTime { get; set; }
-            //public int AuditTypeId { get; set; }
+            public string UploadTime { get; set; }
             public bool IsCountdownCoupon { get; set; }
             public bool IsFree { get; set; }
         }

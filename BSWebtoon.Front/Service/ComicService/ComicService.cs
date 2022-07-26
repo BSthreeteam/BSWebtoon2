@@ -5643,7 +5643,7 @@ namespace BSWebtoon.Front.Service.ComicService
                     ComicId = ep.ComicId,
                     EpTitle = ep.EpTitle,
                     EpCover = ep.EpCover,
-                    UploadTime = ep.UploadTime,
+                    UploadTime = ep.UploadTime.ToShortDateString(),
                     IsCountdownCoupon = ep.IsCountdownCoupon,
                     IsFree = ep.IsFree
                 }).ToList(),

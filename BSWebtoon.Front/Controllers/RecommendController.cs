@@ -41,7 +41,9 @@ namespace BSWebtoon.Front.Controllers
                     ActivityBgColor = recommend.ActivityBgColor,
                     BannerVideoWeb = recommend.BannerVideoWeb,
                     ComicFigure = recommend.ComicFigure,
-                    ActivityImage = recommend.ActivityImage
+                    ActivityImage = recommend.ActivityImage,
+                    ControllerName = recommend.ControllerName,
+                    ActionName = recommend.ActionName
                 });
             }
 

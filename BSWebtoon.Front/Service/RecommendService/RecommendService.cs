@@ -246,8 +246,8 @@ namespace BSWebtoon.Front.Service.RecommendService
                 ComicBgCover = c.BgCover,
                 BannerVideoWeb = c.BannerVideoWeb,
                 ComicFigure = c.ComicFigure,
-                ControllerName = "Recommend",
-                ActionName = "Recommend"
+                ControllerName = "WorksPage",
+                ActionName = "WorksPage"
             }).ToList();
 
 
@@ -261,8 +261,8 @@ namespace BSWebtoon.Front.Service.RecommendService
                 ComicBgCover = c.BgCover,
                 BannerVideoWeb = c.BannerVideoWeb,
                 ComicFigure = c.ComicFigure,
-                ControllerName = "Recommend",
-                ActionName = "Recommend"
+                ControllerName = "WorksPage",
+                ActionName = "WorksPage"
             }).ToList();
 
             var allList = new List<RecommendDTO.RecommendComic> { };
