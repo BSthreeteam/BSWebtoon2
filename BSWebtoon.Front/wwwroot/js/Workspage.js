@@ -157,7 +157,16 @@ window.onload = function () {
 
     })
 
-
+    moble_title_template = document.querySelector('#motle_title');
+    function mobleCloned(title, mo_word, mo_pic, mo_author, mo_publisher) {
+        let cloneMoble = moble_title_template.content.cloneNode(true);
+        cloneMoble.querySelector(".mo_ti").innerText = title;
+        cloneMoble.querySelector(".mo_word").innerText = mo_word;
+        cloneMoble.querySelector(".mo_pic").innerText = mo_pic;
+        cloneMoble.querySelector(".mo_author").innerText = mo_author;
+        cloneMoble.querySelector(".mo_publisher").innerText = mo_publisher;
+        return cloneMoble;
+    }
     // //我們是用以下的方式讓它做出滾動的效果
     // window.addEventListener('mousewheel', (event) => {
     //     event = event || window.event;

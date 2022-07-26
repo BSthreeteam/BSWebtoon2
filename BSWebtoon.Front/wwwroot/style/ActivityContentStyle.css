@@ -1,0 +1,106 @@
+:root {
+    --activityBgColor: #e79834;
+}
+
+body {
+    background-color: var(--activityBgColor);
+}
+
+.activity_nav {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    font-size: 20px;
+    padding: 5px 0px;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+}
+
+.activity_nav_a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0px 10px;
+}
+
+    .activity_nav_a:hover {
+        color: #fff;
+    }
+
+.w-700 {
+    max-width: 700px;
+    width: 100%;
+    margin: auto;
+}
+
+.activity_pic {
+    position: relative;
+}
+
+.activity_title {
+    position: absolute;
+    bottom: 0;
+    color: #fff;
+    background-image: linear-gradient(to top, var(--activityBgColor) 20%, transparent 100%);
+}
+
+    .activity_title .countdownTime {
+        font-size: 20px;
+    }
+
+.activity_title_info {
+    font-size: 30px;
+    font-weight: 900;
+}
+
+    .activity_title_info:last-child,
+    .activity_text_content {
+        padding-bottom: 20px;
+        border-bottom: #fff solid 5px;
+    }
+
+.activity_text_title {
+    color: #fff;
+    font-size: 25px;
+    font-weight: 900;
+}
+
+.activity_text_content {
+    color: #fff;
+}
+
+.getUniversalCouponBtn {
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    font-weight: 900;
+    font-size: 30px;
+    border-radius: 30px;
+}
+
+.activity_details {
+    background-color: #000;
+    color: #fff;
+}
+
+.activity_detail_title {
+    font-size: 15px;
+    font-weight: 900;
+}
+
+.activity_detail_content {
+    font-size: 10px;
+    padding: 0px 30px;
+    color: #aaa;
+}
+
+.activity_detail_content_border {
+    padding-bottom: 20px;
+    border-bottom: #fff solid 1px;
+}
+
+.activity_detail_contentList {
+    padding: 0px 50px;
+}

@@ -54,7 +54,7 @@ namespace BSWebtoon.Front.Models.ViewModel.WorkPage
         public string Introduction { get; set; }
 
         //話次
-        public IEnumerable<EpData> EpList { get; set; }
+        public List<EpData> EpList { get; set; }
         public class EpData
         {
             public int EpId { get; set; }
@@ -68,19 +68,20 @@ namespace BSWebtoon.Front.Models.ViewModel.WorkPage
         }
 
         //留言
-        public IEnumerable<CommentData> CommentList { get; set; }
+        public List<CommentData> CommentList { get; set; }
 
         public class CommentData
         {
             public int CommentId { get; set; }
             public string CommentMemberName { get; set; }
             public int EpId { get; set; }
-            public int? ReplyToCommentId { get; set; }
+            public int ReplyToCommentCount { get; set; }
             public bool IsSpoiler { get; set; }
             public DateTime CreateTime { get; set; }
             public string Context { get; set; }
             public bool IsDelete { get; set; }
             public int CommentLikeCount { get; set; } //按讚數
+            public int CommentReportCount { get; set; } //檢舉數
         }
 
     }

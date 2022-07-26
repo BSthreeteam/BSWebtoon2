@@ -19,9 +19,9 @@
                 <form class="d-flex text-white" action="/search/searchComic" method="post" name="find">
                     <input class="form-control me-2 bg-transparent inputSearchBorder text-white" type="search" placeholder="請輸入書名或類型"
                            aria-label="Search" id="name" name="comicname">
-                        <a class="nav-link" id="search" aria-current="page" action="/search/searchComic" @*href="#"*@ type="submit">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </a>
+                    <a class="nav-link" id="search" aria-current="page" action="/search/searchComic" @*href="#"*@ type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </a>
                 </form>
                 @*如果是登入的狀態下，登入按鈕消失*@
                 @if (User.Identity.IsAuthenticated)
@@ -61,9 +61,10 @@
                 }
 
             </ul>
-            <ul class="nav flex-nowrap text_overflow text_overflow justify-content-center">
+            <ul class="nav flex-nowrap text_overflow">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">禮物盒</a>
+                    @*<a class="nav-link" href="#">禮物盒</a>*@
+                    @Html.ActionLink("禮物盒", "GiftBox", "Activity", new {},new {@class="nav-link text-light"})
                 </li>
                 <li class="nav-item">
                     @*<a class="nav-link" href="#">KAKAO WEBTOON</a>*@
@@ -71,15 +72,15 @@
                 </li>
                 <li class="nav-item">
                     @*<a class="nav-link" href="#">星期列表</a>*@
-                    @Html.ActionLink("星期列表", "WeekUpdate", "WeekUpdate", new {},new {@class="nav-link text-secondary nav-week"})
+                    @Html.ActionLink("星期列表", "WeekUpdate", "WeekUpdate", new {},new {@class="nav-link text-light nav-week"})
                 </li>
                 <li class="nav-item">
                     @*<a class="nav-link" href="#">排行榜</a>*@
-                    @Html.ActionLink("排行榜", "AllRankList", "Rank", new {},new {@class="nav-link text-secondary"})
+                    @Html.ActionLink("排行榜", "AllRankList", "Rank", new {},new {@class="nav-link text-light"})
                 </li>
                 <li class="nav-item">
                     @* <a class="nav-link" href="#">我的漫畫</a>*@
-                    @Html.ActionLink("我的漫畫", "RecordView","Favorite" , new {},new {@class="nav-link text-secondary"})
+                    @Html.ActionLink("我的漫畫", "RecordView","Favorite" , new {},new {@class="nav-link text-light"})
                 </li>
             </ul>
             <template>

@@ -5577,12 +5577,11 @@ namespace BSWebtoon.Front.Service.ComicService
             var readCouponSource = _repository.GetAll<Coupon>().Where(x => x.CouponTypeId == 2 && x.MemberId == memberId && x.ComicId == comicId).Select(x => x.Quantity).FirstOrDefault();
             //var CDCouponSource = _repository.GetAll<Coupon>().First(x => x.CouponTypeId == 3 && x.MemberId == memberId && x.ComicId == comicId);
 
-            var epSource = _repository.GetAll<Episode>().Where(x => x.AuditType == 1 && x.ComicId == comicId).OrderBy(x => x.UploadTime)/*.ToList()*/;
+            var epSource = _repository.GetAll<Episode>().Where(x => x.AuditType == 1 && x.ComicId == comicId).OrderBy(x => x.UploadTime);
 
             // 漫畫所有話次留言
-            var commentSource = _repository.GetAll<Comment>().Where(c => epSource.Any(e => e.EpId == c.EpId))/*.ToList()*/;
+            var commentSource = _repository.GetAll<Comment>().Where(c => epSource.Any(e => e.EpId == c.EpId));
             int ComicLikeCount = 0;
-            //IQueryable<List<int>> commentLikeSource;
 
             var commentLikeSource = _repository.GetAll<CommentLikeRecord>().GroupBy(g => g.CommentId).Where(g => commentSource.Any(c => c.CommentId == g.Key)).Select(c => new CommentData {CommentId= c.Key,CommentLikeCount= c.Count() });
             foreach (var like in commentLikeSource)
@@ -5590,7 +5589,10 @@ namespace BSWebtoon.Front.Service.ComicService
                 ComicLikeCount = ComicLikeCount + like.CommentLikeCount;
             };
 
-            //var epContentSource = _repository.GetAll<EpContent>().Where(ec => epSource.Any(e => e.EpId == ec.EpId));
+            var commentReplySourceHaveNull = commentSource.Where(c => c.ReplyToCommentId != null).Select(c => c);
+
+            var commentReplySource = commentReplySourceHaveNull.GroupBy(g => g.ReplyToCommentId).Select(c => new CommentData { CommentId = (int)c.Key, ReplyToCommentCount = c.Count() });
+
             var viewRecordSource = _repository.GetAll<ViewRecord>().Where(v => v.IsDelete == false && epSource.Any(ep => ep.EpId == v.EpId)).OrderByDescending(v => v.ViewTime).FirstOrDefault();
             string ViewRecordEpTitle;
             if (viewRecordSource == null)
@@ -5606,6 +5608,8 @@ namespace BSWebtoon.Front.Service.ComicService
             var ViewCount = _repository.GetAll<ViewRecord>().Where(v => v.IsDelete == false && epSource.Any(ep => ep.EpId == v.EpId)).Count();
 
             var comicIsLike = _repository.GetAll<Favorite>().Any(f => f.ComicId == comicId && f.MemberId == memberId);
+
+            var CommentReportCount = _repository.GetAll<Report>().Where(r => r.AuditType == 1).GroupBy(g => g.CommentId).Select(c => new CommentData { CommentId = (int)c.Key, CommentReportCount = c.Count() });
 
             return new WorkPageDTO()
             {
@@ -5642,20 +5646,21 @@ namespace BSWebtoon.Front.Service.ComicService
                     UploadTime = ep.UploadTime,
                     IsCountdownCoupon = ep.IsCountdownCoupon,
                     IsFree = ep.IsFree
-                }),
+                }).ToList(),
 
                 CommentList = commentSource.Select(c => new CommentData
                 {
                     CommentId = c.CommentId,
                     CommentMemberName = _repository.GetAll<Member>().Where(m => m.MemberId == c.MemberId).Select(m => m.NickName).First(),
                     EpId = c.EpId,
-                    ReplyToCommentId = c.ReplyToCommentId,
+                    ReplyToCommentCount = commentReplySource.Where(cr => c.CommentId == cr.CommentId).Select(cr => cr.ReplyToCommentCount).FirstOrDefault(),
                     IsSpoiler = c.IsSpoiler,
                     CreateTime = c.CreateTime,
                     Context = c.Context,
                     IsDelete = c.IsDelete,
-                    CommentLikeCount = commentLikeSource.Where(cl => c.CommentId == cl.CommentId).Select(cl => cl.CommentLikeCount).FirstOrDefault()
-                })
+                    CommentLikeCount = commentLikeSource.Where(cl => c.CommentId == cl.CommentId).Select(cl => cl.CommentLikeCount).FirstOrDefault(),
+                    CommentReportCount = CommentReportCount.Where(cr => c.CommentId == cr.CommentId).Select(cr => cr.CommentReportCount).FirstOrDefault()
+                }).ToList()
             };
         }
 

@@ -12,8 +12,7 @@ namespace BSWebtoon.Front.Service.RecommendService
         void CommentLikeCreate();
         void ReportCreate();
 
-        IEnumerable<RecommendDTO> ReadRecommend();
-        IEnumerable<HitWorkViewModel> ReadHitWork();
-        //IEnumerable<ActivityViewModel> ActivityRead();
+        RecommendDTO ReadRecommend();
+        HitWorkDTO ReadHitWork();
     }
 }

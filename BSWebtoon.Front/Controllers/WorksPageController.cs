@@ -24,6 +24,7 @@ namespace BSWebtoon.Front.Controllers
         [HttpGet]
         public IActionResult WorksPage(int Id) //WorksPage/WorksPage/1
         {
+            //var name_ = User.Claims.Select(m => m.Value);
             //var userName_ = User.Claims.ToList();
             string name = User.Identity.Name;
             
@@ -64,20 +65,21 @@ namespace BSWebtoon.Front.Controllers
                     UploadTime = ep.UploadTime,
                     IsCountdownCoupon = ep.IsCountdownCoupon,
                     IsFree = ep.IsFree
-                }),
+                }).ToList(),
 
                 CommentList = workPageComic.CommentList.Select(c => new WorkPageViewModel.CommentData
                 {
                     CommentId = c.CommentId,
                     CommentMemberName = c.CommentMemberName,
                     EpId = c.EpId,
-                    ReplyToCommentId = c.ReplyToCommentId,
+                    ReplyToCommentCount = c.ReplyToCommentCount,
                     IsSpoiler = c.IsSpoiler,
                     CreateTime = c.CreateTime,
                     Context = c.Context,
                     IsDelete = c.IsDelete,
-                    CommentLikeCount = c.CommentLikeCount
-                })
+                    CommentLikeCount = c.CommentLikeCount,
+                    CommentReportCount = c.CommentReportCount
+                }).ToList()
             };
             //return View(workPageComic);
             return View(result);
