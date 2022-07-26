@@ -23,26 +23,23 @@
 
                     @foreach (var f in Model.FavoriteList)
                 {
+                    int i = 0;
                     <div class="col " >
                         <div class=" pic_box">
                             <div id="img_1" onclick="select_img(this)" style="position:relative;">
-                                <img src="@f.ComicWeekFigure" class="w-100">
-                                <div></div>
-                                <div class="check_btn text-center "></div>
+                                <label class="form-check-label" @*for="flexCheckDefault"*@>
+                                    <img src="@f.ComicWeekFigure" class="w-100">
+                                    <input id="myCheckbox" type="checkbox" onchange="update_text()" class="d-non" @*id="flexCheckDefault"*@>
+                                    <div class="gray_block"></div>
+                                    <div class="check_btn text-center "></div>
 
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Default checkbox
-                                    </label>
-                                </div>
+                                </label>
 
                             </div>
                         </div>
                     </div>
                 }
                 </form>
-                <button onclick="countCheckboxes()" style="background-color:aqua">Count Checkboxes</button> 
             </div>
 
 

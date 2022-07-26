@@ -2,6 +2,9 @@
 let div_btns = document.querySelector('#div_btns');
 let del_btn = document.querySelector('#del_btn');
 
+
+
+
 //放待刪除的陣列
 var arr_to_be_del = [];
 
@@ -11,11 +14,7 @@ function init() {
     del_btn.setAttribute("disabled", '');
 }
 
-function countCheckboxes() {
-    var a = document.forms["main"];
-    var x = a.querySelectorAll('input[type="checkbox"]:checked');
-    alert(x.length);
-}
+
 
 //檢查id 有沒有被選過 沒有的話新增至帶刪除的array
 function check_del_array(div_id) {
@@ -27,10 +26,9 @@ function check_del_array(div_id) {
             repaet_index = index;
         }
     });
-    //沒重複
     if (repeat) {
         arr_to_be_del.splice(repaet_index, 1);
-    } else { //有重複
+    } else {
         arr_to_be_del.push(div_id);
     }
     update_text();
@@ -41,10 +39,17 @@ function cancel_double_check_block() {
     double_check_block.style.transform = "translateY(100%)";
 }
 
+//ok
 function update_text() {
     let del_btn = document.getElementById('del_btn');
     let p = double_check_block.querySelector('p');
-    let length = arr_to_be_del.length;
+
+    //JIE
+    var a = document.forms["main"];
+    var x = a.querySelectorAll('input[type="checkbox"]:checked');
+
+    //let length = arr_to_be_del.length;
+    let length = x.length;
     del_btn.textContent = `刪除 ${length} 個作品`;
     p.innerText = `是否要刪除${length}個收藏的作品？`;
     if (length == 0) {
@@ -65,21 +70,27 @@ function select_img(img_node) {
     let height = img_node.querySelector('img').offsetHeight + 1;
     // console.log(height);
 
+
+
     if (!check_del_array(div_id)) {
         div_cover.classList.add("gray_block");
         img_node.querySelector('div').setAttribute('style', `height: ${height}px;`);
         img_node.querySelector('.check_btn').classList.add("check_btn_bag_red");
+        alert("1");
     } else {
         div_cover.classList.remove("gray_block");
         img_node.querySelector('.check_btn').classList.remove("check_btn_bag_red");
         img_node.querySelector('div').setAttribute('style', `height: 0px;`);
+        alert("2");
     }
 }
 
 //刪除圖片 
 function remove_all(double_check = false) {
-    // console.log(double_check)
+     //console.log(double_check)
     if (double_check) {
+        alert("56");
+
         arr_to_be_del.forEach(del_item_id => {
             let del_tag = document.getElementById(del_item_id).parentNode.parentNode;
             del_tag.remove();
@@ -89,6 +100,8 @@ function remove_all(double_check = false) {
         arr_to_be_del = [];
         double_check_block.style.transform = "translateY(100%)";
     } else {
+        alert("556");
+
         double_check_block.style.transform = "translateY(0%)";
     }
     update_text();
