@@ -1,4 +1,5 @@
-﻿using BSWebtoon.Model.Models;
+﻿using BSWebtoon.Model;
+using BSWebtoon.Model.Models;
 using BSWebtoon.Model.Repository;
 using System;
 using System.Collections.Generic;
@@ -114,8 +115,10 @@ namespace BSWebtoon.Front.Service.CouponService
 
             _repository.SaveChange();
         }
-
-        public void CouponDataCreate(string userName, int comicId, int activityId, int couponTypeId, int getQuantity)
+        /// <summary>
+        /// 活動 通用券
+        /// </summary>
+        public void GetUniversalCoupon(string userName, int? comicId, int activityId, int couponTypeId, int getQuantity)
         {
             //memberId = 1;
             var memberId = _repository.GetAll<Member>().Where(m => m.AccountName == userName).Select(m => m.MemberId).First();
@@ -133,12 +136,51 @@ namespace BSWebtoon.Front.Service.CouponService
                 ActivityId = activityId,
                 CouponTypeId = couponTypeId,
                 OriginQuantity = getQuantity,
-                CreateTime = DateTime.UtcNow,
+                CreateTime = DateTime.UtcNow.AddHours(8),
                 Quantity = getQuantity + couponQuantity
             };
 
             _repository.Create(coupon);
             _repository.SaveChange();
+        }
+
+        public void GetCountdownCoupon()
+        {
+            // 新登入一個會員  將每一部漫畫跑一遍 新增倒數券
+            var HaveCoundownCouponMember = _repository.GetAll<Coupon>().Where(c => c.CouponTypeId == (int)CouponType.倒數免費通用券);
+            var NotHaveCoundownCouponMember = _repository.GetAll<Member>().Where(notHave => HaveCoundownCouponMember.Any(have => have.MemberId == notHave.MemberId));
+
+            var AllComic = _repository.GetAll<Comic>();
+
+            List<Coupon> countdowncoupons = new List<Coupon>();
+
+            foreach (var member in NotHaveCoundownCouponMember)
+            {
+                foreach (var comic in AllComic)
+                {
+                    countdowncoupons.Add(new Coupon()
+                    {
+                        MemberId = member.MemberId,
+                        ComicId = comic.ComicId,
+                        ActivityId = null,
+                        CouponTypeId = (int)CouponType.倒數免費通用券,
+                        OriginQuantity = 1,
+                        CreateTime = DateTime.UtcNow.AddHours(8), //台灣時間
+                        Quantity = 1
+                    });
+                }
+            }
+
+            foreach(var coupon in countdowncoupons)
+            {
+                _repository.Create(coupon);
+            }
+            _repository.SaveChange();
+        }
+
+        public void GetReadCoupon()
+        {
+
         }
 
     }

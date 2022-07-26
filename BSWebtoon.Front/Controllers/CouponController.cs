@@ -1,4 +1,5 @@
 ﻿using BSWebtoon.Front.Service.CouponService;
+using BSWebtoon.Model;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BSWebtoon.Front.Controllers
@@ -12,12 +13,14 @@ namespace BSWebtoon.Front.Controllers
             _couponService = couponService;
         }
         [HttpPost]
-        public IActionResult Coupon() //Coupon/Coupon
+        public IActionResult ActivityCoupon(int Id) //Coupon/Coupon
         {
             //_couponService.CouponCreate();
             //_couponService.CouponUsedRecordCreate();
             string name = User.Identity.Name;
-            _couponService.CouponDataCreate(name, 1,1,1,1);
+            int couponTypeId = (int)CouponType.通用券;
+            int activityId = Id;
+            _couponService.GetUniversalCoupon(name, null , activityId, couponTypeId, 1);
             return View();
         }
     }

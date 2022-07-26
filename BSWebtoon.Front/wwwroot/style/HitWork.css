@@ -1,11 +1,11 @@
 .nav-top {
     position: fixed;
-    top: 85px;
+    top: 70px;
     left: 0;
     right: 0;
     z-index: 10;
     background-color: #000;
-    padding:5px;
+    padding: 5px;
 }
 
 .main-context {
@@ -19,79 +19,6 @@
     display: inline-block;
     border-radius: 50px;
 }
-
-/*.row-recommend {
-    max-width: 1200px;
-    margin: auto;
-    position: relative;
-    background-color: #000;
-    color: #fff;
-    overflow: hidden;
-    aspect-ratio: 2/0.8;
-}
-
-.txt-part {
-    width: 30%;
-    height: 100%;
-    padding: 0;
-    position: absolute;
-    z-index: 4;
-    display: flex;
-    flex-direction: column;
-}
-
-    .txt-part .title-pic {
-        width: 100%;
-        position: static;
-    }
-
-.transform-part-public {
-    position: absolute;
-    width: 50%;
-    height: 100%;
-    padding: 0;
-    background-color: #000;
-    transform: skew(-20deg);
-    vertical-align: bottom;
-}
-
-.transform-part {
-    z-index: 3;
-}
-
-.transform-part2 {
-    right: -30%;
-    z-index: 1;
-}
-
-.row:nth-of-type(even) .transform-part-public {
-    transform: skew(20deg);
-}
-
-.pic-part {
-    width: 70%;
-    height: 100%;
-    position: relative;
-    overflow: hidden;
-    justify-content: center;
-    margin-left: auto;
-}
-
-.recommend-pic-bg {
-    position: absolute;
-    z-index: 0;
-    width: 100%;
-}
-
-.recommend-pic {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    left: 0;
-    vertical-align: bottom;
-    z-index: 2;
-}
-*/
 
 
 .hot {
@@ -112,7 +39,7 @@
 .video-title {
     position: absolute;
     bottom: 10%;
-    z-index:2;
+    z-index: 2;
 }
 
 .terms_p p {
@@ -144,4 +71,10 @@
 
 .detail {
     padding: 200px 0px;
+}
+
+@media screen and (min-width:768px) {
+    .nav-top {
+        top: 80px;
+    }
 }

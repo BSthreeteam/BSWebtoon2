@@ -1,5 +1,5 @@
 ﻿@using BSWebtoon.Front.Models.ViewModel.Recommend
-@model List<RecommendViewModel>
+@model RecommendViewModel
 
 @{
     ViewData["Title"] = "Recommend";
@@ -21,10 +21,11 @@
 
 <div class="container-fluid main-context">
     <div class="container w-1200">
-        @foreach (var item in Model)
+        @foreach (var item in Model.RecommendComics)
         {
             <a class="work_a" href="WorksPage/WorksPage/@item.ComicId" >
-                <div class="row row-recommend w-1200">
+                <div class="row row-recommend">
+                    <div class="transform-part transform-part-public">
                     <div class="txt-part">
                         <span id="tag">@item.RecommendTag</span>
                         @if (@item.NameImage != null)
@@ -33,13 +34,12 @@
                         }
                         else
                         {
-                            <h2 class="activity_name">@item.Name</h2>
+                            <h3 class="activity_name">@item.Name</h3>
                         }
                         <div class="txt-part-introduction">
                             @Html.Raw(@item.Introduction)
                         </div>
                     </div>
-                    <div class="transform-part transform-part-public">
                     </div>
                     <div class="transform-part2 transform-part-public">
                     </div>

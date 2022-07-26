@@ -26,10 +26,10 @@ namespace BSWebtoon.Front.Controllers
         {
             var recommendSource = _recommendservice.ReadRecommend();
 
-            var result = new List<RecommendViewModel>();
-            foreach(var recommend in recommendSource)
+            var allRecommend = new List<RecommendViewModel.RecommendComic>() { };
+            foreach (var recommend in recommendSource.RecommendComics)
             {
-                result.Add(new RecommendViewModel
+                allRecommend.Add(new RecommendViewModel.RecommendComic
                 {
                     ComicId = recommend.ComicId,
                     RecommendTag = recommend.RecommendTag,
@@ -44,17 +44,19 @@ namespace BSWebtoon.Front.Controllers
                 });
             }
 
+            var result = new RecommendViewModel() { RecommendComics = allRecommend };
+
             return View(result);
         }
-        //public IActionResult ReadClickRecord() //Recommend/ReadClickRecord
         public IActionResult HitWork()
         {
-            var hitWorkSource =  _recommendservice.ReadHitWork();
+            var hitWorkSource = _recommendservice.ReadHitWork();
 
-            var result = new List<HitWorkViewModel>();
-            foreach(var hitWork in hitWorkSource)
+            var allHitWork = new List<HitWorkViewModel.HitWorkComic>() { };
+
+            foreach (var hitWork in hitWorkSource.HitWorkComics)
             {
-                result.Add(new HitWorkViewModel
+                allHitWork.Add(new HitWorkViewModel.HitWorkComic
                 {
                     ComicId = hitWork.ComicId,
                     ComicChineseName = hitWork.ComicChineseName,
@@ -63,6 +65,8 @@ namespace BSWebtoon.Front.Controllers
                     HotVideo = hitWork.HotVideo
                 });
             }
+
+            var result = new HitWorkViewModel() { HitWorkComics = allHitWork};
 
             return View(result);
         }

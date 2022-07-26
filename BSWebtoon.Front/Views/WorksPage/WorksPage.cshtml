@@ -66,7 +66,7 @@
         </div>
     </div>
     <div class="big_video">
-        <video title="" preload="auto" muted="ture" class="local_video_bg object-contain pointer-events-auto   d-none">
+        <video title="" preload="auto" muted@*="ture"*@ class="local_video_bg object-contain pointer-events-auto   d-none">
             <source src="@Model.ComicVideoWeb" type="video/webm">
             @*            <source src="https://tw-a.kakaopagecdn.com/P/C/36/ip1/abd98bbc-0794-4866-933d-b5ea985a45c9.mp4"
                 type="video/quicktime">
@@ -120,14 +120,13 @@
             <div class="ep_row col-12 col-lg-8 col-xl-8">
                 @foreach (var ep in Model.EpList)
                 {
-
                     <div class="col col-6 col-md-4 col-lg-3 col-xl-2">
                         <a class="" href="#">
                             <div class="card w-100" style="width: 18rem;">
                                 <img src="@ep.EpCover" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">@ep.EpTitle</h5>
-                                    <p class="card-text">@ep.UploadTime</p>
+                                    <p class="card-text">@ep.UploadTime.ToString().Split(' ')[0]</p>
                                 </div>
                             </div>
                         </a>
@@ -143,17 +142,17 @@
         </div>
         <div class="message_box d-flex justify-content-center flex-column">
             <div class="message_name mx-auto">留言</div>
-            @foreach (var comment in Model.CommentList)
-            {
-                <div class="comment_text  mx-auto">
+            <div class="comment_text  mx-auto">
+                @foreach (var comment in Model.CommentList)
+                {
                     <div class="row p-4">
                         <div class="user  d-flex ">
                             <span class="leval border-danger  text-white">BEST</span>
                             <p class="username  mb-0 ms-3 text-white">@comment.CommentMemberName</p>
                         </div>
                         <div class="text">
-                            <p class="text-white ">
-                                @comment.Context
+                            <p class="text-white w-100">
+                                @Html.Raw(@comment.Context)
                             </p>
                             <button class="btn btn_icon">
                                 <i class="fa-solid fa-thumbs-up "></i>
@@ -163,17 +162,17 @@
                             <button class="btn btn_icon">
                                 <i class="fa-solid fa-reply-all"></i>
                                 回覆
-                                <span class="count">66</span>
+                                <span class="count">@comment.ReplyToCommentCount</span>
                             </button>
                             <button class="btn btn_icon">
                                 <i class="fa-solid fa-thumbs-down"></i>
                                 檢舉
-                                <span class="count">10</span>
+                                <span class="count">@comment.CommentReportCount</span>
                             </button>
                         </div>
                     </div>
-                </div>
-            }
+                }
+            </div>
         </div>
 
     </div>
@@ -190,11 +189,7 @@
                 <span>作者</span>
                 <p class="mo_pic">@Model.Author</p>
             </div>
-            @*            <div>
-                <span>原著</span>
-                <p class="mo_author"> BONIEE,Step on a LEGO</p>
-                </div>
-            *@            <div>
+            <div>
                 <span>發行</span>
                 <p class="mo_publisher">@Model.Publisher</p>
             </div>
@@ -210,11 +205,6 @@
                 {
                     <p>#@tag</p>
                 }
-                @*  <p>#刺激緊張</p>
-                    <p>#瘋狂</p>
-                    <p>#動作冒險</p>
-                    <p>#改變命運</p>
-                *@
             </div>
         </div>
     </div>
@@ -299,17 +289,25 @@
 
     ////點擊愛心，顏色變紅色
     let check = document.querySelector('#heart');
-    check.checked = true
+    let checkvalue = @Model.IslikeComic.ToString().ToLower()
+        clickLike(checkvalue)
+
     collect_a.addEventListener('click', () => {
+        checkvalue = !checkvalue
+        clickLike(checkvalue)
+    })
+    function clickLike(boolvalue){
+    check.checked = boolvalue
         if (check.checked) {
-            console.log('111')
+            console.log(check.checked)
             collect_a.classList.add('text-danger');
         }
         else {
-            console.log('222')
+            console.log(check.checked)
             collect_a.classList.remove('text-danger');
         }
-    })
+
+    }
 </script>
 }
 

@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace BSWebtoon.Front.Models.DTO.Gift
+namespace BSWebtoon.Front.Models.DTO.GiftBox
 {
-    public class ActivityPageDTO
+    public class GiftBoxDTO
     {
         public int ActivityId { get; set; }
         public string ActivityName { get; set; }
@@ -10,9 +10,6 @@ namespace BSWebtoon.Front.Models.DTO.Gift
         public DateTime ActivityEndTime { get; set; }
         public string ActivityImage { get; set; }
         public string ActivityBgColor { get; set; }
-        public string ActivityContent { get; set; }
-        public DateTime CreateTime { get; set; }
         public bool IsDelete { get; set; }
-
     }
 }
