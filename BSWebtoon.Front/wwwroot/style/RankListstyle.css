@@ -15,10 +15,11 @@
     color: #fff;
 }
 
-.choosed {
+.nav-link.choosed {
+    color: #000;
     background-color: #fff;
-    color:#000;
 }
+
 .Rank {
     background-color: #000;
     position: relative;

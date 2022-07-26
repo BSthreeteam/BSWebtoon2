@@ -1,20 +1,21 @@
 let week_content = document.querySelector(".content")
 let workTemplate = document.getElementById("workTemplate")
 let blackTemplate = document.getElementById("blackTemplate")
-//let all = document.querySelector(".all")
-//let fantasy = document.querySelector(".fantasy")
-//let love = document.querySelector(".love")
-//let adventure = document.querySelector(".adventure")
-//let plot = document.querySelector(".plot")
-//let gl = document.querySelector(".gl")
-//let horror = document.querySelector(".horror")
-let btn = document.querySelectorAll(".btn");
-let li = document.querySelectorAll("")
+let a = document.querySelectorAll(".nav-link");
 
 
 
 
 window.onload = () => {
+    
+    a.forEach(nav_a => {
+        nav_a.addEventListener('click', () => {
+            a.forEach(as => {
+                as.classList.remove('choosed');
+            })
+            nav_a.classList.add('choosed');
+        })
+    })
 
     for (let i = 1; i <= 99; i++) {
         week_content.append(createCard())

@@ -23,26 +23,119 @@ namespace BSWebtoon.Front.Service.RankService
         public void ClickRecordCreate()
         {
             var clickRecod = new List<ClickRecord> {
-                new ClickRecord {ComicId=1,CreateTime=new DateTime(2022,07,21),MemberId=6},
-                new ClickRecord {ComicId=1,CreateTime=new DateTime(2022,07,23),MemberId=3},
-                new ClickRecord {ComicId=3,CreateTime=new DateTime(2022,07,18),MemberId=2},
-                new ClickRecord {ComicId=15,CreateTime=new DateTime(2022,07,18),MemberId=15},
-                new ClickRecord {ComicId=1,CreateTime=new DateTime(2022,07,19),MemberId=17},
-                new ClickRecord {ComicId=5,CreateTime=new DateTime(2022,07,20),MemberId=4},
-                new ClickRecord {ComicId=7,CreateTime=new DateTime(2022,07,17),MemberId=7},
-                new ClickRecord {ComicId=14,CreateTime=new DateTime(2022,07,15),MemberId=18},
-                new ClickRecord {ComicId=2,CreateTime=new DateTime(2022,07,25),MemberId=16},
-                new ClickRecord {ComicId=3,CreateTime=new DateTime(2022,07,27),MemberId=19},
-                new ClickRecord {ComicId=4,CreateTime=new DateTime(2022,07,29),MemberId=10},
-                new ClickRecord {ComicId=17,CreateTime=new DateTime(2022,07,24),MemberId=16},
-                new ClickRecord {ComicId=8,CreateTime=new DateTime(2022,07,22),MemberId=12},
-                new ClickRecord {ComicId=10,CreateTime=new DateTime(2022,07,23),MemberId=5},
-                new ClickRecord {ComicId=16,CreateTime=new DateTime(2022,07,31),MemberId=7},
-                new ClickRecord {ComicId=17,CreateTime=new DateTime(2022,07,26),MemberId=16},
-                new ClickRecord {ComicId=18,CreateTime=new DateTime(2022,07,29),MemberId=12},
-                new ClickRecord {ComicId=6,CreateTime=new DateTime(2022,07,30),MemberId=2},
-                new ClickRecord {ComicId=1,CreateTime=new DateTime(2022,07,21),MemberId=8},
-                new ClickRecord {ComicId=2,CreateTime=new DateTime(2022,07,23),MemberId=9},
+                //new ClickRecord {ComicId=1,CreateTime=new DateTime(2022,07,21),MemberId=6},
+                //new ClickRecord {ComicId=1,CreateTime=new DateTime(2022,07,23),MemberId=3},
+                //new ClickRecord {ComicId=3,CreateTime=new DateTime(2022,07,18),MemberId=2},
+                //new ClickRecord {ComicId=15,CreateTime=new DateTime(2022,07,18),MemberId=15},
+                //new ClickRecord {ComicId=1,CreateTime=new DateTime(2022,07,19),MemberId=17},
+                //new ClickRecord {ComicId=5,CreateTime=new DateTime(2022,07,20),MemberId=4},
+                //new ClickRecord {ComicId=7,CreateTime=new DateTime(2022,07,17),MemberId=7},
+                //new ClickRecord {ComicId=14,CreateTime=new DateTime(2022,07,15),MemberId=18},
+                //new ClickRecord {ComicId=2,CreateTime=new DateTime(2022,07,25),MemberId=16},
+                //new ClickRecord {ComicId=3,CreateTime=new DateTime(2022,07,27),MemberId=19},
+                //new ClickRecord {ComicId=4,CreateTime=new DateTime(2022,07,29),MemberId=10},
+                //new ClickRecord {ComicId=17,CreateTime=new DateTime(2022,07,24),MemberId=16},
+                //new ClickRecord {ComicId=8,CreateTime=new DateTime(2022,07,22),MemberId=12},
+                //new ClickRecord {ComicId=10,CreateTime=new DateTime(2022,07,23),MemberId=5},
+                //new ClickRecord {ComicId=16,CreateTime=new DateTime(2022,07,31),MemberId=7},
+                //new ClickRecord {ComicId=17,CreateTime=new DateTime(2022,07,26),MemberId=16},
+                //new ClickRecord {ComicId=18,CreateTime=new DateTime(2022,07,29),MemberId=12},
+                //new ClickRecord {ComicId=6,CreateTime=new DateTime(2022,07,30),MemberId=2},
+                //new ClickRecord {ComicId=1,CreateTime=new DateTime(2022,07,21),MemberId=8},
+                //new ClickRecord {ComicId=2,CreateTime=new DateTime(2022,07,23),MemberId=9},
+
+                //8
+                new ClickRecord {ComicId=100,CreateTime=new DateTime(2022,07,22),MemberId=1},
+                new ClickRecord {ComicId=100,CreateTime=new DateTime(2022,07,22),MemberId=2},
+                new ClickRecord {ComicId=100,CreateTime=new DateTime(2022,07,23),MemberId=3},
+                new ClickRecord {ComicId=100,CreateTime=new DateTime(2022,07,23),MemberId=4},
+                new ClickRecord {ComicId=100,CreateTime=new DateTime(2022,07,24),MemberId=5},
+                new ClickRecord {ComicId=100,CreateTime=new DateTime(2022,07,24),MemberId=6},
+
+                //8
+                new ClickRecord {ComicId=101,CreateTime=new DateTime(2022,07,29),MemberId=7},
+                new ClickRecord {ComicId=101,CreateTime=new DateTime(2022,07,29),MemberId=8},
+
+                //12
+                new ClickRecord {ComicId=96,CreateTime=new DateTime(2022,07,29),MemberId=9},
+                new ClickRecord {ComicId=96,CreateTime=new DateTime(2022,07,25),MemberId=10},
+                new ClickRecord {ComicId=96,CreateTime=new DateTime(2022,07,25),MemberId=11},
+                new ClickRecord {ComicId=96,CreateTime=new DateTime(2022,07,25),MemberId=12},
+               
+                //12
+                new ClickRecord {ComicId=74,CreateTime=new DateTime(2022,07,28),MemberId=13},
+                new ClickRecord {ComicId=74,CreateTime=new DateTime(2022,07,28),MemberId=14},
+                new ClickRecord {ComicId=74,CreateTime=new DateTime(2022,07,27),MemberId=15},
+                new ClickRecord {ComicId=74,CreateTime=new DateTime(2022,07,27),MemberId=16},
+                new ClickRecord {ComicId=74,CreateTime=new DateTime(2022,07,27),MemberId=17},
+                new ClickRecord {ComicId=74,CreateTime=new DateTime(2022,07,28),MemberId=18},
+
+                //9
+                new ClickRecord {ComicId=108,CreateTime=new DateTime(2022,07,24),MemberId=19},
+                new ClickRecord {ComicId=108,CreateTime=new DateTime(2022,07,26),MemberId=20},
+                new ClickRecord {ComicId=108,CreateTime=new DateTime(2022,07,26),MemberId=1},
+                new ClickRecord {ComicId=108,CreateTime=new DateTime(2022,07,26),MemberId=2},
+                new ClickRecord {ComicId=108,CreateTime=new DateTime(2022,07,24),MemberId=3},
+                new ClickRecord {ComicId=108,CreateTime=new DateTime(2022,07,24),MemberId=4},
+
+                //9
+                new ClickRecord {ComicId=134,CreateTime=new DateTime(2022,07,24),MemberId=20},
+                new ClickRecord {ComicId=134,CreateTime=new DateTime(2022,07,25),MemberId=1},
+                new ClickRecord {ComicId=134,CreateTime=new DateTime(2022,07,26),MemberId=2},
+                new ClickRecord {ComicId=134,CreateTime=new DateTime(2022,07,24),MemberId=3},
+                
+                //10
+                new ClickRecord {ComicId=148,CreateTime=new DateTime(2022,07,25),MemberId=19},
+                new ClickRecord {ComicId=148,CreateTime=new DateTime(2022,07,25),MemberId=20},
+                new ClickRecord {ComicId=148,CreateTime=new DateTime(2022,07,25),MemberId=1},
+                new ClickRecord {ComicId=148,CreateTime=new DateTime(2022,07,25),MemberId=2},
+                
+                //10
+                new ClickRecord {ComicId=140,CreateTime=new DateTime(2022,07,25),MemberId=19},
+                new ClickRecord {ComicId=140,CreateTime=new DateTime(2022,07,25),MemberId=20},
+                new ClickRecord {ComicId=140,CreateTime=new DateTime(2022,07,28),MemberId=1},
+                new ClickRecord {ComicId=140,CreateTime=new DateTime(2022,07,28),MemberId=2},
+                new ClickRecord {ComicId=140,CreateTime=new DateTime(2022,07,27),MemberId=19},
+                new ClickRecord {ComicId=140,CreateTime=new DateTime(2022,07,27),MemberId=20},
+                new ClickRecord {ComicId=140,CreateTime=new DateTime(2022,07,27),MemberId=1},
+                new ClickRecord {ComicId=140,CreateTime=new DateTime(2022,07,28),MemberId=2},
+
+                //11
+                new ClickRecord {ComicId=152,CreateTime=new DateTime(2022,07,25),MemberId=19},
+                new ClickRecord {ComicId=152,CreateTime=new DateTime(2022,07,23),MemberId=20},
+                new ClickRecord {ComicId=152,CreateTime=new DateTime(2022,07,23),MemberId=1},
+                new ClickRecord {ComicId=152,CreateTime=new DateTime(2022,07,23),MemberId=2},
+                new ClickRecord {ComicId=152,CreateTime=new DateTime(2022,07,25),MemberId=1},
+                new ClickRecord {ComicId=152,CreateTime=new DateTime(2022,07,25),MemberId=2},
+
+                //11
+                new ClickRecord {ComicId=151,CreateTime=new DateTime(2022,07,25),MemberId=19},
+                new ClickRecord {ComicId=151,CreateTime=new DateTime(2022,07,27),MemberId=20},
+                new ClickRecord {ComicId=151,CreateTime=new DateTime(2022,07,29),MemberId=1},
+
+                //13
+                new ClickRecord {ComicId=39,CreateTime=new DateTime(2022,07,26),MemberId=19},
+                new ClickRecord {ComicId=39,CreateTime=new DateTime(2022,07,26),MemberId=20},
+                new ClickRecord {ComicId=39,CreateTime=new DateTime(2022,07,26),MemberId=1},
+                new ClickRecord {ComicId=39,CreateTime=new DateTime(2022,07,26),MemberId=19},
+                new ClickRecord {ComicId=39,CreateTime=new DateTime(2022,07,27),MemberId=20},
+                new ClickRecord {ComicId=39,CreateTime=new DateTime(2022,07,27),MemberId=1},
+                new ClickRecord {ComicId=39,CreateTime=new DateTime(2022,07,27),MemberId=19},
+                new ClickRecord {ComicId=39,CreateTime=new DateTime(2022,07,28),MemberId=20},
+                new ClickRecord {ComicId=39,CreateTime=new DateTime(2022,07,28),MemberId=1},
+
+                //13
+                new ClickRecord {ComicId=39,CreateTime=new DateTime(2022,07,22),MemberId=19},
+                new ClickRecord {ComicId=39,CreateTime=new DateTime(2022,07,22),MemberId=20},
+                new ClickRecord {ComicId=39,CreateTime=new DateTime(2022,07,22),MemberId=1},
+                new ClickRecord {ComicId=39,CreateTime=new DateTime(2022,07,22),MemberId=19},
+                new ClickRecord {ComicId=39,CreateTime=new DateTime(2022,07,22),MemberId=20},
+                new ClickRecord {ComicId=39,CreateTime=new DateTime(2022,07,22),MemberId=1},
+
+
+
+
+
             }; 
             foreach (ClickRecord click in clickRecod)
             {
