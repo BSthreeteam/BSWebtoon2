@@ -121,10 +121,10 @@ namespace BSWebtoon.Front.Service.MemberService
                 _repository.SaveChange();
 
 
+                //newmember.CreateTime.AddHours(8).ToString("yyyy年 MMdd")
             }
 
             result.IsSuccess = true;
-
 
             return result;
         }

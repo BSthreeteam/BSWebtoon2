@@ -100,9 +100,9 @@ namespace BSWebtoon.Front.Service.RechargeService
         //    _repository.SaveChange();
 
         //}
-        public List<CashPlanDTO> ReadCashPlan(string username)
+        public List<CashPlanDTO> ReadCashPlan(string userNameIdentifier)
         {
-            var usernameBalance = _repository.GetAll<Member>().Where(x => x.AccountName == username).Select(x => x.Balance).First();
+            var usernameBalance = _repository.GetAll<Member>().Where(x => x.NameIdentifier == userNameIdentifier).Select(x => x.Balance).First();
 
             var CashPlanList = _repository.GetAll<CashPlan>().ToList();
             var result = new List<CashPlanDTO>();

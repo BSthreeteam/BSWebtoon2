@@ -26,8 +26,16 @@ namespace BSWebtoon.Front.Controllers
         public IActionResult CashPlanView() //Recharge/CashPlanView
         {
             //_rechargeService.CashPlanCreate();
-            var username = User.Identity.Name;
-            var allCashPlan = _rechargeService.ReadCashPlan(username);
+            var claims =
+                User.Claims.Select(claim => new
+                {
+                    claim.Type,//提供宣告的語意內容，也就是它指出宣告的用途。
+                    claim.Value,//顧名思義 質
+                });
+
+            var NameIdentifiers = claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value;
+
+            var allCashPlan = _rechargeService.ReadCashPlan(NameIdentifiers);
             var userCashPlan = allCashPlan.First();
 
             var result = new CashPlanViewModel
