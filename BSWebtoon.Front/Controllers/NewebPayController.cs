@@ -229,6 +229,21 @@ namespace NewebPay.Controllers
                             input_RechargeRecord.CashPlanId = 1;
                             break;
                     }
+
+                    //從MemberID找出Balance
+
+                    //var updateTagList = _repository.GetAll<ComicTagList>().Where(x => x.TageListId == 2).FirstOrDefault();
+                    //updateTagList.ComicId = 2;
+                   //updateComic.ComicWeekFigure = "https://tw-a.kakaopagecdn.com/P/C/46/c2/2x/4853fbd7-b76b-4438-bac4-0ae54fa25a04.webp";
+                    //_repository.Update(updateTagList);
+                    //_repository.Update(updateComic);
+
+                    //var updateBalance = _repository.GetAll<Member>().Where(x => x.MemberId == memberId).FirstOrDefault();
+                    //updateBalance.Balance = Convert.ToDecimal(decryptTradeCollection[key]);
+
+                    _repository.SaveChange();
+
+                
                 }
 
             }
