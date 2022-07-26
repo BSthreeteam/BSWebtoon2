@@ -23,9 +23,11 @@ namespace BSWebtoon.Model.Repository
 
         private BSWebtoonDbContext _context;
 
-        public void Create<T>(T value) where T : class
+        public EntityEntry<T> Create<T>(T value) where T : class
         {
-            _context.Entry(value).State = EntityState.Added;
+            EntityEntry<T> e = _context.Entry(value);
+            e.State = EntityState.Added;
+            return e;
         }
         public void Update<T>(T value) where T : class
         {

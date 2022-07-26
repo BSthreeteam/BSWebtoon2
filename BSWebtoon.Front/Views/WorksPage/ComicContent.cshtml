@@ -1,18 +1,18 @@
 ﻿
 @{
-    ViewData["Title"] = "EpContent";
+    Layout = "_WorkPageLayout";
+    ViewData["Title"]  = "epContent";
 }
+
 @section topCss{
-      <link rel="stylesheet" href="~/style/EpContextstyle.css" />
+      <link rel="stylesheet" href="~/style/workContentstyle.css" />
 }
-@*<h1>EpContent</h1>*@
-<!-- 漫畫區 -->
     <div class="container-fluid bg-dark d-flex comic_area">
         <button class="btn text-decoration-none my-2" href="#">
             <i class="fa-solid fa-arrow-left-long text-white"></i>
         </button>
         <div class="comic_text flex-grow-1 my-2 m-auto">
-            <p class="text-white  m-0 ">第一話</p>
+            <p class="text-white m-0 ">@Model.EpTitle</p>
         </div>
     </div>
     <div class="comic">
@@ -21,9 +21,11 @@
             <img id="comicpic_pic" src="https://picsum.photos/500/700/?random=11" class="  text-center">
             <img id="comicpic_pic" src="https://picsum.photos/500/700/?random=11" class="  text-center">
             <img id="comicpic_pic" src="https://picsum.photos/500/700/?random=11" class="  text-center"> -->
-            <template id="comicpic">
-                <img id="comicpic_pic" src="https://picsum.photos/500/700/?random=11" class="  text-center">
-            </template>
+        @foreach(var content in Model.ContentList)
+        {
+                <img id="comicpic_pic" src="@content.ImagePath" class="  text-center">
+            
+        }
         </div>
     </div>
 
@@ -162,6 +164,7 @@
         </div>
     </template>
 
+
 @section endJS{
-    <script src="~/js/EpContext.js"></script>
+    <script src="~/js/WorkContent.js"></script>
 }
