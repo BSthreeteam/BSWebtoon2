@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BSWebtoon.Front.Service.RecommendService;
 using BSWebtoon.Front.Models.DTO.Recommend;
+using BSWebtoon.Model;
 
 namespace BSWebtoon.Front.Service.RecommendService
 {
@@ -217,11 +218,11 @@ namespace BSWebtoon.Front.Service.RecommendService
             //var filterComics = _repository.GetAll<Comic>().Where(c => c.BannerVideoWeb != "");
 
             // 新作 ComicStatus == 4
-            var newWorkList = _repository.GetAll<Comic>().Where(c => c.ComicStatus == 4)/*.ToList()*/;
+            var newWorkList = _repository.GetAll<Comic>().Where(c => c.AuditType == (int)AuditType.auditPass && c.ComicStatus == 4)/*.ToList()*/;
 
             // 人氣
             var popularityGroupBy = _repository.GetAll<ClickRecord>().GroupBy(c => c.ComicId).OrderByDescending(c => c.Count(gp => gp.ComicId == c.Key)).ThenBy(c => c.Key).Select(c => c.Key);
-            var popularityList = _repository.GetAll<Comic>().Where(c => popularityGroupBy.Any(g => g == c.ComicId))/*.ToList()*/;
+            var popularityList = _repository.GetAll<Comic>().Where(c => c.AuditType == (int)AuditType.auditPass && popularityGroupBy.Any(g => g == c.ComicId))/*.ToList()*/;
 
             var addActivityList = activityList.Select(a => new RecommendDTO.RecommendComic
             {
@@ -278,7 +279,7 @@ namespace BSWebtoon.Front.Service.RecommendService
 
         public HitWorkDTO ReadHitWork()
         {
-            var hitWorkList = _repository.GetAll<Comic>().Where(c => c.HotComicNameImage != "" && c.HotBgCover != "" && c.HotVideo != "");
+            var hitWorkList = _repository.GetAll<Comic>().Where(c => c.AuditType == (int)AuditType.auditPass && c.HotComicNameImage != "" && c.HotBgCover != "" && c.HotVideo != "");
 
             var allList = new List<HitWorkDTO.HitWorkComic> { };
 
@@ -298,11 +299,5 @@ namespace BSWebtoon.Front.Service.RecommendService
             return result;
         }
 
-        //public async Task<List<ClickCountViewModel>> ClickCount()
-        //{
-        //    var query = (await _context.ClickRecord.ToListAsync()).GroupBy(comic => comic.ComicId).Select(g => new ClickCountViewModel { ComicId = g.Key, Count = g.Count() });
-
-        //    return query.ToList();
-        //}
     }
 }
