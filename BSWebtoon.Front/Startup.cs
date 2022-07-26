@@ -63,9 +63,11 @@ namespace BSWebtoon.Front
             services.AddScoped<IComicContentPageService, ComicContentPageService>();
 
             services.AddHttpContextAccessor();
-            //藍新 維持 Json 回傳大小寫與 ViewModel 相同
+
+            // 藍新 維持 Json 回傳大小寫與 ViewModel 相同
             services.AddMvc().AddJsonOptions(options => { options.JsonSerializerOptions.PropertyNamingPolicy = null; });
             services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
+
 
             services.AddDbContext<BSWebtoonContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("BSWebtoonContext")));
@@ -73,7 +75,7 @@ namespace BSWebtoon.Front
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
                 {
-                    //全部寫得和預設值一樣
+                    //全部寫得和預設值一樣`
 
                     //設定登入Action的路徑： 
                     //options.LoginPath = new PathString("/Account/Login");

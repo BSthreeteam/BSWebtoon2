@@ -25,6 +25,7 @@ namespace BSWebtoon.Front.Controllers
         {
             _memberService = memberService;
             _rechargeService = rechargeService;
+            //_rechargeService.RechargeRecordCreate();
             _Employeeservice = EmployeeService;
             _ComicService = ComicService;
             _favoriteService = favoriteService;
@@ -56,9 +57,9 @@ namespace BSWebtoon.Front.Controllers
             //_couponService.CouponCreate(); //不推假資料
             //_couponService.CouponUsedRecordCreate(); //不推假資料
             //_recommendservice.ViewRecordCreate();
-            _recommendservice.CommentCreate();
-            _recommendservice.CommentLikeCreate();
-            _recommendservice.ReportCreate();
+            //_recommendservice.CommentCreate();
+            //_recommendservice.CommentLikeCreate();
+            //_recommendservice.ReportCreate();
 
             return View();
         }

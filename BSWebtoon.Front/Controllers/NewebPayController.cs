@@ -12,19 +12,29 @@ using System.Collections.Generic;
 using System.Linq;
 using BSWebtoon.Model.Repository;
 using BSWebtoon.Model.Models;
+using BSWebtoon.Front.Service.RechargeService;
+using BSWebtoon.Front.Models.DTO.CashPlan;
+using System.Security.Claims;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace NewebPay.Controllers
 {
     public class NewebPayController : Controller
     {
         private readonly BSRepository _repository;
-
         private readonly ILogger<NewebPayController> _logger;
-
-        public NewebPayController(ILogger<NewebPayController> logger, BSRepository repository)
+        //---------- hana add ------ 
+        private readonly IRechargeService _rechargeService;
+        
+        public NewebPayController(ILogger<NewebPayController> logger, BSRepository repository, IRechargeService rechargeService)
         {
             _logger = logger;
             _repository = repository;
+
+            //---------- hana add ------ 
+            _rechargeService = rechargeService;
+
         }
 
         public IActionResult Index() //NewebPay/Index
@@ -132,7 +142,8 @@ namespace NewebPay.Controllers
         /// 支付完成返回網址
         /// </summary>
         /// <returns></returns>
-        public IActionResult CallbackReturn()//hana你需要它!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+        public async Task<IActionResult> CallbackReturn()//hana你需要它!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         {
             // 接收參數
             StringBuilder receive = new StringBuilder();
@@ -150,10 +161,81 @@ namespace NewebPay.Controllers
             string TradeInfoDecrypt = DecryptAESHex(Request.Form["TradeInfo"], HashKey, HashIV);
             NameValueCollection decryptTradeCollection = HttpUtility.ParseQueryString(TradeInfoDecrypt);
             receive.Length = 0;
+
+
+            HttpClient client = new HttpClient();
+            string response = await client.GetStringAsync("https://localhost:80/api/XX");
+            // ---------- by hana  ------ 
+
+            var claims =
+            User.Claims.Select(claim => new
+            {
+                claim.Type,//提供宣告的語意內容，也就是它指出宣告的用途。
+                claim.Value,//顧名思義 質
+            });
+
+            //var usernamebalance = _repository.GetAll<Member>().Where(x => x.NameIdentifier == userNameIdentifier).Select(x => x.MemberId).First();
+            //var user_identifier = claims.First(x => x.Type == ClaimTypes.Name).Value;
+            /* 要抓使用者ID 107839060559565923660-> 寫死*/
+            var NameIdentifiers = claims.First(x => x.Type == ClaimTypes.NameIdentifier);
+            var user_id = _repository.GetAll<Member>().Where(x => x.NameIdentifier == NameIdentifiers.Value).Select(x => x.MemberId).First();
+
+            var input_RechargeRecord = new RechargeRecord() { 
+                RechargeRecordId = 4,
+                MemberId = user_id,
+                CashPlanId = 1,
+                CreateTime = DateTime.UtcNow,
+                PaymentId = 1,
+                CashPlanContent = 0,
+                Price = 0,
+
+            };
+
             foreach (String key in decryptTradeCollection.AllKeys)
             {
                 receive.AppendLine(key + "=" + decryptTradeCollection[key] + "<br>");
+                if (key == "PayTime")
+                {
+                    input_RechargeRecord.CreateTime = Convert.ToDateTime(decryptTradeCollection[key]);
+                }
+                else if (key == "ItemDesc")
+                {
+                    int gold = Convert.ToInt32(decryptTradeCollection[key].Split("金幣")[0]);
+                    input_RechargeRecord.CashPlanContent = gold;
+                }
+                else if (key == "Amt")
+                {
+                    input_RechargeRecord.Price = Convert.ToInt32(decryptTradeCollection[key]);
+
+                }
+                else if (key == "PaymentMethod")
+                {
+                    switch (decryptTradeCollection[key])
+                    {
+                        case "CreditCard":
+                            input_RechargeRecord.CashPlanId = 1;
+                            break;
+                        case "Ez Pay":
+                            input_RechargeRecord.CashPlanId = 2;
+                            break;
+                        case "Line Pay":
+                            input_RechargeRecord.CashPlanId = 3;
+                            break;
+                        case "Taiwan Pay":
+                            input_RechargeRecord.CashPlanId = 4;
+                            break;
+                        default:
+                            /* 待修正 */
+                            input_RechargeRecord.CashPlanId = 1;
+                            break;
+                    }
+                }
+
             }
+
+
+            _rechargeService.RechargeRecordCreateNew(input_RechargeRecord);
+
             ViewData["TradeInfo"] = receive.ToString();
 
             return View();
