@@ -63,6 +63,9 @@ namespace BSWebtoon.Front
             services.AddScoped<IComicContentPageService, ComicContentPageService>();
 
             services.AddHttpContextAccessor();
+            //藍新 維持 Json 回傳大小寫與 ViewModel 相同
+            services.AddMvc().AddJsonOptions(options => { options.JsonSerializerOptions.PropertyNamingPolicy = null; });
+            services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
 
             services.AddDbContext<BSWebtoonDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("BSWebtoonDbContext")));
