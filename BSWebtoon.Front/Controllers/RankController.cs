@@ -63,7 +63,7 @@ namespace BSWebtoon.Front.Controllers
         }
 
       
-        public IActionResult RankList(int id) //Rank/RankList //api/Rank
+        public IActionResult RankList(int id) //Rank/RankList 
         {
             var rank = _ClickRecordService.ReadOtherTagRank(id);
             if (rank.Count == 0)
@@ -103,7 +103,6 @@ namespace BSWebtoon.Front.Controllers
 
                 };
                 return View(restult);
-                //return View(restult);
             }
         }
 
