@@ -35,11 +35,6 @@ namespace NewebPay.Controllers
             ViewData["MerchantOrderNo"] = DateTime.Now.ToString("yyyyMMddHHmmss");  //訂單編號
             ViewData["ExpireDate"] = DateTime.Now.AddDays(3).ToString("yyyyMMdd"); //繳費有效期限
 
-            //ViewData["ReturnURL"] = $"{Request.Scheme}://{Request.Host}{Request.Path} NewebPay/CallbackReturn"; //支付完成返回商店網址
-            //ViewData["CustomerURL"] = $"{Request.Scheme}://{Request.Host}{Request.Path} NewebPay/CallbackCustomer"; //商店取號網址
-            //ViewData["NotifyURL"] = $"{Request.Scheme}://{Request.Host}{Request.Path} NewebPay/CallbackNotify"; //支付通知網址
-            //ViewData["ClientBackURL"] = $"{Request.Scheme}://{Request.Host}{Request.Path}"; //返回商店網址 
-            //{ Request.Scheme} ==> http or https
             string url_start = $"{Request.Scheme}://localhost:80";
             ViewData["ReturnURL"] = $"{url_start}/NewebPay/CallbackReturn"; //支付完成返回商店網址
             ViewData["CustomerURL"] = $"{url_start}/NewebPay/CallbackCustomer"; //商店取號網址
@@ -75,6 +70,8 @@ namespace NewebPay.Controllers
             var typeName = _repository.GetAll<CashPlan>().Where(x => x.CashPlanId == int.Parse(inModel.ItemDesc)).Select(x => x.CashPlanContent).FirstOrDefault().ToString();
             var typePrice = _repository.GetAll<CashPlan>().Where(x => x.CashPlanId == int.Parse(inModel.ItemDesc)).Select(x => x.Price).FirstOrDefault();
             // 藍新金流線上付款
+            var memberId = int.Parse(User.Claims.First(x => x.Type == "MemberID").Value);
+
 
             // 交易欄位
             List<KeyValuePair<string, string>> TradeInfo = new List<KeyValuePair<string, string>>();
@@ -87,11 +84,12 @@ namespace NewebPay.Controllers
             // 串接程式版本
             TradeInfo.Add(new KeyValuePair<string, string>("Version", "2.0"));
             // 商店訂單編號
-            TradeInfo.Add(new KeyValuePair<string, string>("MerchantOrderNo", DateTime.Now.ToString("yyyyMMddHHmmss")));
+            TradeInfo.Add(new KeyValuePair<string, string>("MerchantOrderNo", $"{memberId}_{DateTime.Now.ToString("yyyymmddhhmmss")}"));
             // 訂單金額
             TradeInfo.Add(new KeyValuePair<string, string>("Amt", $"{(int)typePrice}"));//等等
             // 商品資訊
             TradeInfo.Add(new KeyValuePair<string, string>("ItemDesc", $"{typeName}金幣"));//等等
+
             // 繳費有效期限(適用於非即時交易)
             //TradeInfo.Add(new KeyValuePair<string, string>("ExpireDate", inModel.ExpireDate));//我們是即時交易
             // 支付完成返回商店網址
@@ -153,6 +151,7 @@ namespace NewebPay.Controllers
             {
                 receive.AppendLine(key + "=" + decryptTradeCollection[key] + "<br>");
             }
+
             ViewData["TradeInfo"] = receive.ToString();
 
             return View();

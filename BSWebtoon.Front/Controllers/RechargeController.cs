@@ -35,6 +35,7 @@ namespace BSWebtoon.Front.Controllers
 
             var NameIdentifiers = claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value;
 
+
             var allCashPlan = _rechargeService.ReadCashPlan(NameIdentifiers);
             var userCashPlan = allCashPlan.First();
 
