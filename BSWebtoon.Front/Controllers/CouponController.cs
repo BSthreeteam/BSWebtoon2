@@ -18,7 +18,7 @@ namespace BSWebtoon.Front.Controllers
             //_couponService.CouponCreate();
             //_couponService.CouponUsedRecordCreate();
             string name = User.Identity.Name;
-            int couponTypeId = (int)CouponType.通用券;
+            int couponTypeId = (int)CouponType.universalCoupon;
             int activityId = Id;
             _couponService.GetUniversalCoupon(name, null , activityId, couponTypeId, 1);
             return View();

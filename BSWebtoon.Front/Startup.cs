@@ -50,13 +50,13 @@ namespace BSWebtoon.Front
             services.AddScoped<IRechargeService, RechargeService>();
             services.AddScoped<ICouponService, CouponService>();
             services.AddScoped<IClickRecordService, ClickRecordService>();
-            //services.AddScoped<IWeekUpdateService, WeekUpdateService>();
             services.AddScoped<FavoriteService, FavoriteService>();
             services.AddScoped<ClickRecordService, ClickRecordService>();
             //services.AddDbContext<BSWeBtoonContext, BSWeBtoonContext>();
             services.AddScoped<IComicService, ComicService>();
             services.AddScoped<ISearchService, SearchService>();
             services.AddScoped<IWeekUpdateService, WeekUpdateService>();
+            services.AddScoped<IComicContentPageService, ComicContentPageService>();
             services.AddScoped<IMemberService, MemberService>();
             services.AddScoped<IFavoriteService, FavoriteService>();
 

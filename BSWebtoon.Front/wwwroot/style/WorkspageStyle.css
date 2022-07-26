@@ -41,16 +41,16 @@ a {
     font-size: 20px;
 }
 
-/*.main_picture {
+.main_picture {
     display: flex;
     flex-direction: column;
     color: var(--content-small-color);
     opacity: 1;
-    background-image: url("https://tw-a.kakaopagecdn.com/P/C/206/bg/2x/861eafec-2cea-4c74-b3e6-07f85c619582.webp");
+    background-image: var(--bgCover);
     background-repeat: no-repeat;
-    background-size: 100%;*/
-/* position: relative; */
-/*}*/
+    background-size: 100%;
+    /* position: relative; */
+}
 
 .main_picture .big_video {
     position: absolute;
@@ -102,11 +102,11 @@ a {
     margin: 10px 0 0 0;
 }
 
-/*    .main_picture .comics_name_bg {
-        background: linear-gradient(rgba(149,137,111,0) 2%,rgb(149,137,111));
+    .main_picture .comics_name_bg {
+        background: linear-gradient(transparent 2%,var(--bgColor));
         padding-bottom: 50px;
     }
-*/
+
 .main_picture .comics_name_bg .comics_box {
     max-width: 1200px;
     display: flex;
@@ -198,6 +198,14 @@ a {
         padding-left: 0px;
         display: flex;
         flex-wrap: wrap;
+    }
+
+.main_comics_episode .comics_episode {
+    background-color: var(--bgColor);
+}
+    .main_comics_episode .comics_episode .row .card {
+        border: 0px solid;
+        background-color: var(--bgColor);
     }
 
 /*        .main_comics_episode .comics_episode .row .card {

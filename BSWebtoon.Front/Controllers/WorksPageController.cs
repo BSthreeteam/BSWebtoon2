@@ -4,7 +4,6 @@ using BSWebtoon.Front.Service.ContentPageService;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
-using static BSWebtoon.Front.Models.ViewModel.WorkPage.WorkPageViewModel;
 
 namespace BSWebtoon.Front.Controllers
 {
@@ -13,9 +12,10 @@ namespace BSWebtoon.Front.Controllers
         private readonly IComicService _comicService;
         private readonly IComicContentPageService _comicContentPageService;
 
-        public WorksPageController(IComicService comicService)
+        public WorksPageController(IComicService comicService, IComicContentPageService comicContentPageService)
         {
             _comicService = comicService;
+            _comicContentPageService = comicContentPageService;
         }
         public IActionResult BuyCoupon()
         {
@@ -25,8 +25,10 @@ namespace BSWebtoon.Front.Controllers
         public IActionResult WorksPage(int Id) //WorksPage/WorksPage/1
         {
             //var name_ = User.Claims.Select(m => m.Value);
+            //var userName_ = User.Claims.ToList();
             string name = User.Identity.Name;
-            var workPageComic = _comicService.WorkPageRead(Id,name);
+            
+            var workPageComic = _comicService.WorkPageRead(Id, name);
 
             var result = new WorkPageViewModel
             {
@@ -54,7 +56,7 @@ namespace BSWebtoon.Front.Controllers
                 UpdateWeek = workPageComic.UpdateWeek,
                 Introduction = workPageComic.Introduction,
 
-                EpList = workPageComic.EpList.Select(ep => new EpData
+                EpList = workPageComic.EpList.Select(ep => new WorkPageViewModel.EpData
                 {
                     EpId = ep.EpId,
                     ComicId = ep.ComicId,
@@ -65,7 +67,7 @@ namespace BSWebtoon.Front.Controllers
                     IsFree = ep.IsFree
                 }).ToList(),
 
-                CommentList = workPageComic.CommentList.Select(c => new CommentData
+                CommentList = workPageComic.CommentList.Select(c => new WorkPageViewModel.CommentData
                 {
                     CommentId = c.CommentId,
                     CommentMemberName = c.CommentMemberName,
@@ -82,5 +84,41 @@ namespace BSWebtoon.Front.Controllers
             //return View(workPageComic);
             return View(result);
         }
+
+
+
+        public IActionResult ComicContent(int Id)
+        {
+            var userName = User.Identity.Name;
+            var comicContents = _comicContentPageService.ReadworkContent(Id, userName);
+            var result = new ComicContentViewModel();
+            if (comicContents.Count() != 0)
+            {
+                var EpTitle = comicContents.Select(c=>c.EpTitle).First();
+                result = new ComicContentViewModel()
+                {
+                    EpTitle = EpTitle,
+                    ContentList = comicContents.Select(c => new ComicContentViewModel.Content
+                    {
+                        ImagePath = c.ImagePath,
+                        Page = c.Page,
+                    }).ToList()
+                };
+
+                return View(result);
+
+
+
+            }
+            else
+            {
+                return RedirectToAction("BuyCoupon");
+            }
+
+        }
+
     }
+
+
 }
+
