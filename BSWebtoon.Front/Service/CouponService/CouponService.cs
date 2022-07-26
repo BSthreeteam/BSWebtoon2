@@ -147,7 +147,7 @@ namespace BSWebtoon.Front.Service.CouponService
         public void GetCountdownCoupon()
         {
             // 新登入一個會員  將每一部漫畫跑一遍 新增倒數券
-            var HaveCoundownCouponMember = _repository.GetAll<Coupon>().Where(c => c.CouponTypeId == (int)CouponType.倒數免費通用券);
+            var HaveCoundownCouponMember = _repository.GetAll<Coupon>().Where(c => c.CouponTypeId == (int)CouponType.countdownCoupon);
             var NotHaveCoundownCouponMember = _repository.GetAll<Member>().Where(notHave => HaveCoundownCouponMember.Any(have => have.MemberId == notHave.MemberId));
 
             var AllComic = _repository.GetAll<Comic>();
@@ -163,7 +163,7 @@ namespace BSWebtoon.Front.Service.CouponService
                         MemberId = member.MemberId,
                         ComicId = comic.ComicId,
                         ActivityId = null,
-                        CouponTypeId = (int)CouponType.倒數免費通用券,
+                        CouponTypeId = (int)CouponType.countdownCoupon,
                         OriginQuantity = 1,
                         CreateTime = DateTime.UtcNow.AddHours(8), //台灣時間
                         Quantity = 1
