@@ -14,6 +14,8 @@
         {
             public bool IsSuccess { get; set; }
 
+            //public int MemberID { get; set; }
+
         }
     }
 }

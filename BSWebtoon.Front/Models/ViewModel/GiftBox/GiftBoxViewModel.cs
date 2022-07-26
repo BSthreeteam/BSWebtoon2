@@ -1,10 +1,11 @@
-﻿namespace BSWebtoon.Front.Models.DTO.Gift
+﻿namespace BSWebtoon.Front.Models.ViewModel.GiftBox
 {
-    public class GiftDTO
+    public class GiftBoxViewModel
     {
         public int ActivityId { get; set; }
         public string ActivityName { get; set; }
         public string ActivityImage { get; set; }
+        public string ActivityBgColor { get; set; }
 
     }
 }

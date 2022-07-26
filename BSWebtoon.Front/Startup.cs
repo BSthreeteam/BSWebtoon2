@@ -50,19 +50,22 @@ namespace BSWebtoon.Front
             services.AddScoped<IRechargeService, RechargeService>();
             services.AddScoped<ICouponService, CouponService>();
             services.AddScoped<IClickRecordService, ClickRecordService>();
-            //services.AddScoped<IWeekUpdateService, WeekUpdateService>();
             services.AddScoped<FavoriteService, FavoriteService>();
             services.AddScoped<ClickRecordService, ClickRecordService>();
             //services.AddDbContext<BSWeBtoonContext, BSWeBtoonContext>();
             services.AddScoped<IComicService, ComicService>();
             services.AddScoped<ISearchService, SearchService>();
             services.AddScoped<IWeekUpdateService, WeekUpdateService>();
+            services.AddScoped<IComicContentPageService, ComicContentPageService>();
             services.AddScoped<IMemberService, MemberService>();
             services.AddScoped<IFavoriteService, FavoriteService>();
 
             services.AddScoped<IComicContentPageService, ComicContentPageService>();
 
             services.AddHttpContextAccessor();
+            //藍新 維持 Json 回傳大小寫與 ViewModel 相同
+            services.AddMvc().AddJsonOptions(options => { options.JsonSerializerOptions.PropertyNamingPolicy = null; });
+            services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
 
             services.AddDbContext<BSWebtoonDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("BSWebtoonDbContext")));

@@ -12,12 +12,10 @@ namespace BSWebtoon.Front.Controllers
     public class LoginController : Controller
     {
         private readonly IMemberService _memberService;
-        private readonly BSRepository _repository;
 
-        public LoginController(IMemberService memberService, BSRepository repository)
+        public LoginController(IMemberService memberService)
         {
             _memberService = memberService;
-            _repository = repository;
         }
         public IActionResult AddMemberView()//Login/AddMemberView(我沒有建View，執行了找不到View沒關係，資料還是會進資料庫!!)
         {
@@ -62,6 +60,9 @@ namespace BSWebtoon.Front.Controllers
             var AccountName = claims.First(x => x.Type == ClaimTypes.Name);
             var Email = claims.First(x => x.Type == ClaimTypes.Email);
 
+
+
+
             var iutputDTO = new Login3rdInputDTO
             {
                 Provider = NameIdentifiers.Issuer.ToLower(),
@@ -77,7 +78,7 @@ namespace BSWebtoon.Front.Controllers
         }
         public IActionResult Logout()
         {
-            _memberService.LogoutAccount();
+            _memberService.LogoutAccountAsync();
             return Redirect("/");
         }
     }

@@ -1,5 +1,5 @@
-﻿@using BSWebtoon.Front.Models.DTO.Rcommend
-@model IEnumerable<HitWorkDTO>
+﻿@using BSWebtoon.Front.Models.ViewModel.Recommend
+@model HitWorkViewModel
 
 @{
     ViewData["Title"] = "HitWork";
@@ -20,7 +20,7 @@
 </ul>
 <div class="container-fluid main-context">
 
-    @foreach (var item in Model)
+    @foreach (var item in Model.HitWorkComics)
     {
         <div class="container w-1200">
             <div class="row hot w-1200">

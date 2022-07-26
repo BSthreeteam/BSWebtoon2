@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BSWebtoon.Front.Service.RecommendService;
-using BSWebtoon.Front.Models.DTO.Rcommend;
+using BSWebtoon.Front.Models.DTO.Recommend;
 
 namespace BSWebtoon.Front.Service.RecommendService
 {
@@ -206,7 +206,7 @@ namespace BSWebtoon.Front.Service.RecommendService
             _repository.SaveChange();
         }
 
-        public IEnumerable<RecommendDTO> ReadRecommend()
+        public RecommendDTO ReadRecommend()
         {
             // 活動 新作 人氣
 
@@ -223,17 +223,22 @@ namespace BSWebtoon.Front.Service.RecommendService
             var popularityGroupBy = _repository.GetAll<ClickRecord>().GroupBy(c => c.ComicId).OrderByDescending(c => c.Count(gp => gp.ComicId == c.Key)).ThenBy(c => c.Key).Select(c => c.Key);
             var popularityList = _repository.GetAll<Comic>().Where(c => popularityGroupBy.Any(g => g == c.ComicId))/*.ToList()*/;
 
-            var result = new List<RecommendDTO>();
-
-            List<RecommendDTO> addActivityList = activityList.Select(c => new RecommendDTO { 
+            var addActivityList = activityList.Select(a => new RecommendDTO.RecommendComic
+            {
+                ComicId = a.ActivityId,
                 RecommendTag = "活動",
-                Introduction = c.ActivityContent,
-                Name = c.ActivityName,
-                ActivityBgColor = c.ActivityBgColor,
-                ActivityImage = c.ActivityImage,
+                Introduction = a.ActivityContent,
+                Name = a.ActivityName,
+                ActivityBgColor = a.ActivityBgColor,
+                ActivityImage = a.ActivityImage,
+                ControllerName = "Activity",
+                ActionName = "ActivityContent"
             }).ToList();
 
-            List<RecommendDTO> addNewWorkList = newWorkList.Select(c => new RecommendDTO { 
+
+            var addNewWorkList = newWorkList.Select(c => new RecommendDTO.RecommendComic
+            {
+                ComicId = c.ComicId,
                 RecommendTag = "新作",
                 Introduction = $"{c.Introduction.Substring(0, 50)}...",
                 Name = c.ComicChineseName,
@@ -241,38 +246,54 @@ namespace BSWebtoon.Front.Service.RecommendService
                 ComicBgCover = c.BgCover,
                 BannerVideoWeb = c.BannerVideoWeb,
                 ComicFigure = c.ComicFigure,
+                ControllerName = "WorksPage",
+                ActionName = "WorksPage"
             }).ToList();
 
-            List<RecommendDTO> addPopularityList = popularityList.Select(c => new RecommendDTO {
+
+            var addPopularityList = popularityList.Select(c => new RecommendDTO.RecommendComic
+            {
+                ComicId = c.ComicId,
                 RecommendTag = "人氣",
                 Introduction = $"{c.Introduction.Substring(0, 50)}...",
                 Name = c.ComicChineseName,
                 NameImage = c.ComicNameImage,
                 ComicBgCover = c.BgCover,
                 BannerVideoWeb = c.BannerVideoWeb,
-                ComicFigure= c.ComicFigure,
+                ComicFigure = c.ComicFigure,
+                ControllerName = "WorksPage",
+                ActionName = "WorksPage"
             }).ToList();
 
-            result.AddRange(addActivityList);
-            result.AddRange(addNewWorkList);
-            result.AddRange(addPopularityList);
+            var allList = new List<RecommendDTO.RecommendComic> { };
+
+            allList.AddRange(addActivityList);
+            allList.AddRange(addNewWorkList);
+            allList.AddRange(addPopularityList);
+
+            var result = new RecommendDTO() { RecommendComics = allList };
 
             return result;
         }
 
-        public IEnumerable<HitWorkDTO> ReadHitWork()
+        public HitWorkDTO ReadHitWork()
         {
             var hitWorkList = _repository.GetAll<Comic>().Where(c => c.HotComicNameImage != "" && c.HotBgCover != "" && c.HotVideo != "");
 
-            var result = new List<HitWorkDTO>();
+            var allList = new List<HitWorkDTO.HitWorkComic> { };
 
-            result = hitWorkList.Select(c => new HitWorkDTO { 
+            var AddHitWorkList = hitWorkList.Select(c => new HitWorkDTO.HitWorkComic
+            {
                 ComicId = c.ComicId,
                 ComicChineseName = c.ComicChineseName,
                 HotComicNameImage = c.HotComicNameImage,
                 HotBgCover = c.HotBgCover,
                 HotVideo = c.HotVideo
             }).ToList();
+
+            allList.AddRange(AddHitWorkList);
+
+            var result = new HitWorkDTO() { HitWorkComics = allList};
 
             return result;
         }
