@@ -24,7 +24,9 @@ namespace BSWebtoon.Front.Controllers
         [HttpGet]
         public IActionResult WorksPage(int Id) //WorksPage/WorksPage/1
         {
+            //var userName_ = User.Claims.ToList();
             string name = User.Identity.Name;
+            
             var workPageComic = _comicService.WorkPageRead(Id, name);
 
             var result = new WorkPageViewModel

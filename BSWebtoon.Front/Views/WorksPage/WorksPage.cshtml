@@ -2,40 +2,23 @@
 @model WorkPageViewModel
 
 @{
+    Layout = "_WorkPageLayout";
     ViewData["Title"] = "WorksPage";
+
 }
 @section topCss{
-<style>
-    .main_picture {
-        display: flex;
-        flex-direction: column;
-        color: var(--content-small-color);
-        opacity: 1;
-        background-image: url("@Model.BgCover");
-        background-repeat: no-repeat;
-        background-size: 100%;
-        /* position: relative; */
-    }
 
-        .main_picture .comics_name_bg {
-            background: linear-gradient(transparent 2%,@Model.BgColor);
-            padding-bottom: 50px;
-        }
-
-    .main_comics_episode .comics_episode {
-        background-color: @Model.BgColor;
-    }
-
-        .main_comics_episode .comics_episode .row .card {
-            border: 0px solid;
-            background-color: @Model.BgColor;
-        }
-
-</style>
 <link rel="stylesheet" href="~/style/WorkspageStyle.css" />
 }
-@*<partial name="LoginPartial"></partial>
-*@
+@{
+    <style>
+        :root {
+            --bgCover: url(@Model.BgCover);
+            --bgColor:  @Html.Raw(Model.BgColor);
+        }
+    </style>
+}
+
 <header class="hearder_nav w-100">
     <a class="previous_page_a" href="javascript:history.go(-1)"><i class="fa-solid fa-arrow-left-long previous_page"></i></a>
     <div class="function_box">
@@ -117,7 +100,7 @@
                 </a>
             </div>
             <div class="ep_row col-12 col-lg-8 col-xl-8">
-                @if (@User.Identity.Name == null)
+                @if (!User.Identity.IsAuthenticated)
                 {
                     @foreach (var ep in Model.EpList)
                     {
@@ -133,8 +116,6 @@
                             </a>
                         </div>
                     }
-
-
                 }
                 else
                 {
@@ -152,8 +133,6 @@
                             </a>
                         </div>
                     }
-
-
                 }
 
             </div>
@@ -212,7 +191,7 @@
                 <span>作者</span>
                 <p class="mo_pic">@Model.Author</p>
             </div>
-           <div>
+            <div>
                 <span>發行</span>
                 <p class="mo_publisher">@Model.Publisher</p>
             </div>
@@ -233,14 +212,6 @@
         </div>
     </div>
 </template>
-
-
-
-
-    
-        
-
-
 
 <div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
