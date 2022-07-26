@@ -17,8 +17,8 @@ namespace BSWebtoon.Front.Models.ViewModel.Recommend
             public string BannerVideoWeb { get; set; }
             public string ComicFigure { get; set; }
             public string ActivityImage { get; set; }
-            public string Controller { get; set; }
-            public string Action { get; set; }
+            public string ControllerName { get; set; }
+            public string ActionName { get; set; }
         }
     }
 }
