@@ -25,8 +25,7 @@ namespace BSWebtoon.Front.Controllers
         }
 
 
-        [HttpGet]
-        [Route("api/[controller]")]
+       
         public IActionResult AllRankList() //Rank/AllRankList
         {
             var allrank = _ClickRecordService.ReadAllRank();
@@ -63,8 +62,7 @@ namespace BSWebtoon.Front.Controllers
             return View(restult);
         }
 
-        [HttpGet]
-        [Route("Rank/{id}")]
+      
         public IActionResult RankList(int id) //Rank/RankList //api/Rank
         {
             var rank = _ClickRecordService.ReadOtherTagRank(id);
@@ -105,6 +103,7 @@ namespace BSWebtoon.Front.Controllers
 
                 };
                 return View(restult);
+                //return View(restult);
             }
         }
 
