@@ -20,7 +20,13 @@ img {
     top: -15px;
 }
 
-.gray_block {
+
+.gray_block{
+    display:none;
+}
+
+input[type="checkbox"]:checked ~ .gray_block {
+    display: block;
     position: absolute;
     background-color: rgb(42, 42, 42);
     /* 透明度 0 全透明 ~ 1 完全不透明 */
@@ -48,7 +54,7 @@ img {
     top: 0px;
 }
 
-.check_btn_bag_red::before {
+input[type="checkbox"]:checked~.check_btn::before {
     background-color: rgb(255, 0, 0);
 }
 

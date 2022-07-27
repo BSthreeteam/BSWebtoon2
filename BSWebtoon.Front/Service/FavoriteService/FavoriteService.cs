@@ -61,17 +61,18 @@ namespace BSWebtoon.Front.Service.FavoriteService
             //var favoritList = _repository.GetAll<Favorite>().Where(c => c.FavoriteId == FavoriteId).First();
             var result = new List<FavoriteDTO>();
 
+
             List<FavoriteDTO> FavoritList = favoritList.Select(f => new FavoriteDTO
             {
                 FavoriteId = f.FavoriteId,
                 MemberId = f.MemberId,
                 ComicId = f.ComicId,
-                ComicChineseName = _repository.GetAll<Comic>().SingleOrDefault(c => c.ComicId == f.ComicId).ComicChineseName,
-                ComicEnglishName = _repository.GetAll<Comic>().SingleOrDefault(c => c.ComicId == f.ComicId).ComicEnglishName,
-                ComicNameImage = _repository.GetAll<Comic>().SingleOrDefault(c => c.ComicId == f.ComicId).ComicNameImage,
-                ComicFigure = _repository.GetAll<Comic>().SingleOrDefault(c => c.ComicId == f.ComicId).ComicFigure,
-                BgColor = _repository.GetAll<Comic>().SingleOrDefault(c => c.ComicId == f.ComicId).BgColor,
-                ComicWeekFigure = _repository.GetAll<Comic>().SingleOrDefault(c => c.ComicId == f.ComicId).ComicWeekFigure,
+                ComicChineseName = ComicIdList.SingleOrDefault(c => c.ComicId == f.ComicId).ComicChineseName,
+                ComicEnglishName = ComicIdList.SingleOrDefault(c => c.ComicId == f.ComicId).ComicEnglishName,
+                ComicNameImage = ComicIdList.SingleOrDefault(c => c.ComicId == f.ComicId).ComicNameImage,
+                ComicFigure = ComicIdList.SingleOrDefault(c => c.ComicId == f.ComicId).ComicFigure,
+                BgColor = ComicIdList.SingleOrDefault(c => c.ComicId == f.ComicId).BgColor,
+                ComicWeekFigure = ComicIdList.SingleOrDefault(c => c.ComicId == f.ComicId).ComicWeekFigure,
             }).ToList();
             result.AddRange(FavoritList);
 

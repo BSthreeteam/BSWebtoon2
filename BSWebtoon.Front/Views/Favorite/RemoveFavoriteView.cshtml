@@ -23,17 +23,19 @@
 
                     @foreach (var f in Model.FavoriteList)
                 {
+                    
                     int i = 0;
                     <div class="col " >
                         <div class=" pic_box">
-                            <div id="img_1" onclick="select_img(this)" style="position:relative;">
-                                <label class="form-check-label" @*for="flexCheckDefault"*@>
-                                    <img src="@f.ComicWeekFigure" class="w-100">
-                                    <input id="myCheckbox" type="checkbox" onchange="update_text()" class="d-non" @*id="flexCheckDefault"*@>
+                            <div id="img_1" style="position:relative;">
+                                <label class="form-check-label">
+                                    <input type="checkbox" onchange="update_text()"  class="d-none" my_comicId="@f.ComicId" > @*name="XXX[@i]"*@
                                     <div class="gray_block"></div>
+                                    <img src="@f.ComicWeekFigure" class="w-100">
                                     <div class="check_btn text-center "></div>
 
                                 </label>
+                                @*<input type="hidden" name="comicId[@i]" value="@f.ComicId" />*@
 
                             </div>
                         </div>
@@ -69,8 +71,8 @@
             </div>
         </section>
 
-   
-    </div>
+
+    
 
 
     @section endJS{
