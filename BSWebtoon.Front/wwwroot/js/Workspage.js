@@ -1,14 +1,14 @@
-let main_picture, main_comics_episode, local_video, collect_a, tidy, tidy_r, comics_episode, ep, illustrate, messages, copy, play;
+let main_picture, main_comics_episode, local_video/*, collect_a*/, tidy, tidy_r, comics_episode, ep, illustrate, messages, copy, play;
 let ep_template, ep_row, comics_name_click, moble_title_template, ticket_template, free_watch, local_video_bg, message_box;
 window.onload = function () {
     ep = document.querySelector('.ep');
     illustrate = document.querySelector('.illustrate');
     messages = document.querySelector('.messages');
     local_video = document.querySelector('.local_video');
-    collect_a = document.querySelector('.red');
+    //collect_a = document.querySelector('.red');
     comics_name_click = document.querySelector('.comics_name_click');
     ep_row = document.querySelector('.ep_row');
-    local_video = document.querySelector('.local_video');
+    //local_video = document.querySelector('.local_video');
     copy = document.querySelector('.copy');
     free_watch = document.querySelector('.free_watch');
     local_video_bg = document.querySelector('.local_video_bg');
@@ -19,7 +19,7 @@ window.onload = function () {
 
 
 
-    epCloned();
+    //epCloned();
     ////按下play鍵，開始撥放影片
     play.addEventListener('click', () => {
         local_video_bg.classList.remove('d-none');
@@ -65,8 +65,8 @@ window.onload = function () {
             console.log("small")
         }
         else if (screen > 768) {
-            ep_row.innerText = "";
-            epCloned();
+            //ep_row.innerText = "";
+            //epCloned();
             message_box.classList.add("d-flex");
             console.log('///')
         }
@@ -76,7 +76,7 @@ window.onload = function () {
     ep.addEventListener('click', () => {
         console.log('1')
         ep_row.innerText = "";
-        epCloned();
+        //epCloned();
     })
     //作品資訊
     illustrate.addEventListener('click', () => {
@@ -86,21 +86,22 @@ window.onload = function () {
     })
 
     ////點擊影片，影片開始播放。
-    local_video.addEventListener('click', () => {
-        local_video.play();
-    })
-    ////點擊愛心，顏色變紅色
-    let check = document.querySelector('#heart');
-    collect_a.addEventListener('click', () => {
-        if (!check.checked) {
-            console.log('111')
-            collect_a.classList.add('text-danger');
-        }
-        else {
-            console.log('222')
-            collect_a.classList.remove('text-danger');
-        }
-    })
+    //local_video.addEventListener('click', () => {
+    //    local_video.play();
+    //})
+
+    //////點擊愛心，顏色變紅色
+    //let check = document.querySelector('#heart');
+    //collect_a.addEventListener('click', () => {
+    //    if (!check.checked) {
+    //        console.log('111')
+    //        collect_a.classList.add('text-danger');
+    //    }
+    //    else {
+    //        console.log('222')
+    //        collect_a.classList.remove('text-danger');
+    //    }
+    //})
 
     function getView(imgUrl, imgUrlMov) {
         let cloneView = View_template.content.cloneNode(true);
@@ -120,19 +121,20 @@ window.onload = function () {
         return cloneMoble;
     }
     ////話次cloned
-    function epCloned() {
-        ep_template = document.querySelector('#ep_card');
-        for (let i = 1; i <= 50; i++) {
-            ep_row.appendChild(getCard(`第${i}話`, `https://picsum.photos/300/200/?random=${i}`, `2022/06/${i.toString().padStart(2, "0")}`));
-        }
-    }
-    function getCard(title, imgurl, content) {
-        let cloneCard = ep_template.content.cloneNode(true);
-        cloneCard.querySelector("img").src = imgurl;
-        cloneCard.querySelector("h5").innerText = title;
-        cloneCard.querySelector("p").innerText = content;
-        return cloneCard;
-    }
+    //function epCloned() {
+    //    ep_template = document.querySelector('#ep_card');
+    //    for (let i = 1; i <= 50; i++) {
+    //        ep_row.appendChild(getCard(`第${i}話`, `https://picsum.photos/300/200/?random=${i}`, `2022/06/${i.toString().padStart(2, "0")}`));
+    //    }
+    //}
+    //function getCard(title, imgurl, content) {
+    //    let cloneCard = ep_template.content.cloneNode(true);
+    //    cloneCard.querySelector("img").src = imgurl;
+    //    cloneCard.querySelector("h5").innerText = title;
+    //    cloneCard.querySelector("p").innerText = content;
+    //    return cloneCard;
+    //}
+
     ////次序顛倒
     tidy = document.querySelector('.tidy');
     tidy_r = document.querySelector('.tidy_r')
@@ -155,7 +157,16 @@ window.onload = function () {
 
     })
 
-
+    moble_title_template = document.querySelector('#motle_title');
+    function mobleCloned(title, mo_word, mo_pic, mo_author, mo_publisher) {
+        let cloneMoble = moble_title_template.content.cloneNode(true);
+        cloneMoble.querySelector(".mo_ti").innerText = title;
+        cloneMoble.querySelector(".mo_word").innerText = mo_word;
+        cloneMoble.querySelector(".mo_pic").innerText = mo_pic;
+        cloneMoble.querySelector(".mo_author").innerText = mo_author;
+        cloneMoble.querySelector(".mo_publisher").innerText = mo_publisher;
+        return cloneMoble;
+    }
     // //我們是用以下的方式讓它做出滾動的效果
     // window.addEventListener('mousewheel', (event) => {
     //     event = event || window.event;

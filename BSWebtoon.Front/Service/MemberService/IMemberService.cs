@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using BSWebtoon.Model.Models;
+using System.Threading.Tasks;
 using static BSWebtoon.Front.Models.DTO.Login.LoginAccountDTO;
 
 namespace BSWebtoon.Front.Service.MemberService
@@ -9,8 +10,9 @@ namespace BSWebtoon.Front.Service.MemberService
         void MemberCreate();
 
         void MemberUpdateData();
-        void LogoutAccount();
+        Task LogoutAccountAsync();
         Task<Login3rdOutputDTO> LoginAccount(Login3rdInputDTO input);
 
+        Member GetMemberByID(int memberId);
     }
 }
