@@ -164,8 +164,8 @@ namespace NewebPay.Controllers
             receive.Length = 0;
 
 
-            HttpClient client = new HttpClient();
-            string response = await client.GetStringAsync("https://localhost:80/api/XX");
+            //HttpClient client = new HttpClient();
+            //string response = await client.GetStringAsync("https://localhost:80/api/XX");
             // ---------- by hana  ------ 
 
             //var claims =
@@ -200,6 +200,7 @@ namespace NewebPay.Controllers
                 //{
                 //    input_RechargeRecord.CreateTime = Convert.ToDateTime(decryptTradeCollection[key]);
                 //}
+
                 if (key == "MerchantOrderNo")
                 {
                     string GetMerchantOrderNo = decryptTradeCollection[key];
