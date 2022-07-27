@@ -142,7 +142,6 @@ namespace NewebPay.Controllers
         /// <summary>
         /// 支付完成返回網址
         /// </summary>
-        /// <returns></returns>
 
         public async Task<IActionResult> CallbackReturn()//hana你需要它!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
         {
@@ -163,25 +162,8 @@ namespace NewebPay.Controllers
             NameValueCollection decryptTradeCollection = HttpUtility.ParseQueryString(TradeInfoDecrypt);
             receive.Length = 0;
 
-
-            //HttpClient client = new HttpClient();
-            //string response = await client.GetStringAsync("https://localhost:80/api/XX");
             // ---------- by hana  ------ 
-
-            //var claims =
-            //User.Claims.Select(claim => new
-            //{
-            //    claim.Type,//提供宣告的語意內容，也就是它指出宣告的用途。
-            //    claim.Value,//顧名思義 質
-            //});
-
-            //var usernamebalance = _repository.GetAll<Member>().Where(x => x.NameIdentifier == userNameIdentifier).Select(x => x.MemberId).First();
-            //var user_identifier = claims.First(x => x.Type == ClaimTypes.Name).Value;
-            /* 要抓使用者ID 107839060559565923660-> 寫死*/
-            //var NameIdentifiers = User.Claims.First(x => x.Type == ClaimTypes.NameIdentifier);
-            
-            //var typeName = _repository.GetAll<CashPlan>().Where(x => x.CashPlanId == int.Parse(inModel.ItemDesc)).Select(x => x.CashPlanContent).FirstOrDefault().ToString();
-
+            //將成功訂單存入資料庫
             var input_RechargeRecord = new RechargeRecord() { 
                 RechargeRecordId = 4,
                 MemberId = 1,
@@ -190,17 +172,10 @@ namespace NewebPay.Controllers
                 PaymentId = 1,
                 CashPlanContent = 0,
                 Price = 0,
-
             };
 
             foreach (String key in decryptTradeCollection.AllKeys)
             {
-                //receive.AppendLine(key + "=" + decryptTradeCollection[key] + "<br>");
-                //if (key == "PayTime")
-                //{
-                //    input_RechargeRecord.CreateTime = Convert.ToDateTime(decryptTradeCollection[key]);
-                //}
-
                 if (key == "MerchantOrderNo")
                 {
                     string GetMerchantOrderNo = decryptTradeCollection[key];
@@ -234,32 +209,26 @@ namespace NewebPay.Controllers
                             input_RechargeRecord.CashPlanId = 4;
                             break;
                         default:
-                            /* 待修正 */
                             input_RechargeRecord.CashPlanId = 1;
                             break;
                     }
- 
-                    //從MemberID找出Balance 有撈對就OK了
+
+                    ////從MemberID找出Balance 有撈對就OK了
                     //int Balance = _repository.GetAll<ComicTagList>().Where(x => x.TageListId == 2).FirstOrDefault();
 
+                    ////hana 
+                    //input_RechargeRecord.CashPlanContent += Balance;
+                    //_repository.Update(input_RechargeRecord);
 
-                    //updateTagList.ComicId = 2;
-                    //updateComic.ComicWeekFigure = "https://tw-a.kakaopagecdn.com/P/C/46/c2/2x/4853fbd7-b76b-4438-bac4-0ae54fa25a04.webp";
+                    //_repository.SaveChange();
 
-                    //hana 
-                    input_RechargeRecord.CashPlanContent += Balance;
-                    _repository.Update(input_RechargeRecord);
 
-                    var updateBalance = _repository.GetAll<Member>().Where(x => x.MemberId == memberId).FirstOrDefault();
-                    updateBalance.Balance = Convert.ToDecimal(decryptTradeCollection[key]);
-
-                    _repository.SaveChange();
-
+                    //var updateBalance = _repository.GetAll<Member>().Where(x => x.MemberId == memberId).FirstOrDefault();
+                    //updateBalance.Balance = Convert.ToDecimal(decryptTradeCollection[key]);
                 
                 }
 
             }
-
 
             _rechargeService.RechargeRecordCreateNew(input_RechargeRecord);
 
