@@ -205,8 +205,6 @@ namespace NewebPay.Controllers
                 {
                     string GetMerchantOrderNo = decryptTradeCollection[key];
                     string[] sArray = GetMerchantOrderNo.Split("_");
-
-                    //int memberId = Convert.ToInt32(decryptTradeCollection[key].Split($"_{DateTime.Now.ToString("yyyyMMddHHmmss")}"));
                     input_RechargeRecord.MemberId = Convert.ToInt32(sArray[0]);
                 }
                 else if (key == "ItemDesc")
@@ -249,16 +247,13 @@ namespace NewebPay.Controllers
                     //updateComic.ComicWeekFigure = "https://tw-a.kakaopagecdn.com/P/C/46/c2/2x/4853fbd7-b76b-4438-bac4-0ae54fa25a04.webp";
 
                     //hana 
-                    //input_RechargeRecord.CashPlanContent += Balance;
-
-                    //_repository.Update(updateTagList);
-                    //_repository.Update(updateComic);
+                    input_RechargeRecord.CashPlanContent += Balance;
                     _repository.Update(input_RechargeRecord);
 
-                    //var updateBalance = _repository.GetAll<Member>().Where(x => x.MemberId == memberId).FirstOrDefault();
-                    //updateBalance.Balance = Convert.ToDecimal(decryptTradeCollection[key]);
+                    var updateBalance = _repository.GetAll<Member>().Where(x => x.MemberId == memberId).FirstOrDefault();
+                    updateBalance.Balance = Convert.ToDecimal(decryptTradeCollection[key]);
 
-                   _repository.SaveChange();
+                    _repository.SaveChange();
 
                 
                 }
