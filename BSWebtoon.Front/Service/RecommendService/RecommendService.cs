@@ -218,7 +218,7 @@ namespace BSWebtoon.Front.Service.RecommendService
             //var filterComics = _repository.GetAll<Comic>().Where(c => c.BannerVideoWeb != "");
 
             // 新作 ComicStatus == 4
-            var newWorkList = _repository.GetAll<Comic>().Where(c => c.AuditType == (int)AuditType.auditPass && c.ComicStatus == 4)/*.ToList()*/;
+            var newWorkList = _repository.GetAll<Comic>().Where(c => c.AuditType == (int)AuditType.auditPass && c.ComicStatus == (int)ComicState.newWork)/*.ToList()*/;
 
             // 人氣
             var popularityGroupBy = _repository.GetAll<ClickRecord>().GroupBy(c => c.ComicId).OrderByDescending(c => c.Count(gp => gp.ComicId == c.Key)).ThenBy(c => c.Key).Select(c => c.Key);
