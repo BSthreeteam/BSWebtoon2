@@ -12,7 +12,7 @@ namespace BSWebtoon.Front.Service.RankService
 {
     public class ClickRecordService : IClickRecordService
     {
-        private static string _connectionStr = "Server=(localdb)\\mssqllocaldb;Database=BS;Trusted_Connection=True;MultipleActiveResultSets=true";
+        private static string _connectionStr = "Data Source=bswebtoon.database.windows.net;Initial Catalog=BSWebtoonDb;User ID=bs;Password=P@ssword;Encrypt=True;Trusted_Connection=False;MultipleActiveResultSets=true;";
         private readonly BSWebtoonDbContext _context;
         private readonly BSRepository _repository;
         public ClickRecordService(BSWebtoonDbContext context, BSRepository repository)
@@ -272,7 +272,7 @@ namespace BSWebtoon.Front.Service.RankService
             using (SqlConnection conn = new SqlConnection(_connectionStr))
             {
                 //每部漫畫主要的標籤名稱
-                string sql = @$"SELECT T.TagName,c.*
+                string sql = @$"SELECT T.TagName,C.*,T.TagId
                                FROM  ComicTagList  TL 
                                INNER JOIN  Comic C ON  TL.ComicId= C.ComicId
                                INNER JOIN ComicTag T ON T.TagId=TL.TagId
@@ -307,7 +307,7 @@ namespace BSWebtoon.Front.Service.RankService
                 var oldRankResponse = conn.Query<ClickRecordRsult>(oldClickRecord).ToList();
                 //篩選出每個漫畫上周的點擊數 的結果後放到ClickRecordRsult的表中
 
-                var newRankResponse = conn.Query<ClickRecordRsult>(newClickRecord);
+                var newRankResponse = conn.Query<ClickRecordRsult>(newClickRecord).ToList();
 
                 //把每個漫畫上上周的點擊數跟T.TagName,comic資料全部整合成List<Integrate>
                 var oldIntergrateList = new List<Integrate>();
@@ -346,6 +346,7 @@ namespace BSWebtoon.Front.Service.RankService
                     {
                         newIntergrateList.Add(new Integrate
                         {
+                            
                             ComicId = newTemp.ComicId,
                             TagName = item.TagName,
                             ClickRecordCount = newTemp.ClickRecordCount,
@@ -390,6 +391,7 @@ namespace BSWebtoon.Front.Service.RankService
                             //把我們最終所需的資料放入CategoryRankDTO
                             result.Add(new CategoryRankDTO
                             {
+                                TagId = id,
                                 ComicId = item.ComicId,
                                 ComicName = item.ComicName,
                                 BannerVideoWeb = item.BannerVideoWeb,
@@ -415,6 +417,7 @@ namespace BSWebtoon.Front.Service.RankService
                             //把我們最終所需的資料放入CategoryRankDTO
                             result.Add(new CategoryRankDTO
                             {
+                                TagId=id,
                                 ComicId = item.ComicId,
                                 ComicName = item.ComicName,
                                 BannerVideoWeb = item.BannerVideoWeb,

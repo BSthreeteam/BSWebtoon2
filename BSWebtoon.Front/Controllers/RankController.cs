@@ -25,7 +25,7 @@ namespace BSWebtoon.Front.Controllers
         }
 
 
-       
+        //[Route("api/[controller]")]
         public IActionResult AllRankList() //Rank/AllRankList
         {
             var allrank = _ClickRecordService.ReadAllRank();
@@ -62,21 +62,34 @@ namespace BSWebtoon.Front.Controllers
             return View(restult);
         }
 
-      
+        //[Route("api/[controller]/[action]/{id}")]
         public IActionResult RankList(int id) //Rank/RankList 
         {
             var rank = _ClickRecordService.ReadOtherTagRank(id);
             if (rank.Count == 0)
             {
-                return View();
+                var result = new RankViewModel_ClickRecord
+                {
+                    FirstRank = new RankViewModel_ClickRecord.ClickRecordRank
+                    {
+
+                    },
+                    OtherRank=new List<RankViewModel_ClickRecord.ClickRecordRank>()
+                    {
+
+                    }
+                };
+
+                return View(result);
             }
             else
             {
                 var firstComic = rank.First();
-                var restult = new RankViewModel_ClickRecord
+                var result = new RankViewModel_ClickRecord
                 {
                     FirstRank = new RankViewModel_ClickRecord.ClickRecordRank
                     {
+                        TagId= firstComic.TagId,
                         TagName = firstComic.TagName,
                         ClickRecordId = firstComic.ClickRecordId,
                         ComicName = firstComic.ComicName,
@@ -89,6 +102,7 @@ namespace BSWebtoon.Front.Controllers
                     },
                     OtherRank = rank.Skip(1).Take(99).Select(other => new RankViewModel_ClickRecord.ClickRecordRank
                     {
+                        TagId=other.TagId,
                         TagName = other.TagName,
                         ClickRecordId = other.ClickRecordId,
                         ComicName = other.ComicName,
@@ -102,7 +116,7 @@ namespace BSWebtoon.Front.Controllers
 
 
                 };
-                return View(restult);
+                return View(result);
             }
         }
 

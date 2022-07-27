@@ -1,37 +1,19 @@
 ﻿@model BSWebtoon.Front.Models.ViewModels.Rank.RankViewModel_ClickRecord
 
+@{
+    var id = Model.FirstRank.TagId;
+}
 
 @section topCss{
 <link rel="stylesheet" href="~/style/RankListstyle.css" />
 }
 
-<nav id="navbar-id" class="navbar navbar-light">
-    <ul class="nav nav-pills" id="category">
-        <li class="nav-item ">
-            <a class="nav-link nav_new_work text-black bg-white" href="#">全部</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link " href="/Rank/RankList/8">奇幻</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link "  href="/Rank/RankList/10">愛情</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link "  href="/Rank/RankList/9">動作冒險</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link "  href="/Rank/RankList/11">劇情</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link "  href="/Rank/RankList/13">GL/BL</a>
-        </li>
-        <li class="nav-item ">
-            <a class="nav-link "  href="/Rank/RankList/12">懸疑恐怖</a>
-        </li>
-    </ul>
-</nav>
 
-<div class="Rank ">
+@Html.Partial("NavPartial");
+
+
+
+<div class="Rank">
     <div class="container Rank_content">
         <div class="content">
             <a class="work_big" href="#">
@@ -60,7 +42,8 @@
                     }
                     else
                     {
-                        <img src="@Model.FirstRank.ComicFigure" alt="@Model.FirstRank.ComicName" class="rank_pic_people">
+                        <img src="@Model.FirstRank.ComicFigure" alt="@Model.FirstRank.ComicName"
+                         class="rank_pic_people">
                     }
                 </div>
             </a>
@@ -75,8 +58,7 @@
                         <img class="work_pic" src="@item.ComicWeekFigure" alt="@item.ComicName">
 
                         <div class="title_img">
-                            <img src="@item.ComicNameImage"
-                             alt="@item.ComicName">
+                            <img src="@item.ComicNameImage" alt="@item.ComicName">
                         </div>
                         <div class="work_status">
                             <span>UP</span>
@@ -104,35 +86,31 @@
                     </a>
                 }
             </template>
+
             <template id="blackTemplate">
                 <div class="black">
-                    <div class="black">
-                        <div class="row">
-                            <div class="comics_nont col-4 col-md-3 col-lg-2_5">
-                                <div class="img-box"></div>
-                            </div>
-                            <div class="comics_nont col-4 col-md-3 col-lg-2_5">
-                                <div class="img-box"></div>
-                            </div>
-                            <div class="comics_nont col-4 col-md-3 col-lg-2_5">
-                                <div class="img-box"></div>
-                            </div>
-                            <div class="comics_nont col-4 col-md-3 col-lg-2_5">
-                                <div class="img-box"></div>
-                            </div>
-                            <div class="comics_nont col-4 col-md-3 col-lg-2_5">
-                                <div class="img-box"></div>
-                            </div>
+                    <div class="row">
+                        <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                            <div class="img-box"></div>
+                        </div>
+                        <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                            <div class="img-box"></div>
+                        </div>
+                        <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                            <div class="img-box"></div>
+                        </div>
+                        <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                            <div class="img-box"></div>
+                        </div>
+                        <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                            <div class="img-box"></div>
                         </div>
                     </div>
+                </div>
             </template>
         </div>
     </div>
 </div>
-
-
-
-
 
 
 
