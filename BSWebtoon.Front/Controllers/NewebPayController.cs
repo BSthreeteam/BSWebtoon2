@@ -87,6 +87,7 @@ namespace NewebPay.Controllers
             // 藍新金流線上付款
             var memberId = int.Parse(User.Claims.First(x => x.Type == "MemberID").Value);
 
+
             // 交易欄位
             List<KeyValuePair<string, string>> TradeInfo = new List<KeyValuePair<string, string>>();
             // 商店代號
@@ -197,10 +198,14 @@ namespace NewebPay.Controllers
 
             foreach (String key in decryptTradeCollection.AllKeys)
             {
-                receive.AppendLine(key + "=" + decryptTradeCollection[key] + "<br>");
-                if (key == "PayTime")
+                //receive.AppendLine(key + "=" + decryptTradeCollection[key] + "<br>");
+                //if (key == "PayTime")
+                //{
+                //    input_RechargeRecord.CreateTime = Convert.ToDateTime(decryptTradeCollection[key]);
+                //}
+                if (key == "MemberId")
                 {
-                    input_RechargeRecord.CreateTime = Convert.ToDateTime(decryptTradeCollection[key]);
+
                 }
                 else if (key == "ItemDesc")
                 {
@@ -233,19 +238,22 @@ namespace NewebPay.Controllers
                             input_RechargeRecord.CashPlanId = 1;
                             break;
                     }
+ 
+                    //從MemberID找出Balance 有撈對就OK了
 
-                    //從MemberID找出Balance
-
-                    //var updateTagList = _repository.GetAll<ComicTagList>().Where(x => x.TageListId == 2).FirstOrDefault();
+                    int Balance = _repository.GetAll<ComicTagList>().Where(x => x.TageListId == 2).FirstOrDefault();
                     //updateTagList.ComicId = 2;
-                   //updateComic.ComicWeekFigure = "https://tw-a.kakaopagecdn.com/P/C/46/c2/2x/4853fbd7-b76b-4438-bac4-0ae54fa25a04.webp";
+                    //updateComic.ComicWeekFigure = "https://tw-a.kakaopagecdn.com/P/C/46/c2/2x/4853fbd7-b76b-4438-bac4-0ae54fa25a04.webp";
+
+                    input_RechargeRecord.CashPlanContent += Balance;
                     //_repository.Update(updateTagList);
                     //_repository.Update(updateComic);
+                    _repository.Update(input_RechargeRecord);
 
                     //var updateBalance = _repository.GetAll<Member>().Where(x => x.MemberId == memberId).FirstOrDefault();
                     //updateBalance.Balance = Convert.ToDecimal(decryptTradeCollection[key]);
 
-                    _repository.SaveChange();
+                   _repository.SaveChange();
 
                 
                 }
