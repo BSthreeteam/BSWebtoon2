@@ -75,6 +75,7 @@ namespace NewebPay.Controllers
             var typeName = _repository.GetAll<CashPlan>().Where(x => x.CashPlanId == int.Parse(inModel.ItemDesc)).Select(x => x.CashPlanContent).FirstOrDefault().ToString();
             var typePrice = _repository.GetAll<CashPlan>().Where(x => x.CashPlanId == int.Parse(inModel.ItemDesc)).Select(x => x.Price).FirstOrDefault();
             // 藍新金流線上付款
+            var memberId = int.Parse(User.Claims.First(x => x.Type == "MemberID").Value);
 
             // 交易欄位
             List<KeyValuePair<string, string>> TradeInfo = new List<KeyValuePair<string, string>>();
@@ -87,7 +88,7 @@ namespace NewebPay.Controllers
             // 串接程式版本
             TradeInfo.Add(new KeyValuePair<string, string>("Version", "2.0"));
             // 商店訂單編號
-            TradeInfo.Add(new KeyValuePair<string, string>("MerchantOrderNo", DateTime.Now.ToString("yyyyMMddHHmmss")));
+            TradeInfo.Add(new KeyValuePair<string, string>("MerchantOrderNo",$"{memberId}_{ DateTime.Now.ToString("yyyyMMddHHmmss") }"));
             // 訂單金額
             TradeInfo.Add(new KeyValuePair<string, string>("Amt", $"{(int)typePrice}"));//等等
             // 商品資訊
