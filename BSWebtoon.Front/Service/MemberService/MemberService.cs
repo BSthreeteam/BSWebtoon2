@@ -90,6 +90,13 @@ namespace BSWebtoon.Front.Service.MemberService
             _httpContextAccessor.
             HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         }
+        public async Task LogoutAccountAsync()
+        {
+            //基本上就是把cookie刪除
+            await _httpContextAccessor.
+                HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        }
+
         public enum LoginTypes
         {
             google = 1, line = 2, facebook = 3
@@ -101,9 +108,11 @@ namespace BSWebtoon.Front.Service.MemberService
                 IsSuccess = false
             };
             //確認member資料裡是否有紀錄
-            var memberFound = _repository.GetAll<Member>().Where(x => x.NameIdentifier.Contains($"{input.NameIdentifier}") && x.AccountName.Contains($"{input.AccountName}")).Select(x => x.MemberId).FirstOrDefault().ToString();
+            //var memberFound = _repository.GetAll<Member>().Where(x => x.NameIdentifier.Contains($"{input.NameIdentifier}") && x.AccountName.Contains($"{input.AccountName}")).Select(x => x.MemberId).FirstOrDefault().ToString();
+            var memberFound = _repository.GetAll<Member>()
+                .FirstOrDefault(x => x.NameIdentifier == $"{input.NameIdentifier}");
 
-            if (memberFound == "0")//如果沒有就添加資料到資料庫
+            if (memberFound == null)//如果沒有就添加資料到資料庫
             {
                 var provider = (int)Enum.Parse(typeof(LoginTypes), input.Provider);
 
@@ -117,16 +126,67 @@ namespace BSWebtoon.Front.Service.MemberService
                     CreateTime = DateTime.UtcNow,
                     IsDarkTheme = true
                 };
-                _repository.Create(newmember);
+                var e = _repository.Create(newmember);
                 _repository.SaveChange();
 
+                memberFound = e.Entity;
+                //newmember.CreateTime.AddHours(8).ToString("yyyy年 MMdd")
 
             }
 
+            await this.LogoutAccountAsync();
+
+            var user = memberFound;
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, memberFound.NameIdentifier ),
+                new Claim(ClaimTypes.Name, user.AccountName),
+                new Claim("MemberID", user.MemberId.ToString() ),
+
+                //自行查看ClaimTypes底下有那些實用的常數
+            };
+
+            //用上面的資訊集合，造一個ClaimsIdentity物件。
+            //(各項資訊 組成一張證件 的概念)
+            var claimsIdentity = new ClaimsIdentity(claims,
+                CookieAuthenticationDefaults.AuthenticationScheme);
+
+            //用ClaimsIdentity物件，造一個ClaimsPrincipal物件
+            var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+
+            //先設定驗證的屬性
+            var authProperties = new AuthenticationProperties
+            {
+                //舉幾個例，可參考官方文件AuthenticationProperties類別中的屬性
+                ExpiresUtc = DateTimeOffset.UtcNow.AddDays(10),
+                IsPersistent = true,
+            };
+
+            //將此ClaimsPrincipal登入。登入方法，會創造一個cookie
+            await _httpContextAccessor.HttpContext.SignInAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                claimsPrincipal,
+                authProperties);
+
+
             result.IsSuccess = true;
 
-
             return result;
+        }
+
+        public Member GetMemberByID(int memberId)
+        {
+
+            return _repository.GetAll<Member>().FirstOrDefault(m => m.MemberId == memberId);
+        }
+
+
+        public int GetCurrentMemberID()
+        {
+            var memberId = int.Parse(
+                _httpContextAccessor.HttpContext.User.Claims.First(x => x.Type == "MemberID").Value);
+
+            return memberId;
         }
 
     }
