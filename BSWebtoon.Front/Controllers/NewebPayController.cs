@@ -87,7 +87,6 @@ namespace NewebPay.Controllers
             // 藍新金流線上付款
             var memberId = int.Parse(User.Claims.First(x => x.Type == "MemberID").Value);
 
-
             // 交易欄位
             List<KeyValuePair<string, string>> TradeInfo = new List<KeyValuePair<string, string>>();
             // 商店代號
@@ -179,15 +178,13 @@ namespace NewebPay.Controllers
             //var usernamebalance = _repository.GetAll<Member>().Where(x => x.NameIdentifier == userNameIdentifier).Select(x => x.MemberId).First();
             //var user_identifier = claims.First(x => x.Type == ClaimTypes.Name).Value;
             /* 要抓使用者ID 107839060559565923660-> 寫死*/
-            var NameIdentifiers = User.Claims.First(x => x.Type == ClaimTypes.NameIdentifier);
+            //var NameIdentifiers = User.Claims.First(x => x.Type == ClaimTypes.NameIdentifier);
             
-            var user_id = _repository.GetAll<Member>().Where(x => x.NameIdentifier == NameIdentifiers.Value).Select(x => x.MemberId).First();
-            
-            var typeName = _repository.GetAll<CashPlan>().Where(x => x.CashPlanId == int.Parse(inModel.ItemDesc)).Select(x => x.CashPlanContent).FirstOrDefault().ToString();
+            //var typeName = _repository.GetAll<CashPlan>().Where(x => x.CashPlanId == int.Parse(inModel.ItemDesc)).Select(x => x.CashPlanContent).FirstOrDefault().ToString();
 
             var input_RechargeRecord = new RechargeRecord() { 
                 RechargeRecordId = 4,
-                MemberId = user_id,
+                MemberId = 1,
                 CashPlanId = 1,
                 CreateTime = DateTime.UtcNow,
                 PaymentId = 1,
@@ -203,9 +200,13 @@ namespace NewebPay.Controllers
                 //{
                 //    input_RechargeRecord.CreateTime = Convert.ToDateTime(decryptTradeCollection[key]);
                 //}
-                if (key == "MemberId")
+                if (key == "MerchantOrderNo")
                 {
+                    string GetMerchantOrderNo = decryptTradeCollection[key];
+                    string[] sArray = GetMerchantOrderNo.Split("_");
 
+                    //int memberId = Convert.ToInt32(decryptTradeCollection[key].Split($"_{DateTime.Now.ToString("yyyyMMddHHmmss")}"));
+                    input_RechargeRecord.MemberId = Convert.ToInt32(sArray[0]);
                 }
                 else if (key == "ItemDesc")
                 {
@@ -240,12 +241,15 @@ namespace NewebPay.Controllers
                     }
  
                     //從MemberID找出Balance 有撈對就OK了
+                    //int Balance = _repository.GetAll<ComicTagList>().Where(x => x.TageListId == 2).FirstOrDefault();
 
-                    int Balance = _repository.GetAll<ComicTagList>().Where(x => x.TageListId == 2).FirstOrDefault();
+
                     //updateTagList.ComicId = 2;
                     //updateComic.ComicWeekFigure = "https://tw-a.kakaopagecdn.com/P/C/46/c2/2x/4853fbd7-b76b-4438-bac4-0ae54fa25a04.webp";
 
-                    input_RechargeRecord.CashPlanContent += Balance;
+                    //hana 
+                    //input_RechargeRecord.CashPlanContent += Balance;
+
                     //_repository.Update(updateTagList);
                     //_repository.Update(updateComic);
                     _repository.Update(input_RechargeRecord);
