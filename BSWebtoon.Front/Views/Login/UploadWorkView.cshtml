@@ -1,0 +1,663 @@
+﻿
+@*@using BSWebtoon.Front.Models.DTO*@
+
+@using BSWebtoon.Front.Models.DTO.UploadWorkView
+
+@model UploadWorkInputDTO
+
+@{
+    ViewData["Title"] = "UploadWorkView";
+
+}
+
+
+
+@*@functions{
+    private void UploadSuccess(int isSuccess)
+    {
+        if(isSuccess == 1)
+        {
+
+    <p id="success">success成功上傳</p>
+        }
+        else if(isSuccess == 0)
+        {
+
+        }
+        else
+        {
+    <p id="failed">還沒上傳</p>
+
+            //<p>failed</p>
+        }
+    }
+
+}*@
+
+
+
+<body style="background-color: black; color: white">
+
+
+
+
+
+    <hr>
+    <div class="container  ">
+        <div class="help_bgc">
+            <div class="help_text my-auto">
+                <span>幫助</span>
+                <p>上傳作品之前請先閱讀相關規定</p>
+            </div>
+
+            <div class="QA_text">
+                <a href="#">上傳規定 ></a>
+                <a href="#">Q&A ></a>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <div class="container work">
+
+            <div class="work_bgc">
+                <div class="a">
+                    <a asp-controller="Login" asp-action="UploadComicView" >1</a>
+                    <p>上傳漫畫</p>
+                </div>
+
+                <div class="b">
+                    <a asp-controller="Login" asp-action="UploadWorkView" >2</a>
+                    <p>上傳分集</p>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+    <!-- 2 -->
+    <main style="background-color: black; color: white">
+
+        <div class="container" style="background-color: #000;">
+
+            @*加*@
+            <form method="post" enctype="multipart/form-data">
+             @*   <select name="" >
+                    @foreach( var comic in ..)
+                    {
+                        <option value="{{@comic.漫畫ID}}"> {{@comic.名稱}} </option>
+                    }
+                </select>*@
+                <div class="row">
+                    <div class="col-4">
+                        <div class="cover_pic">
+                            <div class="card bg-dark" style="width: 20rem;">
+                                <p class="pb-4 mb-0" style="background-color: #000;">作品封面縮圖:(必須輸入)</p>
+                                <!-- 動態 -->
+                                <div id="img_box" class="d-flex" style="  height: 250px; background: rgb(57, 56, 56);">
+
+
+                                    @*<img id="cover_img" src="https://inews.gtimg.com/newsapp_bt/0/14062897162/1000"
+                                    class="card-img-top" alt="作品封面縮圖">*@
+                                    <p class="d-flex mx-auto my-auto">請上傳作品封面縮圖</p>
+
+
+                                </div>
+                                <div class="card-body bg-dark" style="background-color: #000">
+                                    <p class="headshot_text ">
+                                        推薦圖片大小121*80<br>檔案大小不可大於500kB(僅限JPG、JPEG和PNG檔)<br>檔案名稱僅限輸入英文或數字
+                                    </p>
+                                </div>
+
+                                <label type="button" class="btn btn-secondary w-50 d-flex align-self-center text-center"
+                                       asp-for="EpCover">上傳封面圖</label>
+                                @*加收參數*@
+                                <input class="cover" name="EpCover" type="file" accept="image/*" id="EpCover" style="display:none;">
+                                @*加入防呆*@
+                                <span asp-validation-for="EpCover" class="text-danger"></span>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="col-8">
+
+                        @*<div class="comic_text">
+
+                        <label for="inputState" class="form-label my-4">作品名稱</label>
+                        <select id="inputState" class="form-select">
+                        <option selected>Choose...</option>
+                        <option>...</option>
+                        </select>
+                        </div>*@
+
+                        <label asp-for="EpTitle" class="my-4 form-label">本集話次:(必須輸入)</label>
+                        <div class="input-group mb-3">
+                            @* <!-- 動態 -->
+                            <span class="input-group-text" id="inputGroup-sizing-default">2</span>*@
+                            <!-- 動態 -->
+                            @*加收參數*@
+                            <input type="text" name="EpTitle" class="form-control" id="EpTitle" aria-label="Sizing example input"
+                                   aria-describedby="inputGroup-sizing-default">
+                            @*加入防呆*@
+                            <span asp-validation-for="EpTitle" class="text-danger"></span>
+                        </div>
+
+
+                       
+
+
+
+                        <label class="my-4" for="inputState" class="form-label">內容作品上傳檔案:(必須輸入) 推薦圖片大小720*1100</label>
+                        <div class="btn_updata">
+
+                            <label type="button" class="btn btn-secondary" class="up-Lab btn_upload_style" asp-for="EP_Context_file"
+                                   id="select_file">選擇檔案</label>
+                            @*加收參數*@
+                            <input type="file" name="EP_Context_file" accept="image/*" multiple id="EP_Context_file" style="display:none;">
+                            @*加入防呆*@
+                            <span asp-validation-for="EP_Context_file" class="text-danger"></span>
+
+                            <button type="button" class="btn btn-secondary mx-4" onclick="removeItemAll()">全部刪除</button>
+                        </div>
+
+                        <!-- ---------------------------------------------------------------------------------------------------------- -->
+                        <div class="container" style="max-width: 700px;">
+                            <div class="row row_down">
+                                <div class="group-coms-pic" id="sortable">
+                                </div>
+                            </div>
+                        </div>
+
+                        @*送出參數*@
+                        <button type="submit" id="upload_file_btn" class="btn btn-primary  mb-4" >
+                            確定
+                        </button>
+
+                         @*btn-outline-light*@
+                        
+
+                        @*防呆*@
+                        <div class="" id="Loadingdata" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+
+
+
+                        @*{UploadSuccess(Model.IsSuccess);}*@
+
+                        @*<div>
+                        <input type="submit" value="上傳" />
+                        </div>*@
+
+                    </div>
+
+                </div>
+
+            </form>
+
+
+        </div>
+    </main>
+
+
+
+
+
+
+    @section topCss{
+
+        <style>
+
+
+             .work {
+
+            display: flex;
+             margin-top: 150px;
+        }
+
+        .work_bgc {
+            width: 500px;
+            display: flex;
+            justify-content: space-between;
+            margin: auto;
+        }
+
+        .nav-item .nav-link {
+            font-size: 20px;
+            font-weight: bolder;
+        }
+
+        .a {
+
+            display: flex;
+        }
+
+        .a a {
+            width: 50px;
+            height: 50px;
+            background-color: rgb(90, 88, 88);
+            color: rgb(250, 250, 250);
+            border-radius: 50%;
+            text-align: center;
+            font-size: 35px;
+            margin: 10px;
+            text-decoration: none ; 
+        }
+
+        .a p {
+            text-align: center;
+            font-size: 35px;
+            margin: 10px;
+        }
+
+        .b {
+            display: flex;
+        }
+
+        .b a {
+            width: 50px;
+            height: 50px;
+            background-color: rgb(2, 251, 126);
+            color: rgb(250, 250, 250);
+            border-radius: 50%;
+            text-align: center;
+            font-size: 35px;
+            margin: 10px;
+            text-decoration: none ; 
+        }
+
+        .b p {
+            text-align: center;
+            font-size: 35px;
+            margin: 10px;
+        }
+
+
+
+
+
+
+
+
+
+
+
+            .container {
+                max-width: 1200px;
+                margin-top: 50px;
+            }
+
+            .nav-item .nav-link {
+                font-size: 20px;
+                font-weight: bolder;
+            }
+
+            .help_bgc {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .help_text {
+                display: flex;
+                align-items: center;
+            }
+
+                .help_text span {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 50px;
+                    height: 30px;
+                    background-color: rgb(45, 148, 97);
+                    color: rgb(250, 250, 250);
+                    border-radius: 20px;
+                    margin: 5px;
+                }
+
+                .help_text p {
+                    text-align: center;
+                    font-size: 20px;
+                    margin: 5px;
+                    font-size: 15px;
+                }
+
+            .QA_text {
+                align-items: center;
+                display: flex;
+            }
+
+                .QA_text a {
+                    font-size: 15px;
+                    margin: 5px;
+                    text-decoration: none;
+                    color: #fff;
+                }
+
+            .cover_pic {
+                display: flex;
+                margin: 5% 20% 20% 20%;
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+            .row_down {
+                height: 500px;
+                background-repeat: no-repeat;
+                background-attachment: scroll;
+                overflow: auto;
+                margin: 50px;
+            }
+
+            .card {
+                border: #000;
+            }
+
+            hr {
+                color: rgb(136, 153, 153);
+                max-width: 80%;
+                margin: 10px auto 10px auto;
+            }
+
+            .headshot_text {
+                font-size: 14px;
+            }
+
+            .btn_fork {
+                font-size: 25px;
+                position: absolute;
+                border-radius: 50%;
+                background-color: rgb(94, 102, 102);
+                color: #fff;
+            }
+
+            .pic_del_btn {
+                background-color: rgb(191, 182, 182);
+                border-radius: 50%;
+                font-size: 20px;
+                position: relative;
+                left: 240px;
+                top: 15px;
+            }
+        </style>
+
+    }
+
+        <!-- 加此行 -->
+        @section Scripts {
+        @await Html.PartialAsync("_ValidationScriptsPartial")
+
+
+    }
+
+
+
+
+
+
+
+
+
+        @section endJS{
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+        </script>
+
+        <!-- (Yu) -->
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+
+
+        @{
+            if( ViewData.ContainsKey("IsSuccessMsg") )
+            {
+                        <script>
+                            alert(  @Html.Raw(ViewData["IsSuccessMsg"])  )
+                        </script>
+            }
+        }
+
+        <script>
+
+            
+
+            //上傳多個文件方法
+            //input file已增加multiple屬性，按住ctrl可選擇多圖
+            var arrTitle = []; //存標題名
+            var arrCover = []; //存封面圖檔
+            document.getElementById("EP_Context_file")
+                .addEventListener("change", file);
+            //(Yu)上傳集數封面
+            document.getElementById("EpCover")
+                .addEventListener("change", readURL);
+            var obj, obj_cover, img_box;
+            img_box = document.querySelector('#img_box');
+            function readURL() {
+                img_box.innerText = "";
+                obj_cover = this,
+                    length = obj_cover.files.length;
+                for (var i = 0; i < length; i++) {
+
+                    var reader = new FileReader();
+                    if (!reader) {
+                        alert("對不起，您的瀏覽器不支持!請更換瀏覽器試一下");
+                        return
+                    }
+                    reader.error = function(e) {
+                        alert("讀取異常")
+                    }
+                    //儲存上傳的封面圖片
+                    let file_cover_name = obj_cover.files[i].name;
+                    arrCover.push(file_cover_name);
+                    (function(i) {
+                        reader.onload = function(e) {
+                            let cover_src = e.target.result;
+                            let img_cover = document.createElement('img');
+                            img_cover.setAttribute('src', cover_src);
+                            img_cover.classList.add("w-100")
+                            img_box.appendChild(img_cover);
+                        }
+                    })(i)
+                    reader.readAsDataURL(obj_cover.files[i]);
+                }
+            }
+
+
+            function file() {
+                obj = this,
+                    length = obj.files.length;
+                _html = '';
+
+                for (var i = 0; i < length; i++) {
+                    var reader = new FileReader();
+                    if (!reader) {
+                        console.log('對不起，您的瀏覽器不支持！請更換瀏覽器試一下');
+                        return
+                    }
+                    reader.error = function(e) {
+                        console.log("讀取異常")
+                    }
+                    //存儲上傳的多張圖片名字
+                    let file_name = obj.files[i].name;
+                    arrTitle.push(file_name);
+                    //iffi語法
+                    ;
+                    (function(i) {
+                        //讀取成功
+                        reader.onload = function(e) {
+                            let _src = e.target.result;
+                            // console.log(e.target.result);
+                            //一個檔案的區塊 item_block
+                            let div_item = document.createElement('div');
+                            // div_item.setAttribute('class', 'item');
+                            ///(Yu)加入class
+                            div_item.classList.add("d-flex", "flex-column", 'ui-state-default');
+                            //XX的按鈕
+                            let pic_del_btn = document.createElement('button');
+                            pic_del_btn.setAttribute('type', "button");
+                            pic_del_btn.setAttribute('aria-label', "Close");
+                            pic_del_btn.setAttribute('title', file_name);
+                            pic_del_btn.classList.add("btn-close", "btn-close-white", "pic_del_btn");
+                            //圖片
+                            let img_div = document.createElement('div');
+                            // img_div.classList.add('text-end');
+                            let img = document.createElement('img');
+                            img.setAttribute('src', _src);
+                            img.setAttribute('style', "width: 250px; height: 300px;");
+                            img_div.appendChild(img);
+                            //檔案名稱
+                            let span_file_name = document.createElement('span');
+                            span_file_name.innerHTML = file_name;
+                            div_item.appendChild(pic_del_btn);
+                            div_item.appendChild(img_div);
+                            div_item.appendChild(span_file_name);
+
+                            //增加節點結構
+                            let sortable = document.getElementById('sortable');
+                            sortable.insertBefore(div_item, sortable.firstChild);
+
+                            //刪除節點方法
+                            pic_del_btn.onclick = function() {
+                                removeItem(this);
+                                return false;
+                            };
+                        };
+                    })(i)
+
+                    reader.onloadstart = function() { }
+                    reader.onprogress = function(e) {
+                        if (e.lengthComputable) {
+                            console.log("正在讀取文件")
+                        }
+                    };
+                    reader.readAsDataURL(obj.files[i]);
+                    update_file_state();
+                }
+            }
+
+            function update_file_state() {
+                if (arrTitle.length == 0) {
+                    document.getElementById("EP_Context_file").value = "";
+                    document.getElementById("select_file").innerHTML = "選擇檔案  ";
+                } else if (arrTitle.length == 1) {
+                    //只有一個檔案的話 顯示檔名
+                    document.getElementById("select_file").innerHTML = "選擇檔案  " + arrTitle[0];
+                } else {
+                    //否則顯示數量
+                    document.getElementById("select_file").innerHTML = "選擇檔案  " + arrTitle.length + " 個檔案";
+                }
+            }
+
+            //刪除圖片
+            function removeItem(delNode) {
+                var itemNode = delNode.parentNode,
+                    title = delNode.getAttribute('title');
+                var flag = confirm("確認要刪除名爲：" + title + "的圖片？");
+                if (flag) {
+                    itemNode.parentNode.removeChild(itemNode);
+                    console.log('刪除成功~');
+                    //標題變數也要砍掉
+                    arrTitle.pop(title);
+                    update_file_state();
+                }
+                return false;
+            }
+            //刪除全部圖片
+            function removeItemAll() {
+                if (arrTitle.length == 0) {
+                    alert("尚未選擇任何檔案!");
+                } else if (confirm("確認刪除全部的圖片嗎?") == true) {
+                    // 下面顯示的 也清空 這樣使用者看起來才是空的
+                    document.getElementById("sortable").innerText = null;
+                    console.log(arrTitle);
+                    arrTitle = [];
+                    update_file_state();
+                } else {
+                    return false;
+                }
+            }
+
+        </script>
+
+        <script>
+            //上傳等待狀態按鈕
+            //var Wait = document.getElementById("Wait");
+            var upload_work = document.getElementById("upload_file_btn").addEventListener("click", Waiting_Upload);
+            var Loadingdata = document.getElementById("Loadingdata");
+            //上傳等待狀態按鈕方法
+            function Waiting_Upload() {
+                if (confirm("確定上傳檔案嗎?") == true) {
+                    alert("上傳中...")
+                } else {
+                    return false;
+                }
+                
+                Loadingdata.classList.add("spinner-border");
+                Loadingdata.classList.add("text-warning");
+                upload_work.setAttribute('disabled', disabled);
+
+                upload_work.setAttribute('class', bg - secondary);
+                upload_work.setAttribute('class', p - 2);
+                upload_work.setAttribute('class', text - dark);
+                upload_work.setAttribute('class', bg - opacity - 25);
+
+            }
+
+
+        </script>
+
+
+
+
+        <!-- (Yu)拖曳排序 -->
+        <script>
+            $("#sortable").sortable({
+                cursor: "move",
+                item: ">li",
+                opacity: 0.6,
+                axis: "y",
+                //更新排序之後的 陣列
+                //當排序動作結束時且元素座標已經發生改變時觸發此(update)事件。
+                update: function(event, ui) {
+                    // console.log($(this).sortable('toArray'));
+
+                }
+            });
+
+        </script>
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+    </body>
+
