@@ -1,9 +1,11 @@
-﻿using BSWebtoon.Front.Service;
+﻿using BSWebtoon.Front.Models.ViewModel.Recommend;
+using BSWebtoon.Front.Service;
 using BSWebtoon.Front.Service.RecommendService;
 using BSWebtoon.Model.Models;
 using BSWebtoon.Model.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -23,16 +25,53 @@ namespace BSWebtoon.Front.Controllers
 
         public IActionResult Recommend()
         {
-
             var recommendSource = _recommendservice.ReadRecommend();
-            return View(recommendSource);
+
+            var allRecommend = new List<RecommendViewModel.RecommendComic>() { };
+            foreach (var recommend in recommendSource.RecommendComics)
+            {
+                allRecommend.Add(new RecommendViewModel.RecommendComic
+                {
+                    ComicId = recommend.ComicId,
+                    RecommendTag = recommend.RecommendTag,
+                    Introduction = recommend.Introduction,
+                    Name = recommend.Name,
+                    NameImage = recommend.NameImage,
+                    ComicBgCover = recommend.ComicBgCover,
+                    ActivityBgColor = recommend.ActivityBgColor,
+                    BannerVideoWeb = recommend.BannerVideoWeb,
+                    ComicFigure = recommend.ComicFigure,
+                    ActivityImage = recommend.ActivityImage,
+                    ControllerName = recommend.ControllerName,
+                    ActionName = recommend.ActionName
+                });
+            }
+
+            var result = new RecommendViewModel() { RecommendComics = allRecommend };
+
+            return View(result);
         }
-        //public IActionResult ReadClickRecord() //Recommend/ReadClickRecord
         public IActionResult HitWork()
         {
+            var hitWorkSource = _recommendservice.ReadHitWork();
 
-            var hitWorkSource =  _recommendservice.ReadHitWork();
-            return View(hitWorkSource);
+            var allHitWork = new List<HitWorkViewModel.HitWorkComic>() { };
+
+            foreach (var hitWork in hitWorkSource.HitWorkComics)
+            {
+                allHitWork.Add(new HitWorkViewModel.HitWorkComic
+                {
+                    ComicId = hitWork.ComicId,
+                    ComicChineseName = hitWork.ComicChineseName,
+                    HotComicNameImage = hitWork.HotComicNameImage,
+                    HotBgCover = hitWork.HotBgCover,
+                    HotVideo = hitWork.HotVideo
+                });
+            }
+
+            var result = new HitWorkViewModel() { HitWorkComics = allHitWork};
+
+            return View(result);
         }
 
         public IActionResult AddActivityView() //Recommend/AddActivityView
@@ -41,11 +80,6 @@ namespace BSWebtoon.Front.Controllers
             //_recommendservice.ActivityCreate();
             return View();
         }
-        //public async Task<IActionResult> ReadActivity() //Recommend/ReadActivity
-        //{
-        //    //var BSContext = _context.Activity.Include(x => x.PrincipalEmployeeNavigation);
-        //    return View(/*await BSContext.ToListAsync()*/);
-        //}
 
         public IActionResult AddViewRecordView() //Recommend/AddViewRecordView
         {

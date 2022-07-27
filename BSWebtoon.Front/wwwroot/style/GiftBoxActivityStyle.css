@@ -1,0 +1,86 @@
+
+.activity {
+    background-color: #000;
+    position: relative;
+    top: 135px;
+    width: 100%;
+}
+
+.activity_a {
+    text-decoration: none;
+    aspect-ratio: 1 / 2;
+}
+
+.content {
+    background-color: #000;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    column-gap: 10px;
+    row-gap: 2px;
+    position: relative;
+    overflow: hidden;
+}
+
+
+.activity_item {
+    aspect-ratio: 1 / 2;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+.activity_pic {
+    aspect-ratio: 1 / 1;
+    vertical-align: middle;
+    max-width: 100%;
+    margin-top: 10px;
+}
+
+.activity_title,
+.activity_coupon {
+    color: #fff;
+    text-align: center;
+    width: 100%;
+}
+
+.activity_title {
+    font-size: 25px;
+    font-weight: 900;
+}
+
+.activity_coupon {
+    padding: 5px 0px;
+    font-size: 18px;
+    font-weight: 700;
+    background-color: #00000030;
+}
+
+@media screen and (min-width:768px) {
+    .content {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    }
+}
+
+
+@media screen and (min-width:992px) {
+    .content {
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    }
+
+    .col-lg-2_5 {
+        flex: 0 0 auto;
+        width: 20%;
+    }
+}
+
+@media screen and (min-width:1200px) {
+    .activity_content {
+        width: 1200px;
+    }
+}

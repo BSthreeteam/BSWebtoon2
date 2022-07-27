@@ -1,0 +1,193 @@
+.buyCoupon_nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000;
+    font-size: 20px;
+    padding: 5px 0px;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+}
+
+.buyCoupon_nav_a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0px 10px;
+}
+
+    .buyCoupon_nav_a:hover {
+        color: #fff;
+    }
+
+.buyCoupon_title {
+    color: #fff;
+    text-align: center;
+    font-weight: 700;
+    margin: auto;
+}
+
+.buyCoupon_titleDetail {
+    font-size: 13px;
+    font-weight: normal;
+}
+
+.recharge_a {
+    color: rgb(198, 166, 109);
+    font-size: 15px;
+}
+
+    .recharge_a:hover {
+        color: rgb(198, 166, 109);
+    }
+
+.buyCoupon_quantity,
+.buyCoupon_plan,
+.buyCoupon_details {
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    position: relative;
+    top: 70px;
+}
+
+.buyCoupon_input {
+    width: 100%;
+    background-color: #111;
+    color: #fff;
+}
+
+.w-600 {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+}
+
+.buyCoupon_comicName {
+    font-size: 23px;
+}
+
+.buyCoupon_quantity_list,
+.buyCoupon_plan_list,
+.buyCoupon_countQuantityList {
+    list-style: none;
+}
+
+.decoration_line::before {
+    content: '';
+    display: block;
+    width: 100%;
+    border-top: rgba(204, 204, 204, 0.5) solid 1px;
+    margin: 10px 0px;
+}
+
+.decoration_line_offcanvas::before {
+    content: '';
+    display: block;
+    width: 100%;
+    border-top: rgba(204, 204, 204, 0.5) solid 1px;
+    margin: 30px 0px;
+}
+
+.buyCoupon_quantity_listItem,
+.buyCoupon_plan_listItem,
+.buyCoupon_inputQuantity,
+.buyCoupon_countQuantityListItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.buyCoupon_plan_title {
+    font-size: 30px;
+    font-weight: 900;
+    margin: auto;
+}
+
+.color_change,
+.totalAmount {
+    color: rgb(122, 103, 239);
+}
+
+.buyCoupon_plan_listItem,
+.buyCoupon_countQuantityListItem {
+    margin-bottom: 10px;
+}
+
+.buyCoupon_plan_btn {
+    width: 30%;
+    background-color: rgb(122, 103, 239);
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 30px;
+}
+
+.buyOneTime {
+    font-size: 13px;
+    color: #ccc;
+}
+
+.buyCoupon_details_listItem,
+.buyCoupon_inputDetailListItem {
+    font-size: 12px;
+    color: #ccc;
+    padding: 0px 25px;
+    list-style-position: inside;
+    text-indent: -1.5em;
+}
+
+.buyCoupon_inputQuantityItem {
+    display: inline-block;
+    width: fit-content;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.quantity_btn {
+    background-color: #000;
+    color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+}
+
+.buyQuantity {
+    display: inline-block;
+    margin: 0px 15px;
+}
+
+.totalAmount {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.offcanvas-bottom {
+    height: fit-content;
+}
+
+.btn_group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn_groupItem {
+    width: 49%;
+    border-radius: 20px;
+    padding: 10px 0px;
+    font-size: 15px;
+    font-weight: 700;
+    border: 1px solid #ccc;
+}
+
+.buyCoupon_cancel {
+    background-color: #000;
+    color: #fff;
+}
+
+@media screen and (min-width:768px) {
+    .buyCoupon_plan_btn {
+        width: 20%;
+    }
+}

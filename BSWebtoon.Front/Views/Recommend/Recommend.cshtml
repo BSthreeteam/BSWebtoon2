@@ -1,5 +1,5 @@
-﻿@using BSWebtoon.Front.Models.DTO.Rcommend
-@model IEnumerable<RecommendDTO>
+﻿@using BSWebtoon.Front.Models.ViewModel.Recommend
+@model RecommendViewModel
 
 @{
     ViewData["Title"] = "Recommend";
@@ -21,48 +21,42 @@
 
 <div class="container-fluid main-context">
     <div class="container w-1200">
-        @foreach (var item in Model)
+        @foreach (var item in Model.RecommendComics)
         {
-            <a class="work_a" href="WorksPage/WorksPage">
-                <div class="row row-recommend w-1200">
-                    <div class="txt-part">
-                        <span id="tag">@item.RecommendTag</span>
-                        @if (@item.NameImage != null)
-                        {
-                            <img src="@item.NameImage" class="title-pic" alt="@item.Name">
-                        }
-                        else
-                        {
-                            <h2 class="activity_name">@item.Name</h2>
-                        }
-                        <div class="txt-part-introduction">
-                            @Html.Raw(@item.Introduction)
-                        </div>
-                    </div>
+            <a class="work_a" href="@item.ControllerName/@item.ActionName/@item.ComicId">
+                <div class="row row-recommend">
                     <div class="transform-part transform-part-public">
+                        <div class="txt-part">
+                            <span id="tag">@item.RecommendTag</span>
+                            @if (@item.NameImage != null)
+                            {
+                                <img src="@item.NameImage" class="title-pic" alt="@item.Name">
+                            }
+                            else
+                            {
+                                <h3 class="activity_name">@item.Name</h3>
+                            }
+                            <div class="txt-part-introduction">
+                                @Html.Raw(@item.Introduction)
+                            </div>
+                        </div>
                     </div>
                     <div class="transform-part2 transform-part-public">
                     </div>
                     <div class="pic-part" style="background-color:@item.ActivityBgColor;">
                         <img src="@item.ComicBgCover" class="recommend-pic-bg" @*alt="@item.Name"*@>
-                        @switch (@item.BannerVideoWeb != string.Empty && @item.BannerVideoWeb != null)
+                        @if (@item.BannerVideoWeb != string.Empty && @item.BannerVideoWeb != null)
                         {
-                            case true:
-                                <video src="@item.BannerVideoWeb" class="recommend-pic" autoplay loop></video>
-                                break;
-                            case false:
-                                switch (@item.ComicFigure != null)
-                                {
-                                    case true:
-                                        <img src="@item.ComicFigure" class="recommend-pic">
-                                        break;
-                                    case false:
-                                        <img src="@item.ActivityImage" class="recommend-pic">
-                                        break;
-                                }
-                                break;
-                            default:
-                                break;
+                            <video src="@item.BannerVideoWeb" class="recommend-pic" autoplay loop></video>
+
+                        }
+                        else if (@item.ComicFigure != null)
+                        {
+                            <img src="@item.ComicFigure" class="recommend-pic">
+                        }
+                        else
+                        {
+                            <img src="@item.ActivityImage" class="recommend-pic">
                         }
                     </div>
                 </div>
