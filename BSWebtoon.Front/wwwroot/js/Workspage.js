@@ -1,24 +1,40 @@
-let main_picture, main_comics_episode, local_video/*, collect_a*/, tidy, tidy_r, comics_episode, ep, illustrate, messages, copy, play;
-let ep_template, ep_row, comics_name_click, moble_title_template, ticket_template, free_watch, local_video_bg, message_box;
+const ep = document.querySelector('.ep');
+const illustrate = document.querySelector('.illustrate');
+const messages = document.querySelector('.messages');
+const local_video = document.querySelector('.local_video');
+ const collect_a = document.querySelector('.red');
+const comics_name_click = document.querySelector('.comics_name_click');
+const ep_row = document.querySelector('.ep_row');
+//const local_video = document.querySelector('.local_video');
+const copy = document.querySelector('.copy');
+const free_watch = document.querySelector('.free_watch');
+const local_video_bg = document.querySelector('.local_video_bg');
+const play = document.querySelector('.play');
+const message_box = document.querySelector('.message_box');
+const main_picture = document.querySelector('.main_picture');
+const comics_episode = document.querySelector('.comics_episode');
+
+function reizeWindow(){
+    let screen = window.innerWidth;
+
+    if (screen <= 768) {
+        message_box.remove("d-flex");
+        console.log("small")
+    }
+    else if (screen > 768) {
+        //ep_row.innerText = "";
+        //epCloned();
+        message_box.classList.add("d-flex");
+        console.log('///')
+    }
+}
+
+window.addEventListener('resize', () => {
+    reizeWindow()
+});
+
 window.onload = function () {
-    ep = document.querySelector('.ep');
-    illustrate = document.querySelector('.illustrate');
-    messages = document.querySelector('.messages');
-    local_video = document.querySelector('.local_video');
-    //collect_a = document.querySelector('.red');
-    comics_name_click = document.querySelector('.comics_name_click');
-    ep_row = document.querySelector('.ep_row');
-    //local_video = document.querySelector('.local_video');
-    copy = document.querySelector('.copy');
-    free_watch = document.querySelector('.free_watch');
-    local_video_bg = document.querySelector('.local_video_bg');
-    play = document.querySelector('.play');
-    message_box = document.querySelector('.message_box');
-    main_picture = document.querySelector('.main_picture');
-    comics_episode = document.querySelector('.comics_episode');
-
-
-
+    reizeWindow()
     //epCloned();
     ////按下play鍵，開始撥放影片(ok)
     play.addEventListener('click', () => {
@@ -68,21 +84,7 @@ window.onload = function () {
     message_box.appendChild(clonemessage());
 
 
-
-    let screen = window.innerWidth;
-    console.log(screen)
-    window.addEventListener('resize', () => {
-        if (screen <= 768) {
-            message_box.remove("d-flex");
-            console.log("small")
-        }
-        else if (screen > 768) {
-            //ep_row.innerText = "";
-            //epCloned();
-            message_box.classList.add("d-flex");
-            console.log('///')
-        }
-    })
+   
 
     ////點擊影片，影片開始播放。
     //local_video.addEventListener('click', () => {
