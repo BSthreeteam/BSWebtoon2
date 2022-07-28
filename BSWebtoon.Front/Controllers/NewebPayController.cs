@@ -214,9 +214,11 @@ namespace NewebPay.Controllers
                             break;
                     }
                     //更新帳戶餘額
-                    var Balance = (int)_repository.GetAll<Member>().Where(x => x.MemberId == MemberId).FirstOrDefault().Balance;
-                    input_RechargeRecord.CashPlanContent += Balance;
-                    _repository.Update(input_RechargeRecord);
+                    var CurrentMember = _repository.GetAll<Member>().Where(x => x.MemberId == input_RechargeRecord.MemberId).FirstOrDefault();
+                    var Balance = (int)_repository.GetAll<Member>().Where(x => x.MemberId == input_RechargeRecord.MemberId).Select(x => x.Balance).FirstOrDefault();
+                    var newBlance = input_RechargeRecord.CashPlanContent + Balance;
+                    CurrentMember.Balance = newBlance;
+                    _repository.Update(CurrentMember);
                     _repository.SaveChange();
                 }
             }
@@ -225,7 +227,7 @@ namespace NewebPay.Controllers
 
             ViewData["TradeInfo"] = receive.ToString();
 
-            return View();
+            return Redirect("~/Favorite/RecordView");
         }
 
         /// <summary>
