@@ -7,7 +7,7 @@ namespace BSWebtoon.Front.Models.DTO.UploadComicDTO
 {
     public class UploadComicInputDTO
     {
-        public string UserId { get; set; }
+        public int UserId { get; set; }
 
         //防呆
         [Required(ErrorMessage = "必須輸入")]

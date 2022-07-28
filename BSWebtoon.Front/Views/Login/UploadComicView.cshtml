@@ -50,12 +50,14 @@
     {
         if (NickName != "")
         {
-            <p>@Model.Author</p>
+    <p>@Model.Author</p>
         }
         else
         {
-            <input type="text" class="form-control" name="Author" id="Author" placeholder="25字以下"/>
-            <label>請輸入作者名稱，輸入後就不能改</label>
+            
+    <input type="text" class="form-control" name="Author" id="Author" placeholder="25字以下"/>
+            
+    <label>請輸入作者名稱，輸入後就不能改</label>
         }
 
     }
@@ -194,64 +196,7 @@
 
 
 
-                    @*<div asp-validation-summary="All" class="text-danger"></div>*@
-
-                    @* <div class="mb-3">*@
-                    @*加入防呆*@
-                    @*<label asp-for="ComicNameImage" class="form-label">漫畫名稱圖</label>*@
-                    @*//漫畫中文名稱*@
-                    @* <input class="form-control" name="ComicNameImage" type="file" id="ComicNameImage">*@
-                    @*<p>圖片尺寸必須為248x180，檔案格式僅適用JPG、JPEG以及PNG檔案，且檔案尺寸在5MB以下。</p>*@
-
-                    @*加入防呆*@
-                    <!-- 加此行 -->
-                    @*<span asp-validation-for="ComicChineseName" class="text-danger"></span>*@
-                    @* </div>*@
-
-                    @*<div class="mb-3">*@
-                    @*加入防呆*@
-                    @*<label asp-for="ComicWeekFigure" class="form-label">星期列表人物圖</label>*@
-                    @*星期列表人物圖*@
-                    @* <input class="form-control" name="ComicWeekFigure" type="file" id="ComicWeekFigure">
-                    <p>圖片尺寸必須為248x520，檔案格式僅適用JPG、JPEG以及PNG檔案，且檔案尺寸在5MB以下。</p>*@
-                    @*加入防呆*@
-                    <!-- 加此行 -->
-                    @* <span asp-validation-for="ComicWeekFigure" class="text-danger"></span>*@
-                    @*  </div>-->*@
-
-                    @*<div class="mb-3">*@
-                    @*加入防呆*@
-                    @*<label asp-for="BgCover" class="form-label">漫畫背景圖</label>*@
-                    @*漫畫背景圖*@
-                    @*<input class="form-control" name="BgCover" type="file" id="BgCover">*@
-                    @* <p>圖片尺寸必須為375x812，檔案格式僅適用JPG、JPEG以及PNG檔案，且檔案尺寸在5MB以下。</p>*@
-                    @*加入防呆*@
-                    @*<span asp-validation-for="BgCover" class="text-danger"></span>*@
-                    @*</div>*@
-
-                    @*<hr>*@
-
-                    @* <div class="mb-3">*@
-                    @*加入防呆*@
-                    @*<label asp-for="ComicFigure" class="form-label">人物圖</label>*@
-                    @*人物圖*@
-                    @*<input class="form-control" name="ComicFigure" type="file" id="ComicFigure">
-                    <p>圖片尺寸必須為452x382，檔案格式僅適用JPG、JPEG以及PNG檔案，且檔案尺寸在5MB以下。</p>*@
-                    @*加入防呆*@
-                    @* <span asp-validation-for="ComicFigure" class="text-danger"></span>*@
-                    @* </div>*@
-
-                    @* <hr>*@
-
-                    @*<div class="mb-3">*@
-                    @*加入防呆*@
-                    @*<label asp-for="HotComicNameImage" class="form-label">強檔劇獻名稱圖</label>*@
-                    @*強檔劇獻名稱圖*@
-                    @* <input class="form-control" name="HotComicNameImage" type="file" id="HotComicNameImage">*@
-                    @*<p>圖片尺寸必須為1080x1080，檔案格式僅適用JPG、JPEG以及PNG檔案，且檔案尺寸在5MB以下。</p>*@
-                    @*加入防呆*@
-                    @* <span asp-validation-for="HotComicNameImage" class="text-danger"></span>*@
-                    @*</div>*@
+                   
 
                     @* <div class="mb-3">*@
                     @*加入防呆*@
@@ -284,12 +229,12 @@
 
 
 
-                        <div class="col-md-6">
+                        <div class="col-md-6" id="ComicTagList_Choose">
                             @*加入防呆*@
                             <label asp-for="ComicTagList" class="form-label">主要漫畫類型:(必須輸入)</label>
-                            <select id="ComicTagList" name="ComicTagList" class="form-select">
+                            <select required asp-for="ComicTagList" id="ComicTagList" name="ComicTagList" class="form-select">
                                 @*給一個預設值*@
-                                <option value="1" selected>Choose漫畫主要類型...</option>
+                                <option value="1" id="Choose" selected>Choose漫畫主要類型...</option>
                                 <option value="奇幻">奇幻</option>
                                 <option value="愛情">愛情</option>
                                 <option value="動作冒險">動作冒險</option>
@@ -297,10 +242,13 @@
                                 <option value="BL/GL">BL/GL</option>
                                 <option value="懸疑恐怖">懸疑恐怖</option>
                             </select>
+                             @*加入防呆*@
+                            @*<span asp-validation-for="ComicTagList" class="text-danger"></span>*@
                         </div>
-                        @{
-                            CheckComicTagList(Model.IsSuccess);
-                        }
+                        @*@{
+                        //    CheckComicTagList(Model.IsSuccess);
+                        //}*@
+
 
                         @*加入防呆*@
                         @*<span asp-validation-for="ComicTagList" class="text-danger"></span>*@
@@ -592,6 +540,21 @@
 
     @section endJS{
     <script>
+
+let ComicTagList_Choose = document.getElementById("ComicTagList_Choose");
+    document.getElementById("ComicTagList").addEventListener("change", Checkselect ).Value;
+let Choose = document.getElementById("ComicTagList").Value;
+function Checkselect() {
+    if (Choose == 1) {
+        let Checkselect_p = document.createElement('p');
+        Checkselect_p.innerText = "必須輸入";
+        ComicTagList_Choose.append(Checkselect_p);
+    }
+}
+
+
+
+
 
         var arrCover = []; //存人物圖檔
         document.getElementById("ComicFigure")

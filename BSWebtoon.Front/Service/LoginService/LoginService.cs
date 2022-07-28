@@ -150,7 +150,7 @@ namespace BSWebtoon.Front.Service.LoginService
 
         }
 
-        public UploadComicOutputDTO GetNickName(string userName)
+        public UploadComicOutputDTO GetNickName(int userid)
         {
             var result = new UploadComicOutputDTO()
             {
@@ -160,7 +160,7 @@ namespace BSWebtoon.Front.Service.LoginService
             string user = "";
             try
             {
-                user = _repository.GetAll<Member>().First(x => x.AccountName == userName).NickName;
+                user = _repository.GetAll<Member>().First(x => x.MemberId == userid).NickName;
                 result.HasNickName = true;
                 result.IsSuccess = true;
             }
@@ -234,7 +234,7 @@ namespace BSWebtoon.Front.Service.LoginService
 
 
 
-            //先執行錯誤
+            ////先執行錯誤
             //try
             //{
 
@@ -248,9 +248,9 @@ namespace BSWebtoon.Front.Service.LoginService
 
 
 
-            //}
-            //catch//沒錯誤執行下面
-            //{
+        //}
+        //    catch//沒錯誤執行下面
+        //    {
                 //防呆
                 if (input.ComicTagList == "1")
                 {
@@ -293,7 +293,7 @@ namespace BSWebtoon.Front.Service.LoginService
                     WeekVideoWrb = "https://tw-a.kakaopagecdn.com/P/C/206/aclip/58b296b7-3ee4-4db4-8a63-393ce2160637.webm",
                     ComicVideoWeb = "https://tw-a.kakaopagecdn.com/P/C/206/aclip/58b296b7-3ee4-4db4-8a63-393ce2160637.webm",
                     HotVideo = "https://tw-a.kakaopagecdn.com/P/C/206/aclip/58b296b7-3ee4-4db4-8a63-393ce2160637.webm",
-                    AuditType = (int)Enum.Parse(typeof(AuditType), "未審核"),
+                    AuditType = (int)Enum.Parse(typeof(AuditType), "Unaudit"),
                     AuditEmployeeId = 2,
                     ComicStatus = 3,
                 };
@@ -316,7 +316,8 @@ namespace BSWebtoon.Front.Service.LoginService
             Member user;
             try
             {
-                user = _repository.GetAll<Member>().First(x => x.AccountName == "poyou chen");
+                user = _repository.GetAll<Member>().First(x => x.MemberId == input.UserId);
+                //user = _repository.GetAll<Member>().First(x => x.AccountName == "poyou chen");
                 user.NickName = input.Author;
                 //存入資料庫
                 _context.SaveChanges();

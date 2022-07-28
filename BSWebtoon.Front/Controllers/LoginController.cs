@@ -103,6 +103,9 @@ namespace BSWebtoon.Front.Controllers
         [HttpGet]
         public IActionResult UploadComicView(int userId) //Login/UploadComicView
         {
+
+            var memberId = int.Parse(User.Claims.First(x => x.Type == "MemberID").Value);
+
             var user = User.Identity.Name;
             //第三方的驗證
             //var properties = new AuthenticationProperties
@@ -114,7 +117,7 @@ namespace BSWebtoon.Front.Controllers
             //    EpCover = "https://inews.gtimg.com/newsapp_bt/0/14062897162/1000",
             //};
 
-            var outputDTO = _loginSerice.GetNickName(user);
+            var outputDTO = _loginSerice.GetNickName(memberId);
             
 
             return View(outputDTO);
@@ -130,6 +133,9 @@ namespace BSWebtoon.Front.Controllers
             {
                 return View(input);//體貼地將資料填回去
             }
+
+            var memberId = int.Parse(User.Claims.First(x => x.Type == "MemberID").Value);
+
             var user = User.Identity.Name;
 
             //if (input.Comic_subtitle == input.Comic_subtitle || input.Comic_subtitle == "1")
@@ -137,7 +143,7 @@ namespace BSWebtoon.Front.Controllers
             //使用者從表單輸入的所有的值，依序存入對應的DTO欄位值，存入一個變數。
             var inputDTO = new UploadComicInputDTO()
             {
-                UserId = user,
+                UserId = memberId,
                 ComicChineseName = ComicChineseName,
                 //ComicNameImage = ComicNameImage,
                 //HotComicNameImage = HotComicNameImage,

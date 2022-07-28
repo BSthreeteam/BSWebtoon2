@@ -11,7 +11,7 @@ namespace BSWebtoon.Front.Service.LoginService
 
         //話次與內容上傳
         Task<UploadWorkOutputDTO> UploadWorkViewUpdateData(UploadWorkInputDTO input);
-        UploadComicOutputDTO GetNickName(string userName);
+        UploadComicOutputDTO GetNickName(int userid);
 
     }
 
