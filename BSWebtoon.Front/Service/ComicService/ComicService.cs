@@ -5567,7 +5567,7 @@ namespace BSWebtoon.Front.Service.ComicService
             //倒數券 我的最愛 觀看紀錄 點擊數 留言
             //comicId = 108;
             //審核 1通過 2未審核 3失敗 4審核中
-            userName = "林淑芬";
+            //userName = "林淑芬";
             var memberId = _repository.GetAll<Member>().Where(m => m.AccountName == userName).Select(m => m.MemberId).FirstOrDefault();
             var comicSource = _repository.GetAll<Comic>().Where(c => c.AuditType == 1).First(x => x.ComicId == comicId);
             var tagListSource = _repository.GetAll<ComicTagList>().Where(x => x.ComicId == comicSource.ComicId);
@@ -5584,7 +5584,7 @@ namespace BSWebtoon.Front.Service.ComicService
             var commentSource = _repository.GetAll<Comment>().Where(c => epSource.Any(e => e.EpId == c.EpId));
             int ComicLikeCount = 0;
 
-            var commentLikeSource = _repository.GetAll<CommentLikeRecord>().GroupBy(g => g.CommentId).Where(g => commentSource.Any(c => c.CommentId == g.Key)).Select(c => new CommentData {CommentId= c.Key,CommentLikeCount= c.Count() });
+            var commentLikeSource = _repository.GetAll<CommentLikeRecord>().GroupBy(g => g.CommentId).Where(g => commentSource.Any(c => c.CommentId == g.Key)).Select(c => new CommentData { CommentId = c.Key, CommentLikeCount = c.Count() });
             foreach (var like in commentLikeSource)
             {
                 ComicLikeCount = ComicLikeCount + like.CommentLikeCount;
@@ -5611,6 +5611,8 @@ namespace BSWebtoon.Front.Service.ComicService
             var comicIsLike = _repository.GetAll<Favorite>().Any(f => f.ComicId == comicId && f.MemberId == memberId);
 
             var CommentReportCount = _repository.GetAll<Report>().Where(r => r.AuditType == 1).GroupBy(g => g.CommentId).Select(c => new CommentData { CommentId = (int)c.Key, CommentReportCount = c.Count() });
+
+            CreateClickRecord(comicId, memberId);
 
             return new WorkPageDTO()
             {
@@ -5664,16 +5666,15 @@ namespace BSWebtoon.Front.Service.ComicService
                 }).ToList()
             };
         }
-
-        //    //public void EpUpdate()
-        //    //{
-        //    //    var p1 = _repository.GetAll<Episode>().Where(x => x.EpId == 1).FirstOrDefault();
-        //    //    p1.EpCover = "https://tw-a.kakaopagecdn.com/P/EO/46/14940/tn/2x/ad6f27c3-0d1b-4402-9d23-a25dfb4adddd.jpg";
-        //    //    var p2 = _repository.GetAll<Episode>().Where(x => x.EpId == 2).FirstOrDefault();
-        //    //    p2.EpCover = "https://tw-a.kakaopagecdn.com/P/EO/46/14826/tn/2x/bbc85024-ca09-4084-8213-c92c7ec0dd27.jpg";
-
-        //    //    _repository.SaveChange();
-        //    //}
-        //}
+        public void CreateClickRecord(int comicId,int memberId)
+        {
+            _repository.Create(new ClickRecord()
+            {
+                ComicId = comicId,
+                MemberId = memberId,
+                CreateTime = DateTime.UtcNow.AddHours(8),
+            });
+            _repository.SaveChange();
+        }
     }
 }
