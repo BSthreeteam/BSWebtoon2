@@ -20,7 +20,7 @@ window.onload = function () {
 
 
     //epCloned();
-    ////按下play鍵，開始撥放影片
+    ////按下play鍵，開始撥放影片(ok)
     play.addEventListener('click', () => {
         local_video_bg.classList.remove('d-none');
         local_video_bg.play();
@@ -29,7 +29,7 @@ window.onload = function () {
         local_video_bg.classList.add('d-none');
     })
 
-    ////分享-複製連結
+    ////分享-複製連結(ok)
     copy.addEventListener('click', () => {
         var dummy = document.createElement('input');
         console.log(dummy)
@@ -40,18 +40,30 @@ window.onload = function () {
         document.body.removeChild(dummy);
         alert('^^ 網址已複製 ^^');
     })
-
-    //留言
-    let comment = document.querySelector('#comment');
-    function clonemessage() {
-        let cloneContent = comment.content.cloneNode(true);
-        return cloneContent;
-    }
-    messages.addEventListener('click', () => {
-        console.log('3')
+    ////(手機)選單
+    //話次
+    ep.addEventListener('click', () => {
+        console.log('1')
         ep_row.innerText = "";
-        ep_row.appendChild(clonemessage());
+        //epCloned();
     })
+    //作品資訊
+    illustrate.addEventListener('click', () => {
+        console.log('2')
+        ep_row.innerText = "";
+    })
+
+    ////留言
+    //let comment = document.querySelector('#comment');
+    //function clonemessage() {
+    //    let cloneContent = comment.content.cloneNode(true);
+    //    return cloneContent;
+    //}
+    //messages.addEventListener('click', () => {
+    //    console.log('3')
+    //    ep_row.innerText = "";
+    //    ep_row.appendChild(clonemessage());
+    //})
     ////桌機留言區
     message_box.appendChild(clonemessage());
 
@@ -70,19 +82,6 @@ window.onload = function () {
             message_box.classList.add("d-flex");
             console.log('///')
         }
-    })
-    ////(手機)選單
-    //話次
-    ep.addEventListener('click', () => {
-        console.log('1')
-        ep_row.innerText = "";
-        //epCloned();
-    })
-    //作品資訊
-    illustrate.addEventListener('click', () => {
-        console.log('2')
-        ep_row.innerText = "";
-        ep_row.appendChild(mobleCloned('骨灰級菜鳥玩家', 'BONIEE', 'BONIEE', 'BONIEE,Step on a LEGO', 'REDICE STUDIO'))
     })
 
     ////點擊影片，影片開始播放。

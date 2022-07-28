@@ -50,7 +50,7 @@
         </div>
     </div>
     <div class="big_video">
-        <video title="" preload="auto" muted@*="ture"*@ class="local_video_bg object-contain pointer-events-auto   d-none">
+        <video title="" preload="auto" muted="ture" class="local_video_bg object-contain pointer-events-auto   d-none">
             <source src="@Model.ComicVideoWeb" type="video/webm">
 
         </video>
@@ -65,9 +65,9 @@
                     <p><span>作者</span> @Model.Author</p>
                     <p><span>發行</span> @Model.Publisher</p>
                     <div class="comics_category">
-                        <p class="category"><span><i class="fa-solid fa-bars-staggered"></i></span>@Model.MainTagName</p>
-                        <p class="whatch"><span><i class="fa-regular fa-eye"></i></span> @Model.ViewCount </p>
-                        <p class="good"><span><i class="fa-regular fa-thumbs-up"></i></span> @Model.ComicLikeCount </p>
+                        <span><i class="fa-solid fa-bars-staggered"></i></span><p class="category d-flex align-items-center">@Model.MainTagName</p>
+                        <span><i class="fa-regular fa-eye"></i></span><p class="whatch d-flex align-items-center"> @Model.ViewCount </p>
+                        <span><i class="fa-regular fa-thumbs-up"></i></span><p class="good d-flex align-items-center"> @Model.ComicLikeCount </p>
                     </div>
                 </div>
             </a>
@@ -134,7 +134,36 @@
                         </div>
                     }
                 }
-
+                <div class="mobile_title_box p-3 d-none">
+                    <h2 class="mo_ti fw-bolder">@Model.ComicChineseName</h2>
+                    <div class="ill_box">
+                        <div>
+                            <span>繪者</span>
+                            <p class="mo_word">@Model.Painter</p>
+                        </div>
+                        <div>
+                            <span>作者</span>
+                            <p class="mo_pic">@Model.Author</p>
+                        </div>
+                        <div>
+                            <span>發行</span>
+                            <p class="mo_publisher">@Model.Publisher</p>
+                        </div>
+                    </div>
+                    <div class="story_box mt-5">
+                        <h3>故事大綱</h3>
+                        <p>@Model.Introduction</p>
+                    </div>
+                    <div class="keywords_box mt-5">
+                        <h4 class="mb-3">關鍵字</h4>
+                        <div>
+                            @foreach (var tag in Model.TagNames)
+                            {
+                                <p>#@tag</p>
+                            }
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-lg-4 col-xl-4">
                 <div class="comics_illustrate">
@@ -225,7 +254,6 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
             </div>
         </div>
     </div>
