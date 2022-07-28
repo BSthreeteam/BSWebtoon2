@@ -90,6 +90,13 @@ namespace BSWebtoon.Front.Service.MemberService
             await _httpContextAccessor.
                 HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         }
+        public async Task LogoutAccountAsync()
+        {
+            //基本上就是把cookie刪除
+            await _httpContextAccessor.
+                HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        }
+
         public enum LoginTypes
         {
             google = 1, line = 2, facebook = 3
@@ -114,7 +121,7 @@ namespace BSWebtoon.Front.Service.MemberService
                     LoginTypeId = provider,
                     NameIdentifier = input.NameIdentifier,
                     AccountName = input.AccountName,
-                    NickName = input.NickName,
+                    NickName = "",
                     Email = input.Email,
                     CreateTime = DateTime.UtcNow,
                     IsDarkTheme = true
