@@ -164,7 +164,8 @@ namespace NewebPay.Controllers
 
             // ---------- by hana  ------ 
             //將成功訂單存入資料庫
-            var input_RechargeRecord = new RechargeRecord() { 
+            var input_RechargeRecord = new RechargeRecord()
+            {
                 RechargeRecordId = 4,
                 MemberId = 1,
                 CashPlanId = 1,
@@ -176,11 +177,12 @@ namespace NewebPay.Controllers
 
             foreach (String key in decryptTradeCollection.AllKeys)
             {
+                var MemberId = 123;
                 if (key == "MerchantOrderNo")
                 {
-                    string GetMerchantOrderNo = decryptTradeCollection[key];
-                    string[] sArray = GetMerchantOrderNo.Split("_");
-                    input_RechargeRecord.MemberId = Convert.ToInt32(sArray[0]);
+                    string[] sArray = decryptTradeCollection[key].Split("_");
+                    MemberId = Convert.ToInt32(sArray[0]);
+                    input_RechargeRecord.MemberId = MemberId;
                 }
                 else if (key == "ItemDesc")
                 {
@@ -190,7 +192,6 @@ namespace NewebPay.Controllers
                 else if (key == "Amt")
                 {
                     input_RechargeRecord.Price = Convert.ToInt32(decryptTradeCollection[key]);
-
                 }
                 else if (key == "PaymentMethod")
                 {
@@ -212,22 +213,12 @@ namespace NewebPay.Controllers
                             input_RechargeRecord.CashPlanId = 1;
                             break;
                     }
-
-                    ////從MemberID找出Balance 有撈對就OK了
-                    //int Balance = _repository.GetAll<ComicTagList>().Where(x => x.TageListId == 2).FirstOrDefault();
-
-                    ////hana 
-                    //input_RechargeRecord.CashPlanContent += Balance;
-                    //_repository.Update(input_RechargeRecord);
-
-                    //_repository.SaveChange();
-
-
-                    //var updateBalance = _repository.GetAll<Member>().Where(x => x.MemberId == memberId).FirstOrDefault();
-                    //updateBalance.Balance = Convert.ToDecimal(decryptTradeCollection[key]);
-                
+                    //更新帳戶餘額
+                    var Balance = (int)_repository.GetAll<Member>().Where(x => x.MemberId == MemberId).FirstOrDefault().Balance;
+                    input_RechargeRecord.CashPlanContent += Balance;
+                    _repository.Update(input_RechargeRecord);
+                    _repository.SaveChange();
                 }
-
             }
 
             _rechargeService.RechargeRecordCreateNew(input_RechargeRecord);
