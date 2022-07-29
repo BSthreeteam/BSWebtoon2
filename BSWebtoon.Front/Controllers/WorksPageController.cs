@@ -27,11 +27,12 @@ namespace BSWebtoon.Front.Controllers
             //var name_ = User.Claims.Select(m => m.Value);
             //var userName_ = User.Claims.ToList();
             string name = User.Identity.Name;
-            
+
             var workPageComic = _comicService.WorkPageRead(Id, name);
 
             var result = new WorkPageViewModel
             {
+                IsAuthenticated = User.Identity.IsAuthenticated,
                 MemberId = workPageComic.MemberId,
                 ComicId = workPageComic.ComicId,
                 ComicChineseName = workPageComic.ComicChineseName,
@@ -94,7 +95,7 @@ namespace BSWebtoon.Front.Controllers
             var result = new ComicContentViewModel();
             if (comicContents.Count() != 0)
             {
-                var EpTitle = comicContents.Select(c=>c.EpTitle).First();
+                var EpTitle = comicContents.Select(c => c.EpTitle).First();
                 result = new ComicContentViewModel()
                 {
                     EpTitle = EpTitle,

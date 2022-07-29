@@ -1,5 +1,16 @@
 let main_picture, main_comics_episode, local_video/*, collect_a*/, tidy, tidy_r, comics_episode, ep, illustrate, messages, copy, play;
 let ep_template, ep_row, comics_name_click, moble_title_template, ticket_template, free_watch, local_video_bg, message_box;
+
+
+function clickEp(epId) {
+    if (isAuthenticated) {
+        window.location.href = `/WorksPage/ComicContent/${epId}`;
+    } else {
+        $('#exampleModal').modal('show');
+    }
+
+}
+
 window.onload = function () {
     ep = document.querySelector('.ep');
     illustrate = document.querySelector('.illustrate');
@@ -42,20 +53,44 @@ window.onload = function () {
     })
 
     //留言
-    let comment = document.querySelector('#comment');
-    function clonemessage() {
-        let cloneContent = comment.content.cloneNode(true);
-        return cloneContent;
-    }
-    messages.addEventListener('click', () => {
-        console.log('3')
-        ep_row.innerText = "";
-        ep_row.appendChild(clonemessage());
+    //let comment = document.querySelector('#comment');
+    //function clonemessage() {
+    //    let cloneContent = comment.content.cloneNode(true);
+    //    return cloneContent;
+    //}
+    //messages.addEventListener('click', () => {
+    //    console.log('3')
+    //    ep_row.innerText = "";
+    //    ep_row.appendChild(clonemessage());
+    //})
+    //////桌機留言區
+    //message_box.appendChild(clonemessage());
+
+    let collect_a = document.querySelector('.red');
+
+    ////點擊愛心，顏色變紅色
+    let check = document.querySelector('#heart');
+   
+    clickLike(checkvalue)
+    collect_a.addEventListener('click', () => {
+        checkvalue = !checkvalue
+        clickLike(checkvalue)
     })
-    ////桌機留言區
-    message_box.appendChild(clonemessage());
+    function clickLike(boolvalue) {
+        check.checked = boolvalue
+        if (check.checked) {
+            console.log(check.checked)
+            collect_a.classList.add('text-danger');
+        }
+        else {
+            console.log(check.checked)
+            collect_a.classList.remove('text-danger');
+        }
+    }
 
-
+    //var login=document.getElementById("login");
+    //login.dataset.toggle="modal"
+    //login.dataset.target="#exampleModal"
 
     let screen = window.innerWidth;
     console.log(screen)
