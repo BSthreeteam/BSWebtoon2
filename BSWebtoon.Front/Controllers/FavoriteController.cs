@@ -1,4 +1,5 @@
 ﻿using BSWebtoon.Front.Service.FavoriteService;
+using BSWebtoon.Front.Service.MemberService;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BSWebtoon.Front.Controllers
@@ -7,12 +8,20 @@ namespace BSWebtoon.Front.Controllers
     {
         private readonly IFavoriteService _favoriteService;
         private readonly FavoriteService _readfavoriteService;
+        private readonly IMemberService _memberService;
 
         public FavoriteController(IFavoriteService favoriteService, FavoriteService readfavoriteService)
         {
             _favoriteService = favoriteService;
             _readfavoriteService = readfavoriteService;
         }
+
+
+        public FavoriteController(IMemberService memberService)
+        {
+            _memberService = memberService;
+        }
+
         public IActionResult RecordView()//Favorite/RecordView
         {
             return View();
