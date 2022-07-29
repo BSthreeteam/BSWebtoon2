@@ -93,6 +93,13 @@ body {
     overflow: hidden;
 }
 
+#mulu-mdBTN {
+    display: inline-block;
+}
+
+#muluBTN {
+    display: none;
+}
 
 
 @media screen and (max-width:768px) {
@@ -118,5 +125,11 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+    #mulu-mdBTN{
+        display:none;
+    }
+    #muluBTN {
+        display: inline-block;
     }
 }

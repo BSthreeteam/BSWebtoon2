@@ -2,6 +2,7 @@
 using BSWebtoon.Front.Service.ActivityService;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BSWebtoon.Front.Controllers
 {
@@ -35,9 +36,23 @@ namespace BSWebtoon.Front.Controllers
 
             return View(result);
         }
-        public IActionResult ActivityContent()
+        public IActionResult ActivityContent(int Id)
         {
-            return View();
+            var memberId = int.Parse(User.Claims.First(x => x.Type == "MemberID").Value);
+            var activityContentSource = _activityService.ReadActivityContent(Id, memberId);
+
+            var result = new ActivityContentViewModel()
+            {
+                ActivityName = activityContentSource.ActivityName,
+                ActivityImage = activityContentSource.ActivityImage,
+                ActivityBgColor = activityContentSource.ActivityBgColor,
+                ActivityContent = activityContentSource.ActivityContent,
+                ActivityStartTime = activityContentSource.ActivityStartTime,
+                ActivityEndTime = activityContentSource.ActivityEndTime,
+                IsGetUniversalCoupon = activityContentSource.IsGetUniversalCoupon,
+            };
+
+            return View(result);
         }
     }
 }
