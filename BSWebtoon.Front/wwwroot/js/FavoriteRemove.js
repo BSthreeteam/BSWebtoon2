@@ -78,35 +78,36 @@ function remove_all(double_check = false) {
     // console.log(double_check)
     if (double_check) {
         let comicIdsToDelete = document.forms["main"].querySelectorAll('input[type="checkbox"]:checked')
-            .map( ckbox => ckbox.getAttribute('my_comicId') )
 
-    //    fetch('/Favorite/FavoriteRemove', {
-    //        method: 'post',
-    //        headers: {
-    //            'Content-type':'application/json;charset=utf-8',
-    //            //'Content-type':'application/json',
-    //        },
-    //        body: JSON.stringify(comicIdsToDelete)  //ComiIdListTiDelete 
-    //    })
-    //    .then(resp => {
-    //        if (resp.ok) {
-    //            arr_to_be_del.forEach(del_item_id => {
-    //                let del_tag = document.getElementById(del_item_id).parentNode.parentNode;
-    //                del_tag.remove();
-    //                console.log(del_item_id + '刪除成功~');
-    //            });
-    //            //全部刪除 直接重新宣告成空的
+            //.map( ckbox => ckbox.getAttribute('my_comicId') )
+
+        fetch('/Favorite/FavoriteRemove', {
+            method: 'post',
+            headers: {
+                'Content-type':'application/json;charset=utf-8',
+                //'Content-type':'application/json',
+            },
+            body: JSON.stringify(comicIdsToDelete)  //ComiIdListTiDelete 
+        })
+        .then(resp => {
+            if (resp.ok) {
+                arr_to_be_del.forEach(del_item_id => {
+                    let del_tag = document.getElementById(del_item_id).parentNode.parentNode;
+                    del_tag.remove();
+                    console.log(del_item_id + '刪除成功~');
+                });
+                //全部刪除 直接重新宣告成空的
                 
-    //            arr_to_be_del = [];
-    //            double_check_block.style.transform = "translateY(100%)";
-    //            //window.location.reload()
-    //        } else {
-    //            alert('刪除失敗')
-    //        }
-    //    })
-    //} else {
-    //    double_check_block.style.transform = "translateY(0%)";
-    //}
+                arr_to_be_del = [];
+                double_check_block.style.transform = "translateY(100%)";
+                //window.location.reload()
+            } else {
+                alert('刪除失敗')
+            }
+        })
+    } else {
+        double_check_block.style.transform = "translateY(0%)";
+    }
 
 
     update_text();

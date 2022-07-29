@@ -1,10 +1,10 @@
 ﻿.close_btn {
-    top:0;
+    top: 0;
     position: absolute;
     z-index: 99;
-    width:100%;
-    padding:25px;
-    background-color:black;
+    width: 100%;
+    padding: 25px;
+    background-color: black;
 }
 
 img {
@@ -21,8 +21,8 @@ img {
 }
 
 
-.gray_block{
-    display:none;
+.gray_block {
+    display: none;
 }
 
 input[type="checkbox"]:checked ~ .gray_block {
@@ -54,7 +54,7 @@ input[type="checkbox"]:checked ~ .gray_block {
     top: 0px;
 }
 
-input[type="checkbox"]:checked~.check_btn::before {
+input[type="checkbox"]:checked ~ .check_btn::before {
     background-color: rgb(255, 0, 0);
 }
 
@@ -68,8 +68,6 @@ input[type="checkbox"]:checked~.check_btn::before {
     color: #fff;
 }
 
-.col{
-    padding:2px;
+.col {
+    padding: 2px;
 }
-
-
