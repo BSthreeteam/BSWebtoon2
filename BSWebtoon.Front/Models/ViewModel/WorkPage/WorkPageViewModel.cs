@@ -5,6 +5,7 @@ namespace BSWebtoon.Front.Models.ViewModel.WorkPage
 {
     public class WorkPageViewModel
     {
+        public bool IsAuthenticated { get; set; }
         public int MemberId { get; set; }
         //作品頁
         public int ComicId { get; set; }
