@@ -5561,13 +5561,13 @@ namespace BSWebtoon.Front.Service.ComicService
         }
 
 
-        public WorkPageDTO WorkPageRead(int comicId, string userName)
+        public WorkPageDTO WorkPageRead(int comicId, int memberId)
         {
             //倒數券 我的最愛 觀看紀錄 點擊數 留言
             //comicId = 108;
             //審核 1通過 2未審核 3失敗 4審核中
             //userName = "林淑芬";
-            var memberId = _repository.GetAll<Member>().Where(m => m.AccountName == userName).Select(m => m.MemberId).FirstOrDefault();
+            //var memberId = _repository.GetAll<Member>().Where(m => m.AccountName == userName).Select(m => m.MemberId).FirstOrDefault();
             var comicSource = _repository.GetAll<Comic>().Where(c => c.AuditType == 1).First(x => x.ComicId == comicId);
             var tagListSource = _repository.GetAll<ComicTagList>().Where(x => x.ComicId == comicSource.ComicId);
             var tagnames = _repository.GetAll<ComicTag>().Where(x => tagListSource.Any(y => y.TagId == x.TagId));
@@ -5605,12 +5605,13 @@ namespace BSWebtoon.Front.Service.ComicService
             }
 
 
-            var ViewCount = _repository.GetAll<ViewRecord>().Where(v => v.IsDelete == false && epSource.Any(ep => ep.EpId == v.EpId)).Count();
+            var clickCount = _repository.GetAll<ClickRecord>().Where(c => c.ComicId == comicId).Count();
 
             var comicIsLike = _repository.GetAll<Favorite>().Any(f => f.ComicId == comicId && f.MemberId == memberId);
 
             var CommentReportCount = _repository.GetAll<Report>().Where(r => r.AuditType == 1).GroupBy(g => g.CommentId).Select(c => new CommentData { CommentId = (int)c.Key, CommentReportCount = c.Count() });
 
+            
             CreateClickRecord(comicId, memberId);
 
             return new WorkPageDTO()
@@ -5627,7 +5628,7 @@ namespace BSWebtoon.Front.Service.ComicService
                 IslikeComic = comicIsLike,
                 MainTagName = mainTag.TagName,
                 TagNames = tagnames.Select(t => t.TagName).ToList(),
-                ViewCount = ViewCount,
+                ClickCount = clickCount,
                 ComicLikeCount = ComicLikeCount,
                 ViewRecordEpTitle = ViewRecordEpTitle,
 
@@ -5665,14 +5666,25 @@ namespace BSWebtoon.Front.Service.ComicService
                 }).ToList()
             };
         }
-        public void CreateClickRecord(int comicId,int memberId)
+        public void CreateClickRecord(int comicId, int memberId)
         {
-            _repository.Create(new ClickRecord()
+            if (memberId == 0)
             {
-                ComicId = comicId,
-                MemberId = memberId,
-                CreateTime = DateTime.UtcNow.AddHours(8),
-            });
+                _repository.Create(new ClickRecord()
+                {
+                    ComicId = comicId,
+                    CreateTime = DateTime.UtcNow.AddHours(8),
+                });
+            }
+            else
+            {
+                _repository.Create(new ClickRecord()
+                {
+                    ComicId = comicId,
+                    MemberId = memberId,
+                    CreateTime = DateTime.UtcNow.AddHours(8),
+                });
+            }
             _repository.SaveChange();
         }
     }

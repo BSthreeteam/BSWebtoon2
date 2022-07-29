@@ -38,7 +38,7 @@ namespace BSWebtoon.Front.Controllers
         }
         public IActionResult ActivityContent(int Id)
         {
-            var memberId = int.Parse(User.Claims.First(x => x.Type == "MemberID").Value);
+            var memberId = User.Claims.FirstOrDefault() == null ? 0 : int.Parse(User.Claims.FirstOrDefault(x => x.Type == "MemberID").Value);
             var activityContentSource = _activityService.ReadActivityContent(Id, memberId);
 
             var result = new ActivityContentViewModel()
