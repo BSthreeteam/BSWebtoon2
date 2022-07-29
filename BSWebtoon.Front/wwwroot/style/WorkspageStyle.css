@@ -6,7 +6,7 @@
 }
 
 body {
-    /* overflow: hidden; */
+    margin-bottom:0px;
 }
 
 a {
@@ -101,6 +101,10 @@ a {
     width: 80%;
     margin: 10px 0 0 0;
 }
+.main_picture .main_picture_box .local_img {
+    width: 80%;
+    margin: 10px 0 0 0;
+}
 
     .main_picture .comics_name_bg {
         background: linear-gradient(transparent 2%,var(--bgColor));
@@ -188,7 +192,7 @@ a {
 } */
 .main_comics_episode .comics_episode .row {
     max-width: 1200px;
-    padding-bottom: 200px;
+    padding-bottom: 60px;
     padding-top: 10px;
     top: 465px;
 }
@@ -228,14 +232,10 @@ a {
             list-style: none;
             margin: 5px;
             text-align: center;
+            color: var(--content-small-color);
+            padding: 0px 10px;
         }
-
-            .main_comics_episode .comics_episode .illustrate_box ul li a {
-                color: var(--content-small-color);
-                padding: 0px 10px;
-            }
-
-                .main_comics_episode .comics_episode .illustrate_box ul li a:hover {
+                .main_comics_episode .comics_episode .illustrate_box ul li:hover {
                     color: black;
                     background-color: white;
                     border-radius: 30px;
@@ -358,6 +358,9 @@ a {
     .comics_illustrate {
         display: block;
         margin: 10px;
+    }
+    .main_comics_episode .comics_episode .message_box {
+        display: flex;
     }
 
     .message_box .message_name {
