@@ -16,7 +16,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 //using BSWebtoon.Front.Models.DTO.EP;
-using BSWebtoon.Front.Models.DTO.UploadWorkView;
+using BSWebtoon.Front.Models.DTO.UploadComicDTO;
 using BSWebtoon.Front.Models.DTO.CloudinaryDTO;
 using System.Threading.Tasks;
 

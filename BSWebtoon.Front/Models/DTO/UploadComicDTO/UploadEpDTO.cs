@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace BSWebtoon.Front.Models.DTO.UploadWorkView
+namespace BSWebtoon.Front.Models.DTO.UploadComicDTO
 {
 
-    public class UploadWorkInputDTO 
+    public class UploadEpInputDTO
     {
-        public int CommicId { get; set; }
+        public int ComicId { get; set; }
 
 
         //防呆
@@ -31,13 +31,8 @@ namespace BSWebtoon.Front.Models.DTO.UploadWorkView
 
     }
 
-    public class UploadWorkOutputDTO : BaseOutputDTO
+    public class UploadEpOutputDTO : BaseOutputDTO
     {
-
-
-        
-        
-
         //防呆
         [Required(ErrorMessage = "必須輸入")]
         public string EpTitle { get; set; }

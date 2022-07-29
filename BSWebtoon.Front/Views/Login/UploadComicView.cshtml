@@ -1,74 +1,17 @@
 ﻿
 @using BSWebtoon.Front.Models.DTO.UploadComicDTO
 
-@model UploadComicOutputDTO
+@model UploadComicInputDTO
 
 @*@model UploadComicInputDTO*@
 @{
     ViewData["Title"] = "UploadComicView";
 }
 
-@*//防呆*@
-@functions {
-    private void CheckDataExist(bool isSuccess)
-    {
-        if (isSuccess == false)
-        {
-    <p class="text-danger">已有重複名稱</p>
-        }
-
-    }
-
-    private void CheckComicTagList(bool isSuccess)
-    {
-        if (isSuccess == false)
-        {
-    <p class="text-danger">必須輸入</p>
-        }
-
-    }
-
-    private void CheckUpdateWeek(bool isSuccess)
-    {
-        if (isSuccess == false)
-        {
-    <p class="text-danger text-end">必須輸入</p>
-        }
-
-    }
-
-    private void CheckClick(bool isSuccess)
-    {
-        if (isSuccess == false)
-        {
-    <p class="text-danger">必須打勾</p>
-        }
-
-    }
-
-     private void CheckAuthor(string NickName)
-    {
-        if (NickName != "")
-        {
-    <p>@Model.Author</p>
-        }
-        else
-        {
-            
-    <input type="text" class="form-control" name="Author" id="Author" placeholder="25字以下"/>
-            
-    <label>請輸入作者名稱，輸入後就不能改</label>
-        }
-
-    }
-
-
-}
-
 
 <!-- 導覽列 -->
 
-<form method="post" enctype="multipart/form-data">
+<form method="post" action=""> @*enctype="multipart/form-data"*@
 
     <div class="up_bgc mx-auto" style="background-color: black; color:  white; max-width: 1200px ">
 
@@ -161,12 +104,11 @@
                         </p>
                     </div>
 
-                    <label type="button" class="btn btn-secondary w-50 d-flex align-self-center text-center"
-                           asp-for="ComicFigure">上傳漫畫人物圖</label>
+                    <label type="button" class="btn btn-secondary w-50 d-flex align-self-center text-center" asp-for="ComicFigure">上傳漫畫人物圖</label>
                     @*加收參數*@
-                    <input class="cover" name="ComicFigure" type="file" accept="image/*" id="ComicFigure" style="display:none;">
+                    <input class="cover" name="ComicFigure" type="file" accept="image/*" id="ComicFigure" style="display:none;>
+                    @*<input asp-for="ComicFigure" type="file" class="cover d-none" accept="image/*" id="ComicFigure"/>*@
                     @*加入防呆*@
-                    <!-- 加此行 -->
                     <span asp-validation-for="ComicFigure" class="text-danger"></span>
 
                     <hr>
@@ -185,10 +127,11 @@
                             圖片尺寸必須為375x812，檔案格式僅適用JPG、JPEG以及PNG檔案，且檔案尺寸在5MB以下。
                         </p>
                     </div>
-                    <label type="button" class="btn btn-secondary w-50 d-flex align-self-center text-center"
-                           asp-for="BgCover">上傳漫畫背景圖</label>
+                    <label type="button" class="btn btn-secondary w-50 d-flex align-self-center text-center" asp-for="BgCover">上傳漫畫背景圖</label>
                     @*加收參數*@
                     <input class="cover" name="BgCover" type="file" accept="image/*" id="BgCover" style="display:none;">
+                    @*<input asp-for="BgCover" type="file" class="cover d-none" accept="image/*" id="ComicFigure"/>*@
+
                     @*加入防呆*@
                     <span asp-validation-for="BgCover" class="text-danger"></span>
                     <hr>
@@ -218,10 +161,10 @@
 
 
                          <div class="col-12">
-                            @*加入防呆*@
                             <label asp-for="ComicChineseName" class="form-label">漫畫中文名稱:(必須輸入)</label>
                             @*//漫畫中文名稱*@
-                            <input type="text" class="form-control" name="ComicChineseName" id="ComicChineseName" placeholder="25字以下">
+                            @*<input type="text" class="form-control" name="ComicChineseName" id="ComicChineseName" placeholder="25字以下" value="@Model.ComicChineseName">*@
+                            <input asp-for="ComicChineseName" class="form-control"/>
                             @*加入防呆*@
                             <span asp-validation-for="ComicChineseName" class="text-danger"></span>
                         </div>
@@ -230,12 +173,13 @@
 
 
                         <div class="col-md-6" id="ComicTagList_Choose">
-                            @*加入防呆*@
                             <label asp-for="ComicTagList" class="form-label">主要漫畫類型:(必須輸入)</label>
                             <select required asp-for="ComicTagList" id="ComicTagList" name="ComicTagList" class="form-select">
                                 @*給一個預設值*@
-                                <option value="1" id="Choose" selected>Choose漫畫主要類型...</option>
-                                <option value="奇幻">奇幻</option>
+                                <option value="1" id="Choose" >Choose漫畫主要類型...</option>
+                                <option value="奇幻" selected >奇幻</option>
+                                @*<option value="1" id="Choose" selected>Choose漫畫主要類型...</option>
+                                <option value="奇幻">奇幻</option>*@
                                 <option value="愛情">愛情</option>
                                 <option value="動作冒險">動作冒險</option>
                                 <option value="劇情">劇情</option>
@@ -251,8 +195,6 @@
 
 
                         @*加入防呆*@
-                        @*<span asp-validation-for="ComicTagList" class="text-danger"></span>*@
-
 
                         @*次要漫畫類型:*@
                         <div class="col-md-6">
@@ -308,18 +250,13 @@
                             </select>
                         </div>
 
-
-
-
-
-
-
                        
 
                         @*發行日期*@
                         <div class="col-md-6">
                             <label asp-for="PublishDate" class="form-label my-4">發行日期:(必須輸入)</label>
-                            <input type="date" id="PublishDate" name="PublishDate">
+                            @*<input type="date" id="PublishDate" name="PublishDate" value="@Model.PublishDate">*@
+                             <input asp-for="PublishDate" type="date"  class="form-control"/>
                             @*加入防呆*@
                             <span asp-validation-for="PublishDate" class="text-danger"></span>
                         </div>
@@ -328,59 +265,62 @@
                         <div class="col-md-6">
                             <label for="UpdateWeek" class="form-label">更新星期:(必須輸入)</label>
                             <select id="UpdateWeek" name="UpdateWeek" class="form-select">
-                                <option value="1" selected>Choose更新星期...</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
+                                <option value="0" >Choose更新星期...</option>
+                                <option value="1" selected>星期一</option>
+@*                                <option value="0" selected>Choose更新星期...</option>
+                                <option value="1">星期一</option>
+*@                              <option value="2">星期二</option>
+                                <option value="3">星期三</option>
+                                <option value="4">星期四</option>
+                                <option value="5">星期五</option>
+                                <option value="6">星期六</option>
+                                <option value="7">星期日</option>
                             </select>
                         </div>
-                        @{
+                        @*@{
                             CheckUpdateWeek(Model.IsSuccess);
-                        }
+                        }*@
 
 
                         <div class="col-12">
-                            @*加入防呆*@
                             <label asp-for="Publisher" class="form-label">出版商</label>
                             @*//出版商*@
-                            <input type="text" class="form-control" name="Publisher" id="Publisher" placeholder="25字以下">
+                           @* <input type="text" class="form-control" name="Publisher" id="Publisher" placeholder="25字以下"  value="@Model.Publisher">*@
+                             <input asp-for="Publisher" class="form-control"/>
                             @*加入防呆*@
-                            @*<span asp-validation-for="Publisher" class="text-danger"></span>*@
+                            <span asp-validation-for="Publisher" class="text-danger"></span>
                         </div>
 
                         <div class="col-12">
-                            @*加入防呆*@
                             <label asp-for="Painter" class="form-label">繪者(必須輸入)</label>
                             @*//繪者*@
-                            <input type="text" class="form-control" name="Painter" id="Painter" placeholder="25字以下">
-                            @*加入防呆*@
+                            <input type="text" class="form-control" name="Painter" id="Painter" placeholder="25字以下" value="@Model.Painter">
                             <span asp-validation-for="Painter" class="text-danger"></span>
                         </div>
 
                         <div class="col-12">
-                            @*加入防呆*@
-                            <label asp-for="Author" class="form-label">作者(必須輸入唯一的名字)</label>
+                             <label asp-for="@Model.Author" class="form-label">作者(會員僅能有一個唯一的作者名稱，不可再更改)</label>
                             @*//作者*@
-                            @*<input type="text" class="form-control" name="Author" id="Author" placeholder="25字以下">*@
-                            @{CheckAuthor(@Model.Author);}
-                            @*加入防呆*@
+                            @*<input type="text" class="form-control" name="Author" id="Author"  placeholder="25字以下" value="@Model.Author">*@
+                            <input asp-for="Author" type="text" class="form-control" placeholder="25字以下">
                             <span asp-validation-for="Author" class="text-danger"></span>
-                            @{
+                            <input type="checkbox"  name="IsNewAuthorName" value=" @( string.IsNullOrEmpty(Model.Author)  )"> 
+                            @*class="d-none"*@
+
+                            @*@{CheckAuthor(@Model.Author);}*@
+
+                            @*加入防呆*@
+                            @*@{
 
                                 CheckDataExist(Model.IsSuccess);
-                            }
+                            }*@
+
                         </div>
 
                         <div class="mb-3">
-                            @*加入防呆*@
                             <label asp-for="Introduction" class="form-label">作品簡介(故事大綱)(必須輸入)</label>
                             @*//故事大綱*@
-                            <textarea class="form-control" name="Introduction" id="Introduction" rows="3" placeholder="500字以下"></textarea>
-                            @*加入防呆*@
+                            <textarea class="form-control" name="Introduction" id="Introduction" rows="3" placeholder="500字以下" >@Model.Introduction</textarea>
                             <span asp-validation-for="Introduction" class="text-danger"></span>
                         </div>
 
@@ -411,23 +351,25 @@
 
                         <div class="col-12">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="gridCheck">
+                                <input asp-for="IsPrivacyPolicyChecked" type="checkbox" id="gridCheck" class="form-check-input">
                                 <label class="form-check-label" for="gridCheck">
+                                    @*<input class="form-check-input" type="checkbox" id="gridCheck" value="@Model.IsPrivacyPolicyChecked">*@
                                     我同意投稿新星專區之隱私權保護政策。(必須打勾)
                                 </label>
+                                <span asp-validation-for="Author" class="text-danger"></span>
                                 
                                 <p>未滿14歲者禁止於投稿新星專區發布作品</p>
 
-                                @{
+                                @*@{
                                     CheckClick(Model.IsSuccess);
-                                }
+                                }*@
 
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="gridCheck">
-                                <label class="form-check-label" for="gridCheck">
+                                <label class="form-check-label" @*for="gridCheck"*@>
+                                    <input class="form-check-input" type="checkbox"@* id="gridCheck"*@>
                                     本作品包含輔導級內容，未滿十五歲不建議觀賞。(自選)
                                 </label>
                             </div>
@@ -441,15 +383,12 @@
                             <div class="" id="Loadingdata" role="status">
                                 <span class="visually-hidden">Loading...</span>
                             </div>
-
-
                         </div>
                     </div>
 
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </form>
 
@@ -462,101 +401,95 @@
 
 
 @section topCss{
-        <style>
+    <style>
         
-            .work {
+        .work {
 
-            display: flex;
-             margin-top: 150px;
-        }
+        display: flex;
+            margin-top: 150px;
+    }
 
-        .work_bgc {
-            width: 500px;
-            display: flex;
-            justify-content: space-between;
-            margin: auto;
-        }
+    .work_bgc {
+        width: 500px;
+        display: flex;
+        justify-content: space-between;
+        margin: auto;
+    }
 
-        .nav-item .nav-link {
-            font-size: 20px;
-            font-weight: bolder;
-        }
+    .nav-item .nav-link {
+        font-size: 20px;
+        font-weight: bolder;
+    }
 
-        .a {
+    .a {
 
-            display: flex;
-        }
+        display: flex;
+    }
 
-        .a a {
-            width: 50px;
-            height: 50px;
-            background-color: rgb(2, 251, 126);
-            color: rgb(250, 250, 250);
-            border-radius: 50%;
-            text-align: center;
-            font-size: 35px;
-            margin: 10px;
-            text-decoration: none ; 
-        }
+    .a a {
+        width: 50px;
+        height: 50px;
+        background-color: rgb(2, 251, 126);
+        color: rgb(250, 250, 250);
+        border-radius: 50%;
+        text-align: center;
+        font-size: 35px;
+        margin: 10px;
+        text-decoration: none ; 
+    }
 
-        .a p {
-            text-align: center;
-            font-size: 35px;
-            margin: 10px;
-        }
+    .a p {
+        text-align: center;
+        font-size: 35px;
+        margin: 10px;
+    }
 
-        .b {
-            display: flex;
-        }
+    .b {
+        display: flex;
+    }
 
-        .b a {
-            width: 50px;
-            height: 50px;
-            background-color: rgb(90, 88, 88);
-            color: rgb(250, 250, 250);
-            border-radius: 50%;
-            text-align: center;
-            font-size: 35px;
-            margin: 10px;
-            text-decoration: none ; 
-        }
+    .b a {
+        width: 50px;
+        height: 50px;
+        background-color: rgb(90, 88, 88);
+        color: rgb(250, 250, 250);
+        border-radius: 50%;
+        text-align: center;
+        font-size: 35px;
+        margin: 10px;
+        text-decoration: none ; 
+    }
 
-        .b p {
-            text-align: center;
-            font-size: 35px;
-            margin: 10px;
-        }
+    .b p {
+        text-align: center;
+        font-size: 35px;
+        margin: 10px;
+    }
         
-        </style>
+    </style>
 }
 
 
-<!-- 加此行 -->
-@section Scripts {
-    @await Html.PartialAsync("_ValidationScriptsPartial")
-
-
-}
-
-    @section endJS{
+@section endJS{
+    @*@await Html.PartialAsync("_ValidationScriptsPartial")*@
     <script>
 
-let ComicTagList_Choose = document.getElementById("ComicTagList_Choose");
-    document.getElementById("ComicTagList").addEventListener("change", Checkselect ).Value;
-let Choose = document.getElementById("ComicTagList").Value;
-function Checkselect() {
-    if (Choose == 1) {
-        let Checkselect_p = document.createElement('p');
-        Checkselect_p.innerText = "必須輸入";
-        ComicTagList_Choose.append(Checkselect_p);
-    }
-}
+//let ComicTagList_Choose = document.getElementById("ComicTagList_Choose");
+//    document.getElementById("ComicTagList").addEventListener("change", Checkselect ).Value;
+//let Choose = document.getElementById("ComicTagList").Value;
+//function Checkselect() {
+//    if (Choose == 1) {
+//        let Checkselect_p = document.createElement('p');
+//        Checkselect_p.innerText = "必須輸入";
+//        ComicTagList_Choose.append(Checkselect_p);
+//    }
+//}
 
 
 
 
 
-        var arrCover = []; //存人物圖檔
+        //var arrCover = []; //存人物圖檔
         document.getElementById("ComicFigure")
             .addEventListener("change", readURL);
         var obj, obj_cover, img_box;
@@ -581,7 +514,7 @@ function Checkselect() {
 
                 //儲存上傳的封面圖片
                 let file_cover_name = obj_cover.files[i].name;
-                arrCover.push(file_cover_name);
+                //arrCover.push(file_cover_name);
                 (function(i) {
                     reader.onload = function(e) {
                         let cover_src = e.target.result;
@@ -597,7 +530,7 @@ function Checkselect() {
 
 
 
-        var BgCover = []; //存背景圖檔
+        //var BgCover = []; //存背景圖檔
         document.getElementById("BgCover")
             .addEventListener("change", BgCover_readURL);
         var obj_BgCover, img_box_BgCover;
@@ -617,9 +550,9 @@ function Checkselect() {
                 reader.error = function(e) {
                     alert("讀取異常")
                 }
-                //儲存上傳的封面圖片
+                //儲存上傳的封面圖片 ? 存背景圖檔?
                 let file_cover_name = obj_BgCover.files[i].name;
-                arrCover.push(file_cover_name);
+                //BgCover.push(file_cover_name);
                 (function(i) {
                     reader.onload = function(e) {
                         let cover_src = e.target.result;
@@ -635,23 +568,21 @@ function Checkselect() {
 
 
         //上傳等待狀態按鈕
-        //var Wait = document.getElementById("Wait");
-        var upload_work = document.getElementById("upload_work").addEventListener("click", Waiting_Upload);
-        var Loadingdata = document.getElementById("Loadingdata");
-        //上傳等待狀態按鈕方法
-        function Waiting_Upload() {
-            Loadingdata.classList.add("spinner-border");
-            Loadingdata.classList.add("text-warning");
-            upload_work.setAttribute('type', disabled);
+        //var upload_work = document.getElementById("upload_work");
+        //upload_work.addEventListener("click", Waiting_Upload);
+        //var Loadingdata = document.getElementById("Loadingdata");
 
-            upload_work.setAttribute('class',bg-secondary); 
-            upload_work.setAttribute('class',p-2); 
-            upload_work.setAttribute('class',text-dark); 
-            upload_work.setAttribute('class',bg-opacity-25);
-            
+        ////上傳等待狀態按鈕方法
+        //function Waiting_Upload() {
+        //    Loadingdata.classList.add("spinner-border");
+        //    Loadingdata.classList.add("text-warning");
+        //    upload_work.setAttribute('type', 'disabled');
 
-
-        }
+        //    upload_work.setAttribute('class','bg-secondary'); 
+        //    upload_work.setAttribute('class','p-2'); 
+        //    upload_work.setAttribute('class','text-dark'); 
+        //    upload_work.setAttribute('class','bg-opacity-25');
+        //}
 
         //bg-secondary p-2 text-dark bg-opacity-25
 
@@ -659,3 +590,55 @@ function Checkselect() {
     </script>
 }
 
+
+@*防呆*@
+
+ @functions {
+    private void CheckDataExist(bool isSuccess)
+    {
+        if (isSuccess == false)
+        {
+    <p class="text-danger">已有重複名稱</p>
+        }
+
+    }
+
+    private void CheckComicTagList(bool isSuccess)
+    {
+        if (isSuccess == false)
+        {
+    <p class="text-danger">必須輸入</p>
+        }
+
+    }
+
+    private void CheckUpdateWeek(bool isSuccess)
+    {
+        if (isSuccess == false)
+        {
+    <p class="text-danger text-end">必須輸入</p>
+        }
+
+    }
+
+    private void CheckClick(bool isSuccess)
+    {
+        if (isSuccess == false)
+        {
+    <p class="text-danger">必須打勾</p>
+        }
+
+    }
+
+    private void CheckAuthor(string NickName)
+    {
+        if (NickName != "")
+        {
+    <input type="checkbox"  name="IsNewAuthorName" value="false"> //class="d-none"
+        }
+        else
+        {
+    <input type="checkbox" name="IsNewAuthorName" value="true"> //class="d-none"
+        }
+    }
+}

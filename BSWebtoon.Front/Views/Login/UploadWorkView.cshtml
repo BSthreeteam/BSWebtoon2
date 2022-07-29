@@ -1,13 +1,12 @@
-﻿
-@*@using BSWebtoon.Front.Models.DTO*@
+﻿@using BSWebtoon.Front.Models.DTO.UploadComicDTO
 
-@using BSWebtoon.Front.Models.DTO.UploadWorkView
-
-@model UploadWorkInputDTO
+@model UploadEpInputDTO
 
 @{
     ViewData["Title"] = "UploadWorkView";
 
+
+    var ComicsWithEpCount = (List<GetComicInfoOutputDTO.ComicWithEpCount>)ViewData["MyComics_WithEpCount"];
 }
 
 
@@ -60,19 +59,19 @@
 
     <div class="container work">
 
-            <div class="work_bgc">
-                <div class="a">
-                    <a asp-controller="Login" asp-action="UploadComicView" >1</a>
-                    <p>上傳漫畫</p>
-                </div>
-
-                <div class="b">
-                    <a asp-controller="Login" asp-action="UploadWorkView" >2</a>
-                    <p>上傳分集</p>
-                </div>
+        <div class="work_bgc">
+            <div class="a">
+                <a asp-controller="Login" asp-action="UploadComicView">1</a>
+                <p>上傳漫畫</p>
             </div>
 
+            <div class="b" id="upload_diversity">
+                <a asp-controller="Login" asp-action="UploadWorkView">2</a>
+                <p>上傳分集</p>
+            </div>
         </div>
+
+    </div>
 
 
 
@@ -85,123 +84,127 @@
 
             @*加*@
             <form method="post" enctype="multipart/form-data">
-             @*   <select name="" >
-                    @foreach( var comic in ..)
-                    {
-                        <option value="{{@comic.漫畫ID}}"> {{@comic.名稱}} </option>
-                    }
+
+
+                <div class="comic_text" >
+                    <label for="inputState" class="form-label my-4">作品名稱</label>
+                    <select id="inputState" class="form-select" name="ComicId">
+@*                        <option selected>Choose...</option>
+*@                        @foreach (var comic in ComicsWithEpCount)
+                        {
+                            <option value="@comic.ComicId">  @comic.ComicChineseName -- 已到第 @comic.EpCount 話：@comic.EpName  </option>
+                        }
+                    </select>
+                </div>
+
+
+                @*   <select name="" >
+                <option selected>Choose...</option>
+                @foreach( var comic in ..)
+                {
+                <option id="" value="{{@comic.漫畫ID}}"> {{@comic.名稱}} </option>
+                }
                 </select>*@
-                <div class="row">
-                    <div class="col-4">
-                        <div class="cover_pic">
-                            <div class="card bg-dark" style="width: 20rem;">
-                                <p class="pb-4 mb-0" style="background-color: #000;">作品封面縮圖:(必須輸入)</p>
+
+                <div @*class="d-none"*@ id="all_data">
+
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="cover_pic">
+                                <div class="card bg-dark" style="width: 20rem;">
+                                    <p class="pb-4 mb-0" style="background-color: #000;">作品封面縮圖:(必須輸入)</p>
+                                    <!-- 動態 -->
+                                    <div id="img_box" class="d-flex" style="  height: 250px; background: rgb(57, 56, 56);">
+
+
+                                        @*<img id="cover_img" src="https://inews.gtimg.com/newsapp_bt/0/14062897162/1000"
+                                        class="card-img-top" alt="作品封面縮圖">*@
+                                        <p class="d-flex mx-auto my-auto">請上傳作品封面縮圖</p>
+
+
+                                    </div>
+                                    <div class="card-body bg-dark" style="background-color: #000">
+                                        <p class="headshot_text ">
+                                            推薦圖片大小121*80<br>檔案大小不可大於500kB(僅限JPG、JPEG和PNG檔)<br>檔案名稱僅限輸入英文或數字
+                                        </p>
+                                    </div>
+
+                                    <label type="button" class="btn btn-secondary w-50 d-flex align-self-center text-center" asp-for="EpCover">上傳封面圖</label>
+                                    @*加收參數*@
+                                    <input class="cover" name="EpCover" type="file" accept="image/*" id="EpCover" style="display:none;">
+                                    @*加入防呆*@
+                                    <span asp-validation-for="EpCover" class="text-danger"></span>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="col-8">
+
+                            <label class="my-4 form-label">下一話次標題:(必須輸入)</label>
+                            <div class="input-group mb-3">
+                                @* <!-- 動態 -->
+                                <span class="input-group-text" id="inputGroup-sizing-default">2</span>*@
                                 <!-- 動態 -->
-                                <div id="img_box" class="d-flex" style="  height: 250px; background: rgb(57, 56, 56);">
-
-
-                                    @*<img id="cover_img" src="https://inews.gtimg.com/newsapp_bt/0/14062897162/1000"
-                                    class="card-img-top" alt="作品封面縮圖">*@
-                                    <p class="d-flex mx-auto my-auto">請上傳作品封面縮圖</p>
-
-
-                                </div>
-                                <div class="card-body bg-dark" style="background-color: #000">
-                                    <p class="headshot_text ">
-                                        推薦圖片大小121*80<br>檔案大小不可大於500kB(僅限JPG、JPEG和PNG檔)<br>檔案名稱僅限輸入英文或數字
-                                    </p>
-                                </div>
-
-                                <label type="button" class="btn btn-secondary w-50 d-flex align-self-center text-center"
-                                       asp-for="EpCover">上傳封面圖</label>
                                 @*加收參數*@
-                                <input class="cover" name="EpCover" type="file" accept="image/*" id="EpCover" style="display:none;">
+                                <input type="text" name="EpTitle" class="form-control" id="EpTitle" aria-label="Sizing example input"
+                                       asp-for="EpTitle" aria-describedby="inputGroup-sizing-default">
                                 @*加入防呆*@
-                                <span asp-validation-for="EpCover" class="text-danger"></span>
-
-
-
+                                <span asp-validation-for="EpTitle" class="text-danger"></span>
                             </div>
-                        </div>
-                    </div>
 
 
 
 
-                    <div class="col-8">
-
-                        @*<div class="comic_text">
-
-                        <label for="inputState" class="form-label my-4">作品名稱</label>
-                        <select id="inputState" class="form-select">
-                        <option selected>Choose...</option>
-                        <option>...</option>
-                        </select>
-                        </div>*@
-
-                        <label asp-for="EpTitle" class="my-4 form-label">本集話次:(必須輸入)</label>
-                        <div class="input-group mb-3">
-                            @* <!-- 動態 -->
-                            <span class="input-group-text" id="inputGroup-sizing-default">2</span>*@
-                            <!-- 動態 -->
-                            @*加收參數*@
-                            <input type="text" name="EpTitle" class="form-control" id="EpTitle" aria-label="Sizing example input"
-                                   aria-describedby="inputGroup-sizing-default">
-                            @*加入防呆*@
-                            <span asp-validation-for="EpTitle" class="text-danger"></span>
-                        </div>
 
 
-                       
+                            <label class="my-4" for="inputState" class="form-label">內容作品上傳檔案:(必須輸入) 推薦圖片大小720*1100</label>
+                            <div class="btn_updata">
 
+                                <label type="button" class="btn btn-secondary" class="up-Lab btn_upload_style" asp-for="EP_Context_file" id="select_file">選擇檔案</label>
+                                @*加收參數*@
+                                <input type="file" name="EP_Context_file" accept="image/*" multiple id="EP_Context_file" style="display:none;">
+                                @*加入防呆*@
+                                <span asp-validation-for="EP_Context_file" class="text-danger"></span>
 
+                                <button type="button" class="btn btn-secondary mx-4" onclick="removeItemAll()">全部刪除</button>
+                            </div>
 
-                        <label class="my-4" for="inputState" class="form-label">內容作品上傳檔案:(必須輸入) 推薦圖片大小720*1100</label>
-                        <div class="btn_updata">
-
-                            <label type="button" class="btn btn-secondary" class="up-Lab btn_upload_style" asp-for="EP_Context_file"
-                                   id="select_file">選擇檔案</label>
-                            @*加收參數*@
-                            <input type="file" name="EP_Context_file" accept="image/*" multiple id="EP_Context_file" style="display:none;">
-                            @*加入防呆*@
-                            <span asp-validation-for="EP_Context_file" class="text-danger"></span>
-
-                            <button type="button" class="btn btn-secondary mx-4" onclick="removeItemAll()">全部刪除</button>
-                        </div>
-
-                        <!-- ---------------------------------------------------------------------------------------------------------- -->
-                        <div class="container" style="max-width: 700px;">
-                            <div class="row row_down">
-                                <div class="group-coms-pic" id="sortable">
+                            <!-- ---------------------------------------------------------------------------------------------------------- -->
+                            <div class="container" style="max-width: 700px;">
+                                <div class="row row_down">
+                                    <div class="group-coms-pic" id="sortable">
+                                    </div>
                                 </div>
                             </div>
+
+                            @*送出參數*@
+                            <button type="submit" id="upload_file_btn" class="btn btn-primary  mb-4">
+                                確定
+                            </button>
+
+                            @*btn-outline-light*@
+
+
+                            @*防呆*@
+                            <div class="" id="Loadingdata" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+
+
+
+                            @*{UploadSuccess(Model.IsSuccess);}*@
+
                         </div>
-
-                        @*送出參數*@
-                        <button type="submit" id="upload_file_btn" class="btn btn-primary  mb-4" >
-                            確定
-                        </button>
-
-                         @*btn-outline-light*@
-                        
-
-                        @*防呆*@
-                        <div class="" id="Loadingdata" role="status">
-                            <span class="visually-hidden">Loading...</span>
-                        </div>
-
-
-
-                        @*{UploadSuccess(Model.IsSuccess);}*@
-
-                        @*<div>
-                        <input type="submit" value="上傳" />
-                        </div>*@
 
                     </div>
 
                 </div>
-
             </form>
 
 
@@ -218,68 +221,66 @@
         <style>
 
 
-             .work {
+            .work {
+                display: flex;
+                margin-top: 150px;
+            }
 
-            display: flex;
-             margin-top: 150px;
-        }
+            .work_bgc {
+                width: 500px;
+                display: flex;
+                justify-content: space-between;
+                margin: auto;
+            }
 
-        .work_bgc {
-            width: 500px;
-            display: flex;
-            justify-content: space-between;
-            margin: auto;
-        }
+            .nav-item .nav-link {
+                font-size: 20px;
+                font-weight: bolder;
+            }
 
-        .nav-item .nav-link {
-            font-size: 20px;
-            font-weight: bolder;
-        }
+            .a {
+                display: flex;
+            }
 
-        .a {
+                .a a {
+                    width: 50px;
+                    height: 50px;
+                    background-color: rgb(90, 88, 88);
+                    color: rgb(250, 250, 250);
+                    border-radius: 50%;
+                    text-align: center;
+                    font-size: 35px;
+                    margin: 10px;
+                    text-decoration: none;
+                }
 
-            display: flex;
-        }
+                .a p {
+                    text-align: center;
+                    font-size: 35px;
+                    margin: 10px;
+                }
 
-        .a a {
-            width: 50px;
-            height: 50px;
-            background-color: rgb(90, 88, 88);
-            color: rgb(250, 250, 250);
-            border-radius: 50%;
-            text-align: center;
-            font-size: 35px;
-            margin: 10px;
-            text-decoration: none ; 
-        }
+            .b {
+                display: flex;
+            }
 
-        .a p {
-            text-align: center;
-            font-size: 35px;
-            margin: 10px;
-        }
+                .b a {
+                    width: 50px;
+                    height: 50px;
+                    background-color: rgb(2, 251, 126);
+                    color: rgb(250, 250, 250);
+                    border-radius: 50%;
+                    text-align: center;
+                    font-size: 35px;
+                    margin: 10px;
+                    text-decoration: none;
+                }
 
-        .b {
-            display: flex;
-        }
-
-        .b a {
-            width: 50px;
-            height: 50px;
-            background-color: rgb(2, 251, 126);
-            color: rgb(250, 250, 250);
-            border-radius: 50%;
-            text-align: center;
-            font-size: 35px;
-            margin: 10px;
-            text-decoration: none ; 
-        }
-
-        .b p {
-            text-align: center;
-            font-size: 35px;
-            margin: 10px;
-        }
+                .b p {
+                    text-align: center;
+                    font-size: 35px;
+                    margin: 10px;
+                }
 
 
 
@@ -429,17 +430,27 @@
 
 
         @{
-            if( ViewData.ContainsKey("IsSuccessMsg") )
+            if (ViewData.ContainsKey("IsSuccessMsg"))
             {
-                        <script>
-                            alert(  @Html.Raw(ViewData["IsSuccessMsg"])  )
-                        </script>
+                    <script>
+                        alert(@Html.Raw(ViewData["IsSuccessMsg"])  )
+                    </script>
             }
         }
 
         <script>
 
-            
+
+           //var inputState =  document.getElementById("inputState")
+           // inputState.addEventListener("change", Checkselect);
+           // function Checkselect() {
+
+           //     let comic_text = document.getElementsByClassName('comic_text')[0];
+           //     comic_text.setAttribute('class', 'd-none');
+
+           // }
+
+
 
             //上傳多個文件方法
             //input file已增加multiple屬性，按住ctrl可選擇多圖
@@ -611,15 +622,15 @@
                 } else {
                     return false;
                 }
-                
+
                 Loadingdata.classList.add("spinner-border");
                 Loadingdata.classList.add("text-warning");
-                upload_work.setAttribute('disabled', disabled);
+                //upload_work.setAttribute('disabled', disabled);
 
-                upload_work.setAttribute('class', bg - secondary);
-                upload_work.setAttribute('class', p - 2);
-                upload_work.setAttribute('class', text - dark);
-                upload_work.setAttribute('class', bg - opacity - 25);
+                //upload_work.setAttribute('class', bg - secondary);
+                //upload_work.setAttribute('class', p - 2);
+                //upload_work.setAttribute('class', text - dark);
+                //upload_work.setAttribute('class', bg - opacity - 25);
 
             }
 
