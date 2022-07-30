@@ -95,6 +95,17 @@
             </template>
         </nav>
     </div>
+    @if(TempData["message"]!=null){
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	    <script type="text/javascript">
+            var message = "@Html.Raw(TempData["message"])";
+@*            alert(message);
+*@            swal({
+                icon: "success",
+                title: message
+            });
+        </script>
+    }
       <partial name="_LoginPartial"></partial>
 
     <template id="useraccount">

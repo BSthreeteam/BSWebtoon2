@@ -115,7 +115,6 @@ namespace NewebPay.Controllers
             TradeInfo.Add(new KeyValuePair<string, string>("EmailModify", "0"));
             //信用卡 付款
             TradeInfo.Add(new KeyValuePair<string, string>("CREDIT", "1"));
-            TradeInfo.Add(new KeyValuePair<string, string>("VACC", "1"));
 
             string TradeInfoParam = string.Join("&", TradeInfo.Select(x => $"{x.Key}={x.Value}"));
 
@@ -139,7 +138,7 @@ namespace NewebPay.Controllers
         /// 支付完成返回網址
         /// </summary>
 
-        public async Task<IActionResult> CallbackReturn()//hana你需要它!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
+        public async Task<IActionResult> CallbackReturn()
         {
             // 接收參數
             StringBuilder receive = new StringBuilder();
@@ -170,58 +169,70 @@ namespace NewebPay.Controllers
                 CashPlanContent = 0,
                 Price = 0,
             };
-
             foreach (String key in decryptTradeCollection.AllKeys)
             {
-                var MemberId = 123;
-                if (key == "MerchantOrderNo")
+                var status = decryptTradeCollection["Status"];//SUCCESS
+                if(status == "SUCCESS")
                 {
-                    string[] sArray = decryptTradeCollection[key].Split("_");
-                    MemberId = Convert.ToInt32(sArray[0]);
-                    input_RechargeRecord.MemberId = MemberId;
-                }
-                else if (key == "ItemDesc")
-                {
-                    int gold = Convert.ToInt32(decryptTradeCollection[key].Split("金幣")[0]);
-                    input_RechargeRecord.CashPlanContent = gold;
-                }
-                else if (key == "Amt")
-                {
-                    input_RechargeRecord.Price = Convert.ToInt32(decryptTradeCollection[key]);
-                }
-                else if (key == "PaymentMethod")
-                {
-                    switch (decryptTradeCollection[key])
+                    var MemberId = 123;
+                    if (key == "MerchantOrderNo")
                     {
-                        case "CreditCard":
-                            input_RechargeRecord.CashPlanId = 1;
-                            break;
-                        case "Ez Pay":
-                            input_RechargeRecord.CashPlanId = 2;
-                            break;
-                        case "Line Pay":
-                            input_RechargeRecord.CashPlanId = 3;
-                            break;
-                        case "Taiwan Pay":
-                            input_RechargeRecord.CashPlanId = 4;
-                            break;
-                        default:
-                            input_RechargeRecord.CashPlanId = 1;
-                            break;
+                        string[] sArray = decryptTradeCollection[key].Split("_");
+                        MemberId = Convert.ToInt32(sArray[0]);
+                        input_RechargeRecord.MemberId = MemberId;
                     }
-                    //更新帳戶餘額
-                    var CurrentMember = _repository.GetAll<Member>().Where(x => x.MemberId == input_RechargeRecord.MemberId).FirstOrDefault();
-                    var Balance = (int)_repository.GetAll<Member>().Where(x => x.MemberId == input_RechargeRecord.MemberId).Select(x => x.Balance).FirstOrDefault();
-                    var newBlance = input_RechargeRecord.CashPlanContent + Balance;
-                    CurrentMember.Balance = newBlance;
-                    _repository.Update(CurrentMember);
-                    _repository.SaveChange();
+                    else if (key == "ItemDesc")
+                    {
+                        int gold = Convert.ToInt32(decryptTradeCollection[key].Split("金幣")[0]);
+                        input_RechargeRecord.CashPlanContent = gold;
+                    }
+                    else if (key == "Amt")
+                    {
+                        input_RechargeRecord.Price = Convert.ToInt32(decryptTradeCollection[key]);
+                    }
+                    else if (key == "PaymentMethod")
+                    {
+                        switch (decryptTradeCollection[key])
+                        {
+                            case "CreditCard":
+                                input_RechargeRecord.CashPlanId = 1;
+                                break;
+                            case "Ez Pay":
+                                input_RechargeRecord.CashPlanId = 2;
+                                break;
+                            case "Line Pay":
+                                input_RechargeRecord.CashPlanId = 3;
+                                break;
+                            case "Taiwan Pay":
+                                input_RechargeRecord.CashPlanId = 4;
+                                break;
+                            default:
+                                input_RechargeRecord.CashPlanId = 1;
+                                break;
+                        }
+                        //更新帳戶餘額
+                        var CurrentMember = _repository.GetAll<Member>().Where(x => x.MemberId == input_RechargeRecord.MemberId).FirstOrDefault();
+                        var Balance = (int)_repository.GetAll<Member>().Where(x => x.MemberId == input_RechargeRecord.MemberId).Select(x => x.Balance).FirstOrDefault();
+                        var newBlance = input_RechargeRecord.CashPlanContent + Balance;
+                        CurrentMember.Balance = newBlance;
+                        _repository.Update(CurrentMember);
+                        _repository.SaveChange();
+                    }
+                    
+                    TempData["message"] = "成功付款";
+                }
+                else
+                {
+                    TempData["message"] = "付款失敗";
+
                 }
             }
 
             _rechargeService.RechargeRecordCreateNew(input_RechargeRecord);
 
             ViewData["TradeInfo"] = receive.ToString();
+
+
 
             return Redirect("~/Favorite/RecordView");
         }
