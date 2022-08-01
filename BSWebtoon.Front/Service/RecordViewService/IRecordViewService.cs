@@ -3,8 +3,9 @@ using BSWebtoon.Front.Models.DTO.ViewRecord;
 
 namespace BSWebtoon.Front.Service.RecordViewService
 {
-    public interface IRecordView
+    public interface IRecordViewService
     {
-        public List<ViewRecordDTO> ReadRecordView();
+        List<ViewRecordDTO> ReadRecordView();
+
     }
 }

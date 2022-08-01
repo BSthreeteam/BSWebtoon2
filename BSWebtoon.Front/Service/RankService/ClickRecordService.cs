@@ -47,7 +47,6 @@ namespace BSWebtoon.Front.Service.RankService
             foreach (ClickRecord click in clickRecod)
             {
                 _repository.Create(click);
-
             }
             _repository.SaveChange();
         }
@@ -192,13 +191,13 @@ namespace BSWebtoon.Front.Service.RankService
                 //篩選出T.TagName,comic資料全部 的結果後放到CategoryTagRankDTO的表中
                 var tagListResult = conn.Query<CategoryTagRankDTO>(sql);
 
+
                 //計算排名區間
                 var newRankEndDate = new DateTime(2022, 07, 29);
                 var newRankStartDate = newRankEndDate.AddDays(-7);//7/22
 
                 var oldRankEndDate = newRankStartDate.AddDays(-1);//7/21
                 var oldRankStartDate = oldRankEndDate.AddDays(-6);//7/15
-
 
                 //找出每個漫畫上上周的點擊數
                 string oldClickRecord = @$"SELECT  CR.ComicId, COUNT(CR.ComicId) AS ClickRecordCount

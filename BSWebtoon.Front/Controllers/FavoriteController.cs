@@ -1,31 +1,55 @@
-﻿using BSWebtoon.Front.Service.FavoriteService;
+﻿using System.Linq;
+using BSWebtoon.Front.Models.ViewModel.ViewRecord;
+using BSWebtoon.Front.Service.FavoriteService;
 using BSWebtoon.Front.Service.MemberService;
+using BSWebtoon.Front.Service.RecordViewService;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace BSWebtoon.Front.Controllers
 {
     public class FavoriteController : Controller
     {
-        private readonly IFavoriteService _favoriteService;
-        private readonly FavoriteService _readfavoriteService;
-        private readonly IMemberService _memberService;
-
-        public FavoriteController(IFavoriteService favoriteService, FavoriteService readfavoriteService)
+         private readonly IRecordViewService _recordView;
+        public FavoriteController(IRecordViewService recordView)
         {
-            _favoriteService = favoriteService;
-            _readfavoriteService = readfavoriteService;
+            _recordView = recordView;
         }
 
-
-        public FavoriteController(IMemberService memberService)
-        {
-            _memberService = memberService;
-        }
 
         public IActionResult RecordView()//Favorite/RecordView
         {
-            return View();
-        }
+            var allviewcomics = _recordView.ReadRecordView();
+            var firstComic = allviewcomics.First();
+
+            var restult = new ViewRecordViewModel
+            {
+                ViewRecordList = new ViewRecordViewModel.ViewRecordData
+                {
+                    ComicId = firstComic.ComicId,
+                    ComicFigure = firstComic.ComicFigure,
+                    ComicNameImage = firstComic.ComicNameImage,
+                    BgCover = firstComic.BgCover,
+                    EpTitle = firstComic.EpTitle
+                },
+                //All_ViewRecordList = new ViewRecordViewModel.AllViewRecord
+                //{
+                //    ViewRecorId = ComicRecordViewById[0].ViewRecorId,
+                //    ComicId = ComicRecordViewById[0].ComicId,
+                //    BgCover = ComicRecordViewById[0].BgCover,
+                //    EpTitle = ComicRecordViewById[0].EpTitle,
+                //    ComicFigure = ComicRecordViewById[0].ComicFigure,
+                //    ComicNameImage = ComicRecordViewById[0].ComicNameImage
+                //}
+            };
+
+            //string jsonResult = JsonConvert.SerializeObject(allviewcomics);
+
+            //ViewData["jsonResult"] = jsonResult;
+
+            return View(restult);
+            }
+
         public IActionResult AddFavoriteView()//Favorite/AddFavoriteView
         {
             //_favoriteService.FavoriteCreate();
@@ -41,12 +65,6 @@ namespace BSWebtoon.Front.Controllers
         //{
         //    _favoriteService.FavoriteDelete();
         //    return View();
-        //}
-
-        //public IActionResult AddReadFavoriteList()//Favorite/AddReadFavoriteList
-        //{
-
-        //    return View(_readfavoriteService.GetFavorite());
         //}
     }
 }

@@ -27,6 +27,7 @@ using BSWebtoon.Front.Service.WeekUpdateService;
 using BSWebtoon.Front.Service.SearchService;
 using BSWebtoon.Front.Service.ContentPageService;
 using BSWebtoon.Front.Service.ActivityService;
+using BSWebtoon.Front.Service.RecordViewService;
 
 namespace BSWebtoon.Front
 {
@@ -56,6 +57,7 @@ namespace BSWebtoon.Front
             services.AddScoped<ClickRecordService, ClickRecordService>();
             //services.AddDbContext<BSWeBtoonContext, BSWeBtoonContext>();
             services.AddScoped<IComicService, ComicService>();
+            services.AddScoped<IRecordViewService, RecordViewService>();
             services.AddScoped<ISearchService, SearchService>();
             services.AddScoped<IWeekUpdateService, WeekUpdateService>();
             services.AddScoped<IComicContentPageService, ComicContentPageService>();

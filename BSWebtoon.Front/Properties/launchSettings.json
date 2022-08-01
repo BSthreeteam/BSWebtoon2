@@ -18,6 +18,7 @@
     "BSWebtoon.Front": {
       "commandName": "Project",
       "launchBrowser": true,
+      "launchUrl": "Favorite/RecordView",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

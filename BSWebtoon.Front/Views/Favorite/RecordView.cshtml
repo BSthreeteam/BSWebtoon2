@@ -1,11 +1,20 @@
-﻿
+﻿using System.Collections.Generic;
+@model BSWebtoon.Front.Models.ViewModel.ViewRecord.ViewRecordViewModel.ViewRecordList
+
+
+@*@model IEnumerabe<BSWebtoon.Front.Models.ViewMode>*@
+
 @{
+    //var comic_result = ViewData["allviewcomics"];
     ViewData["Title"] = "RecordView";
+    //var restult = ViewData["restult"];   
+    //    var comic_result =  ViewData["restult"];
+    //var ViewRecordViewMode.ComicId;
 }
+
 @section topCss{
     <link rel=" stylesheet" href="~/style/Favorite_Record.css"/>
 }
-
 
     <nav class="navbar d-flex justify-content-center   ">
         <button type="button" class=" btn btn-light">最近看過</button>
@@ -14,13 +23,52 @@
 
     <div class="container" style="max-width: 800px;">
         <div class="row row-cols-3 row-cols-md-3 row-cols-lg-3 row-cols-xl-4" style=" transform: translateY(80px);">
+           
+    @*      <h2>@Model.ViewRecordList.ComicId</h2>
+            <h2>@Model.ViewRecordList.ComicFigure</h2>
+            <h2>@Model.ViewRecordList.ComicNameImage</h2>
+            <h2>@Model.ViewRecordList.BgCover</h2>
+            <h2>@Model.ViewRecordList.EpTitle</h2>
+            <img src="@Model.ViewRecordList.ComicNameImage" />
+*@
+            
+                <div class="col  "onclick="to_comnic(this);">
+                <a href="#">@Model.ViewRecordList.EpTitle</a>
+                <img src="@Model.ViewRecordList.ComicNameImage" alt="">
+                <span><img src="@Model.ViewRecordList.ComicNameImage"></span>
+                <input style="display: none;" value="@Model.ViewRecordList.ComicId">
+                </div>
 
-            <div class="col  " onclick="to_comnic(this);">
-                <a href="#">第3話</a>
+        @*    @foreach (var item in Model.ViewRecordListAll)
+           {
+               <h2> model ==> @item</h2>
+                <div class="col  "onclick="to_comnic(this);">
+                <a href="#">@item.EpTitle</a>
+                <img src="@item.ComicNameImage" alt="">
+                <span>@item.ComicNameImage</span>
+                <input style="display: none;" value="@item.ComicId">
+                </div>
+           }*@
+@*           @foreach (var item in Model) {
+               <h2> model ==> @item</h2>
+                <div class="col  "onclick="to_comnic(this);">
+                <a href="#">@item.EpTitle</a>
                 <img src="https://tw-a.kakaopagecdn.com/P/C/235/c2/2x/30129f26-0a80-4074-a832-21215f542a2d.webp" alt="">
-                <p>隔離人生</p>
+                <span>@item.ComicNameImage</span>
+                <input style="display: none;" value="@item.ComicId">
+                </div>
+           }*@
+           
+           @*        @foreach (var item in restult)
+           {
+                <div class="col  "onclick="to_comnic(this);">
+                <a href="#">1</a>
+                <img src="https://tw-a.kakaopagecdn.com/P/C/235/c2/2x/30129f26-0a80-4074-a832-21215f542a2d.webp" alt="">
+                <span>隔離人生</span>
                 <input style="display: none;" value="漫畫ID">
-            </div>
+                </div>
+           }*@
+           @*
             <div class="col ">
                 <a href="#">第5話></a>
                 <img src="https://tw-a.kakaopagecdn.com/P/C/135/c2/2x/411f54db-f259-4214-a738-b2262ddb8841.webp" alt="">
@@ -61,14 +109,17 @@
                 <a href="#">第26話></a>
                 <img src="https://tw-a.kakaopagecdn.com/P/C/150/c2/2x/b77a2d86-068b-4964-b81f-0338c52e5438.webp" alt="">
                 <p class="name">隔離人生</p>
-            </div>
+            </div>*@
         </div>
+
         <div class="d-flex justify-content-center fixed-bottom " id="div_btns">
             <button type="button" class="btn btn btn-dark border my-4 px-4 py-2" style="border-radius: 20px;"
                 onclick="Open_del_page()">編輯</button>
         </div>
+
     </div>
-    </>
+
+
 
     @section endJS{
    <script src="~/js/Favorite_Record.js"></script>
