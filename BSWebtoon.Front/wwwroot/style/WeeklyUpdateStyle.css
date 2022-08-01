@@ -15,11 +15,11 @@
     color: #fff;
 }
 
-    .nav-pills .nav-link.active {
-        color: #000;
-        background-color: #fff;
+.nav-pills .nav-link.active {
+    color: #000;
+    background-color: #fff;
 
-    }
+}
 
 .weekly {
     background-color: #000;
