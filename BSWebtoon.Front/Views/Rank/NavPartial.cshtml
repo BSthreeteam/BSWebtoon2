@@ -1,12 +1,44 @@
 ﻿@model BSWebtoon.Front.Models.ViewModels.Rank.RankViewModel_ClickRecord
 
+@{
+    var id = Model.FirstRank.TagId;
+}
 
 @section topCss{
 <link rel="stylesheet" href="~/style/RankListstyle.css" />
 }
 
 <nav id="navbar-id" class="navbar navbar-light">
-    <ul class="nav nav-pills" id="category">
+    <ul class="nav nav-pills" >
+        <li class="nav-item ">
+            <a class="nav-link nav_new_work  categorys" my_id="0"  href="javascript:(0)">全部</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link categorys"  my_id="8" href="javascript:(0)">奇幻</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link categorys"  my_id="10" href="javascript:(0)">愛情</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link categorys"  my_id="9" href="javascript:(0)">動作冒險</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link categorys"  my_id="11" href="javascript:(0)">劇情</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link categorys"  my_id="13" href="javascript:(0)">GL/BL</a>
+        </li>
+        <li class="nav-item ">
+            <a class="nav-link categorys"  my_id="12" href="javascript:(1)">懸疑恐怖</a>
+        </li>
+    </ul>
+</nav>
+
+@*<nav id="navbar-id" class="navbar navbar-light">
+    <ul class="nav nav-pills" >
+        <li class="nav-item ">
+            <a class="nav-link nav_new_work "   href="/Rank/AllRankList">全部</a>
+        </li>
         <li class="nav-item">
             <a class="nav-link categorys"  my_id="8" href="/Rank/RankList/8">奇幻</a>
         </li>
@@ -25,11 +57,9 @@
         <li class="nav-item ">
             <a class="nav-link categorys"  my_id="12" href="/Rank/RankList/12">懸疑恐怖</a>
         </li>
-        <li class="nav-item ">
-            <a class="nav-link nav_new_work  "   href="/Rank/AllRankList">全部</a>
-        </li>
     </ul>
-</nav>
+</nav>*@
+
 
 @*<div class="Rank ">
     <div class="container Rank_content">
@@ -47,5 +77,9 @@
 
 @section endJS{
 <script src="https://kit.fontawesome.com/2dbc4e25d3.js" crossorigin="anonymous"></script>
+<script>
+    let id = @id;
+</script>
+
 <script src="~/js/RankList.js"></script>
 }

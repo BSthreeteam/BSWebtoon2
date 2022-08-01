@@ -1,56 +1,92 @@
-let week_content = document.querySelector(".content");
+let content = document.querySelector(".content");
 let workTemplate = document.getElementById("workTemplate");
 let blackTemplate = document.getElementById("blackTemplate");
-/*let a = document.querySelectorAll(".nav-link");*/
-
-let fantasy = document.querySelector(".fantasy");
-let love = document.querySelector(".love");
-let adventure = document.querySelector(".adventure");
-let plot = document.querySelector(".plot");
-let gl = document.querySelector(".gl");
-let horror = document.querySelector(".horror");
-let all = document.querySelector(".all");
-let categorys = document.querySelectorAll(".categorys");
+let showRankTemplate = document.getElementById("showRankTemplate");
 
 
 
+
+let categorys = document.querySelectorAll('.categorys')
 
 
 window.onload = () => {
     categorys.forEach(nav_a => {
-        if (nav_a.getAttribute("my_id") == id) {
-            nav_a.classList.add('choosed')
-        }
+        nav_a.addEventListener('click', (e) => {
+            content.innerText = ""
+            nav_a.onclick = function (e) {
+                Array.prototype.forEach.call(nav_a, removeActiveClass);
+                var target = e.target;
+                target.className = 'nav-link:active';
+            }
+            let id = nav_a.getAttribute("my_id");
+            let url = `/api/RankApi/GetRank/${id}`
+            fetch(url)
+                .then(response => response.json())
+                .then(result => {
+                    console.log(result)
+                    //getFirstRank(result[0])
+                    content.append(getFirstRank(result[0]))
+                    for (let i = 1; i < result.length; i++) {
+                        //getOtherRank(result[i])
+                        content.append(getOtherRank(result[i], i))
+                    }
+                    //return result;
+                })
+                .catch((ex) => {
+                    console.log(ex);
+                });
 
+        })
     })
-    
-
-    
-    //a.forEach(nav_a => {
-    //    nav_a.addEventListener('click', (e) => {
-    //        a.forEach(as => {
-    //            as.classList.remove('choosed');
-    //        })
-    //        nav_a.classList.add('choosed');
-    //    })
-    //})
-
-    for (let i = 1; i <= 3; i++) {
-        week_content.append(createCard())
-    }
-    week_content.append(createBlack())
-
 
 
 }
-
-function createCard() {
-    let cloneCard = workTemplate.content.cloneNode(true);
-    
-    return cloneCard
+function removeActiveClass(node) {
+    node.className = '';
 }
 
 function createBlack() {
     let cloneblack = blackTemplate.content.cloneNode(true);
     return cloneblack
 }
+
+
+
+function getFirstRank(result) {
+    let cloneRank = showRankTemplate.content.cloneNode(true);
+    cloneRank.querySelector(".rank_pic_bg").src = result.BgCover
+    cloneRank.querySelector(".rank_pic_title").src = result.ComicNameImage
+    if (result.BannerVideoWeb != "") {
+        //let video = cloneRank.createElement('video');
+        //let source = video.createElement('source');
+        //source.setAttribute("src", result.BannerVideoWeb);
+        //source.setAttribute("type", "video/webm");
+        cloneRank.querySelector(".video").src = result.BannerVideoWeb
+    }
+    else {
+        //let img = cloneRank.createElement('img');
+        //img.setAttribute("src", result.ComicFigure);
+        cloneRank.querySelector(".rank_pic_people").src = result.ComicFigure
+    }
+    //cloneRank.querySelector(".rank_pic_people").src = result.ComicFigure
+    cloneRank.querySelector(".introduction").innerText = result.Introduction.slice(0, 40)
+    cloneRank.querySelector(".diff").innerText = result.Diff
+
+    return cloneRank;
+}
+
+function getOtherRank(result, index) {
+    let cloneotherRank = workTemplate.content.cloneNode(true);
+    console.log(cloneotherRank);
+    cloneotherRank.querySelector(".rankCardCover").src = result.BgCover
+    cloneotherRank.querySelector(".work_pic").src = result.ComicWeekFigure
+    cloneotherRank.querySelector(".work_pic").alt = result.ComicName
+    cloneotherRank.querySelector(".rankCardName").src = result.ComicNameImage
+    cloneotherRank.querySelector(".rankCardName").alt = result.ComicName
+    //cloneRank.querySelector(".Ranking_num").alt = result.ComicName
+    cloneotherRank.querySelector(".diff").innerText = result.Diff
+    cloneotherRank.querySelector(".Ranking_num").innerText = index + 1
+
+    return cloneotherRank;
+}
+

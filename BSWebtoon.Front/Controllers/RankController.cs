@@ -25,12 +25,12 @@ namespace BSWebtoon.Front.Controllers
         }
 
 
-        //[Route("api/[controller]")]
+        //[Route("api/[controller]/[action]")]
         public IActionResult AllRankList() //Rank/AllRankList
         {
             var allrank = _ClickRecordService.ReadAllRank();
             var firstComic = allrank.First();
-            var restult = new RankViewModel_ClickRecord
+            var result = new RankViewModel_ClickRecord
             {
                 FirstRank = new RankViewModel_ClickRecord.ClickRecordRank
                 {
@@ -59,7 +59,8 @@ namespace BSWebtoon.Front.Controllers
 
 
             };
-            return View(restult);
+            return View(result);
+            //return new ObjectResult(result);
         }
 
         //[Route("api/[controller]/[action]/{id}")]
@@ -81,6 +82,7 @@ namespace BSWebtoon.Front.Controllers
                 };
 
                 return View(result);
+                //return new ObjectResult(result);
             }
             else
             {
@@ -117,8 +119,12 @@ namespace BSWebtoon.Front.Controllers
 
                 };
                 return View(result);
+                //return new ObjectResult(result);
             }
         }
+
+
+        
 
     }
 }

@@ -9,12 +9,15 @@
 <link rel="stylesheet" href="~/style/RankListstyle.css" />
 }
 
+
+
 @Html.Partial("NavPartial");
 
 
+<template id="showRank">
 
-<div class="Rank ">
-    <div class="container Rank_content">
+<div class="rank">
+    <div class="container rank_content">
         @if (Model == null)
         {
             <div class="text m-auto">
@@ -62,47 +65,45 @@
                 </a>
 
                 <template id="workTemplate">
-                    @foreach (var item in Model.OtherRank)
-                    {
-                        <a class="work" href="#">
-                            <div class="work_bg">
-                                <img src="@item.BgCover" alt="背景">
-                                @*<img src="https://tw-a.kakaopagecdn.com/P/C/148/bg/1x/f485a521-3410-48a7-a3de-793514f1237c.webp"
-                                    alt="">*@
-                            </div>
-                            <img class="work_pic"
-                         src="@item.ComicWeekFigure" alt="@item.ComicName">
 
-                            <div class="title_img">
-                                <img src="@item.ComicNameImage"
-                             alt="@item.ComicName">
-                            </div>
-                            <div class="work_status">
-                                <span>UP</span>
-                            </div>
-                            <div class="work_Ranking">
-                                <p class="Ranking_num" id="rank_num">2</p>
-                                @if (@item.Diff > 0)
-                                {
-                                    <i class="fa-solid fa-caret-up"></i>
-                                    <p class="diff">@item.Diff</p>
-                                }
-                                else if (@item.Diff == 0)
-                                {
-                                    <i class="fa-solid fa-caret-up"></i>
-                                    <p class="diff">-</p>
+                @foreach (var item in Model.OtherRank.Select((value,index)=>new {value,index}))
+                {
+                    <a class="work" href="#">
+                        <div class="work_bg">
+                            <img src="@item.value.BgCover" alt="背景">
+                        </div>
+                        <img class="work_pic" src="@item.value.ComicWeekFigure" alt="@item.value.ComicName">
 
-                                }
-                                else
-                                {
-                                    <i class="fa-solid fa-caret-down"></i>
-                                    <p class="diff">@item.Diff</p>
-                                }
+                        <div class="title_img">
+                            <img src="@item.value.ComicNameImage" alt="@item.value.ComicName">
+                        </div>
+                        <div class="work_status">
+                            <span>UP</span>
+                        </div>
+                        <div class="work_Ranking">
+                            @{ var i = item.index+ 2; }
+                            <p class="Ranking_num"> @i</p>
+                            @if (@item.value.Diff > 0)
+                            {
+                                <i class="fa-solid fa-caret-up"></i>
+                                <p class="diff">@item.value.Diff</p>
+                            }
+                            else if (@item.value.Diff == 0)
+                            {
+                                <i class="fa-solid fa-caret-up"></i>
+                                <p class="diff">@item.value.Diff</p>
 
-                            </div>
-                        </a>
-                    }
-                </template>
+                            }
+                            else
+                            {
+                                <i class="fa-solid fa-caret-down"></i>
+                                <p class="diff">@item.value.Diff</p>
+                            }
+
+                        </div>
+                    </a>
+                }
+            </template>
 
 
                 <template id="blackTemplate">
@@ -132,6 +133,7 @@
         }
     </div>
 </div>
+</template>
 
 
 
@@ -143,7 +145,6 @@
 <script src="https://kit.fontawesome.com/2dbc4e25d3.js" crossorigin="anonymous"></script>
 <script>
     let id = @id;
-
 </script>
 <script src="~/js/RankList.js"></script>
 
