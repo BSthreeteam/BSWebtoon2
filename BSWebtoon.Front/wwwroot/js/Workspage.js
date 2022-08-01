@@ -4,7 +4,7 @@ let ep_template, ep_row, comics_name_click, moble_title_template, ticket_templat
 
 function clickEp(epId) {
     if (isAuthenticated) {
-        window.location.href = `/WorksPage/ComicContent/${epId}`;
+        window.location.href = `/WorksPage/workContent/${epId}`;
     } else {
         $('#exampleModal').modal('show');
     }
