@@ -145,8 +145,7 @@ namespace BSWebtoon.Model.Models
                 entity.HasOne(d => d.Member)
                     .WithMany(p => p.ClickRecords)
                     .HasForeignKey(d => d.MemberId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_ClickRecord_Member1");
+                    .HasConstraintName("FK_ClickRecord_Member");
             });
 
             modelBuilder.Entity<Comic>(entity =>
@@ -633,9 +632,7 @@ namespace BSWebtoon.Model.Models
                     .IsRequired()
                     .HasComment("第三方登入Id");
 
-                entity.Property(e => e.NickName)
-                    .IsRequired()
-                    .HasComment("暱稱");
+                entity.Property(e => e.NickName).HasComment("暱稱(作者)");
 
                 entity.HasOne(d => d.LoginType)
                     .WithMany(p => p.Members)

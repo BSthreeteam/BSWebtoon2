@@ -98,11 +98,6 @@ window.onload = function () {
     //--------------------------------------------------
 
 
-    //目錄
-    window.addEventListener('resize', () => {
-        muluBtnHidden();
-    })
-    muluBtnHidden();
     for (let i = 1; i <= 30; i++) {
         mulu_row.appendChild(getCloneMULU(i))
         mulu_md_row.appendChild(getCloneMULU(i))
@@ -110,17 +105,6 @@ window.onload = function () {
 }
 
 
-function muluBtnHidden() {
-    var screenWidth = window.screen.width;
-    if (screenWidth < 768) {
-        mulu_btn.style.display = "inline-block";
-        mulu_md_btn.style.display = "none";
-    }
-    else {
-        mulu_btn.style.display = "none";
-        mulu_md_btn.style.display = "inline-block";
-    }
-}
 
 
 function getClonepic(index) {

@@ -26,9 +26,10 @@ namespace BSWebtoon.Front.Controllers
         {
             //var name_ = User.Claims.Select(m => m.Value);
             //var userName_ = User.Claims.ToList();
-            string name = User.Identity.Name;
+            var memberId = User.Claims.FirstOrDefault() == null ? 0 : int.Parse(User.Claims.FirstOrDefault(x => x.Type == "MemberID").Value);
+            //var memberId = int.Parse(User.Claims.Where(x => x.Type == "MemberID").FirstOrDefault().Value);
 
-            var workPageComic = _comicService.WorkPageRead(Id, name);
+            var workPageComic = _comicService.WorkPageRead(Id, memberId);
 
             var result = new WorkPageViewModel
             {
@@ -45,7 +46,7 @@ namespace BSWebtoon.Front.Controllers
                 IslikeComic = workPageComic.IslikeComic,
                 MainTagName = workPageComic.MainTagName,
                 TagNames = workPageComic.TagNames,
-                ViewCount = workPageComic.ViewCount,
+                ClickCount = workPageComic.ClickCount,
                 ComicLikeCount = workPageComic.ComicLikeCount,
                 ViewRecordEpTitle = workPageComic.ViewRecordEpTitle,
 

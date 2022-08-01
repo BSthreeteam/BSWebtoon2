@@ -6,7 +6,7 @@ namespace BSWebtoon.Front.Models.ViewModel.WorkPage
     public class WorkPageViewModel
     {
         public bool IsAuthenticated { get; set; }
-        public int MemberId { get; set; }
+        public int? MemberId { get; set; }
         //作品頁
         public int ComicId { get; set; }
         public string ComicChineseName { get; set; }
@@ -33,7 +33,7 @@ namespace BSWebtoon.Front.Models.ViewModel.WorkPage
         /// <summary>
         /// 觀看數
         /// </summary>
-        public int ViewCount { get; set; }
+        public int ClickCount { get; set; }
         /// <summary>
         /// 按讚數
         /// </summary>
