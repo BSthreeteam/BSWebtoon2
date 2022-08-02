@@ -65,7 +65,7 @@ a {
     .main_picture .big_video .local_video_bg {
         justify-self: center;
         width: auto;
-        height: 50%;
+        height: 100%;
     }
 
 .main_picture .main_picture_bg {
@@ -132,11 +132,11 @@ a {
     }
 
     .main_picture .comics_name_bg .play_tidy_box .play {
-        display:flex;
         width: 50px;
         height: 50px;
         margin-top: 40px;
         border-radius: 50%;
+        display: flex;
         justify-content: center;
     }
 
@@ -362,9 +362,6 @@ a {
     .main_comics_episode .comics_episode .message_box {
         display: flex;
     }
-        .main_comics_episode .comics_episode .message_box .comment_text {
-            display: flex;
-        }
 
     .message_box .message_name {
         color: var(--content-small-color);
@@ -386,14 +383,4 @@ a {
     .main_comics_episode .comics_episode .row .message_box .username {
         margin: 0px 0px 0px 5px;
     }
-/*    .main_picture .comics_name_bg .play_tidy_box .play {
-        display: flex;
-    }
-*/    .main_picture .big_video .local_video_bg {
-        justify-self: center;
-        width: auto;
-        height: 85%;
-    }
-
-
 }
