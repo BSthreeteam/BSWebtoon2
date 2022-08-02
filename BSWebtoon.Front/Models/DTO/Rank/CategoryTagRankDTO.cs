@@ -6,7 +6,8 @@ namespace BSWebtoon.Front.Models.DTO.Rank
 {
     //從Comic、ComicTag、ComicTagList篩選出TagName 
     public class CategoryTagRankDTO:ComicCardDto
-    { 
+    {
+        public int TagId { get; set; }
         public string TagName { get; set; }
     }
 
@@ -28,6 +29,8 @@ namespace BSWebtoon.Front.Models.DTO.Rank
     //最後輸出的DTO
     public class CategoryRankDTO : ComicCardDto
     {
+        public int TagId { get; set; }
+
         public string TagName { get; set; }
         public int ClickRecordId { get; set; }
         public int Diff { get; set; }
