@@ -8,16 +8,31 @@ let showRankTemplate = document.getElementById("showRankTemplate");
 
 let categorys = document.querySelectorAll('.categorys')
 
-
+//function getaaa() {
+//    $("#all").click();
+//    document.getElementById("all").classList.add('choosed');
+//    getFatchall();
+//}
+//$(document).ready(function () {
+//    window.onload = getaaa();
+//})
 window.onload = () => {
+    document.getElementById("all").setAttribute('click', getFatchall());
+    getFatch();
+}
+
+function createBlack() {
+    let cloneblack = blackTemplate.content.cloneNode(true);
+    return cloneblack
+}
+
+
+function getFatch() {
+    document.getElementById("all").removeAttribute('click', getFatchall());
     categorys.forEach(nav_a => {
         nav_a.addEventListener('click', (e) => {
             content.innerText = ""
-            nav_a.onclick = function (e) {
-                Array.prototype.forEach.call(nav_a, removeActiveClass);
-                var target = e.target;
-                target.className = 'nav-link:active';
-            }
+            document.getElementById("all").classList.remove("active");
             let id = nav_a.getAttribute("my_id");
             let url = `/api/RankApi/GetRank/${id}`
             fetch(url)
@@ -30,45 +45,43 @@ window.onload = () => {
                         //getOtherRank(result[i])
                         content.append(getOtherRank(result[i], i))
                     }
-                    //return result;
                 })
                 .catch((ex) => {
                     console.log(ex);
                 });
-
         })
     })
-
-
-}
-function removeActiveClass(node) {
-    node.className = '';
 }
 
-function createBlack() {
-    let cloneblack = blackTemplate.content.cloneNode(true);
-    return cloneblack
+function getFatchall() {
+    document.getElementById("all").classList.add("active");
+    let url = `/api/RankApi/GetRank/0`
+    fetch(url)
+        .then(response => response.json())
+        .then(result => {
+            console.log(result)
+            //getFirstRank(result[0])
+            content.append(getFirstRank(result[0]))
+            for (let i = 1; i < result.length; i++) {
+                //getOtherRank(result[i])
+                content.append(getOtherRank(result[i], i))
+            }
+        })
+        .catch((ex) => {
+            console.log(ex);
+        });
 }
-
-
 
 function getFirstRank(result) {
     let cloneRank = showRankTemplate.content.cloneNode(true);
     cloneRank.querySelector(".rank_pic_bg").src = result.BgCover
     cloneRank.querySelector(".rank_pic_title").src = result.ComicNameImage
     if (result.BannerVideoWeb != "") {
-        //let video = cloneRank.createElement('video');
-        //let source = video.createElement('source');
-        //source.setAttribute("src", result.BannerVideoWeb);
-        //source.setAttribute("type", "video/webm");
         cloneRank.querySelector(".video").src = result.BannerVideoWeb
     }
     else {
-        //let img = cloneRank.createElement('img');
-        //img.setAttribute("src", result.ComicFigure);
         cloneRank.querySelector(".rank_pic_people").src = result.ComicFigure
     }
-    //cloneRank.querySelector(".rank_pic_people").src = result.ComicFigure
     cloneRank.querySelector(".introduction").innerText = result.Introduction.slice(0, 40)
     cloneRank.querySelector(".diff").innerText = result.Diff
 
