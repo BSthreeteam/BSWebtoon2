@@ -11,7 +11,7 @@ function Open_del_page() {
 }
 
 function TO_Favorite() {
-    window.open("/Favorite/AddFavoriteView");
+    window.open("/Favorite/ReadFavoriteView");
 }
 
 function To_RecordPage() {

@@ -49,7 +49,7 @@
         </div>
     </div>
     <div class="big_video">
-        <video title="" preload="auto" muted@*="ture" *@ class="local_video_bg object-contain pointer-events-auto   d-none">
+        <video title="" preload="auto" muted class="local_video_bg object-contain pointer-events-auto   d-none">
             <source src="@Model.ComicVideoWeb" type="video/webm">
 
         </video>
@@ -64,18 +64,18 @@
                     <p><span>作者</span> @Model.Author</p>
                     <p><span>發行</span> @Model.Publisher</p>
                     <div class="comics_category">
-                        <p class="category"><span><i class="fa-solid fa-bars-staggered"></i></span>@Model.MainTagName</p>
-                        <p class="whatch"><span><i class="fa-regular fa-eye"></i></span> @Model.ClickCount </p>
-                        <p class="good"><span><i class="fa-regular fa-thumbs-up"></i></span> @Model.ComicLikeCount </p>
+                        <span><i class="fa-solid fa-bars-staggered"></i></span><p class="category d-flex align-items-center">@Model.MainTagName</p>
+                        <span><i class="fa-regular fa-eye"></i></span><p class="whatch d-flex align-items-center"> @Model.ViewCount </p>
+                        <span><i class="fa-regular fa-thumbs-up"></i></span><p class="good d-flex align-items-center"> @Model.ComicLikeCount </p>
                     </div>
                 </div>
             </a>
             <div class="play_tidy_box">
                 <div class="play btn btn-light"><i class="fa-regular fa-circle-play"></i></div>
-                <div class="tidy btn btn-light">
+                <div class="tidy btn btn-light d-none">
                     <i class="fa-solid fa-arrow-down-1-9"></i>
                 </div>
-                <div class="tidy_r btn btn-light">
+                <div class="tidy_r btn btn-light d-none">
                     <i class="fa-solid fa-arrow-down-9-1"></i>
                 </div>
             </div>
@@ -86,20 +86,20 @@
 <section class="main_comics_episode w-100 ">
     <div class="comics_episode ">
         <div class="row mx-auto">
-            <nav class="illustrate_box">
+            <div class="illustrate_box">
                 <ul>
-                    <li><a class="ep" href="#">話次</a></li>
-                    <li><a class="illustrate" href="#">作品資訊</a></li>
-                    <li><a class="messages" href="#">留言</a></li>
+                    <li class="ep">話次</li>
+                    <li class="illustrate"></a>作品資訊</li>
+                    <li class="messages"></a>留言</li>
                 </ul>
-            </nav>
+            </div>
             <div class="keep_reading_box">
                 <a href="#">
                     <p class="keep_reading">@Model.ViewRecordEpTitle</p>
                 </a>
             </div>
             <div class="ep_row col-12 col-lg-8 col-xl-8">
-
+                <div class="card_box w-100 d-flex flex-wrap">
                 @foreach (var ep in Model.EpList)
                 {
                     <div class="col col-6 col-md-4 col-lg-3 col-xl-2">
@@ -114,7 +114,7 @@
                         </a>
                     </div>
                 }
-
+                </div>
             </div>
             <div class="col-lg-4 col-xl-4">
                 <div class="comics_illustrate">
@@ -122,7 +122,7 @@
                 </div>
             </div>
         </div>
-        <div class="message_box d-flex justify-content-center flex-column">
+        <div class="message_box  justify-content-center flex-column">
             <div class="message_name mx-auto">留言</div>
             <div class="comment_text  mx-auto">
                 @foreach (var comment in Model.CommentList)
@@ -205,7 +205,6 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
             </div>
         </div>
     </div>
@@ -224,7 +223,38 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
 
-<script src="~/js/Workspage.js" asp-append-version="true"></script>
+<script src="~/js/Workspage.js"></script>
+
+
+<script>
+    let collect_a = document.querySelector('.red');
+
+    ////點擊愛心，顏色變紅色
+    let check = document.querySelector('#heart');
+    let checkvalue = @Model.IslikeComic.ToString().ToLower()
+        clickLike(checkvalue)
+
+    collect_a.addEventListener('click', () => {
+        checkvalue = !checkvalue
+        clickLike(checkvalue)
+    })
+    function clickLike(boolvalue){
+    check.checked = boolvalue
+        if (check.checked) {
+            console.log(check.checked)
+            collect_a.classList.add('text-danger');
+        }
+        else {
+            console.log(check.checked)
+            collect_a.classList.remove('text-danger');
+        }
+    }
+
+
+    //var login=document.getElementById("login");
+    //login.dataset.toggle="modal"
+    //login.dataset.target="#exampleModal"
+</script>
 
 }
 

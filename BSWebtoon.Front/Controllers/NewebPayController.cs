@@ -12,19 +12,29 @@ using System.Collections.Generic;
 using System.Linq;
 using BSWebtoon.Model.Repository;
 using BSWebtoon.Model.Models;
+using BSWebtoon.Front.Service.RechargeService;
+using BSWebtoon.Front.Models.DTO.CashPlan;
+using System.Security.Claims;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace NewebPay.Controllers
 {
     public class NewebPayController : Controller
     {
         private readonly BSRepository _repository;
-
         private readonly ILogger<NewebPayController> _logger;
-
-        public NewebPayController(ILogger<NewebPayController> logger, BSRepository repository)
+        //---------- hana add ------ 
+        private readonly IRechargeService _rechargeService;
+        
+        public NewebPayController(ILogger<NewebPayController> logger, BSRepository repository, IRechargeService rechargeService)
         {
             _logger = logger;
             _repository = repository;
+
+            //---------- hana add ------ 
+            _rechargeService = rechargeService;
+
         }
 
         public IActionResult Index() //NewebPay/Index
@@ -72,7 +82,6 @@ namespace NewebPay.Controllers
             // 藍新金流線上付款
             var memberId = int.Parse(User.Claims.First(x => x.Type == "MemberID").Value);
 
-
             // 交易欄位
             List<KeyValuePair<string, string>> TradeInfo = new List<KeyValuePair<string, string>>();
             // 商店代號
@@ -84,7 +93,7 @@ namespace NewebPay.Controllers
             // 串接程式版本
             TradeInfo.Add(new KeyValuePair<string, string>("Version", "2.0"));
             // 商店訂單編號
-            TradeInfo.Add(new KeyValuePair<string, string>("MerchantOrderNo", $"{memberId}_{DateTime.Now.ToString("yyyymmddhhmmss")}"));
+            TradeInfo.Add(new KeyValuePair<string, string>("MerchantOrderNo",$"{memberId}_{ DateTime.Now.ToString("yyyyMMddHHmmss") }"));
             // 訂單金額
             TradeInfo.Add(new KeyValuePair<string, string>("Amt", $"{(int)typePrice}"));//等等
             // 商品資訊
@@ -99,7 +108,7 @@ namespace NewebPay.Controllers
             // 商店取號網址
             TradeInfo.Add(new KeyValuePair<string, string>("CustomerURL", $"{Request.Scheme}://{Request.Host}{Request.Path}Home/CallbackCustomer"));
             // 支付取消返回商店網址
-            TradeInfo.Add(new KeyValuePair<string, string>("ClientBackURL", $"{Request.Scheme}://localhost:80/Recharge/CashPlanView"));
+            TradeInfo.Add(new KeyValuePair<string, string>("ClientBackURL", $"{Request.Scheme}://localhost:80/Recommend/Recommend"));
             // 付款人電子信箱
             //TradeInfo.Add(new KeyValuePair<string, string>("Email", inModel.Email));//等等
             // 付款人電子信箱 是否開放修改(1=可修改 0=不可修改)
@@ -128,8 +137,8 @@ namespace NewebPay.Controllers
         /// <summary>
         /// 支付完成返回網址
         /// </summary>
-        /// <returns></returns>
-        public IActionResult CallbackReturn()//hana你需要它!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+        public async Task<IActionResult> CallbackReturn()
         {
             // 接收參數
             StringBuilder receive = new StringBuilder();
@@ -147,14 +156,85 @@ namespace NewebPay.Controllers
             string TradeInfoDecrypt = DecryptAESHex(Request.Form["TradeInfo"], HashKey, HashIV);
             NameValueCollection decryptTradeCollection = HttpUtility.ParseQueryString(TradeInfoDecrypt);
             receive.Length = 0;
+
+            // ---------- by hana  ------ 
+            //將成功訂單存入資料庫
+            var input_RechargeRecord = new RechargeRecord()
+            {
+                RechargeRecordId = 4,
+                MemberId = 1,
+                CashPlanId = 1,
+                CreateTime = DateTime.UtcNow,
+                PaymentId = 1,
+                CashPlanContent = 0,
+                Price = 0,
+            };
             foreach (String key in decryptTradeCollection.AllKeys)
             {
-                receive.AppendLine(key + "=" + decryptTradeCollection[key] + "<br>");
+                var status = decryptTradeCollection["Status"];//SUCCESS
+                if(status == "SUCCESS")
+                {
+                    var MemberId = 123;
+                    if (key == "MerchantOrderNo")
+                    {
+                        string[] sArray = decryptTradeCollection[key].Split("_");
+                        MemberId = Convert.ToInt32(sArray[0]);
+                        input_RechargeRecord.MemberId = MemberId;
+                    }
+                    else if (key == "ItemDesc")
+                    {
+                        int gold = Convert.ToInt32(decryptTradeCollection[key].Split("金幣")[0]);
+                        input_RechargeRecord.CashPlanContent = gold;
+                    }
+                    else if (key == "Amt")
+                    {
+                        input_RechargeRecord.Price = Convert.ToInt32(decryptTradeCollection[key]);
+                    }
+                    else if (key == "PaymentMethod")
+                    {
+                        switch (decryptTradeCollection[key])
+                        {
+                            case "CreditCard":
+                                input_RechargeRecord.CashPlanId = 1;
+                                break;
+                            case "Ez Pay":
+                                input_RechargeRecord.CashPlanId = 2;
+                                break;
+                            case "Line Pay":
+                                input_RechargeRecord.CashPlanId = 3;
+                                break;
+                            case "Taiwan Pay":
+                                input_RechargeRecord.CashPlanId = 4;
+                                break;
+                            default:
+                                input_RechargeRecord.CashPlanId = 1;
+                                break;
+                        }
+                        //更新帳戶餘額
+                        var CurrentMember = _repository.GetAll<Member>().Where(x => x.MemberId == input_RechargeRecord.MemberId).FirstOrDefault();
+                        var Balance = (int)_repository.GetAll<Member>().Where(x => x.MemberId == input_RechargeRecord.MemberId).Select(x => x.Balance).FirstOrDefault();
+                        var newBlance = input_RechargeRecord.CashPlanContent + Balance;
+                        CurrentMember.Balance = newBlance;
+                        _repository.Update(CurrentMember);
+                        _repository.SaveChange();
+                    }
+                    
+                    TempData["message"] = "成功付款";
+                }
+                else
+                {
+                    TempData["message"] = "付款失敗";
+
+                }
             }
+
+            _rechargeService.RechargeRecordCreateNew(input_RechargeRecord);
 
             ViewData["TradeInfo"] = receive.ToString();
 
-            return View();
+
+
+            return Redirect("~/Account/AccountInfo");
         }
 
         /// <summary>

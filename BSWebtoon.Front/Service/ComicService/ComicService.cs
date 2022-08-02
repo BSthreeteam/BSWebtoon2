@@ -3090,12 +3090,18 @@ namespace BSWebtoon.Front.Service.ComicService
         public void ComicTagListUpdate()
         {
             //var updateTagList = _repository.GetAll<ComicTagList>().Where(x => x.TageListId == 2).FirstOrDefault();
-            var updateComic = _repository.GetAll<Comic>().Where(x => x.ComicId == 3 && x.ComicId == 4 && x.ComicId == 5 && x.ComicId == 6)
-                .FirstOrDefault();
-            //updateTagList.ComicId = 2;
-            updateComic.ComicFigure = "";
+            var updateComic   = _repository.GetAll<Comic>().Where(x => x.ComicId == 11).FirstOrDefault();
+            var updateComic1  = _repository.GetAll<Comic>().Where(x => x.ComicId == 12).FirstOrDefault();
+            var updateComic2  = _repository.GetAll<Comic>().Where(x => x.ComicId == 13).FirstOrDefault();
+            updateComic  .ComicStatus = 3;
+            updateComic1 .ComicStatus = 3;
+            updateComic2.ComicStatus = 3;
+           
             //_repository.Update(updateTagList);
-            _repository.Update(updateComic);
+            _repository.Update(updateComic  );
+            _repository.Update(updateComic1 );
+            _repository.Update(updateComic2 );
+            
             _repository.SaveChange();
 
         }
@@ -5529,6 +5535,7 @@ namespace BSWebtoon.Front.Service.ComicService
                 ////new EpContent(){ EpContentId=319,  EpId=start+160,  ImagePath="", Page=1},
                 ////new EpContent(){ EpContentId=320,  EpId=start+160,  ImagePath="", Page=2},
             };
+
             //foreach (var epContent in epContentList)
             //{
             //    _repository.Create(epContent);
@@ -5569,9 +5576,10 @@ namespace BSWebtoon.Front.Service.ComicService
             //userName = "林淑芬";
             //var memberId = _repository.GetAll<Member>().Where(m => m.AccountName == userName).Select(m => m.MemberId).FirstOrDefault();
             var comicSource = _repository.GetAll<Comic>().Where(c => c.AuditType == 1).First(x => x.ComicId == comicId);
-            var tagListSource = _repository.GetAll<ComicTagList>().Where(x => x.ComicId == comicSource.ComicId);
-            var tagnames = _repository.GetAll<ComicTag>().Where(x => tagListSource.Any(y => y.TagId == x.TagId));
-            var mainTag = _repository.GetAll<ComicTag>().Where(x => tagListSource.Any(y => y.TagId == x.TagId)).First(x => x.IsMainTag == true);
+            var tagList = _repository.GetAll<ComicTagList>().Where(x => x.ComicId == comicSource.ComicId).Select(x => x.TagId).ToList();
+            var tagnames = _repository.GetAll<ComicTag>().Where(x => tagList.Contains( x.TagId)).ToList();
+            //這邊主Tag有的漫畫沒有，有些功能會報錯(要注意!!)
+            var mainTag = tagnames.FirstOrDefault(x => x.IsMainTag); 
             var couponTest = _repository.GetAll<Coupon>();
             // 1通用券 2閱讀券 3倒數券 券有可能沒有 都沒有的話就只有倒數券
             var readCouponSource = _repository.GetAll<Coupon>().Where(x => x.CouponTypeId == 2 && x.MemberId == memberId && x.ComicId == comicId).Select(x => x.Quantity).FirstOrDefault();
