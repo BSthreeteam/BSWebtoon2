@@ -1,0 +1,118 @@
+﻿@{
+    Layout = "_WorkPageLayout";
+    ViewData["Title"] = "AccountInfo";
+    <link rel="stylesheet" href="~/style/AccountStyle.css" />
+}
+<header class="userinfo_nav w-100">
+    <a class="previous_page_a userinfo_nav_a" href="javascript:history.go(-1)">
+        <i class="fa-solid fa-arrow-left-long previous_page"></i>
+    </a>
+</header>
+
+<div class="col-12 userinfo w-1200 pt-5">
+    <h1>帳戶資訊</h1>
+    <div class="user d-flex mb-2">
+        <div class="userid ms-2 ">
+            <p class="fs-3 mb-0">陳 亮 UserName</p>
+        </div>
+    </div>
+    <div class="usermoney d-flex flex-column flex-md-row mb-4">
+        <div class="money d-flex">
+            <i class="fa-solid fa-sack-dollar text-center mx-2 text-warning "></i>
+            <p class="d-flex my-auto ">
+                金幣 : <span class="ms-2">0</span>
+                <a class="rechargeLink" href="/Recharge/CashPlanView">立即儲值</a>
+            </p>
+        </div>
+        <div class="ticket d-flex">
+            <i class="fa-solid fa-ticket text-center mx-2 text-primary"></i>
+            <p class="ticket_p">閱讀券 : <span class="ms-2">0</span> </p>
+        </div>
+        <div class="ticket d-flex">
+            <i class="fa-solid fa-ticket text-center mx-2 text-success"></i>
+            <p class="ticket_p">通用券 : <span class="ms-2">0</span></p>
+        </div>
+    </div>
+    <div class="record my-3">
+        <ul class="d-flex px-0 m-0">
+            <li class="recordItem"><a class="recordItem_a" href="#">券獲得/使用紀錄</a></li>
+            <li class="recordItem"><a class="recordItem_a" href="#">金幣消費/儲值紀錄</a></li>
+        </ul>
+    </div>
+    <div class="detail text-center">
+        <div class="nothing">
+            <p class="nothing_text">什麼都沒有 > △ <</p>
+        </div>
+        <table class="table table-striped recordTable d-none">
+            <caption class="caption-top captionText">金幣消費/儲值紀錄</caption>
+            <thead>
+                <tr>
+                    <th>標題</th>
+                    <th>標題</th>
+                    <th>標題</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>內容</td>
+                    <td>內容</td>
+                    <td>內容</td>
+                </tr>
+                <tr>
+                    <td>內容</td>
+                    <td>內容</td>
+                    <td>內容</td>
+                </tr>
+                <tr>
+                    <td>內容</td>
+                    <td>內容</td>
+                    <td>內容</td>
+                </tr>
+                <tr>
+                    <td>內容</td>
+                    <td>內容</td>
+                    <td>內容</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination recordTableNav justify-content-end d-none">
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+
+<script>
+            console.log(window.location.href)
+    let recordItem_a = document.querySelectorAll('.recordItem_a')
+    let nothing = document.querySelector('.nothing')
+    let recordTable = document.querySelector('.recordTable')
+    let captionText = document.querySelector('.captionText')
+    let recordTableNav = document.querySelector('.recordTableNav')
+    recordItem_a.forEach(item => {
+        item.addEventListener('click', (e) => {
+            let group = document.querySelectorAll('.recordItem_a')
+            group.forEach(groupItem => {
+                groupItem.classList.remove('selectedRecordItem')
+            })
+            item.classList.add('selectedRecordItem')
+            nothing.classList.add('d-none')
+            recordTable.classList.remove('d-none')
+            captionText.innerHTML = item.innerHTML
+            recordTableNav.classList.remove('d-none')
+        })
+    })
+</script>
+
