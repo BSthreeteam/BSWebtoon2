@@ -394,13 +394,14 @@
         @{
             if (ViewData.ContainsKey("IsSuccessMsg"))
             {
-                <script>
-                    alert(@Html.Raw(ViewData["IsSuccessMsg"])  )
-                </script>
+                        <script>
+                            alert(@Html.Raw(ViewData["IsSuccessMsg"])  )
+                        </script>
             }
         }
 
         <script>
+            var upload_work = document.getElementById("upload_file_btn")
 
 
             //var inputState =  document.getElementById("inputState")
@@ -418,20 +419,22 @@
             //input file已增加multiple屬性，按住ctrl可選擇多圖
             var arrTitle = []; //存標題名
             var arrCover = []; //存封面圖檔
-            document.getElementById("EP_Context_file")
-                .addEventListener("change", file);
 
             //(Yu)上傳集數封面
-            document.getElementById("EpCover")
-                .addEventListener("change", readURL);
+            var input_EP_Cover = document.getElementById("EpCover")
+            input_EP_Cover.addEventListener("change", readURL);
 
-            var obj, input_EP_Cover, img_box;
+            var input_EP_Context = document.getElementById("EP_Context_file")
+            input_EP_Context.addEventListener("change", file);
+
+
+
+            var obj, img_box;
             img_box = document.querySelector('#img_box');
 
             function readURL() {
                 img_box.innerText = "";
-                input_EP_Cover = this,
-                    length = input_EP_Cover.files.length;
+                let length = input_EP_Cover.files.length;
                 for (var i = 0; i < length; i++) {
 
                     var reader = new FileReader();
@@ -466,6 +469,7 @@
                                     alert("檔案尺寸應為：250*150！");
                                     input_EP_Cover.value = "";
                                     img_box.innerText = ""; //只有視覺
+                                    checkSendable();
                                     return false;
                                     //BgCover  input要清除
                                 }
@@ -476,8 +480,11 @@
                     })(i)
                     reader.readAsDataURL(input_EP_Cover.files[i]);
                 }
-            }
 
+
+                checkSendable();
+            }
+            
 
             //function file() {
             //    obj = this,
@@ -559,7 +566,6 @@
 
 
             //})(i)
-
 
             function file() {
                 obj = this,
@@ -651,6 +657,16 @@
                     //    update_file_state();
                     //}
                 }
+
+                checkSendable();
+            }
+            checkSendable();
+            function checkSendable() {
+                if( input_EP_Context.files.length >0 && input_EP_Cover.files.length>0){
+                    upload_work.disabled = false;
+                }else{
+                    upload_work.disabled = true;
+                }
             }
 
             function update_file_state() {
@@ -678,6 +694,7 @@
                     arrTitle.pop(title);
                     update_file_state();
                 }
+                checkSendable();
                 return false;
             }
             //刪除全部圖片
@@ -693,6 +710,7 @@
                 } else {
                     return false;
                 }
+                upload_work.disabled = true;
             }
 
         </script>
@@ -700,7 +718,7 @@
         <script>
             //上傳等待狀態按鈕
             //var Wait = document.getElementById("Wait");
-            var upload_work = document.getElementById("upload_file_btn").addEventListener("click", Waiting_Upload);
+            upload_work.addEventListener("click", Waiting_Upload);
             var Loadingdata = document.getElementById("Loadingdata");
             //上傳等待狀態按鈕方法
             function Waiting_Upload() {
