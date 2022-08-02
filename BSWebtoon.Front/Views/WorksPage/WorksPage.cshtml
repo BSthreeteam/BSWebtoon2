@@ -65,9 +65,9 @@
                     <p><span>作者</span> @Model.Author</p>
                     <p><span>發行</span> @Model.Publisher</p>
                     <div class="comics_category">
-                        <p class="category"><span><i class="fa-solid fa-bars-staggered"></i></span>@Model.MainTagName</p>
-                        <p class="whatch"><span><i class="fa-regular fa-eye"></i></span> @Model.ClickCount </p>
-                        <p class="good"><span><i class="fa-regular fa-thumbs-up"></i></span> @Model.ComicLikeCount </p>
+                        <span><i class="fa-solid fa-bars-staggered"></i></span><p class="category d-flex align-items-center">@Model.MainTagName</p>
+                        <span><i class="fa-regular fa-eye"></i></span><p class="whatch d-flex align-items-center"> @Model.ClickCount </p>
+                        <span><i class="fa-regular fa-thumbs-up"></i></span><p class="good d-flex align-items-center"> @Model.ComicLikeCount </p>
                     </div>
                 </div>
             </a>
@@ -100,31 +100,11 @@
                 </a>
             </div>
             <div class="ep_row col-12 col-lg-8 col-xl-8">
-
-                @foreach (var ep in Model.EpList)
-                {
-                    <div class="col col-6 col-md-4 col-lg-3 col-xl-2">
-                        <a id="login" href="javascript:(0)" onclick="clickEp(@ep.EpId)">
-                            <div class="card w-100" style="width: 18rem;">
-                                <img src="@ep.EpCover" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">@ep.EpTitle</h5>
-                                    <p class="card-text">@ep.UploadTime</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                }
-             @*   @if (!User.Identity.IsAuthenticated)
-                {
-
-                }
-                else
-                {
+                <div class="card_box w-100 d-flex flex-wrap">
                     @foreach (var ep in Model.EpList)
                     {
                         <div class="col col-6 col-md-4 col-lg-3 col-xl-2">
-                            <a class="" href="~/WorksPage/ComicContent/@ep.EpId">
+                            <a id="login" href="javascript:(0)" onclick="clickEp(@ep.EpId)">
                                 <div class="card w-100" style="width: 18rem;">
                                     <img src="@ep.EpCover" class="card-img-top" alt="...">
                                     <div class="card-body">
@@ -134,9 +114,38 @@
                                 </div>
                             </a>
                         </div>
-                    }
-                }*@
-
+                    }                
+                </div>
+                <div class="mobile_title_box p-3 d-none">
+                    <h2 class="mo_ti fw-bolder">@Model.ComicChineseName</h2>
+                    <div class="ill_box">
+                        <div>
+                            <span>繪者</span>
+                            <p class="mo_word">@Model.Painter</p>
+                        </div>
+                        <div>
+                            <span>作者</span>
+                            <p class="mo_pic">@Model.Author</p>
+                        </div>
+                        <div>
+                            <span>發行</span>
+                            <p class="mo_publisher">@Model.Publisher</p>
+                        </div>
+                    </div>
+                    <div class="story_box mt-5">
+                        <h3>故事大綱</h3>
+                        <p>@Model.Introduction</p>
+                    </div>
+                    <div class="keywords_box mt-5">
+                        <h4 class="mb-3">關鍵字</h4>
+                        <div>
+                            @foreach (var tag in Model.TagNames)
+                            {
+                                <p>#@tag</p>
+                            }
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-lg-4 col-xl-4">
                 <div class="comics_illustrate">
@@ -232,6 +241,8 @@
     </div>
 </div>
 
+
+
 <script>
 
     let isAuthenticated = "@Model.IsAuthenticated" === "True";
@@ -244,8 +255,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-
 <script src="~/js/Workspage.js" asp-append-version="true"></script>
+<script>
 
     ////點擊愛心，顏色變紅色
     let check = document.querySelector('#heart');
@@ -269,9 +280,9 @@
     }
 
 
-    //var login=document.getElementById("login");
-    //login.dataset.toggle="modal"
-    //login.dataset.target="#exampleModal"
+    var login=document.getElementById("login");
+    login.dataset.toggle="modal"
+    login.dataset.target="#exampleModal"
 </script>
 
 }
