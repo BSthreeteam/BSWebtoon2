@@ -30,23 +30,32 @@
                        data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="~/images/people.png" alt="登入者"
                              class="border border-dark rounded-circle user-icon">
-                        @User.Identity.Name
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item bg-light xl_accountinfo" href="#">我的帳戶</a></li>
-                        <li><a class="dropdown-item bg-light xl_my_comic" href="/Favorite/RecordView">我的漫畫</a></li>
-                        <li><a class="dropdown-item bg-light xl_my_love" href="/Favorite/ReadFavoriteView">我的最愛</a></li>
-                        <li><a class="dropdown-item bg-light xl_my_coin" href="#">金幣/閱讀券明細</a></li>
-                        <li><a class="dropdown-item bg-light xl_stored_value" href="/Recharge/CashPlanView">儲值金幣</a></li>
-                        <li><a class="dropdown-item bg-light xl_history" href="#">瀏覽紀錄</a></li>
-                        <li><a class="dropdown-item bg-light xl_my_set" href="/Setting/SettingView">我的設定</a></li>
-                        <li><a class="dropdown-item bg-light xl_customer_service" href="#">客服中心</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a id="logout" class="dropdown-item bg-light"asp-controller="Login" asp-action="Logout">登出</a></li>
-                    </ul>
-                </li>
+                            @User.Identity.Name
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item bg-light xl_accountinfo" href="/Recommend/Recommend">首頁</a></li>
+                            <li><a class="dropdown-item bg-light xl_accountinfo" href="#">我的帳戶</a></li>
+                            <li><a class="dropdown-item bg-light xl_my_love" href="/Favorite/ReadFavoriteView">我的最愛</a></li>
+                            <li><a class="dropdown-item bg-light xl_my_coin" href="#">金幣/閱讀券明細</a></li>
+                            <li><a class="dropdown-item bg-light xl_stored_value" href="/Recharge/CashPlanView">儲值金幣</a></li>
+                            <li><a class="dropdown-item bg-light xl_history" href="#">歷史觀看紀錄</a></li>
+                            <li><a class="dropdown-item bg-light xl_history" href="#">上傳作品</a></li>
+                            <li><a class="dropdown-item bg-light xl_my_set" href="/Setting/SettingView">我的設定</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item bg-light xl_customer_service" href="#">客服中心</a></li>
+                            <li><a id="logout" class="dropdown-item bg-light" href="Login/Logout">登出</a></li>
+                        </ul>
+                    </li>
+
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <a data-bs-toggle="modal" href="#" data-bs-target="#exampleModal" class="nav-link">登入</a>
+                    </li>
+                }
             </ul>
         </nav>
     </div>
