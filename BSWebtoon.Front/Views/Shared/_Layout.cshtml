@@ -34,16 +34,16 @@
                             @User.Identity.Name
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item bg-light xl_accountinfo" href="/Recommend/Recommend">首頁</a></li>
                             <li><a class="dropdown-item bg-light xl_accountinfo" href="#">我的帳戶</a></li>
                             @*<li><a class="dropdown-item bg-light xl_my_comic" href="#">我的漫畫</a></li>*@
                             <href><a class="dropdown-item bg-light xl_my_love" href="/Favorite/AddFavoriteView">我的最愛</a></li>
                             <li><a class="dropdown-item bg-light xl_history" href="#">瀏覽紀錄</a></li>
                             <li><a class="dropdown-item bg-light xl_my_coin" href="#">金幣/閱讀券明細</a></li>
                             <li><a class="dropdown-item bg-light xl_stored_value" href="/Recharge/CashPlanView">儲值金幣</a></li>
-                            <li><a class="dropdown-item bg-light xl_history" href="#">瀏覽紀錄</a></li>
-                            <li><a class="dropdown-item bg-light xl_history" href="#">上傳作品</a></li>
+                            <li><a class="dropdown-item bg-light xl_history" href="#">歷史觀看紀錄</a></li>
+                            <li><a class="dropdown-item bg-light xl_history" href="/UpLoad/UploadComic">上傳作品</a></li>
                             <li><a class="dropdown-item bg-light xl_my_set" href="/Setting/SettingView">我的設定</a></li>
-                            <li><a class="dropdown-item bg-light xl_customer_service" href="#">客服中心</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -59,7 +59,6 @@
                         <a data-bs-toggle="modal" href="#" data-bs-target="#exampleModal" class="nav-link">登入</a>
                     </li>
                 }
-
             </ul>
             <ul class="nav flex-nowrap text_overflow">
                 <li class="nav-item">
@@ -78,10 +77,10 @@
                     @*<a class="nav-link" href="#">排行榜</a>*@
                     @Html.ActionLink("排行榜", "AllRankList", "Rank", new {},new {@class="nav-link text-light"})
                 </li>
-                <li class="nav-item">
+               @* <li class="nav-item">
                     @* <a class="nav-link" href="#">我的漫畫</a>*@
-                    @Html.ActionLink("我的漫畫", "RecordView","Favorite" , new {},new {@class="nav-link text-light"})
-                </li>
+                    @*@Html.ActionLink("我的漫畫", "RecordView","Favorite" , new {},new {@class="nav-link text-light"})
+                </li>*@
             </ul>
             <template>
                 <ul class="nav justify-content-center">
@@ -95,6 +94,17 @@
             </template>
         </nav>
     </div>
+    @if(TempData["message"]!=null){
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	    <script type="text/javascript">
+            var message = "@Html.Raw(TempData["message"])";
+@*            alert(message);
+*@            swal({
+                icon: "success",
+                title: message
+            });
+        </script>
+    }
       <partial name="_LoginPartial"></partial>
 
     <template id="useraccount">

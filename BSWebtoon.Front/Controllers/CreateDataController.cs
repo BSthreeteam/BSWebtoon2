@@ -25,6 +25,7 @@ namespace BSWebtoon.Front.Controllers
         {
             _memberService = memberService;
             _rechargeService = rechargeService;
+            //_rechargeService.RechargeRecordCreate();
             _Employeeservice = EmployeeService;
             _ComicService = ComicService;
             _favoriteService = favoriteService;

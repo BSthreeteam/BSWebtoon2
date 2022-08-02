@@ -1,5 +1,6 @@
 ﻿using BSWebtoon.Front.Models.DTO.CashPlan;
 using System.Collections.Generic;
+using BSWebtoon.Model.Models;
 
 namespace BSWebtoon.Front.Service.RechargeService
 {
@@ -8,6 +9,7 @@ namespace BSWebtoon.Front.Service.RechargeService
         void PaymentCreate();
         void CashPlanCreate();
         void RechargeRecordCreate();
+        void RechargeRecordCreateNew(RechargeRecord input_RechargeRecord);
         List<CashPlanDTO> ReadCashPlan(string username);
     }
 }
