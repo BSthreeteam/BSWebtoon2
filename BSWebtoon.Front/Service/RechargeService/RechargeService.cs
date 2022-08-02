@@ -89,6 +89,28 @@ namespace BSWebtoon.Front.Service.RechargeService
             _repository.SaveChange();
 
         }
+        //hana
+        public void RechargeRecordCreateNew(RechargeRecord input_RechargeRecord)
+        {
+            List<RechargeRecord> rechargeRecords = new List<RechargeRecord>
+            {
+                new RechargeRecord(){/*RechargeRecordId=1, */
+                    MemberId=input_RechargeRecord.MemberId,
+                    CreateTime=input_RechargeRecord.CreateTime,
+                    PaymentId=input_RechargeRecord.PaymentId,
+                    CashPlanId=input_RechargeRecord.CashPlanId,
+                    CashPlanContent=input_RechargeRecord.CashPlanContent,
+                    Price=input_RechargeRecord.Price
+                    },
+            };
+
+            foreach (var rechargeRecord in rechargeRecords)
+            {
+                _repository.Create(rechargeRecord);
+            };
+            _repository.SaveChange();
+
+        }
 
         //public void RechargeSaveChange(List<RechargeRecord> datas)
         //{
@@ -118,5 +140,8 @@ namespace BSWebtoon.Front.Service.RechargeService
             }).ToList();
             return result;
         }
+        
+
+
     }
 }

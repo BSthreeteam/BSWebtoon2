@@ -3090,12 +3090,18 @@ namespace BSWebtoon.Front.Service.ComicService
         public void ComicTagListUpdate()
         {
             //var updateTagList = _repository.GetAll<ComicTagList>().Where(x => x.TageListId == 2).FirstOrDefault();
-            var updateComic = _repository.GetAll<Comic>().Where(x => x.ComicId == 3 && x.ComicId == 4 && x.ComicId == 5 && x.ComicId == 6)
-                .FirstOrDefault();
-            //updateTagList.ComicId = 2;
-            updateComic.ComicFigure = "";
+            var updateComic   = _repository.GetAll<Comic>().Where(x => x.ComicId == 11).FirstOrDefault();
+            var updateComic1  = _repository.GetAll<Comic>().Where(x => x.ComicId == 12).FirstOrDefault();
+            var updateComic2  = _repository.GetAll<Comic>().Where(x => x.ComicId == 13).FirstOrDefault();
+            updateComic  .ComicStatus = 3;
+            updateComic1 .ComicStatus = 3;
+            updateComic2.ComicStatus = 3;
+           
             //_repository.Update(updateTagList);
-            _repository.Update(updateComic);
+            _repository.Update(updateComic  );
+            _repository.Update(updateComic1 );
+            _repository.Update(updateComic2 );
+            
             _repository.SaveChange();
 
         }
