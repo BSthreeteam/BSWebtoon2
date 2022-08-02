@@ -83,14 +83,15 @@
         <div class="container" style="background-color: #000;">
 
             @*加*@
-            <form method="post" enctype="multipart/form-data">
+            <form method="post" enctype="multipart/form-data" action="/Login/UploadWorkView">
 
 
-                <div class="comic_text" >
+                <div class="comic_text">
                     <label for="inputState" class="form-label my-4">作品名稱</label>
                     <select id="inputState" class="form-select" name="ComicId">
-@*                        <option selected>Choose...</option>
-*@                        @foreach (var comic in ComicsWithEpCount)
+                        @*                        <option selected>Choose...</option>
+                        *@
+                        @foreach (var comic in ComicsWithEpCount)
                         {
                             <option value="@comic.ComicId">  @comic.ComicChineseName -- 已到第 @comic.EpCount 話：@comic.EpName  </option>
                         }
@@ -125,7 +126,7 @@
                                     </div>
                                     <div class="card-body bg-dark" style="background-color: #000">
                                         <p class="headshot_text ">
-                                            推薦圖片大小121*80<br>檔案大小不可大於500kB(僅限JPG、JPEG和PNG檔)<br>檔案名稱僅限輸入英文或數字
+                                            推薦圖片大小250*150<br>檔案大小不可大於500kB(僅限JPG、JPEG和PNG檔)<br>檔案名稱僅限輸入英文或數字
                                         </p>
                                     </div>
 
@@ -163,12 +164,12 @@
 
 
 
-                            <label class="my-4" for="inputState" class="form-label">內容作品上傳檔案:(必須輸入) 推薦圖片大小720*1100</label>
+                            <label class="my-4 form-label" for="inputState">內容作品上傳檔案:(必須輸入) 推薦圖片大小720*1100</label>
                             <div class="btn_updata">
 
                                 <label type="button" class="btn btn-secondary" class="up-Lab btn_upload_style" asp-for="EP_Context_file" id="select_file">選擇檔案</label>
-                                @*加收參數*@
-                                <input type="file" name="EP_Context_file" accept="image/*" multiple id="EP_Context_file" style="display:none;">
+                                @*加收參數*@@*name="EP_Context_file"*@
+                                <input id="EP_Context_file" name="EP_Context_file" asp-for="EP_Context_file" type="file" accept="image/*" multiple style="display:none;">
                                 @*加入防呆*@
                                 <span asp-validation-for="EP_Context_file" class="text-danger"></span>
 
@@ -432,23 +433,23 @@
         @{
             if (ViewData.ContainsKey("IsSuccessMsg"))
             {
-                    <script>
-                        alert(@Html.Raw(ViewData["IsSuccessMsg"])  )
-                    </script>
+                <script>
+                    alert(@Html.Raw(ViewData["IsSuccessMsg"])  )
+                </script>
             }
         }
 
         <script>
 
 
-           //var inputState =  document.getElementById("inputState")
-           // inputState.addEventListener("change", Checkselect);
-           // function Checkselect() {
+            //var inputState =  document.getElementById("inputState")
+            // inputState.addEventListener("change", Checkselect);
+            // function Checkselect() {
 
-           //     let comic_text = document.getElementsByClassName('comic_text')[0];
-           //     comic_text.setAttribute('class', 'd-none');
+            //     let comic_text = document.getElementsByClassName('comic_text')[0];
+            //     comic_text.setAttribute('class', 'd-none');
 
-           // }
+            // }
 
 
 
@@ -458,111 +459,236 @@
             var arrCover = []; //存封面圖檔
             document.getElementById("EP_Context_file")
                 .addEventListener("change", file);
+
             //(Yu)上傳集數封面
             document.getElementById("EpCover")
                 .addEventListener("change", readURL);
-            var obj, obj_cover, img_box;
+
+            var obj, input_EP_Cover, img_box;
             img_box = document.querySelector('#img_box');
+
             function readURL() {
                 img_box.innerText = "";
-                obj_cover = this,
-                    length = obj_cover.files.length;
+                input_EP_Cover = this,
+                    length = input_EP_Cover.files.length;
                 for (var i = 0; i < length; i++) {
 
                     var reader = new FileReader();
-                    if (!reader) {
-                        alert("對不起，您的瀏覽器不支持!請更換瀏覽器試一下");
-                        return
-                    }
-                    reader.error = function(e) {
-                        alert("讀取異常")
-                    }
+                    //if (!reader) {
+                    //    alert("對不起，您的瀏覽器不支持!請更換瀏覽器試一下");
+                    //    return
+                    //}
+                    //reader.error = function(e) {
+                    //    alert("讀取異常")
+                    //}
                     //儲存上傳的封面圖片
-                    let file_cover_name = obj_cover.files[i].name;
+                    let file_cover_name = input_EP_Cover.files[i].name;
                     arrCover.push(file_cover_name);
                     (function(i) {
                         reader.onload = function(e) {
                             let cover_src = e.target.result;
-                            let img_cover = document.createElement('img');
-                            img_cover.setAttribute('src', cover_src);
-                            img_cover.classList.add("w-100")
-                            img_box.appendChild(img_cover);
+
+                            //載入圖片獲取圖片真實寬度和高度
+                            var image = new Image();
+                            image.onload = function() {
+                                var width = image.width;
+                                var height = image.height;
+                                if (width == 250 | height == 150) {
+                                    //alert("檔案尺寸符合！");
+                                    let img_cover = document.createElement('img');
+                                    img_cover.setAttribute('src', cover_src);
+                                    img_cover.classList.add("w-100")
+                                    img_box.appendChild(img_cover);
+
+
+                                } else {
+                                    alert("檔案尺寸應為：250*150！");
+                                    input_EP_Cover.value = "";
+                                    img_box.innerText = ""; //只有視覺
+                                    return false;
+                                    //BgCover  input要清除
+                                }
+                            };
+
+                            image.src = cover_src;
                         }
                     })(i)
-                    reader.readAsDataURL(obj_cover.files[i]);
+                    reader.readAsDataURL(input_EP_Cover.files[i]);
                 }
             }
 
 
+            //function file() {
+            //    obj = this,
+            //        length = obj.files.length;
+            //    _html = '';
+
+            //    for (var i = 0; i < length; i++) {
+            //        var reader = new FileReader();
+            //        if (!reader) {
+            //            console.log('對不起，您的瀏覽器不支持！請更換瀏覽器試一下');
+            //            return
+            //        }
+            //        reader.error = function(e) {
+            //            console.log("讀取異常")
+            //        }
+            //        //存儲上傳的多張圖片名字
+            //        let file_name = obj.files[i].name;
+            //        //arrTitle.push(file_name);
+            //        //iffi語法
+            //        ;
+            //        //(function(i) {
+            //            //讀取成功
+            //            reader.onload = function(e) {
+            //                let _src = e.target.result;
+            //                // console.log(e.target.result);
+
+            //                let image = new Image();
+            //                image.onload = function() {
+            //                    if (image.height != 886 || image.width != 600) {
+            //                        console.log(file_name + " 不符合圖片推薦大小");
+            //                        alert(file_name + " 不符合圖片推薦大小");
+            //                    } else {
+            //                        arrTitle.pop(file_name);
+            //                        //一個檔案的區塊 item_block
+            //                        let div_item = document.createElement('div');
+            //                        // div_item.setAttribute('class', 'item');
+            //                        ///(Yu)加入class
+            //                        div_item.classList.add("d-flex", "flex-column", 'ui-state-default');
+            //                        //XX的按鈕
+            //                        let pic_del_btn = document.createElement('button');
+            //                        pic_del_btn.setAttribute('type', "button");
+            //                        pic_del_btn.setAttribute('aria-label', "Close");
+            //                        pic_del_btn.setAttribute('title', file_name);
+            //                        pic_del_btn.classList.add("btn-close", "btn-close-white", "pic_del_btn");
+            //                        //圖片
+            //                        let img_div = document.createElement('div');
+            //                        // img_div.classList.add('text-end');
+            //                        let img = document.createElement('img');
+            //                        img.setAttribute('src', _src);
+            //                        img.setAttribute('style', "width: 250px; height: 300px;");
+            //                        img_div.appendChild(img);
+            //                        //檔案名稱
+            //                        let span_file_name = document.createElement('span');
+            //                        span_file_name.innerHTML = file_name;
+            //                        div_item.appendChild(pic_del_btn);
+            //                        div_item.appendChild(img_div);
+            //                        div_item.appendChild(span_file_name);
+
+            //                        //增加節點結構
+            //                        let sortable = document.getElementById('sortable');
+            //                        sortable.insertBefore(div_item, sortable.firstChild);
+
+            //                        //刪除節點方法
+            //                        pic_del_btn.onclick = function() {
+            //                            removeItem(this);
+            //                            return false;
+            //                        };
+            //                    }
+            //                };
+
+            //                //放入內容
+            //                image.src = _src;
+
+
+
+            //            };
+
+
+
+
+            //})(i)
+
+
             function file() {
                 obj = this,
-                    length = obj.files.length;
-                _html = '';
+                    _html = '';
 
-                for (var i = 0; i < length; i++) {
+                var ff;
+                for (var i = 0; i < obj.files.length; i++) {
+
                     var reader = new FileReader();
                     if (!reader) {
                         console.log('對不起，您的瀏覽器不支持！請更換瀏覽器試一下');
                         return
                     }
+
                     reader.error = function(e) {
                         console.log("讀取異常")
                     }
-                    //存儲上傳的多張圖片名字
+
                     let file_name = obj.files[i].name;
-                    arrTitle.push(file_name);
                     //iffi語法
-                    ;
+
                     (function(i) {
                         //讀取成功
-                        reader.onload = function(e) {
-                            let _src = e.target.result;
-                            // console.log(e.target.result);
-                            //一個檔案的區塊 item_block
-                            let div_item = document.createElement('div');
-                            // div_item.setAttribute('class', 'item');
-                            ///(Yu)加入class
-                            div_item.classList.add("d-flex", "flex-column", 'ui-state-default');
-                            //XX的按鈕
-                            let pic_del_btn = document.createElement('button');
-                            pic_del_btn.setAttribute('type', "button");
-                            pic_del_btn.setAttribute('aria-label', "Close");
-                            pic_del_btn.setAttribute('title', file_name);
-                            pic_del_btn.classList.add("btn-close", "btn-close-white", "pic_del_btn");
-                            //圖片
-                            let img_div = document.createElement('div');
-                            // img_div.classList.add('text-end');
-                            let img = document.createElement('img');
-                            img.setAttribute('src', _src);
-                            img.setAttribute('style', "width: 250px; height: 300px;");
-                            img_div.appendChild(img);
-                            //檔案名稱
-                            let span_file_name = document.createElement('span');
-                            span_file_name.innerHTML = file_name;
-                            div_item.appendChild(pic_del_btn);
-                            div_item.appendChild(img_div);
-                            div_item.appendChild(span_file_name);
-
-                            //增加節點結構
-                            let sortable = document.getElementById('sortable');
-                            sortable.insertBefore(div_item, sortable.firstChild);
-
-                            //刪除節點方法
-                            pic_del_btn.onclick = function() {
-                                removeItem(this);
-                                return false;
-                            };
-                        };
                     })(i)
 
-                    reader.onloadstart = function() { }
+                    reader.onload = function(e) {
+                        let _src = e.target.result;
+                        //建立圖標籤
+                        let image = new Image();
+                        image.onload = function() {
+                            if (image.height != 886 || image.width != 600) {
+                                console.log(file_name + " 不符合圖片推薦大小");
+                                let flag = confirm(file_name + " 不符合圖片推薦大小");
+                             
+                                //arrTitle.pop(file_name);
+                            }
+                            else {
+                                //存儲上傳的多張圖片名字
+                                arrTitle.push(file_name);
+                                // console.log(e.target.result);
+                                //一個檔案的區塊 item_block
+                                let div_item = document.createElement('div');
+                                // div_item.setAttribute('class', 'item');
+                                ///(Yu)加入class
+                                div_item.classList.add("d-flex", "flex-column", 'ui-state-default');
+                                //XX的按鈕
+                                let pic_del_btn = document.createElement('button');
+                                pic_del_btn.setAttribute('type', "button");
+                                pic_del_btn.setAttribute('aria-label', "Close");
+                                pic_del_btn.setAttribute('title', file_name);
+                                pic_del_btn.classList.add("btn-close", "btn-close-white", "pic_del_btn");
+                                //圖片
+                                let img_div = document.createElement('div');
+                                // img_div.classList.add('text-end');
+                                let img = document.createElement('img');
+                                img.setAttribute('src', _src);
+                                img.setAttribute('style', "width: 250px; height: 300px;");
+                                img_div.appendChild(img);
+                                //檔案名稱
+                                let span_file_name = document.createElement('span');
+                                span_file_name.innerHTML = file_name;
+                                div_item.appendChild(pic_del_btn);
+                                div_item.appendChild(img_div);
+                                div_item.appendChild(span_file_name);
+
+                                //增加節點結構
+                                let sortable = document.getElementById('sortable');
+                                sortable.insertBefore(div_item, sortable.firstChild);
+
+                                //刪除節點方法
+                                pic_del_btn.onclick = function() {
+                                    removeItem(this);
+                                    return false;
+                                };
+                            }
+                        };
+
+                        //放入內容
+                        image.src = _src;
+                    };
                     reader.onprogress = function(e) {
                         if (e.lengthComputable) {
                             console.log("正在讀取文件")
                         }
                     };
                     reader.readAsDataURL(obj.files[i]);
-                    update_file_state();
+                    //reader.onloadend = function() {
+
+                    //    update_file_state();
+                    //}
                 }
             }
 

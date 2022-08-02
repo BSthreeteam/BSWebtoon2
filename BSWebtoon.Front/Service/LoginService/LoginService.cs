@@ -257,16 +257,12 @@ namespace BSWebtoon.Front.Service.LoginService
 
             #endregion
 
-
-
-
-
-
             result.IsSuccess = true;
             return result;
         }
 
 
+        //取得會員表裡面的 NickName 也就是作者名稱方法
         public string GetNickName(int userid)
         {
             var result = new UploadComicOutputDTO()
@@ -296,7 +292,66 @@ namespace BSWebtoon.Front.Service.LoginService
             return user;
         }
 
+        //讀取到目前作者所有上傳的漫畫與話次
+        public GetComicInfoOutputDTO GetComicInfoToUploadEp(GetComicInfoInputDTO input)
+        {
 
+            var result = new GetComicInfoOutputDTO()
+            {
+                //把預設為 IsSuccess 的狀態設定成 false 。
+                IsSuccess = false,
+                //取得 GetComicInfoOutputDTO 裡面的 ComicWithEpCount 物件，在存入 GetComicInfoOutputDTO 宣告的欄位 MyComics_WithEpCount 做存放。
+                MyComics_WithEpCount = new List<GetComicInfoOutputDTO.ComicWithEpCount>(),
+            };
+
+            //檢查
+            //if(){ }
+
+
+            //主邏輯
+
+            //Id => 作者名
+            string author = _repository.GetAll<Member>().First(x => x.MemberId == input.MemberId).NickName;
+
+            //作者名 => 所有此作者漫畫
+            var myComics = _repository.GetAll<Comic>().Where(c => c.Author == author && c.AuditType == 1) //審過
+                .Select(c => new GetComicInfoOutputDTO.ComicWithEpCount
+                {
+                    ComicId = c.ComicId,
+                    ComicChineseName = c.ComicChineseName,
+                })//.ToList() 
+                ;
+
+
+            //每部漫畫 => ComicWithEpCount
+            foreach (var c in myComics)
+            {
+                //查此漫畫的  最末話
+                //先找到屬於這個會員的所有話次
+                var a = _repository.GetAll<Episode>().Where(x => x.ComicId == c.ComicId);
+
+                //找到查此漫畫的所有話次的內容總數
+                c.EpCount = a.Count();
+                if (c.EpCount > 0)
+                {
+                    //用AuditTime審計時間來查，此部漫畫的話次內容目前上傳到最末話的狀態，先把AuditTime審計時間做由大到小排序，再找出唯一的第一個EpTitle
+                    //?，就是null條件運算子
+                    c.EpName = a.OrderByDescending(x => x.AuditTime).FirstOrDefault()?.EpTitle;
+                }
+
+                //把結果，先存入 MyComics_WithEpCount 的DTO，再存入 GetComicInfoOutputDTO
+                result.MyComics_WithEpCount.Add(c);
+            };
+
+            //如果上面的商業邏輯程式都運算成功的話，把預設為 IsSuccess 的 false 改為 true 。 
+            result.IsSuccess = true;
+
+            //最後再把所有的結果做回傳
+            return result;
+        }
+
+
+        //上傳EP與EP內容方法
         //實作方法
         //使用非同步方式，宣告 UploadWorkOutputDTO 型別 加上 自訂名稱的方法名稱(收 UploadWorkInputDTO 型別 加上 自訂名稱的參數)
         public async Task<UploadEpOutputDTO> UploadEp(UploadEpInputDTO input)
@@ -389,52 +444,6 @@ namespace BSWebtoon.Front.Service.LoginService
 
         }
 
-        public GetComicInfoOutputDTO GetComicInfoToUploadEp(GetComicInfoInputDTO input)
-        {
-            var result = new GetComicInfoOutputDTO()
-            {
-                IsSuccess = false,
-                MyComics_WithEpCount = new List<GetComicInfoOutputDTO.ComicWithEpCount>(),
-            };
-
-            //檢查
-            //if(){ }
-
-
-            //主邏輯
-
-            //Id => 作者名
-            string author = _repository.GetAll<Member>().First(x=>x.MemberId == input.MemberId).NickName;
-
-            //作者名 => 所有此作者漫畫
-            var myComics = _repository.GetAll<Comic>().Where( c=> c.Author == author && c.AuditType == 1) //審過
-                .Select( c=> new GetComicInfoOutputDTO.ComicWithEpCount
-                {
-                    ComicId = c.ComicId,
-                    ComicChineseName = c.ComicChineseName,
-                })//.ToList() 
-                ;
-
-
-            //每部漫畫 => ComicWithEpCount
-            foreach ( var c in myComics)
-            {
-                //查此漫畫的  最末話                
-                var a = _repository.GetAll<Episode>().Where(x=>x.ComicId == c.ComicId);
-
-                c.EpCount = a.Count();
-                if (c.EpCount > 0)
-                {
-                    //null條件運算子
-                    c.EpName = a.OrderByDescending(x => x.AuditTime).FirstOrDefault()?.EpTitle;
-                }
-
-
-                result.MyComics_WithEpCount.Add(c);
-            };
-
-            result.IsSuccess = true;
-            return result;
-        }
+        
     }
 }

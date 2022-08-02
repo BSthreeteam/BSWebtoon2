@@ -13,7 +13,6 @@ using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
-using Microsoft.AspNetCore.Http;
 using System.IO;
 //using BSWebtoon.Front.Models.DTO.EP;
 using BSWebtoon.Front.Models.DTO.UploadComicDTO;

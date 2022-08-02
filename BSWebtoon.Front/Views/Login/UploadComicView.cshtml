@@ -10,64 +10,7 @@
 
 
 <!-- 導覽列 -->
-
-<form method="post" action=""> @*enctype="multipart/form-data"*@
-
-    <div class="up_bgc mx-auto" style="background-color: black; color:  white; max-width: 1200px ">
-
-        @*<nav class="navbar navbar-expand-md navbar-dark bg-black sticky-top">
-            <div class="container">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
-                        aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                    <!-- <a class="navbar-brand" href="#">
-                        <img src="./images/Build School Logo.webp" alt="Build School 漫畫作品" width="30" height="30">
-                    </a> -->
-
-
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">星期排序</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">分類</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">人氣排行</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">投稿新星專區</a>
-                        </li>
-                    </ul>
-
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">上傳作品</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">登入</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">搜索</a>
-                        </li>
-                    </ul>
-
-                    <!-- <div class="d-grid gap-2 d-md-block">
-                        <button class="btn btn-primary" type="button">上傳作品</button>
-                        <button class="btn btn-primary" type="button">登入</button>
-                        <button class="btn btn-primary" type="button">搜索</button>
-                    </div> -->
-
-                </div>
-            </div>
-        </nav>*@
-
-       
-
-        <div class="container work">
+        <div class="container work " style="color:  white; max-width: 1200px " >
 
             <div class="work_bgc">
                 <div class="a">
@@ -82,6 +25,15 @@
             </div>
 
         </div>
+
+<form method="post" enctype="multipart/form-data"> 
+
+    <div class="up_bgc mx-auto" style="background-color: black; color:  white; max-width: 1200px ">
+
+       
+
+       
+
 
 
 
@@ -100,14 +52,14 @@
                     </div>
                     <div class="card-body bg-dark" style="background-color: #000">
                         <p class="headshot_text ">
-                            圖片尺寸必須為452x382，檔案格式僅適用JPG、JPEG以及PNG檔案，且檔案尺寸在5MB以下。
+                            圖片尺寸必須為710 × 600，檔案格式僅適用JPG、JPEG以及PNG檔案，且檔案尺寸在5MB以下。
                         </p>
                     </div>
 
                     <label type="button" class="btn btn-secondary w-50 d-flex align-self-center text-center" asp-for="ComicFigure">上傳漫畫人物圖</label>
                     @*加收參數*@
-                    <input class="cover" name="ComicFigure" type="file" accept="image/*" id="ComicFigure" style="display:none;>
-                    @*<input asp-for="ComicFigure" type="file" class="cover d-none" accept="image/*" id="ComicFigure"/>*@
+                    @*<input class="cover" name="ComicFigure" type="file" accept="image/*" id="ComicFigure" style="display:none;">*@
+                    <input type="file" name="ComicFigure" class="cover d-none" accept="image/*" id="ComicFigure"/>
                     @*加入防呆*@
                     <span asp-validation-for="ComicFigure" class="text-danger"></span>
 
@@ -117,7 +69,7 @@
                     <!-- 動態 -->
                     <!-- 漫畫背景圖 -->
                     <p>漫畫背景圖:(必須輸入)</p>
-                    <div id="img_box_BgCover" class="d-flex " style="height: 250px; background: rgb(57, 56, 56);">
+                    <div id="img_box_BgCover" class="d-flex  mb-3" style="height: 250px; background: rgb(57, 56, 56);">
                         @*<img id="cover_img" src="https://res.cloudinary.com/dmns6twmt/image/upload/v1657124335/Activity/EC02.png"
                         class="card-img-top" alt="作品封面縮圖">*@
                         <p class="d-flex mx-auto my-auto">請上傳漫畫背景圖</p>
@@ -130,7 +82,7 @@
                     <label type="button" class="btn btn-secondary w-50 d-flex align-self-center text-center" asp-for="BgCover">上傳漫畫背景圖</label>
                     @*加收參數*@
                     <input class="cover" name="BgCover" type="file" accept="image/*" id="BgCover" style="display:none;">
-                    @*<input asp-for="BgCover" type="file" class="cover d-none" accept="image/*" id="ComicFigure"/>*@
+                    @*<input asp-for="BgCover" type="file" name="BgCover" class="cover d-none" accept="image/*" id="ComicFigure"/>*@
 
                     @*加入防呆*@
                     <span asp-validation-for="BgCover" class="text-danger"></span>
@@ -254,7 +206,7 @@
 
                         @*發行日期*@
                         <div class="col-md-6">
-                            <label asp-for="PublishDate" class="form-label my-4">發行日期:(必須輸入)</label>
+                            <label asp-for="PublishDate" class="form-label ">發行日期:(必須輸入)</label>
                             @*<input type="date" id="PublishDate" name="PublishDate" value="@Model.PublishDate">*@
                              <input asp-for="PublishDate" type="date"  class="form-control"/>
                             @*加入防呆*@
@@ -304,7 +256,7 @@
                             @*<input type="text" class="form-control" name="Author" id="Author"  placeholder="25字以下" value="@Model.Author">*@
                             <input asp-for="Author" type="text" class="form-control" placeholder="25字以下">
                             <span asp-validation-for="Author" class="text-danger"></span>
-                            <input type="checkbox"  name="IsNewAuthorName" value=" @( string.IsNullOrEmpty(Model.Author)  )"> 
+                            <input type="checkbox" class="d-none" name="IsNewAuthorName" value=" @( string.IsNullOrEmpty(Model.Author)  )"> 
                             @*class="d-none"*@
 
                             @*@{CheckAuthor(@Model.Author);}*@
@@ -492,39 +444,49 @@
         //var arrCover = []; //存人物圖檔
         document.getElementById("ComicFigure")
             .addEventListener("change", readURL);
-        var obj, obj_cover, img_box;
+        var obj, input_ComicFigureCover, img_box;
         img_box = document.querySelector('#img_box');
         //存人物圖檔
         function readURL() {
             img_box.innerText = "";
-            obj_cover = this,
-                length = obj_cover.files.length;
-            for (var i = 0; i < length; i++) {
+            input_ComicFigureCover = this;
 
+            for (var i = 0; i < input_ComicFigureCover.files.length; i++) {
                 var reader = new FileReader();
-                if (!reader) {
-                    alert("對不起，您的瀏覽器不支持!請更換瀏覽器試一下");
-                    return
-                }
-                reader.error = function(e) {
-                    alert("讀取異常")
-                }
-
-
 
                 //儲存上傳的封面圖片
-                let file_cover_name = obj_cover.files[i].name;
+                //let file_cover_name = obj_cover.files[i].name;
                 //arrCover.push(file_cover_name);
                 (function(i) {
                     reader.onload = function(e) {
                         let cover_src = e.target.result;
+
+                         //載入圖片獲取圖片真實寬度和高度
+                        var image = new Image();
+                        image.onload = function() {
+                            var width = image.width;
+                            var height = image.height;
+                            if (width == 710 | height == 600) {
+                                //alert("檔案尺寸符合！");
+
+                            } else {
+                                alert("檔案尺寸應為：710 × 600！");
+                                input_ComicFigureCover.value = "";
+                                //obj_cover.files = []; //會失敗 FileList不能set?
+                                img_box.innerText = "";
+                                return false;
+                            }
+                        };
+
+                         image.src = cover_src;
+
                         let img_cover = document.createElement('img');
                         img_cover.setAttribute('src', cover_src);
                         img_cover.classList.add("w-100")
                         img_box.appendChild(img_cover);
                     }
                 })(i)
-                reader.readAsDataURL(obj_cover.files[i]);
+                reader.readAsDataURL(input_ComicFigureCover.files[i]);
             }
         }
 
@@ -533,56 +495,71 @@
         //var BgCover = []; //存背景圖檔
         document.getElementById("BgCover")
             .addEventListener("change", BgCover_readURL);
-        var obj_BgCover, img_box_BgCover;
+        var input_BgCover, img_box_BgCover;
         img_box_BgCover = document.querySelector('#img_box_BgCover');
         //存背景圖檔
         function BgCover_readURL() {
             img_box_BgCover.innerText = "";
-            obj_BgCover = this,
-                length = obj_BgCover.files.length;
-            for (var i = 0; i < length; i++) {
+            input_BgCover = this;
 
-                var reader = new FileReader();
-                if (!reader) {
-                    alert("對不起，您的瀏覽器不支持!請更換瀏覽器試一下");
-                    return
-                }
-                reader.error = function(e) {
-                    alert("讀取異常")
-                }
+            for (var i = 0; i < input_BgCover.files.length; i++) {
+
+               var reader = new FileReader();
+
                 //儲存上傳的封面圖片 ? 存背景圖檔?
-                let file_cover_name = obj_BgCover.files[i].name;
+                let file_cover_name = input_BgCover.files[i].name;
                 //BgCover.push(file_cover_name);
                 (function(i) {
                     reader.onload = function(e) {
                         let cover_src = e.target.result;
+
+                        //載入圖片獲取圖片真實寬度和高度
+                        var image = new Image();
+                        image.onload = function() {
+                            var width = image.width;
+                            var height = image.height;
+                            if (width == 375 | height == 812) {
+                                //alert("檔案尺寸符合！");
+
+                            } else {
+                                alert("檔案尺寸應為：375 × 812！");
+                                input_BgCover.value = "";
+                                img_box_BgCover.innerText = "";
+                                return false;
+
+                            }
+                        };
+
+                         image.src = cover_src;
+
+
                         let img_cover = document.createElement('img');
                         img_cover.setAttribute('src', cover_src);
                         img_cover.classList.add("w-100")
                         img_box_BgCover.appendChild(img_cover);
                     }
                 })(i)
-                reader.readAsDataURL(obj_BgCover.files[i]);
+                reader.readAsDataURL(input_BgCover.files[i]);
             }
         }
 
 
         //上傳等待狀態按鈕
-        //var upload_work = document.getElementById("upload_work");
-        //upload_work.addEventListener("click", Waiting_Upload);
-        //var Loadingdata = document.getElementById("Loadingdata");
+        var upload_work = document.getElementById("upload_work");
+        upload_work.addEventListener("click", Waiting_Upload);
+        var Loadingdata = document.getElementById("Loadingdata");
 
-        ////上傳等待狀態按鈕方法
-        //function Waiting_Upload() {
-        //    Loadingdata.classList.add("spinner-border");
-        //    Loadingdata.classList.add("text-warning");
-        //    upload_work.setAttribute('type', 'disabled');
+        //上傳等待狀態按鈕方法
+        function Waiting_Upload() {
+            Loadingdata.classList.add("spinner-border");
+            Loadingdata.classList.add("text-warning");
+            //upload_work.setAttribute('disabled', 'disabled');
 
-        //    upload_work.setAttribute('class','bg-secondary'); 
-        //    upload_work.setAttribute('class','p-2'); 
-        //    upload_work.setAttribute('class','text-dark'); 
-        //    upload_work.setAttribute('class','bg-opacity-25');
-        //}
+            upload_work.setAttribute('class','bg-secondary'); 
+            upload_work.setAttribute('class','p-2'); 
+            upload_work.setAttribute('class','text-dark'); 
+            upload_work.setAttribute('class','bg-opacity-25');
+        }
 
         //bg-secondary p-2 text-dark bg-opacity-25
 

@@ -106,9 +106,10 @@ namespace BSWebtoon.Front.Controllers
         public IActionResult UploadComicView(int userId) //Login/UploadComicView
         {
 
+            //取得會員ID
             var memberId = int.Parse(User.Claims.First(x => x.Type == "MemberID").Value);
 
-            var user = User.Identity.Name;
+            //var user = User.Identity.Name;
 
             ////預畫面設值
             //var outputDTO = new UploadComicOutputDTO
@@ -118,7 +119,10 @@ namespace BSWebtoon.Front.Controllers
             //    EpCover = "https://inews.gtimg.com/newsapp_bt/0/14062897162/1000",
             //};
 
+            //取得會員表裡面的 NickName 也就是作者名稱
             var nickName = _loginSerice.GetNickName(memberId);
+
+            //預設表單上輸入框的值
             var vm = new UploadComicInputDTO
             {
                 Painter = "Anke",
@@ -145,7 +149,7 @@ namespace BSWebtoon.Front.Controllers
             }
 
 
-
+            //取得會員ID
             var memberId = int.Parse(User.Claims.First(x => x.Type == "MemberID").Value);
 
             //var user = User.Identity.Name;
@@ -239,7 +243,7 @@ namespace BSWebtoon.Front.Controllers
             //};
 
             //去DB查此人 審過的漫畫
-
+            //如果資料庫裡面沒有上傳過任何一部漫畫就不能進入上傳EP頁面，因此直接跳轉回上傳漫畫的頁面。
             if (outputDto.MyComics_WithEpCount.Count == 0)
             {
                 RedirectToAction("UploadComicView");
@@ -255,7 +259,7 @@ namespace BSWebtoon.Front.Controllers
         [HttpPost]
         //以非同步方式接收，使用者從表單輸入的所有的值。
         //改建ViewMolde
-        public async Task<IActionResult> UploadWorkView([Bind] UploadEpInputDTO input
+        public async Task<IActionResult> UploadWorkView([Bind]UploadEpInputDTO input
             //,  IFormFile EpCover, string EpTitle, List<IFormFile> EP_Context_file
             ) //Login/UploadWorkView
         {
@@ -289,7 +293,7 @@ namespace BSWebtoon.Front.Controllers
                 input.ComicChineseName = ComicChineseName;
 
 
-                //呼叫 loginSerice 的 UploadWorkViewUpdateData() 方法 傳入DTO所存放使用者從表單輸入的所有的值，存入一個變數。
+                //呼叫 loginSerice 的 UploadEp () 方法 傳入DTO所存放使用者從表單輸入的所有的值，存入一個變數。
                 var outputDTO = await _loginSerice.UploadEp(input);
 
                 if (!outputDTO.IsSuccess)
@@ -312,6 +316,11 @@ namespace BSWebtoon.Front.Controllers
 
 
         }
+
+
+
+
+
 
 
         //成功頁
