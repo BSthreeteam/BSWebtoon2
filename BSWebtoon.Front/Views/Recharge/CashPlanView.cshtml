@@ -71,7 +71,7 @@
 
                     // 使用 jQuery Ajax 傳送至後端
                     $.ajax({
-                        url: '@Url.Content("~/NewebPay/SendToNewebPay")',
+                        url: '@Url.Content("/NewebPay/SendToNewebPay")',
                         method: 'POST',
                         dataType: 'json',
                         data: { inModel: postData, __RequestVerificationToken: $('@Html.AntiForgeryToken()').val() },

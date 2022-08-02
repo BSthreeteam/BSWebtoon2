@@ -3,7 +3,7 @@
 }
 
 function TO_Favorite() {
-    window.open("/Favorite/AddFavoriteView");
+    window.open("/Favorite/ReadFavoriteView");
 }
 
 //傳送漫畫對應網址路由

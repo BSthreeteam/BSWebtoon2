@@ -1,135 +1,160 @@
 ﻿@model BSWebtoon.Front.Models.ViewModels.Rank.RankViewModel_ClickRecord
 
+@{
+    var id = Model.FirstRank.TagId;
+}
 
 @section topCss{
 <link rel="stylesheet" href="~/style/RankListstyle.css" />
 }
 
-<nav id="navbar-id" class="navbar navbar-light">
-    <ul class="nav nav-pills">
-        <li class="nav-item ">
-            <a class="nav-link nav_new_work all bg-white text-black" href="/Rank/AllRankList">全部</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link fantasy"  href="/Rank/RankList/8">奇幻</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link love"  href="/Rank/RankList/10">愛情</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link adventure "  href="/Rank/RankList/9">動作冒險</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link plot"  href="/Rank/RankList/11">劇情</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link BL"  href="/Rank/RankList/13">GL/BL</a>
-        </li>
-        <li class="nav-item ">
-            <a class="nav-link horror "  href="/Rank/RankList/12">懸疑恐怖</a>
-        </li>
+@*<nav id="navbar-id" class="navbar navbar-light">
+    <ul class="nav nav-pills" >
+    <li class="nav-item ">
+    <a class="nav-link nav_new_work text-black bg-white" href="/Rank/AllRankList">全部</a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link categorys"  my_id="8" href="/Rank/RankList/8">奇幻</a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link categorys"  my_id="10" href="/Rank/RankList/10">愛情</a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link categorys"  my_id="9" href="/Rank/RankList/9">動作冒險</a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link categorys"  my_id="11" href="/Rank/RankList/11">劇情</a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link categorys"  my_id="13" href="/Rank/RankList/13">GL/BL</a>
+    </li>
+    <li class="nav-item ">
+    <a class="nav-link categorys"  my_id="12" href="/Rank/RankList/12">懸疑恐怖</a>
+    </li>
     </ul>
-</nav>
+    </nav>*@
 
-<div class="Rank ">
-    <div class="container Rank_content">
+@Html.Partial("NavPartial")
+
+
+<div class="rank">
+    <div class="container rank_content">
         <div class="content">
-            <a class="work_big" href="#">
-                <div class="work_big_bg">
-                    <img src="@Model.FirstRank.BgCover" alt="背景" class="rank_pic_bg">
-                </div>
-                <div class="comic_material">
-                    <div class="work_big_title">
-                        <img src="@Model.FirstRank.ComicNameImage" alt="標題" class="rank_pic_title">
+            <template id="showRankTemplate">
+                <a class="work_big" href="#">
+                    <div class="work_big_bg">
+                        <img src="@Model.FirstRank.BgCover" alt="背景" class="rank_pic_bg">
                     </div>
-                    <div class="introduction">
-                        @Model.FirstRank.Introduction
+                    <div class="comic_material">
+                        <div class="work_big_title">
+                            <img src="@Model.FirstRank.ComicNameImage" alt="標題" class="rank_pic_title">
+                        </div>
+                        <div class="introduction">
+                            @Model.FirstRank.Introduction
+                        </div>
                     </div>
-                </div>
-                <div class="work_big_Ranking">
-                    <p class="Ranking_num">1</p>
-                    <i class="fa-solid fa-caret-up"></i>
-                    <p class="diff">@Model.FirstRank.Diff</p>
-                </div>
-                <div class="work_big_pic">
-                    @if (@Model.FirstRank.BannerVideoWeb != string.Empty)
-                    {
+                    <div class="work_big_Ranking">
+                        <p class="Ranking_num">1</p>
+                        <i class="fa-solid fa-caret-up"></i>
+                        <p class="diff">@Model.FirstRank.Diff</p>
+                    </div>
+                    <div class="work_big_pic">
                         <video>
-                            <source src="@Model.FirstRank.BannerVideoWeb" type="video/webm">
+                            <source src="" type="video/webm" class="video">
                         </video>
-                    }
-                    else
-                    {
-                        <img src="@Model.FirstRank.ComicFigure" alt="@Model.FirstRank.ComicName" class="rank_pic_people">
-                    }
-                </div>
-            </a>
-
-            <template id="workTemplate">
-                @foreach (var item in Model.OtherRank)
-                {
-                    <a class="work" href="#">
-                        <div class="work_bg">
-                            <img src="@item.BgCover" alt="背景">
-                        </div>
-                        <img class="work_pic" src="@item.ComicWeekFigure" alt="@item.ComicName">
-
-                        <div class="title_img">
-                            <img src="@item.ComicNameImage"
-                             alt="@item.ComicName">
-                        </div>
-                        <div class="work_status">
-                            <span>UP</span>
-                        </div>
-                        <div class="work_Ranking">
-                            <p class="Ranking_num">2</p>
-                            @if (@item.Diff > 0)
-                            {
-                                <i class="fa-solid fa-caret-up"></i>
-                                <p class="diff">@item.Diff</p>
-                            }
-                            else if (@item.Diff == 0)
-                            {
-                                <i class="fa-solid fa-caret-up"></i>
-                                <p class="diff">@item.Diff</p>
-
-                            }
-                            else
-                            {
-                                <i class="fa-solid fa-caret-down"></i>
-                                <p class="diff">@item.Diff</p>
-                            }
-
-                        </div>
-                    </a>
-                }
-            </template>
-            <template id="blackTemplate">
-                <div class="black">
-                    <div class="black">
-                        <div class="row">
-                            <div class="comics_nont col-4 col-md-3 col-lg-2_5">
-                                <div class="img-box"></div>
-                            </div>
-                            <div class="comics_nont col-4 col-md-3 col-lg-2_5">
-                                <div class="img-box"></div>
-                            </div>
-                            <div class="comics_nont col-4 col-md-3 col-lg-2_5">
-                                <div class="img-box"></div>
-                            </div>
-                            <div class="comics_nont col-4 col-md-3 col-lg-2_5">
-                                <div class="img-box"></div>
-                            </div>
-                            <div class="comics_nont col-4 col-md-3 col-lg-2_5">
-                                <div class="img-box"></div>
-                            </div>
-                        </div>
+                        <img src="" alt="" class="rank_pic_people">
                     </div>
+                </a>
             </template>
+            <template id="workTemplate">
+                <a class="work" href="#">
+                    <div class="work_bg">
+                        <img src="" alt="背景" class="rankCardCover">
+                    </div>
+                    <img class="work_pic" src="" alt="">
+
+                    <div class="title_img">
+                        <img src="" alt="" class="rankCardName">
+                    </div>
+                    <div class="work_status">
+                        <span>UP</span>
+                    </div>
+                    <div class="work_Ranking">
+
+                        <p class="Ranking_num"></p>
+                        <i class="fa-solid fa-caret-up"></i>
+                        <p class="diff"></p>
+
+                    </div>
+                </a>
+            </template>
+            @*<template id="workTemplate">
+                @foreach (var item in Model.OtherRank.Select((value, index) => new { value, index }))
+                {
+                <a class="work" href="#">
+                <div class="work_bg">
+                <img src="@item.value.BgCover" alt="背景" class="rankCardCover">
+                </div>
+                <img class="work_pic" src="@item.value.ComicWeekFigure" alt="@item.value.ComicName">
+
+                <div class="title_img">
+                <img src="@item.value.ComicNameImage" alt="@item.value.ComicName" class="rankCardName">
+                </div>
+                <div class="work_status">
+                <span>UP</span>
+                </div>
+                <div class="work_Ranking">
+                @{
+                var i = item.index + 2;
+                }
+                <p class="Ranking_num"> @i</p>
+                @if (@item.value.Diff > 0)
+                {
+                <i class="fa-solid fa-caret-up"></i>
+                <p class="diff">@item.value.Diff</p>
+                }
+                else if (@item.value.Diff == 0)
+                {
+                <i class="fa-solid fa-caret-up"></i>
+                <p class="diff">@item.value.Diff</p>
+
+                }
+                else
+                {
+                <i class="fa-solid fa-caret-down"></i>
+                <p class="diff">@item.value.Diff</p>
+                }
+
+                </div>
+                </a>
+                }
+                </template>*@
         </div>
     </div>
 </div>
 
+<template id="blackTemplate">
+    <div class="black">
+        <div class="black">
+            <div class="row">
+                <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                    <div class="img-box"></div>
+                </div>
+                <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                    <div class="img-box"></div>
+                </div>
+                <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                    <div class="img-box"></div>
+                </div>
+                <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                    <div class="img-box"></div>
+                </div>
+                <div class="comics_nont col-4 col-md-3 col-lg-2_5">
+                    <div class="img-box"></div>
+                </div>
+            </div>
+        </div>
+</template>
 
 
 
@@ -138,5 +163,10 @@
 
 @section endJS{
 <script src="https://kit.fontawesome.com/2dbc4e25d3.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script>
+    let id = @id;
+
+</script>
 <script src="~/js/RankList.js"></script>
 }

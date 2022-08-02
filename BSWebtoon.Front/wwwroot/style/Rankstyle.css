@@ -1,7 +1,9 @@
 body {
     background-color: #000;
 }
-
+.rank{
+    margin-top:100px;
+}
 .navbar {
     position: relative;
     top: 100px;

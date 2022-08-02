@@ -241,7 +241,7 @@ namespace BSWebtoon.Front.Service.RecommendService
             {
                 ComicId = c.ComicId,
                 RecommendTag = "新作",
-                Introduction = $"{c.Introduction.Substring(0, 50)}...",
+                Introduction = $"{c.Introduction.Substring(0, 3)}...",
                 Name = c.ComicChineseName,
                 NameImage = c.ComicNameImage,
                 ComicBgCover = c.BgCover,
