@@ -2,6 +2,8 @@
 {
     public class ActivityContentViewModel
     {
+        public bool IsAuthenticated { get; set; }
+        public int ActivityId { get; set; }
         public string ActivityName { get; set; }
         public string ActivityImage { get; set; }
         public string ActivityBgColor { get; set; }

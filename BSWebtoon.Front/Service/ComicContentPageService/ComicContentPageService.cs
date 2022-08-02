@@ -17,7 +17,7 @@ namespace BSWebtoon.Front.Service.ContentPageService
             _repository = repository;
         }
 
-        public List<WorkContentDTO> ReadworkContent(int EpId,string userName)
+        public List<WorkContentDTO> ReadworkContent(int EpId, string userName)
         {
 
             var memberId = _repository.GetAll<Member>().Where(c => c.AccountName == userName).Select(c => c.MemberId).First();
@@ -112,14 +112,27 @@ namespace BSWebtoon.Front.Service.ContentPageService
 
         private List<WorkContentDTO> Read(int epId, Episode epSource, IQueryable<EpContent> content)
         {
+            var aLLEpSource = _repository.GetAll<Episode>().Where(x => x.AuditType == 1 && x.ComicId == epSource.ComicId).OrderBy(x => x.UploadTime);
+
             var readResult = content.Select(c => new WorkContentDTO()
             {
-
                 EpId = epId,
                 EpTitle = epSource.EpTitle,
                 EpContentId = c.EpContentId,
                 ImagePath = c.ImagePath,
-                Page = c.Page
+                Page = c.Page,
+
+                EpList = aLLEpSource.Select(ep => new WorkContentDTO.EpData
+                {
+                    EpId = ep.EpId,
+                    ComicId = ep.ComicId,
+                    EpTitle = ep.EpTitle,
+                    EpCover = ep.EpCover,
+                    UploadTime = ep.UploadTime.ToShortDateString(),
+                    IsCountdownCoupon = ep.IsCountdownCoupon,
+                    IsFree = ep.IsFree
+
+                }).ToList()
             }).ToList();
 
             return readResult;
@@ -134,7 +147,7 @@ namespace BSWebtoon.Front.Service.ContentPageService
             _repository.SaveChange();
         }
 
-        public void CouponUsedRecordCreate(int EpId, int memberId,int CouponId)
+        public void CouponUsedRecordCreate(int EpId, int memberId, int CouponId)
         {
             var nowtime = DateTime.UtcNow.AddHours(8);
             var couponused = new CouponUsedRecord() { MemberId = memberId, EpId = EpId, CouponId = CouponId, StartReadTime = nowtime, EndReadTime = nowtime.AddDays(7) };
@@ -143,9 +156,6 @@ namespace BSWebtoon.Front.Service.ContentPageService
 
             _repository.SaveChange();
         }
-
-
-
 
     }
 }

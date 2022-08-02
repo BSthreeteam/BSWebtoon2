@@ -36,16 +36,15 @@
                 <div class="read_ticket pe-2"><a class="text-white" href="~/WorksPage/BuyCoupon">閱讀券1張</a></div>
                 <div class="seven_free">每7日免費看</div>
             </div>
-            @switch (@Model.BannerVideoWeb != string.Empty && @Model.BannerVideoWeb != null)
+            @if (@Model.BannerVideoWeb != string.Empty && @Model.BannerVideoWeb != null)
             {
-                case true:
-                    <video title="" autoplay="autoplay" muted="ture" class="local_video object-contain w-full h-full pointer-events-auto">
-                        <source src="@Model.BannerVideoWeb" type="video/webm">
-                    </video>
-                    break;
-                case false:
-                    <img class="w-100" src="@Model.ComicFigure" alt="">
-                    break;
+                <video title="" autoplay="autoplay" muted="ture" class="local_video object-contain w-full h-full pointer-events-auto">
+                    <source src="@Model.BannerVideoWeb" type="video/webm">
+                </video>
+            }
+            else
+            {
+                <img class="w-100" src="@Model.ComicFigure" alt="">
             }
         </div>
     </div>
@@ -115,27 +114,6 @@
                         </a>
                     </div>
                 }
-             @*   @if (!User.Identity.IsAuthenticated)
-                {
-
-                }
-                else
-                {
-                    @foreach (var ep in Model.EpList)
-                    {
-                        <div class="col col-6 col-md-4 col-lg-3 col-xl-2">
-                            <a class="" href="~/WorksPage/ComicContent/@ep.EpId">
-                                <div class="card w-100" style="width: 18rem;">
-                                    <img src="@ep.EpCover" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">@ep.EpTitle</h5>
-                                        <p class="card-text">@ep.UploadTime</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    }
-                }*@
 
             </div>
             <div class="col-lg-4 col-xl-4">
@@ -236,7 +214,7 @@
 <script>
 
     let isAuthenticated = "@Model.IsAuthenticated" === "True";
-     let checkvalue = "@Model.IslikeComic.ToString().ToLower()";
+    let checkvalue = "@Model.IslikeComic.ToString().ToLower()";
 </script>
 
 @section endJS{

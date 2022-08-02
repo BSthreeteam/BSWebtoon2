@@ -1,9 +1,11 @@
-﻿namespace BSWebtoon.Front.Service.CouponService
+﻿using BSWebtoon.Front.Models.DTO.GiftBox;
+
+namespace BSWebtoon.Front.Service.CouponService
 {
     public interface ICouponService
     {
         void CouponCreate();
         void CouponUsedRecordCreate();
-        void GetUniversalCoupon(string userName, int? comicId, int activityId, int couponTypeId, int getQuantity);
+        void GetUniversalCoupon(GetActivityCouponDTO universalCoupon);
     }
 }

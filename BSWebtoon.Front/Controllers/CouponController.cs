@@ -1,9 +1,13 @@
-﻿using BSWebtoon.Front.Service.CouponService;
+﻿using BSWebtoon.Front.Models.DTO.GiftBox;
+using BSWebtoon.Front.Service.CouponService;
 using BSWebtoon.Model;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace BSWebtoon.Front.Controllers
 {
+    [Route("/api/[Controller]/[Action]")]
+    [ApiController]
     public class CouponController : Controller
     {
         private readonly ICouponService _couponService;
@@ -12,16 +16,14 @@ namespace BSWebtoon.Front.Controllers
         {
             _couponService = couponService;
         }
+
         [HttpPost]
-        public IActionResult ActivityCoupon(int Id) //Coupon/Coupon
+        public IActionResult ActivityCoupon(GetActivityCouponDTO universalCoupon) //Coupon/Coupon
         {
-            //_couponService.CouponCreate();
-            //_couponService.CouponUsedRecordCreate();
-            string name = User.Identity.Name;
-            int couponTypeId = (int)CouponType.universalCoupon;
-            int activityId = Id;
-            _couponService.GetUniversalCoupon(name, null , activityId, couponTypeId, 1);
-            return View();
+            var coupon = universalCoupon;
+            _couponService.GetUniversalCoupon(coupon);
+
+            return Ok();
         }
     }
 }

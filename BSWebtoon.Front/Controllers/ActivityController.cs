@@ -43,6 +43,8 @@ namespace BSWebtoon.Front.Controllers
 
             var result = new ActivityContentViewModel()
             {
+                IsAuthenticated = User.Identity.IsAuthenticated,
+                ActivityId = activityContentSource.ActivityId,
                 ActivityName = activityContentSource.ActivityName,
                 ActivityImage = activityContentSource.ActivityImage,
                 ActivityBgColor = activityContentSource.ActivityBgColor,
