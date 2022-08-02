@@ -1,12 +1,3 @@
-function clickEp(epId) {
-    if (isAuthenticated) {
-        window.location.href = `/WorksPage/workContent/${epId}`;
-    } else {
-        $('#exampleModal').modal('show');
-    }
-
-}
-
 const ep = document.querySelector('.ep');
 const illustrate = document.querySelector('.illustrate');
 const messages = document.querySelector('.messages');
@@ -27,7 +18,7 @@ const comment_text = document.querySelector('.comment_text');
 const card_box = document.querySelector('.card_box');
 
 
-function reizeWindow() {
+function reizeWindow(){
     let screen = window.screen.width;
     console.log(screen)
     window.addEventListener('resize', () => {

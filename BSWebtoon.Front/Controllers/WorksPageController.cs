@@ -21,10 +21,7 @@ namespace BSWebtoon.Front.Controllers
         [HttpGet]
         public IActionResult WorksPage(int Id) //WorksPage/WorksPage/1
         {
-            //var name_ = User.Claims.Select(m => m.Value);
-            //var userName_ = User.Claims.ToList();
             var memberId = User.Claims.FirstOrDefault() == null ? 0 : int.Parse(User.Claims.FirstOrDefault(x => x.Type == "MemberID").Value);
-            //var memberId = int.Parse(User.Claims.Where(x => x.Type == "MemberID").FirstOrDefault().Value);
 
             var workPageComic = _comicService.WorkPageRead(Id, memberId);
 
@@ -80,7 +77,6 @@ namespace BSWebtoon.Front.Controllers
                     CommentReportCount = c.CommentReportCount
                 }).ToList()
             };
-            //return View(workPageComic);
             return View(result);
         }
 
@@ -94,6 +90,20 @@ namespace BSWebtoon.Front.Controllers
             if (comicContents.Count() != 0)
             {
                 var EpTitle = comicContents.Select(c => c.EpTitle).First();
+                var allEp = new List<ComicContentViewModel.EpData>() { };
+                foreach (var ep in comicContents[0].EpList)
+                {
+                    allEp.Add(new ComicContentViewModel.EpData()
+                    {
+                        EpId = ep.EpId,
+                        ComicId = ep.ComicId,
+                        EpTitle = ep.EpTitle,
+                        EpCover = ep.EpCover,
+                        UploadTime = ep.UploadTime,
+                        IsCountdownCoupon = ep.IsCountdownCoupon,
+                        IsFree = ep.IsFree
+                    });
+                }
                 result = new WorkContentViewModel()
                 {
                     EpTitle = EpTitle,
@@ -101,13 +111,11 @@ namespace BSWebtoon.Front.Controllers
                     {
                         ImagePath = c.ImagePath,
                         Page = c.Page,
-                    }).ToList()
+                    }).ToList(),
+                    EpList = allEp
                 };
 
                 return View(result);
-
-
-
             }
             else
             {

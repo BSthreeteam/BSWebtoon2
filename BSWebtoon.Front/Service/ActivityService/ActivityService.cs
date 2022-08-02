@@ -24,6 +24,7 @@ namespace BSWebtoon.Front.Service.ActivityService
             var isGetUniversalCoupon = _repository.GetAll<Coupon>().Where(x => x.ActivityId == ActivityId && x.MemberId == MemberId).Any();
 
             return new ActivityContentDTO() { 
+                ActivityId = ActivityId,
                 ActivityName = activityItem.ActivityName,
                 ActivityImage = activityItem.ActivityImage,
                 ActivityBgColor = activityItem.ActivityBgColor,

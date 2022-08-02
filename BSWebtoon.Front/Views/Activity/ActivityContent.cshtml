@@ -1,4 +1,5 @@
 ﻿@using BSWebtoon.Front.Models.ViewModel.GiftBox
+@using BSWebtoon.Model
 @model ActivityContentViewModel
 
 @{
@@ -15,6 +16,12 @@
 
     var remainingDays = remainingTime.Split('.')[0];
     var remainingHours = remainingTime.Split('.')[1].Split(':')[0];
+
+    //var nowTime = DateTime.UtcNow.AddHours(8);
+    var ActivityId = @Model.ActivityId;
+    var universalCouponGetCount = 1;
+    var couponTypeId = (int)CouponType.universalCoupon;
+    var memberId = User.Claims.FirstOrDefault() == null ? 0 : int.Parse(User.Claims.FirstOrDefault(x => x.Type == "MemberID").Value);
 }
 @section topCss{
 <link rel="stylesheet" href="~/style/ActivityContentStyle.css" />
@@ -43,7 +50,23 @@
     </div>
     <div class="row w-700 activity_text">
         <div class="row w-700">
-            <button class="w-100 my-5 py-3 px-5 getUniversalCouponBtn">領取通用券 <span>></span></button>
+            @if (Model.IsGetUniversalCoupon)
+            {
+                <button disabled onclick='clickGetCouponBtn(@ActivityId,@universalCouponGetCount,@couponTypeId,@memberId)'
+                    class="w-100 my-5 py-3 px-5 getUniversalCouponBtn bg-light">
+                    領取通用券
+                    <span>></span>
+                </button>
+            }
+            else
+            {
+
+                <button onclick='clickGetCouponBtn(@ActivityId,@universalCouponGetCount,@couponTypeId,@memberId)'
+                    class="w-100 my-5 py-3 px-5 getUniversalCouponBtn">
+                    領取通用券
+                    <span>></span>
+                </button>
+            }
         </div>
     </div>
 </div>
@@ -66,3 +89,7 @@
     </div>
 </footer>
 
+<script>
+    let isAuthenticated = "@Model.IsAuthenticated" === "True";
+</script>
+<script src="~/js/Activity.js" asp-append-version="true"></script>
