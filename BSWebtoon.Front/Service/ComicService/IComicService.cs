@@ -17,5 +17,8 @@ namespace BSWebtoon.Front.Service.ComicService
         void CreateClickRecord(int comicId, int memberId);
         public List<WorkContentDTO> ReadworkContent(int ComicId, string useerName);
 
+        public List<CommentDTO> GetComment(int EpId);
+        public void CreateComment(CommentDTO comment);
+
     }
 }
