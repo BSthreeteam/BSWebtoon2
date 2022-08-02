@@ -26,7 +26,10 @@ using Microsoft.AspNetCore.Mvc;
 using BSWebtoon.Front.Service.WeekUpdateService;
 using BSWebtoon.Front.Service.SearchService;
 using BSWebtoon.Front.Service.ContentPageService;
+using BSWebtoon.Front.Service.CloudinaryService;
+
 using BSWebtoon.Front.Service.ActivityService;
+using BSWebtoon.Front.Service.UploadService;
 
 namespace BSWebtoon.Front
 {
@@ -45,6 +48,14 @@ namespace BSWebtoon.Front
             services.AddHttpClient();
 
             services.AddControllersWithViews();
+
+
+            //µù¥U
+            services.AddScoped<ICloudinaryService, CloudinaryService>();
+
+            services.AddScoped<IUploadService, UploadService>();
+
+
             services.AddScoped<BSRepository, BSRepository>();
             services.AddScoped<IActivityService, ActivityService>();
             services.AddScoped<IRecommendService, RecommendService>();
