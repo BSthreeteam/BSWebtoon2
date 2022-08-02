@@ -65,7 +65,7 @@ namespace BSWebtoon.Front.Controllers
 
             var claims =
             User.Claims.Select(claim => new
-            {
+            { 
                 claim.Issuer,//發行者
                 claim.OriginalIssuer,
                 claim.Type,//提供宣告的語意內容，也就是它指出宣告的用途。
