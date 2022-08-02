@@ -1,0 +1,162 @@
+﻿@using BSWebtoon.Model
+@using BSWebtoon.Front.Models.ViewModel.Favorite
+
+@model FavoriteViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+    @section topCss{
+	<link rel="stylesheet" href="~/style/Favorite_Record.css" />
+}
+<h1>這是首頁aa</h1>
+
+
+<div id="get-by-AJAX" style="background:white;"> 
+
+    <div class="spinner-border" role="status">
+      <span class="sr-only">文字寫在這沒啥用</span>
+    </div>
+
+
+	<nav class="navbar d-flex justify-content-center   ">
+		<button type="button" class=" btn btn-dark" onclick="To_RecordPage()">最近看過</button>
+		<button type="button" class=" btn  btn-light">我的最愛</button>
+	</nav>
+
+
+	<div style="background-color: #000; margin-top: 50px; z-index:1;">
+		<div class="container" style="max-width: 800px;">
+			<div class="row row-cols-3 row-cols-md-3 row-cols-lg-3 row-cols-xl-4" style=" transform: translateY(80px);">
+
+				@foreach (var f in Model.FavoriteList)
+{
+				<div class="col  " onclick="to_comnic(this);">
+					<img src="@f.ComicWeekFigure" alt="">
+					<p>@f.ComicChineseName</p>
+					<input style="display: none;" value="漫畫ID" />
+				</div>
+}
+
+			</div>
+			<div class="d-flex justify-content-center fixed-bottom " id="div_btns">
+				<button type="button" class="btn btn btn-dark border m-4 "
+					style="border-radius: 50%;font-size: 10px;">
+					⇅
+				</button>
+				<button type="button" class="btn btn btn-dark border my-4 px-4 py-2" style="border-radius: 20px;"
+					onclick="Open_del_page()">
+					編輯
+				</button>
+			</div>
+		</div>
+	</div>
+
+	@section endJS{
+	<script src="~/js/Favorite_Record.js"></script>
+        }
+
+
+    <div class="show d-none"> @*d-none預設不顯示*@
+        <div class="product-name">
+            品名：<span></span>
+        </div>
+        <div class="unit-price">
+            單價：<span></span>元
+        </div>
+        <div class="pictures">
+        </div>
+    </div>
+    @*------------------------------------------------*@
+
+
+</div>
+@section Scripts{
+<script>
+    //API端點 的路由url可去swagger看 。 MVC 要啟用 swagger，請開一個WebAPI範本來抄
+    //發出請求後，到network 篩fetch/Xhr，至少要會看 請求的【網址、mothod、payload】
+
+    //get請求 通常R，輸入少，輸出多 
+    fetch('/api/AA/ReadFavorite/123_qwe/true?a=123&b=asd&c=true', {}) 
+        //.then( resp => resp.json() ) //單行=直接回傳Promise物件 給下一層
+        .then(resp => {                 //多行=須return關鍵字 回傳Promise物件 給下一層
+            if (resp.ok) {
+                return resp.json() 
+            }
+        }) 
+        .then(JSobj => { 
+            console.log(JSobj) //注意：原本在C#大駝峰的命名變成了小駝峰
+            //想想你的JS蘋果作業，取得資料，並轉換成 JS物件/陣列 後，要動態造DOM
+            // 【善用Vue.js】，會大量減輕 動態造DOM 的可怕
+
+
+            document.querySelector('.product-name>span').innerText = JSobj.productName
+            document.querySelector('.unit-price>span').innerText = JSobj.unitPrice
+
+            let imgsBox = document.querySelector('.pictures')
+            for (let i = 0; i < JSobj.pictures.length; i++) {
+                let img = document.createElement('img')
+                imgsBox.appendChild( img )
+
+                img.src = JSobj.pictures[i]
+            }
+
+            //載入完，spinner和顯示區 換崗
+            //document.querySelector('#get-by-AJAX>.spinner-border').classList.add('d-none')
+            //document.querySelector('#get-by-AJAX>.show').classList.remove('d-none')
+        })
+
+
+
+    //post請求 通常C/U/D，輸入多，輸出少
+    //(中譯:張貼/公告 ) (poster=海報)
+    fetch('/api/AA/DemoPost', 
+        {
+            method:'post',
+            headers: {
+                //告知伺服器 body 夾帶的資料是什麼類型，server才能判斷解析(常見種類的 通常已內建支援)
+                'Content-type':'application/json;charset=utf-8',
+
+                //告知伺服器，應回應 哪種類型，這邊才能繼續處理。 
+                //Accept:'text/html, application/xhtml+xml' ,  
+                // 自行查MDN有哪些值，通常自己開發的專案內部的前後端溝通，都自己清楚，不需要寫
+            },
+            //若method是get，不可有body屬性，會報錯
+            body: JSON.stringify({
+                FavoriteId: 4,
+                MemberId: 3,
+                ComicId: 5,
+                ComicChineseName: '我',
+                ComicWeekFigure: 'AA',
+                BgColor: 'BB',
+            }), 
+        })
+        .then(resp => { //多行=須return關鍵字 回傳Promise物件 給下一層
+            if(resp.ok)
+                return resp.text() 
+        }) 
+        .then(text => { 
+            console.log(text)
+        })
+
+
+     //重點3：很常見是要包在function內， 配合dom的click事件
+     //document.querySelector('假').addEventListener('click', XXX )
+     //function XXX(){
+     //    fetch('假網址');
+     //}
+
+
+    //最後建議：
+    //  @* JS 也是可以用到 @Model.XXX，注意一下會不會有編碼問題，及善用JSON轉換 *@
+
+    // JS的
+    //    JSON.stringify()
+    //    JSON.parse()
+    //C#的 有好幾家...總之有序列化/反序列化
+    //    JsonConvert.Serialize() ??
+    //    JsonConvert.DeSerialize<>() ??
+
+</script>
+}

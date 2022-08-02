@@ -1,0 +1,75 @@
+﻿
+@using BSWebtoon.Model
+@using BSWebtoon.Front.Models.ViewModel.Favorite
+
+@model FavoriteViewModel
+
+@*@foreach (var f in Model.FavoriteList)
+{
+    <div class="a" style="color:white; top:120px;">
+    <table class="table table-bordered" style="color:white;">
+      <thead>
+        <tr>
+          <th>ComicChineseName</th>
+          <th>BgColor</th>
+          <th>ComicWeekFigure</th>`
+        </tr>
+      </thead>
+
+  <tbody>
+    <tr>
+      <td>@f.ComicChineseName</td>
+      <td>@f.BgColor</td>
+      <td>@f.ComicWeekFigure</td>
+    </tr>
+    <tr>
+  </tbody>
+</table>
+</div>
+}*@
+
+@*-------------------------------------------------------------------*@
+
+
+@section topCss{
+	<link rel="stylesheet" href="~/style/Favorite_Record.css" />
+}
+
+	<nav class="navbar d-flex justify-content-center   ">
+		<button type="button" class=" btn btn-dark" onclick="To_RecordPage()">最近看過</button>
+		<button type="button" class=" btn  btn-light">我的最愛</button>
+	</nav>
+
+
+	<div style="background-color: #000; margin-top: 50px; z-index:1;">
+		<div class="container" style="max-width: 800px;">
+			<div class="row row-cols-3 row-cols-md-3 row-cols-lg-3 row-cols-xl-4" style=" transform: translateY(80px);">
+
+				@foreach (var f in Model.FavoriteList)
+				{
+			<a class="work_a" href="/WorksPage/WorksPage/@f.ComicId">
+				<div class="col  " onclick="to_comnic(this);">
+					<img src="@f.ComicWeekFigure" alt="">
+					<p>@f.ComicChineseName</p>
+					<input style="display: none;" value="漫畫ID" />
+				</div>
+			</a>
+				}
+
+			</div>
+			<div class="d-flex justify-content-center fixed-bottom " id="div_btns">
+				<button type="button" class="btn btn btn-dark border m-4 "
+					style="border-radius: 50%;font-size: 10px;">
+					⇅
+				</button>
+				<button type="button" class="btn btn btn-dark border my-4 px-4 py-2" style="border-radius: 20px;"
+					onclick="Open_del_page()">
+					編輯
+				</button>
+			</div>
+		</div>
+	</div>
+
+	@section endJS{
+	<script src="~/js/Favorite_Record.js"></script>
+        }
