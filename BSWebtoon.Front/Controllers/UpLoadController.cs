@@ -26,7 +26,7 @@ namespace BSWebtoon.Front.Controllers
 
         //上傳漫畫
         [HttpGet]
-        public IActionResult UploadComic(int userId) // Upload/UploadComic
+        public IActionResult UploadComic(int userId) // UpLoad/UploadComic
         {
 
             //取得會員ID
