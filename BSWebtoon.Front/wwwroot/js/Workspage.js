@@ -2,7 +2,7 @@ const ep = document.querySelector('.ep');
 const illustrate = document.querySelector('.illustrate');
 const messages = document.querySelector('.messages');
 const local_video = document.querySelector('.local_video');
-const collect_a = document.querySelector('.red');
+ const collect_a = document.querySelector('.red');
 const comics_name_click = document.querySelector('.comics_name_click');
 const ep_row = document.querySelector('.ep_row');
 const copy = document.querySelector('.copy');
@@ -29,7 +29,6 @@ function reizeWindow(){
             //message_box.classList.remove('d-none');
             ep_row.innerText = "";
             ep_row.appendChild(card_box);
-            //message_box.appendChild(comment_text);
             console.log('///')
         }
     })
@@ -85,8 +84,8 @@ window.onload = function () {
     messages.addEventListener('click', () => {
         console.log('3')
         ep_row.innerText = "";
-        //comment_text.classList.remove('d-none');
-        //comment_text.classList.add('d-flex');
+        comment_text.classList.remove('d-none');
+        comment_text.classList.add('d-block');
         ep_row.appendChild(comment_text);
     })
 
@@ -102,29 +101,44 @@ window.onload = function () {
     local_video_bg.addEventListener('ended', () => {
         local_video_bg.classList.add('d-none');
     })
-    local_video_bg.addEventListener('click', () => {
-        local_video_bg.classList.add('d-none')
-    })
 
 
 
 
+    ////次序顛倒
+    //tidy = document.querySelector('.tidy');
+    //tidy_r = document.querySelector('.tidy_r')
+    //tidy.addEventListener('click', () => {
+    //    tidy.style.display = "none";
+    //    tidy_r.style.display = "flex";
 
-//     //我們是用以下的方式讓它做出滾動的效果
-//     window.addeventlistener('mousewheel', (event) => {
-//         event = event || window.event;
-//         if (event.wheeldelta > 0 || event.detail < 0) {
-//             //向上滾
-//             local_video_bg.classList.add('opacity = 1')
-//             console.log("1212");
-//         //    $('html, body').animate({ scrolltop: 0 }, "fast")
-//         }
-//         else {
-//             //向下滾
-//             local_video_bg.classList.add('opacity = 0')
-//         //    $('html, body').animate({
-//         //        scrolltop: $('.comics_episode').offset().top
-//         //    }, "fast")
-//         }
-//     })
+    //    ep_row.innerText = "";
+    //    for (let i = 50; i >= 1; i--) {
+    //        ep_row.appendChild(getCard(`第${i}話`, `https://picsum.photos/300/200/?random=${i}`, `2022/06/1${i}`));
+    //    }
+    //})
+    //tidy_r.addEventListener('click', () => {
+    //    tidy.style.display = "flex";
+    //    tidy_r.style.display = "none";
+    //    ep_row.innerText = "";
+    //    for (let i = 1; i <= 50; i++) {
+    //        ep_row.appendChild(getCard(`第${i}話`, `https://picsum.photos/300/200/?random=${i}`, `2022/06/1${i}`));
+    //    }
+
+    //})
+
+    // //我們是用以下的方式讓它做出滾動的效果
+    // window.addEventListener('mousewheel', (event) => {
+    //     event = event || window.event;
+    //     if (event.wheelDelta > 0 || event.detail < 0) {
+    //         //向上滾
+    //         $('html, body').animate({ scrollTop: 0 }, "fast")
+    //     }
+    //     else {
+    //         //向下滾
+    //         $('html, body').animate({
+    //             scrollTop: $('.comics_episode').offset().top
+    //         }, "fast")
+    //     }
+    // })
 }
