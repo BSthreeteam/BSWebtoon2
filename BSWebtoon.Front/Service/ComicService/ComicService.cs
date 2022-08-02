@@ -5570,9 +5570,10 @@ namespace BSWebtoon.Front.Service.ComicService
             //userName = "林淑芬";
             var memberId = _repository.GetAll<Member>().Where(m => m.AccountName == userName).Select(m => m.MemberId).FirstOrDefault();
             var comicSource = _repository.GetAll<Comic>().Where(c => c.AuditType == 1).First(x => x.ComicId == comicId);
-            var tagListSource = _repository.GetAll<ComicTagList>().Where(x => x.ComicId == comicSource.ComicId);
-            var tagnames = _repository.GetAll<ComicTag>().Where(x => tagListSource.Any(y => y.TagId == x.TagId));
-            var mainTag = _repository.GetAll<ComicTag>().Where(x => tagListSource.Any(y => y.TagId == x.TagId)).First(x => x.IsMainTag == true);
+            var tagList = _repository.GetAll<ComicTagList>().Where(x => x.ComicId == comicSource.ComicId).Select(x => x.TagId).ToList();
+            var tagnames = _repository.GetAll<ComicTag>().Where(x => tagList.Contains( x.TagId)).ToList();
+            //這邊主Tag有的漫畫沒有，有些功能會報錯(要注意!!)
+            var mainTag = tagnames.FirstOrDefault(x => x.IsMainTag); 
             var couponTest = _repository.GetAll<Coupon>();
             // 1通用券 2閱讀券 3倒數券 券有可能沒有 都沒有的話就只有倒數券
             var readCouponSource = _repository.GetAll<Coupon>().Where(x => x.CouponTypeId == 2 && x.MemberId == memberId && x.ComicId == comicId).Select(x => x.Quantity).FirstOrDefault();

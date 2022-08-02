@@ -18,7 +18,6 @@ namespace BSWebtoon.Front.Models.ViewModel.Favorite
         public string ComicFigure { get; set; }
         public string BgColor { get; set; }
         public string ComicWeekFigure { get; set; }
-
         }
         //}
     }

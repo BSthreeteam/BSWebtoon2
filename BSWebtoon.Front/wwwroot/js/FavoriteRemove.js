@@ -73,7 +73,7 @@ function update_text() {
 //}
 
 
-//刪除圖片 
+//刪除圖片
 function remove_all(double_check = false) {
     // console.log(double_check)
     if (double_check) {

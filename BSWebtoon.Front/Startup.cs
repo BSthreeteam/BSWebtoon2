@@ -138,13 +138,15 @@ namespace BSWebtoon.Front
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Recommend}/{action=Recommend}/{id?}");
+
+
+            //endpoints.MapControllerRoute(
+            //    name: "ProductsPagination",
+            //    pattern: "WorksPage/{ComicId?}",
+            //    defaults: new { controller = "Favorite", action = "ReadFavorite" });
+
             });
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapControllerRoute(
-            //        name: "default",
-            //        pattern: "{controller=AA}/{action=aa}/{id?}");
-            //});
+
         }
 
     }
