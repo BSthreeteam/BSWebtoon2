@@ -1,54 +1,64 @@
-﻿@{
+﻿@using BSWebtoon.Front.Models.ViewModel.GiftBox
+@model GiftBoxViewModel
+
+@{
     ViewData["Title"] = "GiftBox";
 }
 @section topCss{
+
 <link rel="stylesheet" href="~/style/GiftBoxActivityStyle.css" />
 }
+
 
 <div class="activity">
     <div class="container activity_content">
         <div class="content">
-            <a href="~/Activity/ActivityContent" class="activity_a">
+            @foreach (var item in Model.GiftBoxItems)
+            {
+                <a href="~/Activity/ActivityContent/@item.ActivityId" class="activity_a">
+                    <div class="activity_item" style="background-color:@item.ActivityBgColor;">
+                        <img class="activity_pic"
+                         src="@item.ActivityImage">
+                        <div class="activity_title">
+                            <p>@item.ActivityName</p>
+                        </div>
+                        <div class="activity_coupon">
+                            <span>通用券</span>
+                        </div>
+                    </div>
+                </a>
+            }
+
+
+
+            @*            <a href="~/Activity/ActivityContent" class="activity_a">
+
                 <div class="activity_item">
-                    <img class="activity_pic"
-                         src="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047961/ActivityIMG/AT03.png">
-                    <div class="activity_title">
-                        <p>BuildSchool DEMO</p>
-                    </div>
-                    <div class="activity_coupon">
-                        <span>通用券</span>
-                    </div>
+                <img class="activity_pic"
+                src="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047891/ActivityIMG/AT01.png">
+                <div class="activity_title">
+                <p>中秋節</p>
                 </div>
+                <div class="activity_coupon">
+                <span>通用券</span>
+                </div>
+                </div>
+                </a>
 
-            </a>
-            <a href="~/Activity/ActivityContent" class="activity_a">
-
+                <a href="~/Activity/ActivityContent" class="activity_a">
                 <div class="activity_item">
-                    <img class="activity_pic"
-                         src="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047891/ActivityIMG/AT01.png">
-                    <div class="activity_title">
-                        <p>中秋節</p>
-                    </div>
-                    <div class="activity_coupon">
-                        <span>通用券</span>
-                    </div>
+                <img class="activity_pic"
+                src="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047931/ActivityIMG/AT02.png">
+
+                <div class="activity_title">
+                <p>端午佳節</p>
                 </div>
-            </a>
-
-            <a href="~/Activity/ActivityContent" class="activity_a">
-                <div class="activity_item">
-                    <img class="activity_pic"
-                         src="https://res.cloudinary.com/dmns6twmt/image/upload/v1657047931/ActivityIMG/AT02.png">
-
-                    <div class="activity_title">
-                        <p>端午佳節</p>
-                    </div>
-                    <div class="activity_coupon">
-                        <span>通用券</span>
-                    </div>
+                <div class="activity_coupon">
+                <span>通用券</span>
                 </div>
-            </a>
-
+                </div>
+                </a>
+            *@
         </div>
     </div>
 </div>
