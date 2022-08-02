@@ -1,9 +1,9 @@
 ﻿using BSWebtoon.Front.Models.DTO.UploadComicDTO;
 using System.Threading.Tasks;
 
-namespace BSWebtoon.Front.Service.LoginService
+namespace BSWebtoon.Front.Service.UploadService
 {
-    public interface ILoginService
+    public interface IUploadService
     {
         string GetNickName(int userid);
         //漫畫上傳

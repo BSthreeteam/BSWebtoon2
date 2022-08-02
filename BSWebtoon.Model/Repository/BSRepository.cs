@@ -12,7 +12,10 @@ namespace BSWebtoon.Model.Repository
     public class BSRepository
     {
         private BSWebtoonDbContext _context;
+        
+        //加這行
         public BSWebtoonDbContext Context { get { return _context; } }
+
         public BSRepository(BSWebtoonDbContext context)
         {
             if (context == null) { throw new ArgumentNullException(); }

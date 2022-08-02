@@ -1,6 +1,5 @@
 ﻿using BSWebtoon.Front.Models.DTO.UploadComicDTO;
 using BSWebtoon.Front.Service.CloudinaryService;
-using BSWebtoon.Front.Service.LoginService;
 using BSWebtoon.Front.Service.MemberService;
 using BSWebtoon.Model.Repository;
 using Microsoft.AspNetCore.Authentication;
@@ -22,14 +21,14 @@ namespace BSWebtoon.Front.Controllers
         private readonly BSRepository _repository;
         private readonly ICloudinaryService _cloudinaryService;
 
-        private readonly ILoginService _loginSerice;
-        public LoginController(IMemberService memberService, BSRepository repository, ICloudinaryService cloudinaryService, ILoginService loginSerice)
+        //private readonly ILoginService _loginSerice;
+        public LoginController(IMemberService memberService, BSRepository repository, ICloudinaryService cloudinaryService )//ILoginService loginSerice)
         {
             _memberService = memberService;
 
             _repository = repository;
             _cloudinaryService = cloudinaryService;
-            _loginSerice = loginSerice;
+            //_loginSerice = loginSerice;
         }
 
 
@@ -101,221 +100,221 @@ namespace BSWebtoon.Front.Controllers
 
 
 
-        //上傳漫畫
-        [HttpGet]
-        public IActionResult UploadComicView(int userId) //Login/UploadComicView
-        {
+        ////上傳漫畫
+        //[HttpGet]
+        //public IActionResult UploadComicView(int userId) //Login/UploadComicView
+        //{
 
-            //取得會員ID
-            var memberId = int.Parse(User.Claims.First(x => x.Type == "MemberID").Value);
+        //    //取得會員ID
+        //    var memberId = int.Parse(User.Claims.First(x => x.Type == "MemberID").Value);
 
-            //var user = User.Identity.Name;
+        //    //var user = User.Identity.Name;
 
-            ////預畫面設值
-            //var outputDTO = new UploadComicOutputDTO
-            //{
-            //    IsSuccess = 0,
-            //    EpTitle = "abc",
-            //    EpCover = "https://inews.gtimg.com/newsapp_bt/0/14062897162/1000",
-            //};
+        //    ////預畫面設值
+        //    //var outputDTO = new UploadComicOutputDTO
+        //    //{
+        //    //    IsSuccess = 0,
+        //    //    EpTitle = "abc",
+        //    //    EpCover = "https://inews.gtimg.com/newsapp_bt/0/14062897162/1000",
+        //    //};
 
-            //取得會員表裡面的 NickName 也就是作者名稱
-            var nickName = _loginSerice.GetNickName(memberId);
+        //    //取得會員表裡面的 NickName 也就是作者名稱
+        //    var nickName = _loginSerice.GetNickName(memberId);
 
-            //預設表單上輸入框的值
-            var vm = new UploadComicInputDTO
-            {
-                Painter = "Anke",
-                Publisher = "Anke",
-                Introduction = "qwe\r\nqweqwe",
-                ComicChineseName = "ROG漫畫王",
+        //    //預設表單上輸入框的值
+        //    var vm = new UploadComicInputDTO
+        //    {
+        //        Painter = "Anke",
+        //        Publisher = "Anke",
+        //        Introduction = "qwe\r\nqweqwe",
+        //        ComicChineseName = "ROG漫畫王",
 
-                Author = nickName,
-                PublishDate = DateTime.UtcNow.AddDays(1),
-            };
+        //        Author = nickName,
+        //        PublishDate = DateTime.UtcNow.AddDays(1),
+        //    };
 
-            return View(vm);
-        }
+        //    return View(vm);
+        //}
 
-        //上傳漫畫
-        [HttpPost]             //Login/UploadComicView
-        //以非同步方式接收，使用者從表單輸入的所有的值。
-        public async Task<IActionResult> UploadComicView([FromForm] UploadComicInputDTO input )
-        {
-            //防呆
-            if (!ModelState.IsValid || input.PublishDate < DateTime.UtcNow.AddHours(8))
-            {
-                return View(input);//體貼地將資料填回去
-            }
-
-
-            //取得會員ID
-            var memberId = int.Parse(User.Claims.First(x => x.Type == "MemberID").Value);
-
-            //var user = User.Identity.Name;
-
-            //if (input.Comic_subtitle == input.Comic_subtitle || input.Comic_subtitle == "1")
-            //{
-            //使用者從表單輸入的所有的值，依序存入對應的DTO欄位值，存入一個變數。
-
-            input.MemberId = memberId;
-            //var inputDTO = new UploadComicInputDTO()
-            //{
-            //    MemberId = memberId,
-            //    ComicChineseName = input.ComicChineseName,
-            //    //ComicNameImage = ComicNameImage,
-            //    //HotComicNameImage = HotComicNameImage,
-            //    BgCover = input.BgCover,
-            //    //HotBgCover = HotBgCover,
-            //    ComicFigure = input.ComicFigure,
-            //    //ComicWeekFigure = ComicWeekFigure,
-            //    Publisher = input.Publisher,
-            //    Painter = input.Painter,
-            //    Author = input.Author,
-            //    Introduction = input.Introduction,
-            //    ComicTagList = input.ComicTagList,
-
-            //    Comic_subtitle = input.Comic_subtitle,
-            //    Comic_subtitle_tow = input.Comic_subtitle_tow,
-            //    Comic_subtitle_three = input.Comic_subtitle_three,
-            //    PublishDate = input.PublishDate,
-            //    UpdateWeek = input.UpdateWeek,
-            //};
-
-            TempData["ComicChineseName"] = input.ComicChineseName;
-            TempData["Author"] = input.Author;
-
-            //呼叫 loginSerice 的 UploadWorkViewUpdateData() 方法 傳入DTO所存放使用者從表單輸入的所有的值，存入一個變數。
-            var outputDTO = await _loginSerice.UploadComicViewUpdateData(input);
-            //ViewData["IsSuccess"] = outputDTO.IsSuccess;
-            //ViewData["ErrorMsg"] = outputDTO.Message;
+        ////上傳漫畫
+        //[HttpPost]             //Login/UploadComicView
+        ////以非同步方式接收，使用者從表單輸入的所有的值。
+        //public async Task<IActionResult> UploadComicView([FromForm] UploadComicInputDTO input )
+        //{
+        //    //防呆
+        //    if (!ModelState.IsValid || input.PublishDate < DateTime.UtcNow.AddHours(8))
+        //    {
+        //        return View(input);//體貼地將資料填回去
+        //    }
 
 
-            //成敗分支
+        //    //取得會員ID
+        //    var memberId = int.Parse(User.Claims.First(x => x.Type == "MemberID").Value);
 
-            if (!outputDTO.IsSuccess)
-            {
-                //if(outputDTO.HasNickName)...???
-                //ViewData["x"] = outputDTO.Message;
-                return View(input);
-            }
+        //    //var user = User.Identity.Name;
+
+        //    //if (input.Comic_subtitle == input.Comic_subtitle || input.Comic_subtitle == "1")
+        //    //{
+        //    //使用者從表單輸入的所有的值，依序存入對應的DTO欄位值，存入一個變數。
+
+        //    input.MemberId = memberId;
+        //    //var inputDTO = new UploadComicInputDTO()
+        //    //{
+        //    //    MemberId = memberId,
+        //    //    ComicChineseName = input.ComicChineseName,
+        //    //    //ComicNameImage = ComicNameImage,
+        //    //    //HotComicNameImage = HotComicNameImage,
+        //    //    BgCover = input.BgCover,
+        //    //    //HotBgCover = HotBgCover,
+        //    //    ComicFigure = input.ComicFigure,
+        //    //    //ComicWeekFigure = ComicWeekFigure,
+        //    //    Publisher = input.Publisher,
+        //    //    Painter = input.Painter,
+        //    //    Author = input.Author,
+        //    //    Introduction = input.Introduction,
+        //    //    ComicTagList = input.ComicTagList,
+
+        //    //    Comic_subtitle = input.Comic_subtitle,
+        //    //    Comic_subtitle_tow = input.Comic_subtitle_tow,
+        //    //    Comic_subtitle_three = input.Comic_subtitle_three,
+        //    //    PublishDate = input.PublishDate,
+        //    //    UpdateWeek = input.UpdateWeek,
+        //    //};
+
+        //    TempData["ComicChineseName"] = input.ComicChineseName;
+        //    TempData["Author"] = input.Author;
+
+        //    //呼叫 loginSerice 的 UploadWorkViewUpdateData() 方法 傳入DTO所存放使用者從表單輸入的所有的值，存入一個變數。
+        //    var outputDTO = await _loginSerice.UploadComicViewUpdateData(input);
+        //    //ViewData["IsSuccess"] = outputDTO.IsSuccess;
+        //    //ViewData["ErrorMsg"] = outputDTO.Message;
 
 
-            //var UploadWork_VM = new UploadWorkViewModel()
-            //{
-            //    UploadWork_VM.EpTitle = outputDTO.EpTitle,
-            //    UploadWork_VM.EpCover = outputDTO.EpCover
-            //};
+        //    //成敗分支
 
-            //return View(outputDTO);
+        //    if (!outputDTO.IsSuccess)
+        //    {
+        //        //if(outputDTO.HasNickName)...???
+        //        //ViewData["x"] = outputDTO.Message;
+        //        return View(input);
+        //    }
 
-            //return Content("上傳成功，正在審核中");
 
-            //return View("WorksPage");
+        //    //var UploadWork_VM = new UploadWorkViewModel()
+        //    //{
+        //    //    UploadWork_VM.EpTitle = outputDTO.EpTitle,
+        //    //    UploadWork_VM.EpCover = outputDTO.EpCover
+        //    //};
 
-            //到上傳話次與內容頁
-            return RedirectToAction("UploadWorkView", "Login");
+        //    //return View(outputDTO);
 
-            ////回到作品頁
-            //return RedirectToAction("WorksPage", "WorksPage");
+        //    //return Content("上傳成功，正在審核中");
 
-        }
+        //    //return View("WorksPage");
 
-        //上傳話次與內容頁
-        [HttpGet]
-        public IActionResult UploadWorkView() //Login/UploadWorkView
-        {
-            var inputDto = new GetComicInfoInputDTO
-            {
-                MemberId = int.Parse(User.Claims.First(x => x.Type == "MemberID").Value), //21
-            };
+        //    //到上傳話次與內容頁
+        //    return RedirectToAction("UploadWorkView", "Login");
 
-            var outputDto= _loginSerice.GetComicInfoToUploadEp(inputDto);
+        //    ////回到作品頁
+        //    //return RedirectToAction("WorksPage", "WorksPage");
 
-            if (!outputDto.IsSuccess) {}
+        //}
 
-            ////預畫面設值
-            //var outputDTO = new UploadWorkOutputDTO
-            //{
-            //    IsSuccess = 0,
-            //    EpTitle = "abc",
-            //    EpCover = "https://inews.gtimg.com/newsapp_bt/0/14062897162/1000",
-            //};
+        ////上傳話次與內容頁
+        //[HttpGet]
+        //public IActionResult UploadWorkView() //Login/UploadWorkView
+        //{
+        //    var inputDto = new GetComicInfoInputDTO
+        //    {
+        //        MemberId = int.Parse(User.Claims.First(x => x.Type == "MemberID").Value), //21
+        //    };
 
-            //去DB查此人 審過的漫畫
-            //如果資料庫裡面沒有上傳過任何一部漫畫就不能進入上傳EP頁面，因此直接跳轉回上傳漫畫的頁面。
-            if (outputDto.MyComics_WithEpCount.Count == 0)
-            {
-                RedirectToAction("UploadComicView");
-            }
+        //    var outputDto= _loginSerice.GetComicInfoToUploadEp(inputDto);
+
+        //    if (!outputDto.IsSuccess) {}
+
+        //    ////預畫面設值
+        //    //var outputDTO = new UploadWorkOutputDTO
+        //    //{
+        //    //    IsSuccess = 0,
+        //    //    EpTitle = "abc",
+        //    //    EpCover = "https://inews.gtimg.com/newsapp_bt/0/14062897162/1000",
+        //    //};
+
+        //    //去DB查此人 審過的漫畫
+        //    //如果資料庫裡面沒有上傳過任何一部漫畫就不能進入上傳EP頁面，因此直接跳轉回上傳漫畫的頁面。
+        //    if (outputDto.MyComics_WithEpCount.Count == 0)
+        //    {
+        //        RedirectToAction("UploadComicView");
+        //    }
             
-            ViewData["MyComics_WithEpCount"] = outputDto.MyComics_WithEpCount;
+        //    ViewData["MyComics_WithEpCount"] = outputDto.MyComics_WithEpCount;
 
-            //給表單預填值用
-            return View( new UploadEpInputDTO() ); //outputDto.MyComics_WithEpCount[0]
-        }
+        //    //給表單預填值用
+        //    return View( new UploadEpInputDTO() ); //outputDto.MyComics_WithEpCount[0]
+        //}
 
-        //上傳話次與內容頁
-        [HttpPost]
-        //以非同步方式接收，使用者從表單輸入的所有的值。
-        //改建ViewMolde
-        public async Task<IActionResult> UploadWorkView([Bind]UploadEpInputDTO input
-            //,  IFormFile EpCover, string EpTitle, List<IFormFile> EP_Context_file
-            ) //Login/UploadWorkView
-        {
-            //防呆
-            if (!ModelState.IsValid)
-            {
-                return View(input);//體貼地將資料填回去
-            }
+        ////上傳話次與內容頁
+        //[HttpPost]
+        ////以非同步方式接收，使用者從表單輸入的所有的值。
+        ////改建ViewMolde
+        //public async Task<IActionResult> UploadWorkView([Bind]UploadEpInputDTO input
+        //    //,  IFormFile EpCover, string EpTitle, List<IFormFile> EP_Context_file
+        //    ) //Login/UploadWorkView
+        //{
+        //    //防呆
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return View(input);//體貼地將資料填回去
+        //    }
 
-            //_memberService.UploadWorkViewUpdateData(file , Title);
-            var ComicChineseName = TempData["ComicChineseName"] as string;
-            var Author = TempData["Author"] as string;
+        //    //_memberService.UploadWorkViewUpdateData(file , Title);
+        //    var ComicChineseName = TempData["ComicChineseName"] as string;
+        //    var Author = TempData["Author"] as string;
 
             
 
-            //防呆
-            if (ComicChineseName == "" || ComicChineseName == ComicChineseName && Author == "" || Author == Author)
-            {
-                //使用者從表單輸入的所有的值，依序存入對應的DTO欄位值，存入一個變數。
-                //var inputDTO = new UploadWorkInputDTO()
-                //{
-                //    CommicId = input.CommicId,
-                //    EpTitle = EpTitle,
-                //    EpCover = EpCover,
-                //    ComicChineseName = ComicChineseName,
-                //    EP_Context_file = EP_Context_file,
-                //    Author = Author,
+        //    //防呆
+        //    if (ComicChineseName == "" || ComicChineseName == ComicChineseName && Author == "" || Author == Author)
+        //    {
+        //        //使用者從表單輸入的所有的值，依序存入對應的DTO欄位值，存入一個變數。
+        //        //var inputDTO = new UploadWorkInputDTO()
+        //        //{
+        //        //    CommicId = input.CommicId,
+        //        //    EpTitle = EpTitle,
+        //        //    EpCover = EpCover,
+        //        //    ComicChineseName = ComicChineseName,
+        //        //    EP_Context_file = EP_Context_file,
+        //        //    Author = Author,
 
-                //};
-                input.Author = Author;
-                input.ComicChineseName = ComicChineseName;
-
-
-                //呼叫 loginSerice 的 UploadEp () 方法 傳入DTO所存放使用者從表單輸入的所有的值，存入一個變數。
-                var outputDTO = await _loginSerice.UploadEp(input);
-
-                if (!outputDTO.IsSuccess)
-                {
-                    ViewData["IsSuccessMsg"] = outputDTO.Message;
-                    //return View(outputDTO);
-                }
-                else
-                {
-                    ViewData["IsSuccessMsg"] = "成功上傳，正在審核中!";
-                }
-            }
-
-           return RedirectToAction("UploadWorkView");
-            ////回到作品頁
-            //return RedirectToAction("WorksPage", "WorksPage");
-
-            //回到成功頁
-            //return RedirectToAction("UploadedSuccessfullyView", "Login");
+        //        //};
+        //        input.Author = Author;
+        //        input.ComicChineseName = ComicChineseName;
 
 
-        }
+        //        //呼叫 loginSerice 的 UploadEp () 方法 傳入DTO所存放使用者從表單輸入的所有的值，存入一個變數。
+        //        var outputDTO = await _loginSerice.UploadEp(input);
+
+        //        if (!outputDTO.IsSuccess)
+        //        {
+        //            ViewData["IsSuccessMsg"] = outputDTO.Message;
+        //            //return View(outputDTO);
+        //        }
+        //        else
+        //        {
+        //            ViewData["IsSuccessMsg"] = "成功上傳，正在審核中!";
+        //        }
+        //    }
+
+        //   return RedirectToAction("UploadWorkView");
+        //    ////回到作品頁
+        //    //return RedirectToAction("WorksPage", "WorksPage");
+
+        //    //回到成功頁
+        //    //return RedirectToAction("UploadedSuccessfullyView", "Login");
+
+
+        //}
 
 
 

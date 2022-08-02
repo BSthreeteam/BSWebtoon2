@@ -1,45 +1,16 @@
-﻿@using BSWebtoon.Front.Models.DTO.UploadComicDTO
+﻿
+@using BSWebtoon.Front.Models.DTO.UploadComicDTO
 
 @model UploadEpInputDTO
 
 @{
-    ViewData["Title"] = "UploadWorkView";
-
+    ViewData["Title"] = "UploadWork";
 
     var ComicsWithEpCount = (List<GetComicInfoOutputDTO.ComicWithEpCount>)ViewData["MyComics_WithEpCount"];
 }
 
 
-
-@*@functions{
-    private void UploadSuccess(int isSuccess)
-    {
-        if(isSuccess == 1)
-        {
-
-    <p id="success">success成功上傳</p>
-        }
-        else if(isSuccess == 0)
-        {
-
-        }
-        else
-        {
-    <p id="failed">還沒上傳</p>
-
-            //<p>failed</p>
-        }
-    }
-
-}*@
-
-
-
 <body style="background-color: black; color: white">
-
-
-
-
 
     <hr>
     <div class="container  ">
@@ -57,21 +28,21 @@
     </div>
     <hr>
 
-    <div class="container work">
+    <div class="container work " style="color:  white; max-width: 1200px " >
 
-        <div class="work_bgc">
-            <div class="a">
-                <a asp-controller="Login" asp-action="UploadComicView">1</a>
-                <p>上傳漫畫</p>
+            <div class="work_bgc">
+                <div class="a">
+                    <a asp-controller="Upload" asp-action="UploadComic" >1</a>
+                    <p>上傳漫畫</p>
+                </div>
+
+                <div class="b">
+                    <a asp-controller="Upload" asp-action="UploadWork" >2</a>
+                    <p>上傳分集</p>
+                </div>
             </div>
 
-            <div class="b" id="upload_diversity">
-                <a asp-controller="Login" asp-action="UploadWorkView">2</a>
-                <p>上傳分集</p>
-            </div>
         </div>
-
-    </div>
 
 
 
@@ -83,7 +54,7 @@
         <div class="container" style="background-color: #000;">
 
             @*加*@
-            <form method="post" enctype="multipart/form-data" action="/Login/UploadWorkView">
+            <form method="post" enctype="multipart/form-data" action="/Upload/UploadWork">
 
 
                 <div class="comic_text">
@@ -349,16 +320,6 @@
                 display: flex;
                 margin: 5% 20% 20% 20%;
             }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -792,9 +753,8 @@
 
 
 
-
-
-
-
     </body>
+
+
+
 

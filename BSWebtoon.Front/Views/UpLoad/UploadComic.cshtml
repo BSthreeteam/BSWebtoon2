@@ -3,10 +3,10 @@
 
 @model UploadComicInputDTO
 
-@*@model UploadComicInputDTO*@
 @{
-    ViewData["Title"] = "UploadComicView";
+    ViewData["Title"] = "UploadComic";
 }
+
 
 
 <!-- 導覽列 -->
@@ -14,12 +14,12 @@
 
             <div class="work_bgc">
                 <div class="a">
-                    <a asp-controller="Login" asp-action="UploadComicView" >1</a>
+                    <a asp-controller="Upload" asp-action="UploadComic" >1</a>
                     <p>上傳漫畫</p>
                 </div>
 
                 <div class="b">
-                    <a asp-controller="Login" asp-action="UploadWorkView" >2</a>
+                    <a asp-controller="Upload" asp-action="UploadWork" >2</a>
                     <p>上傳分集</p>
                 </div>
             </div>
@@ -31,12 +31,6 @@
     <div class="up_bgc mx-auto" style="background-color: black; color:  white; max-width: 1200px ">
 
        
-
-       
-
-
-
-
         <div class="container" style="margin-top: 50px;">
             <div class="row">
                 <div class="col-4">
@@ -619,3 +613,4 @@
         }
     }
 }
+

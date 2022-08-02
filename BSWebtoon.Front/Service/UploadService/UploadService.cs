@@ -13,10 +13,10 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BSWebtoon.Front.Service.LoginService
+namespace BSWebtoon.Front.Service.UploadService
 {
 
-    public class LoginService : ILoginService
+    public class UploadService : IUploadService
     {
         //初始化建構式: DI注入
         private readonly BSRepository _repository;
@@ -30,7 +30,7 @@ namespace BSWebtoon.Front.Service.LoginService
         private readonly BSWebtoonDbContext _context;
 
 
-        public LoginService(BSRepository repository, /*IConfiguration config,*/ BSWebtoonDbContext context, ICloudinaryService cloudinaryService)
+        public UploadService(BSRepository repository, /*IConfiguration config,*/ BSWebtoonDbContext context, ICloudinaryService cloudinaryService)
         {
             _repository = repository;
 

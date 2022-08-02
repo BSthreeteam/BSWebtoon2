@@ -27,8 +27,9 @@ using BSWebtoon.Front.Service.WeekUpdateService;
 using BSWebtoon.Front.Service.SearchService;
 using BSWebtoon.Front.Service.ContentPageService;
 using BSWebtoon.Front.Service.CloudinaryService;
-using BSWebtoon.Front.Service.LoginService;
+
 using BSWebtoon.Front.Service.ActivityService;
+using BSWebtoon.Front.Service.UploadService;
 
 namespace BSWebtoon.Front
 {
@@ -51,7 +52,8 @@ namespace BSWebtoon.Front
 
             //µù¥U
             services.AddScoped<ICloudinaryService, CloudinaryService>();
-            services.AddScoped<ILoginService, LoginService>();
+
+            services.AddScoped<IUploadService, UploadService>();
 
 
             services.AddScoped<BSRepository, BSRepository>();
