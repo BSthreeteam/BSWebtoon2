@@ -5699,7 +5699,6 @@ namespace BSWebtoon.Front.Service.ComicService
 
 
 
-
         public List<WorkContentDTO> ReadworkContent(int EpId, string userName)
         {
 
@@ -5821,7 +5820,6 @@ namespace BSWebtoon.Front.Service.ComicService
             return readResult;
 
         }
-
 
         public void ViewRecordCreate(int EpId, int memberId)
         {
