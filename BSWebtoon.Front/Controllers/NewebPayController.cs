@@ -234,7 +234,7 @@ namespace NewebPay.Controllers
 
 
 
-            return Redirect("~/Favorite/RecordView");
+            return Redirect("~/api/Account/AccountInfo");
         }
 
         /// <summary>

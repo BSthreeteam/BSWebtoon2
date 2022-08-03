@@ -1,6 +1,5 @@
 ﻿using BSWebtoon.Front.Models.ViewModel.WorkPage;
 using BSWebtoon.Front.Service.ComicService;
-using BSWebtoon.Front.Service.ContentPageService;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +9,10 @@ namespace BSWebtoon.Front.Controllers
     public class WorksPageController : Controller
     {
         private readonly IComicService _comicService;
-        private readonly IComicContentPageService _comicContentPageService;
 
-        public WorksPageController(IComicService comicService, IComicContentPageService comicContentPageService)
+        public WorksPageController(IComicService comicService)
         {
             _comicService = comicService;
-            _comicContentPageService = comicContentPageService;
         }
         public IActionResult BuyCoupon()
         {
@@ -85,18 +82,18 @@ namespace BSWebtoon.Front.Controllers
 
 
 
-        public IActionResult ComicContent(int Id)
+        public IActionResult workContent(int Id)
         {
             var userName = User.Identity.Name;
-            var comicContents = _comicContentPageService.ReadworkContent(Id, userName);
-            var result = new ComicContentViewModel();
+            var comicContents = _comicService.ReadworkContent(Id, userName);
+            var result = new WorkContentViewModel();
             if (comicContents.Count() != 0)
             {
                 var EpTitle = comicContents.Select(c => c.EpTitle).First();
-                var allEp = new List<ComicContentViewModel.EpData>() { };
+                var allEp = new List<WorkContentViewModel.EpData>() { };
                 foreach (var ep in comicContents[0].EpList)
                 {
-                    allEp.Add(new ComicContentViewModel.EpData()
+                    allEp.Add(new WorkContentViewModel.EpData()
                     {
                         EpId = ep.EpId,
                         ComicId = ep.ComicId,
@@ -107,10 +104,10 @@ namespace BSWebtoon.Front.Controllers
                         IsFree = ep.IsFree
                     });
                 }
-                result = new ComicContentViewModel()
+                result = new WorkContentViewModel()
                 {
                     EpTitle = EpTitle,
-                    ContentList = comicContents.Select(c => new ComicContentViewModel.Content
+                    ContentList = comicContents.Select(c => new WorkContentViewModel.Content
                     {
                         ImagePath = c.ImagePath,
                         Page = c.Page,
@@ -126,6 +123,11 @@ namespace BSWebtoon.Front.Controllers
             }
 
         }
+
+
+
+
+
 
     }
 
