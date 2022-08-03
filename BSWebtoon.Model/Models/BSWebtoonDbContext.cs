@@ -145,7 +145,7 @@ namespace BSWebtoon.Model.Models
                 entity.HasOne(d => d.Member)
                     .WithMany(p => p.ClickRecords)
                     .HasForeignKey(d => d.MemberId)
-                    .HasConstraintName("FK_ClickRecord_Member1");
+                    .HasConstraintName("FK_ClickRecord_Member");
             });
 
             modelBuilder.Entity<Comic>(entity =>
