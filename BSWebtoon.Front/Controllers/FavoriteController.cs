@@ -1,20 +1,20 @@
-﻿using BSWebtoon.Front.Models.ViewModel.Favorite;
+﻿using BSWebtoon.Front.Models.DTO.FavoriteDTO;
+using BSWebtoon.Front.Models.ViewModel.Favorite;
 using BSWebtoon.Front.Service.FavoriteService;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace BSWebtoon.Front.Controllers
 {
     public class FavoriteController : Controller
     {
         private readonly IFavoriteService _favoriteService;
-        private readonly FavoriteService _readfavoriteService;
 
-        public FavoriteController(IFavoriteService favoriteService, FavoriteService readfavoriteService)
+        public FavoriteController(IFavoriteService favoriteService)
         {
             _favoriteService = favoriteService;
-            _readfavoriteService = readfavoriteService;
         }
         public IActionResult RecordView()//Favorite/RecordView
         {
@@ -50,6 +50,45 @@ namespace BSWebtoon.Front.Controllers
             };
             return View(result);
         }
+
+
+        [HttpGet]
+        public IActionResult FavoriteRemove()
+        {
+            
+            return View();
+        }
+
+        //[HttpPost]
+        //public IActionResult Favorite([FromBody] FavoriteViewModel request)
+        //{
+        //var claims =
+        //User.Claims.Select(claim => new
+        //{
+        //    claim.Issuer,
+        //    claim.OriginalIssuer,
+        //    claim.Type,
+        //    claim.Value,
+        //});
+        //var NameIdentifiers = claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value;
+        //var memberName = _repository.GetAll<Member>().Where(x => x.NameIdentifier == NameIdentifiers).Select(X => X.AccountName);
+
+        //    return Ok();
+        //}
+
+        //public async Task<IActionResult> Delete()
+        //{
+        //    //var Favorite = await _favoriteService.FavoriteDelete.ReadFavorite(3); //userId換3號會員
+        //    var favorite = await _favoriteService.FavoriteDelete.FirstOrDefaultAsync(f => f.Id == 3);
+        //    return View(favorite);
+        //}
+
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(int id)
+        //{
+        //    var favorite = await _favoriteService.FavoriteDelete
+        //}
 
         //public IActionResult RemoveFavoriteView()//Favorite/RemoveFavoriteView
         //{
