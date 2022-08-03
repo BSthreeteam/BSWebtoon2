@@ -185,4 +185,20 @@
 
 @section endJS{
 <script src="~/js/WorkContent.js"></script>
+
+<script>
+            fetch("/api/CommentApi/GetCommentAll")//如果需要傳id進後端這裡的fetch網址要加id
+            .then(res => { return res.json() })
+            .then(result => {
+
+                console.log(result)
+
+                // for (let i = 0; i < result.length; i++) {
+                //     week_content.append(createNewComic(result[i]))
+
+
+
+                // }
+            })
+</script>
 }

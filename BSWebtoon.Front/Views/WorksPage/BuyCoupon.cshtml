@@ -1,6 +1,11 @@
-﻿@{
+﻿@using BSWebtoon.Model
+@{
     Layout = "_WorkPageLayout";
     ViewData["Title"] = "BuyCoupon";
+
+    var ComicId = @Model.ComicId;
+    var couponTypeId = (int)CouponType.readCoupon;
+    var memberId = User.Claims.FirstOrDefault() == null ? 0 : int.Parse(User.Claims.FirstOrDefault(x => x.Type == "MemberID").Value);
 }
 
 @section topCss{
@@ -120,8 +125,7 @@
             <div class="row w-600 pt-3 buyCoupon_buyOrCancel">
                 <div class="btn_group">
                     <button class="btn_groupItem buyCoupon_cancel" type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close">取消</button>
-                    <button class="btn_groupItem buyCoupon_buy">購買</button>
-                </div>
+                    <button class="btn_groupItem buyCoupon_buy" onclick="BuyReadCoupon(@ComicId,@couponTypeId,@memberId)">購買</button>                </div>
             </div>
         </div>
     </div>
