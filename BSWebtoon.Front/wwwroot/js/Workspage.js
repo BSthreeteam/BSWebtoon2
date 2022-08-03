@@ -38,6 +38,7 @@ function reizeWindow() {
             //message_box.classList.remove('d-none');
             ep_row.innerText = "";
             ep_row.appendChild(card_box);
+            message_box.appendChild(comment_text);
             console.log('///')
         }
     })
@@ -101,8 +102,8 @@ window.onload = function () {
     messages.addEventListener('click', () => {
         console.log('3')
         ep_row.innerText = "";
-        comment_text.classList.remove('d-none');
-        comment_text.classList.add('d-block');
+        //comment_text.classList.remove('d-none');
+        //comment_text.classList.add('d-block');
         ep_row.appendChild(comment_text);
     })
 
