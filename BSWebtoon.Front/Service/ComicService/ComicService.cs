@@ -5820,6 +5820,7 @@ namespace BSWebtoon.Front.Service.ComicService
             return readResult;
 
         }
+
         public void ViewRecordCreate(int EpId, int memberId)
         {
             var viewRecord = new ViewRecord() { MemberId = memberId, EpId = EpId, ViewTime = DateTime.Now, IsDelete = false };//EpContentId要改
@@ -5837,7 +5838,6 @@ namespace BSWebtoon.Front.Service.ComicService
 
             _repository.SaveChange();
         }
-
 
     }
 }
