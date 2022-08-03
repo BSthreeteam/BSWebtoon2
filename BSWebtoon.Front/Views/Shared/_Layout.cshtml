@@ -11,7 +11,7 @@
     @await RenderSectionAsync("topJs", required: false)
 </head>
 <body>
-    <div class="container w-1200">
+    <div class="container w-1200 ">
         <nav class="row w-1200">
             <ul class="nav justify-content-end flex-nowrap text-white  align-items-center" style=" white-space:nowrap;">
                 <form class="d-flex text-white" action="/search/searchComic" method="post" name="find">
@@ -33,7 +33,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item bg-light xl_accountinfo" href="/Recommend/Recommend">首頁</a></li>
-                            <li><a class="dropdown-item bg-light xl_accountinfo" href="#">我的帳戶</a></li>
+                            <li><a class="dropdown-item bg-light xl_accountinfo" href="/api/Account/AccountInfo">我的帳戶</a></li>
                             @*<li><a class="dropdown-item bg-light xl_my_comic" href="/Favorite/AddFavoriteView">我的漫畫</a></li>*@
                             <li><a class="dropdown-item bg-light xl_my_love" href="/Favorite/ReadFavoriteView">我的最愛</a></li>
                             <li><a class="dropdown-item bg-light xl_my_coin" href="#">金幣/閱讀券明細</a></li>

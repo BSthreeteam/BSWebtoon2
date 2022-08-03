@@ -1,13 +1,17 @@
 ﻿@{
     Layout = "_WorkPageLayout";
+    //Layout = "NoNav_Layout";
     ViewData["Title"] = "AccountInfo";
     <link rel="stylesheet" href="~/style/AccountStyle.css" />
 }
-<header class="userinfo_nav w-100">
-    <a class="previous_page_a userinfo_nav_a" href="javascript:history.go(-1)">
+<header class="userinfo_nav w-100 justify-content-between">
+    @*<a class="previous_page_a userinfo_nav_a " href="javascript:history.go(-1)">*@
+    <a class="previous_page_a userinfo_nav_a " href="/Recommend/Recommend">
         <i class="fa-solid fa-arrow-left-long previous_page"></i>
     </a>
 </header>
+
+
 
 <div class="col-12 userinfo w-1200 pt-5">
     <h1>帳戶資訊</h1>
