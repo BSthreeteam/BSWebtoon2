@@ -11,44 +11,36 @@ namespace BSWebtoon.Front.Controllers
     public class FavoriteController : Controller
     {
          private readonly IRecordViewService _recordView;
+
         public FavoriteController(IRecordViewService recordView)
         {
             _recordView = recordView;
         }
 
-
+        //觀看紀錄
         public IActionResult RecordView()//Favorite/RecordView
         {
-            var allviewcomics = _recordView.ReadRecordView();
-            var firstComic = allviewcomics.First();
+            var memberId = int.Parse(User.Claims.First(x => x.Type == "MemberID").Value);
+            //將UserId丟入Service
+            var allviewcomics = _recordView.ReadRecordView(memberId);
 
             var restult = new ViewRecordViewModel
             {
-                ViewRecordList = new ViewRecordViewModel.ViewRecordData
+                ViewRecordListAll = allviewcomics.Select( comic=> new ViewRecordViewModel.ViewRecordData
                 {
-                    ComicId = firstComic.ComicId,
-                    ComicFigure = firstComic.ComicFigure,
-                    ComicNameImage = firstComic.ComicNameImage,
-                    BgCover = firstComic.BgCover,
-                    EpTitle = firstComic.EpTitle
-                },
-                //All_ViewRecordList = new ViewRecordViewModel.AllViewRecord
-                //{
-                //    ViewRecorId = ComicRecordViewById[0].ViewRecorId,
-                //    ComicId = ComicRecordViewById[0].ComicId,
-                //    BgCover = ComicRecordViewById[0].BgCover,
-                //    EpTitle = ComicRecordViewById[0].EpTitle,
-                //    ComicFigure = ComicRecordViewById[0].ComicFigure,
-                //    ComicNameImage = ComicRecordViewById[0].ComicNameImage
-                //}
+                    ViewRecorId = comic.ViewRecorId,
+                    ComicId = comic.ComicId,
+                    BgCover = comic.BgCover,
+                    EpTitle = comic.EpTitle,
+                    ComicWeekFigure = comic.ComicWeekFigure,
+                    ComicNameImage = comic.ComicNameImage
+                }).ToList()
             };
-
-            //string jsonResult = JsonConvert.SerializeObject(allviewcomics);
-
-            //ViewData["jsonResult"] = jsonResult;
-
+            string jsonResult = JsonConvert.SerializeObject(restult);
+            ViewData["jsonResult"] = jsonResult;
             return View(restult);
-            }
+        }
+
 
         public IActionResult AddFavoriteView()//Favorite/AddFavoriteView
         {
@@ -61,10 +53,5 @@ namespace BSWebtoon.Front.Controllers
             return View();
         }
 
-        //public IActionResult RemoveFavoriteView()//Favorite/RemoveFavoriteView
-        //{
-        //    _favoriteService.FavoriteDelete();
-        //    return View();
-        //}
     }
 }

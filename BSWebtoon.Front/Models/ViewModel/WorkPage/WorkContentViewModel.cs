@@ -1,17 +1,24 @@
 ﻿using System.Collections.Generic;
 
-namespace BSWebtoon.Front.Models.DTO.WorkPage
+namespace BSWebtoon.Front.Models.ViewModel.WorkPage
 {
-    public class WorkContentDTO
+
+    public class WorkContentViewModel
     {
-        public int EpContentId { get; set; }
+
         public string EpTitle { get; set; }
-
-        public int EpId { get; set; }
-        public string ImagePath { get; set; }
-        public int Page { get; set; }
-
+        public List<Content> ContentList { get; set; }
         public List<EpData> EpList { get; set; }
+
+
+        public class Content
+        {
+
+            public string ImagePath { get; set; }
+            public int Page { get; set; }
+
+        }
+
         public class EpData
         {
             public int EpId { get; set; }
@@ -23,5 +30,6 @@ namespace BSWebtoon.Front.Models.DTO.WorkPage
             public bool IsFree { get; set; }
 
         }
+
     }
 }

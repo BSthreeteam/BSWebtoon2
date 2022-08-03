@@ -25,7 +25,6 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using BSWebtoon.Front.Service.WeekUpdateService;
 using BSWebtoon.Front.Service.SearchService;
-using BSWebtoon.Front.Service.ContentPageService;
 using BSWebtoon.Front.Service.ActivityService;
 using BSWebtoon.Front.Service.RecordViewService;
 
@@ -60,11 +59,9 @@ namespace BSWebtoon.Front
             services.AddScoped<IRecordViewService, RecordViewService>();
             services.AddScoped<ISearchService, SearchService>();
             services.AddScoped<IWeekUpdateService, WeekUpdateService>();
-            services.AddScoped<IComicContentPageService, ComicContentPageService>();
             services.AddScoped<IMemberService, MemberService>();
             services.AddScoped<IFavoriteService, FavoriteService>(); 
 
-            services.AddScoped<IComicContentPageService, ComicContentPageService>();
 
             services.AddHttpContextAccessor();
             //藍新 維持 Json 回傳大小寫與 ViewModel 相同

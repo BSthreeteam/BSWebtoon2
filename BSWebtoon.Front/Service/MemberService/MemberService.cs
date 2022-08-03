@@ -169,7 +169,6 @@ namespace BSWebtoon.Front.Service.MemberService
 
         public Member GetMemberByID(int memberId)
         {
-
             return _repository.GetAll<Member>().FirstOrDefault(m => m.MemberId == memberId );
         }
 

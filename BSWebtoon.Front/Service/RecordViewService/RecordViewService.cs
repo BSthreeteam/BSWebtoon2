@@ -3,46 +3,47 @@ using BSWebtoon.Model.Models;
 using System.Collections.Generic;
 using System.Linq;
 using BSWebtoon.Model.Repository;
-using Dapper; //T-SQL
+using Dapper; 
 using Microsoft.Data.SqlClient;
-
-
+using BSWebtoon.Front.Service.MemberService;
 
 namespace BSWebtoon.Front.Service.RecordViewService
 {
     public class RecordViewService : IRecordViewService
     {
-        private readonly BSRepository _repository;
+
         private static string _connectionStr = "Data Source=bswebtoon.database.windows.net;Initial Catalog=BSWebtoonDb;User ID=bs;Password=P@ssword;Encrypt=True;Trusted_Connection=False;MultipleActiveResultSets=true;";
 
-        public List<ViewRecordDTO> ReadRecordView() /* int id  where V.MemberId = {id}*/
+        public List<ViewRecordDTO> ReadRecordView(int id) 
         {
             var result = new List<ViewRecordDTO>();
             using (SqlConnection conn = new SqlConnection(_connectionStr))
             {
-                //看過漫畫的背景圖片、人物圖、名稱圖片
-                string sql = @$"SELECT V.*,E.EpTitle,E.ComicId,C.ComicWeekFigure,C.ComicNameImage,C.BgCover
-                             FROM ViewRecord V
-                             INNER JOIN Episode E ON E.EpId = V.EpId 
-                             INNER JOIN Comic C on C.ComicId = E.ComicId ";
+                //觀看紀錄:從資料庫撈出需要的資料
+				string sql = @$"SELECT * FROM (SELECT ROW_NUMBER() OVER (PARTITION BY E.ComicId ORDER BY V.ViewTime desc) AS row_id,
+                                V.MemberId, E.ComicId, V.ViewTime ,E.EpTitle,
+                                C.BgCover,C.ComicNameImage, C.ComicWeekFigure
+                                FROM ViewRecord V
+                                INNER JOIN Episode E ON E.EpId = V.EpId 
+                                INNER JOIN Comic C ON C.ComicId = E.ComicId 
+                                WHERE  MemberId =   {id}
+                                ) AS newDB  WHERE row_id = 1 ";
 
                 //篩選出資料全部 的結果後放到ViewRecordDTO的表中
                 var MemberReacordComics = conn.Query<ViewRecordDTO>(sql);
 
-                //var AllViewRecordList = new List<AllViewRecordDTO>();
-                //藉由ViewRecordDTO表中的TagName,comic資料 去做跌代
+                //藉由ViewRecordDTO表中的資料 去做跌代
                 foreach (var item in MemberReacordComics)
                 {
                     result.Add(new ViewRecordDTO
                     {
                         ComicId = item.ComicId,
                         ViewRecorId = item.ViewRecorId,
-                        BgCover = item.BgColor,
+                        BgCover = item.BgCover,
                         EpTitle = item.EpTitle,
-                        ComicFigure = item.ComicFigure,
+                        ComicWeekFigure = item.ComicWeekFigure,
                         ComicNameImage = item.ComicNameImage,
                         EpContentId = item.EpContentId,
-                        //gp add
                         ComicChineseName = item.ComicChineseName,
                         ComicEnglishName = item.ComicEnglishName,
                         ViewTime = item.ViewTime,
@@ -53,9 +54,5 @@ namespace BSWebtoon.Front.Service.RecordViewService
             return result;
         }
 
-        //public List<ViewRecordDTO> ReadRecordView()
-        //{
-        //    throw new System.NotImplementedException();
-        //}
     }
 }

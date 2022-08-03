@@ -13,6 +13,9 @@ namespace BSWebtoon.Front.Service.ComicService
         void EpContentCreate();
         //void EpUpdate();
 
+
         WorkPageDTO WorkPageRead(int comicId,string userName);
+        void CreateClickRecord(int comicId, int memberId);
+        public List<WorkContentDTO> ReadworkContent(int ComicId, string useerName);
     }
 }
