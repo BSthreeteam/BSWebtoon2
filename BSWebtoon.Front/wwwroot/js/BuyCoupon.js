@@ -1,3 +1,4 @@
+
 window.onload = function () {
     let readYet = document.querySelector('.readYet');
     let buyOneTime = document.querySelector('.buyOneTime');
@@ -5,7 +6,7 @@ window.onload = function () {
 
     let nowHaveCouponQuantity = nowHaveCoupon.innerHTML.slice(0, nowHaveCoupon.innerHTML.length - 1)
     let readYetQuantity = readYet.innerHTML.slice(0, readYet.innerHTML.length - 1)
-    buyOneTime.innerHTML = ${ readYetQuantity - nowHaveCouponQuantity } 張
+    buyOneTime.innerHTML = `${readYetQuantity - nowHaveCouponQuantity}張`
 
     let totalAmount = document.querySelector('.totalAmount')
     let planQuantity = document.querySelector('.planQuantity')
@@ -72,6 +73,8 @@ window.onload = function () {
     }
 
     function BuyReadCoupon(ComicId, couponTypeId, memberId) {
+        let totalQuantity = document.querySelector('.totalQuantity')
+        let buyQuantity = totalQuantity.innerHTML.slice(0, totalQuantity.innerHTML.length - 1)
         if (MemberHaveCoin < totalAmount.innerHTML) {
             alert('金幣餘額不足，將自動導向儲值頁面')
             window.location.href = `/Recharge/CashPlanView`;
@@ -79,7 +82,7 @@ window.onload = function () {
         else {
             var couponData = {
                 "ComicId": ComicId,
-                "OriginQuantity": 0,
+                "OriginQuantity": buyQuantity,
                 "CreateTime": new Date(),
                 "CouponTypeId": couponTypeId,
                 "MemberId": memberId
@@ -88,3 +91,4 @@ window.onload = function () {
         }
     }
 }
+

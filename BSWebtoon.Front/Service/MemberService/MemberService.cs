@@ -1,4 +1,5 @@
 ﻿using BSWebtoon.Front.Models.ViewModel.Loginoption;
+using BSWebtoon.Front.Service.CouponService;
 using BSWebtoon.Model.Models;
 using BSWebtoon.Model.Repository;
 using Microsoft.AspNetCore.Authentication;
@@ -18,11 +19,13 @@ namespace BSWebtoon.Front.Service.MemberService
     {
         private readonly BSRepository _repository;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly ICouponService _couponService;
 
-        public MemberService(BSRepository repository, IHttpContextAccessor httpContextAccessor)
+        public MemberService(BSRepository repository, IHttpContextAccessor httpContextAccessor, ICouponService couponService)
         {
             _repository = repository;
             _httpContextAccessor = httpContextAccessor;
+            _couponService = couponService;
         }
 
 
@@ -127,6 +130,8 @@ namespace BSWebtoon.Front.Service.MemberService
                 //newmember.CreateTime.AddHours(8).ToString("yyyy年 MMdd")
 
             }
+            
+            _couponService.GetCountdownCoupon();
 
             await this.LogoutAccountAsync();
 

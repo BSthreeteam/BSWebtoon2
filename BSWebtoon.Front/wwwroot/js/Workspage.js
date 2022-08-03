@@ -4,7 +4,14 @@ function clickEp(epId) {
     } else {
         $('#exampleModal').modal('show');
     }
+}
 
+function isMember(comicId) {
+    if (isAuthenticated) {
+        window.location.href = `/WorksPage/BuyCoupon/${comicId}`;
+    } else {
+        $('#exampleModal').modal('show');
+    }
 }
 
 const ep = document.querySelector('.ep');
@@ -53,21 +60,21 @@ window.onload = function () {
     let collect_a = document.querySelector('.red');
 
     ////點擊愛心，顏色變紅色
-    let check = document.querySelector('#heart');
-    clickLike(checkvalue)
+    //clickLike(checkvalue)
 
-    collect_a.addEventListener('click', () => {
+    collect_a.addEventListener("click", () => {
         checkvalue = !checkvalue
+        console.log(!checkvalue)
         clickLike(checkvalue)
     })
     function clickLike(boolvalue) {
         if (boolvalue == true) {
-            console.log(check.checked)
             collect_a.classList.add('text-danger');
+            console.log(boolvalue)
         }
         else {
-            console.log(check.checked)
             collect_a.classList.remove('text-danger');
+            console.log(boolvalue)
         }
     }
 
