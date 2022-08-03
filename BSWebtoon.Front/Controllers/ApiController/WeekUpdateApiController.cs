@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace BSWebtoon.Front.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("/api/[controller]/[action]")]//最好寫Action因為我們controller可能有很多小雞很複雜，所以加一個Action
     public class WeekUpdateApiController : ControllerBase
     {
         private readonly IWeekUpdateService _weekUpdateService;
@@ -19,7 +19,7 @@ namespace BSWebtoon.Front.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult GetNewComicAll()
         {
             try
             {

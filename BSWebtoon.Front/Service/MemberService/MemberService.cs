@@ -30,15 +30,15 @@ namespace BSWebtoon.Front.Service.MemberService
         {
             var memberList = new List<Member>
             {
-                new Member {/*MemberId = 1,*/AccountName ="梅欣云",NameIdentifier="test",NickName ="欣云",Balance =500,LoginTypeId =1,IsDarkTheme =true,CreateTime =new DateTime(2022,03,21),Email ="ake4876@gmail.com",AccessToken ="Iphone12" },
-                new Member {/*MemberId = 2,*/AccountName ="胡志明",NameIdentifier="test",NickName ="阿明",Balance =3000,LoginTypeId =1,IsDarkTheme =true,CreateTime =new DateTime(2022,05,20),Email ="jkl2345@gmail.com",AccessToken ="Iphone11"},
-                new Member {/*MemberId = 3,*/AccountName ="林淑芬",NameIdentifier="test",NickName ="淑女",Balance =0,LoginTypeId =2,IsDarkTheme =true,CreateTime =new DateTime(2022,04,23),Email ="api6650@gmail.com",AccessToken ="Galaxy Z Flip3" },
-                new Member {/*MemberId = 4,*/AccountName ="陳美玲",NameIdentifier="test",NickName ="小玲",Balance =4000,LoginTypeId =1,IsDarkTheme =true,CreateTime =new DateTime(2022,05,20),Email ="bramb@gmail.com",AccessToken ="Iphone6s"},
-                new Member {/*MemberId = 5,*/AccountName ="孫國寧",NameIdentifier="test",NickName ="寧寧",Balance =1000,LoginTypeId =2,IsDarkTheme =true,CreateTime =new DateTime(2022,04,26),Email ="b1075566@gmail.com",AccessToken ="OPPO A55" },
-                new Member {/*MemberId = 6,*/AccountName ="王世豪",NameIdentifier="test",NickName ="大豪",Balance =2500,LoginTypeId =1,IsDarkTheme =false,CreateTime =new DateTime(2022,01,04),Email ="a0912239516@gmail.com",AccessToken ="Samsung A52s"},
-                new Member {/*MemberId = 7,*/AccountName ="莊寶玉",NameIdentifier="test",NickName ="玉姐",Balance =0,LoginTypeId =3,IsDarkTheme =true,CreateTime =new DateTime(2022,03,21),Email ="bbb951hgh@gmail.com",AccessToken ="Redmi Note 10" },
-                new Member {/*MemberId = 8,*/AccountName ="楊佳穎",NameIdentifier="test",NickName ="佳穎",Balance =1000,LoginTypeId =3,IsDarkTheme =false,CreateTime =new DateTime(2021,12,06),Email ="mmbc4558@gmail.com",AccessToken ="Iphone11"},
-                new Member {/*MemberId = 9,*/AccountName ="歐陽愛珊",NameIdentifier="test",NickName ="創作大師",Balance =4500,LoginTypeId =3,IsDarkTheme =true,CreateTime =new DateTime(2022,02,05),Email ="uihio@gmail.com",AccessToken ="Sony Xperia 10 III" },
+                new Member {/*MemberId = 1,*/ AccountName ="梅欣云",NameIdentifier="test",NickName ="欣云",Balance =500,LoginTypeId =1,IsDarkTheme =true,CreateTime =new DateTime(2022,03,21),Email ="ake4876@gmail.com",AccessToken ="Iphone12" },
+                new Member {/*MemberId = 2,*/ AccountName ="胡志明",NameIdentifier="test",NickName ="阿明",Balance =3000,LoginTypeId =1,IsDarkTheme =true,CreateTime =new DateTime(2022,05,20),Email ="jkl2345@gmail.com",AccessToken ="Iphone11"},
+                new Member {/*MemberId = 3,*/ AccountName ="林淑芬",NameIdentifier="test",NickName ="淑女",Balance =0,LoginTypeId =2,IsDarkTheme =true,CreateTime =new DateTime(2022,04,23),Email ="api6650@gmail.com",AccessToken ="Galaxy Z Flip3" },
+                new Member {/*MemberId = 4,*/ AccountName ="陳美玲",NameIdentifier="test",NickName ="小玲",Balance =4000,LoginTypeId =1,IsDarkTheme =true,CreateTime =new DateTime(2022,05,20),Email ="bramb@gmail.com",AccessToken ="Iphone6s"},
+                new Member {/*MemberId = 5,*/ AccountName ="孫國寧",NameIdentifier="test",NickName ="寧寧",Balance =1000,LoginTypeId =2,IsDarkTheme =true,CreateTime =new DateTime(2022,04,26),Email ="b1075566@gmail.com",AccessToken ="OPPO A55" },
+                new Member {/*MemberId = 6,*/ AccountName ="王世豪",NameIdentifier="test",NickName ="大豪",Balance =2500,LoginTypeId =1,IsDarkTheme =false,CreateTime =new DateTime(2022,01,04),Email ="a0912239516@gmail.com",AccessToken ="Samsung A52s"},
+                new Member {/*MemberId = 7,*/ AccountName ="莊寶玉",NameIdentifier="test",NickName ="玉姐",Balance =0,LoginTypeId =3,IsDarkTheme =true,CreateTime =new DateTime(2022,03,21),Email ="bbb951hgh@gmail.com",AccessToken ="Redmi Note 10" },
+                new Member {/*MemberId = 8,*/ AccountName ="楊佳穎",NameIdentifier="test",NickName ="佳穎",Balance =1000,LoginTypeId =3,IsDarkTheme =false,CreateTime =new DateTime(2021,12,06),Email ="mmbc4558@gmail.com",AccessToken ="Iphone11"},
+                new Member {/*MemberId = 9,*/ AccountName ="歐陽愛珊",NameIdentifier="test",NickName ="創作大師",Balance =4500,LoginTypeId =3,IsDarkTheme =true,CreateTime =new DateTime(2022,02,05),Email ="uihio@gmail.com",AccessToken ="Sony Xperia 10 III" },
                 new Member {/*MemberId = 10,*/AccountName ="于耀成",NameIdentifier="test",NickName ="閃耀",Balance =1000,LoginTypeId =1,IsDarkTheme =true,CreateTime =new DateTime(2022,03,18),Email ="trcil432@gmail.com",AccessToken ="Iphone11"},
 
                 new Member {/*MemberId = 11,*/AccountName ="林宗揚",NameIdentifier="test",NickName ="一代宗師",Balance =0,LoginTypeId =2,IsDarkTheme =true,CreateTime =new DateTime(2022,04,11),Email ="tometo871@gmail.com",AccessToken ="Iphone12" },
@@ -170,7 +170,6 @@ namespace BSWebtoon.Front.Service.MemberService
 
         public Member GetMemberByID(int memberId)
         {
-
             return _repository.GetAll<Member>().FirstOrDefault(m => m.MemberId == memberId );
         }
 

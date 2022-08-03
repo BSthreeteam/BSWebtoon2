@@ -8,9 +8,7 @@ namespace BSWebtoon.Front.Controllers
     {
 
         private readonly IEmployeeService _Employeeservice;
-        public EmployeeController(
-            IEmployeeService EmployeeService
-            )
+        public EmployeeController( IEmployeeService EmployeeService)
         {
             _Employeeservice = EmployeeService;
         }

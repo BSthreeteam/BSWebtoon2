@@ -72,10 +72,10 @@
             </a>
             <div class="play_tidy_box">
                 <div class="play btn btn-light"><i class="fa-regular fa-circle-play"></i></div>
-                <div class="tidy btn btn-light d-none">
+                <div class="tidy btn btn-light">
                     <i class="fa-solid fa-arrow-down-1-9"></i>
                 </div>
-                <div class="tidy_r btn btn-light d-none">
+                <div class="tidy_r btn btn-light">
                     <i class="fa-solid fa-arrow-down-9-1"></i>
                 </div>
             </div>
@@ -159,39 +159,37 @@
 
     </div>
 </section>
-<template id="mobile_title">
-    <div class="mobile_title_box p-3">
-        <h2 class="mo_ti fw-bolder">骨灰級菜鳥玩家</h2>
-        <div class="ill_box">
-            <div>
-                <span>繪者</span>
-                <p class="mo_word">@Model.Painter</p>
-            </div>
-            <div>
-                <span>作者</span>
-                <p class="mo_pic">@Model.Author</p>
-            </div>
-            <div>
-                <span>發行</span>
-                <p class="mo_publisher">@Model.Publisher</p>
-            </div>
+<div class="mobile_title_box p-3 d-none">
+    <h2 class="mo_ti fw-bolder">@Model.ComicChineseName</h2>
+    <div class="ill_box">
+        <div>
+            <span>繪者</span>
+            <p class="mo_word">@Model.Painter</p>
         </div>
-        <div class="story_box mt-5">
-            <h3>故事大綱</h3>
-            <p>@Model.Introduction</p>
+        <div>
+            <span>作者</span>
+            <p class="mo_pic">@Model.Author</p>
         </div>
-        <div class="keywords_box mt-5">
-            <h4 class="mb-3">關鍵字</h4>
-            <div>
-                @foreach (var tag in Model.TagNames)
-                {
-                    <p>#@tag</p>
-                }
-
-            </div>
+        <div>
+            <span>發行</span>
+            <p class="mo_publisher">@Model.Publisher</p>
         </div>
     </div>
-</template>
+    <div class="story_box mt-5">
+        <h3>故事大綱</h3>
+        <p>@Model.Introduction</p>
+    </div>
+    <div class="keywords_box mt-5">
+        <h4 class="mb-3">關鍵字</h4>
+        <div>
+            @foreach (var tag in Model.TagNames)
+            {
+                <p>#@tag</p>
+            }
+
+        </div>
+    </div>
+</div>
 
 <div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">

@@ -11,7 +11,7 @@
     @await RenderSectionAsync("topJs", required: false)
 </head>
 <body>
-    <div class="container w-1200">
+    <div class="container w-1200 ">
         <nav class="row w-1200">
             <ul class="nav justify-content-end flex-nowrap text-white  align-items-center" style=" white-space:nowrap;">
                 <form class="d-flex text-white" action="/search/searchComic" method="post" name="find">
@@ -33,19 +33,19 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item bg-light xl_accountinfo" href="/Recommend/Recommend">首頁</a></li>
-                            <li><a class="dropdown-item bg-light xl_accountinfo" href="#">我的帳戶</a></li>
+                            <li><a class="dropdown-item bg-light xl_accountinfo" href="/api/Account/AccountInfo">我的帳戶</a></li>
                             @*<li><a class="dropdown-item bg-light xl_my_comic" href="/Favorite/AddFavoriteView">我的漫畫</a></li>*@
                             <li><a class="dropdown-item bg-light xl_my_love" href="/Favorite/ReadFavoriteView">我的最愛</a></li>
                             <li><a class="dropdown-item bg-light xl_my_coin" href="#">金幣/閱讀券明細</a></li>
                             <li><a class="dropdown-item bg-light xl_stored_value" href="/Recharge/CashPlanView">儲值金幣</a></li>
-                            <li><a class="dropdown-item bg-light xl_history" href="#">歷史觀看紀錄</a></li>
+                            <li><a class="dropdown-item bg-light xl_history" href="/Favorite/RecordView">歷史觀看紀錄</a></li>
                             <li><a class="dropdown-item bg-light xl_history" href="/UpLoad/UploadComic">上傳作品</a></li>
                             <li><a class="dropdown-item bg-light xl_my_set" href="/Setting/SettingView">我的設定</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
                             <li><a class="dropdown-item bg-light xl_customer_service" href="#">客服中心</a></li>
-                            <li><a id="logout" class="dropdown-item bg-light" href="Login/Logout">登出</a></li>
+                            <li><a id="logout" class="dropdown-item bg-light" href="/Login/Logout">登出</a></li>
                         </ul>
                     </li>
                 }

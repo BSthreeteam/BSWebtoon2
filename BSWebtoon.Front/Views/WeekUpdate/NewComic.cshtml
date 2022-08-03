@@ -7,13 +7,12 @@
 @section topCss{
 <link rel="stylesheet" href="~/style/WeeklyNewComicStyle.css" />
 }
-<div id="app">
 
 
     <nav id="navbar-id" class="navbar navbar-light">
         <ul class="nav nav-pills">
             <li class="nav-item">
-                <a v-on:click="getAllPokemon" class="nav-link nav_new_work" href="#" @*href="/WeekUpdate/NewComic"*@>新作</a>
+                <a  class="nav-link nav_new_work" href="/WeekUpdate/NewComic">新作</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link nav_Monday" href="/WeekUpdate/WeekUpdate#scrollspyHeading1">一</a>
@@ -45,73 +44,46 @@
 <div class="weekly">
     <div class="container week_content ">
 
-@*        @foreach (var item in Model)
-        {*@
-            <a v-for="newComic in newComicList" class="workContent" href="#">
+        @foreach (var item in Model)
+        {
+            <a  class="workContent" href="/WorksPage/WorksPage/@item.ComicId">
 
                 <div class="pic_bgc">
-                    <img :src="newComic.BgCover">
+                    <img src="@item.BgCover">
                 </div>
                 <div class="comic_information">
 
                     <div class="material">
                         <div class="date">
-                            <p>{{newComic.PublishDate}}</p>
+                            <p>@item.PublishDate</p>
                         </div>
                         <div class="title_pic">
-                            <img :src="newComic.ComicNameImage" alt="">
+                            <img src="@item.ComicNameImage" alt="">
                         </div>
                         <div class="comic_introduce">
-                            <p>{{newComic.Introduction}}</p>
+                            <p>@item.Introduction</p>
                         </div>
-                        <p class="author">{{newComic.Author}},{{newComic.Painter}}​</p>
+                        <p class="author">@item.Author,@item.Painter​</p>
                     </div>
 
                     <div class="p_pic">
-                        <img :src="newComic.ComicFigure" alt="">
+                        <img src="@item.ComicFigure" alt="">
                     </div>
                 </div>
             </a>
-@*        }*@
+        }
 
     </div>
 </div>
 
-</div>
 
 
 @section endJS{
 <script src="~/js/WeekNewComic.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/vue@2.7.7/dist/vue.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
 
-<!-- Axios -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
-        integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
-        crossorigin="anonymous"></script>
-
-        <script>
-            let app = new Vue({
-            el: '#app',
-            data: {
-                newComicList:[]
-            },
-            mounted() {
-                this.getAllPokemon()
-            },
-            methods: {
-                getAllPokemon() {
-                    axios.get('https://localhost:80/api/NewComicApi')
-                    .then((res)=>{
-                        this.newComicList = res.data
-  
-                        console.log(res)
-                    })
-                }}})
-
-        </script>
 }

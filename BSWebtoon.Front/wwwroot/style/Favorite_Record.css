@@ -19,6 +19,7 @@
     cursor: pointer;
     --bs-gutter-x: 0rem;
     border: #000 solid 5px;
+    
 }
 
 .character_block {
@@ -34,7 +35,6 @@
     width: 100%;
 }
 
-.col a,
 .col p {
     text-align: center;
     color: aliceblue;
@@ -44,6 +44,14 @@
     width: 100%;
 }
 
+.col span{
+    text-align: center;
+    color: aliceblue;
+    font-weight: bold;
+    font-size: 20px;
+    position: absolute;
+    width: 100%;
+}
 .col a {
     text-decoration: none;
     background-color: rgba(33, 37, 37, 0.773);
@@ -64,34 +72,34 @@ div.col:first-child {
 @media (min-width: 0px) and (max-width: 1200px) {
     div.col:nth-child(3n+1) {
         transform: translateY(20%);
-        background-color: red;
+  
     }
 
     div.col:nth-child(3n+2) {
         transform: translateY(40%);
-        background-color: blue;
+    
     }
 
     div.col:nth-child(3n+3) {
         transform: translateY(60%);
-        background-color: yellow;
+       
     }
 }
 
 @media (min-width: 1200px) {
     div.col:nth-child(4n+1) {
         transform: translateY(20%);
-        background-color: red;
+    
     }
 
     div.col:nth-child(4n+2) {
         transform: translateY(40%);
-        background-color: blue;
+       
     }
 
     div.col:nth-child(4n+3) {
         transform: translateY(60%);
-        background-color: yellow;
+      
     }
 
     div.col:nth-child(4n+4) {
