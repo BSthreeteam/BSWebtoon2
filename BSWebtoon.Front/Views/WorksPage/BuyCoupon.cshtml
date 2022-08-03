@@ -1,130 +1,144 @@
-﻿@{
+﻿@using BSWebtoon.Front.Models.ViewModel.WorkPage
+@using BSWebtoon.Model
+@model BuyCouponViewModel
+
+@{
     Layout = "_WorkPageLayout";
     ViewData["Title"] = "BuyCoupon";
+
+    var ComicId = @Model.ComicId;
+    var couponTypeId = (int)CouponType.readCoupon;
+    var memberId = User.Claims.FirstOrDefault() == null ? 0 : int.Parse(User.Claims.FirstOrDefault(x => x.Type == "MemberID").Value);
 }
 
 @section topCss{
 <link rel="stylesheet" href="~/style/BuyCouponStyle.css" />
 }
 
-    <header class="buyCoupon_nav w-100">
-        <a class="previous_page_a buyCoupon_nav_a" href="javascript:history.go(-1)"><i
-                class="fa-solid fa-arrow-left-long previous_page"></i></a>
-        <p class="buyCoupon_title">
-            購買閱讀券<br>
-            <span class="buyCoupon_titleDetail">以下所指閱讀券僅適用於本作品</span>
-        </p>
-        <a href="#" class="recharge_a buyCoupon_nav_a ms-0">
-            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9IiNDNkE2NkQiIGZpbGwtcnVsZT0ibm9uemVybyI+CiAgICAgICAgPHBhdGggZD0ibTEyIDIgOS4wMyA1djEwTDEyIDIybC05LjAyNi01VjdMMTIgMnptMCAyLjI4Nkw0Ljk3NCA4LjE3OHY3LjY0M0wxMiAxOS43MTNsNy4wMy0zLjg5MlY4LjE3OEwxMiA0LjI4NnoiLz4KICAgICAgICA8cGF0aCBkPSJtMTIgMTcuMTU1LTQuNDY0LTIuNTc4VjkuNDIzTDEyIDYuODQ1bDQuNDY0IDIuNTc4LTIgMS4xNTRMMTIgOS4xNTVsLTIuNDY1IDEuNDIydjIuODQ1TDEyIDE0Ljg0NGwyLjQ2NC0xLjQyMiAyIDEuMTU1TDEyIDE3LjE1NXoiLz4KICAgIDwvZz4KPC9zdmc+Cg=="
-                alt="">
-            儲值
-        </a>
-    </header>
-    <div class="buyCoupon_quantity">
-        <div class="row w-600 pt-5">
-            <h1 class="buyCoupon_comicName">漫畫名字</h1>
-            <!-- <hr> -->
-            <ul class="buyCoupon_quantity_list decoration_line">
-                <li class="buyCoupon_quantity_listItem">現有閱讀券<span>0張</span></li>
-                <li class="buyCoupon_quantity_listItem">現有通用券<span>0張</span></li>
-                <li class="buyCoupon_quantity_listItem">尚未閱覽話次數(不包含免費話次)<span class="readYet">35話</span></li>
-                <li class="buyCoupon_quantity_listItem">現有金幣<span>0金幣</span></li>
-            </ul>
-        </div>
+<header class="buyCoupon_nav w-100">
+    <a class="previous_page_a buyCoupon_nav_a" href="javascript:history.go(-1)">
+        <i class="fa-solid fa-arrow-left-long previous_page"></i>
+    </a>
+    <p class="buyCoupon_title">
+        購買閱讀券<br>
+        <span class="buyCoupon_titleDetail">以下所指閱讀券僅適用於本作品</span>
+    </p>
+    <a href="/Recharge/CashPlanView" class="recharge_a buyCoupon_nav_a ms-0">
+        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9IiNDNkE2NkQiIGZpbGwtcnVsZT0ibm9uemVybyI+CiAgICAgICAgPHBhdGggZD0ibTEyIDIgOS4wMyA1djEwTDEyIDIybC05LjAyNi01VjdMMTIgMnptMCAyLjI4Nkw0Ljk3NCA4LjE3OHY3LjY0M0wxMiAxOS43MTNsNy4wMy0zLjg5MlY4LjE3OEwxMiA0LjI4NnoiLz4KICAgICAgICA8cGF0aCBkPSJtMTIgMTcuMTU1LTQuNDY0LTIuNTc4VjkuNDIzTDEyIDYuODQ1bDQuNDY0IDIuNTc4LTIgMS4xNTRMMTIgOS4xNTVsLTIuNDY1IDEuNDIydjIuODQ1TDEyIDE0Ljg0NGwyLjQ2NC0xLjQyMiAyIDEuMTU1TDEyIDE3LjE1NXoiLz4KICAgIDwvZz4KPC9zdmc+Cg=="
+             alt="">
+        儲值
+    </a>
+</header>
+<div class="buyCoupon_quantity">
+    <div class="row w-600 pt-5">
+        <h1 class="buyCoupon_comicName">@Model.ComicChineseName</h1>
+        <ul class="buyCoupon_quantity_list decoration_line">
+            <li class="buyCoupon_quantity_listItem">現有閱讀券<span class="nowHaveCoupon">@Model.MemberHaveReadTicket 張</span></li>
+            <li class="buyCoupon_quantity_listItem">現有通用券<span>0 張</span></li>
+            <li class="buyCoupon_quantity_listItem">尚未閱覽話次數(不包含免費話次)<span class="readYet">@Model.BuyInOneTimeQuantity 話</span></li>
+            <li class="buyCoupon_quantity_listItem">現有金幣<span>@Model.MemberHaveCoin 金幣</span></li>
+        </ul>
     </div>
-    <div class="buyCoupon_plan">
-        <div class="row w-600 pt-5">
-            <p class="buyCoupon_plan_title">購買<span class="color_change">閱讀券</span></p>
-            <ul class="buyCoupon_plan_list decoration_line">
-                <li class="buyCoupon_plan_listItem">
-                    <span>1張</span>
-                    <button class="buyCoupon_plan_btn" type="button" data-bs-toggle="offcanvas"
+</div>
+<div class="buyCoupon_plan">
+    <div class="row w-600 pt-5">
+        <p class="buyCoupon_plan_title">購買<span class="color_change">閱讀券</span></p>
+        <ul class="buyCoupon_plan_list decoration_line">
+            <li class="buyCoupon_plan_listItem">
+                <span>1張</span>
+                <button class="buyCoupon_plan_btn" type="button" data-bs-toggle="offcanvas"
                         data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">
-                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9IiNGRkYiIGZpbGwtcnVsZT0ibm9uemVybyI+CiAgICAgICAgPHBhdGggZD0ibTkgMCA3Ljg3NSA0LjV2OUw5IDE4bC03Ljg3NS00LjV2LTlMOSAwem0wIDEuOTQzTDIuODEyIDUuNDc5djcuMDQxTDkgMTYuMDU2bDYuMTg4LTMuNTM3di03LjA0TDkgMS45NDR6Ii8+CiAgICAgICAgPHBhdGggZD0ibTkuMDAyIDQuNjUgMy43NjcgMi4xNzUtMS42ODcuOTczTDkuMDA0IDYuNiA2LjkyMiA3Ljh2Mi40MDRsMi4wOCAxLjIgMi4wOC0xLjIgMS42ODguOTc0LTMuNzY4IDIuMTc2LTMuNzY5LTIuMTc2VjYuODI3eiIvPgogICAgPC9nPgo8L3N2Zz4K"
-                            alt="">
-                        300
-                    </button>
-                </li>
-                <li class="buyCoupon_plan_listItem">
-                    <span>5張</span>
-                    <button class="buyCoupon_plan_btn" type="button" data-bs-toggle="offcanvas"
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9IiNGRkYiIGZpbGwtcnVsZT0ibm9uemVybyI+CiAgICAgICAgPHBhdGggZD0ibTkgMCA3Ljg3NSA0LjV2OUw5IDE4bC03Ljg3NS00LjV2LTlMOSAwem0wIDEuOTQzTDIuODEyIDUuNDc5djcuMDQxTDkgMTYuMDU2bDYuMTg4LTMuNTM3di03LjA0TDkgMS45NDR6Ii8+CiAgICAgICAgPHBhdGggZD0ibTkuMDAyIDQuNjUgMy43NjcgMi4xNzUtMS42ODcuOTczTDkuMDA0IDYuNiA2LjkyMiA3Ljh2Mi40MDRsMi4wOCAxLjIgMi4wOC0xLjIgMS42ODguOTc0LTMuNzY4IDIuMTc2LTMuNzY5LTIuMTc2VjYuODI3eiIvPgogICAgPC9nPgo8L3N2Zz4K"
+                         alt="">
+                    300
+                </button>
+            </li>
+            <li class="buyCoupon_plan_listItem">
+                <span>5張</span>
+                <button class="buyCoupon_plan_btn" type="button" data-bs-toggle="offcanvas"
                         data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">
-                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9IiNGRkYiIGZpbGwtcnVsZT0ibm9uemVybyI+CiAgICAgICAgPHBhdGggZD0ibTkgMCA3Ljg3NSA0LjV2OUw5IDE4bC03Ljg3NS00LjV2LTlMOSAwem0wIDEuOTQzTDIuODEyIDUuNDc5djcuMDQxTDkgMTYuMDU2bDYuMTg4LTMuNTM3di03LjA0TDkgMS45NDR6Ii8+CiAgICAgICAgPHBhdGggZD0ibTkuMDAyIDQuNjUgMy43NjcgMi4xNzUtMS42ODcuOTczTDkuMDA0IDYuNiA2LjkyMiA3Ljh2Mi40MDRsMi4wOCAxLjIgMi4wOC0xLjIgMS42ODguOTc0LTMuNzY4IDIuMTc2LTMuNzY5LTIuMTc2VjYuODI3eiIvPgogICAgPC9nPgo8L3N2Zz4K"
-                            alt="">
-                        1500
-                    </button>
-                </li>
-                <li class="buyCoupon_plan_listItem">
-                    <span>10張</span>
-                    <button class="buyCoupon_plan_btn" type="button" data-bs-toggle="offcanvas"
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9IiNGRkYiIGZpbGwtcnVsZT0ibm9uemVybyI+CiAgICAgICAgPHBhdGggZD0ibTkgMCA3Ljg3NSA0LjV2OUw5IDE4bC03Ljg3NS00LjV2LTlMOSAwem0wIDEuOTQzTDIuODEyIDUuNDc5djcuMDQxTDkgMTYuMDU2bDYuMTg4LTMuNTM3di03LjA0TDkgMS45NDR6Ii8+CiAgICAgICAgPHBhdGggZD0ibTkuMDAyIDQuNjUgMy43NjcgMi4xNzUtMS42ODcuOTczTDkuMDA0IDYuNiA2LjkyMiA3Ljh2Mi40MDRsMi4wOCAxLjIgMi4wOC0xLjIgMS42ODguOTc0LTMuNzY4IDIuMTc2LTMuNzY5LTIuMTc2VjYuODI3eiIvPgogICAgPC9nPgo8L3N2Zz4K"
+                         alt="">
+                    1500
+                </button>
+            </li>
+            <li class="buyCoupon_plan_listItem">
+                <span>10張</span>
+                <button class="buyCoupon_plan_btn" type="button" data-bs-toggle="offcanvas"
                         data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">
-                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9IiNGRkYiIGZpbGwtcnVsZT0ibm9uemVybyI+CiAgICAgICAgPHBhdGggZD0ibTkgMCA3Ljg3NSA0LjV2OUw5IDE4bC03Ljg3NS00LjV2LTlMOSAwem0wIDEuOTQzTDIuODEyIDUuNDc5djcuMDQxTDkgMTYuMDU2bDYuMTg4LTMuNTM3di03LjA0TDkgMS45NDR6Ii8+CiAgICAgICAgPHBhdGggZD0ibTkuMDAyIDQuNjUgMy43NjcgMi4xNzUtMS42ODcuOTczTDkuMDA0IDYuNiA2LjkyMiA3Ljh2Mi40MDRsMi4wOCAxLjIgMi4wOC0xLjIgMS42ODguOTc0LTMuNzY4IDIuMTc2LTMuNzY5LTIuMTc2VjYuODI3eiIvPgogICAgPC9nPgo8L3N2Zz4K"
-                            alt="">
-                        3000
-                    </button>
-                </li>
-                <li class="buyCoupon_plan_listItem">
-                    <span>一次性購買<br>
-                        <span class="buyOneTime">10張</span>
-                    </span>
-                    <button class="buyCoupon_plan_btn buyOneTime_btn" type="button" data-bs-toggle="offcanvas"
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9IiNGRkYiIGZpbGwtcnVsZT0ibm9uemVybyI+CiAgICAgICAgPHBhdGggZD0ibTkgMCA3Ljg3NSA0LjV2OUw5IDE4bC03Ljg3NS00LjV2LTlMOSAwem0wIDEuOTQzTDIuODEyIDUuNDc5djcuMDQxTDkgMTYuMDU2bDYuMTg4LTMuNTM3di03LjA0TDkgMS45NDR6Ii8+CiAgICAgICAgPHBhdGggZD0ibTkuMDAyIDQuNjUgMy43NjcgMi4xNzUtMS42ODcuOTczTDkuMDA0IDYuNiA2LjkyMiA3Ljh2Mi40MDRsMi4wOCAxLjIgMi4wOC0xLjIgMS42ODguOTc0LTMuNzY4IDIuMTc2LTMuNzY5LTIuMTc2VjYuODI3eiIvPgogICAgPC9nPgo8L3N2Zz4K"
+                         alt="">
+                    3000
+                </button>
+            </li>
+            <li class="buyCoupon_plan_listItem">
+                <span>
+                    一次性購買<br>
+                    <span class="buyOneTime">10張</span>
+                </span>
+                <button class="buyCoupon_plan_btn buyOneTime_btn" type="button" data-bs-toggle="offcanvas"
                         data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">
-                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9IiNGRkYiIGZpbGwtcnVsZT0ibm9uemVybyI+CiAgICAgICAgPHBhdGggZD0ibTkgMCA3Ljg3NSA0LjV2OUw5IDE4bC03Ljg3NS00LjV2LTlMOSAwem0wIDEuOTQzTDIuODEyIDUuNDc5djcuMDQxTDkgMTYuMDU2bDYuMTg4LTMuNTM3di03LjA0TDkgMS45NDR6Ii8+CiAgICAgICAgPHBhdGggZD0ibTkuMDAyIDQuNjUgMy43NjcgMi4xNzUtMS42ODcuOTczTDkuMDA0IDYuNiA2LjkyMiA3Ljh2Mi40MDRsMi4wOCAxLjIgMi4wOC0xLjIgMS42ODguOTc0LTMuNzY4IDIuMTc2LTMuNzY5LTIuMTc2VjYuODI3eiIvPgogICAgPC9nPgo8L3N2Zz4K"
-                            alt="">
-                        10500
-                    </button>
-                </li>
-            </ul>
-        </div>
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9IiNGRkYiIGZpbGwtcnVsZT0ibm9uemVybyI+CiAgICAgICAgPHBhdGggZD0ibTkgMCA3Ljg3NSA0LjV2OUw5IDE4bC03Ljg3NS00LjV2LTlMOSAwem0wIDEuOTQzTDIuODEyIDUuNDc5djcuMDQxTDkgMTYuMDU2bDYuMTg4LTMuNTM3di03LjA0TDkgMS45NDR6Ii8+CiAgICAgICAgPHBhdGggZD0ibTkuMDAyIDQuNjUgMy43NjcgMi4xNzUtMS42ODcuOTczTDkuMDA0IDYuNiA2LjkyMiA3Ljh2Mi40MDRsMi4wOCAxLjIgMi4wOC0xLjIgMS42ODguOTc0LTMuNzY4IDIuMTc2LTMuNzY5LTIuMTc2VjYuODI3eiIvPgogICAgPC9nPgo8L3N2Zz4K"
+                         alt="">
+                    10500
+                </button>
+            </li>
+        </ul>
     </div>
-    <div class="buyCoupon_details">
-        <div class="row w-600 pt-5">
-            <p class="decoration_line">購買說明</p>
-            <ul class="buyCoupon_details_list">
-                <li class="buyCoupon_details_listItem">本內容為無法退款之服務,已使用的閱讀券將無法申請退款。但若有未經法定代理人同意之情事,可申請退款。</li>
-                <li class="buyCoupon_details_listItem">話次可能因內容發行商之不可抗因素延遲更新,無法以更新延遲為由申請退款。</li>
-                <li class="buyCoupon_details_listItem">話次可能因內容發行商之決策變更販售價格,無法以價格變動為由申請退款。</li>
-                <li class="buyCoupon_details_listItem">「一次性購買」的作品僅有付費閱讀券可申請退款。</li>
-                <li class="buyCoupon_details_listItem">現有借閱券亦包括免費閱讀券。</li>
-                <li class="buyCoupon_details_listItem">現有金幣亦包括免費金幣。</li>
-                <li class="buyCoupon_details_listItem">「一次性購買」後若獲得免費閱讀券,則可能會產生多餘的閱讀券。</li>
-                <li class="buyCoupon_details_listItem">「一次性購買」時,系統會計算尚未閱讀話次後提供專屬購買方案。</li>
-                <li class="buyCoupon_details_listItem">若單次購買有額外贈送免費閱讀券的活動, 「一次性購買」時也會贈送相對應數量的免費閱讀券。</li>
-                <li class="buyCoupon_details_listItem">購買閱讀券後若申請金幣退款,為收回退款之金幣,已購買但尚未使用的閱讀券亦可能被回收。</li>
-            </ul>
-        </div>
+</div>
+<div class="buyCoupon_details">
+    <div class="row w-600 pt-5">
+        <p class="decoration_line">購買說明</p>
+        <ul class="buyCoupon_details_list">
+            <li class="buyCoupon_details_listItem">本內容為無法退款之服務,已使用的閱讀券將無法申請退款。但若有未經法定代理人同意之情事,可申請退款。</li>
+            <li class="buyCoupon_details_listItem">話次可能因內容發行商之不可抗因素延遲更新,無法以更新延遲為由申請退款。</li>
+            <li class="buyCoupon_details_listItem">話次可能因內容發行商之決策變更販售價格,無法以價格變動為由申請退款。</li>
+            <li class="buyCoupon_details_listItem">「一次性購買」的作品僅有付費閱讀券可申請退款。</li>
+            <li class="buyCoupon_details_listItem">現有借閱券亦包括免費閱讀券。</li>
+            <li class="buyCoupon_details_listItem">現有金幣亦包括免費金幣。</li>
+            <li class="buyCoupon_details_listItem">「一次性購買」後若獲得免費閱讀券,則可能會產生多餘的閱讀券。</li>
+            <li class="buyCoupon_details_listItem">「一次性購買」時,系統會計算尚未閱讀話次後提供專屬購買方案。</li>
+            <li class="buyCoupon_details_listItem">若單次購買有額外贈送免費閱讀券的活動, 「一次性購買」時也會贈送相對應數量的免費閱讀券。</li>
+            <li class="buyCoupon_details_listItem">購買閱讀券後若申請金幣退款,為收回退款之金幣,已購買但尚未使用的閱讀券亦可能被回收。</li>
+        </ul>
     </div>
+</div>
 
-    <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
-        <div class="offcanvas-body small buyCoupon_input">
-            <div class="row w-600 pt-3 buyCoupon_inputQuantity">
-                <p class="buyCoupon_inputQuantityItem">借閱券 <span class="planQuantity">1</span></p>
-                <div class="buyCoupon_inputQuantityItem">
-                    <button class="quantity_btn quantity_minus">–</button>
-                    <span class="buyQuantity">1</span>
-                    <button class="quantity_btn quantity_plus">+</button>
-                </div>
+<div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+    <div class="offcanvas-body small buyCoupon_input">
+        <div class="row w-600 pt-3 buyCoupon_inputQuantity">
+            <p class="buyCoupon_inputQuantityItem">借閱券 <span class="planQuantity">1</span></p>
+            <div class="buyCoupon_inputQuantityItem">
+                <button class="quantity_btn quantity_minus">–</button>
+                <span class="buyQuantity">1</span>
+                <button class="quantity_btn quantity_plus">+</button>
             </div>
-            <div class="row w-600  buyCoupon_countQuantity">
-                <ul class="buyCoupon_countQuantityList decoration_line_offcanvas">
-                    <li class="buyCoupon_countQuantityListItem">總數 <span class="totalQuantity">1張</span></li>
-                    <li class="buyCoupon_countQuantityListItem">總金額 <span class="totalAmount">300</span></li>
-                </ul>
-            </div>
-            <div class="row w-600 buyCoupon_inputDetail">
-                <ul class="buyCoupon_inputDetailList  decoration_line_offcanvas">
-                    <li class="buyCoupon_inputDetailListItem">此閱讀券僅適用於本作品。</li>
-                    <li class="buyCoupon_inputDetailListItem">免費閱讀券無法進行退款。</li>
-                </ul>
-            </div>
-            <div class="row w-600 pt-3 buyCoupon_buyOrCancel">
-                <div class="btn_group">
-                    <button class="btn_groupItem buyCoupon_cancel" type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close">取消</button>
-                    <button class="btn_groupItem buyCoupon_buy">購買</button>
-                </div>
+        </div>
+        <div class="row w-600  buyCoupon_countQuantity">
+            <ul class="buyCoupon_countQuantityList decoration_line_offcanvas">
+                <li class="buyCoupon_countQuantityListItem">總數 <span class="totalQuantity">1張</span></li>
+                <li class="buyCoupon_countQuantityListItem">總金額 <span class="totalAmount">300</span></li>
+            </ul>
+        </div>
+        <div class="row w-600 buyCoupon_inputDetail">
+            <ul class="buyCoupon_inputDetailList  decoration_line_offcanvas">
+                <li class="buyCoupon_inputDetailListItem">此閱讀券僅適用於本作品。</li>
+                <li class="buyCoupon_inputDetailListItem">免費閱讀券無法進行退款。</li>
+            </ul>
+        </div>
+        <div class="row w-600 pt-3 buyCoupon_buyOrCancel">
+            <div class="btn_group">
+                <button class="btn_groupItem buyCoupon_cancel" type="button" data-bs-dismiss="offcanvas" aria-label="Close">取消</button>
+                <button class="btn_groupItem buyCoupon_buy" onclick="BuyReadCoupon(@ComicId,@couponTypeId,@memberId)">購買</button>
             </div>
         </div>
     </div>
+</div>
+
+<script>
+    let MemberHaveCoin = @Model.MemberHaveCoin
+</script>
+
 @section endJS{
 <script src="~/js/BuyCoupon.js"></script>
 }

@@ -364,6 +364,7 @@ a {
     }
         .main_comics_episode .comics_episode .message_box .comment_text {
             display: flex;
+            flex-direction: column;
         }
 
     .message_box .message_name {

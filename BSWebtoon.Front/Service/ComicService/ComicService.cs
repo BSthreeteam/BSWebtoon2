@@ -1,4 +1,5 @@
 ﻿using BSWebtoon.Front.Models.DTO.WorkPage;
+using BSWebtoon.Model;
 using BSWebtoon.Model.Models;
 using BSWebtoon.Model.Repository;
 using System;
@@ -3090,18 +3091,18 @@ namespace BSWebtoon.Front.Service.ComicService
         public void ComicTagListUpdate()
         {
             //var updateTagList = _repository.GetAll<ComicTagList>().Where(x => x.TageListId == 2).FirstOrDefault();
-            var updateComic   = _repository.GetAll<Comic>().Where(x => x.ComicId == 11).FirstOrDefault();
-            var updateComic1  = _repository.GetAll<Comic>().Where(x => x.ComicId == 12).FirstOrDefault();
-            var updateComic2  = _repository.GetAll<Comic>().Where(x => x.ComicId == 13).FirstOrDefault();
-            updateComic  .ComicStatus = 3;
-            updateComic1 .ComicStatus = 3;
+            var updateComic = _repository.GetAll<Comic>().Where(x => x.ComicId == 11).FirstOrDefault();
+            var updateComic1 = _repository.GetAll<Comic>().Where(x => x.ComicId == 12).FirstOrDefault();
+            var updateComic2 = _repository.GetAll<Comic>().Where(x => x.ComicId == 13).FirstOrDefault();
+            updateComic.ComicStatus = 3;
+            updateComic1.ComicStatus = 3;
             updateComic2.ComicStatus = 3;
-           
+
             //_repository.Update(updateTagList);
-            _repository.Update(updateComic  );
-            _repository.Update(updateComic1 );
-            _repository.Update(updateComic2 );
-            
+            _repository.Update(updateComic);
+            _repository.Update(updateComic1);
+            _repository.Update(updateComic2);
+
             _repository.SaveChange();
 
         }
@@ -5577,13 +5578,18 @@ namespace BSWebtoon.Front.Service.ComicService
             //var memberId = _repository.GetAll<Member>().Where(m => m.AccountName == userName).Select(m => m.MemberId).FirstOrDefault();
             var comicSource = _repository.GetAll<Comic>().Where(c => c.AuditType == 1).First(x => x.ComicId == comicId);
             var tagList = _repository.GetAll<ComicTagList>().Where(x => x.ComicId == comicSource.ComicId).Select(x => x.TagId).ToList();
-            var tagnames = _repository.GetAll<ComicTag>().Where(x => tagList.Contains( x.TagId)).ToList();
+            var tagnames = _repository.GetAll<ComicTag>().Where(x => tagList.Contains(x.TagId)).ToList();
             //這邊主Tag有的漫畫沒有，有些功能會報錯(要注意!!)
-            var mainTag = tagnames.FirstOrDefault(x => x.IsMainTag); 
+            var mainTag = tagnames.FirstOrDefault(x => x.IsMainTag);
             var couponTest = _repository.GetAll<Coupon>();
             // 1通用券 2閱讀券 3倒數券 券有可能沒有 都沒有的話就只有倒數券
             var readCouponSource = _repository.GetAll<Coupon>().Where(x => x.CouponTypeId == 2 && x.MemberId == memberId && x.ComicId == comicId).Select(x => x.Quantity).FirstOrDefault();
-            //var CDCouponSource = _repository.GetAll<Coupon>().First(x => x.CouponTypeId == 3 && x.MemberId == memberId && x.ComicId == comicId);
+
+            var CDCouponSource = 0;
+            if (memberId != 0)
+            {
+                CDCouponSource = _repository.GetAll<Coupon>().Where(x => x.CouponTypeId == 3 && x.MemberId == memberId && x.ComicId == comicId).Select(x => x.Quantity).First();
+            }
 
             var epSource = _repository.GetAll<Episode>().Where(x => x.AuditType == 1 && x.ComicId == comicId).OrderBy(x => x.UploadTime);
 
@@ -5619,7 +5625,7 @@ namespace BSWebtoon.Front.Service.ComicService
 
             var CommentReportCount = _repository.GetAll<Report>().Where(r => r.AuditType == 1).GroupBy(g => g.CommentId).Select(c => new CommentData { CommentId = (int)c.Key, CommentReportCount = c.Count() });
 
-            
+
             CreateClickRecord(comicId, memberId);
 
             return new WorkPageDTO()
@@ -5632,7 +5638,7 @@ namespace BSWebtoon.Front.Service.ComicService
                 BgColor = comicSource.BgColor,
                 BannerVideoWeb = comicSource.BannerVideoWeb,
                 ComicVideoWeb = comicSource.ComicVideoWeb,
-                ReadTicket = readCouponSource /*+ CDCouponSource.Quantity*/,
+                ReadTicket = readCouponSource + CDCouponSource,
                 IslikeComic = comicIsLike,
                 MainTagName = mainTag.TagName,
                 TagNames = tagnames.Select(t => t.TagName).ToList(),
@@ -5694,6 +5700,169 @@ namespace BSWebtoon.Front.Service.ComicService
                 });
             }
             _repository.SaveChange();
+        }
+
+
+        public List<WorkContentDTO> ReadworkContent(int EpId, string userName)
+        {
+
+            var memberId = _repository.GetAll<Member>().Where(c => c.AccountName == userName).Select(c => c.MemberId).First();
+
+            var couponSource = _repository.GetAll<Coupon>().Where(p => p.MemberId == memberId);//找出登入會員的所有卷
+
+            var EpSource = _repository.GetAll<Episode>().Where(e => e.EpId == EpId).First();//找出點的那一集的所有資料
+
+            var freeComic = _repository.GetAll<EpContent>().Where(c => EpSource.IsFree == true && c.EpId == EpSource.EpId);//判斷那一集是否免費，並讀出所有內容頁
+
+            var countdownCouponComic = _repository.GetAll<EpContent>().Where(c => EpSource.IsCountdownCoupon == true && c.EpId == EpSource.EpId); //判斷那一集是否是可使用倒數卷，並讀出所有內容頁
+
+            var countdownCoupon = couponSource.Where(p => p.CouponTypeId == (int)CouponType.countdownCoupon && p.ComicId == EpSource.ComicId && p.Quantity == 1).FirstOrDefault();//找出登入者這部漫畫的倒數卷數量是1的
+
+            var readCoupon = couponSource.Where(p => p.CouponTypeId == (int)CouponType.readCoupon && p.ComicId == EpSource.ComicId).OrderByDescending(p => p.CreateTime).FirstOrDefault();//找出登入者這部漫畫的最新閱讀卷
+
+            var universalCoupon = couponSource.Where(p => p.CouponTypeId == (int)CouponType.universalCoupon).OrderByDescending(p => p.CreateTime)
+                .FirstOrDefault();//找出登入者這部漫畫的最新通用卷
+
+
+            if (freeComic != null)
+            {
+                //免費集
+                var result = Read(EpId, EpSource, freeComic); //如是選出那集裡的內容頁等需要的資料
+
+                ViewRecordCreate(EpId, memberId);
+
+
+                return result;
+            }
+            else if (countdownCouponComic != null && countdownCoupon.Quantity != 0)
+            {
+                //倒數卷
+                var result = Read(EpId, EpSource, countdownCouponComic); //如果有找到符合條件的倒數卷就找出那集裡的內容頁等需要的資料
+
+                countdownCoupon.Quantity = 0;
+                _repository.SaveChange();
+
+                ViewRecordCreate(EpId, memberId);
+                CouponUsedRecordCreate(EpId, memberId, countdownCoupon.CouponId);
+
+                return result;
+
+            }
+            else if (readCoupon != null && readCoupon.Quantity > 0)
+            {
+                //閱讀卷
+                var workContent = _repository.GetAll<EpContent>();
+                var result = Read(EpId, EpSource, workContent); //如是readCouponQuantity有得用就找出那集裡的所有內容頁
+
+                readCoupon.Quantity -= 1;
+                _repository.SaveChange();
+
+                ViewRecordCreate(EpId, memberId);
+                CouponUsedRecordCreate(EpId, memberId, countdownCoupon.CouponId);
+
+
+
+                return result;
+
+
+            }
+            else if (universalCoupon != null && universalCoupon.Quantity > 0)
+            {
+                //通用卷
+
+                var workContent = _repository.GetAll<EpContent>();
+                var result = Read(EpId, EpSource, workContent); //如是universalCouponQuantity有得用就找出那集裡的所有內容頁
+
+
+                universalCoupon.Quantity -= 1;
+                _repository.SaveChange();
+
+                ViewRecordCreate(EpId, memberId);
+                CouponUsedRecordCreate(EpId, memberId, countdownCoupon.CouponId);
+
+
+                return result;
+
+
+            }
+            else
+            {
+                return null;
+            }
+
+
+
+        }
+
+
+
+        private List<WorkContentDTO> Read(int epId, Episode epSource, IQueryable<EpContent> content)
+        {
+            var aLLEpSource = _repository.GetAll<Episode>().Where(x => x.AuditType == 1 && x.ComicId == epSource.ComicId).OrderBy(x => x.UploadTime);
+
+            var readResult = content.Select(c => new WorkContentDTO()
+            {
+                EpId = epId,
+                EpTitle = epSource.EpTitle,
+                EpContentId = c.EpContentId,
+                ImagePath = c.ImagePath,
+                Page = c.Page,
+
+                EpList = aLLEpSource.Select(ep => new WorkContentDTO.EpData
+                {
+                    EpId = ep.EpId,
+                    ComicId = ep.ComicId,
+                    EpTitle = ep.EpTitle,
+                    EpCover = ep.EpCover,
+                    UploadTime = ep.UploadTime.ToShortDateString(),
+                    IsCountdownCoupon = ep.IsCountdownCoupon,
+                    IsFree = ep.IsFree
+
+                }).ToList()
+            }).ToList();
+
+            return readResult;
+
+        }
+
+        public void ViewRecordCreate(int EpId, int memberId)
+        {
+            var viewRecord = new ViewRecord() { MemberId = memberId, EpId = EpId, ViewTime = DateTime.Now, IsDelete = false };//EpContentId要改
+            _repository.Create(viewRecord);
+
+            _repository.SaveChange();
+        }
+
+        public void CouponUsedRecordCreate(int EpId, int memberId, int CouponId)
+        {
+            var nowtime = DateTime.UtcNow.AddHours(8);
+            var couponused = new CouponUsedRecord() { MemberId = memberId, EpId = EpId, CouponId = CouponId, StartReadTime = nowtime, EndReadTime = nowtime.AddDays(7) };
+            _repository.Create(couponused);
+
+
+            _repository.SaveChange();
+        }
+
+        public BuyCouponDTO ReadBuyCoupon(int comicId, int memberId)
+        {
+            var Comic = _repository.GetAll<Comic>().Where(c => c.ComicId == comicId).First();
+
+            var BuyInOneTimeQuantity = _repository.GetAll<Episode>().Where(e => e.ComicId == comicId).Count();
+
+            var MemberHaveCoin = _repository.GetAll<Member>().Where(m => m.MemberId == memberId).Select(m => m.Balance).First();
+            MemberHaveCoin = decimal.Round(MemberHaveCoin, 0);
+
+            var readCouponSource = _repository.GetAll<Coupon>().Where(x => x.CouponTypeId == 2 && x.MemberId == memberId && x.ComicId == comicId).Select(x => x.Quantity).FirstOrDefault();
+            var CDCouponSource = _repository.GetAll<Coupon>().First(x => x.CouponTypeId == 3 && x.MemberId == memberId && x.ComicId == comicId);
+
+            return new BuyCouponDTO
+            {
+                ComicId = Comic.ComicId,
+                ComicChineseName = Comic.ComicChineseName,
+                BuyInOneTimeQuantity = BuyInOneTimeQuantity,
+                MemberHaveCoin = MemberHaveCoin,
+                MemberHaveReadTicket = readCouponSource + CDCouponSource.Quantity,
+            };
         }
     }
 }

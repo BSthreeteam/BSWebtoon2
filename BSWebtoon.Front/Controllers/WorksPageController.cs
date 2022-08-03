@@ -1,6 +1,5 @@
 ﻿using BSWebtoon.Front.Models.ViewModel.WorkPage;
 using BSWebtoon.Front.Service.ComicService;
-using BSWebtoon.Front.Service.ContentPageService;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,16 +9,27 @@ namespace BSWebtoon.Front.Controllers
     public class WorksPageController : Controller
     {
         private readonly IComicService _comicService;
-        private readonly IComicContentPageService _comicContentPageService;
 
-        public WorksPageController(IComicService comicService, IComicContentPageService comicContentPageService)
+        public WorksPageController(IComicService comicService)
         {
             _comicService = comicService;
-            _comicContentPageService = comicContentPageService;
         }
-        public IActionResult BuyCoupon()
+        public IActionResult BuyCoupon(int Id)
         {
-            return View();
+            var memberId = User.Claims.FirstOrDefault() == null ? 0 : int.Parse(User.Claims.FirstOrDefault(x => x.Type == "MemberID").Value);
+
+            var buyCouponData = _comicService.ReadBuyCoupon(Id,memberId);
+
+            var result = new BuyCouponViewModel
+            {
+                ComicId = buyCouponData.ComicId,
+                ComicChineseName = buyCouponData.ComicChineseName,
+                BuyInOneTimeQuantity = buyCouponData.BuyInOneTimeQuantity,
+                MemberHaveCoin = buyCouponData.MemberHaveCoin,
+                MemberHaveReadTicket = buyCouponData.MemberHaveReadTicket,
+            };
+
+            return View(result);
         }
         [HttpGet]
         public IActionResult WorksPage(int Id) //WorksPage/WorksPage/1
@@ -85,10 +95,10 @@ namespace BSWebtoon.Front.Controllers
 
 
 
-        public IActionResult ComicContent(int Id)
+        public IActionResult workContent(int Id)
         {
             var userName = User.Identity.Name;
-            var comicContents = _comicContentPageService.ReadworkContent(Id, userName);
+            var comicContents = _comicService.ReadworkContent(Id, userName);
             var result = new ComicContentViewModel();
             if (comicContents.Count() != 0)
             {

@@ -1,9 +1,12 @@
+
 window.onload = function () {
     let readYet = document.querySelector('.readYet');
     let buyOneTime = document.querySelector('.buyOneTime');
+    let nowHaveCoupon = document.querySelector('.nowHaveCoupon');
 
+    let nowHaveCouponQuantity = nowHaveCoupon.innerHTML.slice(0, nowHaveCoupon.innerHTML.length - 1)
     let readYetQuantity = readYet.innerHTML.slice(0, readYet.innerHTML.length - 1)
-    buyOneTime.innerHTML = `${readYetQuantity}張`
+    buyOneTime.innerHTML = `${readYetQuantity - nowHaveCouponQuantity}張`
 
     let totalAmount = document.querySelector('.totalAmount')
     let planQuantity = document.querySelector('.planQuantity')
@@ -12,6 +15,8 @@ window.onload = function () {
     let quantity_minus_btn = document.querySelector('.quantity_minus')
     let quantity_plus_btn = document.querySelector('.quantity_plus')
     let buyQuantity = document.querySelector('.buyQuantity')
+
+    let buyCoupon_buy = document.querySelector('.buyCoupon_buy')
 
     let buyCoupon_plan_listItem = document.querySelectorAll('.buyCoupon_plan_listItem')
     let buyOneTime_btn = document.querySelector('.buyOneTime_btn')
@@ -67,4 +72,23 @@ window.onload = function () {
         totalAmount.innerHTML = buyQuantityInt * planQuantityInt * 300
     }
 
+    function BuyReadCoupon(ComicId, couponTypeId, memberId) {
+        let totalQuantity = document.querySelector('.totalQuantity')
+        let buyQuantity = totalQuantity.innerHTML.slice(0, totalQuantity.innerHTML.length - 1)
+        if (MemberHaveCoin < totalAmount.innerHTML) {
+            alert('金幣餘額不足，將自動導向儲值頁面')
+            window.location.href = `/Recharge/CashPlanView`;
+        }
+        else {
+            var couponData = {
+                "ComicId": ComicId,
+                "OriginQuantity": buyQuantity,
+                "CreateTime": new Date(),
+                "CouponTypeId": couponTypeId,
+                "MemberId": memberId
+            }
+            fetch("/api/Coupon/ReadCoupon")
+        }
+    }
 }
+

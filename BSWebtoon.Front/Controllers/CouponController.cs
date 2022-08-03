@@ -25,5 +25,13 @@ namespace BSWebtoon.Front.Controllers
 
             return Ok();
         }
+        [HttpPost]
+        public IActionResult ReadCoupon(GetReadCouponDTO readCoupon)
+        {
+            var coupon = readCoupon;
+            _couponService.GetReadCoupon(coupon);
+
+            return Ok();
+        }
     }
 }

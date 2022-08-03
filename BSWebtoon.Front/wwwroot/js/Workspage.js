@@ -1,3 +1,19 @@
+function clickEp(epId) {
+    if (isAuthenticated) {
+        window.location.href = `/WorksPage/workContent/${epId}`;
+    } else {
+        $('#exampleModal').modal('show');
+    }
+}
+
+function isMember(comicId) {
+    if (isAuthenticated) {
+        window.location.href = `/WorksPage/BuyCoupon/${comicId}`;
+    } else {
+        $('#exampleModal').modal('show');
+    }
+}
+
 const ep = document.querySelector('.ep');
 const illustrate = document.querySelector('.illustrate');
 const messages = document.querySelector('.messages');
@@ -41,18 +57,26 @@ window.addEventListener('resize', () => {
 
 window.onload = function () {
     reizeWindow()
-    //////點擊愛心，顏色變紅色
-    //let check = document.querySelector('#heart');
-    //collect_a.addEventListener('click', () => {
-    //    if (!check.checked) {
-    //        console.log('111')
-    //        collect_a.classList.add('text-danger');
-    //    }
-    //    else {
-    //        console.log('222')
-    //        collect_a.classList.remove('text-danger');
-    //    }
-    //})
+    let collect_a = document.querySelector('.red');
+
+    ////點擊愛心，顏色變紅色
+    //clickLike(checkvalue)
+
+    collect_a.addEventListener("click", () => {
+        checkvalue = !checkvalue
+        console.log(!checkvalue)
+        clickLike(checkvalue)
+    })
+    function clickLike(boolvalue) {
+        if (boolvalue == true) {
+            collect_a.classList.add('text-danger');
+            console.log(boolvalue)
+        }
+        else {
+            collect_a.classList.remove('text-danger');
+            console.log(boolvalue)
+        }
+    }
 
 
     ////分享-複製連結(ok)
