@@ -1,9 +1,7 @@
-:root {
-    --activityBgColor: #e79834;
-}
 
 body {
     background-color: var(--activityBgColor);
+    margin:0;
 }
 
 .activity_nav {
@@ -38,8 +36,8 @@ body {
 }
 
 .activity_title {
-    position: absolute;
-    bottom: 0;
+    position: relative;
+    bottom: 50px;
     color: #fff;
     background-image: linear-gradient(to top, var(--activityBgColor) 20%, transparent 100%);
 }
@@ -55,7 +53,7 @@ body {
 
     .activity_title_info:last-child,
     .activity_text_content {
-        padding-bottom: 20px;
+        padding-bottom: 70px;
         border-bottom: #fff solid 5px;
     }
 

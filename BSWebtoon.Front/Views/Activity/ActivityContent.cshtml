@@ -1,9 +1,30 @@
-﻿@{
+﻿@using BSWebtoon.Front.Models.ViewModel.GiftBox
+@using BSWebtoon.Model
+@model ActivityContentViewModel
+
+@{
     Layout = "_WorkPageLayout";
     ViewData["Title"] = "ActivityContent";
+
+    <style>
+        :root {
+            --activityBgColor: @Model.ActivityBgColor;
+        }
+    </style>
+
+    var remainingTime = (Convert.ToDateTime(@Model.ActivityEndTime) - DateTime.UtcNow.AddHours(8)).ToString();
+
+    var remainingDays = remainingTime.Split('.')[0];
+    var remainingHours = remainingTime.Split('.')[1].Split(':')[0];
+
+    //var nowTime = DateTime.UtcNow.AddHours(8);
+    var ActivityId = @Model.ActivityId;
+    var universalCouponGetCount = 1;
+    var couponTypeId = (int)CouponType.universalCoupon;
+    var memberId = User.Claims.FirstOrDefault() == null ? 0 : int.Parse(User.Claims.FirstOrDefault(x => x.Type == "MemberID").Value);
 }
 @section topCss{
-    <link rel="stylesheet" href="~/style/ActivityContentStyle.css" />
+<link rel="stylesheet" href="~/style/ActivityContentStyle.css" />
 }
 
 <header class="activity_nav w-100">
@@ -13,23 +34,39 @@
 </header>
 <div class="activity_main_content">
     <div class="row w-700 activity_pic">
-        <img src="https://tw-a.kakaopagecdn.com/P/O/crm/campaign-pages/2022_07_21/2x/de036082-6cfa-46b9-ad1c-156ae0854890.webp" alt="">
+        <img src="@Model.ActivityImage" alt="">
         <div class="row w-700 activity_title">
-            <p class="countdownTime">剩餘7小時15分</p>
+            <p class="countdownTime">剩餘 @remainingDays 日 @remainingHours 小時</p>
             <p class="activity_title_info">7/23-7/25</p>
-            <p class="activity_title_info">人民的法槌舉起來!<br>不跟盜版仔玩</p>
+            <p class="activity_title_info">@Model.ActivityName</p>
             <!-- <p>ⓒ作者/繪者/發行</p> -->
         </div>
     </div>
     <div class="row w-700 activity_text">
         <div class="row w-700">
             <p class="activity_text_title">活動詳情</p>
-            <p class="activity_text_content">思想它們人家沒想到，彩色選手關西一位轉移老婆看不到開發灌水哥哥咖啡你想授權，固定一看加油策劃想像尋求斑竹一看投入喜歡資源，實在反而意識引進空調不用比例老闆小說出版，面臨國內名單外掛發揮，完善有效別人，予以大幅因此而言隨便幾個我又工作人員使得你能性能精美拒。</p>
+            <div class="activity_text_content">@Html.Raw(@Model.ActivityContent)</div>
         </div>
     </div>
     <div class="row w-700 activity_text">
         <div class="row w-700">
-            <button class="w-100 my-5 py-3 px-5 getUniversalCouponBtn">領取通用券 <span>></span></button>
+            @if (Model.IsGetUniversalCoupon)
+            {
+                <button disabled onclick='clickGetCouponBtn(@ActivityId,@universalCouponGetCount,@couponTypeId,@memberId)'
+                    class="w-100 my-5 py-3 px-5 getUniversalCouponBtn bg-light">
+                    領取通用券
+                    <span>></span>
+                </button>
+            }
+            else
+            {
+
+                <button onclick='clickGetCouponBtn(@ActivityId,@universalCouponGetCount,@couponTypeId,@memberId)'
+                    class="w-100 my-5 py-3 px-5 getUniversalCouponBtn">
+                    領取通用券
+                    <span>></span>
+                </button>
+            }
         </div>
     </div>
 </div>
@@ -37,7 +74,7 @@
     <div class="row w-700 pt-5">
         <p class="activity_detail_title">活動期間</p>
         <p class="activity_detail_content">
-            2022/07/23~2022/07/25
+            @Model.ActivityStartTime~@Model.ActivityEndTime
         </p>
         <p class="activity_detail_title">獎項發送說明</p>
         <p class="activity_detail_content activity_detail_content_border">
@@ -52,3 +89,7 @@
     </div>
 </footer>
 
+<script>
+    let isAuthenticated = "@Model.IsAuthenticated" === "True";
+</script>
+<script src="~/js/Activity.js" asp-append-version="true"></script>

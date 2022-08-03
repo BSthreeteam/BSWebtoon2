@@ -7,36 +7,38 @@
 
 @section topCss{
 <link rel="stylesheet" href="~/style/WeeklyUpdateStyle.css" />
+<link rel="stylesheet" href="~/style/WeeklyNewComicStyle.css" />
+
 }
 
 <body data-bs-spy="scroll" data-bs-target="#navbar-id" data-bs-offset="140" class="scrollspy-example"tabindex="0">
 
-
+<div id="app">
     <nav id="navbar-id" class="navbar navbar-light">
         <ul class="nav nav-pills">
             <li class="nav-item">
-                <a class="nav-link nav_new_work" href="/WeekUpdate/NewComic">新作</a>
+                <button v-on:click="getAllNewComic" class="nav-link nav_new_work" @*href="#"*@>新作</button>
             </li>
             <li class="nav-item">
-                <a class="nav-link nav_Monday" href="#scrollspyHeading1">一</a>
+                <a v-on:click="getAllWeekComic" class="nav-link nav_Monday" href="#scrollspyHeading1">一</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link nav_Tuesday" href="#scrollspyHeading2">二</a>
+                <a v-on:click="getAllWeekComic" class="nav-link nav_Tuesday" href="#scrollspyHeading2">二</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link nav_Wednesday" href="#scrollspyHeading3">三</a>
+                <a v-on:click="getAllWeekComic" class="nav-link nav_Wednesday" href="#scrollspyHeading3">三</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link nav_Thursday" href="#scrollspyHeading4">四</a>
+                <a v-on:click="getAllWeekComic" class="nav-link nav_Thursday" href="#scrollspyHeading4">四</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link nav_Friday" href="#scrollspyHeading5">五</a>
+                <a v-on:click="getAllWeekComic" class="nav-link nav_Friday" href="#scrollspyHeading5">五</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link nav_Saturday" href="#scrollspyHeading6">六</a>
+                <a v-on:click="getAllWeekComic" class="nav-link nav_Saturday" href="#scrollspyHeading6">六</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link nav_Sunday" href="#scrollspyHeading7">日</a>
+                <a v-on:click="getAllWeekComic" class="nav-link nav_Sunday" href="#scrollspyHeading7">日</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/WeekUpdate/FinishComic">完結</a>
@@ -44,7 +46,7 @@
         </ul>
     </nav>
 
-    <div class="weekly ">
+    <div v-if="weekIsShow" id="try" class="weekly ">
         <div class="container week_content ">
             <div class="Monday">
                 <h2 id="scrollspyHeading1" class="Monday_title">星期一</h2>
@@ -59,7 +61,7 @@
                                     <div class="work_long_bg">
                                         <img src="@item.BgCover">
                                     </div>
-                                    <video loop=@*"true"*@ autoplay=@*"true"*@ muted=@*"true"*@ class="workV-long ">
+                                    <video loop  autoplay  muted  class="workV-long ">
                                         <source class="source"
                                     src="@item.WeekVideoWrb">
                                     </video>
@@ -132,7 +134,7 @@
                                     <div class="work_long_bg">
                                         <img src="@item.BgCover">
                                     </div>
-                                    <video loop=@*"true"*@ autoplay=@*"true"*@ muted=@*"true"*@ class="workV-long ">
+                                    <video loop  autoplay  muted  class="workV-long ">
                                         <source class="source"
                                     src="@item.WeekVideoWrb">
                                     </video>
@@ -181,7 +183,7 @@
                                     <div class="work_long_bg">
                                         <img src="@item.BgCover">
                                     </div>
-                                    <video loop=@*"true"*@ autoplay=@*"true"*@ muted=@*"true"*@ class="workV-long ">
+                                    <video loop  autoplay  muted  class="workV-long ">
                                         <source class="source"src="@item.WeekVideoWrb">
                                     </video>
                                     <div class="title_long_img">
@@ -231,7 +233,7 @@
                                     <div class="work_long_bg">
                                         <img src="@item.BgCover">
                                     </div>
-                                    <video loop=@*"true"*@ autoplay=@*"true"*@ muted=@*"true"*@ class="workV-long ">
+                                    <video loop autoplay muted class="workV-long ">
                                         <source class="source"src="@item.WeekVideoWrb">
                                     </video>
                                     <div class="title_long_img">
@@ -280,7 +282,7 @@
                                     <div class="work_long_bg">
                                         <img src="@item.BgCover">
                                     </div>
-                                    <video loop=@*"true"*@ autoplay=@*"true"*@ muted=@*"true"*@ class="workV-long ">
+                                    <video loop autoplay muted class="workV-long ">
                                         <source class="source"src="@item.WeekVideoWrb">
                                     </video>
                                     <div class="title_long_img">
@@ -328,7 +330,7 @@
                                     <div class="work_long_bg">
                                         <img src="@item.BgCover">
                                     </div>
-                                    <video loop=@*"true"*@ autoplay=@*"true"*@ muted=@*"true"*@ class="workV-long ">
+                                    <video loop autoplay muted class="workV-long ">
                                         <source class="source"src="@item.WeekVideoWrb">
                                     </video>
                                     <div class="title_long_img">
@@ -376,7 +378,7 @@
                                     <div class="work_long_bg">
                                         <img src="@item.BgCover">
                                     </div>
-                                    <video loop@*=@*"true"*@*@ autoplay@*=@*"true"*@*@ muted@*=@*"true"*@*@ class="workV-long ">
+                                    <video loop autoplay muted class="workV-long ">
                                         <source class="source"src="@item.WeekVideoWrb">
                                     </video>
                                     <div class="title_long_img">
@@ -419,10 +421,127 @@
 
 
 
+
+@*    <nav id="navbar-id" class="navbar navbar-light">
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a v-on:click="getAllPokemon" class="nav-link nav_new_work" href="#" >新作</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link nav_Monday" href="/WeekUpdate/WeekUpdate#scrollspyHeading1">一</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link nav_Tuesday" href="/WeekUpdate/WeekUpdate#scrollspyHeading2">二</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link nav_Wednesday" href="/WeekUpdate/WeekUpdate#scrollspyHeading3">三</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link nav_Thursday" href="/WeekUpdate/WeekUpdate#scrollspyHeading4">四</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link nav_Friday" href="/WeekUpdate/WeekUpdate#scrollspyHeading5">五</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link nav_Saturday" href="/WeekUpdate/WeekUpdate#scrollspyHeading6">六</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link nav_Sunday" href="/WeekUpdate/WeekUpdate#scrollspyHeading7">日</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/WeekUpdate/FinishComic">完結</a>
+            </li>
+        </ul>
+    </nav>
+*@
+<div v-if="newIsShow" class="weekly">
+    <div class="container week_content ">
+
+@*        @foreach (var item in Model)
+        {*@
+            <a v-for="newComic in newComicList" class="workContent" href="#">
+
+                <div class="pic_bgc">
+                    <img :src="newComic.BgCover">
+                </div>
+                <div class="comic_information">
+
+                    <div class="material">
+                        <div class="date">
+                            <p>{{newComic.PublishDate}}</p>
+                        </div>
+                        <div class="title_pic">
+                            <img :src="newComic.ComicNameImage" alt="">
+                        </div>
+                        <div class="comic_introduce">
+                            <p>{{newComic.Introduction}}</p>
+                        </div>
+                        <p class="author">{{newComic.Author}},{{newComic.Painter}}​</p>
+                    </div>
+
+                    <div class="p_pic">
+                        <img :src="newComic.ComicFigure" alt="">
+                    </div>
+                </div>
+            </a>
+@*        }*@
+
+    </div>
+</div>
+
+</div>
+
+
+
+
+
+
 </body>
 
 @section endJS{
 <script src="~/js/WeekUpdate.js"></script>
+
+<script src="~/js/WeekNewComic.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.7/dist/vue.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+
+<!-- Axios -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+        integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+        crossorigin="anonymous"></script>
+
+
+        <script>
+            let weekdata = document.querySelector("#try")
+            let app = new Vue({
+            el: '#app',
+            data: {
+                weekIsShow:true,
+                newIsShow:false,
+                newComicList:[]
+            },
+            methods: {
+                getAllWeekComic(){
+                    this.weekIsShow = true
+                    this.newIsShow = false
+
+                },
+                getAllNewComic() {
+                    axios.get('https://localhost:80/api/WeekUpdateApi')
+                    .then((res)=>{
+                        this.weekIsShow = false
+                        this.newIsShow = true
+                        this.newComicList = res.data
+  
+                        console.log(res)
+                    })
+                }}})
+
+        </script>
 
 }
 

@@ -4,9 +4,9 @@ namespace BSWebtoon.Model
 {
     public enum ComicState
     {
-        finish = 1, 
-        stopUpdate = 2, 
-        serialize = 3,
+        finish = 1,//完結
+        stopUpdate = 2, //停更
+        serialize = 3,//
         newWork =4
     }
     public enum CouponType
@@ -25,3 +25,5 @@ namespace BSWebtoon.Model
         auditProcessing =4,
     }
 }
+
+

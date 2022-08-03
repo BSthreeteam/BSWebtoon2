@@ -1,0 +1,93 @@
+body {
+    background-color: #000;
+    color: #fff;
+}
+
+.w-1200 {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.userinfo_nav {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #000;
+    font-size: 20px;
+    padding: 5px;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+}
+
+.userinfo_nav_a {
+    color: #fff;
+    text-decoration: none;
+}
+.userinfo_nav_a:hover {
+    color: #fff;
+}
+
+.userinfo {
+    position: relative;
+    top: 80px;
+}
+
+.rechargeLink {
+    text-decoration: none;
+    color: #fc5;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+    .rechargeLink:hover {
+        color: #fc5;
+    }
+
+.ticket, .money {
+    flex-direction: row;
+    align-items: center;
+}
+
+.ticket_p {
+    margin: 0;
+}
+
+.recordItem {
+    list-style: none;
+}
+
+.recordItem_a {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px;
+}
+
+    .recordItem_a:hover {
+        background-color: #fff;
+        color: #000;
+        border-radius: 5px;
+    }
+
+.record::after {
+    content: '';
+    display: inline-block;
+    width: 100%;
+    border-bottom: 1px solid #fff;
+}
+
+.selectedRecordItem {
+    background-color: #fff;
+    color: #000;
+    border-radius: 5px;
+}
+
+.nothing {
+    margin: auto;
+    font-size: 30px;
+}
+
+.recordTable {
+    background-color: #fff;
+}
+
