@@ -3,7 +3,7 @@
 namespace BSWebtoon.Front.Models.ViewModel.WorkPage
 {
 
-    public class ComicContentViewModel
+    public class WorkContentViewModel
     {
 
         public string EpTitle { get; set; }
