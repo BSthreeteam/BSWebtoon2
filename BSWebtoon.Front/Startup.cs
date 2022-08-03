@@ -25,7 +25,6 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using BSWebtoon.Front.Service.WeekUpdateService;
 using BSWebtoon.Front.Service.SearchService;
-using BSWebtoon.Front.Service.ContentPageService;
 using BSWebtoon.Front.Service.CloudinaryService;
 
 using BSWebtoon.Front.Service.ActivityService;
@@ -69,11 +68,9 @@ namespace BSWebtoon.Front
             services.AddScoped<IComicService, ComicService>();
             services.AddScoped<ISearchService, SearchService>();
             services.AddScoped<IWeekUpdateService, WeekUpdateService>();
-            services.AddScoped<IComicContentPageService, ComicContentPageService>();
             services.AddScoped<IMemberService, MemberService>();
             services.AddScoped<IFavoriteService, FavoriteService>(); 
 
-            services.AddScoped<IComicContentPageService, ComicContentPageService>();
 
             services.AddHttpContextAccessor();
 
