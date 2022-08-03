@@ -90,10 +90,10 @@ namespace BSWebtoon.Front.Controllers
             if (comicContents.Count() != 0)
             {
                 var EpTitle = comicContents.Select(c => c.EpTitle).First();
-                var allEp = new List<ComicContentViewModel.EpData>() { };
+                var allEp = new List<WorkContentViewModel.EpData>() { };
                 foreach (var ep in comicContents[0].EpList)
                 {
-                    allEp.Add(new ComicContentViewModel.EpData()
+                    allEp.Add(new WorkContentViewModel.EpData()
                     {
                         EpId = ep.EpId,
                         ComicId = ep.ComicId,
@@ -104,7 +104,7 @@ namespace BSWebtoon.Front.Controllers
                         IsFree = ep.IsFree
                     });
                 }
-                result = new ComicContentViewModel()
+                result = new WorkContentViewModel()
                 {
                     EpTitle = EpTitle,
                     ContentList = comicContents.Select(c => new WorkContentViewModel.Content

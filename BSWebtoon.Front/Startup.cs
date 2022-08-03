@@ -25,7 +25,6 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using BSWebtoon.Front.Service.WeekUpdateService;
 using BSWebtoon.Front.Service.SearchService;
-using BSWebtoon.Front.Service.ContentPageService;
 using BSWebtoon.Front.Service.CloudinaryService;
 
 using BSWebtoon.Front.Service.ActivityService;
