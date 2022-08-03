@@ -82,7 +82,7 @@ namespace BSWebtoon.Front.Controllers
 
 
 
-        public IActionResult ComicContent(int Id)
+        public IActionResult workContent(int Id)
         {
             var userName = User.Identity.Name;
             var comicContents = _comicService.ReadworkContent(Id, userName);
@@ -123,6 +123,11 @@ namespace BSWebtoon.Front.Controllers
             }
 
         }
+
+
+
+
+
 
     }
 

@@ -1,3 +1,12 @@
+function clickEp(epId) {
+    if (isAuthenticated) {
+        window.location.href = `/WorksPage/workContent/${epId}`;
+    } else {
+        $('#exampleModal').modal('show');
+    }
+
+}
+
 const ep = document.querySelector('.ep');
 const illustrate = document.querySelector('.illustrate');
 const messages = document.querySelector('.messages');
@@ -18,12 +27,12 @@ const comment_text = document.querySelector('.comment_text');
 const card_box = document.querySelector('.card_box');
 
 
-function reizeWindow(){
+function reizeWindow() {
     let screen = window.screen.width;
     console.log(screen)
     window.addEventListener('resize', () => {
         if (screen <= 768) {
-        //    message_box.classList.add('d-none');
+            //    message_box.classList.add('d-none');
         }
         else if (screen > 768) {
             //message_box.classList.remove('d-none');
@@ -41,18 +50,26 @@ window.addEventListener('resize', () => {
 
 window.onload = function () {
     reizeWindow()
-    //////點擊愛心，顏色變紅色
-    //let check = document.querySelector('#heart');
-    //collect_a.addEventListener('click', () => {
-    //    if (!check.checked) {
-    //        console.log('111')
-    //        collect_a.classList.add('text-danger');
-    //    }
-    //    else {
-    //        console.log('222')
-    //        collect_a.classList.remove('text-danger');
-    //    }
-    //})
+    let collect_a = document.querySelector('.red');
+
+    ////點擊愛心，顏色變紅色
+    let check = document.querySelector('#heart');
+    clickLike(checkvalue)
+
+    collect_a.addEventListener('click', () => {
+        checkvalue = !checkvalue
+        clickLike(checkvalue)
+    })
+    function clickLike(boolvalue) {
+        if (boolvalue == true) {
+            console.log(check.checked)
+            collect_a.classList.add('text-danger');
+        }
+        else {
+            console.log(check.checked)
+            collect_a.classList.remove('text-danger');
+        }
+    }
 
 
     ////分享-複製連結(ok)
@@ -110,21 +127,21 @@ window.onload = function () {
 
 
 
-//     //我們是用以下的方式讓它做出滾動的效果
-//     window.addeventlistener('mousewheel', (event) => {
-//         event = event || window.event;
-//         if (event.wheeldelta > 0 || event.detail < 0) {
-//             //向上滾
-//             local_video_bg.classList.add('opacity = 1')
-//             console.log("1212");
-//         //    $('html, body').animate({ scrolltop: 0 }, "fast")
-//         }
-//         else {
-//             //向下滾
-//             local_video_bg.classList.add('opacity = 0')
-//         //    $('html, body').animate({
-//         //        scrolltop: $('.comics_episode').offset().top
-//         //    }, "fast")
-//         }
-//     })
+    //     //我們是用以下的方式讓它做出滾動的效果
+    //     window.addeventlistener('mousewheel', (event) => {
+    //         event = event || window.event;
+    //         if (event.wheeldelta > 0 || event.detail < 0) {
+    //             //向上滾
+    //             local_video_bg.classList.add('opacity = 1')
+    //             console.log("1212");
+    //         //    $('html, body').animate({ scrolltop: 0 }, "fast")
+    //         }
+    //         else {
+    //             //向下滾
+    //             local_video_bg.classList.add('opacity = 0')
+    //         //    $('html, body').animate({
+    //         //        scrolltop: $('.comics_episode').offset().top
+    //         //    }, "fast")
+    //         }
+    //     })
 }
