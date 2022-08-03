@@ -6,3 +6,5 @@ window.onload = () => {
     nav_new_work.setAttribute("style", " color: #000; background-color: #fff; ")
 
 }
+
+

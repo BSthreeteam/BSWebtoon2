@@ -10,6 +10,7 @@
         public string ComicNameImage { get; set; }
         public string ComicFigure { get; set; }
         public string BgColor { get; set; }
+        public string ComicWeekFigure { get; set; }
 
     }
 }

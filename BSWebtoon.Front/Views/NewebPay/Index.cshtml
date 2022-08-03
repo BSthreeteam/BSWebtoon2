@@ -58,30 +58,29 @@
 	</div>
 </div>
 @section Scripts {
-	<script>
-		const app = Vue.createApp({
-
-			data() {
-				return {
-					// 表單資料
-					addForm: {
-						MerchantID: '@ViewData["MerchantID"]' //商品代號
-						, MerchantOrderNo: '@ViewData["MerchantOrderNo"]'
-						, ItemDesc: '測試商品'
-						, Amt: '100'
-						, ExpireDate: '@ViewData["ExpireDate"]'
-						, ReturnURL: '@ViewData["ReturnURL"]'
-						, CustomerURL: '@ViewData["CustomerURL"]'
-						, NotifyURL: '@ViewData["NotifyURL"]'
-						, ClientBackURL: '@ViewData["ClientBackURL"]'
-						, Email: 'hana@jimmy.com.tw'
-					}
-				}
-			}
-			, methods: {
-				// 傳送至藍新金流
-				SendToNewebPay(ChannelID) {
-					var self = this;
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    // 表單資料
+                    addForm: {
+                        MerchantID: '@ViewData["MerchantID"]' //商品代號
+                        , MerchantOrderNo: '@ViewData["MerchantOrderNo"]'
+                        , ItemDesc: '測試商品'
+                        , Amt: '100'
+                        , ExpireDate: '@ViewData["ExpireDate"]'
+                        , ReturnURL: '@ViewData["ReturnURL"]'
+                        , CustomerURL: '@ViewData["CustomerURL"]'
+                        , NotifyURL: '@ViewData["NotifyURL"]'
+                        , ClientBackURL: '@ViewData["ClientBackURL"]'
+                        , Email: 'railgun101014@gmail.com.tw'
+                    }
+                }
+            }
+            , methods: {
+                // 傳送至藍新金流
+                SendToNewebPay(ChannelID) {
+                    var self = this;
 
 					// 組合表單資料
 					var postData = {};

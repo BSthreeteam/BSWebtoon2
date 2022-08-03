@@ -7,9 +7,11 @@
 
 @section topCss{
 <link rel="stylesheet" href="~/style/WeeklyUpdateStyle.css" />
+@*<link rel="stylesheet" href="~/style/WeeklyNewComicStyle.css" />
+*@
 }
 
-<body data-bs-spy="scroll" data-bs-target="#navbar-id" data-bs-offset="140" class="scrollspy-example"tabindex="0">
+<body data-bs-spy="scroll" data-bs-target="#navbar-id" data-bs-offset="140" class="scrollspy-example" tabindex="0">
 
 
     <nav id="navbar-id" class="navbar navbar-light">
@@ -18,10 +20,10 @@
                 <a class="nav-link nav_new_work" href="/WeekUpdate/NewComic">新作</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link nav_Monday" href="#scrollspyHeading1">一</a>
+                <a  class="nav-link nav_Monday" href="#scrollspyHeading1">一</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link nav_Tuesday" href="#scrollspyHeading2">二</a>
+                <a  class="nav-link nav_Tuesday" href="#scrollspyHeading2">二</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link nav_Wednesday" href="#scrollspyHeading3">三</a>
@@ -30,13 +32,13 @@
                 <a class="nav-link nav_Thursday" href="#scrollspyHeading4">四</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link nav_Friday" href="#scrollspyHeading5">五</a>
+                <a  class="nav-link nav_Friday" href="#scrollspyHeading5">五</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link nav_Saturday" href="#scrollspyHeading6">六</a>
+                <a  class="nav-link nav_Saturday" href="#scrollspyHeading6">六</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link nav_Sunday" href="#scrollspyHeading7">日</a>
+                <a  class="nav-link nav_Sunday" href="#scrollspyHeading7">日</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/WeekUpdate/FinishComic">完結</a>
@@ -55,11 +57,11 @@
                         {
                             foreach (var item in items.WeekComicLongList)
                             {
-                                <a class="work_long" href="#">
+                                <a class="work_long" href="/WorksPage/WorksPage/@item.ComicId">
                                     <div class="work_long_bg">
                                         <img src="@item.BgCover">
                                     </div>
-                                    <video loop=@*"true"*@ autoplay=@*"true"*@ muted=@*"true"*@ class="workV-long ">
+                                    <video loop  autoplay  muted  class="workV-long ">
                                         <source class="source"
                                     src="@item.WeekVideoWrb">
                                     </video>
@@ -73,7 +75,7 @@
 
                             foreach (var item in items.WeekComicList)
                             {
-                                <a class="work" href="#">
+                                <a class="work" href="/WorksPage/WorksPage/@item.ComicId">
                                     <div class="work_bg">
                                         <img src="@item.BgCover" alt="">
                                     </div>
@@ -128,11 +130,11 @@
                         {
                             foreach (var item in items.WeekComicLongList)
                             {
-                                <a class="work_long" href="#">
+                                <a class="work_long" href="/WorksPage/WorksPage/@item.ComicId">
                                     <div class="work_long_bg">
                                         <img src="@item.BgCover">
                                     </div>
-                                    <video loop=@*"true"*@ autoplay=@*"true"*@ muted=@*"true"*@ class="workV-long ">
+                                    <video loop  autoplay  muted  class="workV-long ">
                                         <source class="source"
                                     src="@item.WeekVideoWrb">
                                     </video>
@@ -146,7 +148,7 @@
 
                             foreach (var item in items.WeekComicList)
                             {
-                                <a class="work" href="#">
+                                <a class="work" href="/WorksPage/WorksPage/@item.ComicId">
                                     <div class="work_bg">
                                         <img src="@item.BgCover"alt="">
                                     </div>
@@ -177,11 +179,11 @@
                         {
                             foreach (var item in items.WeekComicLongList)
                             {
-                                <a class="work_long" href="#">
+                                <a class="work_long" href="/WorksPage/WorksPage/@item.ComicId">
                                     <div class="work_long_bg">
                                         <img src="@item.BgCover">
                                     </div>
-                                    <video loop=@*"true"*@ autoplay=@*"true"*@ muted=@*"true"*@ class="workV-long ">
+                                    <video loop  autoplay  muted  class="workV-long ">
                                         <source class="source"src="@item.WeekVideoWrb">
                                     </video>
                                     <div class="title_long_img">
@@ -194,7 +196,7 @@
 
                             foreach (var item in items.WeekComicList)
                             {
-                                <a class="work" href="#">
+                                <a class="work" href="/WorksPage/WorksPage/@item.ComicId">
                                     <div class="work_bg">
                                         <img src="@item.BgCover"alt="">
                                     </div>
@@ -227,11 +229,11 @@
                         {
                             foreach (var item in items.WeekComicLongList)
                             {
-                                <a class="work_long" href="#">
+                                <a class="work_long" href="/WorksPage/WorksPage/@item.ComicId">
                                     <div class="work_long_bg">
                                         <img src="@item.BgCover">
                                     </div>
-                                    <video loop=@*"true"*@ autoplay=@*"true"*@ muted=@*"true"*@ class="workV-long ">
+                                    <video loop autoplay muted class="workV-long ">
                                         <source class="source"src="@item.WeekVideoWrb">
                                     </video>
                                     <div class="title_long_img">
@@ -245,7 +247,7 @@
 
                             foreach (var item in items.WeekComicList)
                             {
-                                <a class="work" href="#">
+                                <a class="work" href="/WorksPage/WorksPage/@item.ComicId">
                                     <div class="work_bg">
                                         <img src="@item.BgCover"alt="">
                                     </div>
@@ -276,11 +278,11 @@
                         {
                             foreach (var item in items.WeekComicLongList)
                             {
-                                <a class="work_long" href="#">
+                                <a class="work_long" href="/WorksPage/WorksPage/@item.ComicId">
                                     <div class="work_long_bg">
                                         <img src="@item.BgCover">
                                     </div>
-                                    <video loop=@*"true"*@ autoplay=@*"true"*@ muted=@*"true"*@ class="workV-long ">
+                                    <video loop autoplay muted class="workV-long ">
                                         <source class="source"src="@item.WeekVideoWrb">
                                     </video>
                                     <div class="title_long_img">
@@ -293,7 +295,7 @@
 
                             foreach (var item in items.WeekComicList)
                             {
-                                <a class="work" href="#">
+                                <a class="work" href="/WorksPage/WorksPage/@item.ComicId">
                                     <div class="work_bg">
                                         <img src="@item.BgCover"alt="">
                                     </div>
@@ -324,11 +326,11 @@
                         {
                             foreach (var item in items.WeekComicLongList)
                             {
-                                <a class="work_long" href="#">
+                                <a class="work_long" href="/WorksPage/WorksPage/@item.ComicId">
                                     <div class="work_long_bg">
                                         <img src="@item.BgCover">
                                     </div>
-                                    <video loop=@*"true"*@ autoplay=@*"true"*@ muted=@*"true"*@ class="workV-long ">
+                                    <video loop autoplay muted class="workV-long ">
                                         <source class="source"src="@item.WeekVideoWrb">
                                     </video>
                                     <div class="title_long_img">
@@ -341,7 +343,7 @@
 
                             foreach (var item in items.WeekComicList)
                             {
-                                <a class="work" href="#">
+                                <a class="work" href="/WorksPage/WorksPage/@item.ComicId">
                                     <div class="work_bg">
                                         <img src="@item.BgCover"alt="">
                                     </div>
@@ -372,11 +374,11 @@
                         {
                             foreach (var item in items.WeekComicLongList)
                             {
-                                <a class="work_long" href="#">
+                                <a class="work_long" href="/WorksPage/WorksPage/@item.ComicId">
                                     <div class="work_long_bg">
                                         <img src="@item.BgCover">
                                     </div>
-                                    <video loop@*=@*"true"*@*@ autoplay@*=@*"true"*@*@ muted@*=@*"true"*@*@ class="workV-long ">
+                                    <video loop autoplay muted class="workV-long ">
                                         <source class="source"src="@item.WeekVideoWrb">
                                     </video>
                                     <div class="title_long_img">
@@ -389,7 +391,7 @@
 
                             foreach (var item in items.WeekComicList)
                             {
-                                <a class="work" href="#">
+                                <a class="work" href="/WorksPage/WorksPage/@item.ComicId">
                                     <div class="work_bg">
                                         <img src="@item.BgCover"alt="">
                                     </div>
@@ -419,10 +421,111 @@
 
 
 
+
+
+
+@*            <template id="newComicTemplate">
+                <a class="workContent" href="#">
+
+                    <div class="pic_bgc">
+                        <img src="">
+                    </div>
+                    <div class="comic_information">
+
+                        <div class="material">
+                            <div class="date">
+                                <p></p>
+                            </div>
+                            <div class="title_pic">
+                                <img src="" alt="">
+                            </div>
+                            <div class="comic_introduce">
+                                <p></p>
+                            </div>
+                            <p class="author"></p>
+                        </div>
+
+                        <div class="p_pic">
+                            <img src="" alt="">
+                        </div>
+                    </div>
+                </a>
+            </template>
+*@
+
+
+
+
+
+
+
+
+
 </body>
 
 @section endJS{
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+
+
 <script src="~/js/WeekUpdate.js"></script>
 
+@*<script src="~/js/WeekNewComic.js"></script>
+*@
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.7/dist/vue.js"></script>
+
+
+
+
+@*<script>
+
+
+        let nav_new_work = document.querySelector(".nav_new_work")
+        let week_content = document.querySelector(".week_content")
+        let newComicTemplate = document.getElementById("newComicTemplate")
+        let body = document.querySelector("body")
+
+            nav_new_work.addEventListener("click",()=>{
+                body.setAttribute("data-bs-spy","");
+                week_content.innerHTML="";
+                fetch("/api/WeekUpdateApi/GetNewComicAll")
+                .then(res =>{  return res.json()})
+                .then(result => {
+
+                    console.log(result)
+                    console.log(result.length)
+
+                        for (let i=0;i<result.length;i++){
+                            week_content.append(createNewComic(result[i]))
+
+                            
+
+                    }})
+            });
+            mon.addEventListener("click",()=>{
+                body.setAttribute("data-bs-spy","scroll");
+
+            })
+
+            function createNewComic(result) {
+             console.log(result)
+
+            let cloneNewComic = newComicTemplate.content.cloneNode(true);
+            cloneNewComic.querySelector(".pic_bgc img").src = result.BgCover;
+            cloneNewComic.querySelector(".material .date p").innerText = result.PublishDate;
+            cloneNewComic.querySelector(".material .title_pic img").src =result.ComicNameImage;
+            cloneNewComic.querySelector(".material .comic_introduce p").innerText =  result.Introduction;
+            cloneNewComic.querySelector(".material .author").innerText =  result.Painter;
+            cloneNewComic.querySelector(".p_pic img").src =  result.ComicFigure;
+            return cloneNewComic
+        }
+
+        
+
+
+
+</script>
+*@
 }
 

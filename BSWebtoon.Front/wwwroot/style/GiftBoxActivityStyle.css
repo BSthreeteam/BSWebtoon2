@@ -1,4 +1,3 @@
-
 .activity {
     background-color: #000;
     position: relative;
@@ -9,13 +8,18 @@
 .activity_a {
     text-decoration: none;
     aspect-ratio: 1 / 2;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
+
 
 .content {
     background-color: #000;
     margin: auto;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, calc(100%/3 - 10px));
     grid-template-rows: repeat(2, 1fr);
     column-gap: 10px;
     row-gap: 2px;
@@ -48,28 +52,50 @@
 }
 
 .activity_title {
-    font-size: 25px;
+    font-size: 100%;
     font-weight: 900;
+    word-break: keep-all;
+    margin: auto;
+}
+
+.activity_title_p {
+    margin: 0;
 }
 
 .activity_coupon {
     padding: 5px 0px;
-    font-size: 18px;
+    font-size: 80%;
     font-weight: 700;
     background-color: #00000030;
 }
 
+@media screen and (min-width:400px) {
+    .activity_title {
+        font-size: 120%;
+    }
+}
+
+@media screen and (min-width:500px) {
+    .activity_title {
+        font-size: 150%;
+    }
+}
+
 @media screen and (min-width:768px) {
     .content {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(4, calc(100%/4 - 10px));
         grid-template-rows: repeat(2, 1fr);
+    }
+
+    .activity_coupon {
+        font-size: 100%;
     }
 }
 
 
 @media screen and (min-width:992px) {
     .content {
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(5, calc(100%/5 - 10px));
         grid-template-rows: repeat(2, 1fr);
     }
 
@@ -82,5 +108,9 @@
 @media screen and (min-width:1200px) {
     .activity_content {
         width: 1200px;
+    }
+
+    .activity_title {
+        font-size: 200%;
     }
 }

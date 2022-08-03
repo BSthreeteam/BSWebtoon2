@@ -1,4 +1,5 @@
-﻿using BSWebtoon.Model;
+﻿using BSWebtoon.Front.Models.DTO.GiftBox;
+using BSWebtoon.Model;
 using BSWebtoon.Model.Models;
 using BSWebtoon.Model.Repository;
 using System;
@@ -118,29 +119,35 @@ namespace BSWebtoon.Front.Service.CouponService
         /// <summary>
         /// 活動 通用券
         /// </summary>
-        public void GetUniversalCoupon(string userName, int? comicId, int activityId, int couponTypeId, int getQuantity)
+        public void GetUniversalCoupon(GetActivityCouponDTO universalCoupon)
         {
             //memberId = 1;
-            var memberId = _repository.GetAll<Member>().Where(m => m.AccountName == userName).Select(m => m.MemberId).First();
+            //var memberId = _repository.GetAll<Member>().Where(m => m.AccountName == userName).Select(m => m.MemberId).First();
             //comicId = 1;
             //couponTypeId = 1;
             //var couponTest = _repository.GetAll<Coupon>().OrderByDescending(c => c.CreateTime).First();
             var couponQuantity = _repository.GetAll<Coupon>()
-                .Where(c => c.MemberId == memberId && c.ComicId == comicId && c.CouponTypeId == couponTypeId)
-                .OrderByDescending(c => c.CreateTime).Select(c => c.Quantity).First();
+                .Where(c => c.MemberId == universalCoupon.MemberId && c.ComicId == null && c.CouponTypeId == universalCoupon.CouponTypeId)
+                .OrderByDescending(c => c.CreateTime).Select(c => c.Quantity).FirstOrDefault();
+
+            // member coupontype activity 都一樣 return
+            var sameData = _repository.GetAll<Coupon>()
+                .Where(c => c.MemberId == universalCoupon.MemberId && c.CouponTypeId == universalCoupon.CouponTypeId && c.ActivityId == universalCoupon.ActivityId)
+                .FirstOrDefault();
+
+            if (sameData != null) return;
 
             var coupon = new Coupon()
             {
-                MemberId = memberId,
-                ComicId = comicId,
-                ActivityId = activityId,
-                CouponTypeId = couponTypeId,
-                OriginQuantity = getQuantity,
+                MemberId = universalCoupon.MemberId,
+                ActivityId = universalCoupon.ActivityId,
+                CouponTypeId = universalCoupon.CouponTypeId,
+                OriginQuantity = universalCoupon.OriginQuantity,
                 CreateTime = DateTime.UtcNow.AddHours(8),
-                Quantity = getQuantity + couponQuantity
+                Quantity = universalCoupon.OriginQuantity + couponQuantity
             };
-
             _repository.Create(coupon);
+
             _repository.SaveChange();
         }
 
@@ -148,7 +155,7 @@ namespace BSWebtoon.Front.Service.CouponService
         {
             // 新登入一個會員  將每一部漫畫跑一遍 新增倒數券
             var HaveCoundownCouponMember = _repository.GetAll<Coupon>().Where(c => c.CouponTypeId == (int)CouponType.countdownCoupon);
-            var NotHaveCoundownCouponMember = _repository.GetAll<Member>().Where(notHave => HaveCoundownCouponMember.Any(have => have.MemberId == notHave.MemberId));
+            var NotHaveCoundownCouponMember = _repository.GetAll<Member>().Where(notHave => HaveCoundownCouponMember.Any(have => have.MemberId != notHave.MemberId));
 
             var AllComic = _repository.GetAll<Comic>();
 
@@ -171,7 +178,7 @@ namespace BSWebtoon.Front.Service.CouponService
                 }
             }
 
-            foreach(var coupon in countdowncoupons)
+            foreach (var coupon in countdowncoupons)
             {
                 _repository.Create(coupon);
             }
@@ -180,7 +187,7 @@ namespace BSWebtoon.Front.Service.CouponService
 
         public void GetReadCoupon()
         {
-
+            // 增加coupon 減少金幣
         }
 
     }

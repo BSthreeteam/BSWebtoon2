@@ -9,48 +9,51 @@
     <link rel="stylesheet" href="~/style/style.css" />
     @await RenderSectionAsync("topCss", required: false)
     @await RenderSectionAsync("topJs", required: false)
-
 </head>
 <body>
     <div class="container w-1200">
         <nav class="row w-1200">
-            <ul class="nav justify-content-end flex-nowrap  align-items-center" style=" white-space:nowrap;">
-                <form class="d-flex">
-                    <input class="form-control me-2 bg-transparent inputSearchBorder" type="search" placeholder="Search"
-                           aria-label="Search">
-                    <a class="nav-link" aria-current="page" href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <ul class="nav justify-content-end flex-nowrap text-white  align-items-center" style=" white-space:nowrap;">
+                <form class="d-flex text-white" action="/search/searchComic" method="post" name="find">
+                    <input class="form-control me-2 bg-transparent inputSearchBorder text-white" type="search" placeholder="請輸入書名或類型"
+                           aria-label="Search" id="name" name="comicname">
+                    <a class="nav-link" id="search" aria-current="page" action="/search/searchComic" @*href="#"*@ type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </a>
                 </form>
                 @*如果是登入的狀態下，登入按鈕消失*@
-                @if(User.Identity.IsAuthenticated){
-
-                }else{
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item dropdown flex-nowrap" id="user">
+                        <a class="nav-link dropdown-toggle display_name" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="~/images/people.png" alt="登入者"
+                             class="border border-dark rounded-circle user-icon">
+                            @User.Identity.Name
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item bg-light xl_accountinfo" href="/Recommend/Recommend">首頁</a></li>
+                            <li><a class="dropdown-item bg-light xl_accountinfo" href="#">我的帳戶</a></li>
+                            <li><a class="dropdown-item bg-light xl_my_love" href="/Favorite/AddFavoriteView">我的最愛</a></li>
+                            <li><a class="dropdown-item bg-light xl_my_coin" href="#">金幣/閱讀券明細</a></li>
+                            <li><a class="dropdown-item bg-light xl_stored_value" href="/Recharge/CashPlanView">儲值金幣</a></li>
+                            <li><a class="dropdown-item bg-light xl_history" href="#">歷史觀看紀錄</a></li>
+                            <li><a class="dropdown-item bg-light xl_history" href="/UpLoad/UploadComic">上傳作品</a></li>
+                            <li><a class="dropdown-item bg-light xl_my_set" href="/Setting/SettingView">我的設定</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item bg-light xl_customer_service" href="#">客服中心</a></li>
+                            <li><a id="logout" class="dropdown-item bg-light" href="Login/Logout">登出</a></li>
+                        </ul>
+                    </li>
+                }
+                else
+                {
                     <li class="nav-item">
                         <a data-bs-toggle="modal" href="#" data-bs-target="#exampleModal" class="nav-link">登入</a>
                     </li>
                 }
-
-                <li class="nav-item dropdown flex-nowrap" id="user">
-                    <a class="nav-link dropdown-toggle display_name" href="#" id="navbarDropdown" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="~/images/people.png" alt="登入者"
-                             class="border border-dark rounded-circle user-icon">
-                        @User.Identity.Name
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item bg-light xl_accountinfo" href="#">我的帳戶</a></li>
-                        <li><a class="dropdown-item bg-light xl_my_comic" href="/Favorite/RecordView">我的漫畫</a></li>
-                        <li><a class="dropdown-item bg-light xl_my_love" href="/Favorite/AddFavoriteView">我的最愛</a></li>
-                        <li><a class="dropdown-item bg-light xl_my_coin" href="#">金幣/閱讀券明細</a></li>
-                        <li><a class="dropdown-item bg-light xl_stored_value" href="/Recharge/CashPlanView">儲值金幣</a></li>
-                        <li><a class="dropdown-item bg-light xl_history" href="#">瀏覽紀錄</a></li>
-                        <li><a class="dropdown-item bg-light xl_my_set" href="/Setting/SettingView">我的設定</a></li>
-                        <li><a class="dropdown-item bg-light xl_customer_service" href="#">客服中心</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a id="logout" class="dropdown-item bg-light"asp-controller="Login" asp-action="Logout">登出</a></li>
-                    </ul>
-                </li>
             </ul>
         </nav>
     </div>
@@ -61,16 +64,13 @@
         List<LoginOptionViewModel> loginOptions = new List<LoginOptionViewModel>
     {
     //查看 .AddGoogle 等方法多載，未指定Scheme的 會 說預設使用哪個Scheme名稱
-
     //其他第三方
     new LoginOptionViewModel("https://tw-a.kakaopagecdn.com/web/static/auth/login-ico-sns-google-abb03d27c5764dce9bb59f95ca5c8602.svg", GoogleDefaults.AuthenticationScheme),
     new LoginOptionViewModel("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NSIgaGVpZ2h0PSI1NSIgdmlld0JveD0iMCAwIDU1IDU1Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTkzIC02MzcpIHRyYW5zbGF0ZSgwIDUyMSkgdHJhbnNsYXRlKDI2IDExNikgdHJhbnNsYXRlKDY3KSI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxyZWN0IHdpZHRoPSI1NSIgaGVpZ2h0PSI1NSIgZmlsbD0iIzE4NzdGMiIgcng9IjI3LjUiLz4KICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggZmlsbD0iI0ZGRkZGRSIgZD0iTTI3LjUgMTNDMTkuNDkyIDEzIDEzIDE5LjUzMiAxMyAyNy41ODkgMTMgMzQuODcgMTguMzAyIDQwLjkwNiAyNS4yMzQgNDJWMzEuODA2aC0zLjY4MXYtNC4yMTdoMy42ODF2LTMuMjE0YzAtMy42NTcgMi4xNjUtNS42NzYgNS40NzctNS42NzYgMS41ODcgMCAzLjI0Ni4yODUgMy4yNDYuMjg1djMuNTloLTEuODI4Yy0xLjgwMiAwLTIuMzYzIDEuMTI0LTIuMzYzIDIuMjc4djIuNzM3aDQuMDIxbC0uNjQzIDQuMjE3aC0zLjM3OFY0MkMzNi42OTggNDAuOTA2IDQyIDM0Ljg3IDQyIDI3LjU4OSA0MiAxOS41MzIgMzUuNTA4IDEzIDI3LjUgMTN6Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K", FacebookDefaults.AuthenticationScheme),
     //AspNet.Security.OAuth.XXX的 scheme沒有常數可用
     //new LoginOptionViewModel("https://tw-a.kakaopagecdn.com/web/static/auth/login-ico-sns-line-0e091239442121e27f11b2d164eeef8a.svg", "Line"),
-
     };
     }
-
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
@@ -86,30 +86,28 @@
                 </div>
                 <div class="modal-body">
                     <div class="slg d-flex align-items-center justify-content-center"><p>請使用第三方登入</p></div>
-
                     <div class="log-icon d-flex align-items-center justify-content-center">
                         @foreach (var loginOption in loginOptions)
                         {
-                            <span></span>
-                            <a href="/Login/LoginOption/@(loginOption.Scheme)" class="btn btn-light">
-                                <img src ="@loginOption.Icon"/>
-                            </a>
+                                    <span></span>
+                                    <a href="/Login/LoginOption/@(loginOption.Scheme)" class="btn btn-light">
+                                        <img src="@loginOption.Icon" />
+                                    </a>
                         }
-@*                        <a href="#"><img src="https://tw-a.kakaopagecdn.com/web/static/auth/login-ico-sns-google-abb03d27c5764dce9bb59f95ca5c8602.svg" alt="Google-login"></a>
-                        <span></span>
-                        <a href="#"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NSIgaGVpZ2h0PSI1NSIgdmlld0JveD0iMCAwIDU1IDU1Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTkzIC02MzcpIHRyYW5zbGF0ZSgwIDUyMSkgdHJhbnNsYXRlKDI2IDExNikgdHJhbnNsYXRlKDY3KSI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxyZWN0IHdpZHRoPSI1NSIgaGVpZ2h0PSI1NSIgZmlsbD0iIzE4NzdGMiIgcng9IjI3LjUiLz4KICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggZmlsbD0iI0ZGRkZGRSIgZD0iTTI3LjUgMTNDMTkuNDkyIDEzIDEzIDE5LjUzMiAxMyAyNy41ODkgMTMgMzQuODcgMTguMzAyIDQwLjkwNiAyNS4yMzQgNDJWMzEuODA2aC0zLjY4MXYtNC4yMTdoMy42ODF2LTMuMjE0YzAtMy42NTcgMi4xNjUtNS42NzYgNS40NzctNS42NzYgMS41ODcgMCAzLjI0Ni4yODUgMy4yNDYuMjg1djMuNTloLTEuODI4Yy0xLjgwMiAwLTIuMzYzIDEuMTI0LTIuMzYzIDIuMjc4djIuNzM3aDQuMDIxbC0uNjQzIDQuMjE3aC0zLjM3OFY0MkMzNi42OTggNDAuOTA2IDQyIDM0Ljg3IDQyIDI3LjU4OSA0MiAxOS41MzIgMzUuNTA4IDEzIDI3LjUgMTN6Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="FB-login"></a>
-                        <span></span>
-                        <a href="#"><img src="https://tw-a.kakaopagecdn.com/web/static/auth/login-ico-sns-line-0e091239442121e27f11b2d164eeef8a.svg" alt="Line-login"></a>
-*@                    </div>
+                                                                        @*                        <a href="#"><img src="https://tw-a.kakaopagecdn.com/web/static/auth/login-ico-sns-google-abb03d27c5764dce9bb59f95ca5c8602.svg" alt="Google-login"></a>
+                                    <span></span>
+                                    <a href="#"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NSIgaGVpZ2h0PSI1NSIgdmlld0JveD0iMCAwIDU1IDU1Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTkzIC02MzcpIHRyYW5zbGF0ZSgwIDUyMSkgdHJhbnNsYXRlKDI2IDExNikgdHJhbnNsYXRlKDY3KSI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxyZWN0IHdpZHRoPSI1NSIgaGVpZ2h0PSI1NSIgZmlsbD0iIzE4NzdGMiIgcng9IjI3LjUiLz4KICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggZmlsbD0iI0ZGRkZGRSIgZD0iTTI3LjUgMTNDMTkuNDkyIDEzIDEzIDE5LjUzMiAxMyAyNy41ODkgMTMgMzQuODcgMTguMzAyIDQwLjkwNiAyNS4yMzQgNDJWMzEuODA2aC0zLjY4MXYtNC4yMTdoMy42ODF2LTMuMjE0YzAtMy42NTcgMi4xNjUtNS42NzYgNS40NzctNS42NzYgMS41ODcgMCAzLjI0Ni4yODUgMy4yNDYuMjg1djMuNTloLTEuODI4Yy0xLjgwMiAwLTIuMzYzIDEuMTI0LTIuMzYzIDIuMjc4djIuNzM3aDQuMDIxbC0uNjQzIDQuMjE3aC0zLjM3OFY0MkMzNi42OTggNDAuOTA2IDQyIDM0Ljg3IDQyIDI3LjU4OSA0MiAxOS41MzIgMzUuNTA4IDEzIDI3LjUgMTN6Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="FB-login"></a>
+                                    <span></span>
+                                    <a href="#"><img src="https://tw-a.kakaopagecdn.com/web/static/auth/login-ico-sns-line-0e091239442121e27f11b2d164eeef8a.svg" alt="Line-login"></a>
+                                                                        *@
+                    </div>
                 </div>
-
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
                 </div>
             </div>
         </div>
     </div>
-
     <template id="useraccount">
         <div class="col-12 userinfo w-1200">
             <h1>帳戶資訊</h1>
@@ -155,8 +153,6 @@
             </div>
         </div>
     </template>
-
-
     <template id="my_comic">
         <div class="comic p-0 w-1200">
             <h1>我的漫畫</h1>
@@ -187,11 +183,9 @@
                         <img src="https://tw-a.kakaopagecdn.com/P/C/111/c2/2x/07225f44-80f0-4340-b76a-8ac78f3af1a2.webp">
                     </div>
                 </div>
-
             </div>
         </div>
     </template>
-
     <template id="terms">
         <div class="row w-1200 terms_p">
             <p>
@@ -233,7 +227,6 @@
         </div>
     </template>
     @RenderBody()
-
     @*<footer class="border-top footer text-muted">
         <div class="container">
         &copy; 2022 - BSWebtoon.Front - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
@@ -248,3 +241,5 @@
     @await RenderSectionAsync("endJS", required: false)
 </body>
 </html>
+
+

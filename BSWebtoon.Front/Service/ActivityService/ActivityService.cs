@@ -16,6 +16,25 @@ namespace BSWebtoon.Front.Service.ActivityService
             _repository = repository;
         }
 
+        public ActivityContentDTO ReadActivityContent(int ActivityId,int MemberId)
+        {
+            var activityItem = _repository.GetAll<Activity>().Where(x => x.IsDelete == false && x.ActivityId == ActivityId).First();
+
+            //是否已領取通用券
+            var isGetUniversalCoupon = _repository.GetAll<Coupon>().Where(x => x.ActivityId == ActivityId && x.MemberId == MemberId).Any();
+
+            return new ActivityContentDTO() { 
+                ActivityId = ActivityId,
+                ActivityName = activityItem.ActivityName,
+                ActivityImage = activityItem.ActivityImage,
+                ActivityBgColor = activityItem.ActivityBgColor,
+                ActivityContent = activityItem.ActivityContent,
+                ActivityStartTime = activityItem.ActivityStartTime.ToShortDateString(),
+                ActivityEndTime = activityItem.ActivityEndTime.ToShortDateString(),
+                IsGetUniversalCoupon = isGetUniversalCoupon,
+            };
+        }
+
         public GiftBoxDTO ReadGiftBox()
         {
             var giftBoxList = _repository.GetAll<Activity>().Where(a => a.IsDelete == false)

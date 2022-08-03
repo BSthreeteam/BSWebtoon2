@@ -21,6 +21,7 @@ namespace BSWebtoon.Front.Models.ViewModels.Rank
             public string Introduction { get; set; }
             public string BannerVideoWeb { get; set; }
             public string TagName { get; set; }
+            public int TagId { get; set; }
             public int Diff { get; set; }
         }
     }

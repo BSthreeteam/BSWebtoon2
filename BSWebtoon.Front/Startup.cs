@@ -25,7 +25,10 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using BSWebtoon.Front.Service.WeekUpdateService;
 using BSWebtoon.Front.Service.SearchService;
+using BSWebtoon.Front.Service.CloudinaryService;
+
 using BSWebtoon.Front.Service.ActivityService;
+using BSWebtoon.Front.Service.UploadService;
 using BSWebtoon.Front.Service.RecordViewService;
 
 namespace BSWebtoon.Front
@@ -45,6 +48,14 @@ namespace BSWebtoon.Front
             services.AddHttpClient();
 
             services.AddControllersWithViews();
+
+
+            //註冊
+            services.AddScoped<ICloudinaryService, CloudinaryService>();
+
+            services.AddScoped<IUploadService, UploadService>();
+
+
             services.AddScoped<BSRepository, BSRepository>();
             services.AddScoped<IActivityService, ActivityService>();
             services.AddScoped<IRecommendService, RecommendService>();
@@ -64,7 +75,8 @@ namespace BSWebtoon.Front
 
 
             services.AddHttpContextAccessor();
-            //藍新 維持 Json 回傳大小寫與 ViewModel 相同
+
+            // 藍新 維持 Json 回傳大小寫與 ViewModel 相同
             services.AddMvc().AddJsonOptions(options => { options.JsonSerializerOptions.PropertyNamingPolicy = null; });
             services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
 
@@ -74,7 +86,7 @@ namespace BSWebtoon.Front
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
                 {
-                    //全部寫得和預設值一樣
+                    //全部寫得和預設值一樣`
 
                     //設定登入Action的路徑： 
                     //options.LoginPath = new PathString("/Account/Login");
@@ -137,7 +149,15 @@ namespace BSWebtoon.Front
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Recommend}/{action=Recommend}/{id?}");
+
+
+            //endpoints.MapControllerRoute(
+            //    name: "ProductsPagination",
+            //    pattern: "WorksPage/{ComicId?}",
+            //    defaults: new { controller = "Favorite", action = "ReadFavorite" });
+
             });
+
         }
 
     }
