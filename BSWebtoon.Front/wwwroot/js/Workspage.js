@@ -11,7 +11,7 @@ const ep = document.querySelector('.ep');
 const illustrate = document.querySelector('.illustrate');
 const messages = document.querySelector('.messages');
 const local_video = document.querySelector('.local_video');
-const collect_a = document.querySelector('.red');
+ const collect_a = document.querySelector('.red');
 const comics_name_click = document.querySelector('.comics_name_click');
 const ep_row = document.querySelector('.ep_row');
 const copy = document.querySelector('.copy');
@@ -38,7 +38,6 @@ function reizeWindow() {
             //message_box.classList.remove('d-none');
             ep_row.innerText = "";
             ep_row.appendChild(card_box);
-            //message_box.appendChild(comment_text);
             console.log('///')
         }
     })
@@ -102,8 +101,8 @@ window.onload = function () {
     messages.addEventListener('click', () => {
         console.log('3')
         ep_row.innerText = "";
-        //comment_text.classList.remove('d-none');
-        //comment_text.classList.add('d-flex');
+        comment_text.classList.remove('d-none');
+        comment_text.classList.add('d-block');
         ep_row.appendChild(comment_text);
     })
 
@@ -119,13 +118,16 @@ window.onload = function () {
     local_video_bg.addEventListener('ended', () => {
         local_video_bg.classList.add('d-none');
     })
-    local_video_bg.addEventListener('click', () => {
-        local_video_bg.classList.add('d-none')
-    })
 
 
 
 
+    ////次序顛倒
+    //tidy = document.querySelector('.tidy');
+    //tidy_r = document.querySelector('.tidy_r')
+    //tidy.addEventListener('click', () => {
+    //    tidy.style.display = "none";
+    //    tidy_r.style.display = "flex";
 
     //     //我們是用以下的方式讓它做出滾動的效果
     //     window.addeventlistener('mousewheel', (event) => {
