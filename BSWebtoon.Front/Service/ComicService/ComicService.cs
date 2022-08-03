@@ -5795,19 +5795,33 @@ namespace BSWebtoon.Front.Service.ComicService
 
         private List<WorkContentDTO> Read(int epId, Episode epSource, IQueryable<EpContent> content)
         {
+            var aLLEpSource = _repository.GetAll<Episode>().Where(x => x.AuditType == 1 && x.ComicId == epSource.ComicId).OrderBy(x => x.UploadTime);
+
             var readResult = content.Select(c => new WorkContentDTO()
             {
-
                 EpId = epId,
                 EpTitle = epSource.EpTitle,
                 EpContentId = c.EpContentId,
                 ImagePath = c.ImagePath,
-                Page = c.Page
+                Page = c.Page,
+
+                EpList = aLLEpSource.Select(ep => new WorkContentDTO.EpData
+                {
+                    EpId = ep.EpId,
+                    ComicId = ep.ComicId,
+                    EpTitle = ep.EpTitle,
+                    EpCover = ep.EpCover,
+                    UploadTime = ep.UploadTime.ToShortDateString(),
+                    IsCountdownCoupon = ep.IsCountdownCoupon,
+                    IsFree = ep.IsFree
+
+                }).ToList()
             }).ToList();
 
             return readResult;
 
         }
+
 
         public void ViewRecordCreate(int EpId, int memberId)
         {
