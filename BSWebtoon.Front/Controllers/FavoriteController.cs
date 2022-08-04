@@ -16,10 +16,11 @@ namespace BSWebtoon.Front.Controllers
     public class FavoriteController : Controller
     {
         private readonly IFavoriteService _favoriteService;
-
-        public FavoriteController(IFavoriteService favoriteService)
+        private readonly IRecordViewService _recordView;
+        public FavoriteController(IFavoriteService favoriteService, IRecordViewService recordView)
         {
             _favoriteService = favoriteService;
+            _recordView = recordView;
         }
         public IActionResult RecordView()//Favorite/RecordView
         {
