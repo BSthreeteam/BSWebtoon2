@@ -2,8 +2,16 @@
 
 namespace BSWebtoon.Front.Models.DTO.WorkPage
 {
+
+    public class ReadworkContentOutputDTO : BaseOutputDTO
+    {
+        public int ComicId { get; set; }
+        public List<WorkContentDTO> WorkContents { get; set; }
+    }
+
     public class WorkContentDTO
     {
+        public int ComicId { get; set; }
         public int EpContentId { get; set; }
         public string EpTitle { get; set; }
 

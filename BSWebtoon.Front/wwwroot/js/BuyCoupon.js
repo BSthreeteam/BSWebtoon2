@@ -73,7 +73,7 @@ window.onload = function () {
     }
 
 }
-function BuyReadCoupon(ComicId, couponTypeId, memberId) {
+    function BuyReadCoupon(ComicId, couponTypeId, memberId) {
     let totalQuantity = document.querySelector('.totalQuantity')
     let buyQuantity = totalQuantity.innerHTML.slice(0, totalQuantity.innerHTML.length - 1)
     if (MemberHaveCoin < totalAmount.innerHTML) {
@@ -109,3 +109,4 @@ function BuyReadCoupon(ComicId, couponTypeId, memberId) {
         window.location.href = `/WorksPage/WorksPage/${ComicId}`;
     }
 
+}

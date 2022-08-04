@@ -18,7 +18,7 @@ namespace BSWebtoon.Front.Controllers
         {
             var memberId = User.Claims.FirstOrDefault() == null ? 0 : int.Parse(User.Claims.FirstOrDefault(x => x.Type == "MemberID").Value);
 
-            var buyCouponData = _comicService.ReadBuyCoupon(Id,memberId);
+            var buyCouponData = _comicService.ReadBuyCoupon(Id, memberId);
 
             var result = new BuyCouponViewModel
             {
@@ -97,56 +97,53 @@ namespace BSWebtoon.Front.Controllers
 
         public IActionResult workContent(int Id)
         {
+
             var memberId = User.Claims.FirstOrDefault() == null ? 0 : int.Parse(User.Claims.FirstOrDefault(x => x.Type == "MemberID").Value);
 
-            var comicContents = _comicService.ReadworkContent(Id, memberId);
+            var outputDto = _comicService.ReadworkContent(Id, memberId);
+
+
+            var comicContents = outputDto.WorkContents;
+
             var result = new WorkContentViewModel();
-            if (comicContents.Count() != 0)
-            {
-                var EpTitle = comicContents.Select(c => c.EpTitle).First();
-                var EpId = comicContents.Select(c => c.EpId).First();
-                var allEp = new List<WorkContentViewModel.EpData>() { };
-                foreach (var ep in comicContents[0].EpList)
-                {
-                    allEp.Add(new WorkContentViewModel.EpData()
-                    {
-                        EpId = ep.EpId,
-                        ComicId = ep.ComicId,
-                        EpTitle = ep.EpTitle,
-                        EpCover = ep.EpCover,
-                        UploadTime = ep.UploadTime,
-                        IsCountdownCoupon = ep.IsCountdownCoupon,
-                        IsFree = ep.IsFree
-                    });
-                }
-                result = new WorkContentViewModel()
-                {
-                    EpTitle = EpTitle,
-                    EpId = EpId,
-                    ContentList = comicContents.Select(c => new WorkContentViewModel.Content
-                    {
-                        ImagePath = c.ImagePath,
-                        Page = c.Page,
-                    }).ToList(),
-                    EpList = allEp
-                };
 
-                return View(result);
-            }
-            else
+
+            if(comicContents == null)
             {
-                return RedirectToAction("BuyCoupon", "WorksPage", new { id = 0 });
+                return RedirectToAction("BuyCoupon", "WorksPage", new { id = outputDto.ComicId });
             }
 
+            var allEp = new List<WorkContentViewModel.EpData>() { };
+            
+
+            foreach (var ep in comicContents[0].EpList)
+            {
+                allEp.Add(new WorkContentViewModel.EpData()
+                {
+                    EpId = ep.EpId,
+                    ComicId = ep.ComicId,
+                    EpTitle = ep.EpTitle,
+                    EpCover = ep.EpCover,
+                    UploadTime = ep.UploadTime,
+                    IsCountdownCoupon = ep.IsCountdownCoupon,
+                    IsFree = ep.IsFree
+                });
+            }
+            result = new WorkContentViewModel()
+            {
+                EpId = comicContents.Select(c => c.EpId).First(),
+                EpTitle = comicContents.Select(c => c.EpTitle).First(),
+
+                ContentList = comicContents.Select(c => new WorkContentViewModel.Content
+                {
+                    ImagePath = c.ImagePath,
+                    Page = c.Page,
+                }).ToList(),
+                EpList = allEp //_comicService.景  //景懸 在護呼叫SEVICE方法
+            };
+
+            return View(result);
         }
-
-
-
-
-
-
     }
-
-
 }
 
