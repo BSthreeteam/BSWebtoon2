@@ -17,8 +17,8 @@ namespace BSWebtoon.Front.Controllers.ApiController
             _comicService = comicService;
         }
 
-        [HttpGet("/{id}")]
-        public IActionResult GetCommentAll(int id)
+        [HttpGet("{id}")]///api/CommentApi/GetCommentAll/879
+        public IActionResult GetCommentAll([FromRoute]int id)
         {
             try
             {

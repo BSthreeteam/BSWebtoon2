@@ -97,12 +97,14 @@ namespace BSWebtoon.Front.Controllers
 
         public IActionResult workContent(int Id)
         {
-            var userName = User.Identity.Name;
-            var comicContents = _comicService.ReadworkContent(Id, userName);
+            var memberId = User.Claims.FirstOrDefault() == null ? 0 : int.Parse(User.Claims.FirstOrDefault(x => x.Type == "MemberID").Value);
+
+            var comicContents = _comicService.ReadworkContent(Id, memberId);
             var result = new WorkContentViewModel();
             if (comicContents.Count() != 0)
             {
                 var EpTitle = comicContents.Select(c => c.EpTitle).First();
+                var EpId = comicContents.Select(c => c.EpId).First();
                 var allEp = new List<WorkContentViewModel.EpData>() { };
                 foreach (var ep in comicContents[0].EpList)
                 {
@@ -120,6 +122,7 @@ namespace BSWebtoon.Front.Controllers
                 result = new WorkContentViewModel()
                 {
                     EpTitle = EpTitle,
+                    EpId = EpId,
                     ContentList = comicContents.Select(c => new WorkContentViewModel.Content
                     {
                         ImagePath = c.ImagePath,

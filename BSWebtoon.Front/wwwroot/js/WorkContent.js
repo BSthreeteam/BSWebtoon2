@@ -3,6 +3,10 @@ let btn_last = document.querySelector(".btn_last");
 let comicpic = document.querySelector("#comicpic");
 let btn_next = document.querySelector(".btn_next");
 let btn_comment = document.querySelector(".btn_comment");
+let epContent = document.querySelector(".epContent");
+let Comment_area = document.querySelector(".Comment_area");
+let btn_leave = document.querySelector(".btn_leave")
+
 //let cloneContent = comicpic.content.cloneNode(true);
 let mulu_row = document.querySelector('.mulu-row')
 let muluTemplate = document.querySelector('#mulutemplate')
@@ -20,11 +24,9 @@ let more_function = document.querySelector('.more_function');
 let btn_play = document.querySelector('.btn_play')
 
 window.onload = function () {
-
-    for (let index = 1; index <= 30; index++) {
-        comic_content.appendChild(getClonepic(index))
-    }
-
+    //for (let index = 1; index <= 30; index++) {
+    //    comic_content.appendChild(getClonepic(index))
+    //}
     //目錄按鈕
     comic_content.addEventListener("click", () => {
         more_function.style.display = "block"
@@ -38,59 +40,46 @@ window.onload = function () {
     //上一頁按鈕
     btn_last.addEventListener("click", () => {
         comic_content.innerText = "";
-        comic_content.appendChild(cloneContent)
+        //    for (let i = 1; i <= 30; i++) {
+        //        comic_content.appendChild(getClonepic(i))
+        //    }
     })
     //下一頁按鈕
     btn_next.addEventListener("click", () => {
         comic_content.innerText = "";
-        comic_content.appendChild(cloneContent)
+        //    for (let i = 1; i <= 30; i++) {
+        //        comic_content.appendChild(getClonepic(i))
+        //    }
     })
     //留言
-    btn_comment.addEventListener("click", () => {
-        let container_fluid = document.querySelector(".comic_area");
-        let comic = document.querySelector(".comic");
-        let body = document.querySelector("body");
-        let comment_text = document.querySelector(".comment_text")
-        body.classList.add("bg-dark")
-        comic.innerText = "";
-        container_fluid.innerText = "";
-        comment_text.innerText = "";
-        let cloneContent = comment.content.cloneNode(true);
-        // let more_function = document.querySelector(".more_function")
-        comment_text.append(cloneContent)
-        // let back=document.querySelector(".btn text-decoration-none my-2")
-        // //返回按鈕
-        // back.addEventListener("click",()=>{
-        //     history.go(-1);
-        // })
-    })
+    //btn_comment.addEventListener("click", () => {
+    //    epContent.classList.add("d-none")
+    //    Comment_area.classList.remove("d-none")
 
+    //})
+
+    btn_leave.addEventListener("click", () => {
+        Comment_area.classList.add("d-none")
+        epContent.classList.remove("d-none")
+
+
+    })
 
     //--------------------------------------------------
 
 
     //自動播放
     btn_play.addEventListener("click", () => {
-
         comic_content_Height = window.getComputedStyle(comic_content).getPropertyValue("height");
-
         comic_content_Height = parseInt(comic_content_Height);
-
         //自動捲動
         scrollId = setInterval(scroll, 10);
-
         function scroll() {
             if (comic_content.scrollTop + comic_content_Height < comic_content.scrollHeight) {
                 //向下捲動
                 comic_content.scrollTop++;
                 console.log(comic_content.scrollTop)
             }
-
-            // else {
-            //     //捲到底
-            //     window.clearInterval(scrollId);
-            //     alert("捲到底囉");
-            // }
         }
     });
 
@@ -98,25 +87,22 @@ window.onload = function () {
     //--------------------------------------------------
 
 
-//    for (let i = 1; i <= 30; i++) {
-//        mulu_row.appendChild(getCloneMULU(i))
-//        mulu_md_row.appendChild(getCloneMULU(i))
-//    }
+
+
 }
 
 
 
+    //function getClonepic(index) {
+    //    let cloneCard = comicpic.content.cloneNode(true);
+    //    cloneCard.querySelector('img').src = `https://picsum.photos/300/200/?random=${index}`
+    //    return cloneCard;
+    //}
 
-function getClonepic(index) {
-    let cloneCard = comicpic.content.cloneNode(true);
-    cloneCard.querySelector('img').src = `https://picsum.photos/300/200/?random=${index}`
-    return cloneCard;
-}
-
-//function getCloneMULU(index) {
-//    let cloneCard = muluTemplate.content.cloneNode(true);
-//    cloneCard.querySelector('img').src = `https://picsum.photos/300/200/?random=${index}`
-//    cloneCard.querySelector('.card-title').innerHTML = `第${index}話`
-//    return cloneCard;
-//}
+    //function getCloneMULU(index) {
+    //    let cloneCard = muluTemplate.content.cloneNode(true);
+    //    cloneCard.querySelector('img').src = `https://picsum.photos/300/200/?random=${index}`
+    //    cloneCard.querySelector('.card-title').innerHTML = `第${index}話`
+    //    return cloneCard;
+    //}
 

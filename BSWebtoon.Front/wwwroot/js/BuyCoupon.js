@@ -1,3 +1,4 @@
+let totalAmount = document.querySelector('.totalAmount')
 
 window.onload = function () {
     let readYet = document.querySelector('.readYet');
@@ -8,7 +9,6 @@ window.onload = function () {
     let readYetQuantity = readYet.innerHTML.slice(0, readYet.innerHTML.length - 1)
     buyOneTime.innerHTML = `${readYetQuantity - nowHaveCouponQuantity}張`
 
-    let totalAmount = document.querySelector('.totalAmount')
     let planQuantity = document.querySelector('.planQuantity')
     let totalQuantity = document.querySelector('.totalQuantity')
 
@@ -68,10 +68,11 @@ window.onload = function () {
         let totalQuantity = document.querySelector('.totalQuantity')
         let buyQuantityInt = parseInt(buyQuantity.innerText)
         let planQuantityInt = parseInt(planQuantity.innerText.slice(0, planQuantity.innerText.length - 1))
-        totalQuantity.innerHTML = ${ buyQuantityInt * planQuantityInt } 張
+        totalQuantity.innerHTML = `${ buyQuantityInt * planQuantityInt } 張`
         totalAmount.innerHTML = buyQuantityInt * planQuantityInt * 300
     }
 
+}
     function BuyReadCoupon(ComicId, couponTypeId, memberId) {
         let totalQuantity = document.querySelector('.totalQuantity')
         let buyQuantity = totalQuantity.innerHTML.slice(0, totalQuantity.innerHTML.length - 1)
@@ -90,5 +91,4 @@ window.onload = function () {
             fetch("/api/Coupon/ReadCoupon")
         }
     }
-}
 

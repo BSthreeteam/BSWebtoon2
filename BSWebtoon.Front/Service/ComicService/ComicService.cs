@@ -5703,10 +5703,9 @@ namespace BSWebtoon.Front.Service.ComicService
         }
 
 
-        public List<WorkContentDTO> ReadworkContent(int EpId, string userName)
+        public List<WorkContentDTO> ReadworkContent(int EpId, int memberId)
         {
 
-            var memberId = _repository.GetAll<Member>().Where(c => c.AccountName == userName).Select(c => c.MemberId).First();
 
             var couponSource = _repository.GetAll<Coupon>().Where(p => p.MemberId == memberId);//找出登入會員的所有卷
 
@@ -5868,21 +5867,41 @@ namespace BSWebtoon.Front.Service.ComicService
 
         public List<CommentDTO> GetComment(int EpId)
         {
-            var commentSourse = _repository.GetAll<Comment>().Where(c => c.EpId == EpId).OrderBy(c=>c.CreateTime);
-            var commentLikeSourse = _repository.GetAll<CommentLikeRecord>().Where(c => c.CommentId == commentSourse.Select(c => c.CommentId).First());
-            var memberName = _repository.GetAll<Member>();
+            var commentSourse = _repository.GetAll<Comment>().Where(c => c.EpId == EpId).OrderBy(c=>c.CreateTime);//取到這集所有留言並依時間排序
+            //var commentLikeSourse = _repository.GetAll<CommentLikeRecord>().Where(c => c.CommentId == commentSourse.Select(c => c.CommentId).First());
+            var memberName = _repository.GetAll<Member>();//找到成員資料
+
+            var mainCommentSourse = commentSourse.Where(c => c.ReplyToCommentId == null);
+            var replyCommentSourse = commentSourse.Where(c => c.ReplyToCommentId != null);
+
             var result = new List<CommentDTO>();
 
-            result = commentSourse.Select(c => new CommentDTO
+            result = mainCommentSourse.Select(c=> new CommentDTO
             {
-                CommentId = c.CommentId,
-                Context = c.Context,
-                CreateTime = c.CreateTime,
-                IsSpoiler = c.IsSpoiler,
-                EpId = c.EpId,
-                MemberName = memberName.Where(m => m.MemberId == c.MemberId).Select(m => m.AccountName).First(),
-                ReplyToCommentId = c.ReplyToCommentId,
+                MainComment = new CommentContxt
+                {
+                    CommentId = c.CommentId,
+                    Context = c.Context,
+                    CreateTime = c.CreateTime,
+                    EpId = c.EpId,
+                    IsSpoiler = c.IsSpoiler,
+                    MemberName = memberName.Where(m=>m.MemberId == c.MemberId).Select(m=> m.AccountName).First()
+                },
+                ReplyMainComment = replyCommentSourse.Where(rc => rc.ReplyToCommentId == c.CommentId).Select(rc=>new ReplyCommentContxt
+                {
+                    ReplyToCommentId = rc.ReplyToCommentId,
+                    IsSpoiler = rc.IsSpoiler,
+                    CommentId = rc.CommentId,
+                    Context = rc.Context,
+                    CreateTime = c.CreateTime,
+                    EpId = c.EpId,
+                    MemberName = memberName.Where(m => m.MemberId == rc.MemberId).Select(m => m.AccountName).First()
+
+
+                }).ToList()
             }).ToList();
+
+
 
             return result;
 
