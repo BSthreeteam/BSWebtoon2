@@ -25,6 +25,11 @@ namespace BSWebtoon.Front.Controllers
 
         public IActionResult Recommend()
         {
+            var a = HttpContext.Request.Host.Value;
+            var a1 = HttpContext.Request.Host.Port;
+            var a2 = HttpContext.Request.Scheme;
+            var a3 = HttpContext.Request.Protocol;
+
             var recommendSource = _recommendservice.ReadRecommend();
 
             var allRecommend = new List<RecommendViewModel.RecommendComic>() { };
