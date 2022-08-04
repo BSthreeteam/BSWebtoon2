@@ -17,6 +17,9 @@
     var remainingDays = remainingTime.Split('.')[0];
     var remainingHours = remainingTime.Split('.')[1].Split(':')[0];
 
+    var startDay = @Model.ActivityStartTime.Split('/')[1] + "/" + @Model.ActivityStartTime.Split('/')[2];
+    var endDay = @Model.ActivityEndTime.Split('/')[1] + "/" + @Model.ActivityEndTime.Split('/')[2];
+
     //var nowTime = DateTime.UtcNow.AddHours(8);
     var ActivityId = @Model.ActivityId;
     var universalCouponGetCount = 1;
@@ -37,7 +40,7 @@
         <img src="@Model.ActivityImage" alt="">
         <div class="row w-700 activity_title">
             <p class="countdownTime">剩餘 @remainingDays 日 @remainingHours 小時</p>
-            <p class="activity_title_info">7/23-7/25</p>
+            <p class="activity_title_info">@startDay-@endDay</p>
             <p class="activity_title_info">@Model.ActivityName</p>
             <!-- <p>ⓒ作者/繪者/發行</p> -->
         </div>
