@@ -3,7 +3,10 @@ let div_btns = document.querySelector('#div_btns');
 let del_btn = document.querySelector('#del_btn');
 
 
-
+//跳轉頁面
+function myFunction() {
+    window.location.href = '/Favorite/ReadFavoriteView';
+}
 
 //放待刪除的陣列
 var arr_to_be_del = [];
@@ -102,7 +105,6 @@ function remove_all(double_check = false) {
                 arr_to_be_del.forEach(del_item_id => {
                     let del_tag = document.getElementById(del_item_id).parentNode.parentNode;
                     del_tag.remove();
-                    //window.location.reload();
                     console.log(del_item_id + '刪除成功~');
                 });
                 //全部刪除 直接重新宣告成空的
