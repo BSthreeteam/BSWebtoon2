@@ -24,6 +24,8 @@
                 @*如果是登入的狀態下，登入按鈕消失*@
                 @if (User.Identity.IsAuthenticated)
                 {
+                    var memberId = User.Claims.FirstOrDefault() == null ? 0 : int.Parse(User.Claims.FirstOrDefault(x => x.Type == "MemberID").Value);
+
                     <li class="nav-item dropdown flex-nowrap" id="user">
                         <a class="nav-link dropdown-toggle display_name" href="#" id="navbarDropdown" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">
@@ -33,7 +35,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item bg-light xl_accountinfo" href="/Recommend/Recommend">首頁</a></li>
-                            <li><a class="dropdown-item bg-light xl_accountinfo" href="/api/Account/AccountInfo">我的帳戶</a></li>
+                            <li><a class="dropdown-item bg-light xl_accountinfo" href="/Account/AccountInfo/@memberId">我的帳戶</a></li>
                             @*<li><a class="dropdown-item bg-light xl_my_comic" href="/Favorite/AddFavoriteView">我的漫畫</a></li>*@
                             <li><a class="dropdown-item bg-light xl_my_love" href="/Favorite/ReadFavoriteView">我的最愛</a></li>
                             <li><a class="dropdown-item bg-light xl_my_coin" href="#">金幣/閱讀券明細</a></li>
@@ -73,10 +75,10 @@
                     @*<a class="nav-link" href="#">排行榜</a>*@
                     @Html.ActionLink("排行榜", "AllRankList", "Rank", new {},new {@class="nav-link text-light"})
                 </li>
-               @* <li class="nav-item">
+                @* <li class="nav-item">
                     @* <a class="nav-link" href="#">我的漫畫</a>*@
-                    @*@Html.ActionLink("我的漫畫", "RecordView","Favorite" , new {},new {@class="nav-link text-light"})
-                </li>*@
+                @*@Html.ActionLink("我的漫畫", "RecordView","Favorite" , new {},new {@class="nav-link text-light"})
+                    </li>*@
             </ul>
             <template>
                 <ul class="nav justify-content-center">
@@ -90,18 +92,19 @@
             </template>
         </nav>
     </div>
-    @if(TempData["message"]!=null){
+    @if (TempData["message"] != null)
+    {
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script type="text/javascript">
-            var message = "@Html.Raw(TempData["message"])";
-@*            alert(message);
-*@            swal({
-                icon: "success",
-                title: message
-            });
+                        var message = "@Html.Raw(TempData["message"])";
+            @*            alert(message);
+            *@            swal({
+                            icon: "success",
+                            title: message
+                        });
         </script>
     }
-      <partial name="_LoginPartial"></partial>
+    <partial name="_LoginPartial"></partial>
     <template id="useraccount">
         <div class="col-12 userinfo w-1200">
             <h1>帳戶資訊</h1>

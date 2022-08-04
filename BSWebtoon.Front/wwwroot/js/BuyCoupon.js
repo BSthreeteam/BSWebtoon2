@@ -1,3 +1,4 @@
+let totalAmount = document.querySelector('.totalAmount')
 
 window.onload = function () {
     let readYet = document.querySelector('.readYet');
@@ -8,7 +9,6 @@ window.onload = function () {
     let readYetQuantity = readYet.innerHTML.slice(0, readYet.innerHTML.length - 1)
     buyOneTime.innerHTML = `${readYetQuantity - nowHaveCouponQuantity}張`
 
-    let totalAmount = document.querySelector('.totalAmount')
     let planQuantity = document.querySelector('.planQuantity')
     let totalQuantity = document.querySelector('.totalQuantity')
 
@@ -72,23 +72,41 @@ window.onload = function () {
         totalAmount.innerHTML = buyQuantityInt * planQuantityInt * 300
     }
 
-    function BuyReadCoupon(ComicId, couponTypeId, memberId) {
-        let totalQuantity = document.querySelector('.totalQuantity')
-        let buyQuantity = totalQuantity.innerHTML.slice(0, totalQuantity.innerHTML.length - 1)
-        if (MemberHaveCoin < totalAmount.innerHTML) {
-            alert('金幣餘額不足，將自動導向儲值頁面')
-            window.location.href = `/Recharge/CashPlanView`;
+}
+function BuyReadCoupon(ComicId, couponTypeId, memberId) {
+    let totalQuantity = document.querySelector('.totalQuantity')
+    let buyQuantity = totalQuantity.innerHTML.slice(0, totalQuantity.innerHTML.length - 1)
+    if (MemberHaveCoin < totalAmount.innerHTML) {
+        alert('金幣餘額不足，將自動導向儲值頁面')
+        window.location.href = `/Recharge/CashPlanView`;
+    }
+    else {
+        var couponData = {
+            "ComicId": ComicId,
+            "OriginQuantity": buyQuantity,
+            "CouponTypeId": couponTypeId,
+            "MemberId": memberId,
+            "SpendCoin": totalAmount.innerHTML
         }
-        else {
-            var couponData = {
-                "ComicId": ComicId,
-                "OriginQuantity": buyQuantity,
-                "CreateTime": new Date(),
-                "CouponTypeId": couponTypeId,
-                "MemberId": memberId
-            }
-            fetch("/api/Coupon/ReadCoupon")
-        }
+        fetch("/api/Coupon/ReadCoupon", {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify(couponData)
+        })
+            .then(response => response.text())
+            .then(result => {
+                if (result.ok) {
+                    console.log(result)
+                }
+            })
+            .catch(ex => {
+                console.log(ex)
+            })
+        alert("購買完成，將自動導向回作品頁面")
+        window.location.href = `/WorksPage/WorksPage/${ComicId}`;
     }
 }
 

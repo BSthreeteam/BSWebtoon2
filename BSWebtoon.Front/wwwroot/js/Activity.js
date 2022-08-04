@@ -4,7 +4,6 @@ async function clickGetCouponBtn(ActivityId, universalCouponGetCount, couponType
         var couponData = {
             "ActivityId": ActivityId,
             "OriginQuantity": universalCouponGetCount,
-            "CreateTime": new Date(),
             "CouponTypeId": couponTypeId,
             "MemberId": memberId
         }

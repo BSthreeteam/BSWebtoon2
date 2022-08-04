@@ -5583,7 +5583,7 @@ namespace BSWebtoon.Front.Service.ComicService
             var mainTag = tagnames.FirstOrDefault(x => x.IsMainTag);
             var couponTest = _repository.GetAll<Coupon>();
             // 1通用券 2閱讀券 3倒數券 券有可能沒有 都沒有的話就只有倒數券
-            var readCouponSource = _repository.GetAll<Coupon>().Where(x => x.CouponTypeId == 2 && x.MemberId == memberId && x.ComicId == comicId).Select(x => x.Quantity).FirstOrDefault();
+            var readCouponSource = _repository.GetAll<Coupon>().Where(x => x.CouponTypeId == 2 && x.MemberId == memberId && x.ComicId == comicId).OrderByDescending(x => x.CreateTime).Select(x => x.Quantity).FirstOrDefault();
 
             var CDCouponSource = 0;
             if (memberId != 0)
@@ -5852,7 +5852,7 @@ namespace BSWebtoon.Front.Service.ComicService
             var MemberHaveCoin = _repository.GetAll<Member>().Where(m => m.MemberId == memberId).Select(m => m.Balance).First();
             MemberHaveCoin = decimal.Round(MemberHaveCoin, 0);
 
-            var readCouponSource = _repository.GetAll<Coupon>().Where(x => x.CouponTypeId == 2 && x.MemberId == memberId && x.ComicId == comicId).Select(x => x.Quantity).FirstOrDefault();
+            var readCouponSource = _repository.GetAll<Coupon>().Where(x => x.CouponTypeId == 2 && x.MemberId == memberId && x.ComicId == comicId).OrderByDescending(x => x.CreateTime).Select(x => x.Quantity).FirstOrDefault();
             var CDCouponSource = _repository.GetAll<Coupon>().First(x => x.CouponTypeId == 3 && x.MemberId == memberId && x.ComicId == comicId);
 
             return new BuyCouponDTO
