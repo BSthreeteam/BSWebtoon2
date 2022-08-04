@@ -135,7 +135,7 @@ namespace BSWebtoon.Front.Controllers
             }
             else
             {
-                return RedirectToAction("BuyCoupon");
+                return RedirectToAction("BuyCoupon", "WorksPage", new { id = 0 });
             }
 
         }

@@ -2,6 +2,7 @@
 using BSWebtoon.Front.Service.CouponService;
 using BSWebtoon.Model;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using System.Linq;
 
 namespace BSWebtoon.Front.Controllers
@@ -25,12 +26,12 @@ namespace BSWebtoon.Front.Controllers
 
             return Ok();
         }
+
         [HttpPost]
         public IActionResult ReadCoupon(GetReadCouponDTO readCoupon)
         {
             var coupon = readCoupon;
             _couponService.GetReadCoupon(coupon);
-
             return Ok();
         }
     }
