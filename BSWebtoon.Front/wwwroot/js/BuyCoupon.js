@@ -7,7 +7,11 @@ window.onload = function () {
 
     let nowHaveCouponQuantity = nowHaveCoupon.innerHTML.slice(0, nowHaveCoupon.innerHTML.length - 1)
     let readYetQuantity = readYet.innerHTML.slice(0, readYet.innerHTML.length - 1)
-    buyOneTime.innerHTML = `${readYetQuantity - nowHaveCouponQuantity}張`
+    if (readYetQuantity - nowHaveCouponQuantity < 0) {
+        buyOneTime.innerHTML = "0 張"
+    } else {
+        buyOneTime.innerHTML = `${readYetQuantity - nowHaveCouponQuantity}張`
+    }
 
     let planQuantity = document.querySelector('.planQuantity')
     let totalQuantity = document.querySelector('.totalQuantity')
@@ -44,9 +48,10 @@ window.onload = function () {
         quantity_minus_btn.style.display = "none"
         quantity_plus_btn.style.display = "none"
         buyQuantity.style.display = "none"
+        console.log(buyOneTime)
         planQuantity.innerText = buyOneTime.innerHTML
-        totalQuantity.innerText = buyOneTime.innerHTML
-        totalAmount.innerHTML = readYetQuantity * 300
+        totalQuantity.innerHTML = buyOneTime.innerHTML
+        totalAmount.innerHTML = totalQuantity.innerHTML.slice(0, totalQuantity.innerHTML.length - 1) * 300
     })
 
     //數量加減
@@ -69,14 +74,18 @@ window.onload = function () {
         let buyQuantityInt = parseInt(buyQuantity.innerText)
         let planQuantityInt = parseInt(planQuantity.innerText.slice(0, planQuantity.innerText.length - 1))
         totalQuantity.innerHTML = `${buyQuantityInt * planQuantityInt}張`
-        totalAmount.innerHTML = buyQuantityInt * planQuantityInt * 300
+        totalAmount.in = (buyQuantityInt * planQuantityInt * 300)
     }
 
 }
-function BuyReadCoupon(ComicId, couponTypeId, memberId) {
+async function BuyReadCoupon(ComicId, couponTypeId, memberId, nowHaveCouponQuantity) {
     let totalQuantity = document.querySelector('.totalQuantity')
     let buyQuantity = totalQuantity.innerHTML.slice(0, totalQuantity.innerHTML.length - 1)
-    if (MemberHaveCoin < totalAmount.innerHTML) {
+    if (buyQuantity == 0) {
+        alert(`您現有的閱讀券數量為${nowHaveCouponQuantity}\n已足夠閱覽至最新話次`)
+        return
+    }
+    else if (MemberHaveCoin < totalAmount.innerHTML) {
         alert('金幣餘額不足，將自動導向儲值頁面')
         window.location.href = `/Recharge/CashPlanView`;
     }
@@ -88,7 +97,7 @@ function BuyReadCoupon(ComicId, couponTypeId, memberId) {
             "MemberId": memberId,
             "SpendCoin": totalAmount.innerHTML
         }
-        fetch("/api/Coupon/ReadCoupon", {
+        await fetch("/api/Coupon/ReadCoupon", {
             method: "POST",
             headers: {
                 "Accept": "application/json",

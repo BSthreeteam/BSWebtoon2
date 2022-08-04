@@ -51,7 +51,8 @@ namespace BSWebtoon.Front.Controllers.ApiController
                 detailsList.Add(new CouponDetailsViewModel.CouponDetail()
                 {
                     BuyOrUse = couponDetail.BuyOrUse,
-                    CouponCount = couponDetail.CouponCount,
+                    CouponType = couponDetail.CouponType,
+                    BuyOrUseCount = couponDetail.BuyOrUseCount,
                     CreateTime = couponDetail.CreateTime,
                     ComicName = couponDetail.ComicName,
                     ActivityName = couponDetail.ActivityName,

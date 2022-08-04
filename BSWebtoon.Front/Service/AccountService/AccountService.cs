@@ -29,7 +29,7 @@ namespace BSWebtoon.Front.Service.AccountService
                 .Where(c => c.MemberId == memberId && c.CouponTypeId == (int)CouponType.universalCoupon)
                 .OrderByDescending(c => c.CreateTime).Select(c => c.Quantity).FirstOrDefault();
 
-            var readCouponQuantity = 0;
+            int? readCouponQuantity = 0;
 
             using (SqlConnection conn = new SqlConnection(_connectionStr))
             {
@@ -39,10 +39,17 @@ namespace BSWebtoon.Front.Service.AccountService
 	                                 SELECT 
 		                                MAX(CreateTime)
 	                                 FROM Coupon
-	                                 WHERE MemberId = 34　and CouponTypeId = 2
+	                                 WHERE MemberId = {memberId}　and CouponTypeId = {(int)CouponType.readCoupon}
 	                                 GROUP BY ComicId
                                  )";
-                readCouponQuantity = conn.Query<int>(sql).First();
+                if (conn.Query<int?>(sql).FirstOrDefault() == null)
+                {
+                    readCouponQuantity = 0;
+                }
+                else
+                {
+                    readCouponQuantity = conn.Query<int?>(sql).FirstOrDefault();
+                }
             }
 
             return new AccountInfoDTO()
@@ -51,7 +58,7 @@ namespace BSWebtoon.Front.Service.AccountService
                 MemberName = member.AccountName,
                 CoinQuantity = MemberHaveCoin,
                 UniversalCouponQuantity = universalCouponQuantity,
-                ReadCouponQuantity = readCouponQuantity
+                ReadCouponQuantity = (int)readCouponQuantity
             };
         }
 
@@ -71,7 +78,7 @@ namespace BSWebtoon.Front.Service.AccountService
             {
                 ConsumptionOrRecharge = "儲值",
                 CoinContent = x.CashPlanContent.ToString("00."),
-                CreateTime = x.CreateTime.Value.ToString("yyyy/MM/dd HH:mm:ss"),
+                CreateTime = x.CreateTime.Value.AddHours(8).ToString("yyyy/MM/dd HH:mm:ss"),
             }).ToList();
 
             var coinConsumptionRecord = _repository.GetAll<Coupon>()
@@ -92,13 +99,57 @@ namespace BSWebtoon.Front.Service.AccountService
 
             allList = allList.OrderByDescending(a => a.CreateTime).ToList();
 
-            return new CoinDetailsDTO() { coinDetailList = allList};
+            return new CoinDetailsDTO() { coinDetailList = allList };
         }
 
         public CouponDetailsDTO GetCouponDetails(int memberId)
         {
+            var buyCouponRecord = _repository.GetAll<Coupon>()
+                .Where(c => c.MemberId == memberId)
+                .Where(c => c.CouponTypeId == (int)CouponType.readCoupon || c.CouponTypeId == (int)CouponType.universalCoupon);
 
-            return new CouponDetailsDTO { };
+            var addTitle = new CouponDetailsDTO.CouponDetail
+            {
+                BuyOrUse = "獲得/使用",
+                CouponType = "券種",
+                BuyOrUseCount = "獲得/使用數量",
+                CreateTime = "時間",
+                ComicName = "漫畫名稱",
+                ActivityName = "活動名稱"
+            };
+
+            var addBuyCouponRecord = buyCouponRecord.Select(x => new CouponDetailsDTO.CouponDetail
+            {
+                BuyOrUse = x.CouponTypeId == (int)CouponType.readCoupon ? "購買" : "活動贈送",
+                CouponType = x.CouponTypeId == (int)CouponType.readCoupon ? "閱讀券" : "通用券",
+                BuyOrUseCount = x.OriginQuantity.ToString(),
+                CreateTime = x.CreateTime.ToString("yyyy/MM/dd HH:mm:ss"),
+                ComicName = _repository.GetAll<Comic>().Where(c => c.ComicId == x.ComicId).Select(c => c.ComicChineseName).First(),
+                ActivityName = _repository.GetAll<Activity>().Where(a => a.ActivityId == x.ActivityId).Select(a => a.ActivityName).First(),
+            }).ToList();
+
+            var UseCouponRecord = _repository.GetAll<CouponUsedRecord>().Where(u => u.MemberId == memberId);
+
+            var addUseCouponRecord = UseCouponRecord.Select(x => new CouponDetailsDTO.CouponDetail
+            {
+                BuyOrUse = "使用",
+                CouponType = _repository.GetAll<Coupon>().Where(c => c.CouponId == x.CouponId).Select(c => c.CouponTypeId == (int)CouponType.readCoupon ? "閱讀券" : "通用券").First(),
+                BuyOrUseCount = "1",
+                CreateTime = x.StartReadTime.ToString("yyyy/MM/dd HH:mm:ss"),
+                ComicName = _repository.GetAll<Comic>()
+                    .Where(c => c.ComicId == _repository.GetAll<Episode>()
+                    .Where(e => e.EpId == x.EpId).Select(e => e.ComicId).First())
+                    .Select(c => c.ComicChineseName).First(),
+            }).ToList();
+
+            var allList = new List<CouponDetailsDTO.CouponDetail> { };
+            allList.Add(addTitle);
+            allList.AddRange(addBuyCouponRecord);
+            allList.AddRange(addUseCouponRecord);
+
+            allList = allList.OrderByDescending(a => a.CreateTime).ToList();
+
+            return new CouponDetailsDTO { CouponDetailList = allList };
         }
     }
 }
