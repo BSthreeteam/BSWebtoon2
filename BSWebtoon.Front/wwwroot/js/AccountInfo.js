@@ -21,24 +21,9 @@ recordItem_a.forEach(item => {
         item.classList.add('selectedRecordItem')
     })
 })
-function GetCoinDetails(memberId) {
-    tableContent.innerHTML = ""
-    fetch(`/api/GetAccountRecord/GetCoinDetails/${memberId}`)
-        .then(response => { return response.json() })
-        .then(result => {
-            //console.log(result)
-            if (result != null) {
-                nothing.classList.add('d-none')
-                tableContent.appendChild(GetCloneTable(result.coinDetailList, coinRecord.innerHTML))
-            }
-        })
-        .catch(ex => {
-            console.log(ex)
-        })
-}
 function GetCouponDetails(memberId) {
     tableContent.innerHTML = ""
-    fetch(`/api/GetAccountRecord/GetCouponDetails/${memberId}`)
+    fetch(`/api/GetAccountRecordApi/GetCouponDetails/${memberId}`)
         .then(response => { return response.json() })
         .then(result => {
             //console.log(result)
@@ -51,6 +36,23 @@ function GetCouponDetails(memberId) {
             console.log(ex)
         })
 }
+
+function GetCoinDetails(memberId) {
+    tableContent.innerHTML = ""
+    fetch(`/api/GetAccountRecordApi/GetCoinDetails/${memberId}`)
+        .then(response => { return response.json() })
+        .then(result => {
+            //console.log(result)
+            if (result != null) {
+                nothing.classList.add('d-none')
+                tableContent.appendChild(GetCloneTable(result.coinDetailList, coinRecord.innerHTML))
+            }
+        })
+        .catch(ex => {
+            console.log(ex)
+        })
+}
+
 function GetCloneTable(resultObj, captionText) {
     let CloneTable = tableTemplate.content.cloneNode(true);
     let caption = document.createElement('caption');

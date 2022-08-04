@@ -7,11 +7,11 @@ namespace BSWebtoon.Front.Controllers.ApiController
 {
     [Route("api/[Controller]/[Action]")]
     [ApiController]
-    public class GetAccountRecordController : Controller
+    public class GetAccountRecordApiController : Controller
     {
         private readonly IAccountService _accountService;
 
-        public GetAccountRecordController(IAccountService accountService)
+        public GetAccountRecordApiController(IAccountService accountService)
         {
             _accountService = accountService;
         }
