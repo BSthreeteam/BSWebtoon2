@@ -331,7 +331,7 @@ a {
         color: rgb(71, 61, 61);
     }
 
-.main_comics_episode .comics_episode .message_box {
+.main_comics_episode .comics_episode .message_box{
     display: none;
 }
 
@@ -368,7 +368,7 @@ a {
     }
 
         .main_comics_episode .comics_episode .message_box .comment_text {
-            display: flex;
+            display: block;
             flex-direction: column;
         }
 

@@ -45,7 +45,7 @@ namespace NewebPay.Controllers
             ViewData["MerchantOrderNo"] = DateTime.Now.ToString("yyyyMMddHHmmss");  //訂單編號
             ViewData["ExpireDate"] = DateTime.Now.AddDays(3).ToString("yyyyMMdd"); //繳費有效期限
 
-            string url_start = $"{Request.Scheme}://localhost:80";
+            string url_start = $"{Request.Scheme}://bswebtoon-front.azurewebsites.net";
             ViewData["ReturnURL"] = $"{url_start}/NewebPay/CallbackReturn"; //支付完成返回商店網址
             ViewData["CustomerURL"] = $"{url_start}/NewebPay/CallbackCustomer"; //商店取號網址
             ViewData["NotifyURL"] = $"{url_start}/NewebPay/CallbackNotify"; //支付通知網址
