@@ -1,3 +1,4 @@
+using BSWebtoon.Admin.IDapperRepository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +27,8 @@ namespace BSWebtoon.Admin
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddTransient<IDapperEmployeeRepository, DapperEmployeeRepository>();
+            services.AddTransient<IDapperMemberRepository, DapperMemberRepository>();
             services.AddScoped<IDbConnection, SqlConnection>(serviceProvider =>
             {
                 SqlConnection conn = new SqlConnection();

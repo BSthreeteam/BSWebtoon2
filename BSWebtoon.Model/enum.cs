@@ -6,23 +6,23 @@ namespace BSWebtoon.Model
     {
         finish = 1,//完結
         stopUpdate = 2, //停更
-        serialize = 3,//
-        newWork =4
+        serialize = 3,//連載中
+        newWork =4//新作
     }
     public enum CouponType
     {
         
-        universalCoupon = 1,
-        readCoupon = 2,
-        countdownCoupon = 3,
+        universalCoupon = 1,//通用券
+        readCoupon = 2,//閱讀券
+        countdownCoupon = 3,//倒數免費券
     }
     public enum AuditType
     {
         
-        auditPass =1,
-        Unaudit = 2,
-        auditFailure =3,
-        auditProcessing =4,
+        auditPass =1,//審核通過
+        Unaudit = 2,//未審核
+        auditFailure =3,//審核失敗
+        auditProcessing =4,//審核中
     }
 }
 
