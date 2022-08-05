@@ -104,7 +104,7 @@ namespace NewebPay.Controllers
             // 繳費有效期限(適用於非即時交易)
             //TradeInfo.Add(new KeyValuePair<string, string>("ExpireDate", inModel.ExpireDate));//我們是即時交易
             // 支付完成返回商店網址
-            TradeInfo.Add(new KeyValuePair<string, string>("ReturnURL", $"https://bswebtoon-front.azurewebsites.net/NewebPay/CallbackReturn"));
+            TradeInfo.Add(new KeyValuePair<string, string>("ReturnURL", $"https://bswebtoon-frontend.azurewebsites.net/NewebPay/CallbackReturn"));
             // 支付通知網址
             TradeInfo.Add(new KeyValuePair<string, string>("NotifyURL", $"{Request.Scheme}://{Request.Host}{Request.Path}Home/CallbackNotify"));
             // 商店取號網址
