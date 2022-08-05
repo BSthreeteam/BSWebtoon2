@@ -142,9 +142,9 @@ namespace BSWebtoon.Front.Service.UploadService
                     {
                         ComicChineseName = input.ComicChineseName,
                         ComicEnglishName = "ROG-STRIX",
-                        ComicNameImage = "https://tw-a.kakaopagecdn.com/P/C/206/aclip/58b296b7-3ee4-4db4-8a63-393ce2160637.webm",
+                        ComicNameImage = "https://res.cloudinary.com/dmns6twmt/image/upload/v1656605055/LadyChefRoyale/5.png",
                         //HotComicNameImage = HotComicNameImageOutput.Url,
-                        HotComicNameImage = "https://tw-a.kakaopagecdn.com/P/C/206/aclip/58b296b7-3ee4-4db4-8a63-393ce2160637.webm",
+                        HotComicNameImage = "https://res.cloudinary.com/dmns6twmt/image/upload/v1657172141/TheViridescentTiara/6.png",
                         //BgCover = BgCoverOutput.Url,
                         BgCover = "https://tw-a.kakaopagecdn.com/P/C/206/aclip/58b296b7-3ee4-4db4-8a63-393ce2160637.webm",
                         //HotBgCover = HotBgCoverOutput.Url,

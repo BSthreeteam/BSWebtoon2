@@ -171,7 +171,7 @@ namespace BSWebtoon.Front.Controllers
             //如果資料庫裡面沒有上傳過任何一部漫畫就不能進入上傳EP頁面，因此直接跳轉回上傳漫畫的頁面。
             if (outputDto.MyComics_WithEpCount.Count == 0)
             {
-                 RedirectToAction("UploadComic");
+                 return RedirectToAction("UploadComic");
             }
 
             ViewData["MyComics_WithEpCount"] = outputDto.MyComics_WithEpCount;
