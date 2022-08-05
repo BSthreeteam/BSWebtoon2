@@ -80,6 +80,8 @@ function remove_all(double_check = false) {
     // console.log(double_check)
     if (double_check) {
         let comicIdsToDelete =
+            //選取器中被打勾的checkbox狀態被選取，利用map篩選出是哪個comicId
+            //Array.from是建立一個新的 Array 實體
             Array.from(
                 document.forms["main"].querySelectorAll('input[type="checkbox"]:checked')
             ).map( ckbox => ckbox.getAttribute('my_comicId') )
