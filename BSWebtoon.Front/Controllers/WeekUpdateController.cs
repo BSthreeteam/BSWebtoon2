@@ -54,29 +54,29 @@ namespace BSWebtoon.Front.Controllers
             return View(result);
 
         }
-        //public IActionResult NewComic()
-        //{
-        //    var newComics = _weekUpdateService.ReadNewComic();
+        public IActionResult NewComic()
+        {
+            var newComics = _weekUpdateService.ReadNewComic();
 
-        //    var result = new List<NewComicViewModel>();
+            var result = new List<NewComicViewModel>();
 
-        //    result = newComics.Select(c => new NewComicViewModel
-        //    {
-        //        Author = c.Author,
-        //        PublishDate = c.PublishDate.ToString("MM.dd"),
-        //        BgCover = c.BgCover,
-        //        ComicFigure = c.ComicFigure,
-        //        ComicId = c.ComicId,
-        //        ComicNameImage = c.ComicNameImage,
-        //        Introduction = c.Introduction,
-        //        Painter = c.Painter
-        //    }).ToList();
+            result = newComics.Select(c => new NewComicViewModel
+            {
+                Author = c.Author,
+                PublishDate = c.PublishDate.ToString("MM.dd"),
+                BgCover = c.BgCover,
+                ComicFigure = c.ComicFigure,
+                ComicId = c.ComicId,
+                ComicNameImage = c.ComicNameImage,
+                Introduction = c.Introduction,
+                Painter = c.Painter
+            }).ToList();
 
-        //    return View(result);
+            return View(result);
 
 
 
-        //}
+        }
         public IActionResult FinishComic()
         {
             var finishComics = _weekUpdateService.ReadFinishComic();

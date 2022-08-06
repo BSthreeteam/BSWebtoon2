@@ -18,6 +18,13 @@ namespace BSWebtoon.Front.Service.ComicService
         public ReadworkContentOutputDTO ReadworkContent(int EpId, int memberId);
 
 
+        public List<CommentDTO> GetComment(int EpId);
+        public void CreateComment(CommentDTO comment);
+
+
+        public ReadworkContentOutputDTO ReadworkContent(int EpId, int memberId);
+
+
 
     }
 }

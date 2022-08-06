@@ -1,8 +1,17 @@
+function clickEp(epId) {
+    if (isAuthenticated) {
+        window.location.href = `/WorksPage/workContent/${epId}`;
+    } else {
+        $('#exampleModal').modal('show');
+    }
+
+}
+
 const ep = document.querySelector('.ep');
 const illustrate = document.querySelector('.illustrate');
 const messages = document.querySelector('.messages');
 const local_video = document.querySelector('.local_video');
-const collect_a = document.querySelector('.red');
+ const collect_a = document.querySelector('.red');
 const comics_name_click = document.querySelector('.comics_name_click');
 const ep_row = document.querySelector('.ep_row');
 const copy = document.querySelector('.copy');
@@ -18,18 +27,18 @@ const comment_text = document.querySelector('.comment_text');
 const card_box = document.querySelector('.card_box');
 
 
-function reizeWindow(){
+function reizeWindow() {
     let screen = window.screen.width;
     console.log(screen)
     window.addEventListener('resize', () => {
         if (screen <= 768) {
-        //    message_box.classList.add('d-none');
+            //    message_box.classList.add('d-none');
         }
         else if (screen > 768) {
             //message_box.classList.remove('d-none');
             ep_row.innerText = "";
             ep_row.appendChild(card_box);
-            //message_box.appendChild(comment_text);
+            message_box.appendChild(comment_text);
             console.log('///')
         }
     })
@@ -41,18 +50,26 @@ window.addEventListener('resize', () => {
 
 window.onload = function () {
     reizeWindow()
-    //////點擊愛心，顏色變紅色
-    //let check = document.querySelector('#heart');
-    //collect_a.addEventListener('click', () => {
-    //    if (!check.checked) {
-    //        console.log('111')
-    //        collect_a.classList.add('text-danger');
-    //    }
-    //    else {
-    //        console.log('222')
-    //        collect_a.classList.remove('text-danger');
-    //    }
-    //})
+    let collect_a = document.querySelector('.red');
+
+    ////點擊愛心，顏色變紅色
+    let check = document.querySelector('#heart');
+    clickLike(checkvalue)
+
+    collect_a.addEventListener('click', () => {
+        checkvalue = !checkvalue
+        clickLike(checkvalue)
+    })
+    function clickLike(boolvalue) {
+        if (boolvalue == true) {
+            console.log(check.checked)
+            collect_a.classList.add('text-danger');
+        }
+        else {
+            console.log(check.checked)
+            collect_a.classList.remove('text-danger');
+        }
+    }
 
 
     ////分享-複製連結(ok)
@@ -86,7 +103,7 @@ window.onload = function () {
         console.log('3')
         ep_row.innerText = "";
         //comment_text.classList.remove('d-none');
-        //comment_text.classList.add('d-flex');
+        //comment_text.classList.add('d-block');
         ep_row.appendChild(comment_text);
     })
 
@@ -102,29 +119,32 @@ window.onload = function () {
     local_video_bg.addEventListener('ended', () => {
         local_video_bg.classList.add('d-none');
     })
-    local_video_bg.addEventListener('click', () => {
-        local_video_bg.classList.add('d-none')
-    })
 
 
 
 
+    ////次序顛倒
+    //tidy = document.querySelector('.tidy');
+    //tidy_r = document.querySelector('.tidy_r')
+    //tidy.addEventListener('click', () => {
+    //    tidy.style.display = "none";
+    //    tidy_r.style.display = "flex";
 
-//     //我們是用以下的方式讓它做出滾動的效果
-//     window.addeventlistener('mousewheel', (event) => {
-//         event = event || window.event;
-//         if (event.wheeldelta > 0 || event.detail < 0) {
-//             //向上滾
-//             local_video_bg.classList.add('opacity = 1')
-//             console.log("1212");
-//         //    $('html, body').animate({ scrolltop: 0 }, "fast")
-//         }
-//         else {
-//             //向下滾
-//             local_video_bg.classList.add('opacity = 0')
-//         //    $('html, body').animate({
-//         //        scrolltop: $('.comics_episode').offset().top
-//         //    }, "fast")
-//         }
-//     })
+    //     //我們是用以下的方式讓它做出滾動的效果
+    //     window.addeventlistener('mousewheel', (event) => {
+    //         event = event || window.event;
+    //         if (event.wheeldelta > 0 || event.detail < 0) {
+    //             //向上滾
+    //             local_video_bg.classList.add('opacity = 1')
+    //             console.log("1212");
+    //         //    $('html, body').animate({ scrolltop: 0 }, "fast")
+    //         }
+    //         else {
+    //             //向下滾
+    //             local_video_bg.classList.add('opacity = 0')
+    //         //    $('html, body').animate({
+    //         //        scrolltop: $('.comics_episode').offset().top
+    //         //    }, "fast")
+    //         }
+    //     })
 }

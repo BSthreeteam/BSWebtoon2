@@ -39,20 +39,22 @@ namespace NewebPay.Controllers
 
         public IActionResult Index() //NewebPay/Index
         {
+        
             IConfiguration Config = new ConfigurationBuilder().AddJsonFile("appSettings.json").Build();
             // 產生測試資訊
             ViewData["MerchantID"] = Config.GetSection("MerchantID").Value;
             ViewData["MerchantOrderNo"] = DateTime.Now.ToString("yyyyMMddHHmmss");  //訂單編號
             ViewData["ExpireDate"] = DateTime.Now.AddDays(3).ToString("yyyyMMdd"); //繳費有效期限
 
-            string url_start = $"{Request.Scheme}://localhost:80";
+            string url_start = $"{Request.Scheme}://{Request.Host.Value}";
             ViewData["ReturnURL"] = $"{url_start}/NewebPay/CallbackReturn"; //支付完成返回商店網址
             ViewData["CustomerURL"] = $"{url_start}/NewebPay/CallbackCustomer"; //商店取號網址
             ViewData["NotifyURL"] = $"{url_start}/NewebPay/CallbackNotify"; //支付通知網址
-            ViewData["ClientBackURL"] = $"{url_start}/NewebPay/Index"; //返回商店網址 
+            ViewData["ClientBackURL"] = $"{url_start}/NewebPay/Index"; //返回商店網址
 
             return View();
         }
+
 
         public IActionResult Privacy()
         {
@@ -102,13 +104,13 @@ namespace NewebPay.Controllers
             // 繳費有效期限(適用於非即時交易)
             //TradeInfo.Add(new KeyValuePair<string, string>("ExpireDate", inModel.ExpireDate));//我們是即時交易
             // 支付完成返回商店網址
-            TradeInfo.Add(new KeyValuePair<string, string>("ReturnURL", inModel.ReturnURL));
+            TradeInfo.Add(new KeyValuePair<string, string>("ReturnURL", $"https://bswebtoon-front.azurewebsites.net/NewebPay/CallbackReturn"));
             // 支付通知網址
             TradeInfo.Add(new KeyValuePair<string, string>("NotifyURL", $"{Request.Scheme}://{Request.Host}{Request.Path}Home/CallbackNotify"));
             // 商店取號網址
             TradeInfo.Add(new KeyValuePair<string, string>("CustomerURL", $"{Request.Scheme}://{Request.Host}{Request.Path}Home/CallbackCustomer"));
             // 支付取消返回商店網址
-            TradeInfo.Add(new KeyValuePair<string, string>("ClientBackURL", $"{Request.Scheme}://localhost:80/Recommend/Recommend"));
+            TradeInfo.Add(new KeyValuePair<string, string>("ClientBackURL", $"{Request.Scheme}://bswebtoon-front.azurewebsites.net/Recommend/Recommend"));
             // 付款人電子信箱
             //TradeInfo.Add(new KeyValuePair<string, string>("Email", inModel.Email));//等等
             // 付款人電子信箱 是否開放修改(1=可修改 0=不可修改)
@@ -234,7 +236,7 @@ namespace NewebPay.Controllers
 
 
 
-            return Redirect("~/Account/AccountInfo");
+            return Redirect("~/api/Account/AccountInfo");
         }
 
         /// <summary>
