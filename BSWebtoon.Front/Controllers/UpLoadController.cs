@@ -232,7 +232,7 @@ namespace BSWebtoon.Front.Controllers
                 }
             }
 
-            return RedirectToAction("UploadWork");
+             return RedirectToAction("UploadWork");
             ////回到作品頁
             //return RedirectToAction("WorksPage", "WorksPage");
 

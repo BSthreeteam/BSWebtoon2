@@ -1,6 +1,7 @@
 var upload_work = document.getElementById("upload_file_btn")
 
 
+
 //var inputState =  document.getElementById("inputState")
 // inputState.addEventListener("change", Checkselect);
 // function Checkselect() {
@@ -166,12 +167,16 @@ function readURL() {
 
 
 let sortable = document.getElementById("sortable");
+let aa = true;
+
 
 function file() {
-    obj = this,
-        _html = '';
+    let obj = input_EP_Context,
+       _html = '';
 
     var ff;
+    aa = true
+
     for (var i = 0; i < obj.files.length; i++) {
 
         var reader = new FileReader();
@@ -183,7 +188,6 @@ function file() {
         reader.error = function (e) {
             console.log("讀取異常")
         }
-
         let file_name = obj.files[i].name;
         //iffi語法
 
@@ -206,15 +210,9 @@ function file() {
 
                     input_EP_Context.innerText = null;
 
-                    //removeItemAll();
 
-                    if (image.height == 886 && image.width == 600) {
-
-                        input_EP_Context.innerText = null;
-                        sortable.innerText = null;
-                    }
                     //arrTitle.pop(file_name);
-                    return
+                    //aa = false;
                 }
 
                 else {
@@ -260,6 +258,7 @@ function file() {
 
             //放入內容
             image.src = _src;
+
         };
         reader.onprogress = function (e) {
             if (e.lengthComputable) {
@@ -267,13 +266,16 @@ function file() {
             }
         };
         reader.readAsDataURL(obj.files[i]);
-        //reader.onloadend = function() {
 
+        //reader.onloadend = function() {
         //    update_file_state();
         //}
     }
 
     checkSendable();
+    if (!aa) {
+        removeItemAll();
+    }
 }
 checkSendable();
 function checkSendable() {
@@ -314,6 +316,7 @@ function removeItem(delNode) {
 }
 //刪除全部圖片
 function removeItemAll() {
+
     if (arrTitle.length == 0) {
         alert("尚未選擇任何檔案!");
     } else if (confirm("確認刪除全部的圖片嗎?") == true) {

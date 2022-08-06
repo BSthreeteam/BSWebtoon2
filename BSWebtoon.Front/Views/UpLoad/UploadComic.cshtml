@@ -264,7 +264,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="Introduction" class="form-label">作品簡介(故事大綱)(必須輸入)</label>
+                            <label asp-for="Introduction" class="form-label">作品簡介(故事大綱)(必須輸入)(500字以下)</label>
                             @*//故事大綱*@
                             <textarea class="form-control" name="Introduction" id="Introduction" rows="3" placeholder="500字以下" >@Model.Introduction</textarea>
                             <span asp-validation-for="Introduction" class="text-danger"></span>
