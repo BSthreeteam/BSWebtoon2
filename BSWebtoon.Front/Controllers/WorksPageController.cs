@@ -103,44 +103,57 @@ namespace BSWebtoon.Front.Controllers
             var outputDto = _comicService.ReadworkContent(Id, memberId);
 
 
-            var comicContents = outputDto.WorkContents;
+            var epContents = outputDto.WorkContents;
 
             var result = new WorkContentViewModel();
 
 
-            if(comicContents == null)
+            if(epContents == null)
             {
                 return RedirectToAction("BuyCoupon", "WorksPage", new { id = outputDto.ComicId });
             }
 
-            var allEp = new List<WorkContentViewModel.EpData>() { };
-            
+            var epTable = outputDto.EpList;
 
-            foreach (var ep in comicContents[0].EpList)
-            {
-                allEp.Add(new WorkContentViewModel.EpData()
-                {
-                    EpId = ep.EpId,
-                    ComicId = ep.ComicId,
-                    EpTitle = ep.EpTitle,
-                    EpCover = ep.EpCover,
-                    UploadTime = ep.UploadTime,
-                    IsCountdownCoupon = ep.IsCountdownCoupon,
-                    IsFree = ep.IsFree
-                });
-            }
             result = new WorkContentViewModel()
             {
-                EpId = comicContents.Select(c => c.EpId).First(),
-                EpTitle = comicContents.Select(c => c.EpTitle).First(),
+                EpId = epContents.Select(e => e.EpId).First(),
+                EpTitle = epContents.Select(e => e.EpTitle).First(),
 
-                ContentList = comicContents.Select(c => new WorkContentViewModel.Content
+                ContentList = epContents.Select(e => new WorkContentViewModel.Content
                 {
-                    ImagePath = c.ImagePath,
-                    Page = c.Page,
+                    ImagePath = e.ImagePath,
+                    Page = e.Page,
                 }).ToList(),
-                EpList = allEp //_comicService.景  //景懸 在護呼叫SEVICE方法
+                EpList = epTable.Select(e => new WorkContentViewModel.EpData
+                {
+                    EpId = e.EpId,
+                    ComicId = e.ComicId,
+                    EpTitle = e.EpTitle,
+                    EpCover = e.EpCover,
+                    UploadTime = e.UploadTime,
+                    IsCountdownCoupon = e.IsCountdownCoupon,
+                    IsFree = e.IsFree
+
+                }).ToList() //_comicService.景  //景懸 在護呼叫SEVICE方法
             };
+
+            //var allEp = new List<WorkContentViewModel.EpData>() { };
+
+
+            //foreach (var ep in comicContents[0].EpList)
+            //{
+            //    allEp.Add(new WorkContentViewModel.EpData()
+            //    {
+            //        EpId = ep.EpId,
+            //        ComicId = ep.ComicId,
+            //        EpTitle = ep.EpTitle,
+            //        EpCover = ep.EpCover,
+            //        UploadTime = ep.UploadTime,
+            //        IsCountdownCoupon = ep.IsCountdownCoupon,
+            //        IsFree = ep.IsFree
+            //    });
+            //}
 
             return View(result);
         }

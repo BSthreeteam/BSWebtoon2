@@ -5703,6 +5703,8 @@ namespace BSWebtoon.Front.Service.ComicService
         }
 
 
+
+
         public ReadworkContentOutputDTO ReadworkContent(int epId, int memberId)
         {
             //先判斷集數類型
@@ -5719,12 +5721,12 @@ namespace BSWebtoon.Front.Service.ComicService
                 //WorkContents = null,
             };
             //1.
-            var EpSource = _repository.GetAll<Episode>().FirstOrDefault(e => e.EpId == epId);//找出點的那一集的所有資料
+            var EpSource = _repository.GetAll<Episode>().Where(e => e.AuditType == 1).FirstOrDefault(e => e.EpId == epId);//找出點的那一集的所有資料
             var EpContentsSource = _repository.GetAll<EpContent>().Where(c => c.EpId == epId);
 
 
             result.ComicId = EpSource.ComicId;
-
+            ;
             //登入者的所有券
             var couponSource = _repository.GetAll<Coupon>()
                 .Where(p => p.MemberId == memberId)
@@ -5758,6 +5760,7 @@ namespace BSWebtoon.Front.Service.ComicService
             ) return result;
 
             result.WorkContents = Read(EpSource, EpContentsSource);
+            result.EpList = ReadEpTable(EpSource.ComicId);
             ViewRecordCreate(epId, memberId);
 
             //判斷那一集是否免費
@@ -5832,11 +5835,11 @@ namespace BSWebtoon.Front.Service.ComicService
         }
 
 
-        private List<WorkContentDTO> Read(Episode epSource, IQueryable<EpContent> content)
+        private List<WorkContent> Read(Episode epSource, IQueryable<EpContent> content)
         {
             //var aLLEpSource = _repository.GetAll<Episode>().Where(x => x.AuditType == 1 && x.ComicId == epSource.ComicId).OrderBy(x => x.UploadTime);
             
-            var readResult = content.Select(c => new WorkContentDTO()
+            var readResult = content.Select(c => new WorkContent()
             {
                 ComicId = epSource.ComicId,
                 EpId = epSource.EpId,
@@ -5845,46 +5848,31 @@ namespace BSWebtoon.Front.Service.ComicService
                 ImagePath = c.ImagePath,
                 Page = c.Page,
 
-                //EpList = aLLEpSource.Select(ep => new WorkContentDTO.EpData
-                //{
-                //    EpId = ep.EpId,
-                //    ComicId = ep.ComicId,
-                //    EpTitle = ep.EpTitle,
-
-                //    EpCover = ep.EpCover,
-                //    UploadTime = ep.UploadTime.ToShortDateString(),
-                //    IsCountdownCoupon = ep.IsCountdownCoupon,
-                //    IsFree = ep.IsFree
-
-                //}).ToList()
             }).ToList();
-
 
 
             return readResult;
 
         }
 
-        public List<WorkContentDTO> 景懸Read(Episode epSource, IQueryable<EpContent> content)
+        public List<WorkContentEpData> ReadEpTable(int comicId)
         {
-            var result = Read(epSource, content);
+            var aLLEpSource = _repository.GetAll<Episode>().Where(x =>x.ComicId == comicId).OrderBy(x => x.UploadTime);
+            var result = new List<WorkContentEpData>();
 
-            var aLLEpSource = _repository.GetAll<Episode>().Where(x => x.AuditType == 1 && x.ComicId == epSource.ComicId).OrderBy(x => x.UploadTime);
 
-            result.ForEach(c =>
+            result = aLLEpSource.Select(ep => new WorkContentEpData
             {
-                c.EpList = aLLEpSource.Select(ep => new WorkContentDTO.EpData
-                {
-                    EpId = ep.EpId,
-                    ComicId = ep.ComicId,
-                    EpTitle = ep.EpTitle,
-                    EpCover = ep.EpCover,
-                    UploadTime = ep.UploadTime.ToShortDateString(),
-                    IsCountdownCoupon = ep.IsCountdownCoupon,
-                    IsFree = ep.IsFree
+                EpId = ep.EpId,
+                ComicId = ep.ComicId,
+                EpTitle = ep.EpTitle,
+                EpCover = ep.EpCover,
+                UploadTime = ep.UploadTime.ToShortDateString(),
+                IsCountdownCoupon = ep.IsCountdownCoupon,
+                IsFree = ep.IsFree
 
-                }).ToList();
-            });
+            }).ToList();
+
 
             return result;
         }
@@ -5916,6 +5904,8 @@ namespace BSWebtoon.Front.Service.ComicService
 
             _repository.SaveChange();
         }
+
+
 
         public BuyCouponDTO ReadBuyCoupon(int comicId, int memberId)
         {

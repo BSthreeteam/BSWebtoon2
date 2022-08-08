@@ -135,14 +135,14 @@ body {
     #muluBTN {
         display: inline-block;
     }
-}}
+}
 
 
 
 
 
 
-/* -----------------пdие----- */
+/* -----------------Comment----- */
 
 .Comment_area {
     width: 100%;
@@ -194,12 +194,12 @@ body {
         height: 1px;
         background-color: rgba(206, 205, 205, 0.627);
         position: absolute;
-        bottom: 0;
         margin-bottom: 15px;
     }
 
 .CommentShow_title {
     display: flex;
+    padding-top:10px;
 }
 
     .CommentShow_title .Leval {
@@ -246,7 +246,7 @@ body {
         height: 1px;
         background-color: rgba(206, 205, 205, 0.627);
         position: absolute;
-        bottom: 0;
+        bottom:0
         margin-bottom: 10px;
     }
 

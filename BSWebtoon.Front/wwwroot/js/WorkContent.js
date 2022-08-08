@@ -2,10 +2,7 @@
 let btn_last = document.querySelector(".btn_last");
 let comicpic = document.querySelector("#comicpic");
 let btn_next = document.querySelector(".btn_next");
-let btn_comment = document.querySelector(".btn_comment");
-let epContent = document.querySelector(".epContent");
-let Comment_area = document.querySelector(".Comment_area");
-let btn_leave = document.querySelector(".btn_leave")
+
 
 //let cloneContent = comicpic.content.cloneNode(true);
 let mulu_row = document.querySelector('.mulu-row')
@@ -58,12 +55,7 @@ window.onload = function () {
 
     //})
 
-    btn_leave.addEventListener("click", () => {
-        Comment_area.classList.add("d-none")
-        epContent.classList.remove("d-none")
 
-
-    })
 
     //--------------------------------------------------
 

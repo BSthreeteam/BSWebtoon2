@@ -6,7 +6,7 @@
 @section topCss{
 <link rel="stylesheet" href="~/style/workContentstyle.css" />
 }
-<div class="epContent">
+<div class="epContent ">
     <div class="container-fluid bg-dark d-flex comic_area">
     <button class="btn text-decoration-none my-2" href="javascript:history.go(-1)">
         <i class="fa-solid fa-arrow-left-long text-white"></i>
@@ -118,7 +118,9 @@
 </div>
 
 <!-- 評論區模板 -->
-    <section class="Comment_area d-none">
+
+        <section class="Comment_area  d-none">
+
         <button class="btn text-decoration-none my-2 btn_leave" >
             <i class="fa-solid fa-arrow-left-long text-white"></i>
         </button>
@@ -275,6 +277,8 @@
     </section>
 
 
+
+
 @section endJS{
 <script src="~/js/WorkContent.js"></script>
 
@@ -282,52 +286,59 @@
     let commentTemplate = document.querySelector("#commentTemplate")
     let Comment_container = document.querySelector(".Comment_container")
     let reply_CommentTemplate = document.querySelector("#reply_CommentTemplate")
+    console.log(reply_CommentTemplate)
+
+    let btn_comment = document.querySelector(".btn_comment");
+    let epContent = document.querySelector(".epContent");
+    let Comment_area = document.querySelector(".Comment_area");
+    let btn_leave = document.querySelector(".btn_leave");
     
     btn_comment.addEventListener("click", () => {
         epContent.classList.add("d-none")
         Comment_area.classList.remove("d-none")
-        let url = `/api/CommentApi/GetCommentAll/${@Model.EpId}`
+        let url = `/api/CommentApi/GetCommentAll/${@Model.EpId}`//如果需要傳id進後端這裡的fetch網址要加id
         console.log(url)
-        fetch(url)//如果需要傳id進後端這裡的fetch網址要加id
-            .then(res => { return res.json() })
-            .then(result => {
-
-                console.log(result)
-
-                 for (let i = 0; i < result.length; i++) {
-                     Comment_container.append(createComment(result[i]))
-                     //reply_CommentShow.append(createReply_Comment(result[i]))
-
-
-
-                 }
-            })
+        fetch(url)
+        .then(res => { return res.json() })
+        .then(result => {
+            for (let i = 1; i <= result.length; i++) 
+            {
+                Comment_container.append(createComment(result[i],i))
+                //reply_CommentShow.append(createReply_Comment(result[i]))
+            }      
+        })
+     })
 
 
-
-            function createComment(result) {
-                console.log(result)
-                console.log(result.MainComment)
-                console.log(result.MainComment.MemberName)
+        function createComment(result,i) {
+            console.log(result)
             let cloneComment = commentTemplate.content.cloneNode(true);
             cloneComment.querySelector(".CommentShow .CommentShow_title .Name").innerText =result.MainComment.MemberName
             cloneComment.querySelector(".CommentShow .CommentShow_title .date").innerText = result.MainComment.CreateTime
             cloneComment.querySelector(".CommentShow .CommentShow_content").innerText = result.MainComment.Context
-            cloneComment.querySelector(".reply_CommentShow").append =(createReply_Comment(result))
+            cloneComment.querySelector(".reply_btn").setAttribute("data-bs-target",`#reply_collapse${i}`)
+            cloneComment.querySelector(".collapse").setAttribute("id",`reply_collapse${i}`)
+            console.log(result.ReplyMainComment)
+            result.ReplyMainComment.forEach((rc)=>{
+                cloneComment.querySelector(".reply_CommentShow").append(createReply_Comment(rc))
+            })
+
             return cloneComment
+        }
 
-            }
-
-            function createReply_Comment(result) {
+        function createReply_Comment(rc) {
             let cloneReply_Comment = reply_CommentTemplate.content.cloneNode(true);
-            cloneReply_Comment.querySelector(".reply_CommentShow_item .reply_CommentShow_title .Name").innerText = result.ReplyMainComment.MemberName
-            cloneReply_Comment.querySelector(".reply_CommentShow_item .reply_CommentShow_title .date").innerText = result.ReplyMainComment.CreateTime
-            cloneReply_Comment.querySelector(".reply_CommentShow_item .reply_Comment_content").innerText = result.ReplyMainComment.Context
+            cloneReply_Comment.querySelector(".reply_CommentShow_item .reply_CommentShow_title .Name").innerText = rc.MemberName
+            cloneReply_Comment.querySelector(".reply_CommentShow_item .reply_CommentShow_title .date").innerText = rc.CreateTime
+            cloneReply_Comment.querySelector(".reply_CommentShow_item .reply_Comment_content").innerText = rc.Context
             return cloneReply_Comment
-            }
+        }
+
+        btn_leave.addEventListener("click", () => {
+        Comment_area.classList.add("d-none")
+        epContent.classList.remove("d-none")
 
 
-
-    })
+        })
 </script>
 }
