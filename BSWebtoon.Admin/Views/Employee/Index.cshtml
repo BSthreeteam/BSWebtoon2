@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+@section topCss{
+    <style>
+      .lable {
+            font-size: 25px;
+        }
+
+        .chb {
+            font-size: 20px;
+        }
+
+        .table_line {
+            border: 1px solid black;
+        }
+
+    </style>
+}
+
+
+    <div id="app" class="container">
+        <b-navbar toggleable="lg" type="dark" variant="light d-flex justify-content-between">
+            <b-navbar-brand href="#" class="fs-1 text-dark">員工管理</b-navbar-brand>
+
+            <b-dropdown id="dropdown-1" text="User" class="m-5">
+                <b-dropdown-item>Login</b-dropdown-item>
+                <b-dropdown-divider></b-dropdown-divider>
+                <b-dropdown-item>Logout</b-dropdown-item>
+            </b-dropdown>
+        </b-navbar>
+        <div class="table_line mt-5">
+            <b-table striped hover :items="items" :fields="fields"></b-table>
+        </div>
+    </div>
+    @section endJS{
+    <script src="//unpkg.com/vue@2.7.8/dist/vue.min.js"></script>
+   <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                selected: [],//給你看到你勾選選項的value
+                fields: ['first_name', 'last_name', 'age'],//可以放欄位名稱
+                items: [
+                    { age: 40, first_name: 'Dickerson', last_name: 'Macdonald' }, //讀資料出來
+                    { age: 21, first_name: 'Larsen', last_name: 'Shaw' },
+                    { age: 89, first_name: 'Geneva', last_name: 'Wilson' },
+                    { age: 38, first_name: 'Jami', last_name: 'Carney' }]
+            }
+        })
+    </script>
+
+    }
+
+
+
+
