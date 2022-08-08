@@ -7,7 +7,8 @@ function init() {
 }
 
 function Open_del_page() {
-    window.open("/Favorite/RemoveFavoriteView");
+    //window.open("/Favorite/RemoveFavoriteView");
+    window.location.href = '/Favorite/RemoveFavoriteView';
 }
 
 function TO_Favorite() {

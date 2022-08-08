@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BSWebtoon.Front.Controllers
+namespace BSWebtoon.Front.Controllers.ApiController
 {
     [Route("/api/[controller]/[action]/{id}")]//屬性路由
     [ApiController]
@@ -23,14 +23,14 @@ namespace BSWebtoon.Front.Controllers
             return View();
         }
 
-        
+
         //[HttpGet]  /*int id*/
         [HttpGet]
         public IActionResult GetRank(int id)
         {
             try
             {
-                if(id==0)
+                if (id == 0)
                 {
                     var result = _ClickRecordService.ReadAllRank();
                     return Ok(result);
@@ -42,9 +42,9 @@ namespace BSWebtoon.Front.Controllers
                     return Ok(result);
                 }
                 //return new ObjectResult(result);
-                
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 //return new ObjectResult($"錯誤訊息{ex}");
                 return Ok($"錯誤訊息{ex}");

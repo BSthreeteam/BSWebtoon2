@@ -122,13 +122,29 @@ namespace BSWebtoon.Front.Service.FavoriteService
 
 
 
-        public void FavoriteDelete()
+        public void FavoriteDelete(int id)
         {
-            var p2 = _repository.GetAll<Favorite>().Where(f => f.MemberId == 1).FirstOrDefault();
-            _repository.Delete(p2);
+            var DelFavorite = _repository.GetAll<Favorite>().Where(f => f.MemberId == 3).FirstOrDefault();
+            _repository.Delete(DelFavorite);
             _repository.SaveChange();
         }
 
 
+
+        public void RemoveFavoriteRecord(RemoveFavoriteInputDTO input)
+        {
+            var DelFavorite = _repository.GetAll<Favorite>()
+                .Where(f => f.MemberId == input.MemberId
+                    && input.ComicIdsToDelete.Contains(f.ComicId)
+                )//.ToList()
+                ;
+
+            foreach(var f in DelFavorite)
+            {
+                _repository.Delete(f);
+            }
+            _repository.SaveChange();
+
+        }
     }
 }

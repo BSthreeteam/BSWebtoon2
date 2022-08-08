@@ -5702,7 +5702,16 @@ namespace BSWebtoon.Front.Service.ComicService
             _repository.SaveChange();
         }
 
+        public ReadworkContentOutputDTO ReadworkContent(int epId, int memberId)
+        {
+            //先判斷集數類型
+            //1.免費:直接開啟漫畫
+            //2.倒數:只能使用在能使用倒數卷的漫畫上，能使用三種卷(倒數，
+            // 閱讀，通用)
+            //3.最新五話:只能使用 閱讀，通用
 
+            //註 => 既是倒數
+            //類型 又是 最新五話?
 
 
         public ReadworkContentOutputDTO ReadworkContent(int epId, int memberId)
@@ -5751,6 +5760,8 @@ namespace BSWebtoon.Front.Service.ComicService
                 p.CouponTypeId == (int)CouponType.universalCoupon);
             bool universalCoupon_valid = universalCoupon != null && universalCoupon.Quantity > 0;
 
+            var universalCoupon = couponSource.Where(p => p.CouponTypeId == (int)CouponType.universalCoupon).OrderByDescending(p => p.CreateTime)
+                .FirstOrDefault();//找出登入者這部漫畫的最新通用卷
 
             //非免費且 所有券全皆無 
             if ( !EpSource.IsFree
@@ -5826,6 +5837,7 @@ namespace BSWebtoon.Front.Service.ComicService
             //var readCoupon = couponSource.Where(p => p.CouponTypeId == (int)CouponType.readCoupon && p.ComicId == EpSource.ComicId)
             //    .OrderByDescending(p => p.CreateTime).FirstOrDefault();//找出登入者這部漫畫的最新閱讀卷
 
+            }).ToList();
 
             //if (countdownCouponComic.Count() != 0 && countdownCoupon != null && readCoupon.Quantity > 0)
             //{
@@ -5834,6 +5846,7 @@ namespace BSWebtoon.Front.Service.ComicService
             //}
         }
 
+            return readResult;
 
         private List<WorkContent> Read(Episode epSource, IQueryable<EpContent> content)
         {

@@ -109,7 +109,6 @@ namespace BSWebtoon.Front.Controllers
 
 
             if(epContents == null)
-            {
                 return RedirectToAction("BuyCoupon", "WorksPage", new { id = outputDto.ComicId });
             }
 

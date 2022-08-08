@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 
+
 namespace BSWebtoon.Front.Controllers
 {
     public class RankController : Controller
@@ -56,7 +57,6 @@ namespace BSWebtoon.Front.Controllers
                     BannerVideoWeb = other.BannerVideoWeb,
                     Diff = other.Diff
                 }).ToList()
-
 
             };
             return View(result);

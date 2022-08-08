@@ -29,6 +29,7 @@ using BSWebtoon.Front.Service.CloudinaryService;
 
 using BSWebtoon.Front.Service.ActivityService;
 using BSWebtoon.Front.Service.UploadService;
+using BSWebtoon.Front.Service.RecordViewService;
 using BSWebtoon.Front.Service.AccountService;
 
 namespace BSWebtoon.Front
@@ -63,10 +64,11 @@ namespace BSWebtoon.Front
             services.AddScoped<IRechargeService, RechargeService>();
             services.AddScoped<ICouponService, CouponService>();
             services.AddScoped<IClickRecordService, ClickRecordService>();
-            services.AddScoped<FavoriteService, FavoriteService>();
+            services.AddScoped<IFavoriteService, FavoriteService>(); 
             services.AddScoped<ClickRecordService, ClickRecordService>();
             //services.AddDbContext<BSWeBtoonContext, BSWeBtoonContext>();
             services.AddScoped<IComicService, ComicService>();
+            services.AddScoped<IRecordViewService, RecordViewService>();
             services.AddScoped<ISearchService, SearchService>();
             services.AddScoped<IWeekUpdateService, WeekUpdateService>();
             services.AddScoped<IMemberService, MemberService>();
