@@ -5702,16 +5702,6 @@ namespace BSWebtoon.Front.Service.ComicService
             _repository.SaveChange();
         }
 
-        public ReadworkContentOutputDTO ReadworkContent(int epId, int memberId)
-        {
-            //先判斷集數類型
-            //1.免費:直接開啟漫畫
-            //2.倒數:只能使用在能使用倒數卷的漫畫上，能使用三種卷(倒數，
-            // 閱讀，通用)
-            //3.最新五話:只能使用 閱讀，通用
-
-            //註 => 既是倒數
-            //類型 又是 最新五話?
 
 
         public ReadworkContentOutputDTO ReadworkContent(int epId, int memberId)
@@ -5756,15 +5746,13 @@ namespace BSWebtoon.Front.Service.ComicService
             bool readCoupon_valid = readCoupon != null && readCoupon.Quantity > 0;
 
             //通用卷
-            var universalCoupon = couponSource.FirstOrDefault(p => 
+            var universalCoupon = couponSource.FirstOrDefault(p =>
                 p.CouponTypeId == (int)CouponType.universalCoupon);
             bool universalCoupon_valid = universalCoupon != null && universalCoupon.Quantity > 0;
 
-            var universalCoupon = couponSource.Where(p => p.CouponTypeId == (int)CouponType.universalCoupon).OrderByDescending(p => p.CreateTime)
-                .FirstOrDefault();//找出登入者這部漫畫的最新通用卷
 
             //非免費且 所有券全皆無 
-            if ( !EpSource.IsFree
+            if (!EpSource.IsFree
                 && !countdownCoupon_valid
                 && !readCoupon_valid
                 && !universalCoupon_valid
@@ -5804,54 +5792,17 @@ namespace BSWebtoon.Front.Service.ComicService
 
             //if (universalCoupon_valid)
             //{
-                UseCoupon = universalCoupon;
-                CouponUsedRecordCreate(epId, memberId, UseCoupon);
-                return result;
+            UseCoupon = universalCoupon;
+            CouponUsedRecordCreate(epId, memberId, UseCoupon);
+            return result;
             //}
 
-
-            ///////////////////
-            //EpContents = _repository.GetAll<EpContent>().Where(c => EpSource.IsFree == true && c.EpId == EpSource.EpId);//判斷那一集是否免費，並讀出所有內容頁
-
-
-            //if (EpContents == null)
-            //{
-            //    //免費集
-            //    var result = Read(EpId, EpSource, EpContents); //如是選出那集裡的內容頁等需要的資料
-
-            //    ViewRecordCreate(EpId, memberId);
-
-
-            //    return result;
-
-            //}
-
-            //var couponSource = _repository.GetAll<Coupon>().Where(p => p.MemberId == memberId);//找出登入會員的所有卷
-
-            //var countdownCouponComic = _repository.GetAll<EpContent>()
-            //    .Where(c => EpSource.IsCountdownCoupon == true && c.EpId == EpSource.EpId); //判斷那一集是否是可使用倒數卷，並讀出所有內容頁
-
-            //var countdownCoupon = couponSource.Where(p => p.CouponTypeId ==
-            //(int)CouponType.countdownCoupon && p.ComicId == EpSource.ComicId && p.Quantity == 1)
-            //    .FirstOrDefault();//找出登入者這部漫畫的倒數卷數量是1的
-            //var readCoupon = couponSource.Where(p => p.CouponTypeId == (int)CouponType.readCoupon && p.ComicId == EpSource.ComicId)
-            //    .OrderByDescending(p => p.CreateTime).FirstOrDefault();//找出登入者這部漫畫的最新閱讀卷
-
-            }).ToList();
-
-            //if (countdownCouponComic.Count() != 0 && countdownCoupon != null && readCoupon.Quantity > 0)
-            //{
-            //    //倒數卷
-            //    var result = Read(EpId, EpSource, countdownCouponComic); //如果有找到符合條件的倒數卷就找出那集裡的內容頁等需要的資料
-            //}
         }
 
-            return readResult;
-
         private List<WorkContent> Read(Episode epSource, IQueryable<EpContent> content)
-        {
+            {
             //var aLLEpSource = _repository.GetAll<Episode>().Where(x => x.AuditType == 1 && x.ComicId == epSource.ComicId).OrderBy(x => x.UploadTime);
-            
+
             var readResult = content.Select(c => new WorkContent()
             {
                 ComicId = epSource.ComicId,
@@ -5866,11 +5817,12 @@ namespace BSWebtoon.Front.Service.ComicService
 
             return readResult;
 
-        }
+            }
+
 
         public List<WorkContentEpData> ReadEpTable(int comicId)
         {
-            var aLLEpSource = _repository.GetAll<Episode>().Where(x =>x.ComicId == comicId).OrderBy(x => x.UploadTime);
+            var aLLEpSource = _repository.GetAll<Episode>().Where(x => x.ComicId == comicId).OrderBy(x => x.UploadTime);
             var result = new List<WorkContentEpData>();
 
 
@@ -5903,12 +5855,13 @@ namespace BSWebtoon.Front.Service.ComicService
         public void CouponUsedRecordCreate(int EpId, int memberId, Coupon UsedCoupon)
         {
             var now = DateTime.UtcNow.AddHours(8);
-            var couponUsed = new CouponUsedRecord() { 
-                MemberId = memberId, 
-                EpId = EpId, 
-                CouponId = UsedCoupon.CouponId, 
+            var couponUsed = new CouponUsedRecord()
+            {
+                MemberId = memberId,
+                EpId = EpId,
+                CouponId = UsedCoupon.CouponId,
 
-                StartReadTime = now, 
+                StartReadTime = now,
                 EndReadTime = now.AddDays(7),
             };
 
@@ -5945,7 +5898,7 @@ namespace BSWebtoon.Front.Service.ComicService
 
         public List<CommentDTO> GetComment(int EpId)
         {
-            var commentSourse = _repository.GetAll<Comment>().Where(c => c.EpId == EpId).OrderBy(c=>c.CreateTime);//取到這集所有留言並依時間排序
+            var commentSourse = _repository.GetAll<Comment>().Where(c => c.EpId == EpId).OrderBy(c => c.CreateTime);//取到這集所有留言並依時間排序
             //var commentLikeSourse = _repository.GetAll<CommentLikeRecord>().Where(c => c.CommentId == commentSourse.Select(c => c.CommentId).First());
             var memberName = _repository.GetAll<Member>();//找到成員資料
 
@@ -5954,7 +5907,7 @@ namespace BSWebtoon.Front.Service.ComicService
 
             var result = new List<CommentDTO>();
 
-            result = mainCommentSourse.Select(c=> new CommentDTO
+            result = mainCommentSourse.Select(c => new CommentDTO
             {
                 MainComment = new CommentContxt
                 {
@@ -5963,9 +5916,9 @@ namespace BSWebtoon.Front.Service.ComicService
                     CreateTime = c.CreateTime,
                     EpId = c.EpId,
                     IsSpoiler = c.IsSpoiler,
-                    MemberName = memberName.Where(m=>m.MemberId == c.MemberId).Select(m=> m.AccountName).First()
+                    MemberName = memberName.Where(m => m.MemberId == c.MemberId).Select(m => m.AccountName).First()
                 },
-                ReplyMainComment = replyCommentSourse.Where(rc => rc.ReplyToCommentId == c.CommentId).Select(rc=>new ReplyCommentContxt
+                ReplyMainComment = replyCommentSourse.Where(rc => rc.ReplyToCommentId == c.CommentId).Select(rc => new ReplyCommentContxt
                 {
                     ReplyToCommentId = rc.ReplyToCommentId,
                     IsSpoiler = rc.IsSpoiler,
@@ -5994,5 +5947,9 @@ namespace BSWebtoon.Front.Service.ComicService
 
 
         }
+
     }
+
+
+
 }

@@ -108,7 +108,8 @@ namespace BSWebtoon.Front.Controllers
             var result = new WorkContentViewModel();
 
 
-            if(epContents == null)
+            if (epContents == null)
+            {
                 return RedirectToAction("BuyCoupon", "WorksPage", new { id = outputDto.ComicId });
             }
 
@@ -134,28 +135,14 @@ namespace BSWebtoon.Front.Controllers
                     IsCountdownCoupon = e.IsCountdownCoupon,
                     IsFree = e.IsFree
 
-                }).ToList() //_comicService.景  //景懸 在護呼叫SEVICE方法
+                }).ToList() 
             };
 
-            //var allEp = new List<WorkContentViewModel.EpData>() { };
 
-
-            //foreach (var ep in comicContents[0].EpList)
-            //{
-            //    allEp.Add(new WorkContentViewModel.EpData()
-            //    {
-            //        EpId = ep.EpId,
-            //        ComicId = ep.ComicId,
-            //        EpTitle = ep.EpTitle,
-            //        EpCover = ep.EpCover,
-            //        UploadTime = ep.UploadTime,
-            //        IsCountdownCoupon = ep.IsCountdownCoupon,
-            //        IsFree = ep.IsFree
-            //    });
-            //}
 
             return View(result);
         }
+
     }
 }
 
