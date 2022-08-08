@@ -5716,7 +5716,7 @@ namespace BSWebtoon.Front.Service.ComicService
             var EpSource = _repository.GetAll<Episode>().Where(e => e.AuditType == 1).FirstOrDefault(e => e.EpId == epId);//找出點的那一集的所有資料
             var EpContentsSource = _repository.GetAll<EpContent>().Where(c => c.EpId == epId);
 
-            var memberId = _repository.GetAll<Member>().Where(c => c.AccountName == userName).Select(c => c.MemberId).First();
+           //var memberId = _repository.GetAll<Member>().Where(c => c.AccountName == userName).Select(c => c.MemberId).First();
 
             result.ComicId = EpSource.ComicId;
             ;
