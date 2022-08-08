@@ -18,7 +18,7 @@ namespace BSWebtoon.Front.Controllers
         {
             var memberId = User.Claims.FirstOrDefault() == null ? 0 : int.Parse(User.Claims.FirstOrDefault(x => x.Type == "MemberID").Value);
 
-            var buyCouponData = _comicService.ReadBuyCoupon(Id,memberId);
+            var buyCouponData = _comicService.ReadBuyCoupon(Id, memberId);
 
             var result = new BuyCouponViewModel
             {
@@ -135,7 +135,7 @@ namespace BSWebtoon.Front.Controllers
                     IsCountdownCoupon = e.IsCountdownCoupon,
                     IsFree = e.IsFree
 
-                }).ToList() 
+                }).ToList()
             };
 
 
@@ -145,10 +145,10 @@ namespace BSWebtoon.Front.Controllers
 
 
 
-        }
-
     }
 
-
 }
+
+
+
 
