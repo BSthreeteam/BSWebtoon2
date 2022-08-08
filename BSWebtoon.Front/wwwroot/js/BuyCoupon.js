@@ -97,7 +97,7 @@ async function BuyReadCoupon(ComicId, couponTypeId, memberId, nowHaveCouponQuant
             "MemberId": memberId,
             "SpendCoin": totalAmount.innerHTML
         }
-        await fetch("/api/Coupon/ReadCoupon", {
+        await fetch("/api/CouponApi/ReadCoupon", {
             method: "POST",
             headers: {
                 "Accept": "application/json",

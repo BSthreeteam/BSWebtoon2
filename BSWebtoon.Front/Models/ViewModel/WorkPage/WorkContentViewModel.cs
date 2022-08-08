@@ -7,6 +7,7 @@ namespace BSWebtoon.Front.Models.ViewModel.WorkPage
     {
 
         public string EpTitle { get; set; }
+        public int EpId { get; set; }
         public List<Content> ContentList { get; set; }
         public List<EpData> EpList { get; set; }
 
