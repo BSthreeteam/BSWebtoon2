@@ -92,7 +92,7 @@
                 return this.memberList.length
             },
             filterProducts() {
-                return this.data.filter(searchResult => searchResult.title.match(this.keyWord));
+                return this.data.filter(searchResult => searchResult.title.match(this.selected));
           }
         },
         mounted() {
