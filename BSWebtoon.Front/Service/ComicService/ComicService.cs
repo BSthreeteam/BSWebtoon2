@@ -5703,6 +5703,7 @@ namespace BSWebtoon.Front.Service.ComicService
         }
 
 
+
         public ReadworkContentOutputDTO ReadworkContent(int epId, int memberId)
         {
             //先判斷集數類型
@@ -5796,7 +5797,6 @@ namespace BSWebtoon.Front.Service.ComicService
             return result;
             //}
 
-
         }
 
 
@@ -5841,6 +5841,7 @@ namespace BSWebtoon.Front.Service.ComicService
 
             return result;
         }
+
 
 
         public void ViewRecordCreate(int EpId, int memberId)
@@ -5890,6 +5891,40 @@ namespace BSWebtoon.Front.Service.ComicService
                 MemberHaveCoin = MemberHaveCoin,
                 MemberHaveReadTicket = readCouponSource + CDCouponSource.Quantity,
             };
+        }
+
+
+
+        public List<CommentDTO> GetComment(int EpId)
+        {
+            var commentSourse = _repository.GetAll<Comment>().Where(c => c.EpId == EpId).OrderBy(c=>c.CreateTime);
+            var commentLikeSourse = _repository.GetAll<CommentLikeRecord>().Where(c => c.CommentId == commentSourse.Select(c => c.CommentId).First());
+            var memberName = _repository.GetAll<Member>();
+            var result = new List<CommentDTO>();
+
+            result = commentSourse.Select(c => new CommentDTO
+            {
+                CommentId = c.CommentId,
+                Context = c.Context,
+                CreateTime = c.CreateTime,
+                IsSpoiler = c.IsSpoiler,
+                EpId = c.EpId,
+                MemberName = memberName.Where(m => m.MemberId == c.MemberId).Select(m => m.AccountName).First(),
+                ReplyToCommentId = c.ReplyToCommentId,
+            }).ToList();
+
+            return result;
+
+
+        }
+        public void CreateComment(CommentDTO comment)
+        {
+            var entity = new CommentDTO()
+            {
+
+            };
+
+
         }
     }
 }

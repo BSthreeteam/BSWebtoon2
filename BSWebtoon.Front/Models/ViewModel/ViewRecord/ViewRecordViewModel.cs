@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
+using BSWebtoon.Front.Models.DTO.Comic;
 
 namespace BSWebtoon.Front.Models.ViewModel.ViewRecord
 {
 
     public class ViewRecordViewModel
     {
-        public IEnumerable<ViewRecordData> ViewRecordList { get; set; }
+        //public ViewRecordData ViewRecordList { get; set; }
+        public List<ViewRecordData> ViewRecordListAll { get; set; }
 
-        public class ViewRecordData
+        public class ViewRecordData : ComicCardDto
         {
-            public string ComicNameImage { get; set; }
-            public string ComicFigure { get; set; }
-            public string BgColor { get; set; }
+            public int ViewRecorId { get; set; }
             public string EpTitle { get; set; }
         }
     }

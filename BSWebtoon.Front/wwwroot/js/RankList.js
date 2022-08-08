@@ -8,14 +8,7 @@ let showRankTemplate = document.getElementById("showRankTemplate");
 
 let categorys = document.querySelectorAll('.categorys')
 
-//function getaaa() {
-//    $("#all").click();
-//    document.getElementById("all").classList.add('choosed');
-//    getFatchall();
-//}
-//$(document).ready(function () {
-//    window.onload = getaaa();
-//})
+
 window.onload = () => {
     document.getElementById("all").setAttribute('click', getFatchall());
     getFatch();
