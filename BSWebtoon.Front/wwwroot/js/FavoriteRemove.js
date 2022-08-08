@@ -78,10 +78,11 @@ function remove_all(double_check = false) {
     // console.log(double_check)
     if (double_check) {
         let comicIdsToDelete = document.forms["main"].querySelectorAll('input[type="checkbox"]:checked')
-
+        console.log(comicIdsToDelete);
             //.map( ckbox => ckbox.getAttribute('my_comicId') )
-
-        fetch('/Favorite/FavoriteRemove', {
+        
+        //fetch('/Favorite/FavoriteRemove', {
+        fetch('/Favorite/FavoriteRemoveComic', {
             method: 'post',
             headers: {
                 'Content-type':'application/json;charset=utf-8',
@@ -91,20 +92,27 @@ function remove_all(double_check = false) {
         })
         .then(resp => {
             if (resp.ok) {
-                arr_to_be_del.forEach(del_item_id => {
-                    let del_tag = document.getElementById(del_item_id).parentNode.parentNode;
-                    del_tag.remove();
-                    console.log(del_item_id + '刪除成功~');
-                });
-                //全部刪除 直接重新宣告成空的
+
+                console.log(`resp.responseText => ${resp.responseText}`);
+                //arr_to_be_del.forEach(del_item_id => {
+                //    let del_tag = document.getElementById(del_item_id).parentNode.parentNode;
+                //    del_tag.remove();
+                //    console.log(del_item_id + '刪除成功~');
+                //});
+                ////全部刪除 直接重新宣告成空的
                 
-                arr_to_be_del = [];
-                double_check_block.style.transform = "translateY(100%)";
+                //arr_to_be_del = [];
+                //double_check_block.style.transform = "translateY(100%)";
                 //window.location.reload()
             } else {
                 alert('刪除失敗')
             }
+            console.log(`resp.status => ${resp}`);
+            
         })
+            .catch((error) => {
+                console.log(`Error: ${error}`);
+            })
     } else {
         double_check_block.style.transform = "translateY(0%)";
     }

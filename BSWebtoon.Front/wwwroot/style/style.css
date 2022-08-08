@@ -12,9 +12,9 @@ body {
     align-items: center;
 }
 
-    #user a {
-        padding: 10px;
-    }
+#user a {
+    padding: 10px;
+}
 
 .w-1200 {
     max-width: 1200px;
@@ -30,12 +30,9 @@ nav {
     width: 100%;
     background-color: #000;
 }
-
+/*
 .inputSearchBorder {
-    border: 0px solid #fff;
-    border-bottom: 1px solid #fff;
-    border-radius: 0%;
-}
+}*/
 
 .context {
     position: relative;
@@ -54,3 +51,16 @@ nav {
         color: #ccc;
     }
 
+.container-fluid{
+    margin-top:1em;
+}
+
+.dropdown-divider{
+    margin:1px !important;
+}
+
+@media (min-width: 0px) and (max-width: 1200px) {
+    .upload_Comic {
+        display: none;
+    }
+}

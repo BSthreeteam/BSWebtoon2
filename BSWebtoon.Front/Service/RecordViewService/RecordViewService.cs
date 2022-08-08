@@ -22,11 +22,11 @@ namespace BSWebtoon.Front.Service.RecordViewService
                 //觀看紀錄:從資料庫撈出需要的資料
 				string sql = @$"SELECT * FROM (SELECT ROW_NUMBER() OVER (PARTITION BY E.ComicId ORDER BY V.ViewTime desc) AS row_id,
                                 V.MemberId, E.ComicId, V.ViewTime ,E.EpTitle,
-                                C.BgCover,C.ComicNameImage, C.ComicWeekFigure
+                                C.BgCover,C.ComicNameImage, C.ComicWeekFigure,V.IsDelete
                                 FROM ViewRecord V
                                 INNER JOIN Episode E ON E.EpId = V.EpId 
                                 INNER JOIN Comic C ON C.ComicId = E.ComicId 
-                                WHERE  MemberId =   {id}
+                                WHERE  MemberId =   {id} and V.IsDelete = 0
                                 ) AS newDB  WHERE row_id = 1 ";
 
                 //篩選出資料全部 的結果後放到ViewRecordDTO的表中
@@ -53,6 +53,7 @@ namespace BSWebtoon.Front.Service.RecordViewService
             }
             return result;
         }
+
 
     }
 }

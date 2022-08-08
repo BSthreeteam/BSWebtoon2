@@ -3,11 +3,7 @@ let workTemplate = document.getElementById("workTemplate");
 let blackTemplate = document.getElementById("blackTemplate");
 let showRankTemplate = document.getElementById("showRankTemplate");
 
-
-
-
 let categorys = document.querySelectorAll('.categorys')
-
 
 window.onload = () => {
     document.getElementById("all").setAttribute('click', getFatchall());
@@ -18,7 +14,6 @@ function createBlack() {
     let cloneblack = blackTemplate.content.cloneNode(true);
     return cloneblack
 }
-
 
 function getFatch() {
     document.getElementById("all").removeAttribute('click', getFatchall());
@@ -83,7 +78,7 @@ function getFirstRank(result) {
 
 function getOtherRank(result, index) {
     let cloneotherRank = workTemplate.content.cloneNode(true);
-    console.log(cloneotherRank);
+    //console.log(cloneotherRank);
     cloneotherRank.querySelector(".rankCardCover").src = result.BgCover
     cloneotherRank.querySelector(".work_pic").src = result.ComicWeekFigure
     cloneotherRank.querySelector(".work_pic").alt = result.ComicName

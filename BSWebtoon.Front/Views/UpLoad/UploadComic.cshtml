@@ -10,21 +10,20 @@
 
 
 <!-- 導覽列 -->
-        <div class="container work " style="color:  white; max-width: 1200px " >
-
-            <div class="work_bgc">
-                <div class="a">
-                    <a asp-controller="Upload" asp-action="UploadComic" >1</a>
-                    <p>上傳漫畫</p>
-                </div>
-
-                <div class="b">
-                    <a asp-controller="Upload" asp-action="UploadWork" >2</a>
-                    <p>上傳分集</p>
-                </div>
+    <div class="container work " style="color:  white; max-width: 1200px " >
+        <div class="work_bgc">
+            <div class="a">
+                <a asp-controller="Upload" asp-action="UploadComic" >1</a>
+                <p>上傳漫畫</p>
             </div>
 
+            <div class="b">
+                <a asp-controller="Upload" asp-action="UploadWork" >2</a>
+                <p>上傳分集</p>
+            </div>
         </div>
+
+    </div>
 
 <form method="post" enctype="multipart/form-data"> 
 
@@ -82,11 +81,6 @@
                     <span asp-validation-for="BgCover" class="text-danger"></span>
                     <hr>
 
-
-
-
-                   
-
                     @* <div class="mb-3">*@
                     @*加入防呆*@
                     @* <label asp-for="HotBgCover" class="form-label">強檔劇獻背景圖</label>*@
@@ -99,12 +93,10 @@
 
                 </div>
 
-
                 @*左邊*@
                 <div class="col-8">
 
                     <div class="row g-3">
-
 
                          <div class="col-12">
                             <label asp-for="ComicChineseName" class="form-label">漫畫中文名稱:(必須輸入)</label>
@@ -114,8 +106,6 @@
                             @*加入防呆*@
                             <span asp-validation-for="ComicChineseName" class="text-danger"></span>
                         </div>
-
-
 
 
                         <div class="col-md-6" id="ComicTagList_Choose">
@@ -156,7 +146,6 @@
                                 <option>懸疑推理</option>
                                 <option>緊張刺激</option>
 
-
                             </select>
                         </div>
 
@@ -177,8 +166,6 @@
                             </select>
                         </div>
 
-
-
                         @*次要漫畫類型:*@
                         <div class="col-md-6">
                             <label for="Comic_subtitle_three" class="form-label">次要漫畫類型:</label>
@@ -195,9 +182,6 @@
                                 <option>活潑可愛</option>
                             </select>
                         </div>
-
-                       
-
                         @*發行日期*@
                         <div class="col-md-6">
                             <label asp-for="PublishDate" class="form-label ">發行日期:(必須輸入)</label>
@@ -341,18 +325,17 @@
 
 <!-- Optional JavaScript; choose one of the two! -->
 <!-- Option 1: Bootstrap Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+@*<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>*@
 
 
 @section topCss{
     <style>
         
-        .work {
-
+    .work {
         display: flex;
-            margin-top: 150px;
+        margin-top: 150px;
     }
 
     .work_bgc {
@@ -368,7 +351,6 @@
     }
 
     .a {
-
         display: flex;
     }
 
@@ -410,11 +392,9 @@
         text-align: center;
         font-size: 35px;
         margin: 10px;
-    }
-        
+    }        
     </style>
 }
-
 
 @section endJS{
     @*@await Html.PartialAsync("_ValidationScriptsPartial")*@
@@ -430,9 +410,6 @@
 //        ComicTagList_Choose.append(Checkselect_p);
 //    }
 //}
-
-
-
 
 
         //var arrCover = []; //存人物圖檔
@@ -454,7 +431,6 @@
                 (function(i) {
                     reader.onload = function(e) {
                         let cover_src = e.target.result;
-
                          //載入圖片獲取圖片真實寬度和高度
                         var image = new Image();
                         image.onload = function() {
@@ -462,7 +438,6 @@
                             var height = image.height;
                             if (width == 710 | height == 600) {
                                 //alert("檔案尺寸符合！");
-
                             } else {
                                 alert("檔案尺寸應為：710 × 600！");
                                 input_ComicFigureCover.value = "";
@@ -471,9 +446,7 @@
                                 return false;
                             }
                         };
-
-                         image.src = cover_src;
-
+                        image.src = cover_src;
                         let img_cover = document.createElement('img');
                         img_cover.setAttribute('src', cover_src);
                         img_cover.classList.add("w-100")
@@ -485,7 +458,6 @@
         }
 
 
-
         //var BgCover = []; //存背景圖檔
         document.getElementById("BgCover")
             .addEventListener("change", BgCover_readURL);
@@ -495,18 +467,14 @@
         function BgCover_readURL() {
             img_box_BgCover.innerText = "";
             input_BgCover = this;
-
             for (var i = 0; i < input_BgCover.files.length; i++) {
-
                var reader = new FileReader();
-
                 //儲存上傳的封面圖片 ? 存背景圖檔?
                 let file_cover_name = input_BgCover.files[i].name;
                 //BgCover.push(file_cover_name);
                 (function(i) {
                     reader.onload = function(e) {
                         let cover_src = e.target.result;
-
                         //載入圖片獲取圖片真實寬度和高度
                         var image = new Image();
                         image.onload = function() {
@@ -514,18 +482,14 @@
                             var height = image.height;
                             if (width == 375 | height == 812) {
                                 //alert("檔案尺寸符合！");
-
                             } else {
                                 alert("檔案尺寸應為：375 × 812！");
                                 input_BgCover.value = "";
                                 img_box_BgCover.innerText = "";
                                 return false;
-
                             }
                         };
-
                          image.src = cover_src;
-
 
                         let img_cover = document.createElement('img');
                         img_cover.setAttribute('src', cover_src);

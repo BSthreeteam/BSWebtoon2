@@ -1,17 +1,16 @@
 .nav-top {
     position: fixed;
-    top: 70px;
+    top: 70px !important;
     left: 0;
     right: 0;
-    z-index: 10;
+    z-index: 9;
     background-color: #000;
-    padding: 5px;
+    padding: 1em;
 }
 
 .main-context {
     position: relative;
     top: 130px;
-    padding: 10px 0px;
 }
 
 .nav-selected {

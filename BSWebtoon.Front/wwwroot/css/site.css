@@ -100,7 +100,24 @@ body {
     }
 
     .display_name::after {
-        content: "UserName▼";
+        content: "▼";
     }
 }
 
+.dropdown_bg_dark {
+    background-color: #181818e3;
+}
+
+input[type=search] {
+    /* 讓框框調成黑色  */
+    -webkit-box-shadow: 0 0 0 30px black inset !important;
+    -webkit-text-fill-color: white;
+    /* 只留底線  */
+    border: 0px !important;
+    border-bottom: 1px solid #fff !important;
+    border-radius: 0%;
+}
+/* 輸入後的xx 去掉  改顏色還沒找到*/
+input[type=search]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+}
