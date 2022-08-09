@@ -41,7 +41,9 @@
     width: 100%;
 }
 
-
+#movie {
+    width: 90% ;
+}
 
 .content {
     background-color: #000;
@@ -320,6 +322,7 @@
 
 
 @media screen and (min-width:992px) {
+   
     .content {
         grid-template-columns: repeat(5, 1fr);
         grid-template-rows: repeat(2, 1fr);

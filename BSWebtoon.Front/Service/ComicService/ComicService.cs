@@ -5697,14 +5697,13 @@ namespace BSWebtoon.Front.Service.ComicService
             _repository.SaveChange();
         }
 
-
         public ReadworkContentOutputDTO ReadworkContent(int epId, int memberId)
         {
             //先判斷集數類型
             //1.免費:直接開啟漫畫
             //2.倒數:只能使用在能使用倒數卷的漫畫上，能使用三種卷(倒數，
-            //  閱讀，通用)
-            //3.最新五話:只能使用  閱讀，通用
+            // 閱讀，通用)
+            //3.最新五話:只能使用 閱讀，通用
 
             //註 => 既是倒數
             //類型 又是 最新五話?
@@ -5717,39 +5716,40 @@ namespace BSWebtoon.Front.Service.ComicService
             var EpSource = _repository.GetAll<Episode>().Where(e => e.AuditType == 1).FirstOrDefault(e => e.EpId == epId);//找出點的那一集的所有資料
             var EpContentsSource = _repository.GetAll<EpContent>().Where(c => c.EpId == epId);
 
+           //var memberId = _repository.GetAll<Member>().Where(c => c.AccountName == userName).Select(c => c.MemberId).First();
 
             result.ComicId = EpSource.ComicId;
             ;
             //登入者的所有券
             var couponSource = _repository.GetAll<Coupon>()
-                .Where(p => p.MemberId == memberId)
-                .OrderByDescending(p => p.CreateTime);  //最新 ....
+            .Where(p => p.MemberId == memberId)
+            .OrderByDescending(p => p.CreateTime); //最新 ....
 
-            //這部漫畫的 倒數卷 
+            //這部漫畫的 倒數卷
             var countdownCoupon_forThisComic = couponSource.FirstOrDefault(p =>
-                p.CouponTypeId == (int)CouponType.countdownCoupon
-                && p.ComicId == EpSource.ComicId
+            p.CouponTypeId == (int)CouponType.countdownCoupon
+            && p.ComicId == EpSource.ComicId
             );
             bool countdownCoupon_valid = countdownCoupon_forThisComic.Quantity == 1;
 
             //這部漫畫的 閱讀卷
             var readCoupon = couponSource.FirstOrDefault(p =>
-                p.CouponTypeId == (int)CouponType.readCoupon
-                && p.ComicId == EpSource.ComicId
+            p.CouponTypeId == (int)CouponType.readCoupon
+            && p.ComicId == EpSource.ComicId
             );
             bool readCoupon_valid = readCoupon != null && readCoupon.Quantity > 0;
 
             //通用卷
             var universalCoupon = couponSource.FirstOrDefault(p =>
-                p.CouponTypeId == (int)CouponType.universalCoupon);
+            p.CouponTypeId == (int)CouponType.universalCoupon);
             bool universalCoupon_valid = universalCoupon != null && universalCoupon.Quantity > 0;
 
 
-            //非免費且 所有券全皆無 
+            //非免費且 所有券全皆無
             if (!EpSource.IsFree
-                && !countdownCoupon_valid
-                && !readCoupon_valid
-                && !universalCoupon_valid
+            && !countdownCoupon_valid
+            && !readCoupon_valid
+            && !universalCoupon_valid
             ) return result;
 
             result.WorkContents = Read(EpSource, EpContentsSource);
@@ -5792,41 +5792,9 @@ namespace BSWebtoon.Front.Service.ComicService
             //}
 
 
-            ///////////////////
-            //EpContents = _repository.GetAll<EpContent>().Where(c => EpSource.IsFree == true && c.EpId == EpSource.EpId);//判斷那一集是否免費，並讀出所有內容頁
-
-
-            //if (EpContents == null)
-            //{
-            //    //免費集
-            //    var result = Read(EpId, EpSource, EpContents); //如是選出那集裡的內容頁等需要的資料
-
-            //    ViewRecordCreate(EpId, memberId);
-
-
-            //    return result;
-
-            //}
-
-            //var couponSource = _repository.GetAll<Coupon>().Where(p => p.MemberId == memberId);//找出登入會員的所有卷
-
-            //var countdownCouponComic = _repository.GetAll<EpContent>()
-            //    .Where(c => EpSource.IsCountdownCoupon == true && c.EpId == EpSource.EpId); //判斷那一集是否是可使用倒數卷，並讀出所有內容頁
-
-            //var countdownCoupon = couponSource.Where(p => p.CouponTypeId ==
-            //(int)CouponType.countdownCoupon && p.ComicId == EpSource.ComicId && p.Quantity == 1)
-            //    .FirstOrDefault();//找出登入者這部漫畫的倒數卷數量是1的
-            //var readCoupon = couponSource.Where(p => p.CouponTypeId == (int)CouponType.readCoupon && p.ComicId == EpSource.ComicId)
-            //    .OrderByDescending(p => p.CreateTime).FirstOrDefault();//找出登入者這部漫畫的最新閱讀卷
-
-
-            //if (countdownCouponComic.Count() != 0 && countdownCoupon != null && readCoupon.Quantity > 0)
-            //{
-            //    //倒數卷
-            //    var result = Read(EpId, EpSource, countdownCouponComic); //如果有找到符合條件的倒數卷就找出那集裡的內容頁等需要的資料
-            //}
         }
 
+            //var couponSource = _repository.GetAll<Coupon>().Where(p => p.MemberId == memberId);//找出登入會員的所有卷
 
         private List<WorkContent> Read(Episode epSource, IQueryable<EpContent> content)
         {
