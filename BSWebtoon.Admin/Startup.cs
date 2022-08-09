@@ -40,6 +40,9 @@ namespace BSWebtoon.Admin
 
             services.AddTransient<IDapperActivityRepository, DapperActivityRepository>();
 
+            services.AddTransient<IDapperCouponUseRecordRepository, DapperCouponUseRecordRepository>();
+            services.AddTransient<IDapperCouponRepository, DapperCouponRepository>();
+
             services.AddScoped<IDbConnection, SqlConnection>(serviceProvider =>
             {
                 SqlConnection conn = new SqlConnection();

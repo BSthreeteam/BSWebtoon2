@@ -38,7 +38,10 @@ namespace BSWebtoon.Admin.IDapperRepository
 
         public int Update(Coupon entity)
         {
-            throw new System.NotImplementedException();
+            return _conn.Execute(@"UPDATE Coupon
+                                    SET (Quantity,CreateTime) = (@Quantity,@CreateTime)
+                                    WHERE CouponId = @CouponId"
+                                , entity);
         }
     }
 }

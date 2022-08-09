@@ -1,7 +1,9 @@
 ﻿using BSWebtoon.Admin.IDapperRepository;
+using BSWebtoon.Model;
 using BSWebtoon.Model.Models;
 using Coravel.Invocable;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BSWebtoon.Admin.Service.JobService
@@ -25,8 +27,24 @@ namespace BSWebtoon.Admin.Service.JobService
             var coupons = _dapperCouponRepository.SelectAll();
             var coupoonUseRecord = _dapperCouponUseRecordRepository.SelectAll();
 
-            Console.WriteLine("CountDownCoupon");
-            await Task.CompletedTask;
+            var useRecordFinished = coupoonUseRecord.Where(x => x.EndReadTime < DateTime.Now);
+
+            if (useRecordFinished == null)
+            {
+                await Task.CompletedTask;
+            }
+            else
+            {
+                var couponFinished = coupons.Where(c => useRecordFinished.Any(x => x.CouponId == c.CouponId) && c.CouponTypeId == (int)CouponType.countdownCoupon);
+
+                foreach (var countdownCoupon in couponFinished)
+                {
+                    countdownCoupon.Quantity = 1;
+                    countdownCoupon.CreateTime = DateTime.UtcNow.AddHours(8);
+                    _dapperCouponRepository.Update(countdownCoupon);
+                }
+                await Task.CompletedTask;
+            }
         }
     }
 }
