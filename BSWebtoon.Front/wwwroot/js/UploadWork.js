@@ -59,7 +59,9 @@ function readURL() {
                         //alert("檔案尺寸符合！");
                         let img_cover = document.createElement('img');
                         img_cover.setAttribute('src', cover_src);
-                        img_cover.classList.add("w-100")
+                        img_cover.classList.add("mw-100")
+                        img_cover.classList.add("h-50")
+                        img_cover.classList.add("my-auto")
                         img_box.appendChild(img_cover);
 
 

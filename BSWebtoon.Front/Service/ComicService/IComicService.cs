@@ -22,7 +22,7 @@ namespace BSWebtoon.Front.Service.ComicService
         public void CreateComment(CommentDTO comment);
 
 
-        public ReadworkContentOutputDTO ReadworkContent(int EpId, int memberId);
+        //public ReadworkContentOutputDTO ReadworkContent(int EpId, int memberId);
 
 
 

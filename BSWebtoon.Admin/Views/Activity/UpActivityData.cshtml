@@ -1,0 +1,173 @@
+﻿@using BSWebtoon.Admin.Models.ViewModel.Activity
+@using static BSWebtoon.Admin.Models.DTO.Activity.GetAllEmployeeNameOutputDTO
+
+@{
+    var OutEmployeeName = (List<WithAllEmployeeName>)ViewData["EmployeeName"];
+    ViewData["Title"] = "UpActivityData";
+}
+
+@model ActivityViewModel
+
+@section topCss{
+    <style>
+        .ActivityStartTime {
+            padding: initial;
+        }
+
+        .ActivityEndTime {
+            padding: initial;
+        }
+    </style>
+}
+
+
+
+    <form method="post" enctype="multipart/form-data" asp-action="UpActivityData" asp-controller="Activity">
+        <div id="app" class="container">
+
+            <div class="row">
+
+                <!--左邊-->
+                <div class="col-4">
+                    <!-- 動態 -->
+                    <!-- 漫畫人物圖 -->
+                    <p>活動圖:(必須輸入)</p>
+                    <div id="img_box" class="d-flex  mb-3 " style="height: 250px; background: lightgrey;">
+
+                        <p class="d-flex mx-auto my-auto">請上傳活動圖</p>
+                    </div>
+                    <div class="card-body " style="background: #5a5c69b3; color: whitesmoke;">
+                        <p class="headshot_text ">
+                            圖片尺寸必須為710 × 600，檔案格式僅適用JPG、JPEG以及PNG檔案，且檔案尺寸在5MB以下。
+                        </p>
+                    </div>
+
+                    <label type="button" class="btn btn-secondary w-50 d-flex align-self-center text-center justify-content-center my-2" for="ActivityImage">上傳活動圖</label>
+
+                    <input type="file" name="ActivityImage" class="cover d-none form-control" accept="image/*" id="ActivityImage" />
+                    <div class="text-danger small mt-1">
+                        <!-- 錯誤訊息 -->
+
+                    </div>
+
+                </div>
+
+
+
+                <!--右邊-->
+                <div class="col-8 ">
+
+                     <div class="col-12 col-md-12 mb-3 p-0">
+                            <label for="inputState" class="form-label my-4">活動負責人</label>
+                            <select id="inputState" class="form-select" v-model="signup.ActivityEmployeeName" :class="{ 'is-invalid': signupCheck.ActivityEmployeeNameError }" name="ActivityEmployeeName">
+                                @*                        <option selected>Choose...</option>
+                            *@
+                                @foreach (var EmployeeName in OutEmployeeName)
+                            {
+                                <option value="@EmployeeName.EmployeeId">@EmployeeName.EmployeeName</option>
+                            }
+                        </select>
+                        <div class="text-danger small mt-1">
+                                <!-- 錯誤訊息 -->
+                                {{ signupCheck.ActivityEmployeeNameErrorMsg }}
+                        </div>
+
+                    </div>
+
+
+                    <div class="row g-3">
+                        <div class="col-12 col-md-6 mb-3">
+                            <label for="">活動名稱:</label>
+                            <input v-model="signup.ActivityName" type="text" name="ActivityName" class="form-control"
+                               :class="{ 'is-invalid': signupCheck.ActivityNameError }" id="ActivityName">
+                            <div class="text-danger small mt-1">
+                                <!-- 錯誤訊息 -->
+                                {{ signupCheck.ActivityNameErrorMsg }}
+                            </div>
+                        </div>
+
+
+                        <div class="col-12 col-md-6 mb-3">
+                            <label for="">活動背景色:</label>
+                            @*<input name="ActivityBgColor"></input>*@
+                            <input v-model="signup.ActivityBgColor" type="text" name="ActivityBgColor" class="form-control"
+                               :class="{ 'is-invalid': signupCheck.ActivityBgColorError }" id="ActivityBgColor">
+                            <div class="text-danger small mt-1">
+                                <!-- 錯誤訊息 -->
+                                {{ signupCheck.ActivityBgColorErrorMsg }}
+                            </div>
+                        </div>
+
+                      
+                         
+
+                    <div class="col-12 col-md-6 mb-3">
+                        <b-container fluid class="ActivityStartTime">
+                            <label type="date">活動開始日期:</label>
+                            <b-form-input type="date" name="ActivityStartTime" v-model="signup.ActivityStartTime" class="form-control" :class="{ 'is-invalid': signupCheck.ActivityStartTimeError }" id="ActivityStartTime"></b-form-input>
+                        </b-container>
+                        <div class="text-danger small mt-1">
+                            <!-- 錯誤訊息 -->
+                            {{ signupCheck.ActivityStartTimeErrorMsg }}
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6 mb-3">
+                        <b-container fluid class="ActivityEndTime">
+                            <label type="date">活動結束日期:</label>
+                            <b-form-input type="date" name="ActivityEndTime" v-model="signup.ActivityEndTime" class="form-control" :class="{ 'is-invalid': signupCheck.ActivityEndTimeError }" id="ActivityEndTime"></b-form-input>
+                        </b-container>
+                        <div class="text-danger small mt-1">
+                            <!-- 錯誤訊息 -->
+                            {{ signupCheck.ActivityEndTimeErrorMsg }}
+                        </div>
+                    </div>
+
+
+                    <label for="">活動文案:</label>
+                    <b-form-textarea id="ActivityContent" name="ActivityContent" v-model="signup.ActivityContent" :class="{ 'is-invalid': signupCheck.ActivityContentError }" placeholder="500字以下" rows="8"> </b-form-textarea>
+                    <div class="text-danger small mt-1">
+                        <!-- 錯誤訊息 -->
+                        {{ signupCheck.ActivityContentErrorMsg }}
+                    </div>
+
+
+
+
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+            <div class="row px-5  justify-content-end">
+                <div class="col-2">
+                    <button type="submit" class="btn btn-primary m-auto" v-bind:disabled="addVerify" id="upload">上架送出</button>
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+
+
+    </div>
+
+</form>
+
+@section endJS{
+
+     <script src="~/js/UpActivityData.js"></script>
+ }
+
+
+
+
+
+

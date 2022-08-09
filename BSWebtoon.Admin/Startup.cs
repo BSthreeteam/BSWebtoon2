@@ -1,4 +1,8 @@
 using BSWebtoon.Admin.IDapperRepository;
+using BSWebtoon.Admin.Service.ActivityService;
+using BSWebtoon.Front.Service.CloudinaryService;
+using BSWebtoon.Model.Models;
+using BSWebtoon.Model.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,6 +33,16 @@ namespace BSWebtoon.Admin
             services.AddControllersWithViews();
             services.AddTransient<IDapperEmployeeRepository, DapperEmployeeRepository>();
             services.AddTransient<IDapperMemberRepository, DapperMemberRepository>();
+
+            services.AddTransient<IDapperActivityRepository, DapperActivityRepository>();
+            //¬¡°Ê
+            services.AddScoped<IActivityService, ActivityService>();
+            //µù¥U
+            services.AddScoped<BSRepository, BSRepository>();
+
+            //µù¥U
+            services.AddScoped<ICloudinaryService, CloudinaryService>();
+
             services.AddScoped<IDbConnection, SqlConnection>(serviceProvider =>
             {
                 SqlConnection conn = new SqlConnection();

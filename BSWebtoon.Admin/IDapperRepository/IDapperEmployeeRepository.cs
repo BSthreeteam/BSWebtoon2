@@ -52,18 +52,18 @@ namespace BSWebtoon.Admin.IDapperRepository
 
         public IEnumerable<Employee> SelectAll()
         {
-            return _conn.Query<Employee>(@" Select EmployeeName,HireDate,Account
+            return _conn.Query<Employee>(@" Select EmployeeId, EmployeeName,HireDate,Account
                                             from Employee");
         }
 
         public Employee SelectById(int id)
         {
-            throw new System.NotImplementedException();
-        //    return _conn.QueryFirstOrDefault<Employee>(@"
-        //    SELECT * FROM Employees WHERE EmployeeID= @id
-        //",
-        //    new { id }); //匿名類別 若省略屬性名稱，會自動判斷該取什麼名字
-        //                 //new { id = id }); //一般寫法
+            //throw new System.NotImplementedException();
+
+            return _conn.QueryFirstOrDefault<Employee>(@"
+            SELECT * FROM Employee WHERE EmployeeId= @id",
+            new { id }); //匿名類別 若省略屬性名稱，會自動判斷該取什麼名字
+                         //new { id = id }); //一般寫法
         }
 
         public IEnumerable<Employee> SelectSubordinates(int? employeeId)
@@ -74,5 +74,11 @@ namespace BSWebtoon.Admin.IDapperRepository
         //",
         //    new { employeeId }); //匿名類別 若省略屬性名稱，會自動判斷該取什麼名字
         }
+
+        
+
+
+
+
     }
 }

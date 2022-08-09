@@ -54,7 +54,8 @@ function readURL() {
 
                 let img_cover = document.createElement('img');
                 img_cover.setAttribute('src', cover_src);
-                img_cover.classList.add("w-100")
+                img_cover.classList.add("mw-100");
+                img_cover.classList.add("mh-100");
                 img_box.appendChild(img_cover);
             }
         })(i)
@@ -107,7 +108,7 @@ function BgCover_readURL() {
 
                 let img_cover = document.createElement('img');
                 img_cover.setAttribute('src', cover_src);
-                img_cover.classList.add("w-100")
+                //img_cover.classList.add("w-100")
                 img_box_BgCover.appendChild(img_cover);
             }
         })(i)
