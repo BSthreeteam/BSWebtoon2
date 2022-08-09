@@ -5,7 +5,6 @@ namespace BSWebtoon.Admin.Models.DTO
 {
     public class MemberDTO:Member
     {
-        
         public string LoginTypeName { get; set; }
     }
 }
