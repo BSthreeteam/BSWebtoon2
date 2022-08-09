@@ -19,8 +19,8 @@ namespace BSWebtoon.Admin.Controllers.WebApi
         {
             try
             {
-            var result = _dapperMemberRepository.SelectAll();
-            return Ok(result);
+                var result = _dapperMemberRepository.SelectAll();
+                return Ok(result);
             }
             catch(Exception ex)
             {

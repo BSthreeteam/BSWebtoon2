@@ -10,6 +10,7 @@
 
 
 
+
 @Html.Partial("NavPartial")
 
 
@@ -19,14 +20,14 @@
             <template id="showRankTemplate">
                 <a class="work_big" href="#">
                     <div class="work_big_bg">
-                        <img src="@Model.FirstRank.BgCover" alt="背景" class="rank_pic_bg">
+                        <img src="" alt="背景" class="rank_pic_bg">
                     </div>
                     <div class="comic_material">
                         <div class="work_big_title">
-                            <img src="@Model.FirstRank.ComicNameImage" alt="標題" class="rank_pic_title">
+                            <img src="" alt="標題" class="rank_pic_title">
                         </div>
                         <div class="introduction">
-                            @Model.FirstRank.Introduction
+                           
                         </div>
                     </div>
                     <div class="work_big_Ranking">
@@ -35,7 +36,7 @@
                         <p class="diff">@Model.FirstRank.Diff</p>
                     </div>
                     <div class="work_big_pic">
-                        <video>
+                        <video id="movie">
                             <source src="" type="video/webm" class="video">
                         </video>
                         <img src="" alt="" class="rank_pic_people">

@@ -32,6 +32,11 @@
 
     <!-- Load the following for BootstrapVueIcons support -->
     <script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue-icons.min.js"></script>
+    <!-- Axios -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+		integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+		crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/896690462a.js" crossorigin="anonymous"></script>
 
     <!-- Custom styles for this template-->
     <link href="~/css/sb-admin-2.min.css" rel="stylesheet">
@@ -52,7 +57,8 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                @*<div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>*@
+                <div class="sidebar-brand-text mx-3">BSWebtoom <sup>Admin</sup></div>
             </a>
 
             <!-- Divider -->
@@ -75,29 +81,28 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="/Member/Index" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link collapsed" href="/Member/Index" >
                     <i class="fas fa-fw fa-cog"></i>
                     <span>會員管理</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                @*data-toggle="collapse"   aria-expanded="true" aria-controls="collapseTwo"data-target="#collapseMember"*@
+                @*<div id="collapseMember" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Components:</h6>
                         <a class="collapse-item" href="/Member/Index">會員基本資料</a>
                         @*buttons.html*@
-                        <a class="collapse-item" href="cards.html">Cards</a>
-                    </div>
-                </div>
+                   @* </div>
+                </div>*@
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="/Employee/Index" data-toggle="collapse" data-target="#collapseUtilities"
+                <a class="nav-link collapsed" href="/Employee/Index" data-toggle="collapse" data-target="#collapseEmployee"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>員工管理</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                <div id="collapseEmployee" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Utilities:</h6>
@@ -110,12 +115,12 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseComic"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>漫畫管理</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                <div id="collapseComic" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Utilities:</h6>
@@ -127,12 +132,12 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseActivity"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>活動管理</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                <div id="collapseActivity" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Utilities:</h6>
@@ -144,12 +149,12 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSchedule"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>排程管理</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                <div id="collapseSchedule" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Utilities:</h6>
@@ -489,6 +494,10 @@
 
     <!-- Custom scripts for all pages-->
     <script src="~/js/sb-admin-2.min.js"></script>
+
+
+    <!--    moment日期格式化的庫：地址：momentjs.cn    -->
+    <script src="~/lib/moment.js/moment.min.js"></script>
 
     <!-- Page level plugins -->
     @*<script src="~/vendor/chart.js/Chart.min.js"></script>
