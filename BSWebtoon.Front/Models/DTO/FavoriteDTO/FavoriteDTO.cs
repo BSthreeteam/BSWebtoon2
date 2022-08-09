@@ -1,4 +1,6 @@
-﻿namespace BSWebtoon.Front.Models.DTO.FavoriteDTO
+﻿using System.Collections.Generic;
+
+namespace BSWebtoon.Front.Models.DTO.FavoriteDTO
 {
     public class FavoriteDTO
     {
@@ -11,6 +13,14 @@
         public string ComicFigure { get; set; }
         public string BgColor { get; set; }
         public string ComicWeekFigure { get; set; }
-
+        //接參數
+        public List<int> ComicIdsToDelete { get; set; }
     }
+
+    public class RemoveFavoriteInputDTO
+    {
+        public int MemberId { get; set; }
+        public List<int> ComicIdsToDelete { get; set; }
+    }
+
 }

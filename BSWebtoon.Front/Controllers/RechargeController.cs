@@ -63,7 +63,7 @@ namespace BSWebtoon.Front.Controllers
         //        claim.OriginalIssuer,
         //        claim.Type,
         //        claim.Value,
-        //    }); 
+        //    });
         //    var NameIdentifiers = claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value;
         //    var memberName = _repository.GetAll<Member>().Where(x => x.NameIdentifier == NameIdentifiers).Select(X => X.AccountName);
 

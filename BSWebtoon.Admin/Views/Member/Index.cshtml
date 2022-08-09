@@ -4,82 +4,155 @@
 
 @section topCss{
 
-    <style>
-      .lable {
-            font-size: 25px;
-        }
+<style>
+    .lable {
+        font-size: 25px;
+    }
 
-        .chb {
-            font-size: 20px;
-        }
+    .chb {
+        font-size: 20px;
+    }
 
-        .table_line {
-            border: 1px solid black;
-        }
+    .table_line {
+        border: 1px solid black;
+    }
 
-    </style>
+</style>
 }
 
-    <div id="app" class="container">
-        <b-navbar toggleable="lg" type="dark" variant="light d-flex justify-content-between">
-            <b-navbar-brand href="#" class="fs-1 text-dark">會員管理</b-navbar-brand>
-        </b-navbar>
-        <div class="qq d-flex mb-5">
-            <label class="lable d-flex align-items-center" for="">請選擇登入類型:</label>
-            <div class="d-flex">
-                <b-form-checkbox class="chb m-2 d-flex align-items-center" id="checkbox-1" v-model="selected"
-                    name="checkbox-1" value="Google" unchecked-value="not_accepted">
-                    Google
-                </b-form-checkbox>
-                <b-form-checkbox class="chb m-2 d-flex align-items-center" id="checkbox-2" v-model="selected"
-                    name="checkbox-2" value="Facebook" unchecked-value="not_accepted">
-                    Facebook
-                </b-form-checkbox>
-                <b-form-checkbox class="chb m-2 d-flex align-items-center" id="checkbox-3" v-model="selected"
-                    name="checkbox-3" value="Line" unchecked-value="not_accepted">
-                    Line
-                </b-form-checkbox>
-            </div>
-            <div class="mt-3">Selected: <strong>{{ selected }}</strong></div>
+<div id="app" class="container">
+    <b-navbar toggleable="lg" type="dark" variant="light d-flex justify-content-between">
+        <b-navbar-brand href="#" class="fs-1 text-dark">會員管理</b-navbar-brand>
+    </b-navbar>
+    <div class="qq d-flex mb-5">
+        <label class="lable d-flex align-items-center" for="">請選擇登入類型:</label>
+        <div class="d-flex">
+            <b-form-checkbox class="chb m-2 d-flex align-items-center" id="checkbox-1" v-model="selected"
+                             name="checkbox-1" value="Google" unchecked-value="not_accepted">
+                Google
+            </b-form-checkbox>
+            <b-form-checkbox class="chb m-2 d-flex align-items-center" id="checkbox-2" v-model="selected"
+                             name="checkbox-2" value="Facebook" unchecked-value="not_accepted">
+                Facebook
+            </b-form-checkbox>
+            <b-form-checkbox class="chb m-2 d-flex align-items-center" id="checkbox-3" v-model="selected"
+                             name="checkbox-3" value="Line" unchecked-value="not_accepted">
+                Line
+            </b-form-checkbox>
         </div>
-        <div class="table_line">
-            <b-table striped hover :items="items" :fields="fields"></b-table>
-        </div>
+        <div class="mt-3">Selected: <strong>{{ selected }}</strong></div>
+    </div>
+    <div class="table_line">
+        <b-table id="my-table" striped hover :items="memberList" :fields="fields" :current-page="currentPage" :per-page="perPage"
+                 :filter="filter"
+                 v-on:filtered="onFiltered">
+            <template #cell(Action)="row">
+                <b-button size="sm" v-on:click="row.toggleDetails">
+                    {{ row.detailsShowing ? '隱藏' : '顯示' }} 詳細訊息
+                </b-button>
+            </template>
+            <template #row-details="row">
+                <b-card>
+                    <div class="d-flex">
+                        <div class="col-lg-6">
+                            <p>會員編號： {{row.item.memberId}}</p>
+                            <p>會員帳戶名稱： {{row.item.accountName}}</p>
+                            <p>作者名稱：{{row.item.nickName}}</p>
+                            <p>帳戶餘額：{{row.item.balance }}</p>
+                        </div>
+                        <div class="col-lg-6">
+                            <p>會員登入方式：{{row.item.loginTypeName}}</p>
+                            <p>會員信箱：{{row.item.email }}</p>
+                            <p>會員創建時間：{{row.item.createTime | DateString('YYYY/MM/DD')}}</p>
+                        </div>
+                    </div>
+                </b-card>
+            </template>
+            
+        </b-table>
     </div>
 
-    @section endJS{
-    <script>
-        let app = new Vue({
-            el: '#app',
-            data: {
-                selected: [],//給你看到你勾選選項的value
-                fields: ['first_name', 'last_name', 'age'],//可以放欄位名稱
-                items: [
-                    { age: 40, first_name: 'Dickerson', last_name: 'Macdonald' }, //讀資料出來
-                    { age: 21, first_name: 'Larsen', last_name: 'Shaw' },
-                    { age: 89, first_name: 'Geneva', last_name: 'Wilson' },
-                    { age: 38, first_name: 'Jami', last_name: 'Carney' }]
-            },
-            mounted() {
-				this.getAllMember()
-			},
-            methods: {
-				getAllMember() {
-					axios.get('/api/MemberApi/Index')
-						.then((res) => {
-							if (res.data.status==20000){
-								console.log(res)
-								this.pokemonList=res.data.result
-							}
-							else{
-								alert('上傳不成功')
-							}
-						})
-				}
-            }
+    <b-row class="mt-5">
+        <b-col lg="6" class="ml-auto ">
+            <b-pagination v-model="currentPage" :total-rows="totalRows" :per-page="perPage"
+                          align="fill" size="md" class="my-0" aria-controls="my-table">
+            </b-pagination>
+        </b-col>
+        <b-col lg="3" class="my-1">
+            <b-form-group label="每頁顯示筆數" label-for="per-page-select" label-cols-sm="3"
+                          label-cols-lg="9" content-cols="3" label-align-sm="right" label-size="sm"
+                          class="mb-0">
+                <b-form-select id="per-page-select" v-model="perPage" :options="pageOptions"
+                               size="sm"></b-form-select>
+            </b-form-group>
+        </b-col>
+    </b-row>
+</div>
 
-        })
-    </script>
+@section endJS{
+<script>
+    //日期時間格式化
+    function DateFormat(value, format) {
+        return moment(value).format(format || 'YYYY/MM/DD');
+    }
+    //日期格式化
+    Vue.filter('DateString', function (value, format) {
+        return moment(value).format(format || 'YYYY/MM/DD')
+    });
+    let app = new Vue({
+        el: '#app',
+        data: {
+            selected: [],//給你看到你勾選選項的value ,'createTime'
+            fields: [
+                {key:'memberId',label:"會員編號",sortable: true},
+                {key:'accountName',label:"會員帳戶名稱",sortable: true},
+                {key:'nickName',label:"作者姓名",sortable: true},
+                {key:'balance',label:"帳戶餘額",sortable: true},
+                {key:'loginTypeName',label:"登錄方式",sortable: true},
+                {key:'email',label:"會員信箱",sortable: true},
+                {key: 'Action', label: '功能' },
+            ],
+            memberList:[],
+            currentPage: 1,
+            //一頁幾筆資料
+            perPage: 10,
+            filter: '',
+            pageOptions: [5, 10, 25, 100]
+        },
+        computed:{
+            totalRows(){
+                return this.memberList.length
+            }
+        },
+        mounted() {
+            this.getAllMember()
+        },
+        methods: {
+            getAllMember() {
+                axios.get('/api/MemberApi/Index')
+                .then((res) => {
+                        this.memberList=res.data
+                        console.log(this.memberList);
+                        ////var loginType;
+                        if (res.status==200){
+                            this.memberList=res.data;
+                            //return {
+                            //    memberId:
+                            //}
+                        }
+                        else{
+                            alert('上傳不成功')
+                        }
+                    })
+            },
+            onFiltered(filteredItems) {
+                this.totalRows = filteredItems.length
+                this.currentPage = 1
+            }
+        }
+
+    })
+</script>
 
     }
 

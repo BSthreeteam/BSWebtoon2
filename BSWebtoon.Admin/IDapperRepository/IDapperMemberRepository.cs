@@ -1,8 +1,10 @@
-﻿using BSWebtoon.Admin.Repository;
+﻿using BSWebtoon.Admin.Models.DTO;
+using BSWebtoon.Admin.Repository;
 using BSWebtoon.Model.Models;
 using Dapper;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 
 namespace BSWebtoon.Admin.IDapperRepository
 {
@@ -32,10 +34,12 @@ namespace BSWebtoon.Admin.IDapperRepository
 
         public IEnumerable<Member> SelectAll()
         {
+            var restlt = @"select M.MemberId,M.AccountName,M.NickName,M.Balance,M.CreateTime ,M.Email,L.LoginTypeName
+                           from Member M
+                           inner join LoginType L on L.LoginTypeId=M.LoginTypeId";
 
-            return _conn.Query<Member>(@"select M.NameIdentifier,M.AccountName,M.NickName,M.Balance,L.LoginTypeName,M.Email
-                                          from Member M
-                                         inner join LoginType L on L.LoginTypeId=M.LoginTypeId");
+
+                return _conn.Query<MemberDTO>(restlt);
 
         }
 

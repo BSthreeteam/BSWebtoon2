@@ -86,12 +86,12 @@
                                 <div class="card bg-dark" style="width: 20rem;">
                                     <p class="pb-4 mb-0" style="background-color: #000;">作品封面縮圖:(必須輸入)</p>
                                     <!-- 動態 -->
-                                    <div id="img_box" class="d-flex" style="  height: 250px; background: rgb(57, 56, 56);">
+                                    <div id="img_box" class="d-flex" style="  width: 100%; background: rgb(57, 56, 56);">
 
 
                                         @*<img id="cover_img" src="https://inews.gtimg.com/newsapp_bt/0/14062897162/1000"
                                         class="card-img-top" alt="作品封面縮圖">*@
-                                        <p class="d-flex mx-auto my-auto">請上傳作品封面縮圖</p>
+                                        <p class="d-flex" style="height:120px; margin:auto; align-items:center;">請上傳作品封面縮圖</p>
 
 
                                     </div>
@@ -394,9 +394,9 @@
         @{
             if (ViewData.ContainsKey("IsSuccessMsg"))
             {
-                        <script>
-                            alert(@Html.Raw(ViewData["IsSuccessMsg"])  )
-                        </script>
+                                        <script>
+                                            alert(@Html.Raw(ViewData["IsSuccessMsg"])  )
+                                        </script>
             }
         }
 

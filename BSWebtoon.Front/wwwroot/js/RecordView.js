@@ -49,7 +49,8 @@ function sliding_mousewheel() {
     }
 
     function Open_del_page() {
-        window.open("/Favorite/RemoveFavoriteView");
+        //window.open("/Favorite/RemoveFavoriteView");
+        window.location.href = '/Favorite/RemoveFavoriteView';
     }
 
     function img_down_move() {
