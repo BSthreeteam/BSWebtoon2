@@ -102,7 +102,7 @@ namespace BSWebtoon.Front.Service.UploadService
             if (input.IsNewAuthorName)
             {
                 //作者筆名 不可重複
-                var IsAuthorNameExist = _repository.GetAll<Comic>().Any(x =>  x.Author == input.Author);
+                var IsAuthorNameExist = _repository.GetAll<Comic>().Any(x => x.Author == input.Author);
                 result.Message = "已有重複名稱";
                 return result;
 
@@ -122,12 +122,23 @@ namespace BSWebtoon.Front.Service.UploadService
                     return result;
                 }
             }
-            
 
-            if(user.NickName != input.Author) {
+
+            if (user.NickName != input.Author && user.NickName != "")
+            {
                 result.Message = "漫畫作者名 和 會員作者名不一致";
                 return result;
             }
+
+
+            //更新會員表資料庫
+            Member userloginid = _repository.GetAll<Member>().First(x => x.MemberId == input.MemberId);
+
+            userloginid.NickName = input.Author;
+
+            _context.Update(userloginid);
+            _context.SaveChanges();
+
 
             #region 建議包交易 / try
 
@@ -175,6 +186,15 @@ namespace BSWebtoon.Front.Service.UploadService
                     //寫入資料
                     var e = _context.Comics.Add(ComicInfo);
                     _context.SaveChanges();
+
+
+                    //Member userloginid = _repository.GetAll<Member>().First(x => x.MemberId == input.MemberId);
+
+                    //userloginid.NickName = input.Author;
+
+                    //_context.Update(userloginid);
+                    //_context.SaveChanges();
+
 
 
 
@@ -260,8 +280,9 @@ namespace BSWebtoon.Front.Service.UploadService
 
             result.IsSuccess = true;
             return result;
-        }
 
+
+        }
 
         //取得會員表裡面的 NickName 也就是作者名稱方法
         public string GetNickName(int userid)
@@ -274,7 +295,7 @@ namespace BSWebtoon.Front.Service.UploadService
             string user = "";
             //try
             //{
-                user = _repository.GetAll<Member>().First(x => x.MemberId == userid).NickName;
+            user = _repository.GetAll<Member>().First(x => x.MemberId == userid).NickName;
             //    result.HasNickName = true;
             //    result.IsSuccess = true;
             //}
@@ -445,6 +466,6 @@ namespace BSWebtoon.Front.Service.UploadService
 
         }
 
-        
+
     }
 }
