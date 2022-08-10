@@ -29,6 +29,7 @@ using BSWebtoon.Front.Service.CloudinaryService;
 
 using BSWebtoon.Front.Service.ActivityService;
 using BSWebtoon.Front.Service.UploadService;
+using BSWebtoon.Front.Service.AccountService;
 using BSWebtoon.Front.Service.RecordViewService;
 
 namespace BSWebtoon.Front
@@ -71,6 +72,7 @@ namespace BSWebtoon.Front
             services.AddScoped<ISearchService, SearchService>();
             services.AddScoped<IWeekUpdateService, WeekUpdateService>();
             services.AddScoped<IMemberService, MemberService>();
+            services.AddScoped<IAccountService, AccountService>();
 
 
             services.AddHttpContextAccessor();

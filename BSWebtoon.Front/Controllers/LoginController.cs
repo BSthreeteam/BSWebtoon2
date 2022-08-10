@@ -87,6 +87,7 @@ namespace BSWebtoon.Front.Controllers
             };
             await _memberService.LoginAccount(iutputDTO);
 
+
             return LocalRedirect("/");
         }
         public IActionResult Logout()

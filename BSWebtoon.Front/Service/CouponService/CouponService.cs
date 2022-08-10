@@ -155,13 +155,14 @@ namespace BSWebtoon.Front.Service.CouponService
         {
             // 新登入一個會員  將每一部漫畫跑一遍 新增倒數券
             var HaveCoundownCouponMember = _repository.GetAll<Coupon>().Where(c => c.CouponTypeId == (int)CouponType.countdownCoupon);
-            var NotHaveCoundownCouponMember = _repository.GetAll<Member>().Where(notHave => HaveCoundownCouponMember.Any(have => have.MemberId != notHave.MemberId));
+            var AllMember = _repository.GetAll<Member>();
 
+            var members = AllMember.Where(m => !HaveCoundownCouponMember.Any(h => m.MemberId == h.MemberId));
             var AllComic = _repository.GetAll<Comic>();
 
             List<Coupon> countdowncoupons = new List<Coupon>();
 
-            foreach (var member in NotHaveCoundownCouponMember)
+            foreach (var member in members)
             {
                 foreach (var comic in AllComic)
                 {
@@ -185,9 +186,31 @@ namespace BSWebtoon.Front.Service.CouponService
             _repository.SaveChange();
         }
 
-        public void GetReadCoupon()
+        public void GetReadCoupon(GetReadCouponDTO readCoupon)
         {
             // 增加coupon 減少金幣
+            var couponQuantity = _repository.GetAll<Coupon>()
+                .Where(c => c.MemberId == readCoupon.MemberId && c.ComicId == readCoupon.ComicId && c.CouponTypeId == readCoupon.CouponTypeId)
+                .OrderByDescending(c => c.CreateTime).Select(c => c.Quantity).FirstOrDefault();
+
+
+            var coupon = new Coupon()
+            {
+                MemberId = readCoupon.MemberId,
+                ComicId = readCoupon.ComicId,
+                CouponTypeId = readCoupon.CouponTypeId,
+                OriginQuantity = readCoupon.OriginQuantity,
+                CreateTime = DateTime.UtcNow.AddHours(8),
+                Quantity = readCoupon.OriginQuantity + couponQuantity
+            };
+            _repository.Create(coupon);
+
+            var member = _repository.GetAll<Member>().Where(m => m.MemberId == readCoupon.MemberId).First();
+
+            member.Balance = member.Balance - readCoupon.SpendCoin;
+            _repository.Update(member);
+
+            _repository.SaveChange();
         }
 
     }

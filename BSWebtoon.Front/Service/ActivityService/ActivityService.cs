@@ -38,7 +38,7 @@ namespace BSWebtoon.Front.Service.ActivityService
         public GiftBoxDTO ReadGiftBox()
         {
             var giftBoxList = _repository.GetAll<Activity>().Where(a => a.IsDelete == false)
-                .Where(a => a.ActivityStartTime < DateTime.UtcNow.AddHours(8) && a.ActivityEndTime > DateTime.UtcNow.AddHours(8));
+                .Where(a => a.ActivityStartTime < DateTime.UtcNow.AddHours(8));
 
             var allList = new List<GiftBoxDTO.GiftBoxItem>() { };
 
