@@ -45,6 +45,6 @@ let app = new Vue({
         totalRows() {
             return this.employeeList.length;
         }
-    },
+    }
 
-}
+})

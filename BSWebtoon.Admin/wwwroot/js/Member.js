@@ -15,15 +15,11 @@ let app = new Vue({
             { key: 'accountName', label: "會員帳戶名稱", sortable: true },
             { key: 'nickName', label: "作者姓名", sortable: true },
             { key: 'balance', label: "帳戶餘額", sortable: true },
-            { key: 'loginTypeName', label: "登錄方式", sortable: true, filterByFormatted: true },
-            { key: 'email', label: "會員信箱", sortable: true },
+            { key: 'loginTypeName', label:"登錄方式", sortable: true, filterByFormatted: true },
+            { key: 'email', label:"會員信箱", sortable: true },
             { key: 'Action', label: '功能' },
         ],
-        items: [
-            { key: 'Google', label: "Google", sortable: true },
-            { key: 'Line', label: 'Line', sortable: true },
-            { key: 'Facebook', label: 'Facebook', sortable: true }
-        ],
+        fieldss: [ 'memberId', 'accountName', 'nickName', 'balance', 'loginTypeName', 'email', 'Action'],
         memberList: [],
         filterOn: [],
         currentPage: 1,
@@ -47,14 +43,8 @@ let app = new Vue({
         getAllMember() {
             axios.get('/api/MemberApi/Index')
                 .then((res) => {
-                    this.memberList = res.data
-                    console.log(this.memberList);
-                    if (res.status == 200) {
-                        this.memberList = res.data;
-                    }
-                    else {
-                        alert('上傳不成功')
-                    }
+                    console.log(res.data);
+                    this.memberList = res.data;
                 })
         },
         onFiltered(filteredItems) {
