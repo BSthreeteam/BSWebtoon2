@@ -13,7 +13,7 @@
     <title>BSWebtoon-Admin</title>
 
     <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    @* <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> *@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -97,19 +97,17 @@
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="/Employee/Index" data-toggle="collapse" data-target="#collapseEmployee"
-                    aria-expanded="true" aria-controls="collapseUtilities">
+                <a class="nav-link collapsed" href="/Employee/management" data-toggle="collapse" data-target="#collapseFore"
+                    aria-expanded="true" aria-controls="collapseFore">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>員工管理</span>
                 </a>
-                <div id="collapseEmployee" class="collapse" aria-labelledby="headingUtilities"
+                <div id="collapseFore" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
+                        <a class="collapse-item" href="/Employee/management">員工基本資料</a>
+                        <a class="collapse-item" href="utilities-other.html">備用</a>
                     </div>
                 </div>
             </li>

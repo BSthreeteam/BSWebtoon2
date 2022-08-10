@@ -14,10 +14,9 @@ namespace BSWebtoon.Admin.Controllers
             _employeeRepository = employeeRepository;
         }
 
-        public IActionResult Index()
+
+        public IActionResult management()
         {
-
-
             //R
             var qAll = _employeeRepository.SelectAll();
 

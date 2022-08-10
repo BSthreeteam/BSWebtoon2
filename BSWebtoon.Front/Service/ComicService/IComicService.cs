@@ -22,5 +22,7 @@ namespace BSWebtoon.Front.Service.ComicService
         public List<CommentDTO> GetComment(int EpId);
         public void CreateComment(CommentDTO comment);
 
+
+
     }
 }
