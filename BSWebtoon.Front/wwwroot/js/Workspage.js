@@ -91,13 +91,29 @@ window.onload = function () {
     collect_a.addEventListener("click", () => {
         checkvalue = !checkvalue
         clickLike(checkvalue)
-    })
-    function clickLike(boolvalue) {
-        if (boolvalue == true) {
+    let check = document.querySelector('#heart');
+    clickLike(checkvalue)
+
             collect_a.classList.add('text-danger');
         }
         else {
             collect_a.classList.remove('text-danger');
+        if (boolvalue == true) {
+<<<<<<<<< Temporary merge branch 1
+            collect_a.classList.add('text-danger');
+            console.log(boolvalue)
+        }
+        else {
+            collect_a.classList.remove('text-danger');
+            console.log(boolvalue)
+=========
+            console.log(check.checked)
+            collect_a.classList.add('text-danger');
+        }
+        else {
+            console.log(check.checked)
+            collect_a.classList.remove('text-danger');
+>>>>>>>>> Temporary merge branch 2
         }
     }
 
