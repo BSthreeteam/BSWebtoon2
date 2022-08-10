@@ -31,6 +31,8 @@ namespace NewebPay.Controllers
         {
             _logger = logger;
             _repository = repository;
+
+            //---------- hana add ------ 
             _rechargeService = rechargeService;
 
         }
@@ -157,6 +159,7 @@ namespace NewebPay.Controllers
             NameValueCollection decryptTradeCollection = HttpUtility.ParseQueryString(TradeInfoDecrypt);
             receive.Length = 0;
 
+            // ---------- by hana  ------ 
             //將成功訂單存入資料庫
             var input_RechargeRecord = new RechargeRecord()
             {
@@ -174,7 +177,6 @@ namespace NewebPay.Controllers
                 var status = decryptTradeCollection["Status"];//SUCCESS
                 if(status == "SUCCESS")
                 {
-                    //宣告MemberId
                     var MemberId = 123;
                     if (key == "MerchantOrderNo")
                     {

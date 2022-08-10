@@ -9,10 +9,9 @@ namespace BSWebtoon.Front.Controllers
             return View();
         }
 
-        //設定頁面
-        //public IActionResult SettingView()
-        //{
-        //    return View();
-        //}
+        public IActionResult SettingView()
+        {
+            return View();
+        }
     }
 }

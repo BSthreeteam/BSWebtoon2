@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using BSWebtoon.Front.Models.DTO.Comic;
 
 namespace BSWebtoon.Front.Models.DTO.ViewRecord
@@ -15,11 +14,5 @@ namespace BSWebtoon.Front.Models.DTO.ViewRecord
         public DateTime ViewTime { get; set; }
         public bool IsDelete { get; set; }
 
-    }
-
-    public class RemoveRecordViewInputDTO
-    {
-        public int MemberId { get; set; }
-        public List<int> ComicIdsToDelete { get; set; }
     }
 }

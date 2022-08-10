@@ -1,13 +1,17 @@
 ﻿using BSWebtoon.Front.Models.DTO.ViewRecord;
+using BSWebtoon.Model.Models;
 using System.Collections.Generic;
+using System.Linq;
+using BSWebtoon.Model.Repository;
 using Dapper; 
 using Microsoft.Data.SqlClient;
-
+using BSWebtoon.Front.Service.MemberService;
 
 namespace BSWebtoon.Front.Service.RecordViewService
 {
     public class RecordViewService : IRecordViewService
     {
+
         private static string _connectionStr = "Data Source=bswebtoon.database.windows.net;Initial Catalog=BSWebtoonDb;User ID=bs;Password=P@ssword;Encrypt=True;Trusted_Connection=False;MultipleActiveResultSets=true;";
 
         public List<ViewRecordDTO> ReadRecordView(int id) 
@@ -22,7 +26,7 @@ namespace BSWebtoon.Front.Service.RecordViewService
                                 FROM ViewRecord V
                                 INNER JOIN Episode E ON E.EpId = V.EpId 
                                 INNER JOIN Comic C ON C.ComicId = E.ComicId 
-                                WHERE  MemberId = {id} and V.IsDelete = 0
+                                WHERE  MemberId =   {id} and V.IsDelete = 0
                                 ) AS newDB  WHERE row_id = 1 ";
 
                 //篩選出資料全部 的結果後放到ViewRecordDTO的表中
@@ -50,24 +54,6 @@ namespace BSWebtoon.Front.Service.RecordViewService
             return result;
         }
 
-        public void ReadRecordViewUpdate(RemoveRecordViewInputDTO input)
-        {
-            var MemberId = input.MemberId;
-            var ComicIds = input.ComicIdsToDelete.ToArray();
-            using (SqlConnection conn = new SqlConnection(_connectionStr))
-            {
-                foreach (var ComicId in ComicIds)
-                {
-                    string sql = @$"UPDATE ViewRecord
-                                       SET IsDelete = 1
-                                    where EpId in (
-	                                    SELECT EpId
-	                                    FROM Episode 
-	                                    where ComicId = {ComicId}  )
-                                    and MemberId = {MemberId}";
-                    conn.Query(sql);
-                }
-            }
-        }
+
     }
 }

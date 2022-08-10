@@ -34,7 +34,7 @@ namespace BSWebtoon.Front.Controllers.ApiController
             }
             catch (Exception ex)
             {
-                return BadRequest(ex);
+                return BadRequest();
             }
 
         }
