@@ -106,15 +106,7 @@ function remove_all(double_check = false) {
             if (resp.ok) {
 
                 console.log(`resp.responseText => ${resp.responseText}`);
-                //arr_to_be_del.forEach(del_item_id => {
-                //    let del_tag = document.getElementById(del_item_id).parentNode.parentNode;
-                //    del_tag.remove();
-                //    console.log(del_item_id + '刪除成功~');
-                //});
-                ////全部刪除 直接重新宣告成空的
-                
-                //arr_to_be_del = [];
-                //double_check_block.style.transform = "translateY(100%)";
+
                 window.location.reload()
             } else {
                 alert('刪除失敗')

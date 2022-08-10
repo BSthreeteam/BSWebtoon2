@@ -11,7 +11,6 @@ function Open_del_page() {
     window.location.href = '/Favorite/RemoveFavoriteView';
 }
 
-
 //傳送漫畫對應網址路由
 function to_comnic(node) {
     let comic_id = node.querySelector('input').value;

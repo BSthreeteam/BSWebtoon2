@@ -1,5 +1,9 @@
 ﻿var comicDiv = document.getElementById("ComicAdd");
 
+function Open_del_page() {
+    window.location.href = '/Favorite/RemoveRecordView';
+}
+
 function create_comic_cards() {
     if (comicsArray.ViewRecordListAll == 0) {
         let p = document.createElement('p');
@@ -49,7 +53,6 @@ function sliding_mousewheel() {
     }
 
     function Open_del_page() {
-        //window.open("/Favorite/RemoveFavoriteView");
         window.location.href = '/Favorite/RemoveFavoriteView';
     }
 
