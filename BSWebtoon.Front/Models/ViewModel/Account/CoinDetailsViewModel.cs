@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
-namespace BSWebtoon.Front.Models.DTO.Account
+namespace BSWebtoon.Front.Models.ViewModel.Account
 {
-    public class CoinDetailsDTO
+    public class CoinDetailsViewModel
     {
         public List<CoinDetail> coinDetailList { get; set; }
         public class CoinDetail
@@ -11,7 +12,6 @@ namespace BSWebtoon.Front.Models.DTO.Account
             public string CoinContent { get; set; }
             public string CreateTime { get; set; }
             public string ComicName { get; set; }
-
         }
     }
 }

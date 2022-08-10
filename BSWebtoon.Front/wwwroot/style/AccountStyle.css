@@ -58,17 +58,17 @@ body {
 }
 
 .recordItem_a {
-    text-decoration: none;
-    color: #fff;
+    background-color:#ccc;
     padding: 10px;
+    border-radius:5px;
 }
 
-    .recordItem_a:hover {
+/*    .recordItem_a:hover {
         background-color: #fff;
         color: #000;
         border-radius: 5px;
     }
-
+*/
 .record::after {
     content: '';
     display: inline-block;
@@ -90,4 +90,3 @@ body {
 .recordTable {
     background-color: #fff;
 }
-

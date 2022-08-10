@@ -4,11 +4,10 @@ async function clickGetCouponBtn(ActivityId, universalCouponGetCount, couponType
         var couponData = {
             "ActivityId": ActivityId,
             "OriginQuantity": universalCouponGetCount,
-            "CreateTime": new Date(),
             "CouponTypeId": couponTypeId,
             "MemberId": memberId
         }
-        await fetch("/api/Coupon/ActivityCoupon", {
+        await fetch("/api/CouponApi/ActivityCoupon", {
             method: "POST",
             headers: {
                 "Accept": "application/json",
