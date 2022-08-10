@@ -114,5 +114,228 @@
 	@await RenderSectionAsync("Scripts", required: false)
 	@await RenderSectionAsync("endCss", required: false)
 	@await RenderSectionAsync("endJS", required: false)
+    <div class="container w-1200 ">
+        <nav class="row w-1200">
+            <ul class="nav justify-content-end flex-nowrap text-white  align-items-center" style=" white-space:nowrap;">
+                <form class="d-flex text-white" action="/search/searchComic" method="post" name="find">
+                    <input class="form-control me-2 bg-transparent inputSearchBorder text-white" type="search" placeholder="請輸入書名或類型"
+                           aria-label="Search" id="name" name="comicname">
+                    <a class="nav-link" id="search" aria-current="page" action="/search/searchComic" @*href="#"*@ type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </a>
+                </form>
+                @*如果是登入的狀態下，登入按鈕消失*@
+                @if (User.Identity.IsAuthenticated)
+                {
+                    var memberId = User.Claims.FirstOrDefault() == null ? 0 : int.Parse(User.Claims.FirstOrDefault(x => x.Type == "MemberID").Value);
+
+                    <li class="nav-item dropdown flex-nowrap" id="user">
+                        <a class="nav-link dropdown-toggle display_name" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="~/images/people.png" alt="登入者"
+                             class="border border-dark rounded-circle user-icon">
+                            @User.Identity.Name
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item bg-light xl_accountinfo" href="/Recommend/Recommend">首頁</a></li>
+                            <li><a class="dropdown-item bg-light xl_accountinfo" href="/Account/AccountInfo/@memberId">我的帳戶</a></li>
+                            @*<li><a class="dropdown-item bg-light xl_my_comic" href="/Favorite/AddFavoriteView">我的漫畫</a></li>*@
+                            <li><a class="dropdown-item bg-light xl_my_love" href="/Favorite/ReadFavoriteView">我的最愛</a></li>
+                            <li><a class="dropdown-item bg-light xl_my_coin" href="#">金幣/閱讀券明細</a></li>
+                            <li><a class="dropdown-item bg-light xl_stored_value" href="/Recharge/CashPlanView">儲值金幣</a></li>
+                            <li><a class="dropdown-item bg-light xl_history" href="/Favorite/RecordView">歷史觀看紀錄</a></li>
+                            <li><a class="dropdown-item bg-light xl_history" href="/UpLoad/UploadComic">上傳作品</a></li>
+                            <li><a class="dropdown-item bg-light xl_my_set" href="/Setting/SettingView">我的設定</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item bg-light xl_customer_service" href="#">客服中心</a></li>
+                            <li><a id="logout" class="dropdown-item bg-light" href="/Login/Logout">登出</a></li>
+                        </ul>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <a data-bs-toggle="modal" href="#" data-bs-target="#exampleModal" class="nav-link">登入</a>
+                    </li>
+                }
+            </ul>
+            <ul class="nav flex-nowrap text_overflow">
+                <li class="nav-item">
+                    @*<a class="nav-link" href="#">禮物盒</a>*@
+                    @Html.ActionLink("禮物盒", "GiftBox", "Activity", new {},new {@class="nav-link text-light"})
+                </li>
+                <li class="nav-item">
+                    @*<a class="nav-link" href="#">KAKAO WEBTOON</a>*@
+                    @Html.ActionLink("KAKAO WEBTOON", "Recommend", "Recommend", new {},new {@class="nav-link text-light"})
+                </li>
+                <li class="nav-item">
+                    @*<a class="nav-link" href="#">星期列表</a>*@
+                    @Html.ActionLink("星期列表", "WeekUpdate", "WeekUpdate", new {},new {@class="nav-link text-light nav-week"})
+                </li>
+                <li class="nav-item">
+                    @*<a class="nav-link" href="#">排行榜</a>*@
+                    @Html.ActionLink("排行榜", "AllRankList", "Rank", new {},new {@class="nav-link text-light"})
+                </li>
+                @* <li class="nav-item">
+                    @* <a class="nav-link" href="#">我的漫畫</a>*@
+                @*@Html.ActionLink("我的漫畫", "RecordView","Favorite" , new {},new {@class="nav-link text-light"})
+                    </li>*@
+            </ul>
+            <template>
+                <ul class="nav justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">推薦</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">強檔巨獻</a>
+                    </li>
+                </ul>
+            </template>
+        </nav>
+    </div>
+    @if (TempData["message"] != null)
+    {
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script type="text/javascript">
+                        var message = "@Html.Raw(TempData["message"])";
+            @*            alert(message);
+            *@            swal({
+                            icon: "success",
+                            title: message
+                        });
+        </script>
+    }
+    <partial name="_LoginPartial"></partial>
+    <template id="useraccount">
+        <div class="col-12 userinfo w-1200">
+            <h1>帳戶資訊</h1>
+            <div class="user d-flex">
+                <div class="userpic">
+                    <img src="./Pics/people.png" alt="登入者" class="border border-dark rounded-circle">
+                </div>
+                <div class="userid ms-2 ">
+                    <p class="fs-3 mb-0">UserName</p>
+                    <p class="mb-0 fs-6"> UID:4567890</p>
+                </div>
+            </div>
+            <div class="usermoney d-flex flex-column flex-md-row">
+                <div class="money d-flex my-2">
+                    <i class="fa-solid fa-sack-dollar text-center text-warning m-auto mx-2"></i>
+                    <p class="d-flex align-items-center my-auto">
+                        金幣: 0
+                        <a href="./Jie/stored.html" class="btn btn-warning text-white text-center ms-2 ">立即儲值</a>
+                    </p>
+                </div>
+                <div class="ticket d-flex my-2">
+                    <i class="fa-solid fa-ticket text-center  mx-2 text-primary text-opacity-75 m-auto"></i>
+                    <p class=" my-auto">閱讀券: 5 </p>
+                </div>
+                <div class="ticket d-flex my-2">
+                    <i class="fa-solid fa-ticket-simple text-center  mx-2 text-success text-opacity-75 m-auto"></i>
+                    <p class=" my-auto"> 通用券: 5 </p>
+                </div>
+            </div>
+            <div class="record ">
+                <ul class="d-flex m-auto p-0 mt-4 flex-wrap">
+                    <li><a href="#" class="stored">儲值紀錄</a></li>
+                    <li><a href="#" class="consumption">金幣消費紀錄</a></li>
+                    <li><a href="#" class="read">閱讀券使用紀錄</a></li>
+                    <li><a href="#" class="allpass">通用券使用紀錄</a></li>
+                </ul>
+            </div>
+            <hr>
+            <div class="detail text-center">
+                <div class="pic ">
+                    <img src="./Pics/nothing.png">
+                </div>
+            </div>
+        </div>
+    </template>
+    <template id="my_comic">
+        <div class="comic p-0 w-1200">
+            <h1>我的漫畫</h1>
+            <div class="morepic ">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 m-0 p-0">
+                    <div class="col ">
+                        <p class="text-center">Again My Life</p>
+                        <img src="https://tw-a.kakaopagecdn.com/P/C/223/c2/2x/ddecc803-ca1d-4b2c-a8ff-187237952014.webp">
+                    </div>
+                    <div class="col ">
+                        <p class="text-center">魔法師之女梅貝爾</p>
+                        <img src="https://tw-a.kakaopagecdn.com/P/C/128/c2/2x/2110934c-7259-44f3-81b6-9250d96d3cf3.webp">
+                    </div>
+                    <div class="col">
+                        <p class="text-center">吃貨的私房升級餐</p>
+                        <img src="https://tw-a.kakaopagecdn.com/P/C/111/c2/2x/07225f44-80f0-4340-b76a-8ac78f3af1a2.webp">
+                    </div>
+                    <div class="col ">
+                        <p class="text-center">Again My Life</p>
+                        <img src="https://tw-a.kakaopagecdn.com/P/C/223/c2/2x/ddecc803-ca1d-4b2c-a8ff-187237952014.webp">
+                    </div>
+                    <div class="col ">
+                        <p class="text-center">魔法師之女梅貝爾</p>
+                        <img src="https://tw-a.kakaopagecdn.com/P/C/128/c2/2x/2110934c-7259-44f3-81b6-9250d96d3cf3.webp">
+                    </div>
+                    <div class="col">
+                        <p class="text-center">吃貨的私房升級餐</p>
+                        <img src="https://tw-a.kakaopagecdn.com/P/C/111/c2/2x/07225f44-80f0-4340-b76a-8ac78f3af1a2.webp">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    <template id="terms">
+        <div class="row w-1200 terms_p">
+            <p>
+                本使用條款（以下簡稱為「本條款」）是使用者（或「您」）和KAKAO WEBTOON CORP.（以下簡稱為「本公司」或「我們」）間訂定的條款。
+                本條款適用所有連線、瀏覽、使用、註冊、登入 KAKAO WEBTOON網站、 KAKAO WEBTOON應用程式（以下合稱「本服務」）之人員。
+                當使用者在下載或使用KAKAO WEBTOON網站、KAKAO WEBTOON應用程式及所有數位內容（以下方定義為基準）的過程中勾選同意時，即同意本條款、隱私權政策、相關公告和其他適用條款。若您不同意本條款，則將無法使用KAKAO WEBTOON網站、KAKAO WEBTOON應用程式及數位內容。當您使用或持續使用本服務，將視為已閱讀、了解並同意本條款、隱私權政策、公告和其他適用條款之最新內容，並隨時成為您與本公司所訂協議的一部分。
+                <br>使用KAKAO WEBTOON網頁、KAKAO WEBTOON應用程式及數位內容時，請使用者務必遵守相關規範。<br>
+                本條款列舉所有規範的參考標準。
+            </p>
+            <p>
+                1.條款<br>
+                本條款之目的：<br>
+            </p>
+            <p>
+                1.1 「數位內容」係指「KAKAO WEBTOON網頁」及「KAKAO WEBTOON應用程式」所提供。
+                <br>1.2 「KAKAO WEBTOON網頁」係指下列網址： https://tw.kakaowebtoon.com
+                <br>1.3 「KAKAO WEBTOON應用程式」係指本公司提供使用者在一個或一個以上的指定裝置
+                <br>1.4 「ID」係指使用者加入本服務成為會員（參照7.會員定義）後，本公司為了判別會員帳號，提供使用者的代號。
+                <br>1.5 「留言」係指會員透過本服務在已刊登及投稿的內容上評論、留下感想的行為。
+                <br>1.6 「第三方網站」係指臉書（Facebook）, Line, Google, Apple等第三方所提供之服務網站，亦可利用上述服務網站之帳號登入。
+                <br>1.7 「金幣」係指透過購買、促銷、行銷活動或本公司指定的其他方式，以有償或無償方式所取得的虛擬貨幣，可用於購買或訂閱本公司所提供的服務內容。
+                <br>2. 數位內容之使用及授權規範<br>
+                <br>2.1 KAKAO WEBTOON網站、KAKAO WEBTOON應用程式上之所有內容
+                <br>2.2 本公司僅授權您於個人非商業用途之目的內，透過KAKAO WEBTOON網頁、KAKAO WEBTOON應用程式或其他經本公司認可之平台。
+                <br>您僅能於本條款之授權範圍內使用數位內容。且本公司有權提出追加條款，若本條款與追加條款產生抵觸，本條款應優先適用。
+                <br>3. KAKAO WEBTOON網站及KAKAO WEBTOON應用程式<br>
+                <br>3.1使用者可透過個人裝置，連線、登入、瀏覽或使用KAKAO WEBTOON網站及KAKAO WEBTOON應用程式，並管理ID及購買紀錄，但不得任意販賣、借貸或共享ID。
+                <br>3.2 本公司保有更新本服務軟體或內容之權利。若使用者未更新至最新版本，可能無法使用特定內容或完整功能。
+                <br>3.3 使用者無權擅自編輯、解除、複製、分析或破解KAKAO WEBTOON網站及KAKAO WEBTOON應用程式之電磁紀錄及相關措施保護。
+                <br>4. 認知與接受條款
+                <br>4.1 若您為未成年人，除您本人應遵守本條款規定外，並請您的家長（或法定代理人），確實閱讀、瞭解並同意遵守本條款之所有內容後，方得開始使用本服務。
+                <br>4.2 本公司判斷有必要修改使用條款內容時，須事先通知使用者，並在本服務上公告後，得隨時變更本使用條款內容。
+                <br>5. 個人資料保護
+                <br>本公司尊重使用者的個人資料，僅在使用者同意之範圍內，蒐集、處理或利用個人資料。
+                <br>6.智慧財產權
+                <br>6.1 本公司所使用的軟體、程式、一切著作物均屬本公司及本公司指定之第三人所有，並受到相關法律的保護。
+                <br>6.2 在尊重他人智慧財產權的原則下，使用者同意在使用本公司服務時，不得有侵害他人權利之行為。
+            </p>
+        </div>
+    </template>
+    @RenderBody()
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="~/lib/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://kit.fontawesome.com/8d929b7f2c.js" crossorigin="anonymous"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("endCss", required: false)
+    @await RenderSectionAsync("endJS", required: false)
+    @await RenderSectionAsync("endCss", required: false)
+    @await RenderSectionAsync("endJS", required: false)
 </body>
 </html>

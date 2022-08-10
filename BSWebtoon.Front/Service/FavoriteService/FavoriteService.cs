@@ -1,4 +1,5 @@
 ﻿using BSWebtoon.Front.Models.DTO.FavoriteDTO;
+using BSWebtoon.Front.Models.DTO.WorkPage;
 using BSWebtoon.Model.Models;
 using BSWebtoon.Model.Repository;
 using System.Collections.Generic;
@@ -85,9 +86,6 @@ namespace BSWebtoon.Front.Service.FavoriteService
             _repository.Delete(DelFavorite);
             _repository.SaveChange();
         }
-
-
-
         public void RemoveFavoriteRecord(RemoveFavoriteInputDTO input)
         {
             var DelFavorite = _repository.GetAll<Favorite>()
@@ -96,12 +94,34 @@ namespace BSWebtoon.Front.Service.FavoriteService
                 )//.ToList()
                 ;
 
-            foreach(var f in DelFavorite)
+            foreach (var f in DelFavorite)
             {
                 _repository.Delete(f);
             }
             _repository.SaveChange();
 
         }
+        public void FavoriteDataCreateOrDelete(FavoriteDataDTO favoriteData)
+        {
+            var sameData = _repository.GetAll<Favorite>()
+                .Where(f => f.MemberId == favoriteData.MemberId && f.ComicId == favoriteData.ComicId).FirstOrDefault();
+
+            if (favoriteData.IsLike == true && sameData == null)
+            {
+                var favorite = new Favorite
+                {
+                    ComicId = favoriteData.ComicId,
+                    MemberId = favoriteData.MemberId,
+                };
+                _repository.Create(favorite);
+            }
+            else if (favoriteData.IsLike == false && sameData != null)
+            {
+                _repository.Delete(sameData);
+            }
+            _repository.SaveChange();
+        }
+
+
     }
 }

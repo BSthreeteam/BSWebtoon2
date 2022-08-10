@@ -5,6 +5,7 @@
     Layout = "_WorkPageLayout";
     ViewData["Title"] = "WorksPage";
 
+    var memberId = User.Claims.FirstOrDefault() == null ? 0 : int.Parse(User.Claims.FirstOrDefault(x => x.Type == "MemberID").Value);
 }
 @section topCss{
 
@@ -22,7 +23,7 @@
 <header class="hearder_nav w-100">
     <a class="previous_page_a" href="javascript:history.go(-1)"><i class="fa-solid fa-arrow-left-long previous_page"></i></a>
     <div class="function_box">
-        <label class="collect_a" for="heart" href="#"><i class="red fa-solid fa-heart"></i></label>
+        <label onclick="postFavorite(@memberId,@Model.ComicId)" class="collect_a" for="heart" href="#"><i class="red fa-solid fa-heart"></i></label>
         <input type="checkbox" class="d-none" id="heart">
         <a class="share_a" href="#" data-bs-toggle="modal" data-bs-target="#shareModal">
             <i class="fa-solid fa-comment-dots message"></i>
@@ -33,7 +34,7 @@
     <div class="main_picture_bg">
         <div class="main_picture_box">
             <div class="free_watch">
-                <div class="read_ticket pe-2"><a class="text-white" href="~/WorksPage/BuyCoupon">閱讀券1張</a></div>
+                <div class="read_ticket pe-2"><a class="text-white" onclick="isMember(@Model.ComicId)" href="javascript:(0)">閱讀券 @Model.ReadTicket 張</a></div>
                 <div class="seven_free">每7日免費看</div>
             </div>
             @if (@Model.BannerVideoWeb != string.Empty && @Model.BannerVideoWeb != null)
@@ -44,7 +45,7 @@
             }
             else
             {
-                <img class="w-100" src="@Model.ComicFigure" alt="">
+                <img class="w-75" src="@Model.ComicFigure" alt="">
             }
         </div>
     </div>
@@ -100,20 +101,28 @@
             </div>
             <div class="ep_row col-12 col-lg-8 col-xl-8">
                 <div class="card_box w-100 d-flex flex-wrap">
-                @foreach (var ep in Model.EpList)
-                {
-                    <div class="col col-6 col-md-4 col-lg-3 col-xl-2">
-                        <a id="login" href="javascript:(0)" onclick="clickEp(@ep.EpId)">
-                            <div class="card w-100" style="width: 18rem;">
-                                <img src="@ep.EpCover" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">@ep.EpTitle</h5>
-                                    <p class="card-text">@ep.UploadTime</p>
+                    @foreach (var ep in Model.EpList)
+                    {
+                        <div class="col col-6 col-md-4 col-lg-3 col-xl-2">
+                            <a id="login" href="javascript:(0)" onclick="clickEp(@ep.EpId)">
+                                <div class="card w-100" style="width: 18rem;">
+                                    <img src="@ep.EpCover" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">@ep.EpTitle</h5>
+                                        <p class="card-text">@ep.UploadTime</p>
+                                    </div>
+                                    @if (@ep.IsFree == true)
+                                    {
+                                        <span class="epIcon epIsFree">免費</span>
+                                    }
+                                    @if (@ep.IsCountdownCoupon == true)
+                                    {
+                                        <img class="epIcon epIsCD" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHJlY3QgZmlsbD0iIzY4NTNFNyIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiByeD0iOCIvPgogICAgICAgIDxwYXRoIGQ9Ik04IDJhNiA2IDAgMSAxIDAgMTJBNiA2IDAgMCAxIDggMnptMCAxYTUgNSAwIDEgMCAwIDEwQTUgNSAwIDAgMCA4IDN6IiBmaWxsPSIjRkZGIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz4KICAgICAgICA8cGF0aCBmaWxsPSIjRkZGIiBmaWxsLXJ1bGU9Im5vbnplcm8iIGQ9Ik04LjUgNC42MDJ2My4xNTJsMi40MDUgMS44NS0uNjEuNzkyTDcuNSA4LjI0NlY0LjYwMnoiLz4KICAgIDwvZz4KPC9zdmc+Cg==" />
+                                    }
                                 </div>
-                            </div>
-                        </a>
-                    </div>
-                }
+                            </a>
+                        </div>
+                    }
                 </div>
             </div>
             <div class="col-lg-4 col-xl-4">
@@ -211,6 +220,8 @@
 <script>
 
     let isAuthenticated = "@Model.IsAuthenticated" === "True";
+
+    let check = document.querySelector('#heart');
     let checkvalue = "@Model.IslikeComic.ToString().ToLower()";
 </script>
 
@@ -222,37 +233,6 @@
         crossorigin="anonymous"></script>
 
 <script src="~/js/Workspage.js"></script>
-
-
-<script>
-    let collect_a = document.querySelector('.red');
-
-    ////點擊愛心，顏色變紅色
-    let check = document.querySelector('#heart');
-    let checkvalue = @Model.IslikeComic.ToString().ToLower()
-        clickLike(checkvalue)
-
-    collect_a.addEventListener('click', () => {
-        checkvalue = !checkvalue
-        clickLike(checkvalue)
-    })
-    function clickLike(boolvalue){
-    check.checked = boolvalue
-        if (check.checked) {
-            console.log(check.checked)
-            collect_a.classList.add('text-danger');
-        }
-        else {
-            console.log(check.checked)
-            collect_a.classList.remove('text-danger');
-        }
-    }
-
-
-    //var login=document.getElementById("login");
-    //login.dataset.toggle="modal"
-    //login.dataset.target="#exampleModal"
-</script>
 
 }
 

@@ -1,4 +1,5 @@
 ﻿using BSWebtoon.Front.Models.DTO.FavoriteDTO;
+using BSWebtoon.Front.Models.DTO.WorkPage;
 using BSWebtoon.Front.Service.FavoriteService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +8,7 @@ using System.Linq;
 
 namespace BSWebtoon.Front.Controllers.ApiController
 {
-    [Route("api/[controller]/[action]")]
+    [Route("/api/[Controller]/[Action]")]
     [ApiController]
     public class FavoriteApiController : ControllerBase
     {
@@ -31,12 +32,21 @@ namespace BSWebtoon.Front.Controllers.ApiController
                 _favoriteService.RemoveFavoriteRecord(input);
                 return Ok();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex);
             }
 
         }
+        [HttpPost]
 
+        public IActionResult GetFavoriteData(FavoriteDataDTO favoriteData)
+        {
+            var data = favoriteData;
+
+            _favoriteService.FavoriteDataCreateOrDelete(data);
+
+            return Ok();
+        }
     }
 }

@@ -1,8 +1,12 @@
 using BSWebtoon.Admin.IDapperRepository;
+using BSWebtoon.Admin.Service.JobService;
+using BSWebtoon.Model.Models;
+using Coravel;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,14 +31,31 @@ namespace BSWebtoon.Admin
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<BSWebtoonDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("BSWebtoonDbContext")));
+
+
             services.AddTransient<IDapperEmployeeRepository, DapperEmployeeRepository>();
             services.AddTransient<IDapperMemberRepository, DapperMemberRepository>();
+
+            services.AddTransient<IDapperActivityRepository, DapperActivityRepository>();
+
+            services.AddTransient<IDapperCouponUseRecordRepository, DapperCouponUseRecordRepository>();
+            services.AddTransient<IDapperCouponRepository, DapperCouponRepository>();
+
             services.AddScoped<IDbConnection, SqlConnection>(serviceProvider =>
             {
                 SqlConnection conn = new SqlConnection();
                 conn.ConnectionString = Configuration.GetConnectionString("BSWebtoonDbContext");
                 return conn;
             });
+
+            //記得註冊 Invocable的實作
+            services.AddTransient<ActivityIsDelete>();
+            services.AddTransient<CountDownCoupon>();
+
+            //這一定要有
+            services.AddScheduler();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +73,12 @@ namespace BSWebtoon.Admin
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.ApplicationServices.UseScheduler(scheduler =>
+            {
+                scheduler.Schedule<ActivityIsDelete>().Daily().RunOnceAtStart();
+                scheduler.Schedule<CountDownCoupon>().Hourly().RunOnceAtStart();
+            });
 
             app.UseRouting();
 

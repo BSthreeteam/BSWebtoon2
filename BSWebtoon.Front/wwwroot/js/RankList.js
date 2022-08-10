@@ -2,13 +2,17 @@ let content = document.querySelector(".content");
 let workTemplate = document.getElementById("workTemplate");
 let blackTemplate = document.getElementById("blackTemplate");
 let showRankTemplate = document.getElementById("showRankTemplate");
+let btns = document.querySelectorAll("btns");
 
 let categorys = document.querySelectorAll('.categorys')
+
+
 
 window.onload = () => {
     document.getElementById("all").setAttribute('click', getFatchall());
     getFatch();
 }
+
 
 function createBlack() {
     let cloneblack = blackTemplate.content.cloneNode(true);
@@ -16,7 +20,6 @@ function createBlack() {
 }
 
 function getFatch() {
-    document.getElementById("all").removeAttribute('click', getFatchall());
     categorys.forEach(nav_a => {
         nav_a.addEventListener('click', (e) => {
             content.innerText = ""
@@ -66,9 +69,12 @@ function getFirstRank(result) {
     cloneRank.querySelector(".rank_pic_title").src = result.ComicNameImage
     if (result.BannerVideoWeb != "") {
         cloneRank.querySelector(".video").src = result.BannerVideoWeb
+        cloneRank.querySelector(".rank_pic_people").style.display = "none";
     }
     else {
         cloneRank.querySelector(".rank_pic_people").src = result.ComicFigure
+        cloneRank.querySelector("#movie").style.display= "none";
+
     }
     cloneRank.querySelector(".introduction").innerText = result.Introduction.slice(0, 40)
     cloneRank.querySelector(".diff").innerText = result.Diff

@@ -1,5 +1,7 @@
 ﻿using BSWebtoon.Front.Models.DTO.WorkPage;
+using BSWebtoon.Model.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BSWebtoon.Front.Service.ComicService
 {
@@ -18,9 +20,11 @@ namespace BSWebtoon.Front.Service.ComicService
         public ReadworkContentOutputDTO ReadworkContent(int EpId, int memberId);
 
 
-
+        BuyCouponDTO ReadBuyCoupon(int comicId, int memberId);
         public List<CommentDTO> GetComment(int EpId);
         public void CreateComment(CommentDTO comment);
+
+
 
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace BSWebtoon.Front.Models.DTO.Account
 {
@@ -8,10 +7,10 @@ namespace BSWebtoon.Front.Models.DTO.Account
         public List<CoinDetail> coinDetailList { get; set; }
         public class CoinDetail
         {
-            public int RechargeRecordId { get; set; }
             public string ConsumptionOrRecharge { get; set; }
-            public int CashPlanContent { get; set; }
-            public DateTime CreateTime { get; set; }
+            public string CoinContent { get; set; }
+            public string CreateTime { get; set; }
+            public string ComicName { get; set; }
 
         }
     }

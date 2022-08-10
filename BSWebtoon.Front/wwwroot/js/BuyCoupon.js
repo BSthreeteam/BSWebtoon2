@@ -1,17 +1,26 @@
+let totalAmount = document.querySelector('.totalAmount')
+
 window.onload = function () {
     let readYet = document.querySelector('.readYet');
     let buyOneTime = document.querySelector('.buyOneTime');
+    let nowHaveCoupon = document.querySelector('.nowHaveCoupon');
 
+    let nowHaveCouponQuantity = nowHaveCoupon.innerHTML.slice(0, nowHaveCoupon.innerHTML.length - 1)
     let readYetQuantity = readYet.innerHTML.slice(0, readYet.innerHTML.length - 1)
-    buyOneTime.innerHTML = `${readYetQuantity}張`
+    if (readYetQuantity - nowHaveCouponQuantity < 0) {
+        buyOneTime.innerHTML = "0 張"
+    } else {
+        buyOneTime.innerHTML = `${readYetQuantity - nowHaveCouponQuantity}張`
+    }
 
-    let totalAmount = document.querySelector('.totalAmount')
     let planQuantity = document.querySelector('.planQuantity')
     let totalQuantity = document.querySelector('.totalQuantity')
 
     let quantity_minus_btn = document.querySelector('.quantity_minus')
     let quantity_plus_btn = document.querySelector('.quantity_plus')
     let buyQuantity = document.querySelector('.buyQuantity')
+
+    let buyCoupon_buy = document.querySelector('.buyCoupon_buy')
 
     let buyCoupon_plan_listItem = document.querySelectorAll('.buyCoupon_plan_listItem')
     let buyOneTime_btn = document.querySelector('.buyOneTime_btn')
@@ -39,9 +48,10 @@ window.onload = function () {
         quantity_minus_btn.style.display = "none"
         quantity_plus_btn.style.display = "none"
         buyQuantity.style.display = "none"
+        console.log(buyOneTime)
         planQuantity.innerText = buyOneTime.innerHTML
-        totalQuantity.innerText = buyOneTime.innerHTML
-        totalAmount.innerHTML = readYetQuantity * 300
+        totalQuantity.innerHTML = buyOneTime.innerHTML
+        totalAmount.innerHTML = totalQuantity.innerHTML.slice(0, totalQuantity.innerHTML.length - 1) * 300
     })
 
     //數量加減
@@ -64,7 +74,48 @@ window.onload = function () {
         let buyQuantityInt = parseInt(buyQuantity.innerText)
         let planQuantityInt = parseInt(planQuantity.innerText.slice(0, planQuantity.innerText.length - 1))
         totalQuantity.innerHTML = `${buyQuantityInt * planQuantityInt}張`
-        totalAmount.innerHTML = buyQuantityInt * planQuantityInt * 300
+        totalAmount.in = (buyQuantityInt * planQuantityInt * 300)
+    }
+
+}
+async function BuyReadCoupon(ComicId, couponTypeId, memberId, nowHaveCouponQuantity) {
+    let totalQuantity = document.querySelector('.totalQuantity')
+    let buyQuantity = totalQuantity.innerHTML.slice(0, totalQuantity.innerHTML.length - 1)
+    if (buyQuantity == 0) {
+        alert(`您現有的閱讀券數量為${nowHaveCouponQuantity}\n已足夠閱覽至最新話次`)
+        return
+    }
+    else if (MemberHaveCoin < totalAmount.innerHTML) {
+        alert('金幣餘額不足，將自動導向儲值頁面')
+        window.location.href = `/Recharge/CashPlanView`;
+    }
+    else {
+        var couponData = {
+            "ComicId": ComicId,
+            "OriginQuantity": buyQuantity,
+            "CouponTypeId": couponTypeId,
+            "MemberId": memberId,
+            "SpendCoin": totalAmount.innerHTML
+        }
+        await fetch("/api/CouponApi/ReadCoupon", {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify(couponData)
+        })
+            .then(response => response.text())
+            .then(result => {
+                if (result.ok) {
+                    console.log(result)
+                }
+            })
+            .catch(ex => {
+                console.log(ex)
+            })
+        alert("購買完成，將自動導向回作品頁面")
+        window.location.href = `/WorksPage/WorksPage/${ComicId}`;
     }
 
 }
