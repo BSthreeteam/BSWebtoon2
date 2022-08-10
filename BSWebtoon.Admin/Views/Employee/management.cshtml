@@ -27,10 +27,10 @@
     <b-col sm="5" md="6" class="my-1 mb-3">
         <b-input-group v-for="size in ['sm']" :key="size" :size="size" prepend="請輸入姓名 :">
             <b-form-input id="filter-input" v-model="filter" type="search" placeholder="Type to Search"></b-form-input>
-            @* <b-input-group-append>
-                <b-button size="sm" text="Button" variant="success" :disabled="!filter" @click="filter =
+            <b-input-group-append>
+                <b-button size="sm" text="Button" :disabled="!filter" v-on:click="filter =
                 ''">Clear</b-button>
-                </b-input-group-append> *@
+                </b-input-group-append>
         </b-input-group>
     </b-col>
     <b-col sm="5" md="3" class="my-1">
@@ -53,6 +53,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
     integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
     crossorigin="anonymous"></script>
+<script src="~/lib/moment.js/moment.min.js"></script>
 <script>
     //日期時間格式化
     function DateFormat(value, format) {
@@ -82,8 +83,8 @@
                     .then((res) => {
                         console.log('ok');
                         if (res.status == 200) {
-                            this.employeeList = res.data;
-                            this.employeeList.map((item) => {
+                            @* this.employeeList = res.data; *@
+                            this.employeeList = res.data.map((item) => {
                                 return {
                                     employeeId: item.employeeId,
                                     employeeName: item.employeeName,
