@@ -84,44 +84,50 @@ namespace BSWebtoon.Front.Controllers
 
         public IActionResult workContent(int Id)
         {
-            var userName = User.Identity.Name;
-            var comicContents = _comicService.ReadworkContent(Id, userName);
+
+            var memberId = User.Claims.FirstOrDefault() == null ? 0 : int.Parse(User.Claims.FirstOrDefault(x => x.Type == "MemberID").Value);
+
+            var outputDto = _comicService.ReadworkContent(Id, memberId);
+
+
+            var epContents = outputDto.WorkContents;
+
             var result = new WorkContentViewModel();
-            if (comicContents.Count() != 0)
-            {
-                var EpTitle = comicContents.Select(c => c.EpTitle).First();
-                var allEp = new List<WorkContentViewModel.EpData>() { };
-                foreach (var ep in comicContents[0].EpList)
-                {
-                    allEp.Add(new WorkContentViewModel.EpData()
-                    {
-                        EpId = ep.EpId,
-                        ComicId = ep.ComicId,
-                        EpTitle = ep.EpTitle,
-                        EpCover = ep.EpCover,
-                        UploadTime = ep.UploadTime,
-                        IsCountdownCoupon = ep.IsCountdownCoupon,
-                        IsFree = ep.IsFree
-                    });
-                }
-                result = new WorkContentViewModel()
-                {
-                    EpTitle = EpTitle,
-                    ContentList = comicContents.Select(c => new WorkContentViewModel.Content
-                    {
-                        ImagePath = c.ImagePath,
-                        Page = c.Page,
-                    }).ToList(),
-                    EpList = allEp
-                };
 
-                return View(result);
-            }
-            else
+
+            if (epContents == null)
             {
-                return RedirectToAction("BuyCoupon");
+                return RedirectToAction("BuyCoupon", "WorksPage", new { id = outputDto.ComicId });
             }
 
+            var epTable = outputDto.EpList;
+
+            result = new WorkContentViewModel()
+            {
+                EpId = epContents.Select(e => e.EpId).First(),
+                EpTitle = epContents.Select(e => e.EpTitle).First(),
+
+                ContentList = epContents.Select(e => new WorkContentViewModel.Content
+                {
+                    ImagePath = e.ImagePath,
+                    Page = e.Page,
+                }).ToList(),
+                EpList = epTable.Select(e => new WorkContentViewModel.EpData
+                {
+                    EpId = e.EpId,
+                    ComicId = e.ComicId,
+                    EpTitle = e.EpTitle,
+                    EpCover = e.EpCover,
+                    UploadTime = e.UploadTime,
+                    IsCountdownCoupon = e.IsCountdownCoupon,
+                    IsFree = e.IsFree
+
+                }).ToList()
+            };
+
+
+
+            return View(result);
         }
 
 
