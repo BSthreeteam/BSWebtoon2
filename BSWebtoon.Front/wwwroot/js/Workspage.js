@@ -51,6 +51,32 @@ function reizeWindow() {
     })
 }
 
+function postFavorite(memberId, comicId) {
+    var data = {
+        "ComicId": comicId,
+        "MemberId": memberId,
+        "IsLike": checkvalue
+    }
+    fetch("/api/FavoriteApi/GetFavoriteData", {
+        method: "POST",
+        headers: {
+            "Accept": "application/json",
+            "Content-type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => response.text())
+        .then(result => {
+            if (result.ok) {
+                console.log(result)
+            }
+        })
+        .catch(ex => {
+            console.log(ex)
+        })
+}
+
+
 window.addEventListener('resize', () => {
     reizeWindow()
 });
@@ -64,17 +90,30 @@ window.onload = function () {
 
     collect_a.addEventListener("click", () => {
         checkvalue = !checkvalue
-        console.log(!checkvalue)
         clickLike(checkvalue)
-    })
-    function clickLike(boolvalue) {
+    let check = document.querySelector('#heart');
+    clickLike(checkvalue)
+
+            collect_a.classList.add('text-danger');
+        }
+        else {
+            collect_a.classList.remove('text-danger');
         if (boolvalue == true) {
+<<<<<<<<< Temporary merge branch 1
             collect_a.classList.add('text-danger');
             console.log(boolvalue)
         }
         else {
             collect_a.classList.remove('text-danger');
             console.log(boolvalue)
+=========
+            console.log(check.checked)
+            collect_a.classList.add('text-danger');
+        }
+        else {
+            console.log(check.checked)
+            collect_a.classList.remove('text-danger');
+>>>>>>>>> Temporary merge branch 2
         }
     }
 

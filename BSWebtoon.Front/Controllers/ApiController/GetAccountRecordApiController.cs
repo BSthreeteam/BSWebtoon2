@@ -7,11 +7,11 @@ namespace BSWebtoon.Front.Controllers.ApiController
 {
     [Route("api/[Controller]/[Action]")]
     [ApiController]
-    public class GetAccountRecordController : Controller
+    public class GetAccountRecordApiController : Controller
     {
         private readonly IAccountService _accountService;
 
-        public GetAccountRecordController(IAccountService accountService)
+        public GetAccountRecordApiController(IAccountService accountService)
         {
             _accountService = accountService;
         }
@@ -51,7 +51,8 @@ namespace BSWebtoon.Front.Controllers.ApiController
                 detailsList.Add(new CouponDetailsViewModel.CouponDetail()
                 {
                     BuyOrUse = couponDetail.BuyOrUse,
-                    CouponCount = couponDetail.CouponCount,
+                    CouponType = couponDetail.CouponType,
+                    BuyOrUseCount = couponDetail.BuyOrUseCount,
                     CreateTime = couponDetail.CreateTime,
                     ComicName = couponDetail.ComicName,
                     ActivityName = couponDetail.ActivityName,

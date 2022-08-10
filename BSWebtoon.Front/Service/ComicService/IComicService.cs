@@ -20,10 +20,11 @@ namespace BSWebtoon.Front.Service.ComicService
         public ReadworkContentOutputDTO ReadworkContent(int EpId, int memberId);
 
 
+        BuyCouponDTO ReadBuyCoupon(int comicId, int memberId);
         public List<CommentDTO> GetComment(int EpId);
         public void CreateComment(CommentDTO comment);
 
-        BuyCouponDTO ReadBuyCoupon(int comicId, int memberId);
+
 
     }
 }

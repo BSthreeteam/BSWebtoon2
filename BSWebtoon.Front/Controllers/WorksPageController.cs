@@ -135,7 +135,7 @@ namespace BSWebtoon.Front.Controllers
                     IsCountdownCoupon = e.IsCountdownCoupon,
                     IsFree = e.IsFree
 
-                }).ToList() 
+                }).ToList()
             };
 
 

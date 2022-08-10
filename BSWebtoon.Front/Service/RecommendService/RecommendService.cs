@@ -212,7 +212,7 @@ namespace BSWebtoon.Front.Service.RecommendService
             // 活動 新作 人氣
 
             // 活動 軟刪除
-            var activityList = _repository.GetAll<Activity>().Where(a => a.IsDelete == false)/*.Where(a => a.ActivityStartTime < DateTime.Now && a.ActivityEndTime > DateTime.Now)*//*.ToList()*/;
+            var activityList = _repository.GetAll<Activity>().Where(a => a.IsDelete == false).Where(a => a.ActivityStartTime < DateTime.UtcNow.AddHours(8));
 
             //// 確保有影片
             //var filterComics = _repository.GetAll<Comic>().Where(c => c.BannerVideoWeb != "");

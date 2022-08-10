@@ -6,6 +6,8 @@
     //Layout = "NoNav_Layout";
     ViewData["Title"] = "AccountInfo";
     <link rel="stylesheet" href="~/style/AccountStyle.css" />
+
+
 }
 <header class="userinfo_nav w-100 justify-content-between">
     @*<a class="previous_page_a userinfo_nav_a " href="javascript:history.go(-1)">*@
@@ -42,13 +44,13 @@
     </div>
     <div class="record my-3">
         <ul class="d-flex px-0 m-0">
-            <li class="recordItem"><button class="recordItem_a">券獲得/使用紀錄</button></li>
+            <li onclick="GetCouponDetails(@Model.MemberId)" class="recordItem"><button class="recordItem_a couponRecord">券獲得/使用紀錄</button></li>
             <li onclick="GetCoinDetails(@Model.MemberId)" class="recordItem"><button class="recordItem_a coinRecord">金幣消費/儲值紀錄</button></li>
         </ul>
     </div>
     <div class="detail text-center">
         <div class="nothing">
-            <p class="nothing_text">什麼都沒有 > △ <</p>
+            <p class="nothing_text">未選取紀錄 > △ <</p>
         </div>
         <table id="tableContent" class="table table-striped recordTable caption-top">
         </table>

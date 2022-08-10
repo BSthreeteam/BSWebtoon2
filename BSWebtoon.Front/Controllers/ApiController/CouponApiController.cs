@@ -1,19 +1,17 @@
 ﻿using BSWebtoon.Front.Models.DTO.GiftBox;
 using BSWebtoon.Front.Service.CouponService;
-using BSWebtoon.Model;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
-using System.Linq;
 
-namespace BSWebtoon.Front.Controllers
+namespace BSWebtoon.Front.Controllers.ApiController
 {
     [Route("/api/[Controller]/[Action]")]
     [ApiController]
-    public class CouponController : Controller
+
+    public class CouponApiController : Controller
     {
         private readonly ICouponService _couponService;
 
-        public CouponController(ICouponService couponService)
+        public CouponApiController(ICouponService couponService)
         {
             _couponService = couponService;
         }
