@@ -1,29 +1,29 @@
-//¤é´Á®É¶¡®æ¦¡¤Æ
+//æ—¥æœŸæ™‚é–“æ ¼å¼åŒ–
 function DateFormat(value, format) {
     return moment(value).format('YYYY/MM/DD');
 }
-//¤é´Á®æ¦¡¤Æ
+//æ—¥æœŸæ ¼å¼åŒ–
 Vue.filter('DateString', function (value, format) {
     return moment(value).format('YYYY/MM/DD')
 });
 let app = new Vue({
     el: '#app',
     data: {
-        selected: [],//µ¹§A¬İ¨ì§A¤Ä¿ï¿ï¶µªºvalue 
+        selected: [],//çµ¦ä½ çœ‹åˆ°ä½ å‹¾é¸é¸é …çš„value 
         fields: [
-            { key: 'memberId', label: "·|­û½s¸¹", sortable: true },
-            { key: 'accountName', label: "·|­û±b¤á¦WºÙ", sortable: true },
-            { key: 'nickName', label: "§@ªÌ©m¦W", sortable: true },
-            { key: 'balance', label: "±b¤á¾lÃB", sortable: true },
-            { key: 'loginTypeName', label:"µn¿ı¤è¦¡", sortable: true, filterByFormatted: true },
-            { key: 'email', label:"·|­û«H½c", sortable: true },
-            { key: 'Action', label: '¥\¯à' },
+            { key: 'memberId', label: "æœƒå“¡ç·¨è™Ÿ", sortable: true },
+            { key: 'accountName', label: "æœƒå“¡å¸³æˆ¶åç¨±", sortable: true },
+            { key: 'nickName', label: "ä½œè€…å§“å", sortable: true },
+            { key: 'balance', label: "å¸³æˆ¶é¤˜é¡", sortable: true },
+            { key: 'loginTypeName', label:"ç™»éŒ„æ–¹å¼", sortable: true, filterByFormatted: true },
+            { key: 'email', label:"æœƒå“¡ä¿¡ç®±", sortable: true },
+            { key: 'Action', label: 'åŠŸèƒ½' },
         ],
         fieldss: [ 'memberId', 'accountName', 'nickName', 'balance', 'loginTypeName', 'email', 'Action'],
         memberList: [],
         filterOn: [],
         currentPage: 1,
-        //¤@­¶´Xµ§¸ê®Æ
+        //ä¸€é å¹¾ç­†è³‡æ–™
         perPage: 10,
         filter: '',
         pageOptions: [5, 10, 25, 100],
