@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BSWebtoon.Front.Models.DTO.UploadComicDTO
 {
-    public class UploadComicInputDTO 
+    public class UploadComicInputDTO
     {
         public int MemberId { get; set; }
 
@@ -27,7 +27,7 @@ namespace BSWebtoon.Front.Models.DTO.UploadComicDTO
         ////[Required(ErrorMessage = "必須輸入")]
         //////強檔劇獻名稱圖
         ////public IFormFile HotComicNameImage { get; set; }
-        
+
         //防呆
         //[Required(ErrorMessage = "必須輸入")]
         //人物圖
@@ -114,7 +114,7 @@ namespace BSWebtoon.Front.Models.DTO.UploadComicDTO
         public int UpdateWeek { get; set; }
 
 
-        [Compare( nameof(PrivacyPolicyChecked) ,ErrorMessage ="必須打勾") ]
+        [Compare(nameof(PrivacyPolicyChecked), ErrorMessage = "必須打勾")]
         public bool IsPrivacyPolicyChecked { get; set; }
         public bool PrivacyPolicyChecked { get; } = true;
     }

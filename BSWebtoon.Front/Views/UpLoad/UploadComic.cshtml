@@ -1,41 +1,26 @@
-﻿
-@using BSWebtoon.Front.Models.DTO.UploadComicDTO
-
+﻿@using BSWebtoon.Front.Models.DTO.UploadComicDTO
 @model UploadComicInputDTO
-
 @{
     ViewData["Title"] = "UploadComic";
 }
-
-
-
 <!-- 導覽列 -->
         <div class="container work " style="color:  white; max-width: 1200px " >
-
             <div class="work_bgc">
                 <div class="a">
                     <a asp-controller="Upload" asp-action="UploadComic" >1</a>
                     <p>上傳漫畫</p>
                 </div>
-
                 <div class="b">
                     <a asp-controller="Upload" asp-action="UploadWork" >2</a>
                     <p>上傳分集</p>
                 </div>
             </div>
-
         </div>
-
 <form method="post" enctype="multipart/form-data"> 
-
     <div class="up_bgc mx-auto" style="background-color: black; color:  white; max-width: 1200px ">
-
-       
         <div class="container" style="margin-top: 50px;">
             <div class="row">
                 <div class="col-4">
-
-
                     <!-- 動態 -->
                     <!-- 漫畫人物圖 -->
                     <p>漫畫人物圖:(必須輸入)</p>
@@ -49,17 +34,13 @@
                             圖片尺寸必須為710 × 600，檔案格式僅適用JPG、JPEG以及PNG檔案，且檔案尺寸在5MB以下。
                         </p>
                     </div>
-
                     <label type="button" class="btn btn-secondary w-50 d-flex align-self-center text-center" asp-for="ComicFigure">上傳漫畫人物圖</label>
                     @*加收參數*@
                     @*<input class="cover" name="ComicFigure" type="file" accept="image/*" id="ComicFigure" style="display:none;">*@
                     <input type="file" name="ComicFigure" class="cover d-none" accept="image/*" id="ComicFigure"/>
                     @*加入防呆*@
                     <span asp-validation-for="ComicFigure" class="text-danger"></span>
-
                     <hr>
-
-
                     <!-- 動態 -->
                     <!-- 漫畫背景圖 -->
                     <p>漫畫背景圖:(必須輸入)</p>
@@ -77,16 +58,9 @@
                     @*加收參數*@
                     <input class="cover" name="BgCover" type="file" accept="image/*" id="BgCover" style="display:none;">
                     @*<input asp-for="BgCover" type="file" name="BgCover" class="cover d-none" accept="image/*" id="ComicFigure"/>*@
-
                     @*加入防呆*@
                     <span asp-validation-for="BgCover" class="text-danger"></span>
                     <hr>
-
-
-
-
-                   
-
                     @* <div class="mb-3">*@
                     @*加入防呆*@
                     @* <label asp-for="HotBgCover" class="form-label">強檔劇獻背景圖</label>*@
@@ -96,16 +70,10 @@
                     @*加入防呆*@
                     @* <span asp-validation-for="HotBgCover" class="text-danger"></span>*@
                     @*</div>*@
-
                 </div>
-
-
                 @*左邊*@
                 <div class="col-8">
-
                     <div class="row g-3">
-
-
                          <div class="col-12">
                             <label asp-for="ComicChineseName" class="form-label">漫畫中文名稱:(必須輸入)</label>
                             @*//漫畫中文名稱*@
@@ -114,10 +82,6 @@
                             @*加入防呆*@
                             <span asp-validation-for="ComicChineseName" class="text-danger"></span>
                         </div>
-
-
-
-
                         <div class="col-md-6" id="ComicTagList_Choose">
                             <label asp-for="ComicTagList" class="form-label">主要漫畫類型:(必須輸入)</label>
                             <select required asp-for="ComicTagList" id="ComicTagList" name="ComicTagList" class="form-select">
@@ -138,10 +102,7 @@
                         @*@{
                         //    CheckComicTagList(Model.IsSuccess);
                         //}*@
-
-
                         @*加入防呆*@
-
                         @*次要漫畫類型:*@
                         <div class="col-md-6">
                             <label for="Comic_subtitle" class="form-label">次要漫畫類型:</label>
@@ -155,12 +116,8 @@
                                 <option>怦然心動</option>
                                 <option>懸疑推理</option>
                                 <option>緊張刺激</option>
-
-
                             </select>
                         </div>
-
-
                         @*次要漫畫類型:*@
                         <div class="col-md-6">
                             <label for="Comic_subtitle_tow" class="form-label">次要漫畫類型:</label>
@@ -176,9 +133,6 @@
                                 <option>成長</option>
                             </select>
                         </div>
-
-
-
                         @*次要漫畫類型:*@
                         <div class="col-md-6">
                             <label for="Comic_subtitle_three" class="form-label">次要漫畫類型:</label>
@@ -195,9 +149,6 @@
                                 <option>活潑可愛</option>
                             </select>
                         </div>
-
-                       
-
                         @*發行日期*@
                         <div class="col-md-6">
                             <label asp-for="PublishDate" class="form-label ">發行日期:(必須輸入)</label>
@@ -206,7 +157,6 @@
                             @*加入防呆*@
                             <span asp-validation-for="PublishDate" class="text-danger"></span>
                         </div>
-
                         @*更新星期*@
                         <div class="col-md-6">
                             <label for="UpdateWeek" class="form-label">更新星期:(必須輸入)</label>
@@ -226,8 +176,6 @@
                         @*@{
                             CheckUpdateWeek(Model.IsSuccess);
                         }*@
-
-
                         <div class="col-12">
                             <label asp-for="Publisher" class="form-label">出版商</label>
                             @*//出版商*@
@@ -236,14 +184,12 @@
                             @*加入防呆*@
                             <span asp-validation-for="Publisher" class="text-danger"></span>
                         </div>
-
                         <div class="col-12">
                             <label asp-for="Painter" class="form-label">繪者(必須輸入)</label>
                             @*//繪者*@
                             <input type="text" class="form-control" name="Painter" id="Painter" placeholder="25字以下" value="@Model.Painter">
                             <span asp-validation-for="Painter" class="text-danger"></span>
                         </div>
-
                         <div class="col-12">
                              <label asp-for="@Model.Author" class="form-label">作者(會員僅能有一個唯一的作者名稱，不可再更改)</label>
                             @*//作者*@
@@ -252,24 +198,18 @@
                             <span asp-validation-for="Author" class="text-danger"></span>
                             <input type="checkbox" class="d-none" name="IsNewAuthorName" value=" @( string.IsNullOrEmpty(Model.Author)  )"> 
                             @*class="d-none"*@
-
                             @*@{CheckAuthor(@Model.Author);}*@
-
                             @*加入防呆*@
                             @*@{
-
                                 CheckDataExist(Model.IsSuccess);
                             }*@
-
                         </div>
-
                         <div class="mb-3">
                             <label asp-for="Introduction" class="form-label">作品簡介(故事大綱)(必須輸入)</label>
                             @*//故事大綱*@
                             <textarea class="form-control" name="Introduction" id="Introduction" rows="3" placeholder="500字以下" >@Model.Introduction</textarea>
                             <span asp-validation-for="Introduction" class="text-danger"></span>
                         </div>
-
                         <!-- <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">電子郵件帳號</label>
                             <input type="email" class="form-control" id="exampleFormControlInput1"
@@ -294,7 +234,6 @@
                             </p>
                             <p>關於投稿新星專區比賽或活動訊息，敬請留意 本文規定</p>
                         </div>
-
                         <div class="col-12">
                             <div class="form-check">
                                 <input asp-for="IsPrivacyPolicyChecked" type="checkbox" id="gridCheck" class="form-check-input">
@@ -303,13 +242,10 @@
                                     我同意投稿新星專區之隱私權保護政策。(必須打勾)
                                 </label>
                                 <span asp-validation-for="Author" class="text-danger"></span>
-                                
                                 <p>未滿14歲者禁止於投稿新星專區發布作品</p>
-
                                 @*@{
                                     CheckClick(Model.IsSuccess);
                                 }*@
-
                             </div>
                         </div>
                         <div class="col-12">
@@ -320,58 +256,44 @@
                                 </label>
                             </div>
                         </div>
-
                         @*送出參數*@
                         <div class="col-12" id="Wait">
                             <button type="submit" id="upload_work" class="btn btn-primary">新增作品</button>
-
                             @*防呆*@
                             <div class="" id="Loadingdata" role="status">
                                 <span class="visually-hidden">Loading...</span>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
 </form>
-
-
 <!-- Optional JavaScript; choose one of the two! -->
 <!-- Option 1: Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-
-
 @section topCss{
     <style>
-        
         .work {
-
         display: flex;
             margin-top: 150px;
     }
-
     .work_bgc {
         width: 500px;
         display: flex;
         justify-content: space-between;
         margin: auto;
     }
-
     .nav-item .nav-link {
         font-size: 20px;
         font-weight: bolder;
     }
-
     .a {
-
         display: flex;
     }
-
     .a a {
         width: 50px;
         height: 50px;
@@ -383,17 +305,14 @@
         margin: 10px;
         text-decoration: none ; 
     }
-
     .a p {
         text-align: center;
         font-size: 35px;
         margin: 10px;
     }
-
     .b {
         display: flex;
     }
-
     .b a {
         width: 50px;
         height: 50px;
@@ -405,21 +324,16 @@
         margin: 10px;
         text-decoration: none ; 
     }
-
     .b p {
         text-align: center;
         font-size: 35px;
         margin: 10px;
     }
-        
     </style>
 }
-
-
 @section endJS{
     @*@await Html.PartialAsync("_ValidationScriptsPartial")*@
     <script>
-
 //let ComicTagList_Choose = document.getElementById("ComicTagList_Choose");
 //    document.getElementById("ComicTagList").addEventListener("change", Checkselect ).Value;
 //let Choose = document.getElementById("ComicTagList").Value;
@@ -430,11 +344,6 @@
 //        ComicTagList_Choose.append(Checkselect_p);
 //    }
 //}
-
-
-
-
-
         //var arrCover = []; //存人物圖檔
         document.getElementById("ComicFigure")
             .addEventListener("change", readURL);
@@ -444,17 +353,14 @@
         function readURL() {
             img_box.innerText = "";
             input_ComicFigureCover = this;
-
             for (var i = 0; i < input_ComicFigureCover.files.length; i++) {
                 var reader = new FileReader();
-
                 //儲存上傳的封面圖片
                 //let file_cover_name = obj_cover.files[i].name;
                 //arrCover.push(file_cover_name);
                 (function(i) {
                     reader.onload = function(e) {
                         let cover_src = e.target.result;
-
                          //載入圖片獲取圖片真實寬度和高度
                         var image = new Image();
                         image.onload = function() {
@@ -462,7 +368,6 @@
                             var height = image.height;
                             if (width == 710 | height == 600) {
                                 //alert("檔案尺寸符合！");
-
                             } else {
                                 alert("檔案尺寸應為：710 × 600！");
                                 input_ComicFigureCover.value = "";
@@ -471,9 +376,7 @@
                                 return false;
                             }
                         };
-
                          image.src = cover_src;
-
                         let img_cover = document.createElement('img');
                         img_cover.setAttribute('src', cover_src);
                         img_cover.classList.add("w-100")
@@ -483,9 +386,6 @@
                 reader.readAsDataURL(input_ComicFigureCover.files[i]);
             }
         }
-
-
-
         //var BgCover = []; //存背景圖檔
         document.getElementById("BgCover")
             .addEventListener("change", BgCover_readURL);
@@ -495,18 +395,14 @@
         function BgCover_readURL() {
             img_box_BgCover.innerText = "";
             input_BgCover = this;
-
             for (var i = 0; i < input_BgCover.files.length; i++) {
-
                var reader = new FileReader();
-
                 //儲存上傳的封面圖片 ? 存背景圖檔?
                 let file_cover_name = input_BgCover.files[i].name;
                 //BgCover.push(file_cover_name);
                 (function(i) {
                     reader.onload = function(e) {
                         let cover_src = e.target.result;
-
                         //載入圖片獲取圖片真實寬度和高度
                         var image = new Image();
                         image.onload = function() {
@@ -514,19 +410,14 @@
                             var height = image.height;
                             if (width == 375 | height == 812) {
                                 //alert("檔案尺寸符合！");
-
                             } else {
                                 alert("檔案尺寸應為：375 × 812！");
                                 input_BgCover.value = "";
                                 img_box_BgCover.innerText = "";
                                 return false;
-
                             }
                         };
-
                          image.src = cover_src;
-
-
                         let img_cover = document.createElement('img');
                         img_cover.setAttribute('src', cover_src);
                         img_cover.classList.add("w-100")
@@ -536,34 +427,24 @@
                 reader.readAsDataURL(input_BgCover.files[i]);
             }
         }
-
-
         //上傳等待狀態按鈕
         var upload_work = document.getElementById("upload_work");
         upload_work.addEventListener("click", Waiting_Upload);
         var Loadingdata = document.getElementById("Loadingdata");
-
         //上傳等待狀態按鈕方法
         function Waiting_Upload() {
             Loadingdata.classList.add("spinner-border");
             Loadingdata.classList.add("text-warning");
             //upload_work.setAttribute('disabled', 'disabled');
-
             upload_work.setAttribute('class','bg-secondary'); 
             upload_work.setAttribute('class','p-2'); 
             upload_work.setAttribute('class','text-dark'); 
             upload_work.setAttribute('class','bg-opacity-25');
         }
-
         //bg-secondary p-2 text-dark bg-opacity-25
-
-
     </script>
 }
-
-
 @*防呆*@
-
  @functions {
     private void CheckDataExist(bool isSuccess)
     {
@@ -571,36 +452,28 @@
         {
     <p class="text-danger">已有重複名稱</p>
         }
-
     }
-
     private void CheckComicTagList(bool isSuccess)
     {
         if (isSuccess == false)
         {
     <p class="text-danger">必須輸入</p>
         }
-
     }
-
     private void CheckUpdateWeek(bool isSuccess)
     {
         if (isSuccess == false)
         {
     <p class="text-danger text-end">必須輸入</p>
         }
-
     }
-
     private void CheckClick(bool isSuccess)
     {
         if (isSuccess == false)
         {
     <p class="text-danger">必須打勾</p>
         }
-
     }
-
     private void CheckAuthor(string NickName)
     {
         if (NickName != "")
@@ -613,4 +486,3 @@
         }
     }
 }
-

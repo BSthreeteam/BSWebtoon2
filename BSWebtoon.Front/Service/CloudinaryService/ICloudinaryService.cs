@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 namespace BSWebtoon.Front.Service.CloudinaryService
 {
     public interface ICloudinaryService
-    {        
+    {
         Task<UploadImgOutputDTO> UploadAsync(IFormFile file);
 
         //影片

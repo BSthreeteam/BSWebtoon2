@@ -15,7 +15,7 @@ namespace BSWebtoon.Front.Controllers
         private readonly ICloudinaryService _cloudinaryService;
 
         private readonly IUploadService _UploadService;
-        public UpLoadController( BSRepository repository, ICloudinaryService cloudinaryService, IUploadService UploadService)
+        public UpLoadController(BSRepository repository, ICloudinaryService cloudinaryService, IUploadService UploadService)
         {
 
             _repository = repository;
