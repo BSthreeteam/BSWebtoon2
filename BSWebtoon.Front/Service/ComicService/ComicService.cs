@@ -5801,7 +5801,7 @@ namespace BSWebtoon.Front.Service.ComicService
         }
 
         private List<WorkContent> Read(Episode epSource, IQueryable<EpContent> content)
-            {
+        {
             //var aLLEpSource = _repository.GetAll<Episode>().Where(x => x.AuditType == 1 && x.ComicId == epSource.ComicId).OrderBy(x => x.UploadTime);
 
             var readResult = content.Select(c => new WorkContent()
@@ -5815,21 +5815,10 @@ namespace BSWebtoon.Front.Service.ComicService
 
             }).ToList();
 
-            var readResult = content.Select(c => new WorkContent()
-            {
-                ComicId = epSource.ComicId,
-                EpId = epSource.EpId,
-                EpTitle = epSource.EpTitle,
-                EpContentId = c.EpContentId,
-                ImagePath = c.ImagePath,
-                Page = c.Page,
+
 
             return readResult;
-
-            }
-
-            return readResult;
-
+        }
         public List<WorkContentEpData> ReadEpTable(int comicId)
         {
             var aLLEpSource = _repository.GetAll<Episode>().Where(x => x.ComicId == comicId).OrderBy(x => x.UploadTime);
