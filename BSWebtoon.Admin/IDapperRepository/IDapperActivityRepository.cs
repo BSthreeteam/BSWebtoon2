@@ -1,4 +1,5 @@
-﻿using BSWebtoon.Admin.Repository;
+﻿using BSWebtoon.Admin.Models.DTO.Activitys;
+using BSWebtoon.Admin.Repository;
 using BSWebtoon.Model.Models;
 using Dapper;
 using System.Collections.Generic;
@@ -6,23 +7,23 @@ using System.Data;
 
 namespace BSWebtoon.Admin.IDapperRepository
 {
-    public interface IDapperActivityRepository : IDapperGenericRepository<Activity> 
+    public interface IDapperActivityRepository : IDapperGenericRepository<Activity>
     {
         IEnumerable<Activity> SelectActivity(int? ActivityId);
     }
     /* DapperBaseRepository 繼承這個基底類別*/  /* IDapperActivityRepository 實作這個介面，就會必須有5通用+1專用個方法*/
-    public class DapperActivityRepository : DapperBaseRepository, IDapperActivityRepository 
+    public class DapperActivityRepository : DapperBaseRepository, IDapperActivityRepository
     {
         public DapperActivityRepository(IDbConnection conn) : base(conn)
         {
 
         }
 
-        
+
 
         public int Create(Activity entity)
         {
-            
+
             return _conn.Execute(@"
                 INSERT INTO Activity ( ActivityName , ActivityStartTime , ActivityEndTime ,ActivityBgColor, ActivityImage , ActivityContent, PrincipalEmployee , CreateTime  ,IsDelete) 
                 VALUES (@ActivityName, @ActivityStartTime, @ActivityEndTime , @ActivityBgColor , @ActivityImage , @ActivityContent , @PrincipalEmployee , @CreateTime , @IsDelete)
@@ -42,16 +43,20 @@ namespace BSWebtoon.Admin.IDapperRepository
         public IEnumerable<Activity> SelectAll()
         {
 
-            return _conn.Query<Activity>(@" Select ActivityName,
-                                                   ActivityStartTime,
-                                                   ActivityEndTime,
-                                                   ActivityImage,
-                                                   ActivityBgColor,
-                                                   ActivityContent,
-                                                   PrincipalEmployee,
-                                                   CreateTime,
-                                                   IsDelete
-                                            from Activity");
+            var AllActivity = @" SELECT 
+	a.ActivityId,
+	a.ActivityName,
+	a.ActivityStartTime,
+	a.ActivityEndTime,
+	a.ActivityImage,
+	a.ActivityBgColor,
+	a.ActivityContent,
+    a.CreateTime,
+	e.EmployeeName as ActivityEmployeeName
+FROM Activity a
+INNER JOIN Employee e ON e.EmployeeId = a.PrincipalEmployee";
+
+            return _conn.Query<UpdateActivityDTO> (AllActivity);
         }
 
         public Activity SelectById(int id)

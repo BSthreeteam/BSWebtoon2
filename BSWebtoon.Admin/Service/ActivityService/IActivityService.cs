@@ -1,4 +1,4 @@
-﻿using BSWebtoon.Admin.Models.DTO.Activity;
+﻿using BSWebtoon.Admin.Models.DTO.Activitys;
 using System.Threading.Tasks;
 
 namespace BSWebtoon.Admin.Service.ActivityService
@@ -10,6 +10,8 @@ namespace BSWebtoon.Admin.Service.ActivityService
         GetAllEmployeeNameOutputDTO GetAllEmployeeName();
 
         Task<ActivitysOutputDTO> UpActivityInfo(ActivitysInputDTO inputDTO);
+
+        
 
     }
 }

@@ -49,10 +49,10 @@ namespace BSWebtoon.Front.Controllers
             //預設表單上輸入框的值
             var vm = new UploadComicViewModel
             {
-                Painter = "Anke",
-                Publisher = "Anke",
-                Introduction = "qwe\r\nqweqwe",
-                ComicChineseName = "ROG漫畫王",
+                //Painter = "Anke",
+                //Publisher = "Anke",
+                //Introduction = "qwe\r\nqweqwe",
+                //ComicChineseName = "ROG漫畫王",
 
                 Author = nickName,
                 PublishDate = DateTime.UtcNow.AddDays(1),

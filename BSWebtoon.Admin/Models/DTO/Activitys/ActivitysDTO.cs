@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System;
 
-namespace BSWebtoon.Admin.Models.DTO.Activity
+namespace BSWebtoon.Admin.Models.DTO.Activitys
 {
     public class ActivitysInputDTO
     {        

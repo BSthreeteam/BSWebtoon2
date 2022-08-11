@@ -279,7 +279,9 @@ function file() {
         removeItemAll();
     }
 }
+
 checkSendable();
+
 function checkSendable() {
     if (input_EP_Context.files.length > 0 && input_EP_Cover.files.length > 0) {
         upload_work.disabled = false;

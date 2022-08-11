@@ -2,10 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using BSWebtoon.Model.Models;
-using BSWebtoon.Admin.Models.DTO.Activity;
+//using BSWebtoon.Admin.Models.DTO.Activity;
 using BSWebtoon.Admin.Service.ActivityService;
-using BSWebtoon.Admin.Models.ViewModel.Activity;
+//using BSWebtoon.Admin.Models.ViewModel.Activity;
 using System.Threading.Tasks;
+using BSWebtoon.Admin.Models.ViewModel.ActivityVM;
+using BSWebtoon.Admin.Models.DTO.Activitys;
 
 namespace BSWebtoon.Admin.Controllers
 {
@@ -75,13 +77,13 @@ namespace BSWebtoon.Admin.Controllers
             return RedirectToAction("UpActivityData", "Activity");
         }
 
-        //活動編輯
-        [HttpGet]
-        public IActionResult EditActivityData() // /Activity/ActivityData
-        {
+        ////活動編輯
+        //[HttpGet]
+        //public IActionResult EditActivityData() // /Activity/ActivityData
+        //{
 
-            return View();
-        }
+        //    return View();
+        //}
         ////活動編輯
         //[HttpPost]
         //public IActionResult EditActivityData() // /Activity/ActivityData

@@ -1,15 +1,15 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
 
-namespace BSWebtoon.Admin.Models.ViewModel.Activity
+namespace BSWebtoon.Admin.Models.ViewModel.ActivityVM
 {
-    public class ActivityViewModel
+    public class UpdateActivityViewModel
     {
         //活動名稱
         public string ActivityName { get; set; }
 
         //活動圖片
-        public IFormFile ActivityImage { get; set; }
+        public string ActivityImage { get; set; }
 
         //活動開始時間
         public DateTime ActivityStartTime { get; set; }

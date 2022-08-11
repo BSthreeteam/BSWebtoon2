@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BSWebtoon.Admin.Models.DTO.Activity
+namespace BSWebtoon.Admin.Models.DTO.Activitys
 {
     public class GetAllEmployeeNameInputDTO
     {

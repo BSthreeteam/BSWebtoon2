@@ -1,5 +1,6 @@
 ﻿using BSWebtoon.Admin.IDapperRepository;
-using BSWebtoon.Admin.Models.DTO.Activity;
+//using BSWebtoon.Admin.Models.DTO.Activity;
+using BSWebtoon.Admin.Models.DTO.Activitys;
 using BSWebtoon.Front.Service.CloudinaryService;
 using BSWebtoon.Model.Repository;
 using System;
@@ -7,7 +8,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using static BSWebtoon.Admin.Models.DTO.Activity.GetAllEmployeeNameOutputDTO;
+using static BSWebtoon.Admin.Models.DTO.Activitys.GetAllEmployeeNameOutputDTO;
 
 namespace BSWebtoon.Admin.Service.ActivityService
 {
@@ -33,7 +34,7 @@ namespace BSWebtoon.Admin.Service.ActivityService
         }
 
 
-        //先在還沒做登入當 擴充
+        //當擴充
         //取到登入後名稱
         public string GetEmployeeName(int Employeeid)
         {
@@ -56,6 +57,7 @@ namespace BSWebtoon.Admin.Service.ActivityService
             return Employee;
         }
 
+        //取到全部的員工名字
         public GetAllEmployeeNameOutputDTO GetAllEmployeeName()
         {
             var result = new GetAllEmployeeNameOutputDTO()
@@ -77,9 +79,7 @@ namespace BSWebtoon.Admin.Service.ActivityService
             return result;
         }
 
-
-
-
+        //實作收到使用者輸入的值，寫入資料庫的方法。
         public async Task<ActivitysOutputDTO>UpActivityInfo(ActivitysInputDTO inputDTO)
         {
             var result = new ActivitysOutputDTO()
@@ -87,6 +87,7 @@ namespace BSWebtoon.Admin.Service.ActivityService
                 IsSuccess = false,
             };
 
+            //圖床轉換
             var ActivityImageOutput = await _cloudinaryService.UploadAsync(inputDTO.ActivityImage);
 
 
@@ -103,14 +104,17 @@ namespace BSWebtoon.Admin.Service.ActivityService
                 IsDelete = false
             };
 
-            //_repository.Create(NewActivityInfo);
-            //_repository.SaveChange();
+            
              var a = _activityRepository.Create(NewActivityInfo);
 
             result.IsSuccess = true;
             return result;
 
         }
+
+        
+
+
 
 
     }
