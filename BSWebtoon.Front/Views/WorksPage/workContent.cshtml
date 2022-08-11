@@ -1,6 +1,6 @@
 ﻿@{
     Layout = "_WorkPageLayout";
-    ViewData["Title"]  = "workContent";
+    ViewData["Title"] = "workContent";
 }
 
 @section topCss{
@@ -8,63 +8,63 @@
 }
 <div class="epContent ">
     <div class="container-fluid bg-dark d-flex comic_area">
-    <button class="btn text-decoration-none my-2" href="javascript:history.go(-1)">
-        <i class="fa-solid fa-arrow-left-long text-white"></i>
-    </button>
-    <div class="comic_text flex-grow-1 my-2 m-auto">
-        <p class="text-white m-0 ">@Model.EpTitle</p>
+        <button class="btn text-decoration-none my-2" href="javascript:history.go(-1)">
+            <i class="fa-solid fa-arrow-left-long text-white"></i>
+        </button>
+        <div class="comic_text flex-grow-1 my-2 m-auto">
+            <p class="text-white m-0 ">@Model.EpTitle</p>
+        </div>
     </div>
-</div>
-<div class="comic">
-    <div class="col-12  d-flex flex-column align-items-center comic_content">
-        @foreach (var content in Model.ContentList)
-        {
-            <img id="comicpic_pic" src="@content.ImagePath" class="  text-center">
+    <div class="comic">
+        <div class="col-12  d-flex flex-column align-items-center comic_content">
+            @foreach (var content in Model.ContentList)
+            {
+                <img id="comicpic_pic" src="@content.ImagePath" class="  text-center">
 
-        }
+            }
+        </div>
     </div>
-</div>
 
-<!-- 評論區 -->
-<div class="container  bg-dark comment_text">
-    <!-- <div class="comment_text  m-auto">
-    </div> -->
-</div>
-
-<!-- 各種按鈕 -->
-<div class="footer d-flex flex-column justify-content-center align-items-center my-2">
-
-    <div class="rounded-pill bg-dark text-center text-white  fs-2 more_function">
-        <button class="btn btn_last text-white">
-            <i class="fa-solid fa-arrow-left py-3 mx-2 "></i>
-            <!-- 上一話 -->
-        </button>
-        <button class="btn btn_play text-white">
-            <i class="fa-solid fa-person-running mx-2 py-3"></i>
-            <!-- 自動播放 -->
-        </button>
-        <!-- 目錄 -->
-        <button class="btn btn-dark menu-btn" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom" id="muluBTN">
-            <i class="fa-solid fa-list mx-2 py-3"></i>
-        </button>
-        <button class="btn btn-dark menu-btn" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions" id="mulu-mdBTN">
-            <i class="fa-solid fa-list mx-2 py-3"></i>
-        </button>
-
-
-        <button class="btn btn_comment text-white">
-            <i class="fa-solid fa-comment-dots py-3 mx-2"></i>
-            <!-- 留言 -->
-        </button>
-
-        <button class="btn btn_next text-white">
-            <i class="fa-solid fa-arrow-right-long py-3 mx-2"></i>
-            <!-- 下一話 -->
-        </button>
+    <!-- 評論區 -->
+    <div class="container  bg-dark comment_text">
+        <!-- <div class="comment_text  m-auto">
+        </div> -->
     </div>
-</div>
+
+    <!-- 各種按鈕 -->
+    <div class="footer d-flex flex-column justify-content-center align-items-center my-2">
+
+        <div class="rounded-pill bg-dark text-center text-white  fs-2 more_function">
+            <button class="btn btn_last text-white">
+                <i class="fa-solid fa-arrow-left py-3 mx-2 "></i>
+                <!-- 上一話 -->
+            </button>
+            <button class="btn btn_play text-white">
+                <i class="fa-solid fa-person-running mx-2 py-3"></i>
+                <!-- 自動播放 -->
+            </button>
+            <!-- 目錄 -->
+            <button class="btn btn-dark menu-btn" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom" id="muluBTN">
+                <i class="fa-solid fa-list mx-2 py-3"></i>
+            </button>
+            <button class="btn btn-dark menu-btn" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions" id="mulu-mdBTN">
+                <i class="fa-solid fa-list mx-2 py-3"></i>
+            </button>
+
+
+            <button class="btn btn_comment text-white">
+                <i class="fa-solid fa-comment-dots py-3 mx-2"></i>
+                <!-- 留言 -->
+            </button>
+
+            <button class="btn btn_next text-white">
+                <i class="fa-solid fa-arrow-right-long py-3 mx-2"></i>
+                <!-- 下一話 -->
+            </button>
+        </div>
+    </div>
 
 </div>
 
@@ -119,33 +119,33 @@
 
 <!-- 評論區模板 -->
 
-        <section class="Comment_area  d-none">
+<section class="Comment_area  d-none">
 
-        <button class="btn text-decoration-none my-2 btn_leave" >
-            <i class="fa-solid fa-arrow-left-long text-white"></i>
-        </button>
-        <div class="Comment_fixed">
-            <h3>
-                留言
-                <span>53</span>
-            </h3>
-            <div class="isSpoil">
-                <input class="form-check-input isSpoil_checkbox" type="checkbox" value="" id="Spoil">
-                <label class="form-check-label" for="Spoil">
-                    暴雷
-                </label>
-            </div>
-
-
-            <div class="input-group Comment mb-3">
-                <input type="text" class="form-control Comment_input" placeholder="請輸入留言" aria-label="Comment_text"
-                    aria-describedby="CommentButton">
-                <button class="btn btn-outline-secondary" type="button" id="CommentButton">輸入</button>
-            </div>
-
+    <button class="btn text-decoration-none my-2 btn_leave">
+        <i class="fa-solid fa-arrow-left-long text-white"></i>
+    </button>
+    <div class="Comment_fixed">
+        <h3>
+            留言
+            <span>53</span>
+        </h3>
+        <div class="isSpoil">
+            <input class="form-check-input isSpoil_checkbox" type="checkbox" value="" id="Spoil">
+            <label class="form-check-label" for="Spoil">
+                暴雷
+            </label>
         </div>
 
-        <div class="container Comment_container">
+
+        <div class="input-group Comment mb-3">
+            <input type="text" class="form-control Comment_input" placeholder="請輸入留言" aria-label="Comment_text"
+                   aria-describedby="CommentButton">
+            <button class="btn btn-outline-secondary" type="button" id="CommentButton">輸入</button>
+        </div>
+
+    </div>
+
+    <div class="container Comment_container">
 
         <template id="commentTemplate">
             <div class="Comment_item">
@@ -234,13 +234,12 @@
 
                 <div class="collapse" id="reply_collapse1">
                     <div class="card-body  reply_CommentShow">
-
                     </div>
-                        <div class="input-group reply_Comment mb-3">
-                            <input type="text" class="form-control reply_Comment_input " placeholder="請輸入回覆留言"
-                                   aria-label="reply_Comment_text" aria-describedby="reply_CommentButton">
-                            <button class="btn btn-outline-secondary" type="button" id="reply_CommentButton">輸入</button>
-                        </div>
+                    <div class="input-group reply_Comment mb-3">
+                        <input type="text" class="form-control reply_Comment_input " placeholder="請輸入回覆留言"
+                               aria-label="reply_Comment_text" aria-describedby="reply_CommentButton">
+                        <button class="btn btn-outline-secondary" type="button" id="reply_CommentButton">輸入</button>
+                    </div>
 
                 </div>
 
@@ -272,9 +271,9 @@
         </template>
 
 
-        </div>
+    </div>
 
-    </section>
+</section>
 
 
 
@@ -292,7 +291,7 @@
     let epContent = document.querySelector(".epContent");
     let Comment_area = document.querySelector(".Comment_area");
     let btn_leave = document.querySelector(".btn_leave");
-    
+
     btn_comment.addEventListener("click", () => {
         epContent.classList.add("d-none")
         Comment_area.classList.remove("d-none")
@@ -301,11 +300,11 @@
         fetch(url)
         .then(res => { return res.json() })
         .then(result => {
-            for (let i = 1; i <= result.length; i++) 
+            for (let i = 1; i <= result.length; i++)
             {
                 Comment_container.append(createComment(result[i],i))
                 //reply_CommentShow.append(createReply_Comment(result[i]))
-            }      
+            }
         })
      })
 
