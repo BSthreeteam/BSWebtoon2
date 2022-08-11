@@ -110,7 +110,7 @@ namespace NewebPay.Controllers
             // 商店取號網址
             TradeInfo.Add(new KeyValuePair<string, string>("CustomerURL", $"{Request.Scheme}://{Request.Host}{Request.Path}Home/CallbackCustomer"));
             // 支付取消返回商店網址
-            TradeInfo.Add(new KeyValuePair<string, string>("ClientBackURL", $"{Request.Scheme}://bswebtoon-front.azurewebsites.net/Recommend/Recommend"));
+            TradeInfo.Add(new KeyValuePair<string, string>("ClientBackURL", $"{Request.Scheme}://{Request.Host.Value}/Recommend/Recommend"));
             // 付款人電子信箱
             //TradeInfo.Add(new KeyValuePair<string, string>("Email", inModel.Email));//等等
             // 付款人電子信箱 是否開放修改(1=可修改 0=不可修改)
