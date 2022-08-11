@@ -1,0 +1,310 @@
+﻿@{
+    ViewData["Title"] = "AdminUploadComic";
+}
+
+@section topCss{
+    <link rel="stylesheet" href="~/style~/style/AdminUploadComicStyle.css" />
+}
+
+
+    <div id="release_area" class="container">
+
+        <b-card no-body>
+            <b-tabs v-model="tabIndex" card fill>
+                <b-tab no-body title="購入漫畫上架區">
+                    <!-- <b-card-img bottom src="https://picsum.photos/600/200/?image=21" alt="Image 21"></b-card-img>
+                    <b-card-footer>Picture 1 footer</b-card-footer> -->
+                    <div class="buyComic_release_area d-flex w-75 m-auto">
+                        <div class="pic_area w-25">
+                            <div class="week_people_pic_box">
+                                <img :src="createComicData.week_people" />
+                            </div>
+                            <input id="week_people" type="file" accept="image/*" v-on:click="previewImage">
+
+                            <div class="bg_box">
+                                <img :src="createComicData.bg" />
+                            </div>
+                            <input id="bg" type="file" accept="image/*" v-on:click="previewImage">
+
+                            <div class="people_pic_box">
+                                <img :src="createComicData.people" />
+                            </div>
+                            <input id="people" type="file" accept="image/*" v-on:click="previewImage">
+
+                            <div class="text_pic_box">
+                                <img :src="createComicData.text" />
+                            </div>
+                            <input id="text" type="file" accept="image/*" v-on:click="previewImage">
+
+                        </div>
+
+                        <div class="text_area w-75">
+                            <div>
+                                <span class="comicName">漫畫名字</span>
+                                <b-form-input v-model="createComicData.comicChineseName" placeholder="Enter your name">
+                                </b-form-input>
+                            </div>
+
+                            <div>
+                                <span class="comicEngilshName">漫畫英文名字</span>
+                                <b-form-input v-model="createComicData.comicEngilshName" placeholder="Enter your name">
+                                </b-form-input>
+                            </div>
+
+
+                            <div>
+                                <span class="author">作者</span>
+                                <b-form-input v-model="createComicData.author" placeholder="Enter your name">
+                                </b-form-input>
+                            </div>
+
+                            <div>
+                                <span class="painter">繪者</span>
+                                <b-form-input v-model="createComicData.painter" placeholder="Enter your name">
+                                </b-form-input>
+                            </div>
+
+                            <b-form-select id="week" v-model="createComicData.week_selected" :options="week_options"
+                                size="sm" class="mt-3">
+                            </b-form-select>
+
+                            <div>
+                                <label for="date">請選擇上架日期</label>
+                                <b-form-datepicker id="date" v-model="createComicData.upDate" class="mb-2">
+                                </b-form-datepicker>
+                            </div>
+                            <div>
+                                <label for="color">請選擇背景色</label>
+                                <b-form-input v-model="createComicData.bgColor" id="bgColor" type="color">
+                                </b-form-input>
+                            </div>
+
+                            <div>
+                                <span class="comicIntroduction">漫畫簡介</span>
+                                <b-form-textarea v-model="createComicData.comicIntroduction" id="introduction"
+                                    placeholder="Default textarea"></b-form-textarea>
+                            </div>
+
+                            <div class="selectGroup">
+                                <b-form-select v-model="createComicData.main_selected" :options="main_options" size="sm"
+                                    class="mt-3">
+                                </b-form-select>
+                                <b-form-select v-model="createComicData.one_selected" :options="one_options" size="sm"
+                                    class="mt-3">
+                                </b-form-select>
+                                <b-form-select v-model="createComicData.two_selected" :options="two_options" size="sm"
+                                    class="mt-3">
+                                </b-form-select>
+                                <b-form-select v-model="createComicData.three_selected" :options="three_options"
+                                    size="sm" class="mt-3">
+                                </b-form-select>
+                            </div>
+
+                            <div>
+                                <b-form-select v-model="createComicData.AuditEmployeeId" :options="AuditEmployeeId"
+                                    size="sm" class="mt-3">
+                                </b-form-select>
+                            </div>
+
+                            <button v-on:click="createComic" type="button" class="btn btn-primary">
+                                新增
+                            </button>
+
+                        </div>
+                    </div>
+
+                </b-tab>
+
+                <b-tab no-body title="漫畫更新區">
+                    <b-card-img bottom src="https://picsum.photos/600/200/?image=25" alt="Image 25"></b-card-img>
+                    <b-card-footer>Picture 2 footer</b-card-footer>
+                </b-tab>
+
+
+                <b-tab no-body title="漫畫特殊需求區">
+                    <b-card-img bottom src="https://picsum.photos/600/200/?image=25" alt="Image 25"></b-card-img>
+                    <b-card-footer>Picture 2 footer</b-card-footer>
+                </b-tab>
+
+
+                <b-tab no-body title="話次上架區">
+                    <b-card-img bottom src="https://picsum.photos/600/200/?image=25" alt="Image 25"></b-card-img>
+                    <b-card-footer>Picture 2 footer</b-card-footer>
+                </b-tab>
+
+                <b-tab no-body title="話次更新區">
+                    <b-card-img bottom src="https://picsum.photos/600/200/?image=25" alt="Image 25"></b-card-img>
+                    <b-card-footer>Picture 2 footer</b-card-footer>
+                </b-tab>
+
+
+                <b-tab no-body title="會員漫畫審核區">
+                    <b-card-img bottom src="https://picsum.photos/600/200/?image=26" alt="Image 26"></b-card-img>
+                    <b-card-footer>Picture 3 footer</b-card-footer>
+                </b-tab>
+
+                <b-tab title="會員話次審核區">
+                    <b-card-title>This tab does not have the <code>no-body</code> prop set</b-card-title>
+                    <b-card-text>
+                        Quis magna Lorem anim amet ipsum do mollit sit cillum voluptate ex nulla tempor. Laborum
+                        consequat non elit enim exercitation cillum aliqua consequat id aliqua. Esse ex
+                        consectetur mollit voluptate est in duis laboris ad sit ipsum anim Lorem. Incididunt
+                        veniam velit elit elit veniam Lorem aliqua quis ullamco deserunt sit enim elit aliqua
+                        esse irure.
+                    </b-card-text>
+                </b-tab>
+            </b-tabs>
+        </b-card>
+
+
+    </div>
+
+
+    @section endJS{
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+    integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+    crossorigin="anonymous"></script>
+<script src="~/lib/moment.js/moment.min.js"></script>
+
+<script>
+            let release_area = new Vue({
+            el: '#release_area',
+            data: {
+                tabIndex: 0,
+                week_options: [
+                    { value: null, text: '請選擇更新星期' },
+                    { value: 1, text: '星期一' },
+                    { value: 2, text: '星期二' },
+                    { value: 3, text: '星期三' },
+                    { value: 4, text: '星期四' },
+                    { value: 5, text: '星期五' },
+                    { value: 6, text: '星期六' },
+                    { value: 7, text: '星期日' }
+
+                ],
+                main_options: [
+                    { value: null, text: '請選擇一個主標籤' },
+                    { value: '奇幻', text: '奇幻' },
+                    { value: '愛情', text: '愛情' },
+                    { value: '動作冒險', text: '動作冒險' },
+                    { value: '劇情', text: '劇情' }
+                ],
+                one_options: [
+                    { value: null, text: '可選擇副標籤' },
+                    { value: '精采絕倫', text: '精采絕倫' },
+                    { value: '奇幻愛情', text: '奇幻愛情' },
+                    { value: '專業', text: '專業' },
+                    { value: '復仇', text: '復仇' },
+                    { value: '怦然心動', text: '怦然心動' },
+                    { value: '緊張刺激', text: '緊張刺激' },
+                    { value: '懸疑推理', text: '懸疑推理' }
+                ],
+                two_options: [
+                    { value: null, text: '可選擇副標籤' },
+                    { value: '淒美愛情', text: '淒美愛情' },
+                    { value: '三角關係', text: '三角關係' },
+                    { value: '刻劃細膩', text: '刻劃細膩' },
+                    { value: '揪心', text: '揪心' },
+                    { value: '改變命運', text: '改變命運' },
+                    { value: '欲罷不能', text: '欲罷不能' },
+                    { value: '成長', text: '成長' }
+
+                ],
+                three_options: [
+                    { value: null, text: '可選擇副標籤' },
+                    { value: '大格局', text: '大格局' },
+                    { value: '食指大動', text: '食指大動' },
+                    { value: '津津有味', text: '津津有味' },
+                    { value: '爆笑', text: '爆笑' },
+                    { value: '職場生活', text: '職場生活' },
+                    { value: '浪漫喜劇', text: '浪漫喜劇' },
+                    { value: '活潑可愛', text: '活潑可愛' },
+                    { value: '清新', text: '清新' }
+
+                ],
+                AuditEmployeeId: [
+                    { value: null, text: '請選出您的工號' },
+                    { value: 1, text: '1' },
+                    { value: 2, text: '2' },
+                    { value: 3, text: '3' },
+                    { value: 4, text: '4' },
+                    { value: 5, text: '5' }
+                ],
+                createComicData: {
+                    week_people: "",
+                    bg: "",
+                    people: "",
+                    text: "",
+                    comicChineseName: "",
+                    comicEngilshName: "",
+                    author: "",
+                    painter: "",
+                    week_selected: null,
+                    upDate: "",
+                    bgColor: "",
+                    comicIntroduction: "",
+                    main_selected: null,
+                    one_selected: null,
+                    two_selected: null,
+                    three_selected: null,
+                    AuditEmployeeId: null
+                }
+            },
+            methods: {
+                linkClass(idx) {
+                    if (this.tabIndex === idx) {
+                        return ['bg-primary', 'text-light']
+                    } else {
+                        return ['bg-light', 'text-info']
+                    }
+                },
+                previewImage(e) {
+                    const file = e.target.files[0]
+                    console.log(e)
+                    if (e.target.files) {
+                        let reader = new FileReader();
+                        reader.readAsDataURL(file);
+                        reader.onload = (re) => {
+                            console.log(re)
+                            console.log(e.target.id)
+                            this.createComicData[e.target.id] = re.target.result
+                        };
+
+                    }
+                },
+                createComic() {
+                    let formData = new FormData()
+                    formData.append("data", this.createComicData);
+                    axios({
+                        method:'POST',
+                        url:'/api/AdminUploadComicApi/AdminUploadComic',
+                        data:formData,
+                        header:{
+                            'Content-Type': 'multipart/form-data'
+                        },
+
+                    })
+                    .then((res) => {
+                        console.log(res)
+                        }).catch(e=>{
+                            console.log(e)
+                        })
+                    // axios.post('api/UploadComicApi/UploadComic', formData)
+                    //     .then((res) => {
+                    //         if (res.data.status == 20000) {
+                    //             toastr.success('新增成功')
+                    //             $('#create-modal').modal('hide')
+                    //         }
+                    //         else {
+                    //             toastr.error('新增失敗');
+                    //         }
+                    //         console.log(res)
+                    //     })
+                }
+            },
+        });
+
+
+
+</script>
+}
