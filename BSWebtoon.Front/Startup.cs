@@ -151,11 +151,17 @@ namespace BSWebtoon.Front
                     name: "default",
                     pattern: "{controller=Recommend}/{action=Recommend}/{id?}");
 
+                endpoints.MapControllerRoute(
+                    name: "Rank",
+                    pattern: "Rank/{Id?}",
+                    defaults: new { controller = "Rank", action = "AllRankList" }
+                    );
 
-            //endpoints.MapControllerRoute(
-            //    name: "ProductsPagination",
-            //    pattern: "WorksPage/{ComicId?}",
-            //    defaults: new { controller = "Favorite", action = "ReadFavorite" });
+
+                //endpoints.MapControllerRoute(
+                //    name: "ProductsPagination",
+                //    pattern: "WorksPage/{ComicId?}",
+                //    defaults: new { controller = "Favorite", action = "ReadFavorite" });
 
             });
 

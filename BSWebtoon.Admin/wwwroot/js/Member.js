@@ -19,7 +19,6 @@ let app = new Vue({
             { key: 'email', label:"會員信箱", sortable: true },
             { key: 'Action', label: '功能' },
         ],
-        fieldss: [ 'memberId', 'accountName', 'nickName', 'balance', 'loginTypeName', 'email', 'Action'],
         memberList: [],
         filterOn: [],
         currentPage: 1,

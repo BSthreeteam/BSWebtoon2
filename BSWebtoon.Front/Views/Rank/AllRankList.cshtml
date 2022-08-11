@@ -65,47 +65,6 @@
                     </div>
                 </a>
             </template>
-            @*<template id="workTemplate">
-                @foreach (var item in Model.OtherRank.Select((value, index) => new { value, index }))
-                {
-                <a class="work" href="#">
-                <div class="work_bg">
-                <img src="@item.value.BgCover" alt="背景" class="rankCardCover">
-                </div>
-                <img class="work_pic" src="@item.value.ComicWeekFigure" alt="@item.value.ComicName">
-
-                <div class="title_img">
-                <img src="@item.value.ComicNameImage" alt="@item.value.ComicName" class="rankCardName">
-                </div>
-                <div class="work_status">
-                <span>UP</span>
-                </div>
-                <div class="work_Ranking">
-                @{
-                var i = item.index + 2;
-                }
-                <p class="Ranking_num"> @i</p>
-                @if (@item.value.Diff > 0)
-                {
-                <i class="fa-solid fa-caret-up"></i>
-                <p class="diff">@item.value.Diff</p>
-                }
-                else if (@item.value.Diff == 0)
-                {
-                <i class="fa-solid fa-caret-up"></i>
-                <p class="diff">@item.value.Diff</p>
-
-                }
-                else
-                {
-                <i class="fa-solid fa-caret-down"></i>
-                <p class="diff">@item.value.Diff</p>
-                }
-
-                </div>
-                </a>
-                }
-                </template>*@
         </div>
     </div>
 </div>
