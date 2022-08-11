@@ -53,9 +53,11 @@
 }
 
 #movie {
-    width: 90% ;
+    width: 60% ;
 }
-
+#rank_people {
+    width: 60%;
+}
 .content {
     background-color: #000;
     margin: auto;
