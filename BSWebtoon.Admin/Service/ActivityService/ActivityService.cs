@@ -1,7 +1,7 @@
 ﻿using BSWebtoon.Admin.IDapperRepository;
 //using BSWebtoon.Admin.Models.DTO.Activity;
 using BSWebtoon.Admin.Models.DTO.Activitys;
-using BSWebtoon.Front.Service.CloudinaryService;
+using BSWebtoon.Admin.Service.CloudinaryService;
 using BSWebtoon.Model.Repository;
 using System;
 using System.Collections.Generic;

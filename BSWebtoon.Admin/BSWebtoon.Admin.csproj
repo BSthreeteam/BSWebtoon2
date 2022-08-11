@@ -70,7 +70,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BSWebtoon.Front\BSWebtoon.Front.csproj" />
     <ProjectReference Include="..\BSWebtoon.Model\BSWebtoon.Model.csproj" />
   </ItemGroup>
 
