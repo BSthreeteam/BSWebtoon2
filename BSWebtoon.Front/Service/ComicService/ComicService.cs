@@ -5815,11 +5815,20 @@ namespace BSWebtoon.Front.Service.ComicService
 
             }).ToList();
 
+            var readResult = content.Select(c => new WorkContent()
+            {
+                ComicId = epSource.ComicId,
+                EpId = epSource.EpId,
+                EpTitle = epSource.EpTitle,
+                EpContentId = c.EpContentId,
+                ImagePath = c.ImagePath,
+                Page = c.Page,
 
             return readResult;
 
             }
 
+            return readResult;
 
         public List<WorkContentEpData> ReadEpTable(int comicId)
         {
