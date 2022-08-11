@@ -1,4 +1,5 @@
 using BSWebtoon.Admin.IDapperRepository;
+using BSWebtoon.Admin.Service;
 using BSWebtoon.Admin.Service.JobService;
 using BSWebtoon.Model.Models;
 using Coravel;
@@ -37,6 +38,10 @@ namespace BSWebtoon.Admin
 
             services.AddTransient<IDapperEmployeeRepository, DapperEmployeeRepository>();
             services.AddTransient<IDapperMemberRepository, DapperMemberRepository>();
+            services.AddTransient<IDapperDashActivityRepository, DapperDashActivityRepository>();
+            services.AddTransient<IDapperDashMemberRepository, DapperDashMemberRepository>();
+            services.AddTransient<IDapperDashRankRepository, DapperDashRankRepository>();
+            services.AddTransient<IDapperDashComicRepository, DapperDashComicRepository>();
 
             services.AddTransient<IDapperActivityRepository, DapperActivityRepository>();
 
