@@ -1,0 +1,77 @@
+﻿@using System.Collections.Generic;
+@using BSWebtoon.Front.Models.ViewModel.ViewRecord
+@model ViewRecordViewModel
+
+@{
+	ViewData["Title"] = "RemoveFavorite";
+}
+
+@section topCss{
+	<link rel="stylesheet" href="~/style/RemoveRecordView.css" />
+}
+
+	<div style="background-color: #000;margin-top: 50px;">
+		<div class="d-flex flex-row-reverse close_btn ">
+			<button type="button" class="btn-close btn-close-white m-2" aria-label="Close" onclick="myFunction();"></button>
+		</div>
+
+		<form class="container col-12" style="max-width: 800px;" name="main">
+			<div class="container">
+				<div class="row row-cols-3 row-cols-md-3 row-cols-lg-3 row-cols-xl-4" style=" transform: translateY(80px);">
+
+				@{
+					int i = 0;
+				}
+				@foreach (var f in Model.ViewRecordListAll)
+				{
+					<div class="col pic_box">
+						<div id="img_@i" style="position:relative;">
+							<label class="form-check-label">
+								<input type="checkbox" onchange="update_text()" class="d-none" my_comicId="@f.ComicId">
+								<span>@f.EpTitle</span>
+								<img class="comic_bg" src="@f.BgCover">
+								<img class="comic_pic" src="@f.ComicWeekFigure">
+								<img class="comic_title" src="@f.ComicNameImage">
+								<div class="check_btn text-center "></div>
+								<div class="gray_block"></div>
+							</label>
+						</div>
+					</div>
+					i++;
+				}
+				<span id="text_more" class="w-100 text-center" style="font-size:3em; color:#6c757d; display: none ;">去多看看漫畫吧!</span>
+			</div>
+		</div>
+	</form>
+
+	<div class="d-flex justify-content-center fixed-bottom " id="div_btns">
+		<button id="del_btn" type="button" class="m-auto btn btn_dark fixed-bottom my-4 px-4 py-2 "
+				onclick="remove_all(false)">
+			刪除0個作品
+		</button>
+	</div>
+	<section id="double_check_block" style="background-color:#1c1c1c; width: 100%;height: 170px; "
+			 class=" fixed-bottom ">
+		<div class="text-center" style="margin-top:30px;">
+			<p style="color: #fff;"></p>
+		</div>
+		<div class="d-flex justify-content-center ">
+			<button type="button" class="btn border btn-dark m-4  py-2 col-2"
+					style="border-radius: 20px; display: inline-block;" 
+					onclick="cancel_double_check_block()">
+				取消
+			</button>
+			<button id="double_check_del" type="submit" class="btn btn-light m-4  py-2 col-2"
+					style="border-radius: 20px; display: inline-block; " onclick="remove_all(true)">
+				確定
+			</button>
+		</div>
+	</section>
+
+	@section endCss{
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+	}
+	@section endJS{
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.26/dist/sweetalert2.all.min.js"></script>
+		<script src="~/js/RecordViewUpdate.js"></script>
+	}

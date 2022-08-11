@@ -3,7 +3,10 @@ let div_btns = document.querySelector('#div_btns');
 let del_btn = document.querySelector('#del_btn');
 
 
-
+//跳轉頁面
+function myFunction() {
+    window.location.href = '/Favorite/ReadFavoriteView';
+}
 
 //放待刪除的陣列
 var arr_to_be_del = [];
@@ -63,48 +66,57 @@ function update_text() {
 
 //選取圖片 新增至待刪除的陣列裡 並顯示刪除幾個作品
 //function select_img(img_node) {
-    //let div_id = img_node.getAttribute("id");
-    //let del_btn = document.getElementById('del_btn');
-    //let div_cover = img_node.querySelector('div');
+//let div_id = img_node.getAttribute("id");
+//let del_btn = document.getElementById('del_btn');
+//let div_cover = img_node.querySelector('div');
 
-    //let gray_block = document.getElementsByClassName("gray_block")
-    //offsetHeight 當下標籤的高度
-    //let height = img_node.querySelector('img').offsetHeight + 1;
+//let gray_block = document.getElementsByClassName("gray_block")
+//offsetHeight 當下標籤的高度
+//let height = img_node.querySelector('img').offsetHeight + 1;
 //}
-
 
 //刪除圖片
 function remove_all(double_check = false) {
     // console.log(double_check)
     if (double_check) {
-        let comicIdsToDelete = document.forms["main"].querySelectorAll('input[type="checkbox"]:checked')
+        let comicIdsToDelete =
+            //選取器中被打勾的checkbox狀態被選取，利用map篩選出是哪個comicId
+            //Array.from是建立一個新的 Array 實體
+            Array.from(
+                document.forms["main"].querySelectorAll('input[type="checkbox"]:checked')
+            ).map(ckbox => ckbox.getAttribute('my_comicId'))
 
-            //.map( ckbox => ckbox.getAttribute('my_comicId') )
+        console.log(comicIdsToDelete)
 
-        fetch('/Favorite/FavoriteRemove', {
+        fetch('/api/FavoriteApi/FavoriteRemove', {
             method: 'post',
+            cache: 'no-cache',
             headers: {
-                'Content-type':'application/json;charset=utf-8',
+                'Content-type': 'application/json;charset=utf-8',
                 //'Content-type':'application/json',
             },
-            body: JSON.stringify(comicIdsToDelete)  //ComiIdListTiDelete 
+            body: JSON.stringify(
+                {
+                    comicIdsToDelete: comicIdsToDelete
+                    //comicIdsToDelete: [1,2],
+                }
+            )
         })
-        .then(resp => {
-            if (resp.ok) {
-                arr_to_be_del.forEach(del_item_id => {
-                    let del_tag = document.getElementById(del_item_id).parentNode.parentNode;
-                    del_tag.remove();
-                    console.log(del_item_id + '刪除成功~');
-                });
-                //全部刪除 直接重新宣告成空的
-                
-                arr_to_be_del = [];
-                double_check_block.style.transform = "translateY(100%)";
-                //window.location.reload()
-            } else {
-                alert('刪除失敗')
-            }
-        })
+            .then(resp => {
+                if (resp.ok) {
+
+                    console.log(`resp.responseText => ${resp.responseText}`);
+
+                    window.location.reload()
+                } else {
+                    alert('刪除失敗')
+                }
+                console.log(`resp.status => ${resp}`);
+
+            })
+            .catch((error) => {
+                console.log(`Error: ${error}`);
+            })
     } else {
         double_check_block.style.transform = "translateY(0%)";
     }

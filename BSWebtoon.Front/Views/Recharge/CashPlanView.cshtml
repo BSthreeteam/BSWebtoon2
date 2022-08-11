@@ -7,40 +7,40 @@
 <link rel="stylesheet" href="~/style/CashPlanstyle.css" />
 }
 
+<div class="container CashPage_container">
 
-<h1 class="top">儲值金幣</h1>
+    <h1 class="top">儲值金幣</h1>
+    <h2>
+        <p>現有金幣</p>
+        <span>@Model.Balance</span>
+    </h2>
 
-<h2>
-    <p>現有金幣</p>
-    <span>@Model.Balance</span>
-</h2>
+    <h3 class="mb-4">金幣 <span>儲值</span></h3>
 
-<h3 class="mb-4">金幣 <span>儲值</span></h3>
+    <div class="container" id="app">
+        @foreach (var item in Model.AllCashPlan)
+        {
+            <div class="form-check mt-3">
+                <input class="form-check-input" type="radio" name="cashplan" value="@item.CashPlanId" />
+                <label class="form-check-label white-font">
+                    <span class="price">@item.CashPlanContent</span>
+                    <span class="dollar">@item.Price</span>
+                </label>
+            </div>
+        }
+        <button id="btn_next" class="btn_next" v-on:click="SendToNewebPay('CREDIT')"> <span>下一步</span></button>
+    </div>
 
-<div class="container" id="app">
-    @foreach (var item in Model.AllCashPlan)
-    {
-        <div class="form-check mt-3">
-            <input class="form-check-input" type="radio" name="cashplan" value="@item.CashPlanId" />
-            <label class="form-check-label white-font">
-                <span class="price">@item.CashPlanContent</span>
-                <span class="dollar">@item.Price</span>
-            </label>
-        </div>
-    }
-    <button id="btn_next" class="btn_next" v-on:click="SendToNewebPay('CREDIT')"> <span>下一步</span></button>
+    <footer>
+        <p>購買須知</p>
+        <ul>
+            <li class="li-color">首儲活動以外加贈的金幣於發送後30天內有效。</li>
+            <li class="li-color">廣告行銷活動等無償獲得的金幣無法申請退款。</li>
+        </ul>
+    </footer>
+
 </div>
 
-<footer>
-    <p>購買須知</p>
-    <ul>
-        <li class="li-color">首儲活動以外加贈的金幣於發送後30天內有效。</li>
-        <li class="li-color">廣告行銷活動等無償獲得的金幣無法申請退款。</li>
-    </ul>
-</footer>
-
-
-    
   @section scripts {
     <script src ="https://unpkg.com/vue@3"></script>
 
@@ -59,15 +59,6 @@
                     var postData = {};
                     postData['ChannelID'] = ChannelID;
                     postData['ItemDesc'] = plan;//到後端用id找
-                    //postData['Amt'] = 1;//從後端找
-                    //postData['ReturnURL'] = 'https://bswebtoon-front.azurewebsites.net/NewebPay/CallbackReturn';
-                    postData['ClientBackURL'] = 'https://bswebtoon-front.azurewebsites.net/NewebPay/Index';
-                    //postData['CustomerURL'] = self.addForm.CustomerURL;   //目前不確定
-                    //postData['NotifyURL'] = self.addForm.NotifyURL;   //目前不確定
-                    //postData['Email'] = self.addForm.Email;   //可從後端寫入
-                    //postData['MerchantID'] = self.addForm.MerchantID; //可從後端寫入
-                    //postData['MerchantOrderNo'] = self.addForm.MerchantOrderNo;   //可從後端寫入
-                    //postData['ExpireDate'] = self.addForm.ExpireDate; //可從後端寫入
 
                     // 使用 jQuery Ajax 傳送至後端
                     $.ajax({

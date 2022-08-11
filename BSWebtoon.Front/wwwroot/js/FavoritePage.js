@@ -26,7 +26,8 @@ window.addEventListener('mousewheel', (e) => {
 
 function Open_del_page() {
     //window.open("https://fan-hua-hsuan.github.io/comics/comics_mylove_del_comics");
-    window.open("/Favorite/RemoveFavoriteView");
+    //window.open("/Favorite/RemoveFavoriteView");
+    window.location.href = '/Favorite/RemoveFavoriteView';
 
     
 }

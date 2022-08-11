@@ -7,13 +7,12 @@
     ViewData["Title"] = "RemoveFavorite";
 }
 
-@*<h1>RemoveFavoriteView</h1>*@
 @section topCss{
     <link rel="stylesheet" href="~/style/FavoriteRemove.css" />
 }
     <div style="background-color: #000;margin-top: 50px;">
         <div class="d-flex flex-row-reverse close_btn ">
-            <button type="button" class="btn-close btn-close-white m-2" aria-label="Close" onclick="window.close();"></button>
+            <button type="button" class="btn-close btn-close-white m-2" aria-label="Close" onclick="myFunction();"></button>
         </div>
 
         <form class="container col-12" style="max-width: 800px;" name="main">
@@ -32,6 +31,8 @@
                                     <input type="checkbox" onchange="update_text()"  class="d-none" my_comicId="@f.ComicId" > @*name="XXX[@i]"*@
                                     <div class="gray_block"></div>
                                     <img src="@f.ComicWeekFigure" class="w-100">
+                                    <p class="ComicChineseName">@f.ComicChineseName</p>
+
                                     <div class="check_btn text-center "></div>
 
                                 </label>
@@ -72,9 +73,6 @@
         </section>
 
 
-    
-
-
     @section endJS{
-        <script src="~/js/FavoriteRemove.js"></script>
+        <script src="~/js/FavoriteRemove.js" charset="big5"></script>
     }

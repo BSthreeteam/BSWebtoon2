@@ -29,6 +29,7 @@ using BSWebtoon.Front.Service.CloudinaryService;
 
 using BSWebtoon.Front.Service.ActivityService;
 using BSWebtoon.Front.Service.UploadService;
+using BSWebtoon.Front.Service.AccountService;
 using BSWebtoon.Front.Service.RecordViewService;
 
 namespace BSWebtoon.Front
@@ -63,7 +64,7 @@ namespace BSWebtoon.Front
             services.AddScoped<IRechargeService, RechargeService>();
             services.AddScoped<ICouponService, CouponService>();
             services.AddScoped<IClickRecordService, ClickRecordService>();
-            services.AddScoped<FavoriteService, FavoriteService>();
+            services.AddScoped<IFavoriteService, FavoriteService>(); 
             services.AddScoped<ClickRecordService, ClickRecordService>();
             //services.AddDbContext<BSWeBtoonContext, BSWeBtoonContext>();
             services.AddScoped<IComicService, ComicService>();
@@ -71,7 +72,7 @@ namespace BSWebtoon.Front
             services.AddScoped<ISearchService, SearchService>();
             services.AddScoped<IWeekUpdateService, WeekUpdateService>();
             services.AddScoped<IMemberService, MemberService>();
-            services.AddScoped<IFavoriteService, FavoriteService>(); 
+            services.AddScoped<IAccountService, AccountService>();
 
 
             services.AddHttpContextAccessor();
@@ -150,11 +151,17 @@ namespace BSWebtoon.Front
                     name: "default",
                     pattern: "{controller=Recommend}/{action=Recommend}/{id?}");
 
+                endpoints.MapControllerRoute(
+                    name: "Rank",
+                    pattern: "Rank/{Id?}",
+                    defaults: new { controller = "Rank", action = "AllRankList" }
+                    );
 
-            //endpoints.MapControllerRoute(
-            //    name: "ProductsPagination",
-            //    pattern: "WorksPage/{ComicId?}",
-            //    defaults: new { controller = "Favorite", action = "ReadFavorite" });
+
+                //endpoints.MapControllerRoute(
+                //    name: "ProductsPagination",
+                //    pattern: "WorksPage/{ComicId?}",
+                //    defaults: new { controller = "Favorite", action = "ReadFavorite" });
 
             });
 

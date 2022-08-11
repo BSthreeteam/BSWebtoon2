@@ -1,6 +1,6 @@
 ﻿namespace BSWebtoon.Front.Models.DTO.Favorite
 {
-    public partial class FavoriteDTO
+    public partial class Favorite
     {
         public int ComicId { get; set; }
         public int FavoriteId { get; set; }

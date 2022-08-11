@@ -7,16 +7,11 @@ function init() {
 }
 
 function Open_del_page() {
-    window.open("/Favorite/RemoveFavoriteView");
+    //window.open("/Favorite/RemoveFavoriteView");
+    window.location.href = '/Favorite/RemoveFavoriteView';
 }
 
-function TO_Favorite() {
-    window.open("/Favorite/ReadFavoriteView");
-}
 
-function To_RecordPage() {
-    window.open("/Favorite/RecordView");
-}
 //傳送漫畫對應網址路由
 function to_comnic(node) {
     let comic_id = node.querySelector('input').value;

@@ -1,3 +1,13 @@
+#navbar-id > .nav {
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    overflow-y: auto;
+}
+#navbar-id > .nav::-webkit-scrollbar {
+    display: none;
+}
+
+
 #navbar-id {
     background-color: #000;
     width: 100%;
@@ -7,7 +17,8 @@
     justify-content: space-around;
     z-index: 5;
     position: fixed;
-    top: 80px;
+    top: 4.4em;
+    padding:1.1em;
 }
 .rank{
     max-width:1200px;
@@ -41,8 +52,12 @@
     width: 100%;
 }
 
-
-
+#movie {
+    width: 60% ;
+}
+#rank_people {
+    width: 60%;
+}
 .content {
     background-color: #000;
     margin: auto;
@@ -320,6 +335,7 @@
 
 
 @media screen and (min-width:992px) {
+   
     .content {
         grid-template-columns: repeat(5, 1fr);
         grid-template-rows: repeat(2, 1fr);
@@ -391,4 +407,6 @@
                 padding: 18px 8px 0px 8px; */
         aspect-ratio: 1 / 2;
     }
+    
 }
+

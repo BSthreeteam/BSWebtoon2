@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\style\RecordViewUpdate.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AspNet.Security.OAuth.Line" Version="5.0.18" />
     <PackageReference Include="CloudinaryDotNet" Version="1.19.0" />
   </ItemGroup>

@@ -17,12 +17,12 @@ namespace BSWebtoon.Front.Controllers.ApiController
             _comicService = comicService;
         }
 
-        [HttpGet]
-        public IActionResult GetCommentAll(int Id)
+        [HttpGet("{id}")]///api/CommentApi/GetCommentAll/879
+        public IActionResult GetCommentAll([FromRoute]int id)
         {
             try
             {
-                var result = _comicService.GetComment(Id);
+                var result = _comicService.GetComment(id);
                 return Ok(result);
             }
             catch (Exception ex)
