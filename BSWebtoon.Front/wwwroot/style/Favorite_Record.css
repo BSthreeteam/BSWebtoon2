@@ -1,4 +1,11 @@
-﻿
+﻿.Favorite_span {
+    background: #fff;
+    border-radius: 25px;
+    padding: 0.8em;
+    margin-top: 10px;
+}
+
+
 .navbar {
     position: fixed;
     background-color: #000;
@@ -19,7 +26,6 @@
     cursor: pointer;
     --bs-gutter-x: 0rem;
     border: #000 solid 5px;
-    
 }
 
 .character_block {
@@ -44,7 +50,7 @@
     width: 100%;
 }
 
-.col span{
+.col span {
     text-align: center;
     color: aliceblue;
     font-weight: bold;
@@ -52,6 +58,7 @@
     position: absolute;
     width: 100%;
 }
+
 .col a {
     text-decoration: none;
     background-color: rgba(33, 37, 37, 0.773);
@@ -72,44 +79,37 @@ div.col:first-child {
 @media (min-width: 0px) and (max-width: 1200px) {
     div.col:nth-child(3n+1) {
         transform: translateY(20%);
-  
     }
 
     div.col:nth-child(3n+2) {
         transform: translateY(40%);
-    
     }
 
     div.col:nth-child(3n+3) {
         transform: translateY(60%);
-       
     }
 }
 
 @media (min-width: 1200px) {
     div.col:nth-child(4n+1) {
         transform: translateY(20%);
-    
     }
 
     div.col:nth-child(4n+2) {
         transform: translateY(40%);
-       
     }
 
     div.col:nth-child(4n+3) {
         transform: translateY(60%);
-      
     }
 
     div.col:nth-child(4n+4) {
         transform: translateY(80%);
         background-color: aquamarine;
     }
-
 }
-    #div_btns {
-        transition: all 0.2s 0s ease-out;
-        transform: translateY(-30px);
-    }
 
+#div_btns {
+    transition: all 0.2s 0s ease-out;
+    transform: translateY(-30px);
+}
