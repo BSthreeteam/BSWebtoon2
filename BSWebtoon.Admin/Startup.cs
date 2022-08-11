@@ -3,7 +3,7 @@ using BSWebtoon.Admin.Service.JobService;
 using BSWebtoon.Model.Models;
 using Coravel;
 using BSWebtoon.Admin.Service.ActivityService;
-using BSWebtoon.Front.Service.CloudinaryService;
+
 using BSWebtoon.Model.Models;
 using BSWebtoon.Model.Repository;
 using Microsoft.AspNetCore.Builder;
@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using BSWebtoon.Admin.Service.CloudinaryService;
 
 namespace BSWebtoon.Admin
 {
