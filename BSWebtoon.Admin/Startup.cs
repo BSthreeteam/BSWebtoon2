@@ -1,4 +1,6 @@
 using BSWebtoon.Admin.IDapperRepository;
+using BSWebtoon.Admin.Service.AdminComicCloudinaryService;
+using BSWebtoon.Admin.Service.AdminUploadComicService;
 using BSWebtoon.Admin.Service.JobService;
 using BSWebtoon.Model.Models;
 using Coravel;
@@ -57,6 +59,12 @@ namespace BSWebtoon.Admin
             services.AddTransient<IDapperCouponUseRecordRepository, DapperCouponUseRecordRepository>();
             services.AddTransient<IDapperCouponRepository, DapperCouponRepository>();
 
+
+            services.AddTransient<IAdminUploadComicService, AdminUploadComicService>();
+            services.AddTransient<IAdminComicCloudinaryService, AdminComicCloudinaryService>();
+
+
+
             services.AddScoped<IDbConnection, SqlConnection>(serviceProvider =>
             {
                 SqlConnection conn = new SqlConnection();
@@ -70,6 +78,16 @@ namespace BSWebtoon.Admin
 
             //這一定要有
             services.AddScheduler();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", policy =>
+                {
+                    policy.AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -94,9 +112,13 @@ namespace BSWebtoon.Admin
                 scheduler.Schedule<CountDownCoupon>().Hourly().RunOnceAtStart();
             });
 
+            app.UseHttpsRedirection();
+            app.UseCors("CorsPolicy");
+
             app.UseRouting();
 
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {
