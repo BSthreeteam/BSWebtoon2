@@ -1,4 +1,5 @@
-﻿@{
+﻿@using BSWebtoon.Model
+@{
     ViewData["Title"] = "WeekUpdate";
 }
 @{
@@ -20,25 +21,25 @@
                 <a class="nav-link nav_new_work" href="/WeekUpdate/NewComic">新作</a>
             </li>
             <li class="nav-item">
-                <a  class="nav-link nav_Monday" href="#scrollspyHeading1">一</a>
+                <a  class="nav-link nav_Monday" href="#scrollspyMonday">一</a>
             </li>
             <li class="nav-item">
-                <a  class="nav-link nav_Tuesday" href="#scrollspyHeading2">二</a>
+                <a  class="nav-link nav_Tuesday" href="#scrollspyTuesday">二</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link nav_Wednesday" href="#scrollspyHeading3">三</a>
+                <a class="nav-link nav_Wednesday" href="#scrollspyWednesday">三</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link nav_Thursday" href="#scrollspyHeading4">四</a>
+                <a class="nav-link nav_Thursday" href="#scrollspyThursday">四</a>
             </li>
             <li class="nav-item">
-                <a  class="nav-link nav_Friday" href="#scrollspyHeading5">五</a>
+                <a  class="nav-link nav_Friday" href="#scrollspyFriday">五</a>
             </li>
             <li class="nav-item">
-                <a  class="nav-link nav_Saturday" href="#scrollspyHeading6">六</a>
+                <a  class="nav-link nav_Saturday" href="#scrollspySaturday">六</a>
             </li>
             <li class="nav-item">
-                <a  class="nav-link nav_Sunday" href="#scrollspyHeading7">日</a>
+                <a  class="nav-link nav_Sunday" href="#scrollspySunday">日</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/WeekUpdate/FinishComic">完結</a>
@@ -49,11 +50,11 @@
     <div class="weekly ">
         <div class="container week_content ">
             <div class="Monday">
-                <h2 id="scrollspyHeading1" class="Monday_title">星期一</h2>
+                <h2 id="scrollspyMonday" class="Monday_title">星期一</h2>
                 <div class="content">
                     @foreach (var items in Model)
                     {
-                        if (items.WeekDay == 1)
+                        if (items.WeekDay == Week.Monday)
                         {
                             foreach (var item in items.WeekComicLongList)
                             {
@@ -122,11 +123,11 @@
                 </div>
             </div>
             <div class="Tuesday">
-                <h2 id="scrollspyHeading2" class="Tuesday_title">星期二</h2>
+                <h2 id="scrollspyTuesday" class="Tuesday_title">星期二</h2>
                 <div class="content">
                     @foreach (var items in Model)
                     {
-                        if (items.WeekDay == 2)
+                        if (items.WeekDay == Week.Tuesday)
                         {
                             foreach (var item in items.WeekComicLongList)
                             {
@@ -171,11 +172,11 @@
                 </div>
             </div>
             <div class="Wednesday">
-                <h2 id="scrollspyHeading3" class="Wednesday_title">星期三</h2>
+                <h2 id="scrollspyWednesday" class="Wednesday_title">星期三</h2>
                 <div class="content">
                     @foreach (var items in Model)
                     {
-                        if (items.WeekDay == 3)
+                        if (items.WeekDay == Week.Wednesday)
                         {
                             foreach (var item in items.WeekComicLongList)
                             {
@@ -221,11 +222,11 @@
                 </div>
             </div>
             <div class="Thursday">
-                <h2 id="scrollspyHeading4" class="Thursday_title">星期四</h2>
+                <h2 id="scrollspyThursday" class="Thursday_title">星期四</h2>
                 <div class="content">
                     @foreach (var items in Model)
                     {
-                        if (items.WeekDay == 4)
+                        if (items.WeekDay == Week.Thursday)
                         {
                             foreach (var item in items.WeekComicLongList)
                             {
@@ -270,11 +271,11 @@
                 </div>
             </div>
             <div class="Friday">
-                <h2 id="scrollspyHeading5" class="Friday_title">星期五</h2>
+                <h2 id="scrollspyFriday" class="Friday_title">星期五</h2>
                 <div class="content">
                     @foreach (var items in Model)
                     {
-                        if (items.WeekDay == 5)
+                        if (items.WeekDay == Week.Friday)
                         {
                             foreach (var item in items.WeekComicLongList)
                             {
@@ -318,11 +319,11 @@
                 </div>
             </div>
             <div class="Saturday">
-                <h2 id="scrollspyHeading6" class="Saturday_title">星期六</h2>
+                <h2 id="scrollspySaturday" class="Saturday_title">星期六</h2>
                 <div class="content">
                     @foreach (var items in Model)
                     {
-                        if (items.WeekDay == 6)
+                        if (items.WeekDay == Week.Saturday)
                         {
                             foreach (var item in items.WeekComicLongList)
                             {
@@ -366,11 +367,11 @@
                 </div>
             </div>
             <div class="Sunday">
-                <h2 id="scrollspyHeading7" class="Sunday_title">星期日</h2>
+                <h2 id="scrollspySunday" class="Sunday_title">星期日</h2>
                 <div class="content">
                     @foreach (var items in Model)
                     {
-                        if (items.WeekDay == 7)
+                        if (items.WeekDay == Week.Sunday)
                         {
                             foreach (var item in items.WeekComicLongList)
                             {
@@ -528,4 +529,3 @@
 </script>
 *@
 }
-
