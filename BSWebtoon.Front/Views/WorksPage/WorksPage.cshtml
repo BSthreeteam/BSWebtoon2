@@ -39,7 +39,7 @@
             </div>
             @if (@Model.BannerVideoWeb != string.Empty && @Model.BannerVideoWeb != null)
             {
-                <video title="" autoplay="autoplay" muted="ture" class="local_video object-contain w-full h-full pointer-events-auto">
+                <video title="" autoplay="autoplay" muted class="local_video object-contain w-full h-full pointer-events-auto">
                     <source src="@Model.BannerVideoWeb" type="video/webm">
                 </video>
             }
@@ -49,12 +49,15 @@
             }
         </div>
     </div>
-    <div class="big_video">
-        <video title="" preload="auto" muted class="local_video_bg object-contain pointer-events-auto   d-none">
-            <source src="@Model.ComicVideoWeb" type="video/webm">
+    @if (@Model.ComicVideoWeb != string.Empty && @Model.ComicVideoWeb != null)
+    {
+        <div class="big_video">
+            <video title="" preload="auto" muted class="local_video_bg object-contain pointer-events-auto   d-none">
+                <source src="@Model.ComicVideoWeb" type="video/webm">
 
-        </video>
-    </div>
+            </video>
+        </div>
+    }
 
     <div class="comics_name_bg">
         <div class="comics_box mx-auto">
@@ -72,13 +75,10 @@
                 </div>
             </a>
             <div class="play_tidy_box">
-                <div class="play btn btn-light"><i class="fa-regular fa-circle-play"></i></div>
-                <div class="tidy btn btn-light">
-                    <i class="fa-solid fa-arrow-down-1-9"></i>
-                </div>
-                <div class="tidy_r btn btn-light">
-                    <i class="fa-solid fa-arrow-down-9-1"></i>
-                </div>
+                @if (@Model.ComicVideoWeb != string.Empty && @Model.ComicVideoWeb != null)
+                {
+                    <div class="play btn btn-light"><i class="fa-regular fa-circle-play"></i></div>
+                }
             </div>
         </div>
     </div>
@@ -90,8 +90,8 @@
             <div class="illustrate_box">
                 <ul>
                     <li class="ep">話次</li>
-                    <li class="illustrate"></a>作品資訊</li>
-                    <li class="messages"></a>留言</li>
+                    <li class="illustrate">作品資訊</li>
+                    <li class="messages">留言</li>
                 </ul>
             </div>
             <div class="keep_reading_box">
@@ -134,40 +134,100 @@
         <div class="message_box  justify-content-center flex-column">
             <div class="message_name mx-auto">留言</div>
             <div class="comment_text  mx-auto">
-                @foreach (var comment in Model.CommentList)
-                {
-                    <div class="row p-4">
-                        <div class="user  d-flex ">
-                            <span class="leval border-danger  text-white">BEST</span>
-                            <p class="username  mb-0 ms-3 text-white">@comment.CommentMemberName</p>
-                        </div>
-                        <div class="text">
-                            <p class="text-white w-100">
-                                @Html.Raw(@comment.Context)
-                            </p>
-                            <button class="btn btn_icon">
-                                <i class="fa-solid fa-thumbs-up "></i>
-                                讚
-                                <span class="count">@comment.CommentLikeCount</span>
-                            </button>
-                            <button class="btn btn_icon">
-                                <i class="fa-solid fa-reply-all"></i>
-                                回覆
-                                <span class="count">@comment.ReplyToCommentCount</span>
-                            </button>
-                            <button class="btn btn_icon">
-                                <i class="fa-solid fa-thumbs-down"></i>
-                                檢舉
-                                <span class="count">@comment.CommentReportCount</span>
-                            </button>
-                        </div>
+                <section class="Comment_area">
+                    <div class="container Comment_container">
+                        @foreach (var topComment in Model.Comments)
+                        {
+                            <div class="Comment_item">
+                                <div class=" CommentShow">
+                                    <div class="CommentShow_title">
+                                        <span class="Leval">BEST</span>
+                                        <p class="Name">@topComment.TopComment.CommentMemberName</p>
+                                        <span class="date">@topComment.TopComment.CreateTime.ToShortDateString()</span>
+                                    </div>
+                                    <p class="CommentShow_content">@topComment.TopComment.Context</p>
+                                </div>
+
+                                <div class="CommentShow_btn_area">
+                                    <div class="like">
+                                        <button class="btn btn-outline-dark like_btn" type="button">
+                                            <i class="fa-solid fa-thumbs-up "></i>
+                                            讚
+                                            <span class="like_count">@topComment.TopComment.CommentLikeCount</span>
+                                        </button>
+                                    </div>
+
+                                    <div class="reply">
+                                        <!-- 要加編號data-bs-target,aria-controls -->
+                                    <button class="btn btn-outline-dark reply_btn" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#reply_collapse_@topComment.TopComment.CommentId" aria-expanded="false" aria-controls="reply_collapse1">
+                                            <i class="fa-solid fa-reply-all"></i>
+                                            回覆
+                                            <span class="reply_count">@topComment.TopComment.ReplyToCommentCount</span>
+                                        </button>
+                                    </div>
+                                    <div class="report">
+                                        <button class="btn btn-outline-dark report_btn" type="button" data-bs-toggle="modal"
+                                            data-bs-target="#reportModal" data-bs-whatever="report">
+                                            <!-- 要加編號data-bs-target -->
+                                        <i class="fa-solid fa-thumbs-down"></i>
+                                            檢舉
+                                            <span class="report_count">@topComment.TopComment.CommentReportCount</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            if (@topComment.ReplyToTopComment.Count != 0)
+                            {
+                                foreach (var comment in @topComment.ReplyToTopComment)
+                                {
+                                    <div class="collapse" id="reply_collapse_@comment.ReplyToCommentId">
+                                        <div class="card-body  reply_CommentShow">
+                                            <div class="reply_CommentShow_item">
+                                                <div class="reply_CommentShow_title">
+                                                    <i class="fa-thin fa-l"></i>
+                                                    <p class="Name">@comment.CommentMemberName</p>
+                                                    <span class="date">@comment.CreateTime.ToShortDateString()</span>
+                                                </div>
+                                                <p class="reply_Comment_content">
+                                                    @comment.Context
+                                                </p>
+                                                <div class="reply_Comment_btn">
+                                                    <div class="like">
+                                                        <button class="btn btn-outline-dark like_btn" type="button">
+                                                            <i class="fa-solid fa-thumbs-up "></i>
+                                                            讚
+                                                            <span class="like_count">@comment.CommentLikeCount</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="report">
+                                                        <button class="btn btn-outline-dark report_btn" type="button" data-bs-toggle="modal"
+                                                    data-bs-target="#reportModal" data-bs-whatever="report">
+                                                            <!-- 要加編號data-bs-target -->
+                                                <i class="fa-solid fa-thumbs-down"></i>
+                                                            檢舉
+                                                            <span class="report_count">@comment.CommentReportCount</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        }
                     </div>
-                }
+
+                </section>
+
             </div>
         </div>
 
     </div>
 </section>
+
 <div class="mobile_title_box p-3 d-none">
     <h2 class="mo_ti fw-bolder">@Model.ComicChineseName</h2>
     <div class="ill_box">
@@ -225,6 +285,34 @@
     let checkvalue = "@Model.IslikeComic.ToString().ToLower()";
 </script>
 
+
+@if (@Model.BannerVideoWeb != string.Empty && @Model.BannerVideoWeb != null)
+{
+    <script>
+        const local_video = document.querySelector('.local_video');
+                //點擊影片，影片開始播放。
+        local_video.addEventListener('click', () => {
+            local_video.play();
+        })
+    </script>
+}
+
+@if (@Model.ComicVideoWeb != string.Empty && @Model.ComicVideoWeb != null)
+{
+    <script>
+        const local_video_bg = document.querySelector('.local_video_bg');
+        const play = document.querySelector('.play');
+            ////按下play鍵，開始撥放影片(ok)
+            play.addEventListener('click', () => {
+                local_video_bg.classList.remove('d-none');
+                local_video_bg.play();
+            })
+            local_video_bg.addEventListener('ended', () => {
+                local_video_bg.classList.add('d-none');
+            })
+    </script>
+}
+
 @section endJS{
 <script src="https://code.jquery.com/jquery-3.5.1.js"
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -235,4 +323,5 @@
 <script src="~/js/Workspage.js"></script>
 
 }
+
 

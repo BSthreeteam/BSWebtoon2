@@ -83,18 +83,3 @@ window.onload = function () {
 
 }
 
-
-
-    //function getClonepic(index) {
-    //    let cloneCard = comicpic.content.cloneNode(true);
-    //    cloneCard.querySelector('img').src = `https://picsum.photos/300/200/?random=${index}`
-    //    return cloneCard;
-    //}
-
-    //function getCloneMULU(index) {
-    //    let cloneCard = muluTemplate.content.cloneNode(true);
-    //    cloneCard.querySelector('img').src = `https://picsum.photos/300/200/?random=${index}`
-    //    cloneCard.querySelector('.card-title').innerHTML = `第${index}話`
-    //    return cloneCard;
-    //}
-

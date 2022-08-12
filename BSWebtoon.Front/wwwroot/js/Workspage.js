@@ -1,3 +1,19 @@
+const ep = document.querySelector('.ep');
+const illustrate = document.querySelector('.illustrate');
+const messages = document.querySelector('.messages');
+const collect_a = document.querySelector('.red');
+const comics_name_click = document.querySelector('.comics_name_click');
+const ep_row = document.querySelector('.ep_row');
+const copy = document.querySelector('.copy');
+const free_watch = document.querySelector('.free_watch');
+const message_box = document.querySelector('.message_box');
+const main_picture = document.querySelector('.main_picture');
+const comics_episode = document.querySelector('.comics_episode');
+const mobile_title_box = document.querySelector('.mobile_title_box');
+const ep_card = document.querySelector('.ep_card');
+const comment_text = document.querySelector('.comment_text');
+const card_box = document.querySelector('.card_box');
+
 function clickEp(epId) {
     if (isAuthenticated) {
         window.location.href = `/WorksPage/workContent/${epId}`;
@@ -13,25 +29,6 @@ function isMember(comicId) {
         $('#exampleModal').modal('show');
     }
 }
-
-const ep = document.querySelector('.ep');
-const illustrate = document.querySelector('.illustrate');
-const messages = document.querySelector('.messages');
-const local_video = document.querySelector('.local_video');
- const collect_a = document.querySelector('.red');
-const comics_name_click = document.querySelector('.comics_name_click');
-const ep_row = document.querySelector('.ep_row');
-const copy = document.querySelector('.copy');
-const free_watch = document.querySelector('.free_watch');
-const local_video_bg = document.querySelector('.local_video_bg');
-const play = document.querySelector('.play');
-const message_box = document.querySelector('.message_box');
-const main_picture = document.querySelector('.main_picture');
-const comics_episode = document.querySelector('.comics_episode');
-const mobile_title_box = document.querySelector('.mobile_title_box');
-const ep_card = document.querySelector('.ep_card');
-const comment_text = document.querySelector('.comment_text');
-const card_box = document.querySelector('.card_box');
 
 
 function reizeWindow() {
@@ -137,18 +134,6 @@ window.onload = function () {
         ep_row.appendChild(comment_text);
     })
 
-    //點擊影片，影片開始播放。
-    local_video.addEventListener('click', () => {
-        local_video.play();
-    })
-    ////按下play鍵，開始撥放影片(ok)
-    play.addEventListener('click', () => {
-        local_video_bg.classList.remove('d-none');
-        local_video_bg.play();
-    })
-    local_video_bg.addEventListener('ended', () => {
-        local_video_bg.classList.add('d-none');
-    })
 
 
 

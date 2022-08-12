@@ -6,7 +6,6 @@ using BSWebtoon.Model.Models;
 using Coravel;
 using BSWebtoon.Admin.Service.ActivityService;
 
-using BSWebtoon.Model.Models;
 using BSWebtoon.Model.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

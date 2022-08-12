@@ -18,6 +18,7 @@
     "BSWebtoon.Front": {
       "commandName": "Project",
       "launchBrowser": true,
+      "launchUrl": "Account/AccountInfo/34",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
