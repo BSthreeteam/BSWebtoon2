@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BSWebtoon.Admin.Service.AdminCloudinaryService
 {
-    public class AdminCloudinaryService
+    public class AdminCloudinaryService : IAdminCloudinaryService
     {
         private readonly IConfiguration _config;
         private readonly Cloudinary _cloudinary;

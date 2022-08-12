@@ -5,6 +5,6 @@ namespace BSWebtoon.Admin.Service.AdminUploadService
 {
     public interface IAdminUploadService
     {
-        Task<AdminUploadComicDTO> UploadComicViewUpdateData(AdminUploadComicDTO input);
+        //Task<AdminUploadComicDTO> UploadComicViewUpdateData(AdminUploadComicDTO input);
     }
 }

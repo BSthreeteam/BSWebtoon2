@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BSWebtoon.Admin.Models.DTO.AdminUploadDTO;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace BSWebtoon.Admin.Controllers.WebApi
 {
@@ -7,9 +9,9 @@ namespace BSWebtoon.Admin.Controllers.WebApi
     public class AdminUploadComicApiController : ControllerBase
     {
         [HttpPost]
-        public IActionResult AdminUploadComic()
+        public Task<IActionResult> AdminUploadComic([FromForm] AdminUploadComicDTO input)
         {
-            return Ok();
+            return null;
         }
     }
 }

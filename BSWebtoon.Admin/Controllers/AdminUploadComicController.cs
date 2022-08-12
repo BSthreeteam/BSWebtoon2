@@ -28,15 +28,15 @@ namespace BSWebtoon.Admin.Controllers
 
 
             //呼叫 loginSerice 的 UploadWorkViewUpdateData() 方法 傳入DTO所存放使用者從表單輸入的所有的值，存入一個變數。
-            var outputDTO = await _adminUploadService.UploadComicViewUpdateData(input);
+            //var outputDTO = await _adminUploadService.UploadComicViewUpdateData(input);
 
-            //成敗分支
+            ////成敗分支
 
-            if (!outputDTO.IsSuccess)
-            {
+            //if (!outputDTO.IsSuccess)
+            //{
 
-                return View(input);
-            }
+            //    return View(input);
+            //}
 
 
             return null;
