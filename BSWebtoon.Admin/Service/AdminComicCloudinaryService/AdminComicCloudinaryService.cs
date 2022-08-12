@@ -1,4 +1,4 @@
-﻿using BSWebtoon.Admin.Models.DTO.AdminUploadDTO;
+﻿using BSWebtoon.Admin.Models.DTO.Cloudinarys;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Http;
@@ -7,14 +7,14 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace BSWebtoon.Admin.Service.AdminCloudinaryService
+namespace BSWebtoon.Admin.Service.AdminComicCloudinaryService
 {
-    public class AdminCloudinaryService : IAdminCloudinaryService
+    public class AdminComicCloudinaryService : IAdminComicCloudinaryService
     {
         private readonly IConfiguration _config;
         private readonly Cloudinary _cloudinary;
 
-        public AdminCloudinaryService(IConfiguration config) //這不需要特意去註冊DI，MVC天生就能注入
+        public AdminComicCloudinaryService(IConfiguration config) //這不需要特意去註冊DI，MVC天生就能注入
         {
             _config = config;
 
@@ -29,10 +29,10 @@ namespace BSWebtoon.Admin.Service.AdminCloudinaryService
         }
 
 
-        public async Task<AdminUploadImgOutputDTO> UploadAsync(IFormFile file)
+        public async Task<UploadImgOutputDTO> UploadAsync(IFormFile file)
         {
 
-            var result = new AdminUploadImgOutputDTO
+            var result = new UploadImgOutputDTO
             {
                 IsSuccess = false,
             };

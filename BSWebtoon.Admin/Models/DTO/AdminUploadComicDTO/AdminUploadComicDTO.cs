@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
 
-namespace BSWebtoon.Admin.Models.DTO.AdminUploadDTO
+namespace BSWebtoon.Admin.Models.DTO.AdminUploadComicDTO
 {
     public class AdminUploadComicDTO : BaseOutputDTO
     {

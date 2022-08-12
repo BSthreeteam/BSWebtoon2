@@ -1,6 +1,6 @@
 using BSWebtoon.Admin.IDapperRepository;
-using BSWebtoon.Admin.Service.AdminCloudinaryService;
-using BSWebtoon.Admin.Service.AdminUploadService;
+using BSWebtoon.Admin.Service.AdminComicCloudinaryService;
+using BSWebtoon.Admin.Service.AdminUploadComicService;
 using BSWebtoon.Admin.Service.JobService;
 using BSWebtoon.Model.Models;
 using Coravel;
@@ -61,8 +61,8 @@ namespace BSWebtoon.Admin
             services.AddTransient<IDapperCouponRepository, DapperCouponRepository>();
 
 
-            services.AddTransient<IAdminUploadService, AdminUploadService>();
-            services.AddTransient<IAdminCloudinaryService, AdminCloudinaryService>();
+            services.AddTransient<IAdminUploadComicService, AdminUploadComicService>();
+            services.AddTransient<IAdminComicCloudinaryService, AdminComicCloudinaryService>();
 
 
 

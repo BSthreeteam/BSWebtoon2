@@ -1,5 +1,5 @@
-﻿using BSWebtoon.Admin.Models.DTO.AdminUploadDTO;
-using BSWebtoon.Admin.Service.AdminUploadService;
+﻿using BSWebtoon.Admin.Models.DTO.AdminUploadComicDTO;
+using BSWebtoon.Admin.Service.AdminUploadComicService;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -7,11 +7,11 @@ namespace BSWebtoon.Admin.Controllers
 {
     public class AdminUploadComicController : Controller
     {
-        private readonly IAdminUploadService _adminUploadService;
+        private readonly IAdminUploadComicService _adminUploadComicService;
 
-        public AdminUploadComicController(IAdminUploadService adminUploadService)
+        public AdminUploadComicController(IAdminUploadComicService adminUploadComicService)
         {
-            _adminUploadService = adminUploadService;
+            _adminUploadComicService = adminUploadComicService;
         }
 
         [HttpGet]

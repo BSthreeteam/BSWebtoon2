@@ -1,20 +1,20 @@
-﻿using BSWebtoon.Admin.Models.DTO.AdminUploadDTO;
-using BSWebtoon.Admin.Service.AdminCloudinaryService;
+﻿using BSWebtoon.Admin.Models.DTO.AdminUploadComicDTO;
+using BSWebtoon.Admin.Service.AdminComicCloudinaryService;
 using BSWebtoon.Model.Models;
 using BSWebtoon.Model.Repository;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BSWebtoon.Admin.Service.AdminUploadService
+namespace BSWebtoon.Admin.Service.AdminUploadComicService
 {
-    public class AdminUploadService : IAdminUploadService
+    public class AdminUploadComicService : IAdminUploadComicService
     {
 
-        private readonly IAdminCloudinaryService _adminCloudinaryService;
-        public AdminUploadService( IAdminCloudinaryService adminCloudinaryService)
+        private readonly IAdminComicCloudinaryService _adminComicCloudinaryService;
+        public AdminUploadComicService( IAdminComicCloudinaryService adminComicCloudinaryService)
         {
-            _adminCloudinaryService = adminCloudinaryService;
+            _adminComicCloudinaryService = adminComicCloudinaryService;
         }
 
 

@@ -1,4 +1,4 @@
-﻿using BSWebtoon.Admin.Models.DTO.AdminUploadDTO;
+﻿using BSWebtoon.Admin.Models.DTO.AdminUploadComicDTO;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
