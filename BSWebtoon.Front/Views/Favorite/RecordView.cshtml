@@ -6,7 +6,7 @@
 }
 
 	<nav class="navbar d-flex justify-content-center ">
-		<button type="button" class="btn btn-light">最近看過</button>
+		<span class="Favorite_span">最近看過</span>
 	</nav>
 
 	<div class="container" style="max-width: 800px;">
@@ -16,15 +16,16 @@
 			<div class="col">
 				<a></a>
 				<div class="comic_bg">
-					<img src="">
+					<img>
 				</div>
-				<img class="comic_pic" src="">
-				<img class="comic_title" src="">
+				<img class="comic_pic">
+				<img class="comic_title">
 			</div>
 		</template>
 		
 		<div class="d-flex justify-content-center fixed-bottom " id="div_btns">
-			<button type="button" class="btn btn btn-dark border my-4 px-4 py-2" style="border-radius: 20px;" onclick="Comic_sort();">↑↓</button>
+			<button type="button" class="btn btn-dark border my-4 px-2 py-2 sequence_btn"  onclick="Comic_sort();">↑↓</button>
+			<button type="button" class="btn btn-dark border my-4 px-4 py-2 edit_del_btn"  onclick="Open_del_page();">編輯</button>
 		</div>
 
 	</div>
@@ -32,8 +33,6 @@
 	@section endJS{
 	<script>
 		var comicsArray = @Html.Raw(ViewData["jsonResult"]);
-
-	
 	</script>
 	<script src="~/js/RecordView.js"></script>
 }

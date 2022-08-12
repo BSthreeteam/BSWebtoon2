@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\style\RecordViewUpdate.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="wwwroot\swiper\**" />
     <Content Remove="wwwroot\swiper\**" />
     <EmbeddedResource Remove="wwwroot\swiper\**" />

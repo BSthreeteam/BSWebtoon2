@@ -26,20 +26,18 @@ namespace NewebPay.Controllers
         private readonly ILogger<NewebPayController> _logger;
         //---------- hana add ------ 
         private readonly IRechargeService _rechargeService;
-        
+
         public NewebPayController(ILogger<NewebPayController> logger, BSRepository repository, IRechargeService rechargeService)
         {
             _logger = logger;
             _repository = repository;
-
-            //---------- hana add ------ 
             _rechargeService = rechargeService;
 
         }
 
         public IActionResult Index() //NewebPay/Index
         {
-        
+
             IConfiguration Config = new ConfigurationBuilder().AddJsonFile("appSettings.json").Build();
             // 產生測試資訊
             ViewData["MerchantID"] = Config.GetSection("MerchantID").Value;
@@ -95,7 +93,7 @@ namespace NewebPay.Controllers
             // 串接程式版本
             TradeInfo.Add(new KeyValuePair<string, string>("Version", "2.0"));
             // 商店訂單編號
-            TradeInfo.Add(new KeyValuePair<string, string>("MerchantOrderNo",$"{memberId}_{ DateTime.Now.ToString("yyyyMMddHHmmss") }"));
+            TradeInfo.Add(new KeyValuePair<string, string>("MerchantOrderNo", $"{memberId}_{DateTime.Now.ToString("yyyyMMddHHmmss")}"));
             // 訂單金額
             TradeInfo.Add(new KeyValuePair<string, string>("Amt", $"{(int)typePrice}"));//等等
             // 商品資訊
@@ -104,13 +102,13 @@ namespace NewebPay.Controllers
             // 繳費有效期限(適用於非即時交易)
             //TradeInfo.Add(new KeyValuePair<string, string>("ExpireDate", inModel.ExpireDate));//我們是即時交易
             // 支付完成返回商店網址
-            TradeInfo.Add(new KeyValuePair<string, string>("ReturnURL", $"https://bswebtoon-front.azurewebsites.net/NewebPay/CallbackReturn"));
+            TradeInfo.Add(new KeyValuePair<string, string>("ReturnURL", $"https://bswebtoon-frontend.azurewebsites.net/NewebPay/CallbackReturn"));
             // 支付通知網址
             TradeInfo.Add(new KeyValuePair<string, string>("NotifyURL", $"{Request.Scheme}://{Request.Host}{Request.Path}Home/CallbackNotify"));
             // 商店取號網址
             TradeInfo.Add(new KeyValuePair<string, string>("CustomerURL", $"{Request.Scheme}://{Request.Host}{Request.Path}Home/CallbackCustomer"));
             // 支付取消返回商店網址
-            TradeInfo.Add(new KeyValuePair<string, string>("ClientBackURL", $"{Request.Scheme}://bswebtoon-front.azurewebsites.net/Recommend/Recommend"));
+            TradeInfo.Add(new KeyValuePair<string, string>("ClientBackURL", $"{Request.Scheme}://{Request.Host.Value}/Recommend/Recommend"));
             // 付款人電子信箱
             //TradeInfo.Add(new KeyValuePair<string, string>("Email", inModel.Email));//等等
             // 付款人電子信箱 是否開放修改(1=可修改 0=不可修改)
@@ -159,7 +157,6 @@ namespace NewebPay.Controllers
             NameValueCollection decryptTradeCollection = HttpUtility.ParseQueryString(TradeInfoDecrypt);
             receive.Length = 0;
 
-            // ---------- by hana  ------ 
             //將成功訂單存入資料庫
             var input_RechargeRecord = new RechargeRecord()
             {
@@ -174,8 +171,9 @@ namespace NewebPay.Controllers
             foreach (String key in decryptTradeCollection.AllKeys)
             {
                 var status = decryptTradeCollection["Status"];//SUCCESS
-                if(status == "SUCCESS")
+                if (status == "SUCCESS")
                 {
+                    //宣告MemberId
                     var MemberId = 123;
                     if (key == "MerchantOrderNo")
                     {
@@ -220,7 +218,7 @@ namespace NewebPay.Controllers
                         _repository.Update(CurrentMember);
                         _repository.SaveChange();
                     }
-                    
+
                     TempData["message"] = "成功付款";
                 }
                 else

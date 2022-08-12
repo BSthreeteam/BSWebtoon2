@@ -1,4 +1,5 @@
 ﻿using BSWebtoon.Front.Models.DTO.UploadComicDTO;
+using BSWebtoon.Front.Models.ViewModel.UploadComic;
 using BSWebtoon.Front.Service.CloudinaryService;
 using BSWebtoon.Front.Service.UploadService;
 using BSWebtoon.Model.Repository;
@@ -46,12 +47,12 @@ namespace BSWebtoon.Front.Controllers
             var nickName = _UploadService.GetNickName(memberId);
 
             //預設表單上輸入框的值
-            var vm = new UploadComicInputDTO
+            var vm = new UploadComicViewModel
             {
-                Painter = "Anke",
-                Publisher = "Anke",
-                Introduction = "qwe\r\nqweqwe",
-                ComicChineseName = "ROG漫畫王",
+                //Painter = "Anke",
+                //Publisher = "Anke",
+                //Introduction = "qwe\r\nqweqwe",
+                //ComicChineseName = "ROG漫畫王",
 
                 Author = nickName,
                 PublishDate = DateTime.UtcNow.AddDays(1),
@@ -63,7 +64,7 @@ namespace BSWebtoon.Front.Controllers
         //上傳漫畫
         [HttpPost]             //Login/UploadComic
         //以非同步方式接收，使用者從表單輸入的所有的值。
-        public async Task<IActionResult> UploadComic([FromForm] UploadComicInputDTO input)
+        public async Task<IActionResult> UploadComic([FromForm] UploadComicViewModel input)
         {
             //防呆
             if (!ModelState.IsValid || input.PublishDate < DateTime.UtcNow.AddHours(8))
@@ -82,34 +83,31 @@ namespace BSWebtoon.Front.Controllers
             //使用者從表單輸入的所有的值，依序存入對應的DTO欄位值，存入一個變數。
 
             input.MemberId = memberId;
-            //var inputDTO = new UploadComicInputDTO()
-            //{
-            //    MemberId = memberId,
-            //    ComicChineseName = input.ComicChineseName,
-            //    //ComicNameImage = ComicNameImage,
-            //    //HotComicNameImage = HotComicNameImage,
-            //    BgCover = input.BgCover,
-            //    //HotBgCover = HotBgCover,
-            //    ComicFigure = input.ComicFigure,
-            //    //ComicWeekFigure = ComicWeekFigure,
-            //    Publisher = input.Publisher,
-            //    Painter = input.Painter,
-            //    Author = input.Author,
-            //    Introduction = input.Introduction,
-            //    ComicTagList = input.ComicTagList,
 
-            //    Comic_subtitle = input.Comic_subtitle,
-            //    Comic_subtitle_tow = input.Comic_subtitle_tow,
-            //    Comic_subtitle_three = input.Comic_subtitle_three,
-            //    PublishDate = input.PublishDate,
-            //    UpdateWeek = input.UpdateWeek,
-            //};
+            var inputDTO = new UploadComicInputDTO()
+            {
+                MemberId = input.MemberId,
+                ComicChineseName = input.ComicChineseName,
+                BgCover = input.BgCover,                
+                ComicFigure = input.ComicFigure,
+                Publisher = input.Publisher,
+                Painter = input.Painter,
+                Author = input.Author,
+                Introduction = input.Introduction,
+                ComicTagList = input.ComicTagList,
+
+                Comic_subtitle = input.Comic_subtitle,
+                Comic_subtitle_tow = input.Comic_subtitle_tow,
+                Comic_subtitle_three = input.Comic_subtitle_three,
+                PublishDate = input.PublishDate,
+                UpdateWeek = input.UpdateWeek,
+            };
 
             TempData["ComicChineseName"] = input.ComicChineseName;
             TempData["Author"] = input.Author;
 
             //呼叫 loginSerice 的 UploadWorkViewUpdateData() 方法 傳入DTO所存放使用者從表單輸入的所有的值，存入一個變數。
-            var outputDTO = await _UploadService.UploadComicViewUpdateData(input);
+            var outputDTO = await _UploadService.UploadComicViewUpdateData(inputDTO);
             //ViewData["IsSuccess"] = outputDTO.IsSuccess;
             //ViewData["ErrorMsg"] = outputDTO.Message;
 
@@ -171,7 +169,7 @@ namespace BSWebtoon.Front.Controllers
             //如果資料庫裡面沒有上傳過任何一部漫畫就不能進入上傳EP頁面，因此直接跳轉回上傳漫畫的頁面。
             if (outputDto.MyComics_WithEpCount.Count == 0)
             {
-                RedirectToAction("UploadComic");
+                 return RedirectToAction("UploadComic");
             }
 
             ViewData["MyComics_WithEpCount"] = outputDto.MyComics_WithEpCount;
@@ -232,7 +230,7 @@ namespace BSWebtoon.Front.Controllers
                 }
             }
 
-            return RedirectToAction("UploadWork");
+             return RedirectToAction("UploadWork");
             ////回到作品頁
             //return RedirectToAction("WorksPage", "WorksPage");
 

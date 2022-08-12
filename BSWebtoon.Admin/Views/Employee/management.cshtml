@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "management";
+}
+
+@section topCss{
+    <link rel="stylesheet" href="~/css/Employee.css" />
+}
+
+
+<div id="app" class="container">
+    <b-navbar toggleable="lg" type="dark" variant="light d-flex justify-content-between">
+        <b-navbar-brand href="#" class="fs-1 text-dark">員工管理</b-navbar-brand>
+    </b-navbar>
+    <b-col sm="5" md="6" class="my-1 mb-3">
+        <b-input-group v-for="size in ['sm']" :key="size" :size="size" prepend="請輸入姓名 :">
+            <b-form-input id="filter-input" v-model="filter" type="search" placeholder="Type to Search"></b-form-input>
+            <b-input-group-append>
+                <b-button size="sm" text="Button" :disabled="!filter" v-on:click="filter =
+                ''">Clear</b-button>
+                </b-input-group-append>
+        </b-input-group>
+    </b-col>
+    <b-col sm="5" md="3" class="my-1">
+        <b-form-group label="Per page" label-for="per-page-select" label-cols-sm="6" label-cols-md="4" label-cols-lg="3"
+            label-align-sm="left" label-size="sm" class="mb-0 d-flex align-items-center ">
+            <b-form-select id="per-page-select" v-model="perPage" :options="pageOptions" size="sm">
+            </b-form-select>
+        </b-form-group>
+    </b-col>
+    <div class="table_line mt-2">
+        <b-table striped hover :items="employeeList" :fields="fields" :per-page="perPage" :current-page="currentPage"
+            :filter="filter">
+        </b-table>
+    </div>
+    <b-pagination align="fill" v-model="currentPage" :total-rows="totalRows" :per-page="perPage"
+        aria-controls="table_line">
+    </b-pagination>
+</div>
+@section endJS{
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+    integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+    crossorigin="anonymous"></script>
+<script src="~/lib/moment.js/moment.min.js"></script>
+<script src="~/js/Employee.js"></script>
+}

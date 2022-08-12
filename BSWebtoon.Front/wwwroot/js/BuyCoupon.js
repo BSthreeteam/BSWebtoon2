@@ -117,5 +117,5 @@ async function BuyReadCoupon(ComicId, couponTypeId, memberId, nowHaveCouponQuant
         alert("購買完成，將自動導向回作品頁面")
         window.location.href = `/WorksPage/WorksPage/${ComicId}`;
     }
-}
 
+}

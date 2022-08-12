@@ -2,6 +2,10 @@ using BSWebtoon.Admin.IDapperRepository;
 using BSWebtoon.Admin.Service.JobService;
 using BSWebtoon.Model.Models;
 using Coravel;
+using BSWebtoon.Admin.Service.ActivityService;
+
+using BSWebtoon.Model.Models;
+using BSWebtoon.Model.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -15,6 +19,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using BSWebtoon.Admin.Service.CloudinaryService;
 
 namespace BSWebtoon.Admin
 {
@@ -37,6 +42,16 @@ namespace BSWebtoon.Admin
 
             services.AddTransient<IDapperEmployeeRepository, DapperEmployeeRepository>();
             services.AddTransient<IDapperMemberRepository, DapperMemberRepository>();
+
+            services.AddTransient<IDapperActivityRepository, DapperActivityRepository>();
+            //¬¡°Ê
+            services.AddScoped<IActivityService, ActivityService>();
+            //µù¥U
+            services.AddScoped<BSRepository, BSRepository>();
+
+            //µù¥U
+            services.AddScoped<ICloudinaryService, CloudinaryService>();
+
 
             services.AddTransient<IDapperActivityRepository, DapperActivityRepository>();
 

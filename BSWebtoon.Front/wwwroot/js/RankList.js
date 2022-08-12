@@ -4,9 +4,6 @@ let blackTemplate = document.getElementById("blackTemplate");
 let showRankTemplate = document.getElementById("showRankTemplate");
 let btns = document.querySelectorAll("btns");
 
-
-
-
 let categorys = document.querySelectorAll('.categorys')
 
 
@@ -21,7 +18,6 @@ function createBlack() {
     let cloneblack = blackTemplate.content.cloneNode(true);
     return cloneblack
 }
-
 
 function getFatch() {
     categorys.forEach(nav_a => {
@@ -88,7 +84,7 @@ function getFirstRank(result) {
 
 function getOtherRank(result, index) {
     let cloneotherRank = workTemplate.content.cloneNode(true);
-    console.log(cloneotherRank);
+    //console.log(cloneotherRank);
     cloneotherRank.querySelector(".rankCardCover").src = result.BgCover
     cloneotherRank.querySelector(".work_pic").src = result.ComicWeekFigure
     cloneotherRank.querySelector(".work_pic").alt = result.ComicName

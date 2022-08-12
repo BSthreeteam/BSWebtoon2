@@ -117,31 +117,35 @@
 </div>
 
 <!-- 評論區模板 -->
-<section class="Comment_area  d-none">
 
-    <button class="btn text-decoration-none my-2 btn_leave">
-        <i class="fa-solid fa-arrow-left-long text-white"></i>
-    </button>
-    <div class="Comment_fixed">
-        <h3>
-            留言
-            <span>53</span>
-        </h3>
-        <div class="isSpoil">
-            <input class="form-check-input isSpoil_checkbox" type="checkbox" value="" id="Spoil">
-            <label class="form-check-label" for="Spoil">
-                暴雷
-            </label>
+        <section class="Comment_area  d-none">
+
+        <button class="btn text-decoration-none my-2 btn_leave" >
+            <i class="fa-solid fa-arrow-left-long text-white"></i>
+        </button>
+        <div class="Comment_fixed">
+            <h3>
+                留言
+                <span>53</span>
+            </h3>
+            <div class="isSpoil">
+                <input class="form-check-input isSpoil_checkbox" type="checkbox" value="" id="Spoil">
+                <label class="form-check-label" for="Spoil">
+                    暴雷
+                </label>
+            </div>
+
+
+            <div class="input-group Comment mb-3">
+                <input type="text" class="form-control Comment_input" placeholder="請輸入留言" aria-label="Comment_text"
+                    aria-describedby="CommentButton">
+                <button class="btn btn-outline-secondary" type="button" id="CommentButton">輸入</button>
+            </div>
+
         </div>
-        <div class="input-group Comment mb-3">
-            <input type="text" class="form-control Comment_input" placeholder="請輸入留言" aria-label="Comment_text"
-                   aria-describedby="CommentButton">
-            <button class="btn btn-outline-secondary" type="button" id="CommentButton">輸入</button>
-        </div>
 
-    </div>
+        <div class="container Comment_container">
 
-    <div class="container Comment_container">
         <template id="commentTemplate">
             <div class="Comment_item">
                 <div class=" CommentShow">
@@ -224,14 +228,18 @@
 
                     </div>
                 </div>
+
+
+
                 <div class="collapse" id="reply_collapse1">
                     <div class="card-body  reply_CommentShow">
+
                     </div>
-                    <div class="input-group reply_Comment mb-3">
-                        <input type="text" class="form-control reply_Comment_input " placeholder="請輸入回覆留言"
-                               aria-label="reply_Comment_text" aria-describedby="reply_CommentButton">
-                        <button class="btn btn-outline-secondary" type="button" id="reply_CommentButton">輸入</button>
-                    </div>
+                        <div class="input-group reply_Comment mb-3">
+                            <input type="text" class="form-control reply_Comment_input " placeholder="請輸入回覆留言"
+                                   aria-label="reply_Comment_text" aria-describedby="reply_CommentButton">
+                            <button class="btn btn-outline-secondary" type="button" id="reply_CommentButton">輸入</button>
+                        </div>
 
                 </div>
 
@@ -261,9 +269,15 @@
 
             </div>
         </template>
-    </div>
 
-</section>
+
+        </div>
+
+    </section>
+
+
+
+
 @section endJS{
 <script src="~/js/WorkContent.js"></script>
 
@@ -277,7 +291,7 @@
     let epContent = document.querySelector(".epContent");
     let Comment_area = document.querySelector(".Comment_area");
     let btn_leave = document.querySelector(".btn_leave");
-
+    
     btn_comment.addEventListener("click", () => {
         epContent.classList.add("d-none")
         Comment_area.classList.remove("d-none")
@@ -286,11 +300,11 @@
         fetch(url)
         .then(res => { return res.json() })
         .then(result => {
-            for (let i = 1; i <= result.length; i++)
+            for (let i = 1; i <= result.length; i++) 
             {
                 Comment_container.append(createComment(result[i],i))
                 //reply_CommentShow.append(createReply_Comment(result[i]))
-            }
+            }      
         })
      })
 
