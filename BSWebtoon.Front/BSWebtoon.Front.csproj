@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\swiper\**" />
+    <Content Remove="wwwroot\swiper\**" />
+    <EmbeddedResource Remove="wwwroot\swiper\**" />
+    <None Remove="wwwroot\swiper\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AspNet.Security.OAuth.Line" Version="5.0.18" />
     <PackageReference Include="CloudinaryDotNet" Version="1.19.0" />
   </ItemGroup>

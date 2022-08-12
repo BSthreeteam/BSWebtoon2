@@ -64,14 +64,22 @@ namespace BSWebtoon.Front.Models.DTO.WorkPage
             public bool IsFree { get; set; }
         }
 
+        public List<CommentList> Comments { get; set; }
+
         //留言
-        public List<CommentData> CommentList { get; set; }
+        public class CommentList
+        {
+            public CommentData TopComment { get; set; }
+            public List<CommentData> ReplyToTopComment { get; set; }
+
+        }
 
         public class CommentData
         {
             public int CommentId { get; set; }
             public string CommentMemberName { get; set; }
             public int EpId { get; set; }
+            public int? ReplyToCommentId { get; set; }
             public int ReplyToCommentCount { get; set; }
             public bool IsSpoiler { get; set; }
             public DateTime CreateTime { get; set; }

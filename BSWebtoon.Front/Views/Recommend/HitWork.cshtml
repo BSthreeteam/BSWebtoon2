@@ -23,6 +23,7 @@
     @foreach (var item in Model.HitWorkComics)
     {
         <div class="container w-1200">
+                <a href="/WorksPage/WorksPage/@item.ComicId">
             <div class="row hot w-1200">
                 <img src="@item.HotBgCover"
                  alt="背景圖" class="video-bg">
@@ -31,6 +32,7 @@
                 <img src="@item.HotComicNameImage"
                  alt="@item.ComicChineseName" class="video-title">
             </div>
+                 </a>
         </div>
     }
 </div>

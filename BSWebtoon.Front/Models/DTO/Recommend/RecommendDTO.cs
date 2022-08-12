@@ -19,6 +19,7 @@ namespace BSWebtoon.Front.Models.DTO.Recommend
             public string ActivityImage { get; set; }
             public string ControllerName { get; set; }
             public string ActionName { get; set; }
+            public int ClickCount { get; set; }
         }
     }
 }
