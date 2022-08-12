@@ -59,15 +59,6 @@
                     var postData = {};
                     postData['ChannelID'] = ChannelID;
                     postData['ItemDesc'] = plan;//到後端用id找
-                    //postData['Amt'] = 1;//從後端找
-                    //postData['ReturnURL'] = 'https://bswebtoon-front.azurewebsites.net/NewebPay/CallbackReturn';
-                    postData['ClientBackURL'] = 'https://bswebtoon-front.azurewebsites.net/NewebPay/Index';
-                    //postData['CustomerURL'] = self.addForm.CustomerURL;   //目前不確定
-                    //postData['NotifyURL'] = self.addForm.NotifyURL;   //目前不確定
-                    //postData['Email'] = self.addForm.Email;   //可從後端寫入
-                    //postData['MerchantID'] = self.addForm.MerchantID; //可從後端寫入
-                    //postData['MerchantOrderNo'] = self.addForm.MerchantOrderNo;   //可從後端寫入
-                    //postData['ExpireDate'] = self.addForm.ExpireDate; //可從後端寫入
 
                     // 使用 jQuery Ajax 傳送至後端
                     $.ajax({
