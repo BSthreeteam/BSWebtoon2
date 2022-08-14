@@ -16,9 +16,8 @@ namespace BSWebtoon.Front.Controllers
         }
         public IActionResult BuyCoupon(int Id)
         {
-            var memberId = User.Claims.FirstOrDefault() == null ? 0 : int.Parse(User.Claims.FirstOrDefault(x => x.Type == "MemberID").Value);
 
-            var buyCouponData = _comicService.ReadBuyCoupon(Id, memberId);
+            var buyCouponData = _comicService.ReadBuyCoupon(Id);
 
             var result = new BuyCouponViewModel
             {
@@ -34,9 +33,7 @@ namespace BSWebtoon.Front.Controllers
         [HttpGet]
         public IActionResult WorksPage(int Id) //WorksPage/WorksPage/1
         {
-            var memberId = User.Claims.FirstOrDefault() == null ? 0 : int.Parse(User.Claims.FirstOrDefault(x => x.Type == "MemberID").Value);
-
-            var workPageComic = _comicService.WorkPageRead(Id, memberId);
+            var workPageComic = _comicService.WorkPageRead(Id);
 
             var comments = new List<WorkPageViewModel.CommentList>();
 
@@ -120,10 +117,7 @@ namespace BSWebtoon.Front.Controllers
 
         public IActionResult workContent(int Id)
         {
-
-            var memberId = User.Claims.FirstOrDefault() == null ? 0 : int.Parse(User.Claims.FirstOrDefault(x => x.Type == "MemberID").Value);
-
-            var outputDto = _comicService.ReadworkContent(Id, memberId);
+            var outputDto = _comicService.ReadworkContent(Id);
 
 
             var epContents = outputDto.WorkContents;

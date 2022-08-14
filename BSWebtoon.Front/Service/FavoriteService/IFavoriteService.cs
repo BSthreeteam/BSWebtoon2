@@ -8,12 +8,12 @@ namespace BSWebtoon.Front.Service.FavoriteService
     {
         void FavoriteCreate();
 
-        void FavoriteDelete(int id);
+        void FavoriteDelete();
 
         //void ReadFavorite();
-        List<FavoriteDTO> ReadFavorite(int id);
+        List<FavoriteDTO> ReadFavorite();
 
         void RemoveFavoriteRecord(RemoveFavoriteInputDTO input);
-        //void FavoriteDataCreateOrDelete(FavoriteDataDTO favoriteData);
+        void FavoriteDataCreateOrDelete(FavoriteDataDTO favoriteData);
     }
 }
