@@ -183,7 +183,7 @@ namespace BSWebtoon.Front.Service.MemberService
         {
             var memberId = int.Parse(
                 _httpContextAccessor.HttpContext.User.Claims.First(x => x.Type == "MemberID").Value);
-
+            
             return memberId;
         }
     }
