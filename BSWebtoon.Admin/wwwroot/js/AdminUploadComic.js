@@ -62,24 +62,32 @@ let release_area = new Vue({
             { value: 4, text: "4" },
             { value: 5, text: "5" }
         ],
-        createComicData: {
-            ComicWeekFigure: "",
-            BgCover: "",
-            ComicFigure: "",
-            ComicNameImage: "",
-            ComicChineseName: "erty",
-            ComicEnglishName: "ert",
-            Author: "sdf",
-            Painter: "er",
-            UpdateWeek: 1,
-            PublishDate: null,
-            BgColor: "wert",
-            Introduction: "wert",
-            MainTag: "wertyj",
-            Comic_subtitle: null,
-            Comic_subtitle_two: null,
-            Comic_subtitle_three: null,
-            AuditEmployeeId: null
+        comicData: {
+            preview: {
+                ComicWeekFigure: "",
+                BgCover: "",
+                ComicFigure: "",
+                ComicNameImage: ""
+            },
+            createComicData: {
+                ComicWeekFigure: "",
+                BgCover: "",
+                ComicFigure: "",
+                ComicNameImage: "",
+                ComicChineseName: "erty",
+                ComicEnglishName: "ert",
+                Author: "sdf",
+                Painter: "er",
+                UpdateWeek: 1,
+                PublishDate: null,
+                BgColor: "wert",
+                Introduction: "wert",
+                MainTag: "wertyj",
+                Comic_subtitle: null,
+                Comic_subtitle_two: null,
+                Comic_subtitle_three: null,
+                AuditEmployeeId: null
+            }
         }
     },
     methods: {
@@ -95,12 +103,13 @@ let release_area = new Vue({
             console.log(e.target.files)
             if (originalFile) {
                 console.log(e.target.id)
-                console.log(this.createComicData[e.target.id])
+                console.log(this.comicData.preview[e.target.id])
+                this.comicData.createComicData[e.target.id] = originalFile;
                 let reader = new FileReader();
                 reader.onload = (re) => {
                     console.log(re)
                     console.log(e.target.id)
-                    this.createComicData[e.target.id] = re.target.result
+                    this.comicData.preview[e.target.id] = re.target.result
                 };
                 reader.readAsDataURL(originalFile);
 
@@ -108,32 +117,31 @@ let release_area = new Vue({
         },
         createComic() {
             let formData = new FormData()
-            let keyList = Object.keys(this.createComicData);
+            let keyList = Object.keys(this.comicData.createComicData);
 
             let test = []
 
             keyList.forEach(key => {
-                let value = this.createComicData[key];
+                let value = this.comicData.createComicData[key];
+                console.log(value)
 
-                if (!(/^[0-9]/.test(value)) && value.startsWith('data:image')) {
-                    formData.append(`${key}`, file, this.createComicData[key]);
-                } else {
-                    formData.append(`${key}`, this.createComicData[key]);
 
-                }
-                test.push({ Key: `${key}`, data: this.createComicData[key]})
+                formData.append(`${key}`, this.comicData.createComicData[key]);
+
+
+                test.push({ Key: `${key}`, data: this.comicData.createComicData[key] })
             })
             console.log(test)
             axios.post('/api/AdminUploadComicApi/AdminUploadComic',
                 formData, {
                 headers: {
-                        'Content-Type': 'multipart/form-data'
+                    'Content-Type': 'multipart/form-data'
                 }
             }).then((res) => {
-                    console.log(res)
-                }).catch(e => {
-                    console.log(e)
-                })
+                console.log(res)
+            }).catch(e => {
+                console.log(e)
+            })
             // axios.post('api/UploadComicApi/UploadComic', formData)
             //     .then((res) => {
             //         if (res.data.status == 20000) {

@@ -17,22 +17,22 @@
                     <div class="buyComic_release_area d-flex w-75 m-auto">
                         <div class="pic_area w-25">
                             <div class="week_people_pic_box">
-                                <img :src="createComicData.ComicWeekFigure" />
+                                <img :src="comicData.preview.ComicWeekFigure" />
                             </div>
                             <input id="ComicWeekFigure" type="file" accept="image/*" v-on:change="previewImage">
 
                             <div class="bg_box">
-                                <img :src="createComicData.BgCover" />
+                                <img :src="comicData.preview.BgCover" />
                             </div>
                             <input id="BgCover" type="file" accept="image/*" v-on:change="previewImage">
 
                             <div class="people_pic_box">
-                                <img :src="createComicData.ComicFigure" />
+                                <img :src="comicData.preview.ComicFigure" />
                             </div>
                             <input id="ComicFigure" type="file" accept="image/*" v-on:change="previewImage">
 
                             <div class="text_pic_box">
-                                <img :src="createComicData.ComicNameImage" />
+                                <img :src="comicData.preview.ComicNameImage" />
                             </div>
                             <input id="ComicNameImage" type="file" accept="image/*" v-on:change="previewImage">
 
@@ -41,67 +41,67 @@
                         <div class="text_area w-75">
                             <div>
                                 <span class="comicName">漫畫名字</span>
-                                <b-form-input v-model="createComicData.ComicChineseName" placeholder="Enter your name">
+                                <b-form-input v-model="comicData.createComicData.ComicChineseName" placeholder="Enter your name">
                                 </b-form-input>
                             </div>
 
                             <div>
                                 <span class="comicEngilshName">漫畫英文名字</span>
-                                <b-form-input v-model="createComicData.ComicEnglishName" placeholder="Enter your name">
+                                <b-form-input v-model="comicData.createComicData.ComicEnglishName" placeholder="Enter your name">
                                 </b-form-input>
                             </div>
 
 
                             <div>
                                 <span class="author">作者</span>
-                                <b-form-input v-model="createComicData.Author" placeholder="Enter your name">
+                                <b-form-input v-model="comicData.createComicData.Author" placeholder="Enter your name">
                                 </b-form-input>
                             </div>
 
                             <div>
                                 <span class="painter">繪者</span>
-                                <b-form-input v-model="createComicData.Painter" placeholder="Enter your name">
+                                <b-form-input v-model="comicData.createComicData.Painter" placeholder="Enter your name">
                                 </b-form-input>
                             </div>
 
-                            <b-form-select id="week" v-model="createComicData.UpdateWeek" :options="week_options"
+                            <b-form-select id="week" v-model="comicData.createComicData.UpdateWeek" :options="week_options"
                                 size="sm" class="mt-3">
                             </b-form-select>
 
                             <div>
                                 <label for="date">請選擇上架日期</label>
-                                <b-form-datepicker id="date" v-model="createComicData.PublishDate" class="mb-2">
+                                <b-form-datepicker id="date" v-model="comicData.createComicData.PublishDate" class="mb-2">
                                 </b-form-datepicker>
                             </div>
                             <div>
                                 <label for="color">請選擇背景色</label>
-                                <b-form-input v-model="createComicData.BgColor" id="bgColor" type="color">
+                                <b-form-input v-model="comicData.createComicData.BgColor" id="bgColor" type="color">
                                 </b-form-input>
                             </div>
 
                             <div>
                                 <span class="comicIntroduction">漫畫簡介</span>
-                                <b-form-textarea v-model="createComicData.Introduction" id="introduction"
+                                <b-form-textarea v-model="comicData.createComicData.Introduction" id="introduction"
                                     placeholder="Default textarea"></b-form-textarea>
                             </div>
 
                             <div class="selectGroup">
-                                <b-form-select v-model="createComicData.MainTag" :options="main_options" size="sm"
+                                <b-form-select v-model="comicData.createComicData.MainTag" :options="main_options" size="sm"
                                     class="mt-3">
                                 </b-form-select>
-                                <b-form-select v-model="createComicData.Comic_subtitle" :options="one_options" size="sm"
+                                <b-form-select v-model="comicData.createComicData.Comic_subtitle" :options="one_options" size="sm"
                                     class="mt-3">
                                 </b-form-select>
-                                <b-form-select v-model="createComicData.Comic_subtitle_two" :options="two_options" size="sm"
+                                <b-form-select v-model="comicData.createComicData.Comic_subtitle_two" :options="two_options" size="sm"
                                     class="mt-3">
                                 </b-form-select>
-                                <b-form-select v-model="createComicData.Comic_subtitle_three" :options="three_options"
+                                <b-form-select v-model="comicData.createComicData.Comic_subtitle_three" :options="three_options"
                                     size="sm" class="mt-3">
                                 </b-form-select>
                             </div>
 
                             <div>
-                                <b-form-select v-model="createComicData.AuditEmployeeId" :options="AuditEmployeeId"
+                                <b-form-select v-model="comicData.createComicData.AuditEmployeeId" :options="AuditEmployeeId"
                                     size="sm" class="mt-3">
                                 </b-form-select>
                             </div>
