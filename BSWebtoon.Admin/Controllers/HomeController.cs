@@ -17,6 +17,7 @@ namespace BSWebtoon.Admin.Controllers
         private readonly IDapperDashRankRepository _dapperDashRankRepository;
         private readonly IDapperDashComicRepository _dapperDashComicRepository;
 
+
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(IDapperDashActivityRepository dapperDashActivityRepository,
@@ -29,6 +30,7 @@ namespace BSWebtoon.Admin.Controllers
             _dapperDashMemberRepository = dapperDashMemberRepository;
             _dapperDashRankRepository = dapperDashRankRepository;
             _dapperDashComicRepository = dapperDashComicRepository;
+
             _logger = logger;
         }
 
@@ -37,9 +39,7 @@ namespace BSWebtoon.Admin.Controllers
         public IActionResult Index()
         {
             var activityCount = _dapperDashActivityRepository.SelectAll();
-            var memberCount = _dapperDashMemberRepository.SelectAll();
-            var rankResult = _dapperDashRankRepository.SelectAll();
-            var comicCount = _dapperDashComicRepository.SelectAll();
+
             return View();
         }
 

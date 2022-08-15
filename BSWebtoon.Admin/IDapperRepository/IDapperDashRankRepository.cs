@@ -30,7 +30,7 @@ namespace BSWebtoon.Admin.IDapperRepository
 
         public IEnumerable<ClickRecord> SelectAll()
         {
-            return _conn.Query<DashboardTopRankDTO>(@"SELECT top 5  COUNT(CR.ComicId) AS ClickRecordCount,C.ComicChineseName
+            return _conn.Query<DashboardTopRankDTO>(@"SELECT top 10  ROW_NUMBER() OVER(ORDER BY  COUNT(CR.ComicId)  desc) AS TopNum , COUNT(CR.ComicId) AS ClickRecordCount,C.ComicChineseName
                                                       FROM ClickRecord CR 
                                                       inner join Comic C on C.ComicId =CR.ComicId 
                                                       GROUP BY C.ComicChineseName

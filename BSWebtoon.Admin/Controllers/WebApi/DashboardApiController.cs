@@ -12,6 +12,17 @@ namespace BSWebtoon.Admin.Controllers.WebApi
         protected readonly IDapperDashMemberRepository _dapperDashMemberRepository;
         protected readonly IDapperDashRankRepository _dapperDashRankRepository;
         protected readonly IDapperDashComicRepository _dapperDashComicRepository;
+        public DashboardApiController(IDapperDashActivityRepository dapperDashActivityRepository, 
+                                      IDapperDashMemberRepository dapperDashMemberRepository,
+                                      IDapperDashRankRepository dapperDashRankRepository,
+                                      IDapperDashComicRepository dapperDashComicRepository)
+        {
+            _dapperDashActivityRepository = dapperDashActivityRepository;
+            _dapperDashMemberRepository = dapperDashMemberRepository;
+            _dapperDashRankRepository = dapperDashRankRepository;
+            _dapperDashComicRepository = dapperDashComicRepository;
+        }
+
         [HttpGet]
         public IActionResult GetActivityChart()
         {

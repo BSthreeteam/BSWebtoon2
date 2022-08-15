@@ -38,12 +38,14 @@ namespace BSWebtoon.Admin
 
             services.AddTransient<IDapperEmployeeRepository, DapperEmployeeRepository>();
             services.AddTransient<IDapperMemberRepository, DapperMemberRepository>();
+
             services.AddTransient<IDapperDashActivityRepository, DapperDashActivityRepository>();
             services.AddTransient<IDapperDashMemberRepository, DapperDashMemberRepository>();
             services.AddTransient<IDapperDashRankRepository, DapperDashRankRepository>();
             services.AddTransient<IDapperDashComicRepository, DapperDashComicRepository>();
 
             services.AddTransient<IDapperActivityRepository, DapperActivityRepository>();
+
 
             services.AddTransient<IDapperCouponUseRecordRepository, DapperCouponUseRecordRepository>();
             services.AddTransient<IDapperCouponRepository, DapperCouponRepository>();

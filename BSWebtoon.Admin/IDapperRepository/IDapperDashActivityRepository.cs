@@ -33,6 +33,7 @@ namespace BSWebtoon.Admin.IDapperRepository
         public IEnumerable<Activity> SelectActivity(int? ActivityId)
         {
             throw new System.NotImplementedException();
+            
         }
 
         public IEnumerable<Activity> SelectAll()

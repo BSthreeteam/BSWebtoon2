@@ -2,6 +2,13 @@
     ViewData["Title"] = "Home Page";
 }
 
+@section topCss{
+    <style>
+        .title{
+            color:#fa0;
+        }
+    </style>
+}
 
 <div class="container-fluid" id="app">
 
@@ -17,10 +24,13 @@
             <div class="card bg-success text-white shadow">
                 <div class="card-body">
                     漫畫總數
-                    <div class=" d-flex justify-content-end align-items-end">
-                        <div class="text-white h1 mb-0">{{StatisticsInfo.comicCount}}</div>
-                        @*{{StatisticsInfo.productTotal}}*@
-                        <div class="text-white">/筆</div>
+                    <div class="d-flex justify-content-between align-content-between ">
+                        <i class="fa-solid fa-book-open fa-3x text-gray-300"></i>
+                        <div class=" d-flex justify-content-end align-items-end">
+                            <div class="text-white h1 mb-0" >{{comicList}}</div>
+                            <div class="text-white">/筆</div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -30,10 +40,12 @@
             <div class="card bg-warning text-white shadow">
                 <div class="card-body">
                     本月活動數
+                    <div class="d-flex justify-content-between align-content-between ">
+                        <i class="fas fa-fw fa-table fa-3x text-gray-300"></i>
                     <div class=" d-flex justify-content-end align-items-end">
-                        <div class="text-white h1 mb-0">{{StatisticsInfo.activityCount}}</div>
-                        @*{{StatisticsInfo.productTotal}}*@
+                        <div class="text-white h1 mb-0">{{activityList}}</div>
                         <div class="text-white">/筆</div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -43,10 +55,12 @@
             <div class="card bg-info text-white shadow">
                 <div class="card-body">
                     本月會員數
+                    <div class="d-flex justify-content-between align-content-between ">
+                    <i class="fa-solid fa-address-card fa-3x text-gray-300"></i>
                     <div class=" d-flex justify-content-end align-items-end">
-                        <div class="text-white h1 mb-0">39</div>
-                        @*{{StatisticsInfo.productTotal}}*@
+                        <div class="text-white h1 mb-0">{{memberList}}</div>
                         <div class="text-white">/筆</div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -56,7 +70,11 @@
     <!-- Content Row -->
 
     <div class="row">
-
+        <h1 class="h3 mb-0 title" >前 10 最受喜愛漫畫排行榜</h1>
+        <div class="table_line">
+            <b-table id="my-table"  striped hover :items="TopComicTable" :fields="fields"  stacked="md"  show-empty small >
+            </b-table>
+        </div>
     </div>
 </div>
 <!-- Page level plugins -->
@@ -71,53 +89,52 @@
         data() {
             return {
                 StatisticsInfo: [],
-                //TopComicTable: [],
+                TopComicTable: [],
                 fields: [
-                             { key: 'index', label: '排名', class: 'text-center' },
+                             { key: 'topNum', label: '排名', class: 'text-center' ,sortable: true,Variant: 'info' },
                              { key: 'comicChineseName', label: '漫畫名稱' },
                              { key: 'clickRecordCount', label: '點擊數', class: 'text-center' }
                         ],
-                urlList: {
-                    getactivitySumUrl: '/api/DashboardApi/GetActivityChart',
-                    getmemberSumUrl: '/api/DashboardApi/GetMemberChart',
-                    rankingUrl: '/api/DashboardApi/GetRankChart',
-                    getcomicSumUrl: '/api/DashboardApi/GetComicChart',
-                }
+                 activityList:[],
+                 memberList:[],
+                 comicList:[]
             }
          },
          mounted(){
-             this.getactivitySumData()
-             //this.getmemberSumData(),
-             //this.getrankingData(),
-             //this.getcomicSumData()
+             this.getactivitySumData(), 
+             this.getmemberSumData(),
+             this.getcomicSumData(),
+             this.getrankingData()
+
          },
          methods: {
              getactivitySumData() {
-                    axios.get(this.urlList.getactivitySumUrl)
+                    axios.get('/api/DashboardApi/GetActivityChart')
                         .then(res => {
-                            const source=res.data;
-                            console.log("123");
+                            this.activityList=res.data[0].activityCount;
+                            console.log(res.data[0].activityCount);
                         });
              },
              getmemberSumData() {
-                    axios.get(this.urlList.getmemberSumUrl)
+                    axios.get('/api/DashboardApi/GetMemberChart')
                         .then(res => {
-                            const source=res.data;
-                            console.log(source);
+                            this.memberList=res.data[0].memberCount;
+                            console.log(res.data[0].memberCount);
                         });
              },
-              getrankingData() {
-                    axios.get(this.urlList.rankingUrl)
+             getrankingData() {
+                    axios.get('/api/DashboardApi/GetRankChart')
                         .then(res => {
-                            const source=res.data;
-                            console.log(source);
+
+                            this.TopComicTable=res.data;
+                            console.log(this.TopComicTable);
                         });
              },
-              getcomicSumData() {
-                    axios.get(this.urlList.getcomicSumUrl)
+             getcomicSumData() {
+                     axios.get('/api/DashboardApi/GetComicChart')
                         .then(res => {
-                            const source=res.data;
-                            console.log(source);
+                            this.comicList=res.data[0].comicCount;
+                            console.log(res.data[0].comicCount);
                         });
              },
          }
