@@ -38,6 +38,41 @@ namespace BSWebtoon.Front.Controllers
 
             var workPageComic = _comicService.WorkPageRead(Id, memberId);
 
+            var comments = new List<WorkPageViewModel.CommentList>();
+
+            foreach(var comment in workPageComic.Comments)
+            {
+                comments.Add(new WorkPageViewModel.CommentList() { 
+                    TopComment = new WorkPageViewModel.CommentData
+                    {
+                        CommentId = comment.TopComment.CommentId,
+                        CommentMemberName = comment.TopComment.CommentMemberName,
+                        EpId = comment.TopComment.EpId,
+                        ReplyToCommentCount = comment.TopComment.ReplyToCommentCount,
+                        IsSpoiler = comment.TopComment.IsSpoiler,
+                        CreateTime = comment.TopComment.CreateTime,
+                        Context = comment.TopComment.Context,
+                        IsDelete = comment.TopComment.IsDelete,
+                        CommentLikeCount = comment.TopComment.CommentLikeCount,
+                        CommentReportCount = comment.TopComment.CommentReportCount
+                    },
+                    ReplyToTopComment = comment.ReplyToTopComment.Select(c => new WorkPageViewModel.CommentData
+                    {
+                        CommentId = c.CommentId,
+                        CommentMemberName = c.CommentMemberName,
+                        EpId = c.EpId,
+                        ReplyToCommentId = c.ReplyToCommentId,
+                        ReplyToCommentCount = c.ReplyToCommentCount,
+                        IsSpoiler = c.IsSpoiler,
+                        CreateTime = c.CreateTime,
+                        Context = c.Context,
+                        IsDelete = c.IsDelete,
+                        CommentLikeCount = c.CommentLikeCount,
+                        CommentReportCount = c.CommentReportCount
+                    }).ToList()
+                });
+            }
+
             var result = new WorkPageViewModel
             {
                 IsAuthenticated = User.Identity.IsAuthenticated,
@@ -76,19 +111,7 @@ namespace BSWebtoon.Front.Controllers
                     IsFree = ep.IsFree
                 }).ToList(),
 
-                CommentList = workPageComic.CommentList.Select(c => new WorkPageViewModel.CommentData
-                {
-                    CommentId = c.CommentId,
-                    CommentMemberName = c.CommentMemberName,
-                    EpId = c.EpId,
-                    ReplyToCommentCount = c.ReplyToCommentCount,
-                    IsSpoiler = c.IsSpoiler,
-                    CreateTime = c.CreateTime,
-                    Context = c.Context,
-                    IsDelete = c.IsDelete,
-                    CommentLikeCount = c.CommentLikeCount,
-                    CommentReportCount = c.CommentReportCount
-                }).ToList()
+                Comments = comments
             };
             return View(result);
         }
@@ -139,16 +162,10 @@ namespace BSWebtoon.Front.Controllers
             };
 
 
+
             return View(result);
         }
 
-
-
-
     }
-
 }
-
-
-
 

@@ -1,6 +1,8 @@
 ﻿using BSWebtoon.Front.Models.DTO.WeekUpDate;
+using BSWebtoon.Model;
 using BSWebtoon.Model.Models;
 using BSWebtoon.Model.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -19,7 +21,9 @@ namespace BSWebtoon.Front.Service.WeekUpdateService
         {
             //var comicorderby = WeekUpDate.GroupBy(c => c.ComicId).ToDictionary(c => c.Key, c => c.Count()).OrderByDescending(c => c.Value)/*.Select(c => c.Key)*/;
             //var comicorderby = comicClickRRechargeRecordViewecords.OrderByDescending(c => c.Value).Select(c => c.Key);
-            var comicList = _repository.GetAll<Comic>().Where(c => c.ComicStatus != 1 && c.AuditType == 1).OrderBy(c => c.ComicId);//撇除完結類
+            var comicSource = _repository.GetAll<Comic>().Where(c => c.AuditType == (int)AuditType.auditPass);//撇除未審核
+            var newComicSource = comicSource.Where(c => c.ComicStatus == (int)ComicState.newWork && c.PublishDate <= DateTime.UtcNow.AddHours(8)).Select(c=>c.ComicId);//找出已上架的新作漫畫
+            var comicList = comicSource.Where(c => c.ComicStatus == (int)ComicState.serialize || c.ComicStatus == (int)ComicState.stopUpdate || c.ComicId == newComicSource.First()).OrderBy(c => c.ComicId);//連載、停更、已上架的新作漫畫類
             var clickRecordGroup = _repository.GetAll<ClickRecord>().GroupBy(x => x.ComicId);
 
             var result = new List<WeekUpDateDTO>();
@@ -54,7 +58,7 @@ namespace BSWebtoon.Front.Service.WeekUpdateService
 
         public List<NewComicDTO> ReadNewComic()
         {
-            var newComicSource = _repository.GetAll<Comic>().Where(c => c.ComicStatus == 4 && c.AuditType == 1).OrderByDescending(c => c.PublishDate);
+            var newComicSource = _repository.GetAll<Comic>().Where(c => c.ComicStatus == (int)ComicState.newWork && c.AuditType == (int)AuditType.auditPass).OrderByDescending(c => c.PublishDate);
 
             var result = new List<NewComicDTO>();
 
@@ -78,7 +82,7 @@ namespace BSWebtoon.Front.Service.WeekUpdateService
         }
         public List<FinishComicDTO> ReadFinishComic()
         {
-            var finishComicSource = _repository.GetAll<Comic>().Where(c => c.ComicStatus == 1 && c.AuditType == 1);
+            var finishComicSource = _repository.GetAll<Comic>().Where(c => c.ComicStatus == (int)ComicState.finish && c.AuditType == (int)AuditType.auditPass);
             var clickRecordGroup = _repository.GetAll<ClickRecord>().GroupBy(c => c.ComicId);
 
             var finishComicList = new List<FinishComicDTO>();

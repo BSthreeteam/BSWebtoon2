@@ -13,9 +13,9 @@ namespace BSWebtoon.Front.Controllers
             _accountService = accountService;
         }
 
-        public IActionResult AccountInfo(int Id)
+        public IActionResult AccountInfo()
         {
-            var accountSource = _accountService.GetAccountInfo(Id);
+            var accountSource = _accountService.GetAccountInfo();
 
             var result = new AccountInfoViewModel()
             {

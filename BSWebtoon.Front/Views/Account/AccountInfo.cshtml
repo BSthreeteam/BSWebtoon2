@@ -3,10 +3,10 @@
 
 @{
     Layout = "_WorkPageLayout";
-    //Layout = "NoNav_Layout";
     ViewData["Title"] = "AccountInfo";
-    <link rel="stylesheet" href="~/style/AccountStyle.css" />
 
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="~/style/AccountStyle.css" />
 
 }
 <header class="userinfo_nav w-100 justify-content-between">
@@ -44,40 +44,39 @@
     </div>
     <div class="record my-3">
         <ul class="d-flex px-0 m-0">
-            <li onclick="GetCouponDetails(@Model.MemberId)" class="recordItem"><button class="recordItem_a couponRecord">券獲得/使用紀錄</button></li>
+            <li onclick="GetCouponDetails(@Model.MemberId)" class="recordItem"><button class="recordItem_a couponRecord selectedRecordItem">券獲得/使用紀錄</button></li>
             <li onclick="GetCoinDetails(@Model.MemberId)" class="recordItem"><button class="recordItem_a coinRecord">金幣消費/儲值紀錄</button></li>
         </ul>
     </div>
+
     <div class="detail text-center">
         <div class="nothing">
             <p class="nothing_text">未選取紀錄 > △ <</p>
         </div>
-        <table id="tableContent" class="table table-striped recordTable caption-top">
-        </table>
+        <table id="tableCoupon" class="table table-light table-striped caption-top"></table>
+        <table id="tableCoin" class="table table-light table-striped caption-top"></table>
+        @*        <table id="tableOld" class="table table-light table-striped caption-top">
+            </table>
+        *@
     </div>
-    <nav aria-label="Page navigation example">
-        <ul class="pagination recordTableNav justify-content-end d-none">
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
+    <nav class="" aria-label="Page navigation example">
+        <ul class="pagination recordTableNav justify-content-end pagesContent">
         </ul>
     </nav>
 </div>
-<template id="tableTemplate">
 
-</template>
-
+<template id="tableTemplate"></template>
 
 
-<script src="~/js/AccountInfo.js" asp-append-version="true"></script>
+
+@section endJS{
 <script>
-let member = @Model.MemberId
+    let member = @Model.MemberId
 </script>
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.js"></script>
+<script src="~/js/AccountInfo.js" asp-append-version="true"></script>
+
+}

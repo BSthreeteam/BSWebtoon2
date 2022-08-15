@@ -5603,9 +5603,9 @@ namespace BSWebtoon.Front.Service.ComicService
                 ComicLikeCount = ComicLikeCount + like.CommentLikeCount;
             };
 
-            var commentReplySourceHaveNull = commentSource.Where(c => c.ReplyToCommentId != null).Select(c => c);
+            var replyToSomeoneComments = commentSource.Where(c => c.ReplyToCommentId != null);
 
-            var commentReplySource = commentReplySourceHaveNull.GroupBy(g => g.ReplyToCommentId).Select(c => new CommentData { CommentId = (int)c.Key, ReplyToCommentCount = c.Count() });
+            var ReplyToCommentCountSource = replyToSomeoneComments.GroupBy(g => g.ReplyToCommentId).Select(c => new CommentData { CommentId = (int)c.Key, ReplyToCommentCount = c.Count() });
 
             var viewRecordSource = _repository.GetAll<ViewRecord>().Where(v => v.IsDelete == false && epSource.Any(ep => ep.EpId == v.EpId)).OrderByDescending(v => v.ViewTime).FirstOrDefault();
             string ViewRecordEpTitle;
@@ -5624,6 +5624,43 @@ namespace BSWebtoon.Front.Service.ComicService
             var comicIsLike = _repository.GetAll<Favorite>().Any(f => f.ComicId == comicId && f.MemberId == memberId);
 
             var CommentReportCount = _repository.GetAll<Report>().Where(r => r.AuditType == 1).GroupBy(g => g.CommentId).Select(c => new CommentData { CommentId = (int)c.Key, CommentReportCount = c.Count() });
+
+            var topComments = commentSource.Where(c => c.ReplyToCommentId == null);
+
+            List<CommentList> comments = new List<CommentList>();
+
+            foreach (var topComment in topComments)
+            {
+                comments.Add(new CommentList { 
+                    TopComment = new CommentData
+                    {
+                        CommentId = topComment.CommentId,
+                        CommentMemberName = _repository.GetAll<Member>().Where(m => m.MemberId == topComment.MemberId).Select(m => m.NickName).First(),
+                        EpId = topComment.EpId,
+                        ReplyToCommentCount = ReplyToCommentCountSource.Where(cr => topComment.CommentId == cr.CommentId).Select(cr => cr.ReplyToCommentCount).FirstOrDefault(),
+                        IsSpoiler = topComment.IsSpoiler,
+                        CreateTime = topComment.CreateTime,
+                        Context = topComment.Context,
+                        IsDelete = topComment.IsDelete,
+                        CommentLikeCount = commentLikeSource.Where(cl => topComment.CommentId == cl.CommentId).Select(cl => cl.CommentLikeCount).FirstOrDefault(),
+                        CommentReportCount = CommentReportCount.Where(cr => topComment.CommentId == cr.CommentId).Select(cr => cr.CommentReportCount).FirstOrDefault()
+                    },
+                    ReplyToTopComment = replyToSomeoneComments.Where(r => r.ReplyToCommentId == topComment.CommentId).Select(r => new CommentData
+                    {
+                        CommentId = r.CommentId,
+                        CommentMemberName = _repository.GetAll<Member>().Where(m => m.MemberId == r.MemberId).Select(m => m.NickName).First(),
+                        EpId = r.EpId,
+                        ReplyToCommentCount = ReplyToCommentCountSource.Where(cr => r.CommentId == cr.CommentId).Select(cr => cr.ReplyToCommentCount).FirstOrDefault(),
+                        ReplyToCommentId = r.ReplyToCommentId,
+                        IsSpoiler = r.IsSpoiler,
+                        CreateTime = r.CreateTime,
+                        Context = r.Context,
+                        IsDelete = r.IsDelete,
+                        CommentLikeCount = commentLikeSource.Where(cl => r.CommentId == cl.CommentId).Select(cl => cl.CommentLikeCount).FirstOrDefault(),
+                        CommentReportCount = CommentReportCount.Where(cr => r.CommentId == cr.CommentId).Select(cr => cr.CommentReportCount).FirstOrDefault()
+                    }).ToList()
+                });
+            }
 
 
             CreateClickRecord(comicId, memberId);
@@ -5665,19 +5702,7 @@ namespace BSWebtoon.Front.Service.ComicService
                     IsFree = ep.IsFree
                 }).ToList(),
 
-                CommentList = commentSource.Select(c => new CommentData
-                {
-                    CommentId = c.CommentId,
-                    CommentMemberName = _repository.GetAll<Member>().Where(m => m.MemberId == c.MemberId).Select(m => m.NickName).First(),
-                    EpId = c.EpId,
-                    ReplyToCommentCount = commentReplySource.Where(cr => c.CommentId == cr.CommentId).Select(cr => cr.ReplyToCommentCount).FirstOrDefault(),
-                    IsSpoiler = c.IsSpoiler,
-                    CreateTime = c.CreateTime,
-                    Context = c.Context,
-                    IsDelete = c.IsDelete,
-                    CommentLikeCount = commentLikeSource.Where(cl => c.CommentId == cl.CommentId).Select(cl => cl.CommentLikeCount).FirstOrDefault(),
-                    CommentReportCount = CommentReportCount.Where(cr => c.CommentId == cr.CommentId).Select(cr => cr.CommentReportCount).FirstOrDefault()
-                }).ToList()
+                Comments = comments
             };
         }
         public void CreateClickRecord(int comicId, int memberId)
@@ -5702,13 +5727,14 @@ namespace BSWebtoon.Front.Service.ComicService
             _repository.SaveChange();
         }
 
+
         public ReadworkContentOutputDTO ReadworkContent(int epId, int memberId)
         {
             //先判斷集數類型
             //1.免費:直接開啟漫畫
             //2.倒數:只能使用在能使用倒數卷的漫畫上，能使用三種卷(倒數，
-            // 閱讀，通用)
-            //3.最新五話:只能使用 閱讀，通用
+            //  閱讀，通用)
+            //3.最新五話:只能使用  閱讀，通用
 
             //註 => 既是倒數
             //類型 又是 最新五話?
@@ -5721,40 +5747,39 @@ namespace BSWebtoon.Front.Service.ComicService
             var EpSource = _repository.GetAll<Episode>().Where(e => e.AuditType == 1).FirstOrDefault(e => e.EpId == epId);//找出點的那一集的所有資料
             var EpContentsSource = _repository.GetAll<EpContent>().Where(c => c.EpId == epId);
 
-           //var memberId = _repository.GetAll<Member>().Where(c => c.AccountName == userName).Select(c => c.MemberId).First();
 
             result.ComicId = EpSource.ComicId;
             ;
             //登入者的所有券
             var couponSource = _repository.GetAll<Coupon>()
-            .Where(p => p.MemberId == memberId)
-            .OrderByDescending(p => p.CreateTime); //最新 ....
+                .Where(p => p.MemberId == memberId)
+                .OrderByDescending(p => p.CreateTime);  //最新 ....
 
-            //這部漫畫的 倒數卷
+            //這部漫畫的 倒數卷 
             var countdownCoupon_forThisComic = couponSource.FirstOrDefault(p =>
-            p.CouponTypeId == (int)CouponType.countdownCoupon
-            && p.ComicId == EpSource.ComicId
+                p.CouponTypeId == (int)CouponType.countdownCoupon
+                && p.ComicId == EpSource.ComicId
             );
             bool countdownCoupon_valid = countdownCoupon_forThisComic.Quantity == 1;
 
             //這部漫畫的 閱讀卷
             var readCoupon = couponSource.FirstOrDefault(p =>
-            p.CouponTypeId == (int)CouponType.readCoupon
-            && p.ComicId == EpSource.ComicId
+                p.CouponTypeId == (int)CouponType.readCoupon
+                && p.ComicId == EpSource.ComicId
             );
             bool readCoupon_valid = readCoupon != null && readCoupon.Quantity > 0;
 
             //通用卷
             var universalCoupon = couponSource.FirstOrDefault(p =>
-            p.CouponTypeId == (int)CouponType.universalCoupon);
+                p.CouponTypeId == (int)CouponType.universalCoupon);
             bool universalCoupon_valid = universalCoupon != null && universalCoupon.Quantity > 0;
 
 
-            //非免費且 所有券全皆無
+            //非免費且 所有券全皆無 
             if (!EpSource.IsFree
-            && !countdownCoupon_valid
-            && !readCoupon_valid
-            && !universalCoupon_valid
+                && !countdownCoupon_valid
+                && !readCoupon_valid
+                && !universalCoupon_valid
             ) return result;
 
             result.WorkContents = Read(EpSource, EpContentsSource);
@@ -5797,9 +5822,8 @@ namespace BSWebtoon.Front.Service.ComicService
             //}
 
 
-        }
 
-            //var couponSource = _repository.GetAll<Coupon>().Where(p => p.MemberId == memberId);//找出登入會員的所有卷
+        }
 
         private List<WorkContent> Read(Episode epSource, IQueryable<EpContent> content)
         {
@@ -5817,10 +5841,9 @@ namespace BSWebtoon.Front.Service.ComicService
             }).ToList();
 
 
+
             return readResult;
-
         }
-
         public List<WorkContentEpData> ReadEpTable(int comicId)
         {
             var aLLEpSource = _repository.GetAll<Episode>().Where(x => x.ComicId == comicId).OrderBy(x => x.UploadTime);
@@ -5853,6 +5876,10 @@ namespace BSWebtoon.Front.Service.ComicService
             _repository.SaveChange();
         }
 
+
+
+
+
         public void CouponUsedRecordCreate(int EpId, int memberId, Coupon UsedCoupon)
         {
             var now = DateTime.UtcNow.AddHours(8);
@@ -5871,6 +5898,8 @@ namespace BSWebtoon.Front.Service.ComicService
 
             _repository.SaveChange();
         }
+
+
 
         public BuyCouponDTO ReadBuyCoupon(int comicId, int memberId)
         {
@@ -5894,30 +5923,45 @@ namespace BSWebtoon.Front.Service.ComicService
             };
         }
 
-
-
-
         public List<CommentDTO> GetComment(int EpId)
         {
-            var commentSourse = _repository.GetAll<Comment>().Where(c => c.EpId == EpId).OrderBy(c=>c.CreateTime);
-            var commentLikeSourse = _repository.GetAll<CommentLikeRecord>().Where(c => c.CommentId == commentSourse.Select(c => c.CommentId).First());
-            var memberName = _repository.GetAll<Member>();
+            var commentSourse = _repository.GetAll<Comment>().Where(c => c.EpId == EpId).OrderBy(c => c.CreateTime);//取到這集所有留言並依時間排序
+            //var commentLikeSourse = _repository.GetAll<CommentLikeRecord>().Where(c => c.CommentId == commentSourse.Select(c => c.CommentId).First());
+            var memberName = _repository.GetAll<Member>();//找到成員資料
+
+            var mainCommentSourse = commentSourse.Where(c => c.ReplyToCommentId == null);
+            var replyCommentSourse = commentSourse.Where(c => c.ReplyToCommentId != null);
+
             var result = new List<CommentDTO>();
 
-            result = commentSourse.Select(c => new CommentDTO
+            result = mainCommentSourse.Select(c => new CommentDTO
             {
-                CommentId = c.CommentId,
-                Context = c.Context,
-                CreateTime = c.CreateTime,
-                IsSpoiler = c.IsSpoiler,
-                EpId = c.EpId,
-                MemberName = memberName.Where(m => m.MemberId == c.MemberId).Select(m => m.AccountName).First(),
-                ReplyToCommentId = c.ReplyToCommentId,
+                MainComment = new CommentContxt
+                {
+                    CommentId = c.CommentId,
+                    Context = c.Context,
+                    CreateTime = c.CreateTime,
+                    EpId = c.EpId,
+                    IsSpoiler = c.IsSpoiler,
+                    MemberName = memberName.Where(m => m.MemberId == c.MemberId).Select(m => m.AccountName).First()
+                },
+                ReplyMainComment = replyCommentSourse.Where(rc => rc.ReplyToCommentId == c.CommentId).Select(rc => new ReplyCommentContxt
+                {
+                    ReplyToCommentId = rc.ReplyToCommentId,
+                    IsSpoiler = rc.IsSpoiler,
+                    CommentId = rc.CommentId,
+                    Context = rc.Context,
+                    CreateTime = c.CreateTime,
+                    EpId = c.EpId,
+                    MemberName = memberName.Where(m => m.MemberId == rc.MemberId).Select(m => m.AccountName).First()
+
+
+                }).ToList()
             }).ToList();
 
+
+
             return result;
-
-
         }
         public void CreateComment(CommentDTO comment)
         {
@@ -5928,5 +5972,9 @@ namespace BSWebtoon.Front.Service.ComicService
 
 
         }
+
     }
+
+
+
 }

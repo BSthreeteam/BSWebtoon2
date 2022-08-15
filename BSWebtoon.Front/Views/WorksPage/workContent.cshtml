@@ -1,72 +1,71 @@
 ﻿@{
     Layout = "_WorkPageLayout";
-    ViewData["Title"]  = "workContent";
+    ViewData["Title"] = "workContent";
 }
 
 @section topCss{
-<link rel="stylesheet" href="~/style/workContentstyle.css" />
+<link rel="stylesheet" href="~/style/workContentstyle.css" asp-append-version="true" />
 }
-<div class="container-fluid bg-dark d-flex comic_area">
-    <button class="btn text-decoration-none my-2" href="javascript:history.go(-1)">
-        <i class="fa-solid fa-arrow-left-long text-white"></i>
-    </button>
-    <div class="comic_text flex-grow-1 my-2 m-auto">
-        <p class="text-white m-0 ">@Model.EpTitle</p>
+<div class="epContent ">
+    <div class="container-fluid bg-dark d-flex comic_area">
+        <button class="btn text-decoration-none my-2" href="javascript:history.go(-1)">
+            <i class="fa-solid fa-arrow-left-long text-white"></i>
+        </button>
+        <div class="comic_text flex-grow-1 my-2 m-auto">
+            <p class="text-white m-0 ">@Model.EpTitle</p>
+        </div>
     </div>
-</div>
-<div class="comic">
-    <div class="col-12  d-flex flex-column align-items-center comic_content">
-        <!-- <img id="comicpic_pic" src="https://picsum.photos/500/700/?random=11" class="  text-center">
-        <img id="comicpic_pic" src="https://picsum.photos/500/700/?random=11" class="  text-center">
-        <img id="comicpic_pic" src="https://picsum.photos/500/700/?random=11" class="  text-center">
-        <img id="comicpic_pic" src="https://picsum.photos/500/700/?random=11" class="  text-center"> -->
-        @foreach (var content in Model.ContentList)
-        {
-            <img id="comicpic_pic" src="@content.ImagePath" class="  text-center">
+    <div class="comic">
+        <div class="col-12  d-flex flex-column align-items-center comic_content">
+            @foreach (var content in Model.ContentList)
+            {
+                <img id="comicpic_pic" src="@content.ImagePath" class="  text-center">
 
-        }
+            }
+        </div>
     </div>
-</div>
 
-<!-- 評論區 -->
-<div class="container  bg-dark comment_text">
-    <!-- <div class="comment_text  m-auto">
-    </div> -->
-</div>
-
-<!-- 各種按鈕 -->
-<div class="footer d-flex flex-column justify-content-center align-items-center my-2">
-
-    <div class="rounded-pill bg-dark text-center text-white  fs-2 more_function">
-        <button class="btn btn_last text-white">
-            <i class="fa-solid fa-arrow-left py-3 mx-2 "></i>
-            <!-- 上一話 -->
-        </button>
-        <button class="btn btn_play text-white">
-            <i class="fa-solid fa-person-running mx-2 py-3"></i>
-            <!-- 自動播放 -->
-        </button>
-        <!-- 目錄 -->
-        <button class="btn btn-dark menu-btn" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom" id="muluBTN">
-            <i class="fa-solid fa-list mx-2 py-3"></i>
-        </button>
-        <button class="btn btn-dark menu-btn" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions" id="mulu-mdBTN">
-            <i class="fa-solid fa-list mx-2 py-3"></i>
-        </button>
-
-
-        <button class="btn btn_comment text-white">
-            <i class="fa-solid fa-comment-dots py-3 mx-2"></i>
-            <!-- 留言 -->
-        </button>
-
-        <button class="btn btn_next text-white">
-            <i class="fa-solid fa-arrow-right-long py-3 mx-2"></i>
-            <!-- 下一話 -->
-        </button>
+    <!-- 評論區 -->
+    <div class="container  bg-dark comment_text">
+        <!-- <div class="comment_text  m-auto">
+        </div> -->
     </div>
+
+    <!-- 各種按鈕 -->
+    <div class="footer d-flex flex-column justify-content-center align-items-center my-2">
+
+        <div class="rounded-pill bg-dark text-center text-white  fs-2 more_function">
+            <button class="btn btn_last text-white">
+                <i class="fa-solid fa-arrow-left py-3 mx-2 "></i>
+                <!-- 上一話 -->
+            </button>
+            <button class="btn btn_play text-white">
+                <i class="fa-solid fa-person-running mx-2 py-3"></i>
+                <!-- 自動播放 -->
+            </button>
+            <!-- 目錄 -->
+            <button class="btn btn-dark menu-btn" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom" id="muluBTN">
+                <i class="fa-solid fa-list mx-2 py-3"></i>
+            </button>
+            <button class="btn btn-dark menu-btn" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions" id="mulu-mdBTN">
+                <i class="fa-solid fa-list mx-2 py-3"></i>
+            </button>
+
+
+            <button class="btn btn_comment text-white">
+                <i class="fa-solid fa-comment-dots py-3 mx-2"></i>
+                <!-- 留言 -->
+            </button>
+
+            <button class="btn btn_next text-white">
+                <i class="fa-solid fa-arrow-right-long py-3 mx-2"></i>
+                <!-- 下一話 -->
+            </button>
+        </div>
+    </div>
+
 </div>
 
 <!-- 目錄區 -->
@@ -94,8 +93,7 @@
         </div>
     </div>
 </div>
-<div class="offcanvas offcanvas-start offcanvas-width" data-bs-scroll="true" tabindex="-1"
-     id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+<div class="offcanvas offcanvas-start offcanvas-width" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
     <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">話次目錄</h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -119,70 +117,227 @@
 </div>
 
 <!-- 評論區模板 -->
-<template id="comment">
-    <!-- 回到首頁的案紐 -->
-    <button class="btn text-decoration-none my-2" href="#">
-        <i class="fa-solid fa-arrow-left-long text-white"></i>
-    </button>
-    <div class="comment_text  m-auto">
-        <div class="row  mt-2 ">
-            <div class="user  d-flex ">
-                <span class="leval border-danger  text-white">BEST</span>
-                <p class="username  text-white">凍豆腐</p>
+
+        <section class="Comment_area  d-none">
+
+        <button class="btn text-decoration-none my-2 btn_leave" >
+            <i class="fa-solid fa-arrow-left-long text-white"></i>
+        </button>
+        <div class="Comment_fixed">
+            <h3>
+                留言
+                <span>53</span>
+            </h3>
+            <div class="isSpoil">
+                <input class="form-check-input isSpoil_checkbox" type="checkbox" value="" id="Spoil">
+                <label class="form-check-label" for="Spoil">
+                    暴雷
+                </label>
             </div>
-            <div class="text">
-                <p class="text-white ">
-                    古代事業士兵烏日是因為，圍繞商品迅速很快突破似乎對你模式進一步人們手裡，暴力網頁班美元財政是怎麼想法指導屬性隨着算是民主自信另外，病人衛生工廠，總是行業聯繫最。
-                </p>
-                <button class="btn btn_icon">
-                    <i class="fa-solid fa-thumbs-up "></i>
-                    讚
-                    <span class="count">1.9k</span>
-                </button>
-                <button class="btn btn_icon">
-                    <i class="fa-solid fa-reply-all"></i>
-                    回覆
-                    <span class="count">66</span>
-                </button>
-                <button class="btn btn_icon">
-                    <i class="fa-solid fa-thumbs-down"></i>
-                    檢舉
-                    <span class="count">10</span>
-                </button>
+
+
+            <div class="input-group Comment mb-3">
+                <input type="text" class="form-control Comment_input" placeholder="請輸入留言" aria-label="Comment_text"
+                    aria-describedby="CommentButton">
+                <button class="btn btn-outline-secondary" type="button" id="CommentButton">輸入</button>
             </div>
+
         </div>
-        <hr class="text-white">
-        <div class="row  mt-2 ">
-            <div class="user  d-flex ">
-                <span class="leval border-danger  text-white">BEST</span>
-                <p class="username  text-white">凍豆腐</p>
+
+        <div class="container Comment_container">
+
+        <template id="commentTemplate">
+            <div class="Comment_item">
+                <div class=" CommentShow">
+                    <div class="CommentShow_title">
+                        <span class="Leval">BEST</span>
+                        <p class="Name">大景琁</p>
+                        <span class="date">12-3</span>
+                    </div>
+                    <p class="CommentShow_content">女主角超心機 不過我喜歡 哈哈哈</p>
+                </div>
+
+                <div class="CommentShow_btn_area">
+                    <div class="like">
+                        <button class="btn btn-outline-dark like_btn" type="button">
+                            <i class="fa-solid fa-thumbs-up "></i>
+                            讚
+                            <span class="like_count">5</span>
+                        </button>
+                    </div>
+
+                    <div class="reply">
+                        <!-- 要加編號data-bs-target,aria-controls -->
+                        <button class="btn btn-outline-dark reply_btn" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#reply_collapse1" aria-expanded="false" aria-controls="reply_collapse1">
+                            <i class="fa-solid fa-reply-all"></i>
+                            回覆
+                            <span class="reply_count">10</span>
+                        </button>
+                    </div>
+
+                    <div class="report">
+                        <button class="btn btn-outline-dark report_btn" type="button" data-bs-toggle="modal"
+                                data-bs-target="#reportModal" data-bs-whatever="report">
+                            <!-- 要加編號data-bs-target -->
+
+                            <i class="fa-solid fa-thumbs-down"></i>
+                            檢舉
+                            <span class="report_count">0</span>
+                        </button>
+
+                        <!-- 要加編號id="reportModal" -->
+                        <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel"
+                             aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-dark" id="reportModalLabel">report</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- <form> -->
+                                        <div class="mb-3">
+                                            <label class="col-form-label text-dark">report_category</label>
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option selected>其他</option>
+                                                <option value="1">色情</option>
+                                                <option value="2">髒話</option>
+                                                <option value="3">暴雷</option>
+                                                <option value="4">暴力</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="Comment-text "
+                                                   class="col-form-label text-dark">report_Comment:</label>
+                                            <textarea class="form-control" id="Comment-text"></textarea>
+                                        </div>
+                                        <!-- </form> -->
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-dark"
+                                                data-bs-dismiss="modal">
+                                            Close
+                                        </button>
+                                        <button type="button" class="btn btn-dark">Send report</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+                <div class="collapse" id="reply_collapse1">
+                    <div class="card-body  reply_CommentShow">
+
+                    </div>
+                        <div class="input-group reply_Comment mb-3">
+                            <input type="text" class="form-control reply_Comment_input " placeholder="請輸入回覆留言"
+                                   aria-label="reply_Comment_text" aria-describedby="reply_CommentButton">
+                            <button class="btn btn-outline-secondary" type="button" id="reply_CommentButton">輸入</button>
+                        </div>
+
+                </div>
+
             </div>
-            <div class="text">
-                <p class="text-white ">
-                    古代事業士兵烏日是因為，圍繞商品迅速很快突破似乎對你模式進一步人們手裡，暴力網頁班美元財政是怎麼想法指導屬性隨着算是民主自信另外，病人衛生工廠，總是行業聯繫最。
+        </template>
+
+        <template id="reply_CommentTemplate">
+            <div class="reply_CommentShow_item">
+                <div class="reply_CommentShow_title">
+                    <i class="fa-thin fa-l"></i>
+                    <p class="Name">中景琁</p>
+                    <span class="date">12-3</span>
+                </div>
+                <p class="reply_Comment_content">
+                    Some placeholder content for the collapse component. This panel is hidden by default but
+                    revealed when the user activates the relevant trigger.
                 </p>
-                <button class="btn btn_icon">
-                    <i class="fa-solid fa-thumbs-up "></i>
-                    讚
-                    <span class="count">1.9k</span>
-                </button>
-                <button class="btn btn_icon">
-                    <i class="fa-solid fa-reply-all"></i>
-                    回覆
-                    <span class="count">66</span>
-                </button>
-                <button class="btn btn_icon">
-                    <i class="fa-solid fa-thumbs-down"></i>
-                    檢舉
-                    <span class="count">10</span>
-                </button>
+                <div class="reply_Comment_btn">
+                    <div class="like">
+                        <button class="btn btn-outline-dark like_btn" type="button">
+                            <i class="fa-solid fa-thumbs-up "></i>
+                            讚
+                            <span class="like_count">5</span>
+                        </button>
+                    </div>
+                </div>
+
             </div>
+        </template>
+
+
         </div>
-        <hr class="text-white">
-    </div>
-</template>
+
+    </section>
+
+
 
 
 @section endJS{
 <script src="~/js/WorkContent.js"></script>
+
+<script>
+    let commentTemplate = document.querySelector("#commentTemplate")
+    let Comment_container = document.querySelector(".Comment_container")
+    let reply_CommentTemplate = document.querySelector("#reply_CommentTemplate")
+    console.log(reply_CommentTemplate)
+
+    let btn_comment = document.querySelector(".btn_comment");
+    let epContent = document.querySelector(".epContent");
+    let Comment_area = document.querySelector(".Comment_area");
+    let btn_leave = document.querySelector(".btn_leave");
+    
+    btn_comment.addEventListener("click", () => {
+        epContent.classList.add("d-none")
+        Comment_area.classList.remove("d-none")
+        let url = `/api/CommentApi/GetCommentAll/${@Model.EpId}`//如果需要傳id進後端這裡的fetch網址要加id
+        console.log(url)
+        fetch(url)
+        .then(res => { return res.json() })
+        .then(result => {
+            for (let i = 1; i <= result.length; i++) 
+            {
+                Comment_container.append(createComment(result[i],i))
+                //reply_CommentShow.append(createReply_Comment(result[i]))
+            }      
+        })
+     })
+
+
+        function createComment(result,i) {
+            console.log(result)
+            let cloneComment = commentTemplate.content.cloneNode(true);
+            cloneComment.querySelector(".CommentShow .CommentShow_title .Name").innerText =result.MainComment.MemberName
+            cloneComment.querySelector(".CommentShow .CommentShow_title .date").innerText = result.MainComment.CreateTime
+            cloneComment.querySelector(".CommentShow .CommentShow_content").innerText = result.MainComment.Context
+            cloneComment.querySelector(".reply_btn").setAttribute("data-bs-target",`#reply_collapse${i}`)
+            cloneComment.querySelector(".collapse").setAttribute("id",`reply_collapse${i}`)
+            console.log(result.ReplyMainComment)
+            result.ReplyMainComment.forEach((rc)=>{
+                cloneComment.querySelector(".reply_CommentShow").append(createReply_Comment(rc))
+            })
+
+            return cloneComment
+        }
+
+        function createReply_Comment(rc) {
+            let cloneReply_Comment = reply_CommentTemplate.content.cloneNode(true);
+            cloneReply_Comment.querySelector(".reply_CommentShow_item .reply_CommentShow_title .Name").innerText = rc.MemberName
+            cloneReply_Comment.querySelector(".reply_CommentShow_item .reply_CommentShow_title .date").innerText = rc.CreateTime
+            cloneReply_Comment.querySelector(".reply_CommentShow_item .reply_Comment_content").innerText = rc.Context
+            return cloneReply_Comment
+        }
+
+        btn_leave.addEventListener("click", () => {
+        Comment_area.classList.add("d-none")
+        epContent.classList.remove("d-none")
+
+
+        })
+</script>
 }
