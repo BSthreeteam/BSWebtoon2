@@ -56,7 +56,7 @@ namespace BSWebtoon.Admin.IDapperRepository
 FROM Activity a
 INNER JOIN Employee e ON e.EmployeeId = a.PrincipalEmployee";
 
-            return _conn.Query<UpdateActivityDTO> (AllActivity);
+            return _conn.Query<ReadActivityDTO> (AllActivity);
         }
 
         public Activity SelectById(int id)

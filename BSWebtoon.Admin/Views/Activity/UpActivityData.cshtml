@@ -49,49 +49,49 @@
                 <!--右邊-->
                 <div class="col-8 ">
 
-                     <div class="col-12 col-md-12 mb-3 p-0">
-                            <label for="inputState" class="form-label my-4">活動負責人</label>
-                            <select id="inputState" class="form-select" v-model="signup.ActivityEmployeeName" :class="{ 'is-invalid': signupCheck.ActivityEmployeeNameError }" name="ActivityEmployeeName">
-                                @*                        <option selected>Choose...</option>
-                            *@
-                                @foreach (var EmployeeName in OutEmployeeName)
-                            {
-                                <option value="@EmployeeName.EmployeeId">@EmployeeName.EmployeeName</option>
-                            }
-                        </select>
-                        <div class="text-danger small mt-1">
-                                <!-- 錯誤訊息 -->
-                                {{ signupCheck.ActivityEmployeeNameErrorMsg }}
-                        </div>
+                    <div class="col-12 col-md-12 mb-3 p-0">
+                        <label for="inputState" class="form-label my-4">活動負責人</label>
+                        <select id="inputState" class="form-select" v-model="signup.ActivityEmployeeName" :class="{ 'is-invalid': signupCheck.ActivityEmployeeNameError }" name="ActivityEmployeeName">
+                            @*                        <option selected>Choose...</option>
+                        *@
+                            @foreach (var EmployeeName in OutEmployeeName)
+                        {
+                            <option value="@EmployeeName.EmployeeId">@EmployeeName.EmployeeName</option>
+                        }
+                    </select>
+                    <div class="text-danger small mt-1">
+                        <!-- 錯誤訊息 -->
+                        {{ signupCheck.ActivityEmployeeNameErrorMsg }}
+                    </div>
 
+                </div>
+
+
+                <div class="row g-3">
+                    <div class="col-12 col-md-6 mb-3">
+                        <label for="">活動名稱:</label>
+                        <input v-model="signup.ActivityName" type="text" name="ActivityName" class="form-control"
+                               :class="{ 'is-invalid': signupCheck.ActivityNameError }" id="ActivityName">
+                        <div class="text-danger small mt-1">
+                            <!-- 錯誤訊息 -->
+                            {{ signupCheck.ActivityNameErrorMsg }}
+                        </div>
                     </div>
 
 
-                    <div class="row g-3">
-                        <div class="col-12 col-md-6 mb-3">
-                            <label for="">活動名稱:</label>
-                            <input v-model="signup.ActivityName" type="text" name="ActivityName" class="form-control"
-                               :class="{ 'is-invalid': signupCheck.ActivityNameError }" id="ActivityName">
-                            <div class="text-danger small mt-1">
-                                <!-- 錯誤訊息 -->
-                                {{ signupCheck.ActivityNameErrorMsg }}
-                            </div>
-                        </div>
-
-
-                        <div class="col-12 col-md-6 mb-3">
-                            <label for="">活動背景色:</label>
-                            @*<input name="ActivityBgColor"></input>*@
-                            <input v-model="signup.ActivityBgColor" type="text" name="ActivityBgColor" class="form-control"
+                    <div class="col-12 col-md-6 mb-3">
+                        <label for="">活動背景色:</label>
+                        @*<input name="ActivityBgColor"></input>*@
+                        <input v-model="signup.ActivityBgColor" type="color" name="ActivityBgColor" class="form-control p-2"
                                :class="{ 'is-invalid': signupCheck.ActivityBgColorError }" id="ActivityBgColor">
-                            <div class="text-danger small mt-1">
-                                <!-- 錯誤訊息 -->
-                                {{ signupCheck.ActivityBgColorErrorMsg }}
-                            </div>
+                        <div class="text-danger small mt-1">
+                            <!-- 錯誤訊息 -->
+                            {{ signupCheck.ActivityBgColorErrorMsg }}
                         </div>
+                    </div>
 
-                      
-                         
+
+
 
                     <div class="col-12 col-md-6 mb-3">
                         <b-container fluid class="ActivityStartTime">
@@ -139,6 +139,9 @@
             <div class="row px-5  justify-content-end">
                 <div class="col-2">
                     <button type="submit" class="btn btn-primary m-auto" v-bind:disabled="addVerify" id="upload">上架送出</button>
+                    <div class="" id="Loadingdata" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
                 </div>
             </div>
 
@@ -155,7 +158,7 @@
 
 @section endJS{
 
-     <script src="~/js/UpActivityData.js"></script>
+    <script src="~/js/UpActivityData.js"></script>
  }
 
 
