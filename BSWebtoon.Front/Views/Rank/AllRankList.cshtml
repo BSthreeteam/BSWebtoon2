@@ -2,6 +2,8 @@
 
 @{
     var id = Model.FirstRank.TagId;
+    var firstcomicId=Model.FirstRank.ComicId;
+
 }
 
 @section topCss{
@@ -33,7 +35,7 @@
                     <div class="work_big_Ranking">
                         <p class="Ranking_num">1</p>
                         <i class="fa-solid fa-caret-up"></i>
-                        <p class="diff">@Model.FirstRank.Diff</p>
+                        <p class="diff"></p>
                     </div>
                     <div class="work_big_pic">
                         <video id="movie">
@@ -102,6 +104,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script>
     let id = @id;
+    let firstcomicId=@firstcomicId;
 </script>
 <script src="~/js/RankList.js"></script>
 }
