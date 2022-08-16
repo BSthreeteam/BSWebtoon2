@@ -4,12 +4,140 @@ const app = new Vue({
     data: {
         ActivityList: [],
         //編輯
-        currentActivity: {},
-        value: "",
+        currentActivity: {
+            activityName: '',
+            activityStartTime: '',
+            activityEndTime: '',
+            
+            activityContent: '',
+        },
+        signupCheck: {
+            activityNameError: false,
+            activityNameErrorMsg: '',
+
+            activityStartTimeError: false,
+            activityStartTimeErrorMsg: '',
+
+            activityEndTimeError: false,
+            activityEndTimeErrorMsg: '',
+
+            
+
+            activityContentError: false,
+            activityContentErrorMsg: '',
+        },
+
+        addVerify: true
+        
     },
     mounted() {
         this.getAllActivityList()
     },
+    //監聽區
+    watch: {
+        'currentActivity.activityName': {
+            immediate: true,
+            // X: handler: () => {
+            handler: function () {
+                // TODO:
+                // 不得為空
+                if (this.currentActivity.activityName == '') {
+                    this.signupCheck.activityNameError = true
+                    this.signupCheck.activityNameErrorMsg = '不得為空!'
+                }
+                //// 大於8碼
+                //else if (this.signup.account.length < 8) {
+                //    this.signupCheck.accountError = true
+                //    this.signupCheck.accountErrorMsg = '帳號不得小於8碼!'
+                //}
+                // 成功時 消除errorMsg, errorStatus
+                else {
+                    this.signupCheck.activityNameError = false
+                    this.signupCheck.activityNameErrorMsg = ''
+                }
+
+                //呼叫確認所有的輸入框都要輸入正確的值，點擊送出按鈕的方法。
+                this.checkAddVerify()
+            }
+        },
+        'currentActivity.activityStartTime': {
+            immediate: true,
+            // X: handler: () => {
+            handler: function () {
+                // TODO:
+                // 不得為空
+                if (this.currentActivity.activityStartTime == '') {
+                    this.signupCheck.activityStartTimeError = true
+                    this.signupCheck.activityStartTimeErrorMsg = '不得為空!'
+                }
+                //// 大於8碼
+                //else if (this.signup.account.length < 8) {
+                //    this.signupCheck.accountError = true
+                //    this.signupCheck.accountErrorMsg = '帳號不得小於8碼!'
+                //}
+                // 成功時 消除errorMsg, errorStatus
+                else {
+                    this.signupCheck.activityStartTimeError = false
+                    this.signupCheck.activityStartTimeErrorMsg = ''
+                }
+
+                //呼叫確認所有的輸入框都要輸入正確的值，點擊送出按鈕的方法。
+                this.checkAddVerify()
+            }
+        },
+        'currentActivity.activityEndTime': {
+            immediate: true,
+            // X: handler: () => {
+            handler: function () {
+                // TODO:
+                // 不得為空
+                if (this.currentActivity.activityEndTime == '') {
+                    this.signupCheck.activityEndTimeError = true
+                    this.signupCheck.activityEndTimeErrorMsg = '不得為空!'
+                }
+                //// 大於8碼
+                //else if (this.signup.account.length < 8) {
+                //    this.signupCheck.accountError = true
+                //    this.signupCheck.accountErrorMsg = '帳號不得小於8碼!'
+                //}
+                // 成功時 消除errorMsg, errorStatus
+                else {
+                    this.signupCheck.activityEndTimeError = false
+                    this.signupCheck.activityEndTimeErrorMsg = ''
+                }
+
+                //呼叫確認所有的輸入框都要輸入正確的值，點擊送出按鈕的方法。
+                this.checkAddVerify()
+            }
+        },
+        'currentActivity.activityContent': {
+            immediate: true,
+            // X: handler: () => {
+            handler: function () {
+                // TODO:
+                // 不得為空
+                if (this.currentActivity.activityContent == '') {
+                    this.signupCheck.activityContentError = true
+                    this.signupCheck.activityContentErrorMsg = '不得為空!'
+                }
+                // 大於8碼
+                else if (this.currentActivity.activityContent.length > 500) {
+                    this.signupCheck.activityContentError = true
+                    this.signupCheck.activityContentErrorMsg = '不得超過於500字!'
+                }
+                // 成功時 消除errorMsg, errorStatus
+                else {
+                    this.signupCheck.activityContentError = false
+                    this.signupCheck.activityContentErrorMsg = ''
+                }
+
+                //呼叫確認所有的輸入框都要輸入正確的值，點擊送出按鈕的方法。
+                this.checkAddVerify()
+            }
+        },
+        
+    },
+
     methods: {
         getAllActivityList() {
             axios.get('/api/UpdateActivityApi/Read')
@@ -27,22 +155,9 @@ const app = new Vue({
                 })
         },
 
-        previewImage(e) {
-            const
-                originalFile = e.target.files[0]
-            console.log(e)
-            if (originalFile) {
-                let reader = new FileReader();
-                reader.readAsDataURL(originalFile);
-                reader.onload = (re) => {
-                    console.log(re)
-                    console.log(e.target.id)
-                    this.currentActivity[e.target.id] = re.target.result
-                };
-            }
-        },
+       
         selectEdit(Activity) {
-            value = this.ActivityList.activityStartTime;
+           
             this.currentActivity = { ...Activity }
             
         },
@@ -79,7 +194,22 @@ const app = new Vue({
                 .catch((error) => { console.log(error) })
         },
 
+        //確認所有的輸入框都要輸入正確的值，點擊送出按鈕的方法。
+        checkAddVerify() {
+            //先把所有的輸入框的狀態，一個一個跌帶出來
+            for (let prop in this.signupCheck) {
+                //預設所有的輸入框都要輸入正確的值，把預設為false狀態改成true。
+                if (this.signupCheck[prop] == true) {
+                    //開啟按鈕
+                    this.addVerify = true
 
+                    //回傳
+                    return
+                }
+                //禁用按鈕
+                this.addVerify = false
+            }
+        },
 
     },
 })
