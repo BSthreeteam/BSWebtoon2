@@ -1,6 +1,7 @@
 ﻿using BSWebtoon.Admin.IDapperRepository;
 //using BSWebtoon.Admin.Models.DTO.Activity;
 using BSWebtoon.Admin.Models.DTO.Activitys;
+using BSWebtoon.Admin.Models.DTO.Cloudinarys;
 using BSWebtoon.Admin.Service.CloudinaryService;
 using BSWebtoon.Model.Repository;
 using System;
@@ -87,6 +88,7 @@ namespace BSWebtoon.Admin.Service.ActivityService
                 IsSuccess = false,
             };
 
+
             //圖床轉換
             var ActivityImageOutput = await _cloudinaryService.UploadAsync(inputDTO.ActivityImage);
 
@@ -112,9 +114,56 @@ namespace BSWebtoon.Admin.Service.ActivityService
 
         }
 
-        
 
 
+        public async Task<UpdateActivityOutputDTO> EidtActivityInfo(UpdateActivityInputDTO inputDTO)
+        {
+            UploadImgOutputDTO  ActivityImageOutput;
+
+            var result = new UpdateActivityOutputDTO()
+            {
+                IsSuccess = false,
+            };
+
+            if (inputDTO.ActivityImage != null)
+            {
+                //圖床轉換
+                ActivityImageOutput = await _cloudinaryService.UploadAsync(inputDTO.ActivityImage);
+
+                var NewActivityPic = new BSWebtoon.Model.Models.Activity()
+                {
+                    ActivityId = inputDTO.ActivityId,
+                    ActivityImage = ActivityImageOutput.Url,
+                    
+                };
+                if (NewActivityPic.ActivityImage != null)
+                {
+                    _activityRepository.UpdateImg(NewActivityPic);
+                }
+
+            }
+
+           
+            var NewActivityInfo = new BSWebtoon.Model.Models.Activity()
+            {
+                ActivityId = inputDTO.ActivityId,
+                ActivityName = inputDTO.ActivityName,
+                ActivityStartTime = inputDTO.ActivityStartTime,
+                ActivityEndTime = inputDTO.ActivityEndTime,
+                //ActivityImage = ActivityImageOutput.Url,
+                ActivityBgColor = inputDTO.ActivityBgColor,
+                ActivityContent = inputDTO.ActivityContent,              
+            };
+
+            //if (NewActivityInfo.ActivityImage != null)
+            //{
+            //    _activityRepository.UpdateImg(NewActivityInfo);
+            //}
+            
+            _activityRepository.Update(NewActivityInfo);
+
+            return result;
+        }
 
 
     }

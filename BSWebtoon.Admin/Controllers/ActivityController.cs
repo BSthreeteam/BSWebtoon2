@@ -84,13 +84,8 @@ namespace BSWebtoon.Admin.Controllers
 
         //    return View();
         //}
-        ////活動編輯
-        //[HttpPost]
-        //public IActionResult EditActivityData() // /Activity/ActivityData
-        //{
 
-        //    return View();
-        //}
+       
 
 
 

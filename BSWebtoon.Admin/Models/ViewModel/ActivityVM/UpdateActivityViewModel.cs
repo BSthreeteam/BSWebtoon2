@@ -5,11 +5,15 @@ namespace BSWebtoon.Admin.Models.ViewModel.ActivityVM
 {
     public class UpdateActivityViewModel
     {
+        
+        //活動編號
+        public string ActivityId { get; set; }
+
         //活動名稱
         public string ActivityName { get; set; }
 
         //活動圖片
-        public string ActivityImage { get; set; }
+        public IFormFile ActivityImage { get; set; }
 
         //活動開始時間
         public DateTime ActivityStartTime { get; set; }
@@ -19,7 +23,6 @@ namespace BSWebtoon.Admin.Models.ViewModel.ActivityVM
         public string ActivityContent { get; set; }
         //活動背景色號
         public string ActivityBgColor { get; set; }
-        //員工名稱
-        public int ActivityEmployeeName { get; set; }
+        
     }
 }
