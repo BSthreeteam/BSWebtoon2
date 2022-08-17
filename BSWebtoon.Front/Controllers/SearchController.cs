@@ -35,6 +35,7 @@ namespace BSWebtoon.Front.Controllers
             {
                 SearchList = searchcomic.Select(comic => new SearchViewModel.Search
                 {
+                    ComicId=comic.ComicId,
                     TagName = comic.TagName,
                     ComicName = comic.ComicName,
                     ComicNameImage = comic.ComicNameImage,

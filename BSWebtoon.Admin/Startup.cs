@@ -1,10 +1,11 @@
 using BSWebtoon.Admin.IDapperRepository;
+using BSWebtoon.Admin.Service.AdminComicCloudinaryService;
+using BSWebtoon.Admin.Service.AdminUploadComicService;
 using BSWebtoon.Admin.Service.JobService;
 using BSWebtoon.Model.Models;
 using Coravel;
 using BSWebtoon.Admin.Service.ActivityService;
 
-using BSWebtoon.Model.Models;
 using BSWebtoon.Model.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -43,6 +44,11 @@ namespace BSWebtoon.Admin
             services.AddTransient<IDapperEmployeeRepository, DapperEmployeeRepository>();
             services.AddTransient<IDapperMemberRepository, DapperMemberRepository>();
 
+            services.AddTransient<IDapperDashActivityRepository, DapperDashActivityRepository>();
+            services.AddTransient<IDapperDashMemberRepository, DapperDashMemberRepository>();
+            services.AddTransient<IDapperDashRankRepository, DapperDashRankRepository>();
+            services.AddTransient<IDapperDashComicRepository, DapperDashComicRepository>();
+
             services.AddTransient<IDapperActivityRepository, DapperActivityRepository>();
             //活動
             services.AddScoped<IActivityService, ActivityService>();
@@ -55,8 +61,15 @@ namespace BSWebtoon.Admin
 
             //services.AddTransient<IDapperActivityRepository, DapperActivityRepository>();
 
+
             services.AddTransient<IDapperCouponUseRecordRepository, DapperCouponUseRecordRepository>();
             services.AddTransient<IDapperCouponRepository, DapperCouponRepository>();
+
+
+            services.AddTransient<IAdminUploadComicService, AdminUploadComicService>();
+            services.AddTransient<IAdminComicCloudinaryService, AdminComicCloudinaryService>();
+
+
 
             //加Dapper註冊
             services.AddScoped<IDbConnection, SqlConnection>(serviceProvider =>
@@ -72,6 +85,16 @@ namespace BSWebtoon.Admin
 
             //這一定要有
             services.AddScheduler();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", policy =>
+                {
+                    policy.AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -96,9 +119,13 @@ namespace BSWebtoon.Admin
                 scheduler.Schedule<CountDownCoupon>().Hourly().RunOnceAtStart();
             });
 
+            app.UseHttpsRedirection();
+            app.UseCors("CorsPolicy");
+
             app.UseRouting();
 
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {

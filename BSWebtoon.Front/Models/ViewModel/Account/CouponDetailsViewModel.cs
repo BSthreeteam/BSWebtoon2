@@ -5,6 +5,9 @@ namespace BSWebtoon.Front.Models.ViewModel.Account
     public class CouponDetailsViewModel
     {
         public List<CouponDetail> CouponDetailList { get; set; }
+        public int activePage { get; set; }
+        public int pages { get; set; }
+
         public class CouponDetail
         {
             public string BuyOrUse { get; set; }

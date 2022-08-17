@@ -1,4 +1,5 @@
-﻿using BSWebtoon.Admin.Models;
+﻿using BSWebtoon.Admin.IDapperRepository;
+using BSWebtoon.Admin.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,15 +12,34 @@ namespace BSWebtoon.Admin.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IDapperDashActivityRepository _dapperDashActivityRepository;
+        private readonly IDapperDashMemberRepository _dapperDashMemberRepository;
+        private readonly IDapperDashRankRepository _dapperDashRankRepository;
+        private readonly IDapperDashComicRepository _dapperDashComicRepository;
+
+
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IDapperDashActivityRepository dapperDashActivityRepository,
+                                   IDapperDashMemberRepository dapperDashMemberRepository,
+                                   IDapperDashRankRepository dapperDashRankRepository,
+                                   IDapperDashComicRepository dapperDashComicRepository,
+                                   ILogger<HomeController> logger)
         {
+            _dapperDashActivityRepository = dapperDashActivityRepository;
+            _dapperDashMemberRepository = dapperDashMemberRepository;
+            _dapperDashRankRepository = dapperDashRankRepository;
+            _dapperDashComicRepository = dapperDashComicRepository;
+
             _logger = logger;
         }
 
+
+
         public IActionResult Index()
         {
+            var activityCount = _dapperDashActivityRepository.SelectAll();
+
             return View();
         }
 

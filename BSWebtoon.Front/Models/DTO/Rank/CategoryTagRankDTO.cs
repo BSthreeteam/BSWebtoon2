@@ -30,6 +30,7 @@ namespace BSWebtoon.Front.Models.DTO.Rank
     public class CategoryRankDTO : ComicCardDto
     {
         public int TagId { get; set; }
+        public int ClickRecordCount { get; set; }
 
         public string TagName { get; set; }
         public int ClickRecordId { get; set; }

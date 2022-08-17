@@ -7,6 +7,7 @@
 
 body {
     margin-bottom: 0px;
+    overflow-x: hidden;
 }
 
 a {
@@ -174,11 +175,11 @@ a {
                 margin: 0 10px 0 0;
             }
 
-        .main_picture .comics_name .comics_category span {
-            display: flex;
-            align-items: center;
-            margin-right: 5px;
-        }
+            .main_picture .comics_name .comics_category span {
+                display: flex;
+                align-items: center;
+                margin-right: 5px;
+            }
 
 .main_comics_episode .comics_episode .row {
     max-width: 1200px;
@@ -203,10 +204,10 @@ a {
         background-color: var(--bgColor);
     }
 
-.main_comics_episode .comics_episode .illustrate_box {
-    display: flex;
-    justify-content: center;
-}
+    .main_comics_episode .comics_episode .illustrate_box {
+        display: flex;
+        justify-content: center;
+    }
 
         .main_comics_episode .comics_episode .illustrate_box ul {
             display: flex;
@@ -315,26 +316,26 @@ a {
         color: rgb(71, 61, 61);
     }
 
-.main_comics_episode .comics_episode .message_box{
+.main_comics_episode .comics_episode .message_box {
     display: none;
 }
 
-.epIcon{
-    position:absolute;
-    top:2%;
-    left:5%;
+.epIcon {
+    position: absolute;
+    top: 2%;
+    left: 5%;
 }
 
-.epIsFree{
+.epIsFree {
     background-color: #fff;
-    color:#000;
-    font-size:10px;
+    color: #000;
+    font-size: 10px;
     padding: 0px 5px;
-    border-radius:10px;
+    border-radius: 10px;
 }
 
-.epIsCD{
-    width:20px;
+.epIsCD {
+    width: 20px;
 }
 
 @media screen and (min-width:1200px) {
@@ -370,14 +371,14 @@ a {
     }
 
         .main_comics_episode .comics_episode .message_box .comment_text {
-            display: flex;
-            flex-direction: column;
+            overflow-y: scroll;
+            width:100vw;
         }
 
     .message_box .message_name {
         color: var(--content-small-color);
         font-size: 30px;
-        width: 1200px;
+        /*width: 1200px;*/
     }
 
     .main_comics_episode .comics_episode .message_box .leval {
@@ -394,12 +395,162 @@ a {
     .main_comics_episode .comics_episode .row .message_box .username {
         margin: 0px 0px 0px 5px;
     }
-    /*    .main_picture .comics_name_bg .play_tidy_box .play {
-        display: flex;
-    }
-*/ .main_picture .big_video .local_video_bg {
+
+    .main_picture .big_video .local_video_bg {
         justify-self: center;
         width: auto;
         height: 85%;
+    }
+}
+
+
+/* -----------------Comment----- */
+
+.Comment_area {
+    width: 100%;
+    /*background-color: #000;*/
+    color: #fff;
+    height: 1000px;
+}
+
+
+.Comment_fixed {
+    position: fixed;
+    /*background-color: #000;*/
+    z-index: 5;
+    padding-bottom: 5px;
+    width: 95%;
+    margin: auto;
+    left: 0;
+    right: 0;
+}
+
+.Comment_container {
+    width: 100%;
+    margin: auto;
+}
+
+
+.Comment_fixed h3 {
+    text-align: center;
+}
+
+.Comment_fixed .isSpoil {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+
+.Comment_fixed .Comment #CommentButton {
+    color: #fff;
+}
+
+.Comment_item {
+    position: relative;
+}
+
+    .Comment_item::after {
+        content: "";
+        width: 100%;
+        height: 1px;
+        background-color: rgba(206, 205, 205, 0.627);
+        position: absolute;
+        margin-bottom: 15px;
+    }
+
+.CommentShow_title {
+    display: flex;
+    padding-top: 10px;
+}
+
+    .CommentShow_title .Leval {
+        background-color: #f00;
+        height: fit-content;
+        border-radius: 30px;
+        padding: 2px;
+        font-size: 12px;
+        margin-right: 5px;
+    }
+
+    .CommentShow_title .date {
+        margin-left: auto;
+        color: rgba(206, 205, 205, 0.627);
+    }
+
+.CommentShow_btn_area {
+    display: flex;
+    padding-bottom: 25px;
+    position: relative;
+}
+
+    .CommentShow_btn_area .btn {
+        color: rgba(206, 205, 205, 0.799);
+        border-color: rgba(206, 205, 205, 0.799);
+        border-radius: 30px;
+        margin-right: 10px;
+        font-size: 5px;
+    }
+
+        .CommentShow_btn_area .btn:hover {
+            color: #fff;
+            border-color: #fff;
+        }
+
+/* --------------reply----------------------------------- */
+.reply_CommentShow_item {
+    position: relative;
+}
+
+    .reply_CommentShow_item::after {
+        content: "";
+        width: 100%;
+        height: 1px;
+        background-color: rgba(206, 205, 205, 0.627);
+        position: absolute;
+        bottom: 0;
+        margin-bottom: 10px;
+    }
+
+.reply_CommentShow .reply_CommentShow_item .reply_CommentShow_title {
+    display: flex;
+}
+
+.reply_CommentShow_title .date {
+    margin-left: auto;
+    color: rgba(206, 205, 205, 0.627);
+}
+
+.reply_CommentShow_title i {
+    margin-right: 5px;
+    color: rgba(206, 205, 205, 0.799);
+}
+
+.reply_Comment_btn {
+    display: flex;
+    padding-bottom: 25px;
+    position: relative;
+}
+
+    .reply_Comment_btn .btn {
+        color: rgba(206, 205, 205, 0.799);
+        border-color: rgba(206, 205, 205, 0.799);
+        border-radius: 30px;
+        margin-right: 10px;
+        font-size: 5px;
+    }
+
+        .reply_Comment_btn .btn:hover {
+            color: #fff;
+            border-color: #fff;
+        }
+
+
+#reply_CommentButton {
+    color: #fff;
+}
+
+@media screen and (min-width:1200px) {
+    .Comment_container {
+        width: 1200px;
     }
 }

@@ -36,6 +36,7 @@ namespace BSWebtoon.Front.Controllers
                 FirstRank = new RankViewModel_ClickRecord.ClickRecordRank
                 {
                     TagName = firstComic.TagName,
+                    ComicId=firstComic.ComicId,
                     ClickRecordId = firstComic.ClickRecordId,
                     ComicName = firstComic.ComicName,
                     ComicNameImage = firstComic.ComicNameImage,
@@ -48,6 +49,7 @@ namespace BSWebtoon.Front.Controllers
                 OtherRank = allrank.Skip(1).Take(99).Select(other => new RankViewModel_ClickRecord.ClickRecordRank
                 {
                     TagName = other.TagName,
+                    ComicId=other.ComicId,
                     ClickRecordId = other.ClickRecordId,
                     ComicName = other.ComicName,
                     ComicNameImage = other.ComicNameImage,
@@ -92,8 +94,11 @@ namespace BSWebtoon.Front.Controllers
                     FirstRank = new RankViewModel_ClickRecord.ClickRecordRank
                     {
                         TagId= firstComic.TagId,
+                        ClickRecordCount=firstComic.ClickRecordCount,
+                        ComicId=firstComic.ComicId,
                         TagName = firstComic.TagName,
                         ClickRecordId = firstComic.ClickRecordId,
+                        
                         ComicName = firstComic.ComicName,
                         ComicNameImage = firstComic.ComicNameImage,
                         ComicWeekFigure = firstComic.ComicWeekFigure,
@@ -105,6 +110,8 @@ namespace BSWebtoon.Front.Controllers
                     OtherRank = rank.Skip(1).Take(99).Select(other => new RankViewModel_ClickRecord.ClickRecordRank
                     {
                         TagId=other.TagId,
+                        ClickRecordCount=other.ClickRecordCount,
+                        ComicId=other.ComicId,
                         TagName = other.TagName,
                         ClickRecordId = other.ClickRecordId,
                         ComicName = other.ComicName,

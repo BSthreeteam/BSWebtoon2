@@ -25,12 +25,13 @@ namespace BSWebtoon.Front.Service.SearchService
 
             using (SqlConnection conn = new SqlConnection(_connectionStr))
             {
-                string sql = @$"SELECT T.TagName,C.*
+                string sql = @$"SELECT DISTINCT C.*
                                FROM  ComicTagList  TL 
                                INNER JOIN  Comic C ON  TL.ComicId= C.ComicId
                                INNER JOIN ComicTag T ON T.TagId=TL.TagId
                                WHERE  T.TagName LIKE N'%{searchcomic}%' or C.ComicChineseName  LIKE N'%{searchcomic}%'";
                 var ans = conn.Query<SearchDTO>(sql).ToList();
+
                 foreach (var item in ans)
                 {
                     result.Add(new SearchDTO
@@ -45,9 +46,12 @@ namespace BSWebtoon.Front.Service.SearchService
                         Introduction = item.Introduction,
                         ComicFigure = item.ComicFigure,
                     });
+
+                  
+
                 }
                 
-            }
+           }
             return result;
         }
 
