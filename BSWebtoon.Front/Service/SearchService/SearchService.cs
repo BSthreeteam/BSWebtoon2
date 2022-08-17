@@ -10,7 +10,7 @@ namespace BSWebtoon.Front.Service.SearchService
 {
     public class SearchService : ISearchService
     {
-        private static string _connectionStr = "Server=(localdb)\\mssqllocaldb;Database=BS;Trusted_Connection=True;MultipleActiveResultSets=true";
+        private static string _connectionStr = "Data Source=bswebtoon.database.windows.net;Initial Catalog=BSWebtoonDb;User ID=bs;Password=P@ssword;Encrypt=True;Trusted_Connection=False;MultipleActiveResultSets=true;";
         private readonly BSWebtoonDbContext _context;
         private readonly BSRepository _repository;
         public SearchService(BSWebtoonDbContext context, BSRepository repository)
