@@ -62,6 +62,8 @@ namespace BSWebtoon.Admin
 
             services.AddTransient<IAdminUploadComicService, AdminUploadComicService>();
             services.AddTransient<IAdminComicCloudinaryService, AdminComicCloudinaryService>();
+            services.AddTransient<IDapperAdminUploadComicRepository, DapperAdminUploadComicRepository>();
+            services.AddTransient<IDapperAdminComicTagListRepository, DapperAdminComicTagListRepository>();
 
 
 

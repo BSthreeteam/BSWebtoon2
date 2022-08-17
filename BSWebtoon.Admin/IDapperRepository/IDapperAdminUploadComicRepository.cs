@@ -21,9 +21,11 @@ namespace BSWebtoon.Admin.IDapperRepository
             return _conn.Execute(@"
                 INSERT INTO Comic(ComicChineseName,ComicEnglishName,ComicNameImage,BgCover,ComicFigure,
                 ComicWeekFigure,BgColor,PublishDate,UpdateWeek,Painter,Author,Introduction,
-                AuditEmployeeId,ComicStatus,Publisher)
+                AuditEmployeeId,ComicStatus,Publisher,HotBgCover,LastPublishDate,HotComicNameImage)
                 VALUES(@ComicChineseName,@ComicEnglishName,@ComicNameImage,@BgCover,@ComicFigure,
-                @ComicWeekFigure,@BgColor,@PublishDate,@UpdateWeek,@Painter,@Author,@Introduction,@AuditEmployeeId,@ComicStatus,@Publisher)", entity);
+                @ComicWeekFigure,@BgColor,@PublishDate,@UpdateWeek,@Painter,@Author,@Introduction
+                ,@AuditEmployeeId,@ComicStatus,@Publisher,@HotBgCover,@LastPublishDate,@HotComicNameImage)"
+            , entity);
         }
 
         public int Delete(Comic entity)
@@ -33,8 +35,10 @@ namespace BSWebtoon.Admin.IDapperRepository
 
         public IEnumerable<Comic> SelectAll()
         {
-            throw new System.NotImplementedException();
+            return _conn.Query<Comic>(@"Select ComicId from ComicTagList");
         }
+
+
 
         public Comic SelectById(int id)
         {

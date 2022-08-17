@@ -41,72 +41,145 @@
                         <div class="text_area w-75">
                             <div>
                                 <span class="comicName">漫畫名字</span>
-                                <b-form-input v-model="comicData.createComicData.ComicChineseName" placeholder="Enter your name">
+                                <b-form-input v-model="comicData.createComicData.ComicChineseName" placeholder="Enter your name" class="form-control"
+                                    v-bind:class="{ 'is-invalid': inputverify.ComicChineseNameError }"
+                                    v-on:change="verify('ComicChineseName',$event)">
                                 </b-form-input>
+                                <div class="invalid-feedback">
+                                    {{ inputverify.ComicChineseNameErrMsg }}
+                                </div>
+
                             </div>
 
                             <div>
                                 <span class="comicEngilshName">漫畫英文名字</span>
-                                <b-form-input v-model="comicData.createComicData.ComicEnglishName" placeholder="Enter your name">
+                                <b-form-input v-model="comicData.createComicData.ComicEnglishName" placeholder="Enter your name" class="form-control"
+                                    v-bind:class="{ 'is-invalid': inputverify.ComicEngilshNameError }"
+                                    v-on:change="verify('ComicEngilshName',$event)">
                                 </b-form-input>
+                                <div class="invalid-feedback">
+                                    {{ inputverify.ComicEngilshNameErrMsg }}
+                                </div>
+
                             </div>
 
 
                             <div>
                                 <span class="author">作者</span>
-                                <b-form-input v-model="comicData.createComicData.Author" placeholder="Enter your name">
+                                <b-form-input v-model="comicData.createComicData.Author" placeholder="Enter your name" class="form-control" v-bind:class="{ 'is-invalid': inputverify.AuthorError }"
+                                    v-on:change="verify('Author',$event)">
                                 </b-form-input>
+                                <div class="invalid-feedback">
+                                    {{ inputverify.AuthorErrMsg }}
+                                </div>
+
                             </div>
 
                             <div>
                                 <span class="painter">繪者</span>
-                                <b-form-input v-model="comicData.createComicData.Painter" placeholder="Enter your name">
+                                <b-form-input v-model="comicData.createComicData.Painter" placeholder="Enter your name" class="form-control" v-bind:class="{ 'is-invalid': inputverify.PainterError }"
+                                    v-on:change="verify('Painter',$event)">
                                 </b-form-input>
+                                <div class="invalid-feedback">
+                                    {{ inputverify.PainterErrMsg }}
+                                </div>
+
                             </div>
 
                             <b-form-select id="week" v-model="comicData.createComicData.UpdateWeek" :options="week_options"
-                                size="sm" class="mt-3">
+                                size="sm" class="form-control mt-3" v-bind:class="{ 'is-invalid': inputverify.UpdateWeekError }"
+                                    v-on:change="verify('UpdateWeek',$event)">
                             </b-form-select>
+                            <div class="invalid-feedback">
+                                    {{ inputverify.UpdateWeekErrMsg }}
+                            </div>
+
 
                             <div>
                                 <label for="date">請選擇上架日期</label>
-                                <b-form-datepicker id="date" v-model="comicData.createComicData.PublishDate" class="mb-2">
+                                <b-form-datepicker id="date" v-model="comicData.createComicData.PublishDate" class="form-control mb-2" v-bind:class="{ 'is-invalid': inputverify.PublishDateError }"
+                                    v-on:change="verify('PublishDate',$event)">
                                 </b-form-datepicker>
+                                <div class="invalid-feedback">
+                                    {{ inputverify.PublishDateErrMsg }}
+                                </div>
+
                             </div>
                             <div>
                                 <label for="color">請選擇背景色</label>
-                                <b-form-input v-model="comicData.createComicData.BgColor" id="bgColor" type="color">
+                                <b-form-input v-model="comicData.createComicData.BgColor" id="bgColor" type="color" class="form-control" v-bind:class="{ 'is-invalid': inputverify.BgColorError }"
+                                    v-on:change="verify('BgColor',$event)">
                                 </b-form-input>
+                                <div class="invalid-feedback">
+                                    {{ inputverify.BgColorErrMsg }}
+                                </div>
+
                             </div>
 
                             <div>
                                 <span class="comicIntroduction">漫畫簡介</span>
                                 <b-form-textarea v-model="comicData.createComicData.Introduction" id="introduction"
-                                    placeholder="Default textarea"></b-form-textarea>
+                                    placeholder="Default textarea" class="form-control" v-bind:class="{ 'is-invalid': inputverify.IntroductionError }"
+                                    v-on:change="verify('Introduction',$event)"></b-form-textarea>
+                                <div class="invalid-feedback">
+                                    {{ inputverify.IntroductionErrMsg }}
+                                </div>
+
                             </div>
 
                             <div class="selectGroup">
                                 <b-form-select v-model="comicData.createComicData.MainTag" :options="main_options" size="sm"
-                                    class="mt-3">
+                                   class="form-control mt-3" v-bind:class="{ 'is-invalid': inputverify.MainTagError }"
+                                    v-on:change="verify('MainTag',$event)">
                                 </b-form-select>
+                                <div class="invalid-feedback">
+                                    {{ inputverify.MainTagErrMsg }}
+                                </div>
+
                                 <b-form-select v-model="comicData.createComicData.Comic_subtitle" :options="one_options" size="sm"
-                                    class="mt-3">
+                                    class="form-control mt-3" v-bind:class="{ 'is-invalid': inputverify.Comic_subtitleError }"
+                                    v-on:change="verify('Comic_subtitle',$event)">
                                 </b-form-select>
+                                <div class="invalid-feedback">
+                                    {{ inputverify.Comic_subtitleErrMsg }}
+                                </div>
+
                                 <b-form-select v-model="comicData.createComicData.Comic_subtitle_two" :options="two_options" size="sm"
-                                    class="mt-3">
+                                    class="form-control mt-3" v-bind:class="{ 'is-invalid': inputverify.Comic_subtitle_twoError }"
+                                    v-on:change="verify('Comic_subtitle_two',$event)">
                                 </b-form-select>
+                                <div class="invalid-feedback">
+                                    {{ inputverify.Comic_subtitle_twoErrMsg }}
+                                </div>
+
                                 <b-form-select v-model="comicData.createComicData.Comic_subtitle_three" :options="three_options"
-                                    size="sm" class="mt-3">
+                                    size="sm" class="form-control mt-3" v-bind:class="{ 'is-invalid': inputverify.Comic_subtitle_threeError }"
+                                    v-on:change="verify('Comic_subtitle_three',$event)">
                                 </b-form-select>
+                                <div class="invalid-feedback">
+                                    {{ inputverify.Comic_subtitle_threeMsg }}
+                                </div>
+
                             </div>
 
                             <div>
                                 <b-form-select v-model="comicData.createComicData.AuditEmployeeId" :options="AuditEmployeeId"
-                                    size="sm" class="mt-3">
+                                    size="sm" class="form-control mt-3" v-bind:class="{ 'is-invalid': inputverify.AuditEmployeeIdError }"
+                                    v-on:change="verify('AuditEmployeeId',$event)">
                                 </b-form-select>
+                                <div class="invalid-feedback">
+                                    {{ inputverify.AuditEmployeeIdMsg }}
+                                </div>
+
                             </div>
 
-                            <button v-on:click="createComic" type="button" class="btn btn-primary">
+                            <button v-on:click="checkinput" type="button" class="btn btn-primary">
+                                確認
+                            </button>
+
+
+
+                            <button v-on:click="createComic" type="button" class="btn btn-primary" :disabled='isDisabled'>
                                 新增
                             </button>
 
