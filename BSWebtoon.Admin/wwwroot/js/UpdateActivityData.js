@@ -11,6 +11,7 @@ const app = new Vue({
             
             activityContent: '',
         },
+        //防呆預設值
         signupCheck: {
             activityNameError: false,
             activityNameErrorMsg: '',
@@ -26,7 +27,7 @@ const app = new Vue({
             activityContentError: false,
             activityContentErrorMsg: '',
         },
-
+        //預設禁用按鈕
         addVerify: true
         
     },
@@ -35,6 +36,7 @@ const app = new Vue({
     },
     //監聽區
     watch: {
+        //以下是監聽防呆預設值的變化
         'currentActivity.activityName': {
             immediate: true,
             // X: handler: () => {
@@ -155,12 +157,33 @@ const app = new Vue({
                 })
         },
 
-       
+        //當按下編輯按鈕時，會複製所被點選的所有資料的方法。
         selectEdit(Activity) {
-           
+
+            //以{ ...參數名稱 }的淺拷貝方法，複製所被點選的所有資料，在存入自訂宣告的物件{}。
             this.currentActivity = { ...Activity }
             
         },
+
+
+        //確認所有的輸入框都要輸入正確的值，點擊送出按鈕的方法。
+        checkAddVerify() {
+            //先把所有的輸入框的狀態，一個一個跌帶出來
+            for (let prop in this.signupCheck) {
+                //預設所有的輸入框都要輸入正確的值，把預設為false狀態改成true。
+                if (this.signupCheck[prop] == true) {
+                    //開啟按鈕
+                    this.addVerify = true
+
+                    //回傳
+                    return
+                }
+                //禁用按鈕
+                this.addVerify = false
+            }
+        },
+
+        //以api方式傳送給後端當擴充
         updateActivity() {
             let formData = new FormData()
             let keyList = Object.keys(this.currentActivity);
@@ -193,24 +216,6 @@ const app = new Vue({
                 })
                 .catch((error) => { console.log(error) })
         },
-
-        //確認所有的輸入框都要輸入正確的值，點擊送出按鈕的方法。
-        checkAddVerify() {
-            //先把所有的輸入框的狀態，一個一個跌帶出來
-            for (let prop in this.signupCheck) {
-                //預設所有的輸入框都要輸入正確的值，把預設為false狀態改成true。
-                if (this.signupCheck[prop] == true) {
-                    //開啟按鈕
-                    this.addVerify = true
-
-                    //回傳
-                    return
-                }
-                //禁用按鈕
-                this.addVerify = false
-            }
-        },
-
     },
 })
 

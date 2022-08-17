@@ -53,11 +53,12 @@ namespace BSWebtoon.Admin
             services.AddScoped<ICloudinaryService, CloudinaryService>();
 
 
-            services.AddTransient<IDapperActivityRepository, DapperActivityRepository>();
+            //services.AddTransient<IDapperActivityRepository, DapperActivityRepository>();
 
             services.AddTransient<IDapperCouponUseRecordRepository, DapperCouponUseRecordRepository>();
             services.AddTransient<IDapperCouponRepository, DapperCouponRepository>();
 
+            //¥[Dapperµù¥U
             services.AddScoped<IDbConnection, SqlConnection>(serviceProvider =>
             {
                 SqlConnection conn = new SqlConnection();
