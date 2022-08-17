@@ -1,9 +1,11 @@
 ﻿using BSWebtoon.Admin.IDapperRepository;
+using BSWebtoon.Admin.Models.ViewModel.ActivityVM;
 //using BSWebtoon.Admin.Models.DTO.Activity;
 using BSWebtoon.Admin.Service.ActivityService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Threading.Tasks;
 
 namespace BSWebtoon.Admin.Controllers.WebApi
 {
@@ -40,20 +42,21 @@ namespace BSWebtoon.Admin.Controllers.WebApi
 
 
         
-        [HttpPost("Update")]
-        public IActionResult UpdateActivity(/*[FromBody] ActivitysInputDTO input*/)//
-        {
-            try
-            {
+        //[HttpPost("Update")]
+        //public async Task<IActionResult> UpdateActivity([FromForm] UpdateActivityViewModel input)//
+        //{
+        //    try
+        //    {
 
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return Ok($"訊息錯誤{ex}");
-            }
+                
+        //        return Ok();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Ok($"訊息錯誤{ex}");
+        //    }
 
-            return Ok();
-        }
+        //    return Ok();
+        //}
     }
 }

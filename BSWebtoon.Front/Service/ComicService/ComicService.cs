@@ -5790,6 +5790,12 @@ namespace BSWebtoon.Front.Service.ComicService
                 && !universalCoupon_valid
             ) return result;
 
+            //非免費且非倒數卷 且通用與閱讀券全皆無
+            if (!EpSource.IsFree&&!EpSource.IsCountdownCoupon
+                && !readCoupon_valid
+                && !universalCoupon_valid
+            ) return result;
+
             result.WorkContents = Read(EpSource, EpContentsSource);
             result.EpList = ReadEpTable(EpSource.ComicId);
             ViewRecordCreate(epId);
@@ -5828,6 +5834,7 @@ namespace BSWebtoon.Front.Service.ComicService
             CouponUsedRecordCreate(epId, UseCoupon);
             return result;
             //}
+
 
 
 
