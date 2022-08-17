@@ -93,7 +93,7 @@ namespace BSWebtoon.Front.Controllers
                     ComicFigure = finishComicBig.ComicFigure,
                     ComicId = finishComicBig.ComicId,
                     ComicNameImage = finishComicBig.ComicNameImage,
-                    Introduction = finishComicBig.Introduction.Substring(0, 50),
+                    Introduction = finishComicBig.Introduction.Substring(0, 30),
                     Painter = finishComicBig.Painter
 
                 },
