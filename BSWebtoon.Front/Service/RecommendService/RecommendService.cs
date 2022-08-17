@@ -9,18 +9,18 @@ using System.Threading.Tasks;
 using BSWebtoon.Front.Service.RecommendService;
 using BSWebtoon.Front.Models.DTO.Recommend;
 using BSWebtoon.Model;
+using BSWebtoon.Model.Repository.Interface;
 
 namespace BSWebtoon.Front.Service.RecommendService
 {
     public class RecommendService : IRecommendService
     {
-        private readonly BSWebtoonDbContext _context;
         private readonly BSRepository _repository;
-        public RecommendService(BSWebtoonDbContext context, BSRepository repository)
+        private readonly IMemoryCacheRepository _iMemoryCacheRepository;
+        public RecommendService( BSRepository repository, IMemoryCacheRepository iMemoryCacheRepository)
         {
-            _context = context;
             _repository = repository;
-            //ActivityCreate();
+            _iMemoryCacheRepository = iMemoryCacheRepository;
         }
         public void ActivityCreate()
         {
@@ -58,8 +58,6 @@ namespace BSWebtoon.Front.Service.RecommendService
             //_repository.Delete(data);
             _repository.SaveChange();
         }
-
-
 
         //public IEnumerable<ActivityViewModel> ActivityRead()
         //{
@@ -209,6 +207,10 @@ namespace BSWebtoon.Front.Service.RecommendService
 
         public RecommendDTO ReadRecommend()
         {
+            const string redisKey = "HomePage.GetRecommend";
+            var result = _iMemoryCacheRepository.Get<RecommendDTO>(redisKey);
+            if (result != null) return result;
+
             // 活動 新作 人氣
 
             // 活動 軟刪除
@@ -229,8 +231,6 @@ namespace BSWebtoon.Front.Service.RecommendService
                 .Where(c => c.AuditType == (int)AuditType.auditPass && c.ComicStatus != (int)ComicState.newWork)
                 .Where(c => popularityGroupBy.Any(g => g.ComicId == c.ComicId));
             //var popularity = popularityList.OrderByDescending(c => popularityGroupBy.Where(g => g.ComicId == c.ComicId).Select(g => g.ClickCount));
-
-
 
             var addActivityList = activityList.Select(a => new RecommendDTO.RecommendComic
             {
@@ -281,7 +281,11 @@ namespace BSWebtoon.Front.Service.RecommendService
             allList.AddRange(addNewWorkList);
             allList.AddRange(addPopularityList);
 
-            var result = new RecommendDTO() { RecommendComics = allList };
+            result = new RecommendDTO() { RecommendComics = allList };
+
+            int refreshDays = 1;
+            // 有重新查詢 就存入快取
+            _iMemoryCacheRepository.Set(redisKey, result, refreshDays);
 
             return result;
         }

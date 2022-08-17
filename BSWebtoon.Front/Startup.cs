@@ -31,6 +31,7 @@ using BSWebtoon.Front.Service.ActivityService;
 using BSWebtoon.Front.Service.UploadService;
 using BSWebtoon.Front.Service.AccountService;
 using BSWebtoon.Front.Service.RecordViewService;
+using BSWebtoon.Model.Repository.Interface;
 
 namespace BSWebtoon.Front
 {
@@ -74,6 +75,13 @@ namespace BSWebtoon.Front
             services.AddScoped<IMemberService, MemberService>();
             services.AddScoped<IAccountService, AccountService>();
 
+            //µù¥Uredis¸ê®Æ®w
+            services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = Configuration["RedisConfig:ToolManMemoryCache"];
+            });
+
+            services.AddTransient<IMemoryCacheRepository, MemoryCacheRepository>();
 
             services.AddHttpContextAccessor();
 
