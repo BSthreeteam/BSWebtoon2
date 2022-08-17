@@ -148,7 +148,7 @@ namespace BSWebtoon.Front.Service.RankService
         public List<AllTagRankDTO> ReadAllRank()
         {
             var oldClickRecords = _repository.GetAll<ClickRecord>()
-                .Where(c => c.CreateTime < new DateTime(2022, 8, 4).AddDays(-7) && c.CreateTime >= new DateTime(2022, 8, 4).AddDays(-14));
+                .Where(c => c.CreateTime < DateTime.UtcNow.AddDays(-7) && c.CreateTime >= DateTime.UtcNow.AddDays(-14));
 
             var oldGroupBy = oldClickRecords
                 .GroupBy(c => c.ComicId)
@@ -157,7 +157,7 @@ namespace BSWebtoon.Front.Service.RankService
 
 
             var newClickRecords = _repository.GetAll<ClickRecord>()
-                .Where(c => c.CreateTime < new DateTime(2022, 8, 4) && c.CreateTime >= new DateTime(2022, 8, 4).AddDays(-7));
+                .Where(c => c.CreateTime < DateTime.UtcNow && c.CreateTime >= DateTime.UtcNow.AddDays(-7));
 
             var newGroupBy = newClickRecords
                 .GroupBy(c => c.ComicId)
@@ -179,6 +179,7 @@ namespace BSWebtoon.Front.Service.RankService
             var result = newrank.Select(comicrank => new AllTagRankDTO
             {
                 ComicId = comicrank.ComicId,
+                
                 ComicName = comicrank.ComicChineseName,
                 ComicNameImage = comicrank.ComicNameImage,
                 ComicWeekFigure = comicrank.ComicWeekFigure,
@@ -286,7 +287,7 @@ namespace BSWebtoon.Front.Service.RankService
 
 
                 //計算排名區間
-                var newRankEndDate = new DateTime(2022, 07, 29);
+                var newRankEndDate = DateTime.UtcNow.AddHours(8);
                 var newRankStartDate = newRankEndDate.AddDays(-7);//7/22
 
                 var oldRankEndDate = newRankStartDate.AddDays(-1);//7/21
@@ -391,6 +392,7 @@ namespace BSWebtoon.Front.Service.RankService
                             result.Add(new CategoryRankDTO
                             {
                                 TagId = id,
+                                ClickRecordCount=item.ClickRecordCount,
                                 ComicId = item.ComicId,
                                 ComicName = item.ComicName,
                                 BannerVideoWeb = item.BannerVideoWeb,
@@ -417,6 +419,7 @@ namespace BSWebtoon.Front.Service.RankService
                             result.Add(new CategoryRankDTO
                             {
                                 TagId=id,
+                                ClickRecordCount = item.ClickRecordCount,
                                 ComicId = item.ComicId,
                                 ComicName = item.ComicName,
                                 BannerVideoWeb = item.BannerVideoWeb,
