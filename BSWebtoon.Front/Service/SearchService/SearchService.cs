@@ -29,7 +29,7 @@ namespace BSWebtoon.Front.Service.SearchService
                                FROM  ComicTagList  TL 
                                INNER JOIN  Comic C ON  TL.ComicId= C.ComicId
                                INNER JOIN ComicTag T ON T.TagId=TL.TagId
-                               WHERE  T.TagName LIKE N'%{searchcomic}%' or C.ComicChineseName  LIKE N'%{searchcomic}%'";
+                               WHERE  T.TagName LIKE N'%{searchcomic}%' or C.ComicChineseName  LIKE N'%{searchcomic}%' AND C.AuditType=1";
                 var ans = conn.Query<SearchDTO>(sql).ToList();
 
                 foreach (var item in ans)
