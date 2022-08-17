@@ -18,7 +18,7 @@ namespace BSWebtoon.Admin.Controllers
         public IActionResult management()
         {
             //R
-            var qAll = _employeeRepository.SelectAll();
+            //var qAll = _employeeRepository.SelectAll();
 
             return View();
         }

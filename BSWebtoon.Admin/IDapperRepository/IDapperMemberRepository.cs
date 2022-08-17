@@ -34,12 +34,12 @@ namespace BSWebtoon.Admin.IDapperRepository
 
         public IEnumerable<Member> SelectAll()
         {
-            var restlt = @"select M.MemberId,M.AccountName,M.NickName,M.Balance,M.CreateTime ,M.Email,L.LoginTypeName
+            var result = @"select M.MemberId,M.AccountName,M.NickName,M.Balance,M.CreateTime ,M.Email,L.LoginTypeName
                            from Member M
                            inner join LoginType L on L.LoginTypeId=M.LoginTypeId";
 
 
-                return _conn.Query<MemberDTO>(restlt);
+                return _conn.Query<MemberDTO>(result);
 
         }
 

@@ -1,8 +1,10 @@
 ﻿using BSWebtoon.Front.Models.DTO.Account;
+using BSWebtoon.Front.Service.MemberService;
 using BSWebtoon.Model;
 using BSWebtoon.Model.Models;
 using BSWebtoon.Model.Repository;
 using Dapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Data.SqlClient;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,15 +14,18 @@ namespace BSWebtoon.Front.Service.AccountService
     public class AccountService : IAccountService
     {
         private readonly BSRepository _repository;
+        private readonly IMemberService _memberService;
         private static string _connectionStr = "Data Source=bswebtoon.database.windows.net;Initial Catalog=BSWebtoonDb;User ID=bs;Password=P@ssword;Encrypt=True;Trusted_Connection=False;MultipleActiveResultSets=true;";
 
-        public AccountService(BSRepository repository)
+        public AccountService(BSRepository repository, IMemberService memberService)
         {
             _repository = repository;
+           _memberService = memberService;
         }
 
-        public AccountInfoDTO GetAccountInfo(int memberId)
+        public AccountInfoDTO GetAccountInfo()
         {
+            var memberId = _memberService.GetCurrentMemberID();
             var member = _repository.GetAll<Member>().Where(m => m.MemberId == memberId).First();
             var MemberHaveCoin = decimal.Round(member.Balance, 0);
 
@@ -93,7 +98,7 @@ namespace BSWebtoon.Front.Service.AccountService
             }).ToList();
 
             var allList = new List<CoinDetailsDTO.CoinDetail> { };
-            allList.Add(addTitle);
+            //allList.Add(addTitle);
             allList.AddRange(addcoinRechargeRecord);
             allList.AddRange(addcoinConsumptionRecord);
 
@@ -143,7 +148,7 @@ namespace BSWebtoon.Front.Service.AccountService
             }).ToList();
 
             var allList = new List<CouponDetailsDTO.CouponDetail> { };
-            allList.Add(addTitle);
+            //allList.Add(addTitle);
             allList.AddRange(addBuyCouponRecord);
             allList.AddRange(addUseCouponRecord);
 
@@ -151,5 +156,7 @@ namespace BSWebtoon.Front.Service.AccountService
 
             return new CouponDetailsDTO { CouponDetailList = allList };
         }
+
+      
     }
 }

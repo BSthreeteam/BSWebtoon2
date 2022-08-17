@@ -14,5 +14,6 @@ namespace BSWebtoon.Front.Service.MemberService
         Task<Login3rdOutputDTO> LoginAccount(Login3rdInputDTO input);
 
         Member GetMemberByID(int memberId);
+        int GetCurrentMemberID();
     }
 }

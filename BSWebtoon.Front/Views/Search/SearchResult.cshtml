@@ -17,7 +17,7 @@
             <div class="content">
                 @foreach (var item in Model.SearchList)
                 {
-                    <a class="work" href="#">
+                    <a class="work" href="/WorksPage/WorksPage/@item.ComicId">
                         <div class="work_bg">
                             <img src="@item.BgCover" alt="@item.ComicName">
                         </div>
@@ -42,5 +42,9 @@
 
 @section endJS{
 <script src="https://kit.fontawesome.com/2dbc4e25d3.js" crossorigin="anonymous"></script>
+<script>
+    var aaa=Model.SearchList;
+    console.log(aaa);
+</script>
 @*<script src="~/js/Search.js"></script>*@
 }

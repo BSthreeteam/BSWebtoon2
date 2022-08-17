@@ -11,6 +11,7 @@ namespace BSWebtoon.Front.Models.ViewModels.Rank
         public class ClickRecordRank
         {
             public int ClickRecordId { get; set; }
+            public int ClickRecordCount { get; set; }
             public int ComicId { get; set; }
             public string ComicName { get; set; }
             public string ComicNameImage { get; set; }
