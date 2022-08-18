@@ -36,6 +36,10 @@ namespace BSWebtoon.Admin.Controllers
         }
 
         [Authorize]
+        public IActionResult Login_Return()
+        {
+            return View("Index");
+        }
         public IActionResult Index()
         {
             var activityCount = _dapperDashActivityRepository.SelectAll();
