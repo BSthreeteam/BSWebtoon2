@@ -47,20 +47,23 @@ namespace BSWebtoon.Admin.IDapperRepository
         {
 
             var AllActivity = @" SELECT 
-	a.ActivityId,
-	a.ActivityName,
-	a.ActivityStartTime,
-	a.ActivityEndTime,
-	a.ActivityImage,
-	a.ActivityBgColor,
-	a.ActivityContent,
-    a.CreateTime,
-	e.EmployeeName as ActivityEmployeeName
-FROM Activity a
-INNER JOIN Employee e ON e.EmployeeId = a.PrincipalEmployee";
+	                                a.ActivityId,
+	                                a.ActivityName,
+	                                a.ActivityStartTime,
+	                                a.ActivityEndTime,
+	                                a.ActivityImage,
+	                                a.ActivityBgColor,
+	                                a.ActivityContent,
+                                    a.CreateTime,
+	                                e.EmployeeName as ActivityEmployeeName
+                                FROM Activity a
+                                INNER JOIN Employee e ON e.EmployeeId = a.PrincipalEmployee";
 
-            return _conn.Query<ReadActivityDTO> (AllActivity);
+            return _conn.Query<ReadActivityDTO>(AllActivity);
         }
+
+
+
 
         public Activity SelectById(int id)
         {

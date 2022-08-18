@@ -293,23 +293,10 @@ namespace BSWebtoon.Front.Service.UploadService
 
             };
             string user = "";
-            //try
-            //{
+            
+  
             user = _repository.GetAll<Member>().First(x => x.MemberId == userid).NickName;
-            //    result.HasNickName = true;
-            //    result.IsSuccess = true;
-            //}
-            //catch
-            //{
-            //    result.IsSuccess = true;
-            //    result.HasNickName = false;
-            //    return result;
-
-            //}
-
-            //result.Author = user;
-
-            //return result;
+            
 
             return user;
         }
@@ -352,8 +339,8 @@ namespace BSWebtoon.Front.Service.UploadService
                 //先找到屬於這個會員的所有話次
                 var a = _repository.GetAll<Episode>().Where(x => x.ComicId == c.ComicId);
 
-                //找到查此漫畫的所有話次的內容總數
-                c.EpCount = a.Count();
+                //找到查此漫畫的所有話次的內容且審核過的總數
+                c.EpCount = a.Where(x=>x.AuditType == 1).Count();
                 if (c.EpCount > 0)
                 {
                     //用AuditTime審計時間來查，此部漫畫的話次內容目前上傳到最末話的狀態，先把AuditTime審計時間做由大到小排序，再找出唯一的第一個EpTitle

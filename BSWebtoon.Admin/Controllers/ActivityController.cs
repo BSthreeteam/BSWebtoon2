@@ -74,8 +74,12 @@ namespace BSWebtoon.Admin.Controllers
              await _activityService.UpActivityInfo(InputDTO);
 
 
+            //傳上傳成功訊息給View
+            TempData["UpActivitySuccess"] = "上傳成功!";
             return RedirectToAction("UpActivityData", "Activity");
         }
+
+
 
         ////活動編輯
         //[HttpGet]

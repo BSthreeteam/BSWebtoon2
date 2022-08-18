@@ -67,7 +67,7 @@ namespace BSWebtoon.Front.Controllers
         public async Task<IActionResult> UploadComic([FromForm] UploadComicViewModel input)
         {
             //防呆
-            if (!ModelState.IsValid || input.PublishDate < DateTime.UtcNow.AddHours(8))
+            if (!ModelState.IsValid || input.PublishDate < DateTime.UtcNow.AddDays(-1).AddHours(8))
             {
                 return View(input);//體貼地將資料填回去
             }
@@ -169,7 +169,8 @@ namespace BSWebtoon.Front.Controllers
             //如果資料庫裡面沒有上傳過任何一部漫畫就不能進入上傳EP頁面，因此直接跳轉回上傳漫畫的頁面。
             if (outputDto.MyComics_WithEpCount.Count == 0)
             {
-                 return RedirectToAction("UploadComic");
+                TempData["FirstComicSuccess"] = "上傳成功";
+                 return RedirectToAction("UploadComic", "UpLoad");
             }
 
             ViewData["MyComics_WithEpCount"] = outputDto.MyComics_WithEpCount;
@@ -230,6 +231,8 @@ namespace BSWebtoon.Front.Controllers
                 }
             }
 
+            //傳上傳成功訊息給View
+            TempData["EpSuccess"] = "上傳成功!";
              return RedirectToAction("UploadWork");
             ////回到作品頁
             //return RedirectToAction("WorksPage", "WorksPage");
