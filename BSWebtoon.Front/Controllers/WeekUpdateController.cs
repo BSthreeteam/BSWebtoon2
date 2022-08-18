@@ -93,11 +93,10 @@ namespace BSWebtoon.Front.Controllers
                     ComicFigure = finishComicBig.ComicFigure,
                     ComicId = finishComicBig.ComicId,
                     ComicNameImage = finishComicBig.ComicNameImage,
-                    Introduction = finishComicBig.Introduction.Substring(0, 50),
+                    Introduction = finishComicBig.Introduction.Substring(0, 30),
                     Painter = finishComicBig.Painter
 
                 },
-
                 FinishComicList = finishComics.Skip(1).Select(c => new FinishComicViewModel.FinishComicData
                 {
                     BgCover = c.BgCover,
@@ -105,6 +104,7 @@ namespace BSWebtoon.Front.Controllers
                     ComicId = c.ComicId,
                     ComicNameImage = c.ComicNameImage
                 }).ToList()
+
             };
 
 

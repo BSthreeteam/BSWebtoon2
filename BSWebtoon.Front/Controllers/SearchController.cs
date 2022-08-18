@@ -26,28 +26,52 @@ namespace BSWebtoon.Front.Controllers
         public IActionResult SearchComic(string comicname)
         {
             var searchcomic = _searchService.FindComic(comicname);
-            //if (comicname == string.Empty)
-            //{
-            //    return Content("請輸入你想查詢的書名或類別");
-            //}
-
-            var restult = new SearchViewModel
+            if (comicname == null)
             {
-                SearchList = searchcomic.Select(comic => new SearchViewModel.Search
+                //var result = -1;
+                //return View("SearchResult", result);
+                var result = new SearchViewModel
                 {
-                    TagName = comic.TagName,
-                    ComicName = comic.ComicName,
-                    ComicNameImage = comic.ComicNameImage,
-                    ComicWeekFigure = comic.ComicWeekFigure,
-                    BgCover = comic.BgCover,
-                    BannerVideoWeb = comic.BannerVideoWeb,
-                    ComicFigure = comic.ComicFigure
-                }).ToList()
-            };
+                    SearchList = searchcomic.Select(comic => new SearchViewModel.Search
+                    {
+                        ComicId = comic.ComicId,
+                        TagName = comic.TagName,
+                        ComicName = comic.ComicName,
+                        ComicNameImage = comic.ComicNameImage,
+                        ComicWeekFigure = comic.ComicWeekFigure,
+                        BgCover = comic.BgCover,
+                        BannerVideoWeb = comic.BannerVideoWeb,
+                        ComicFigure = comic.ComicFigure
+                    }).ToList()
+                };
 
-            //return View(restult);
+                //return View(restult);
 
-            return View("SearchResult", restult);
+                return View("SearchResult", result);
+            }
+            else
+            {
+                var result = new SearchViewModel
+                {
+                    SearchList = searchcomic.Select(comic => new SearchViewModel.Search
+                    {
+                        ComicId=comic.ComicId,
+                        TagName = comic.TagName,
+                        ComicName = comic.ComicName,
+                        ComicNameImage = comic.ComicNameImage,
+                        ComicWeekFigure = comic.ComicWeekFigure,
+                        BgCover = comic.BgCover,
+                        BannerVideoWeb = comic.BannerVideoWeb,
+                        ComicFigure = comic.ComicFigure
+                    }).ToList()
+                };
+
+                //return View(restult);
+
+                return View("SearchResult", result);
+
+            }
+
         }
     }
 }

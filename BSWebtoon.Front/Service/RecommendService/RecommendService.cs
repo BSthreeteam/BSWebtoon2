@@ -218,11 +218,19 @@ namespace BSWebtoon.Front.Service.RecommendService
             //var filterComics = _repository.GetAll<Comic>().Where(c => c.BannerVideoWeb != "");
 
             // 新作 ComicStatus == 4
-            var newWorkList = _repository.GetAll<Comic>().Where(c => c.AuditType == (int)AuditType.auditPass && c.ComicStatus == (int)ComicState.newWork)/*.ToList()*/;
+            var newWorkList = _repository.GetAll<Comic>().Where(c => c.AuditType == (int)AuditType.auditPass && c.ComicStatus == (int)ComicState.newWork);
 
             // 人氣
-            var popularityGroupBy = _repository.GetAll<ClickRecord>().GroupBy(c => c.ComicId).OrderByDescending(c => c.Count(gp => gp.ComicId == c.Key)).ThenBy(c => c.Key).Select(c => c.Key);
-            var popularityList = _repository.GetAll<Comic>().Where(c => c.AuditType == (int)AuditType.auditPass && popularityGroupBy.Any(g => g == c.ComicId))/*.ToList()*/;
+            var popularityGroupBy = _repository.GetAll<ClickRecord>().GroupBy(c => c.ComicId)
+                .OrderByDescending(c => c.Count()).ThenBy(c => c.Key)
+                .Select(c => new RecommendDTO.RecommendComic { ComicId = c.Key, ClickCount = c.Count() });
+
+            var ComimcsList = _repository.GetAll<Comic>()
+                .Where(c => c.AuditType == (int)AuditType.auditPass && c.ComicStatus != (int)ComicState.newWork)
+                .Where(c => popularityGroupBy.Any(g => g.ComicId == c.ComicId));
+            //var popularity = popularityList.OrderByDescending(c => popularityGroupBy.Where(g => g.ComicId == c.ComicId).Select(g => g.ClickCount));
+
+
 
             var addActivityList = activityList.Select(a => new RecommendDTO.RecommendComic
             {
@@ -252,7 +260,7 @@ namespace BSWebtoon.Front.Service.RecommendService
             }).ToList();
 
 
-            var addPopularityList = popularityList.Select(c => new RecommendDTO.RecommendComic
+            var addPopularityList = ComimcsList.Select(c => new RecommendDTO.RecommendComic
             {
                 ComicId = c.ComicId,
                 RecommendTag = "人氣",
@@ -263,8 +271,9 @@ namespace BSWebtoon.Front.Service.RecommendService
                 BannerVideoWeb = c.BannerVideoWeb,
                 ComicFigure = c.ComicFigure,
                 ControllerName = "WorksPage",
-                ActionName = "WorksPage"
-            }).ToList();
+                ActionName = "WorksPage",
+                ClickCount = popularityGroupBy.Where(g => g.ComicId == c.ComicId).Select(g => g.ClickCount).First(),
+            }).OrderByDescending(c => c.ClickCount).Take(10).ToList();
 
             var allList = new List<RecommendDTO.RecommendComic> { };
 
@@ -294,7 +303,7 @@ namespace BSWebtoon.Front.Service.RecommendService
 
             allList.AddRange(AddHitWorkList);
 
-            var result = new HitWorkDTO() { HitWorkComics = allList};
+            var result = new HitWorkDTO() { HitWorkComics = allList };
 
             return result;
         }

@@ -1,0 +1,182 @@
+﻿@{
+    ViewData["Title"] = "UpdateActivityData";
+}
+@section topCss{
+    <style>
+        .read_activity {
+            width: 100%;
+            overflow-x: scroll;
+        }
+
+        .modal-content {
+            width: 700px;
+        }
+    </style>
+}
+
+    <div id="app" class=" w-100 read_activity">
+        <table class="table text-center  ">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>活動圖片</th>
+                    <th>活動名稱</th>
+                    <th>活動開始時間</th>
+                    <th>活動結束時間</th>
+                    <th>活動背景色號</th>
+                    <th>活動內容介紹</th>
+                    <th>活動負責人</th>
+                    <th>活動創建時間</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="Activity in ActivityList">
+                    <td class="align-middle">{{Activity.activityId}}</td>
+                    <td class="align-middle">
+                        <img class="w-25" :src="Activity.activityImage" alt="" />
+                    </td>
+                    <td class="align-middle">{{Activity.activityName}}</td>
+                    <td class="align-middle">{{Activity.activityStartTime}}</td>
+                    <td class="align-middle">{{Activity.activityEndTime}}</td>
+                    <td class="align-middle">
+
+                        {{Activity.activityBgColor}}
+                    </td>
+                    <td class="align-middle">{{Activity.activityContent}}</td>
+                    <td class="align-middle">{{Activity.activityEmployeeName}}</td>
+                    <td class="align-middle">{{Activity.createTime}}</td>
+                    <td class="align-middle">
+                        <button v-on:click="selectEdit(Activity)" class="btn btn-primary" data-toggle="modal"
+                            data-target="#edit-modal">
+                            編輯
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 編輯Modal -->
+        <!-- 編輯Modal -->
+        <form method="post" enctype="multipart/form-data" asp-action="UpdateActivityData" asp-controller="UpdateActivity">
+
+            <div class="modal fade " id="edit-modal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <p>請編輯</p>
+
+                        </div>
+                        <div class="modal-body container">
+                            <div class="row">
+                                @*左邊*@
+                                <div class="col-6">
+                                    <div class="col-12 col-md-12 mb-3">
+                                        <!-- 動態 -->
+                                        <!-- 漫畫人物圖 -->
+                                        <p>活動圖修改後:</p>
+                                        <div id="img_box" class="d-flex  mb-3 " style="height: 250px; background: lightgrey;">
+                                            <img :src="currentActivity.activityImage" name="ActivityImage" class="w-100" />
+                                            @* <p class="d-flex mx-auto my-auto">請上傳活動圖</p>*@
+                                        </div>
+                                        <div class="card-body " style="background: #5a5c69b3; color: whitesmoke;">
+                                            <p class="headshot_text ">
+                                                圖片尺寸必須為710 × 600，檔案格式僅適用JPG、JPEG以及PNG檔案，且檔案尺寸在5MB以下。
+                                            </p>
+                                        </div>
+
+                                        <label type="button" class="btn btn-secondary w-50 d-flex align-self-center text-center justify-content-center my-2" for="ActivityImage">上傳活動圖</label>
+
+                                        <input type="file" name="ActivityImage" class="cover d-none form-control" accept="image/*" id="ActivityImage" />
+
+                                    </div>
+                                </div>
+
+                                <!--右邊-->
+                                <div class="col-6 ">
+                                    <div class="col-12 col-md-12 mb-3">
+                                        <label>活動編號</label>
+                                        <input readonly v-model="currentActivity.activityId" name="ActivityId" class="form-control"
+                                           type="text" />
+
+                                    </div>
+                                    <div class="col-12 col-md-12 mb-3">
+                                        <label>活動名稱</label>
+                                        <input @*readonly*@ :class="{ 'is-invalid': signupCheck.activityNameError }" v-model="currentActivity.activityName" name="ActivityName" class="form-control"
+                                           type="text" />
+                                        <div class="text-danger small mt-1">
+                                            <!-- 錯誤訊息 -->
+                                            {{ signupCheck.activityNameErrorMsg }}
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-12 mb-3">
+                                        <b-container fluid class="ActivityStartTime p-0">
+                                            <label type="date">活動開始日期:</label>
+
+                                            <b-form-input id="ActivityStartTime"
+                                                      @*class="form-control"*@ type="date" name="ActivityStartTime" v-model="currentActivity.activityStartTime"
+                                                      :class="{ 'is-invalid': signupCheck.activityStartTimeError } "
+                                                      @*value="currentActivity.activityStartTime" *@></b-form-input>
+                                            <div class="text-danger small mt-1">
+                                                <!-- 錯誤訊息 -->
+                                                {{ signupCheck.activityStartTimeErrorMsg }}
+                                            </div>
+                                        </b-container>
+                                    </div>
+                                    <div class="col-12 col-md-12 mb-3">
+                                        <label>活動結束時間</label>
+
+                                        <b-form-input id="ActivityEndTime"
+                                                  :class="{ 'is-invalid': signupCheck.activityEndTimeError } "  type="date" name="ActivityEndTime" v-model="currentActivity.activityEndTime"></b-form-input>
+                                        <div class="text-danger small mt-1">
+                                            <!-- 錯誤訊息 -->
+                                            {{ signupCheck.activityEndTimeErrorMsg }}
+                                        </div>
+
+                                    </div>
+                                    <div class="col-12 col-md-12 mb-3">
+                                        <label>活動背景色號</label>
+                                        <input @*readonly*@ v-model="currentActivity.activityBgColor" name="ActivityBgColor" class="form-control" type="color" />
+                                    </div>
+                                    <div class="col-12 col-md-12 mb-2">
+                                        <label>活動內容介紹</label>
+                                        <textarea id="ActivityContent" class="w-100" :class="{ 'is-invalid': signupCheck.activityContentError } " v-model="currentActivity.activityContent" name="ActivityContent" placeholder="500字以下" rows="8"> </textarea>
+                                         <div class="text-danger small mt-1">
+                                            <!-- 錯誤訊息 -->
+                                            {{ signupCheck.activityContentErrorMsg }}
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                取消
+                            </button>
+                            <button @*v-on:click="updateActivity"*@ type="submit" class="btn btn-primary" v-bind:disabled="addVerify">
+                                更新
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+
+
+    </div>
+
+
+
+
+
+    @section endJS{
+    <!-- Axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+        integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+        crossorigin="anonymous"></script>
+
+    <script src="~/js/UpdateActivityData.js"></script>
+ }

@@ -15,10 +15,10 @@
 	<div class="container w-1200 ">
 		<nav class="row w-1200">
 			<ul class="nav justify-content-end flex-nowrap text-white  align-items-center" style=" white-space:nowrap;">
-				<form class="d-flex text-white" action="/search/searchComic" method="post" name="find">
-					<input class="form-control me-2 bg-transparent inputSearchBorder text-white" type="search" placeholder="請輸入書名或類型"
+				<form class="d-flex text-white" action="/Search/SearchComic" method="post">
+					<input class="form-control me-2 bg-transparent inputSearchBorder text-white" type="search" autocomplete="off" placeholder="請輸入書名或類型"
 						   aria-label="Search" id="name" name="comicname">
-					<button class="nav-link" id="search" aria-current="page" type="submit" style="background-color:rgba(0,0,0,0); border:0px">
+					<button class="nav-link" id="search" aria-current="page" type="submit" >
 						<i class="fa-solid fa-magnifying-glass"></i>
 					</button>
 				</form>
@@ -26,6 +26,7 @@
 				@*如果是登入的狀態下，登入按鈕消失*@
 				@if (User.Identity.IsAuthenticated)
 				{
+					var memberId = User.Claims.FirstOrDefault() == null ? 0 : int.Parse(User.Claims.FirstOrDefault(x => x.Type == "MemberID").Value);
 					<li class="nav-item dropdown flex-nowrap" id="user">
 						<div class="dropdown">
 							<a class="nav-link dropdown-toggle display_name" href="#" id="navbarDropdown" role="button"
@@ -36,9 +37,9 @@
 							</a>
 							<ul class="dropdown-menu dropdown-menu-dark dropdown_bg_dark" aria-labelledby="navbarDarkDropdownMenuLink">
 								<li><a class="dropdown_bg_dark dropdown-item xl_accountinfo" href="/Recommend/Recommend">首頁</a></li>
-								<li><a class="dropdown_bg_dark dropdown-item xl_accountinfo" href="/api/Account/AccountInfo">我的帳戶</a></li>
+								<li><a class="dropdown_bg_dark dropdown-item xl_accountinfo" href="/Account/AccountInfo/@memberId">我的帳戶</a></li>
 								<li><a class="dropdown_bg_dark dropdown-item xl_my_love" href="/Favorite/ReadFavoriteView">我的最愛</a></li>
-								<li><a class="dropdown_bg_dark dropdown-item xl_my_coin" href="#">金幣/閱讀券明細</a></li>
+								@*<li><a class="dropdown_bg_dark dropdown-item xl_my_coin" href="#">金幣/閱讀券明細</a></li>*@
 								<li><a class="dropdown_bg_dark dropdown-item xl_stored_value" href="/Recharge/CashPlanView">儲值金幣</a></li>
 								<li><a class="dropdown_bg_dark dropdown-item xl_history" href="/Favorite/RecordView">歷史觀看紀錄</a></li>
 								<li><a class="dropdown_bg_dark dropdown-item xl_history upload_Comic" href="/UpLoad/UploadComic">上傳作品</a></li>
@@ -52,7 +53,7 @@
 				else
 				{
 					<li class="nav-item">
-						<a data-bs-toggle="modal" href="#" data-bs-target="#exampleModal" class="nav-link">登入</a>
+						<a data-bs-toggle="modal" href="#" data-bs-target="#exampleModal" class="btn btn-secondary nav-link mt-2">登入</a>
 					</li>
 				}
 			</ul>

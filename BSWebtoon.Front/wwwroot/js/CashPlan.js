@@ -1,28 +1,44 @@
 ﻿let btn_next = document.getElementById('btn_next');
 window.onload = function () {
-    btn_next.onclick = () => {
-        let plan = document.querySelector('[name=cashplan]:checked');
-        getans(plan.value)
-    }
-
-}
-
-
-function getans(type) {
-    console.log(type)
-    fetch('/Recharge/CashPlan', {
-        method: 'POST',
-        cache: 'no-cache',
-        headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify({ CashPlanId: type })
-    }).then(res => {
-        if (res.ok) return res.json(); // 使用 json() 可以得到 json 物件 
-    })
-        .then(res => {
-            console.log(res);
-        })
-
-
+    const app = Vue.createApp({
+        methods: {
+            // 傳送至藍新金流
+            SendToNewebPay(ChannelID) {
+                var self = this;
+                let plan = document.querySelector('[name=cashplan]:checked').value;
+                // 組合表單資料
+                var postData = {};
+                postData['ChannelID'] = ChannelID;
+                postData['ItemDesc'] = plan;//到後端用id找
+                // 使用 jQuery Ajax 傳送至後端
+                $.ajax({
+                    url: newebPayUrl,
+                    method: 'POST',
+                    dataType: 'json',
+                    data: { inModel: postData, __RequestVerificationToken: antiForgeryToken },
+                    success: function (returnObj) {
+                        // 呼叫藍新金流 API
+                        const form = document.createElement('form');
+                        form.method = 'post';
+                        form.action = 'https://ccore.newebpay.com/MPG/mpg_gateway';//藍新金流驗證網址(測試環境)
+                        for (const key in returnObj) {
+                            if (returnObj.hasOwnProperty(key)) {
+                                const hiddenField = document.createElement('input');
+                                hiddenField.type = 'hidden';
+                                hiddenField.name = key;
+                                hiddenField.value = returnObj[key];
+                                form.appendChild(hiddenField);
+                            }
+                        }
+                        document.body.appendChild(form);
+                        form.submit();
+                    },
+                    error: function (err) {
+                        alert(err.status + " " + err.statusText + '\n' + err.responseText);
+                    }
+                });
+            }
+        }
+    });
+    const vm = app.mount('#app');
 }

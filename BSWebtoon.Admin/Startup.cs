@@ -1,7 +1,12 @@
 using BSWebtoon.Admin.IDapperRepository;
+using BSWebtoon.Admin.Service.AdminComicCloudinaryService;
+using BSWebtoon.Admin.Service.AdminUploadComicService;
 using BSWebtoon.Admin.Service.JobService;
 using BSWebtoon.Model.Models;
 using Coravel;
+using BSWebtoon.Admin.Service.ActivityService;
+
+using BSWebtoon.Model.Repository;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -18,6 +23,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BSWebtoon.Admin.Service.CloudinaryService;
 
 namespace BSWebtoon.Admin
 {
@@ -59,11 +65,34 @@ namespace BSWebtoon.Admin
             services.AddTransient<IDapperEmployeeRepository, DapperEmployeeRepository>();
             services.AddTransient<IDapperMemberRepository, DapperMemberRepository>();
 
+            services.AddTransient<IDapperDashActivityRepository, DapperDashActivityRepository>();
+            services.AddTransient<IDapperDashMemberRepository, DapperDashMemberRepository>();
+            services.AddTransient<IDapperDashRankRepository, DapperDashRankRepository>();
+            services.AddTransient<IDapperDashComicRepository, DapperDashComicRepository>();
+
             services.AddTransient<IDapperActivityRepository, DapperActivityRepository>();
+            //活動
+            services.AddScoped<IActivityService, ActivityService>();
+            //註冊
+            services.AddScoped<BSRepository, BSRepository>();
+
+            //註冊
+            services.AddScoped<ICloudinaryService, CloudinaryService>();
+
+
+            //services.AddTransient<IDapperActivityRepository, DapperActivityRepository>();
+
 
             services.AddTransient<IDapperCouponUseRecordRepository, DapperCouponUseRecordRepository>();
             services.AddTransient<IDapperCouponRepository, DapperCouponRepository>();
 
+
+            services.AddTransient<IAdminUploadComicService, AdminUploadComicService>();
+            services.AddTransient<IAdminComicCloudinaryService, AdminComicCloudinaryService>();
+
+
+
+            //加Dapper註冊
             services.AddScoped<IDbConnection, SqlConnection>(serviceProvider =>
             {
                 SqlConnection conn = new SqlConnection();
@@ -77,6 +106,16 @@ namespace BSWebtoon.Admin
 
             //這一定要有
             services.AddScheduler();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", policy =>
+                {
+                    policy.AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -101,11 +140,15 @@ namespace BSWebtoon.Admin
                 scheduler.Schedule<CountDownCoupon>().Hourly().RunOnceAtStart();
             });
 
+            app.UseHttpsRedirection();
+            app.UseCors("CorsPolicy");
+
             app.UseRouting();
             app.UseAuthentication();
 
             app.UseAuthentication();//加這句
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {

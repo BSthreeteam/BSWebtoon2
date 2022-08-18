@@ -41,69 +41,17 @@
 
 </div>
 
-  @section scripts {
-    <script src ="https://unpkg.com/vue@3"></script>
+    
 
-    <script>
+@section endJS {
+<script>
+    let newebPayUrl = "@Url.Content("/NewebPay/SendToNewebPay")";
+    let antiForgeryToken =  $('@Html.AntiForgeryToken()').val();
+</script>
 
-        let btn_next = document.getElementById('btn_next');
+<script src="https://unpkg.com/vue@3"></script>
+<script src="~/js/CashPlan.js"></script>
 
-        window.onload = function () {
-            const app = Vue.createApp({
-            methods: {
-                // 傳送至藍新金流
-                SendToNewebPay(ChannelID) {
-                    var self = this;
-                    let plan = document.querySelector('[name=cashplan]:checked').value;
-                    // 組合表單資料
-                    var postData = {};
-                    postData['ChannelID'] = ChannelID;
-                    postData['ItemDesc'] = plan;//到後端用id找
-                    //postData['Amt'] = 1;//從後端找
-                    //postData['ReturnURL'] = 'https://bswebtoon-front.azurewebsites.net/NewebPay/CallbackReturn';
-                    postData['ClientBackURL'] = 'https://bswebtoon-front.azurewebsites.net/NewebPay/Index';
-                    //postData['CustomerURL'] = self.addForm.CustomerURL;   //目前不確定
-                    //postData['NotifyURL'] = self.addForm.NotifyURL;   //目前不確定
-                    //postData['Email'] = self.addForm.Email;   //可從後端寫入
-                    //postData['MerchantID'] = self.addForm.MerchantID; //可從後端寫入
-                    //postData['MerchantOrderNo'] = self.addForm.MerchantOrderNo;   //可從後端寫入
-                    //postData['ExpireDate'] = self.addForm.ExpireDate; //可從後端寫入
 
-                    // 使用 jQuery Ajax 傳送至後端
-                    $.ajax({
-                        url: '@Url.Content("/NewebPay/SendToNewebPay")',
-                        method: 'POST',
-                        dataType: 'json',
-                        data: { inModel: postData, __RequestVerificationToken: $('@Html.AntiForgeryToken()').val() },
-                        success: function(returnObj) {
-                            // 呼叫藍新金流 API
-                            const form = document.createElement('form');
-                            form.method = 'post';
-                            form.action = 'https://ccore.newebpay.com/MPG/mpg_gateway';//藍新金流驗證網址(測試環境)
-
-                            for (const key in returnObj) {
-                                if (returnObj.hasOwnProperty(key)) {
-                                    const hiddenField = document.createElement('input');
-                                    hiddenField.type = 'hidden';
-                                    hiddenField.name = key;
-                                    hiddenField.value = returnObj[key];
-                                    form.appendChild(hiddenField);
-                                }
-                            }
-                            document.body.appendChild(form);
-                            form.submit();
-                        },
-                        error: function(err) {
-                            alert(err.status + " " + err.statusText + '\n' + err.responseText);
-                        }
-                    });
-                }
-            }
-        });
-        const vm = app.mount('#app');
-
-        }
-
-    </script>
 }
 

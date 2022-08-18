@@ -15,7 +15,10 @@ body {
 #user a {
     padding: 10px;
 }
-
+#search {
+    background-color: #000;
+    border: 0px;
+}
 .w-1200 {
     max-width: 1200px;
     margin: auto;

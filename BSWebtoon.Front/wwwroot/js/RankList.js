@@ -9,6 +9,7 @@ let categorys = document.querySelectorAll('.categorys')
 
 
 window.onload = () => {
+    console.log(firstcomicId);
     document.getElementById("all").setAttribute('click', getFatchall());
     getFatch();
 }
@@ -65,6 +66,7 @@ function getFatchall() {
 
 function getFirstRank(result) {
     let cloneRank = showRankTemplate.content.cloneNode(true);
+    cloneRank.querySelector(".banner").href = `/WorksPage/WorksPage/${result.ComicId}`
     cloneRank.querySelector(".rank_pic_bg").src = result.BgCover
     cloneRank.querySelector(".rank_pic_title").src = result.ComicNameImage
     if (result.BannerVideoWeb != "") {
@@ -85,6 +87,7 @@ function getFirstRank(result) {
 function getOtherRank(result, index) {
     let cloneotherRank = workTemplate.content.cloneNode(true);
     //console.log(cloneotherRank);
+    cloneotherRank.querySelector(".work").href = `/WorksPage/WorksPage/${result.ComicId}`
     cloneotherRank.querySelector(".rankCardCover").src = result.BgCover
     cloneotherRank.querySelector(".work_pic").src = result.ComicWeekFigure
     cloneotherRank.querySelector(".work_pic").alt = result.ComicName

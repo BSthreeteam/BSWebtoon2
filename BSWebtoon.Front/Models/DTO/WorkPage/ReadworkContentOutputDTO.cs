@@ -2,7 +2,6 @@
 
 namespace BSWebtoon.Front.Models.DTO.WorkPage
 {
-
     public class ReadworkContentOutputDTO : BaseOutputDTO
     {
         public int ComicId { get; set; }

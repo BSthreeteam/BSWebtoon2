@@ -18,6 +18,8 @@ namespace BSWebtoon.Admin.Repository
 		/// </summary>
 		int Update(T entity);
 
+		
+
 		/// <summary>
 		/// D，回傳受影響資料列數
 		/// </summary>

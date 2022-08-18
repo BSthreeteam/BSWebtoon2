@@ -1,0 +1,29 @@
+﻿.tab-content {
+    height: 700px;
+    overflow-y: auto;
+}
+
+.week_people_pic_box {
+    width: 100px;
+    height: 210px;
+}
+
+.bg_box {
+    width: 100px;
+    height: 217px;
+}
+
+.people_pic_box {
+    width: 200px;
+    height: 169px;
+}
+
+.text_pic_box {
+    width: 200px;
+    height: 145px;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}

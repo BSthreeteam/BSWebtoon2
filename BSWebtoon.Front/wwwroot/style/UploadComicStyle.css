@@ -1,0 +1,60 @@
+.work {
+    display: flex;
+    margin-top: 150px;
+}
+
+.work_bgc {
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+}
+
+.nav-item .nav-link {
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.a {
+    display: flex;
+}
+
+    .a a {
+        width: 50px;
+        height: 50px;
+        background-color: rgb(2, 251, 126);
+        color: rgb(250, 250, 250);
+        border-radius: 50%;
+        text-align: center;
+        font-size: 35px;
+        margin: 10px;
+        text-decoration: none;
+    }
+
+    .a p {
+        text-align: center;
+        font-size: 35px;
+        margin: 10px;
+    }
+
+.b {
+    display: flex;
+}
+
+    .b a {
+        width: 50px;
+        height: 50px;
+        background-color: rgb(90, 88, 88);
+        color: rgb(250, 250, 250);
+        border-radius: 50%;
+        text-align: center;
+        font-size: 35px;
+        margin: 10px;
+        text-decoration: none;
+    }
+
+    .b p {
+        text-align: center;
+        font-size: 35px;
+        margin: 10px;
+    }
