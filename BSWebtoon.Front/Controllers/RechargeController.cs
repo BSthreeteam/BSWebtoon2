@@ -33,10 +33,7 @@ namespace BSWebtoon.Front.Controllers
                     claim.Value,//顧名思義 質
                 });
 
-            var NameIdentifiers = claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value;
-
-
-            var allCashPlan = _rechargeService.ReadCashPlan(NameIdentifiers);
+            var allCashPlan = _rechargeService.ReadCashPlan();
             var userCashPlan = allCashPlan.First();
 
             var result = new CashPlanViewModel

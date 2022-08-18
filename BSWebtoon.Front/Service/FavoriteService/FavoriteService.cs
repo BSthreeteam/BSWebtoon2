@@ -1,4 +1,6 @@
 ﻿using BSWebtoon.Front.Models.DTO.FavoriteDTO;
+using BSWebtoon.Front.Models.DTO.WorkPage;
+using BSWebtoon.Front.Service.MemberService;
 using BSWebtoon.Model.Models;
 using BSWebtoon.Model.Repository;
 using System.Collections.Generic;
@@ -10,10 +12,12 @@ namespace BSWebtoon.Front.Service.FavoriteService
     public class FavoriteService : IFavoriteService
     {
         private readonly BSRepository _repository;
+        private readonly IMemberService _memberService;
 
-        public FavoriteService(BSRepository repository)
+        public FavoriteService(BSRepository repository, IMemberService memberService)
         {
             _repository = repository;
+            _memberService = memberService;
         }
 
         public void FavoriteCreate()
@@ -53,9 +57,11 @@ namespace BSWebtoon.Front.Service.FavoriteService
             _repository.SaveChange();
         }
 
-        public List<FavoriteDTO> ReadFavorite(int id)
+        public List<FavoriteDTO> ReadFavorite()
         {
-            var favoritList = _repository.GetAll<Favorite>().Where(f => f.MemberId == id);
+            var memberId = _memberService.GetCurrentMemberID();
+
+            var favoritList = _repository.GetAll<Favorite>().Where(f => f.MemberId == memberId);
             //var MemberIdList = _repository.GetAll<Member>().OrderBy(e => e.MemberId);
             var ComicIdList = _repository.GetAll<Comic>();
             //var favoritList = _repository.GetAll<Favorite>().Where(c => c.FavoriteId == FavoriteId).First();
@@ -79,14 +85,14 @@ namespace BSWebtoon.Front.Service.FavoriteService
             return result;
         }
 
-        public void FavoriteDelete(int id)
+        public void FavoriteDelete()
         {
-            var DelFavorite = _repository.GetAll<Favorite>().Where(f => f.MemberId == 3).FirstOrDefault();
+            var memberId = _memberService.GetCurrentMemberID();
+
+            var DelFavorite = _repository.GetAll<Favorite>().Where(f => f.MemberId == memberId).FirstOrDefault();
             _repository.Delete(DelFavorite);
             _repository.SaveChange();
         }
-
-
 
         public void RemoveFavoriteRecord(RemoveFavoriteInputDTO input)
         {
@@ -102,6 +108,29 @@ namespace BSWebtoon.Front.Service.FavoriteService
             }
             _repository.SaveChange();
 
+        }
+
+        public void FavoriteDataCreateOrDelete(FavoriteDataDTO favoriteData)
+        {
+            var memberId = _memberService.GetCurrentMemberID();
+
+            var sameData = _repository.GetAll<Favorite>()
+                .Where(f => f.MemberId == memberId && f.ComicId == favoriteData.ComicId).FirstOrDefault();
+
+            if (favoriteData.IsLike == true && sameData == null)
+            {
+                var favorite = new Favorite
+                {
+                    ComicId = favoriteData.ComicId,
+                    MemberId = memberId,
+                };
+                _repository.Create(favorite);
+            }
+            else if (favoriteData.IsLike == false && sameData != null)
+            {
+                _repository.Delete(sameData);
+            }
+            _repository.SaveChange();
         }
     }
 }

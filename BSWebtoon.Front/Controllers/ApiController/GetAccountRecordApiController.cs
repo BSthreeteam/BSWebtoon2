@@ -16,10 +16,9 @@ namespace BSWebtoon.Front.Controllers.ApiController
             _accountService = accountService;
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetCoinDetails(int id)
+        public IActionResult GetCoinDetails()
         {
-            var coinDetailsSource = _accountService.GetCoinDetails(id);
+            var coinDetailsSource = _accountService.GetCoinDetails();
 
             var detailsList = new List<CoinDetailsViewModel.CoinDetail>() { };
 
@@ -39,10 +38,9 @@ namespace BSWebtoon.Front.Controllers.ApiController
             return Ok(result);
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetCouponDetails(int id)
+        public IActionResult GetCouponDetails()
         {
-            var couponDetailsSource = _accountService.GetCouponDetails(id);
+            var couponDetailsSource = _accountService.GetCouponDetails();
 
             var detailsList = new List<CouponDetailsViewModel.CouponDetail>() { };
 

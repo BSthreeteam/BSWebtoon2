@@ -20,9 +20,8 @@ namespace BSWebtoon.Front.Controllers
 
         public IActionResult RecordView()//Favorite/RecordView
         {
-            var memberId = int.Parse(User.Claims.First(x => x.Type == "MemberID").Value);
             //將UserId丟入Service
-            var allviewcomics = _recordView.ReadRecordView(memberId);
+            var allviewcomics = _recordView.ReadRecordView();
 
             var restult = new ViewRecordViewModel
             {
@@ -44,9 +43,8 @@ namespace BSWebtoon.Front.Controllers
         //觀看紀錄移除
         public IActionResult RemoveRecordView()//Favorite/RemoveRecordView
         {
-            var memberId = int.Parse(User.Claims.First(x => x.Type == "MemberID").Value);
             //將UserId丟入Service
-            var allviewcomics = _recordView.ReadRecordView(memberId);
+            var allviewcomics = _recordView.ReadRecordView();
 
             var restult = new ViewRecordViewModel
             {
@@ -77,7 +75,7 @@ namespace BSWebtoon.Front.Controllers
             //var userId = int.Parse(User.Identity.Name);
             // 呼叫 Service 存取資料
 
-            var Favorite = _favoriteService.ReadFavorite(3); //userId換3號會員
+            var Favorite = _favoriteService.ReadFavorite(); //userId換3號會員
             var result = new FavoriteViewModel
             {
 
@@ -111,7 +109,7 @@ namespace BSWebtoon.Front.Controllers
             //var userId = int.Parse(User.Identity.Name);
             // 呼叫 Service 存取資料
 
-            var Favorite = _favoriteService.ReadFavorite(3); //userId換3號會員
+            var Favorite = _favoriteService.ReadFavorite(); //userId換3號會員
             var result = new FavoriteViewModel
             {
 
