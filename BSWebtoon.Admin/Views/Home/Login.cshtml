@@ -1,0 +1,56 @@
+﻿@{
+	Layout = "_nullLayout";
+}
+<div class="container" >
+	<!-- Outer Row -->
+	<div class="row justify-content-center">
+		<div class="col-xl-5 col-lg-12 col-md-9">
+			<div class="card o-hidden border-0 shadow-lg my-5">
+				<div class="card-body p-0">
+					<!-- Nested Row within Card Body -->
+					<div class="row">
+						@*<div class="col-lg-6 d-none d-lg-block bg-login-image1">*@
+
+						</div>
+						<div class="col">
+							<div class="p-5">
+								<div class="text-center">
+									<h1 class="h4 text-gray-900 mb-4">BSWebtoon</h1>
+								</div>
+
+								<form class="user" id="form_login" action="/Home/Login_check" method="POST">
+									<div style="color:red;" class="pb-2 px-2"> @ViewData["msg"] </div>
+									<div class="form-group">
+										<input type="text" class="form-control form-control-user"
+											   id="InputAccount" aria-describedby="emailHelp"
+											   name="exampleInputAccount" value="@ViewData["InputAccount"]"
+											   placeholder="Account"   >
+									</div>
+
+									<div class="form-group">
+										<input type="password" class="form-control form-control-user"
+											   id="InputPassword" 
+											   name="exampleInputPassword" 
+											   placeholder="Password"  >
+									</div>
+
+									<button id="" onclick="check_input()" class="btn btn-primary btn-user btn-block mt-5">
+										Login
+									</button>
+									
+
+								</form>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+@section endJS{
+
+ <script src="~/js/Login.js"></script> 
+}
