@@ -7,6 +7,7 @@ using Microsoft.Data.SqlClient;
 using BSWebtoon.Front.Models.DTO.Rank;
 using static BSWebtoon.Front.Models.DTO.Rank.AllTagRankDTO;
 using Dapper;
+using BSWebtoon.Model.Repository.Interface;
 
 namespace BSWebtoon.Front.Service.RankService
 {
@@ -15,10 +16,12 @@ namespace BSWebtoon.Front.Service.RankService
         private static string _connectionStr = "Data Source=bswebtoon.database.windows.net;Initial Catalog=BSWebtoonDb;User ID=bs;Password=P@ssword;Encrypt=True;Trusted_Connection=False;MultipleActiveResultSets=true;";
         private readonly BSWebtoonDbContext _context;
         private readonly BSRepository _repository;
-        public ClickRecordService(BSWebtoonDbContext context, BSRepository repository)
+        private readonly IMemoryCacheRepository _iMemoryCacheRepository;
+        public ClickRecordService(BSWebtoonDbContext context, BSRepository repository, IMemoryCacheRepository iMemoryCacheRepository)
         {
             _context = context;
             _repository = repository;
+            _iMemoryCacheRepository = iMemoryCacheRepository;
         }
         public void ClickRecordCreate()
         {
@@ -147,6 +150,9 @@ namespace BSWebtoon.Front.Service.RankService
 
         public List<AllTagRankDTO> ReadAllRank()
         {
+            const string redisKey = "Rank.GetAllRank";
+            var result = _iMemoryCacheRepository.Get<List<AllTagRankDTO>>(redisKey);
+            if (result != null) return result;
 
             var oldClickRecords = _repository.GetAll<ClickRecord>()
                 .Where(c => c.CreateTime < DateTime.UtcNow.AddHours(8).AddDays(-8) && c.CreateTime >= DateTime.UtcNow.AddHours(8).AddDays(-14));
@@ -180,7 +186,7 @@ namespace BSWebtoon.Front.Service.RankService
 
 
 
-            var result = newrank.Select(comicrank => new AllTagRankDTO
+            result = newrank.Select(comicrank => new AllTagRankDTO
             {
                 ComicId = comicrank.ComicId,
                 ComicName = comicrank.ComicChineseName,
@@ -192,10 +198,11 @@ namespace BSWebtoon.Front.Service.RankService
                 BannerVideoWeb = comicrank.BannerVideoWeb,
                 Diff = oldSource.IndexOf(comicrank.ComicId) == -1 ? 0 : (oldSource.IndexOf(comicrank.ComicId)+1)- (newSource.IndexOf(comicrank.ComicId)+1)
             }).ToList();
+
+            int refreshDays = 7;
+            _iMemoryCacheRepository.Set(redisKey, result, refreshDays);
+
             return result;
-
-
-
 
 
             //TagName= mainTag.TagName,
@@ -269,8 +276,11 @@ namespace BSWebtoon.Front.Service.RankService
 
         public List<CategoryRankDTO> ReadOtherTagRank(int id)
         {
+            string redisKey = $"Rank.GetOtherTagRank.{id}";
+            var result = _iMemoryCacheRepository.Get<List<CategoryRankDTO>>(redisKey);
+            if (result != null) return result;
 
-            var result = new List<CategoryRankDTO>();
+            result = new List<CategoryRankDTO>();
 
             using (SqlConnection conn = new SqlConnection(_connectionStr))
             {
@@ -443,6 +453,10 @@ namespace BSWebtoon.Front.Service.RankService
                 }
 
             }
+
+            int refreshDays = 7;
+            _iMemoryCacheRepository.Set(redisKey, result, refreshDays);
+
             return result;
 
         }
