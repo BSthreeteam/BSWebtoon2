@@ -3,8 +3,6 @@ let nothing = document.querySelector('.nothing')
 let nothing_text = document.querySelector('.nothing_text')
 let coinRecord = document.querySelector('.coinRecord')
 let couponRecord = document.querySelector('.couponRecord')
-//let CouponData = []
-//let CoinData = []
 
 recordItem_a.forEach(item => {
     item.addEventListener('click', (e) => {
@@ -17,7 +15,7 @@ recordItem_a.forEach(item => {
 })
 function GetCouponDetails(memberId) {
     CouponData = []
-    fetch(`/api/GetAccountRecordApi/GetCouponDetails/${memberId}`)
+    fetch(`/api/GetAccountRecordApi/GetCouponDetails`)
         .then(response => { return response.json() })
         .then(result => {
             if (result != null) {
@@ -33,7 +31,7 @@ function GetCouponDetails(memberId) {
 
 function GetCoinDetails(memberId) {
     CoinData = []
-    fetch(`/api/GetAccountRecordApi/GetCoinDetails/${memberId}`)
+    fetch(`/api/GetAccountRecordApi/GetCoinDetails`)
         .then(response => { return response.json() })
         .then(result => {
             if (result != null) {
@@ -46,39 +44,6 @@ function GetCoinDetails(memberId) {
             console.log(ex)
         })
 }
-
-//function GetCloneTable(resultObj, captionText) {
-//    let CloneTable = tableTemplate.content.cloneNode(true);
-//    let caption = document.createElement('caption');
-//    caption.innerHTML = captionText
-//    CloneTable.appendChild(caption);
-
-//    //thead
-//    let thead = document.createElement('thead');
-//    CloneTable.appendChild(thead);
-
-//    //tbody
-//    let tbody = document.createElement('tbody');
-//    CloneTable.appendChild(tbody);
-//    for (let i = 0; i < resultObj.length; i++) {
-//        let array = Object.keys(resultObj[i])
-//        if (array[i] != undefined) {
-//            array += array[i]
-//        }
-//        let tr = document.createElement('tr')
-//        if (i == 0) {
-//            thead.appendChild(tr);
-//        } else {
-//            tbody.appendChild(tr);
-//        }
-//        for (let j = 0; j < Object.values(resultObj[i]).length; j++) {
-//            let td = document.createElement('td');
-//            td.innerText = Object.values(resultObj[i])[j];
-//            tr.appendChild(td);
-//        }
-//    }
-//    return CloneTable;
-//}
 
 
 function GetCoinBootstrapTable(data) {

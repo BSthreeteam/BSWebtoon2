@@ -364,6 +364,7 @@ a {
     .comics_illustrate {
         display: block;
         margin: 10px;
+        filter: invert(100%);
     }
 
     .main_comics_episode .comics_episode .message_box {

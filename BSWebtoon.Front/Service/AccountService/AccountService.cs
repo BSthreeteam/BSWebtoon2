@@ -67,17 +67,12 @@ namespace BSWebtoon.Front.Service.AccountService
             };
         }
 
-        public CoinDetailsDTO GetCoinDetails(int memberId)
+        public CoinDetailsDTO GetCoinDetails()
         {
-            var coinRechargeRecord = _repository.GetAll<RechargeRecord>().Where(r => r.MemberId == memberId);
 
-            var addTitle = new CoinDetailsDTO.CoinDetail
-            {
-                ConsumptionOrRecharge = "儲值/消費",
-                CoinContent = "金幣金額",
-                CreateTime = "時間",
-                ComicName = "漫畫名稱"
-            };
+            var memberId = _memberService.GetCurrentMemberID();
+
+            var coinRechargeRecord = _repository.GetAll<RechargeRecord>().Where(r => r.MemberId == memberId);
 
             var addcoinRechargeRecord = coinRechargeRecord.Select(x => new CoinDetailsDTO.CoinDetail
             {
@@ -98,7 +93,6 @@ namespace BSWebtoon.Front.Service.AccountService
             }).ToList();
 
             var allList = new List<CoinDetailsDTO.CoinDetail> { };
-            //allList.Add(addTitle);
             allList.AddRange(addcoinRechargeRecord);
             allList.AddRange(addcoinConsumptionRecord);
 
@@ -107,21 +101,13 @@ namespace BSWebtoon.Front.Service.AccountService
             return new CoinDetailsDTO() { coinDetailList = allList };
         }
 
-        public CouponDetailsDTO GetCouponDetails(int memberId)
+        public CouponDetailsDTO GetCouponDetails()
         {
+            var memberId = _memberService.GetCurrentMemberID();
+
             var buyCouponRecord = _repository.GetAll<Coupon>()
                 .Where(c => c.MemberId == memberId)
                 .Where(c => c.CouponTypeId == (int)CouponType.readCoupon || c.CouponTypeId == (int)CouponType.universalCoupon);
-
-            var addTitle = new CouponDetailsDTO.CouponDetail
-            {
-                BuyOrUse = "獲得/使用",
-                CouponType = "券種",
-                BuyOrUseCount = "獲得/使用數量",
-                CreateTime = "時間",
-                ComicName = "漫畫名稱",
-                ActivityName = "活動名稱"
-            };
 
             var addBuyCouponRecord = buyCouponRecord.Select(x => new CouponDetailsDTO.CouponDetail
             {
@@ -148,7 +134,6 @@ namespace BSWebtoon.Front.Service.AccountService
             }).ToList();
 
             var allList = new List<CouponDetailsDTO.CouponDetail> { };
-            //allList.Add(addTitle);
             allList.AddRange(addBuyCouponRecord);
             allList.AddRange(addUseCouponRecord);
 

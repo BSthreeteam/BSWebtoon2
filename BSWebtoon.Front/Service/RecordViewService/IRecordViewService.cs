@@ -5,7 +5,7 @@ namespace BSWebtoon.Front.Service.RecordViewService
 {
     public interface IRecordViewService
     {
-        List<ViewRecordDTO> ReadRecordView(int id);
+        List<ViewRecordDTO> ReadRecordView();
         void ReadRecordViewUpdate(RemoveRecordViewInputDTO input);
 
     }

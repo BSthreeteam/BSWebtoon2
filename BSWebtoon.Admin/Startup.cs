@@ -64,6 +64,8 @@ namespace BSWebtoon.Admin
 
             services.AddTransient<IDapperCouponUseRecordRepository, DapperCouponUseRecordRepository>();
             services.AddTransient<IDapperCouponRepository, DapperCouponRepository>();
+            services.AddTransient<IDapperUpdateComicStatusRepository, DapperUpdateComicStatusRepository>();
+            services.AddTransient<IDapperEpisodeRepository, DapperEpisodeRepository>();
 
 
             services.AddTransient<IAdminUploadComicService, AdminUploadComicService>();
@@ -82,6 +84,8 @@ namespace BSWebtoon.Admin
             //記得註冊 Invocable的實作
             services.AddTransient<ActivityIsDelete>();
             services.AddTransient<CountDownCoupon>();
+            services.AddTransient<NewWorkToSerialize>();
+            services.AddTransient<LastFiveEpIsNotCountdown>();
 
             //這一定要有
             services.AddScheduler();
@@ -115,8 +119,10 @@ namespace BSWebtoon.Admin
 
             app.ApplicationServices.UseScheduler(scheduler =>
             {
-                scheduler.Schedule<ActivityIsDelete>().Daily().RunOnceAtStart();
-                scheduler.Schedule<CountDownCoupon>().Hourly().RunOnceAtStart();
+                scheduler.Schedule<ActivityIsDelete>().DailyAtHour(0).RunOnceAtStart();
+                scheduler.Schedule<CountDownCoupon>().HourlyAt(0).RunOnceAtStart();
+                scheduler.Schedule<NewWorkToSerialize>().DailyAtHour(0).RunOnceAtStart();
+                scheduler.Schedule<LastFiveEpIsNotCountdown>().DailyAtHour(0).RunOnceAtStart();
             });
 
             app.UseHttpsRedirection();

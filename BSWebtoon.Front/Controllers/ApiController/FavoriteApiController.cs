@@ -1,5 +1,7 @@
 ﻿using BSWebtoon.Front.Models.DTO.FavoriteDTO;
+using BSWebtoon.Front.Models.DTO.WorkPage;
 using BSWebtoon.Front.Service.FavoriteService;
+using BSWebtoon.Front.Service.MemberService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,18 +14,20 @@ namespace BSWebtoon.Front.Controllers.ApiController
     public class FavoriteApiController : ControllerBase
     {
         private readonly IFavoriteService _favoriteService;
+        private readonly IMemberService _memberService;
 
-        public FavoriteApiController(IFavoriteService favoriteService)
+        public FavoriteApiController(IFavoriteService favoriteService, IMemberService memberService)
         {
             _favoriteService = favoriteService;
+            _memberService = memberService;
         }
 
         [HttpPost]
         public IActionResult FavoriteRemove([FromBody] RemoveFavoriteInputDTO input)
         {
-            var memberId = int.Parse(User.Claims.First(x => x.Type == "MemberID").Value);
+            var memberId = _memberService.GetCurrentMemberID();
 
-            input.MemberId = 3;
+            input.MemberId = memberId;
             input.ComicIdsToDelete.Add(1);
 
             try
@@ -38,5 +42,13 @@ namespace BSWebtoon.Front.Controllers.ApiController
 
         }
 
+        public IActionResult GetFavoriteData(FavoriteDataDTO favoriteData)
+        {
+            var data = favoriteData;
+
+            _favoriteService.FavoriteDataCreateOrDelete(data);
+
+            return Ok();
+        }
     }
 }
