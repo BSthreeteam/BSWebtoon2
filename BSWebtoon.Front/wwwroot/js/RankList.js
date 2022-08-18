@@ -66,7 +66,7 @@ function getFatchall() {
 
 function getFirstRank(result) {
     let cloneRank = showRankTemplate.content.cloneNode(true);
-    cloneRank.querySelector(".work_big").href = `/WorksPage/WorksPage/${result.ComicId}`
+    cloneRank.querySelector(".banner").href = `/WorksPage/WorksPage/${result.ComicId}`
     cloneRank.querySelector(".rank_pic_bg").src = result.BgCover
     cloneRank.querySelector(".rank_pic_title").src = result.ComicNameImage
     if (result.BannerVideoWeb != "") {
