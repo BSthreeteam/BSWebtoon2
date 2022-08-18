@@ -64,8 +64,6 @@ namespace BSWebtoon.Front.Service.WeekUpdateService
 
             return result;
         }
-
-
         public List<NewComicDTO> ReadNewComic()
         {
             const string redisKey = "Week.GetNewComic";

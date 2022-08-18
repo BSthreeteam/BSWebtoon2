@@ -212,6 +212,7 @@ namespace BSWebtoon.Front.Service.RecommendService
             if (result != null) return result;
 
             // 活動 新作 人氣
+            var comics = _repository.GetAll<Comic>();
 
             // 活動 軟刪除
             var activityList = _repository.GetAll<Activity>().Where(a => a.IsDelete == false).Where(a => a.ActivityStartTime < DateTime.UtcNow.AddHours(8));
@@ -220,14 +221,14 @@ namespace BSWebtoon.Front.Service.RecommendService
             //var filterComics = _repository.GetAll<Comic>().Where(c => c.BannerVideoWeb != "");
 
             // 新作 ComicStatus == 4
-            var newWorkList = _repository.GetAll<Comic>().Where(c => c.AuditType == (int)AuditType.auditPass && c.ComicStatus == (int)ComicState.newWork);
+            var newWorkList = comics.Where(c => c.AuditType == (int)AuditType.auditPass && c.ComicStatus == (int)ComicState.newWork);
 
             // 人氣
             var popularityGroupBy = _repository.GetAll<ClickRecord>().GroupBy(c => c.ComicId)
                 .OrderByDescending(c => c.Count()).ThenBy(c => c.Key)
                 .Select(c => new RecommendDTO.RecommendComic { ComicId = c.Key, ClickCount = c.Count() });
 
-            var ComimcsList = _repository.GetAll<Comic>()
+            var ComimcsList = comics
                 .Where(c => c.AuditType == (int)AuditType.auditPass && c.ComicStatus != (int)ComicState.newWork)
                 .Where(c => popularityGroupBy.Any(g => g.ComicId == c.ComicId));
             //var popularity = popularityList.OrderByDescending(c => popularityGroupBy.Where(g => g.ComicId == c.ComicId).Select(g => g.ClickCount));
@@ -292,7 +293,9 @@ namespace BSWebtoon.Front.Service.RecommendService
 
         public HitWorkDTO ReadHitWork()
         {
-            var hitWorkList = _repository.GetAll<Comic>().Where(c => c.AuditType == (int)AuditType.auditPass && c.HotComicNameImage != "" && c.HotBgCover != "" && c.HotVideo != "");
+            var hitWorkList = _repository.GetAll<Comic>().Where(c => c.AuditType == (int)AuditType.auditPass)
+                .Where(c => c.HotComicNameImage != "" && c.HotBgCover != "" && c.HotVideo != "")
+                .Where(c => c.HotComicNameImage != null && c.HotBgCover != null && c.HotVideo != null);
 
             var allList = new List<HitWorkDTO.HitWorkComic> { };
 

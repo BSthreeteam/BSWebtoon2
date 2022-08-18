@@ -151,18 +151,20 @@ namespace BSWebtoon.Front.Service.CouponService
             _repository.SaveChange();
         }
 
-        public void GetCountdownCoupon()
+        public void NewMemberGetCountdownCoupon()
         {
+            // 呼叫 會員登入 新增漫畫
             // 新登入一個會員  將每一部漫畫跑一遍 新增倒數券
-            var HaveCoundownCouponMember = _repository.GetAll<Coupon>().Where(c => c.CouponTypeId == (int)CouponType.countdownCoupon);
             var AllMember = _repository.GetAll<Member>();
+            var AllComic = _repository.GetAll<Comic>().Where(c => c.AuditType == (int)AuditType.auditPass);
 
-            var members = AllMember.Where(m => !HaveCoundownCouponMember.Any(h => m.MemberId == h.MemberId));
-            var AllComic = _repository.GetAll<Comic>();
+            var CoundownCoupons = _repository.GetAll<Coupon>().Where(c => c.CouponTypeId == (int)CouponType.countdownCoupon);
+
+            var NotHaveCouponMembers = AllMember.Where(m => !CoundownCoupons.Any(h => m.MemberId == h.MemberId));
 
             List<Coupon> countdowncoupons = new List<Coupon>();
 
-            foreach (var member in members)
+            foreach (var member in NotHaveCouponMembers)
             {
                 foreach (var comic in AllComic)
                 {
@@ -170,7 +172,6 @@ namespace BSWebtoon.Front.Service.CouponService
                     {
                         MemberId = member.MemberId,
                         ComicId = comic.ComicId,
-                        ActivityId = null,
                         CouponTypeId = (int)CouponType.countdownCoupon,
                         OriginQuantity = 1,
                         CreateTime = DateTime.UtcNow.AddHours(8), //台灣時間
@@ -179,6 +180,38 @@ namespace BSWebtoon.Front.Service.CouponService
                 }
             }
 
+            foreach (var coupon in countdowncoupons)
+            {
+                _repository.Create(coupon);
+            }
+            _repository.SaveChange();
+        }
+
+        public void NewComicGetCountdownCoupon()
+        {
+            // 有新的漫畫 將每位會員跑一遍
+            var AllMember = _repository.GetAll<Member>();
+            var AllComic = _repository.GetAll<Comic>().Where(c => c.AuditType == (int)AuditType.auditPass);
+            var CoundownCoupons = _repository.GetAll<Coupon>().Where(c => c.CouponTypeId == (int)CouponType.countdownCoupon);
+            var NewComics = AllComic.Where(c => !CoundownCoupons.Any(coupon => coupon.ComicId == c.ComicId));
+
+            List<Coupon> countdowncoupons = new List<Coupon>();
+            foreach (var comic in NewComics)
+            {
+                foreach (var member in AllMember)
+                {
+                    countdowncoupons.Add(new Coupon()
+                    {
+                        MemberId = member.MemberId,
+                        ComicId = comic.ComicId,
+                        CouponTypeId = (int)CouponType.countdownCoupon,
+                        OriginQuantity = 1,
+                        CreateTime = DateTime.UtcNow.AddHours(8), //台灣時間
+                        Quantity = 1
+                    });
+                }
+            }
+ 
             foreach (var coupon in countdowncoupons)
             {
                 _repository.Create(coupon);

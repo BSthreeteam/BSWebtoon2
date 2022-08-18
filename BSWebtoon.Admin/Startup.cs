@@ -119,10 +119,10 @@ namespace BSWebtoon.Admin
 
             app.ApplicationServices.UseScheduler(scheduler =>
             {
-                scheduler.Schedule<ActivityIsDelete>().Daily().RunOnceAtStart();
-                scheduler.Schedule<CountDownCoupon>().Hourly().RunOnceAtStart();
-                scheduler.Schedule<NewWorkToSerialize>().Daily().RunOnceAtStart();
-                scheduler.Schedule<LastFiveEpIsNotCountdown>().Daily().RunOnceAtStart();
+                scheduler.Schedule<ActivityIsDelete>().DailyAtHour(0).RunOnceAtStart();
+                scheduler.Schedule<CountDownCoupon>().HourlyAt(0).RunOnceAtStart();
+                scheduler.Schedule<NewWorkToSerialize>().DailyAtHour(0).RunOnceAtStart();
+                scheduler.Schedule<LastFiveEpIsNotCountdown>().DailyAtHour(0).RunOnceAtStart();
             });
 
             app.UseHttpsRedirection();

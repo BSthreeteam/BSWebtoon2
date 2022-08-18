@@ -131,7 +131,7 @@ namespace BSWebtoon.Front.Service.MemberService
 
             }
             
-            _couponService.GetCountdownCoupon();
+            _couponService.NewMemberGetCountdownCoupon();
 
             await this.LogoutAccountAsync();
 

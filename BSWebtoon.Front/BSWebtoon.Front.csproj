@@ -18,6 +18,7 @@
   <ItemGroup>
     <PackageReference Include="AspNet.Security.OAuth.Line" Version="5.0.18" />
     <PackageReference Include="CloudinaryDotNet" Version="1.19.0" />
+    <PackageReference Include="Coravel" Version="4.1.2" />
   </ItemGroup>
 
   <ItemGroup>

@@ -16,16 +16,16 @@ namespace BSWebtoon.Front.Controllers
         }
         public IActionResult BuyCoupon(int Id)
         {
-
             var buyCouponData = _comicService.ReadBuyCoupon(Id);
 
             var result = new BuyCouponViewModel
             {
                 ComicId = buyCouponData.ComicId,
                 ComicChineseName = buyCouponData.ComicChineseName,
-                BuyInOneTimeQuantity = buyCouponData.BuyInOneTimeQuantity,
+                NotFreeEp = buyCouponData.NotFreeEp,
                 MemberHaveCoin = buyCouponData.MemberHaveCoin,
                 MemberHaveReadTicket = buyCouponData.MemberHaveReadTicket,
+                MemberHaveUniversalCoupon = buyCouponData.MemberHaveUniversalCoupon,
             };
 
             return View(result);

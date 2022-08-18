@@ -34,8 +34,8 @@
         <h1 class="buyCoupon_comicName">@Model.ComicChineseName</h1>
         <ul class="buyCoupon_quantity_list decoration_line">
             <li class="buyCoupon_quantity_listItem">現有閱讀券<span class="nowHaveCoupon">@Model.MemberHaveReadTicket 張</span></li>
-            <li class="buyCoupon_quantity_listItem">現有通用券<span>0 張</span></li>
-            <li class="buyCoupon_quantity_listItem">尚未閱覽話次數(不包含免費話次)<span class="readYet">@Model.BuyInOneTimeQuantity 話</span></li>
+            <li class="buyCoupon_quantity_listItem">現有通用券<span class="nowHaveUniversalCoupon">@Model.MemberHaveUniversalCoupon 張</span></li>
+            <li class="buyCoupon_quantity_listItem">尚未閱覽話次數(不包含免費話次)<span class="readYet">@Model.NotFreeEp 話</span></li>
             <li class="buyCoupon_quantity_listItem">現有金幣<span>@Model.MemberHaveCoin 金幣</span></li>
         </ul>
     </div>

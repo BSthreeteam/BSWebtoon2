@@ -202,13 +202,9 @@ namespace BSWebtoon.Model.Models
                     .HasColumnType("datetime")
                     .HasComment("完結日期");
 
-                entity.Property(e => e.HotBgCover)
-                    .IsRequired()
-                    .HasComment("強檔劇獻背景圖");
+                entity.Property(e => e.HotBgCover).HasComment("強檔劇獻背景圖");
 
-                entity.Property(e => e.HotComicNameImage)
-                    .IsRequired()
-                    .HasComment("強檔劇獻名稱圖");
+                entity.Property(e => e.HotComicNameImage).HasComment("強檔劇獻名稱圖");
 
                 entity.Property(e => e.HotVideo).HasComment("強檔劇獻影片");
 
