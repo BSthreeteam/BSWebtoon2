@@ -68,7 +68,7 @@ namespace BSWebtoon.Front.Controllers
                 ComicFigure = c.ComicFigure,
                 ComicId = c.ComicId,
                 ComicNameImage = c.ComicNameImage,
-                Introduction = c.Introduction,
+                Introduction = c.Introduction.Substring(0, 30),
                 Painter = c.Painter
             }).ToList();
 
