@@ -99,6 +99,7 @@ namespace BSWebtoon.Front.Service.UploadService
 
 
             Member user = _repository.GetAll<Member>().First(x => x.MemberId == input.MemberId);
+
             if (input.IsNewAuthorName)
             {
                 //作者筆名 不可重複
@@ -106,21 +107,7 @@ namespace BSWebtoon.Front.Service.UploadService
                 result.Message = "已有重複名稱";
                 return result;
 
-                try
-                {
-                    //user = _repository.GetAll<Member>().First(x => x.AccountName == "poyou chen");
-                    user.NickName = input.Author;
-
-                    _context.Update(user);
-                    _context.SaveChanges();
-                    result.HasNickName = true;
-                }
-                catch
-                {
-                    result.HasNickName = false;
-                    result.Message = "寫入作者名稱失敗";
-                    return result;
-                }
+               
             }
 
 
@@ -130,13 +117,10 @@ namespace BSWebtoon.Front.Service.UploadService
                 return result;
             }
 
-
             //更新會員表資料庫
-            Member userloginid = _repository.GetAll<Member>().First(x => x.MemberId == input.MemberId);
+            user.NickName = input.Author;
 
-            userloginid.NickName = input.Author;
-
-            _context.Update(userloginid);
+            _context.Update(user);
             _context.SaveChanges();
 
 

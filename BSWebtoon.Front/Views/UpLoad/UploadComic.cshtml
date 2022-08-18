@@ -265,7 +265,7 @@
                                 </div>*@
                                     @*<span asp-validation-for="Author" class="text-danger"></span>*@
 
-                                    <input type="checkbox" class="d-none" id="WriteAuthor" name="IsNewAuthorName" value=" @( string.IsNullOrEmpty(Model.Author)  )">
+                                    <input type="checkbox" readonly class="d-none" id="WriteAuthor" name="IsNewAuthorName" value=" @( string.IsNullOrEmpty(Model.Author)  )">
                                     @*<div class="text-danger small mt-1 d-none">
                                 <!-- 錯誤訊息 -->
                                 {{ signupCheck.WriteAuthorErrorMsg }}
