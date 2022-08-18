@@ -57,24 +57,21 @@ namespace BSWebtoon.Admin.Service.AdminUploadComicService
                 AuditEmployeeId= input.AuditEmployeeId,
                 ComicStatus= (int)ComicState.newWork,
                 Publisher = "BSWebtoon",
-                HotBgCover = BgCoverOutput.Url,
                 LastPublishDate = input.PublishDate,
-                HotComicNameImage = ComicNameImageOutput.Url,
-                //AuditType = 1
+                AuditType = 1
             };
              _adminUploadComicRepository.Create(comicEntity);
 
-            var comicIdSourse = _adminUploadComicRepository.SelectAll().Select(c=>c.ComicId);
-            var tagListSourse = _adminComicTagListRepository.SelectAll().Select(c => c.ComicId);
+            var comicId = _adminUploadComicRepository.SelectAll().OrderByDescending(c=>c.ComicId).Select(c=>c.ComicId).First();
+            var tagListSourse = _adminComicTagListRepository.SelectAll().GroupBy(c=>c.ComicId).Select(c => c.Key);
 
-            foreach(var item in tagListSourse)
-            {
-                if (!comicIdSourse.Contains(item))
+
+                if (!tagListSourse.Contains(comicId))
                 {
                     ComicTagList mainTagEntity = new ComicTagList
                     {
                         TagId = input.MainTag,
-                        ComicId = item
+                        ComicId = comicId
                     };
 
                     _adminComicTagListRepository.Create(mainTagEntity);
@@ -84,7 +81,7 @@ namespace BSWebtoon.Admin.Service.AdminUploadComicService
                         ComicTagList subtitleEntity = new ComicTagList
                         {
                             TagId = input.Comic_subtitle,
-                            ComicId = item
+                            ComicId = comicId
                         };
 
                         _adminComicTagListRepository.Create(subtitleEntity);
@@ -97,7 +94,7 @@ namespace BSWebtoon.Admin.Service.AdminUploadComicService
                         ComicTagList subtitleEntity = new ComicTagList
                         {
                             TagId = input.Comic_subtitle_two,
-                            ComicId = item
+                            ComicId = comicId
                         };
 
                         _adminComicTagListRepository.Create(subtitleEntity);
@@ -110,7 +107,7 @@ namespace BSWebtoon.Admin.Service.AdminUploadComicService
                         ComicTagList subtitleEntity = new ComicTagList
                         {
                             TagId = input.Comic_subtitle_three,
-                            ComicId = item
+                            ComicId = comicId
                         };
 
                         _adminComicTagListRepository.Create(subtitleEntity);
@@ -121,8 +118,7 @@ namespace BSWebtoon.Admin.Service.AdminUploadComicService
 
 
                 }
-            }
-           
+                       
 
 
 

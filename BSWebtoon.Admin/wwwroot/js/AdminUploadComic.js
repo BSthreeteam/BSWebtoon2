@@ -4,6 +4,8 @@ let release_area = new Vue({
     data: {
         tabIndex: 0,
         isDisabled: true,
+        min: '',
+        show: false,
         week_options: [
             { value: 0, text: "請選擇更新星期" },
             { value: 1, text: "星期一" },
@@ -76,17 +78,11 @@ let release_area = new Vue({
             UpdateWeekErrMsg: '不可為空',
             
             BgColorError:true,
-            BgColorErrMsg: '不可為空',
+            BgColorErrMsg: '請選擇顏色',
             IntroductionError:true,
             IntroductionErrMsg: '不可為空',
             MainTagError:true,
             MainTagErrMsg: '不可為空',
-            Comic_subtitleError:true,
-            Comic_subtitleErrMsg: '不可為空',
-            Comic_subtitle_twoError:true,
-            Comic_subtitle_twoErrMsg: '不可為空',
-            Comic_subtitle_threeError:true,
-            Comic_subtitle_threeMsg: '不可為空',
             AuditEmployeeIdError:true,
             AuditEmployeeIdMsg: '不可為空'
         },
@@ -107,17 +103,20 @@ let release_area = new Vue({
                 ComicEnglishName: "",
                 Author: "",
                 Painter: "",
-                UpdateWeek: 1,
+                UpdateWeek: 0,
                 PublishDate: null,
                 BgColor: "",
                 Introduction: "",
-                MainTag: "",
+                MainTag: 0,
                 Comic_subtitle: 0,
                 Comic_subtitle_two: 0,
                 Comic_subtitle_three: 0,
                 AuditEmployeeId:0
             }
         }
+    },
+    mounted() {
+        /*this.dateLimit();*/
     },
     methods: {
         linkClass(idx) {
@@ -191,6 +190,14 @@ let release_area = new Vue({
 
             }
         },
+        dateLimit() {
+                //const now = new Date()
+                //const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+                //// 15th two months prior
+                //const minDate = new Date(today)
+                //minDate.setDate(minDate.getDate() + 7)
+                //this.min = minDate
+            },
         verify(name, value) {
             if (value || value!==0) {
                 release_area.inputverify[`${name}Error`] = false;
@@ -217,6 +224,7 @@ let release_area = new Vue({
             this.isDisabled = false;
         },
         createComic() {
+            this.show = true;
             let formData = new FormData()
             let keyList = Object.keys(this.comicData.createComicData);
 
@@ -241,8 +249,13 @@ let release_area = new Vue({
             })
             .then((res) => {
                 console.log("成功")
+                alert("上傳成功")
+                this.show = false;
+                this.refreshData()
             }).catch(e => {
                 console.log("錯誤")
+                alert("上傳失敗")
+                this.show = false;
             })
             // axios.post('api/UploadComicApi/UploadComic', formData)
             //     .then((res) => {
@@ -255,6 +268,64 @@ let release_area = new Vue({
             //         }
             //         console.log(res)
             //     })
+
+
+
+
+        },
+        refreshData() {
+                this.comicData.preview.ComicWeekFigure = "",
+                this.comicData.preview.BgCover = "",
+                this.comicData.preview.ComicFigure = "",
+                this.comicData.preview.ComicNameImage = "",
+
+                this.comicData.createComicData.ComicWeekFigure = "",
+                this.comicData.createComicData.BgCover = "",
+                this.comicData.createComicData.ComicFigure = "",
+                this.comicData.createComicData.ComicNameImage = "",
+                this.comicData.createComicData.ComicChineseName = "",
+                this.comicData.createComicData.ComicEnglishName = "",
+                this.comicData.createComicData.Author = "",
+                this.comicData.createComicData.Painter = "",
+                this.comicData.createComicData.UpdateWeek = 0,
+                this.comicData.createComicData.PublishDate = null,
+                this.comicData.createComicData.BgColor = "",
+                this.comicData.createComicData.Introduction = "",
+                this.comicData.createComicData.MainTag = 0,
+                this.comicData.createComicData.Comic_subtitle = 0,
+                this.comicData.createComicData.Comic_subtitle_two = 0,
+                this.comicData.createComicData.Comic_subtitle_three = 0,
+                this.comicData.createComicData.AuditEmployeeId = 0
+
+            this.inputverify.ComicChineseNameError = true
+            this.inputverify.ComicChineseNameErrMsg= '不可為空'
+
+            this.inputverify.ComicEngilshNameError = true
+            this.inputverify.ComicEngilshNameErrMsg= '不可為空'
+
+            this.inputverify.AuthorError = true
+            this.inputverify.AuthorErrMsg= '不可為空'
+
+            this.inputverify.PainterError = true
+            this.inputverify.PainterErrMsg= '不可為空'
+
+            this.inputverify.UpdateWeekError = true
+            this.inputverify.UpdateWeekErrMsg= '不可為空'
+
+            this.inputverify.BgColorError = true
+            this.inputverify.BgColorErrMsg = '請選擇顏色'
+
+            this.inputverify.IntroductionError = true
+            this.inputverify.IntroductionErrMsg= '不可為空'
+
+            this.inputverify.MainTagError = true
+            this.inputverify.MainTagErrMsg= '不可為空'
+
+            this.inputverify.AuditEmployeeIdError = true
+            this.inputverify.AuditEmployeeIdErrMsg= '不可為空'
+
+
+
         }
 
 

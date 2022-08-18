@@ -21,10 +21,10 @@ namespace BSWebtoon.Admin.IDapperRepository
             return _conn.Execute(@"
                 INSERT INTO Comic(ComicChineseName,ComicEnglishName,ComicNameImage,BgCover,ComicFigure,
                 ComicWeekFigure,BgColor,PublishDate,UpdateWeek,Painter,Author,Introduction,
-                AuditEmployeeId,ComicStatus,Publisher,HotBgCover,LastPublishDate,HotComicNameImage)
+                AuditEmployeeId,ComicStatus,Publisher,LastPublishDate,AuditType)
                 VALUES(@ComicChineseName,@ComicEnglishName,@ComicNameImage,@BgCover,@ComicFigure,
                 @ComicWeekFigure,@BgColor,@PublishDate,@UpdateWeek,@Painter,@Author,@Introduction
-                ,@AuditEmployeeId,@ComicStatus,@Publisher,@HotBgCover,@LastPublishDate,@HotComicNameImage)"
+                ,@AuditEmployeeId,@ComicStatus,@Publisher,@LastPublishDate,@AuditType)"
             , entity);
         }
 
@@ -35,7 +35,7 @@ namespace BSWebtoon.Admin.IDapperRepository
 
         public IEnumerable<Comic> SelectAll()
         {
-            return _conn.Query<Comic>(@"Select ComicId from ComicTagList");
+            return _conn.Query<Comic>(@"Select ComicId from Comic");
         }
 
 
