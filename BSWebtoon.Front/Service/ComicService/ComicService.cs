@@ -5892,9 +5892,6 @@ namespace BSWebtoon.Front.Service.ComicService
         }
 
         public void CouponUsedRecordCreate(int EpId, Coupon UsedCoupon)
-
-
-        public void CouponUsedRecordCreate(int EpId, int memberId, Coupon UsedCoupon)
         {
             var memberId = _memberService.GetCurrentMemberID();
 
