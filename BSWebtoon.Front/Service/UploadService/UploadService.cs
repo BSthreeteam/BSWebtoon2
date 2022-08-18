@@ -353,7 +353,7 @@ namespace BSWebtoon.Front.Service.UploadService
                 var a = _repository.GetAll<Episode>().Where(x => x.ComicId == c.ComicId);
 
                 //找到查此漫畫的所有話次的內容總數
-                c.EpCount = a.Count();
+                c.EpCount = a.Where(x=>x.AuditType==1).Count();
                 if (c.EpCount > 0)
                 {
                     //用AuditTime審計時間來查，此部漫畫的話次內容目前上傳到最末話的狀態，先把AuditTime審計時間做由大到小排序，再找出唯一的第一個EpTitle

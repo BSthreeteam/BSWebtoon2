@@ -102,7 +102,7 @@ namespace NewebPay.Controllers
             // 繳費有效期限(適用於非即時交易)
             //TradeInfo.Add(new KeyValuePair<string, string>("ExpireDate", inModel.ExpireDate));//我們是即時交易
             // 支付完成返回商店網址
-            TradeInfo.Add(new KeyValuePair<string, string>("ReturnURL", $"https://bswebtoon-frontend.azurewebsites.net/NewebPay/CallbackReturn"));
+            TradeInfo.Add(new KeyValuePair<string, string>("ReturnURL", $"{Request.Scheme}://{Request.Host.Value}/NewebPay/CallbackReturn"));
             // 支付通知網址
             TradeInfo.Add(new KeyValuePair<string, string>("NotifyURL", $"{Request.Scheme}://{Request.Host}{Request.Path}Home/CallbackNotify"));
             // 商店取號網址
@@ -168,6 +168,7 @@ namespace NewebPay.Controllers
                 CashPlanContent = 0,
                 Price = 0,
             };
+            var currentMemberId = 0;
             foreach (String key in decryptTradeCollection.AllKeys)
             {
                 var status = decryptTradeCollection["Status"];//SUCCESS
@@ -179,6 +180,7 @@ namespace NewebPay.Controllers
                     {
                         string[] sArray = decryptTradeCollection[key].Split("_");
                         MemberId = Convert.ToInt32(sArray[0]);
+                        currentMemberId = Convert.ToInt32(sArray[0]);
                         input_RechargeRecord.MemberId = MemberId;
                     }
                     else if (key == "ItemDesc")
@@ -234,7 +236,7 @@ namespace NewebPay.Controllers
 
 
 
-            return Redirect("~/api/Account/AccountInfo");
+            return Redirect($"~/Account/AccountInfo/{currentMemberId}");
         }
 
         /// <summary>

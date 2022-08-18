@@ -5822,11 +5822,10 @@ namespace BSWebtoon.Front.Service.ComicService
 
             //if (universalCoupon_valid)
             //{
-            UseCoupon = universalCoupon;
-            CouponUsedRecordCreate(epId, memberId, UseCoupon);
-            return result;
+                UseCoupon = universalCoupon;
+                CouponUsedRecordCreate(epId, memberId, UseCoupon);
+                return result;
             //}
-
 
 
         }

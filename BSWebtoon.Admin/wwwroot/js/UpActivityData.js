@@ -105,7 +105,7 @@
                 // 不得為空
                 if (this.signup.ActivityBgColor == '') {
                     this.signupCheck.ActivityBgColorError = true
-                    this.signupCheck.ActivityBgColorErrorMsg = '不得為空!'
+                    this.signupCheck.ActivityBgColorErrorMsg = '請點擊上方參考顏號'
                 }
                 //// 大於8碼
                 //else if (this.signup.account.length < 8) {
@@ -234,13 +234,20 @@
                 if (this.signupCheck[prop] == true) {
                     //開啟按鈕
                     this.addVerify = true
+                    
                     //回傳
                     return
                 }
                 //禁用按鈕
                 this.addVerify = false
             }
-        }
+        },
+
+        //Loadingdata() {
+        //    var Loadingdata = document.getElementById("Loadingdata")
+        //    Loadingdata.classList.add("spinner-border");
+        //    Loadingdata.classList.add("text-warning");
+        //}
     }
 })
 
@@ -295,4 +302,15 @@ function readURL() {
         })(i)
         reader.readAsDataURL(input_ActivityImage.files[i]);
     }
+}
+
+
+let upload = document.getElementById("upload")
+upload.addEventListener("click", Waiting_Upload);
+let Loadingdata = document.getElementById("Loadingdata");
+//上傳等待狀態按鈕方法
+function Waiting_Upload() {
+    Loadingdata.classList.add("spinner-border");
+    Loadingdata.classList.add("text-warning");
+    //upload_work.setAttribute('disabled', 'disabled');
 }

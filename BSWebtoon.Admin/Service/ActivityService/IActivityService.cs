@@ -11,7 +11,7 @@ namespace BSWebtoon.Admin.Service.ActivityService
 
         Task<ActivitysOutputDTO> UpActivityInfo(ActivitysInputDTO inputDTO);
 
-        
+        Task<UpdateActivityOutputDTO> EidtActivityInfo(UpdateActivityInputDTO inputDTO);
 
     }
 }
