@@ -7,6 +7,7 @@ using Microsoft.Data.SqlClient;
 using BSWebtoon.Front.Models.DTO.Rank;
 using static BSWebtoon.Front.Models.DTO.Rank.AllTagRankDTO;
 using Dapper;
+using BSWebtoon.Model.Repository.Interface;
 
 namespace BSWebtoon.Front.Service.RankService
 {
@@ -15,10 +16,12 @@ namespace BSWebtoon.Front.Service.RankService
         private static string _connectionStr = "Data Source=bswebtoon.database.windows.net;Initial Catalog=BSWebtoonDb;User ID=bs;Password=P@ssword;Encrypt=True;Trusted_Connection=False;MultipleActiveResultSets=true;";
         private readonly BSWebtoonDbContext _context;
         private readonly BSRepository _repository;
-        public ClickRecordService(BSWebtoonDbContext context, BSRepository repository)
+        private readonly IMemoryCacheRepository _iMemoryCacheRepository;
+        public ClickRecordService(BSWebtoonDbContext context, BSRepository repository, IMemoryCacheRepository iMemoryCacheRepository)
         {
             _context = context;
             _repository = repository;
+            _iMemoryCacheRepository = iMemoryCacheRepository;
         }
         public void ClickRecordCreate()
         {
@@ -147,8 +150,12 @@ namespace BSWebtoon.Front.Service.RankService
 
         public List<AllTagRankDTO> ReadAllRank()
         {
+            const string redisKey = "Rank.GetAllRank";
+            var result = _iMemoryCacheRepository.Get<List<AllTagRankDTO>>(redisKey);
+            if (result != null) return result;
+
             var oldClickRecords = _repository.GetAll<ClickRecord>()
-                .Where(c => c.CreateTime < DateTime.UtcNow.AddDays(-7) && c.CreateTime >= DateTime.UtcNow.AddDays(-14));
+                .Where(c => c.CreateTime < DateTime.UtcNow.AddHours(8).AddDays(-8) && c.CreateTime >= DateTime.UtcNow.AddHours(8).AddDays(-14));
 
             var oldGroupBy = oldClickRecords
                 .GroupBy(c => c.ComicId)
@@ -157,7 +164,7 @@ namespace BSWebtoon.Front.Service.RankService
 
 
             var newClickRecords = _repository.GetAll<ClickRecord>()
-                .Where(c => c.CreateTime < DateTime.UtcNow && c.CreateTime >= DateTime.UtcNow.AddDays(-7));
+                .Where(c =>  DateTime.UtcNow.AddHours(8).AddDays(-7) <= c.CreateTime  && c.CreateTime <= DateTime.UtcNow.AddHours(8));
 
             var newGroupBy = newClickRecords
                 .GroupBy(c => c.ComicId)
@@ -165,7 +172,10 @@ namespace BSWebtoon.Front.Service.RankService
                 .ThenBy(c => c.Key).Select(c => c.Key);
 
 
-            var newrank = _repository.GetAll<Comic>().Where(n => newGroupBy.Any(nc => nc == n.ComicId) && n.AuditType == 1).ToList();//.Select(n => n.ComicId);
+            var newrank = _repository.GetAll<Comic>()
+                .Where(n => n.AuditType == 1 //&& newGroupBy.Any(nc => nc == n.ComicId) 
+                ).OrderByDescending(c => newClickRecords.Count( cr => cr.ComicId == c.ComicId )  )
+                .ToList();
 
 
             List<int> oldSource = new List<int>();
@@ -176,10 +186,9 @@ namespace BSWebtoon.Front.Service.RankService
 
 
 
-            var result = newrank.Select(comicrank => new AllTagRankDTO
+            result = newrank.Select(comicrank => new AllTagRankDTO
             {
                 ComicId = comicrank.ComicId,
-                
                 ComicName = comicrank.ComicChineseName,
                 ComicNameImage = comicrank.ComicNameImage,
                 ComicWeekFigure = comicrank.ComicWeekFigure,
@@ -187,12 +196,13 @@ namespace BSWebtoon.Front.Service.RankService
                 BgCover = comicrank.BgCover,
                 Introduction = comicrank.Introduction,
                 BannerVideoWeb = comicrank.BannerVideoWeb,
-                Diff = oldSource.IndexOf(comicrank.ComicId) == -1 ? 0 : oldSource.IndexOf(comicrank.ComicId) + 1 - newSource.IndexOf(comicrank.ComicId) + 1
+                Diff = oldSource.IndexOf(comicrank.ComicId) == -1 ? 0 : (oldSource.IndexOf(comicrank.ComicId)+1)- (newSource.IndexOf(comicrank.ComicId)+1)
             }).ToList();
+
+            int refreshDays = 7;
+            _iMemoryCacheRepository.Set(redisKey, result, refreshDays);
+
             return result;
-
-
-
 
 
             //TagName= mainTag.TagName,
@@ -266,8 +276,11 @@ namespace BSWebtoon.Front.Service.RankService
 
         public List<CategoryRankDTO> ReadOtherTagRank(int id)
         {
+            string redisKey = $"Rank.GetOtherTagRank.{id}";
+            var result = _iMemoryCacheRepository.Get<List<CategoryRankDTO>>(redisKey);
+            if (result != null) return result;
 
-            var result = new List<CategoryRankDTO>();
+            result = new List<CategoryRankDTO>();
 
             using (SqlConnection conn = new SqlConnection(_connectionStr))
             {
@@ -288,10 +301,10 @@ namespace BSWebtoon.Front.Service.RankService
 
                 //計算排名區間
                 var newRankEndDate = DateTime.UtcNow.AddHours(8);
-                var newRankStartDate = newRankEndDate.AddDays(-7);//7/22
+                var newRankStartDate = newRankEndDate.AddDays(-7);
 
-                var oldRankEndDate = newRankStartDate.AddDays(-1);//7/21
-                var oldRankStartDate = oldRankEndDate.AddDays(-6);//7/15
+                var oldRankEndDate = newRankStartDate.AddDays(-1);
+                var oldRankStartDate = oldRankEndDate.AddDays(-6);
 
                 //找出每個漫畫上上周的點擊數
                 string oldClickRecord = @$"SELECT  CR.ComicId, COUNT(CR.ComicId) AS ClickRecordCount
@@ -440,6 +453,10 @@ namespace BSWebtoon.Front.Service.RankService
                 }
 
             }
+
+            int refreshDays = 7;
+            _iMemoryCacheRepository.Set(redisKey, result, refreshDays);
+
             return result;
 
         }

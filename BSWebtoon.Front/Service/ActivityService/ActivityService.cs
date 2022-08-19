@@ -4,20 +4,25 @@ using BSWebtoon.Model.Repository;
 using System.Linq;
 using System;
 using System.Collections.Generic;
+using BSWebtoon.Front.Service.MemberService;
 
 namespace BSWebtoon.Front.Service.ActivityService
 {
     public class ActivityService : IActivityService
     {
         private readonly BSRepository _repository;
+        private readonly IMemberService _memberService;
 
-        public ActivityService(BSRepository repository)
+        public ActivityService(BSRepository repository, IMemberService memberService)
         {
             _repository = repository;
+            _memberService = memberService;
         }
 
-        public ActivityContentDTO ReadActivityContent(int ActivityId,int MemberId)
+        public ActivityContentDTO ReadActivityContent(int ActivityId)
         {
+            var MemberId = _memberService.GetCurrentMemberID();
+
             var activityItem = _repository.GetAll<Activity>().Where(x => x.IsDelete == false && x.ActivityId == ActivityId).First();
 
             //是否已領取通用券

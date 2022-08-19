@@ -1,29 +1,52 @@
-﻿.tab-content {
-    height: 700px;
-    overflow-y: auto;
+﻿
+
+.pic_area {
+    text-align: center;
 }
+
+    .pic_area label {
+        margin-top: 20px;
+        display: block;
+    }
+
+    .pic_area input {
+        width: 80px;
+    }
 
 .week_people_pic_box {
     width: 100px;
     height: 210px;
+    background-color: #ccc;
+    margin: auto;
 }
 
 .bg_box {
     width: 100px;
     height: 217px;
+    background-color: #ccc;
+    margin: auto;
 }
 
 .people_pic_box {
     width: 200px;
     height: 169px;
+    background-color: #ccc;
+    margin: auto;
 }
 
 .text_pic_box {
     width: 200px;
     height: 145px;
+    background-color: #ccc;
+    margin: auto;
 }
 
 img {
     max-width: 100%;
     max-height: 100%;
+}
+
+.text_area label {
+    margin-top: 20px;
+    display: block;
 }

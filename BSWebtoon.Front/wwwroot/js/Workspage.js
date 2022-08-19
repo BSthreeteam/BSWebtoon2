@@ -48,10 +48,9 @@ function reizeWindow() {
     })
 }
 
-function postFavorite(memberId, comicId) {
+function postFavorite(comicId) {
     var data = {
         "ComicId": comicId,
-        "MemberId": memberId,
         "IsLike": checkvalue
     }
     fetch("/api/FavoriteApi/GetFavoriteData", {
@@ -81,16 +80,15 @@ window.addEventListener('resize', () => {
 window.onload = function () {
     reizeWindow()
     let collect_a = document.querySelector('.red');
-
     ////點擊愛心，顏色變紅色
-    //clickLike(checkvalue)
+    clickLike(checkvalue)
 
     collect_a.addEventListener("click", () => {
         checkvalue = !checkvalue
         clickLike(checkvalue)
     })
     function clickLike(boolvalue) {
-        if (boolvalue == true) {
+        if (boolvalue == true || boolvalue == "true") {
             collect_a.classList.add('text-danger');
         }
         else {

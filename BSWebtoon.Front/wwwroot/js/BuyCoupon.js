@@ -4,13 +4,15 @@ window.onload = function () {
     let readYet = document.querySelector('.readYet');
     let buyOneTime = document.querySelector('.buyOneTime');
     let nowHaveCoupon = document.querySelector('.nowHaveCoupon');
+    let nowHaveUniversalCoupon = document.querySelector('.nowHaveUniversalCoupon');
 
     let nowHaveCouponQuantity = nowHaveCoupon.innerHTML.slice(0, nowHaveCoupon.innerHTML.length - 1)
+    let nowHaveUniversalCouponQuantity = nowHaveUniversalCoupon.innerHTML.slice(0, nowHaveCoupon.innerHTML.length - 1)
     let readYetQuantity = readYet.innerHTML.slice(0, readYet.innerHTML.length - 1)
     if (readYetQuantity - nowHaveCouponQuantity < 0) {
         buyOneTime.innerHTML = "0 張"
     } else {
-        buyOneTime.innerHTML = `${readYetQuantity - nowHaveCouponQuantity}張`
+        buyOneTime.innerHTML = `${readYetQuantity - nowHaveCouponQuantity - nowHaveUniversalCouponQuantity}張`
     }
 
     let planQuantity = document.querySelector('.planQuantity')

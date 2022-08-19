@@ -2,16 +2,24 @@
 using System.Collections.Generic;
 using Dapper;
 using Microsoft.Data.SqlClient;
-
+using BSWebtoon.Front.Service.MemberService;
 
 namespace BSWebtoon.Front.Service.RecordViewService
 {
     public class RecordViewService : IRecordViewService
     {
         private static string _connectionStr = "Data Source=bswebtoon.database.windows.net;Initial Catalog=BSWebtoonDb;User ID=bs;Password=P@ssword;Encrypt=True;Trusted_Connection=False;MultipleActiveResultSets=true;";
+        private readonly IMemberService _memberService;
 
-        public List<ViewRecordDTO> ReadRecordView(int id)
+        public RecordViewService(IMemberService memberService)
         {
+            _memberService = memberService;
+        }
+
+        public List<ViewRecordDTO> ReadRecordView()
+        {
+            var memberId = _memberService.GetCurrentMemberID();
+
             var result = new List<ViewRecordDTO>();
             using (SqlConnection conn = new SqlConnection(_connectionStr))
             {
@@ -22,7 +30,7 @@ namespace BSWebtoon.Front.Service.RecordViewService
                                 FROM ViewRecord V
                                 INNER JOIN Episode E ON E.EpId = V.EpId 
                                 INNER JOIN Comic C ON C.ComicId = E.ComicId 
-                                WHERE  MemberId = {id} and V.IsDelete = 0
+                                WHERE  MemberId = {memberId} and V.IsDelete = 0
                                 ) AS newDB  WHERE row_id = 1 ";
 
                 //篩選出資料全部 的結果後放到ViewRecordDTO的表中

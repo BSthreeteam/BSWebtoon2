@@ -5,6 +5,6 @@ namespace BSWebtoon.Front.Service.ActivityService
     public interface IActivityService
     {
         GiftBoxDTO ReadGiftBox();
-        ActivityContentDTO ReadActivityContent(int ActivityId, int MemberId);
+        ActivityContentDTO ReadActivityContent(int ActivityId);
     }
 }

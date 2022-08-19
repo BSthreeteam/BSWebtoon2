@@ -10,6 +10,6 @@ namespace BSWebtoon.Front.Service.RechargeService
         void CashPlanCreate();
         void RechargeRecordCreate();
         void RechargeRecordCreateNew(RechargeRecord input_RechargeRecord);
-        List<CashPlanDTO> ReadCashPlan(string username);
+        List<CashPlanDTO> ReadCashPlan();
     }
 }

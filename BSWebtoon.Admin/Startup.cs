@@ -7,8 +7,10 @@ using Coravel;
 using BSWebtoon.Admin.Service.ActivityService;
 
 using BSWebtoon.Model.Repository;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using BSWebtoon.Admin.Service.CloudinaryService;
 
@@ -37,6 +40,24 @@ namespace BSWebtoon.Admin
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+           
+            //加以下這段
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    //設定登入Action的路徑： 
+                    options.LoginPath = new PathString("/Home/Login");
+
+                    //設定 導回網址 的QueryString參數名稱：
+                    options.ReturnUrlParameter = "ReturnUrl";
+
+                    //設定登出Action的路徑： 
+                    options.LogoutPath = new PathString("/Home/Logout");
+
+                });
+            //....AuthenticationScheme其實只是個字串 "Cookies"，改成其他字串也未嘗不可
+            //記得自行引入命名空間，後續不再不多提。
+
             services.AddDbContext<BSWebtoonDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("BSWebtoonDbContext")));
 
@@ -64,10 +85,14 @@ namespace BSWebtoon.Admin
 
             services.AddTransient<IDapperCouponUseRecordRepository, DapperCouponUseRecordRepository>();
             services.AddTransient<IDapperCouponRepository, DapperCouponRepository>();
+            services.AddTransient<IDapperUpdateComicStatusRepository, DapperUpdateComicStatusRepository>();
+            services.AddTransient<IDapperEpisodeRepository, DapperEpisodeRepository>();
 
 
             services.AddTransient<IAdminUploadComicService, AdminUploadComicService>();
             services.AddTransient<IAdminComicCloudinaryService, AdminComicCloudinaryService>();
+            services.AddTransient<IDapperAdminUploadComicRepository, DapperAdminUploadComicRepository>();
+            services.AddTransient<IDapperAdminComicTagListRepository, DapperAdminComicTagListRepository>();
 
 
 
@@ -82,6 +107,8 @@ namespace BSWebtoon.Admin
             //記得註冊 Invocable的實作
             services.AddTransient<ActivityIsDelete>();
             services.AddTransient<CountDownCoupon>();
+            services.AddTransient<NewWorkToSerialize>();
+            services.AddTransient<LastFiveEpIsNotCountdown>();
 
             //這一定要有
             services.AddScheduler();
@@ -115,15 +142,19 @@ namespace BSWebtoon.Admin
 
             app.ApplicationServices.UseScheduler(scheduler =>
             {
-                scheduler.Schedule<ActivityIsDelete>().Daily().RunOnceAtStart();
-                scheduler.Schedule<CountDownCoupon>().Hourly().RunOnceAtStart();
+                scheduler.Schedule<ActivityIsDelete>().DailyAtHour(0).RunOnceAtStart();
+                scheduler.Schedule<CountDownCoupon>().HourlyAt(0).RunOnceAtStart();
+                scheduler.Schedule<NewWorkToSerialize>().DailyAtHour(0).RunOnceAtStart();
+                scheduler.Schedule<LastFiveEpIsNotCountdown>().DailyAtHour(0).RunOnceAtStart();
             });
 
             app.UseHttpsRedirection();
             app.UseCors("CorsPolicy");
 
             app.UseRouting();
+            app.UseAuthentication();
 
+            app.UseAuthentication();//加這句
             app.UseAuthorization();
 
 

@@ -31,6 +31,9 @@ using BSWebtoon.Front.Service.ActivityService;
 using BSWebtoon.Front.Service.UploadService;
 using BSWebtoon.Front.Service.AccountService;
 using BSWebtoon.Front.Service.RecordViewService;
+using BSWebtoon.Model.Repository.Interface;
+using Coravel;
+using BSWebtoon.Front.Service.JobService;
 
 namespace BSWebtoon.Front
 {
@@ -64,7 +67,7 @@ namespace BSWebtoon.Front
             services.AddScoped<IRechargeService, RechargeService>();
             services.AddScoped<ICouponService, CouponService>();
             services.AddScoped<IClickRecordService, ClickRecordService>();
-            services.AddScoped<IFavoriteService, FavoriteService>(); 
+            services.AddScoped<IFavoriteService, FavoriteService>();
             services.AddScoped<ClickRecordService, ClickRecordService>();
             //services.AddDbContext<BSWeBtoonContext, BSWeBtoonContext>();
             services.AddScoped<IComicService, ComicService>();
@@ -74,6 +77,13 @@ namespace BSWebtoon.Front
             services.AddScoped<IMemberService, MemberService>();
             services.AddScoped<IAccountService, AccountService>();
 
+            //註冊redis資料庫
+            services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = Configuration["RedisConfig:ToolManMemoryCache"];
+            });
+
+            services.AddTransient<IMemoryCacheRepository, MemoryCacheRepository>();
 
             services.AddHttpContextAccessor();
 
@@ -121,8 +131,14 @@ namespace BSWebtoon.Front
                     options.ClientSecret = Configuration[$"Authentication:{provider}:ClientSecret"];
                     options.Scope.Add("email");
 
-                }); 
-                }
+                });
+
+            services.AddTransient<DailyJob>();
+            services.AddTransient<WeeklyJob>();
+
+            //排程
+            services.AddScheduler();
+        }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -139,6 +155,12 @@ namespace BSWebtoon.Front
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.ApplicationServices.UseScheduler(scheduler =>
+            {
+                scheduler.Schedule<DailyJob>().DailyAtHour(0);
+                scheduler.Schedule<WeeklyJob>().Weekly().Friday();
+            });
 
             app.UseRouting();
 
