@@ -81,10 +81,10 @@ function getFirstRank(result) {
     cloneRank.querySelector(".introduction").innerText = result.Introduction.slice(0, 40)
     cloneRank.querySelector(".diff").innerText = result.Diff
     if (result.Diff >= 0) {
-        cloneRank.querySelector("#down").style.display = "none";
+        cloneRank.querySelector(".fa-caret-down").style.display = "none";
     }
     else {
-        cloneRank.querySelector("#up").style.display = "none";
+        cloneRank.querySelector(".fa-caret-up").style.display = "none";
     }
 
     return cloneRank;
@@ -102,10 +102,10 @@ function getOtherRank(result, index) {
     //cloneRank.querySelector(".Ranking_num").alt = result.ComicName
     cloneotherRank.querySelector(".diff").innerText = result.Diff
     if (result.Diff >= 0) {
-        cloneotherRank.querySelector("#down").style.display = "none";
+        cloneotherRank.querySelector(".fa-caret-down").style.display = "none";
     }
     else {
-        cloneotherRank.querySelector("#up").style.display = "none";
+        cloneotherRank.querySelector(".fa-caret-up").style.display = "none";
     }
     cloneotherRank.querySelector(".Ranking_num").innerText = index + 1
 
