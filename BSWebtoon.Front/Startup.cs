@@ -173,17 +173,38 @@ namespace BSWebtoon.Front
                     name: "default",
                     pattern: "{controller=Recommend}/{action=Recommend}/{id?}");
 
+                //顯示排行榜
                 endpoints.MapControllerRoute(
                     name: "Rank",
-                    pattern: "Rank/{Id?}",
+                    pattern: "Ranking",
                     defaults: new { controller = "Rank", action = "AllRankList" }
                     );
 
+                //顯示搜尋
+                endpoints.MapControllerRoute(
+                    name: "SearchComic",
+                    pattern: "Search",
+                    defaults: new { controller = "Search", action = "SearchComic" });
 
-                //endpoints.MapControllerRoute(
-                //    name: "ProductsPagination",
-                //    pattern: "WorksPage/{ComicId?}",
-                //    defaults: new { controller = "Favorite", action = "ReadFavorite" });
+                //顯示歷史觀看紀錄
+                endpoints.MapControllerRoute(
+                    name: "RecordView",
+                    pattern: "Record",
+                    defaults: new { controller = "Favorite", action = "RecordView" });
+                
+                //顯示我的最愛
+                endpoints.MapControllerRoute(
+                    name: "Favorite",
+                    pattern: "Favorite",
+                    defaults: new { controller = "Favorite", action = "ReadFavoriteView" });
+
+                //顯示儲值金幣
+                endpoints.MapControllerRoute(
+                    name: "CashPlanView",
+                    pattern: "Recharge",
+                    defaults: new { controller = "Recharge", action = "CashPlanView" });
+
+
 
             });
 
