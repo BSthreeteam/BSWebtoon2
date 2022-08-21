@@ -30,7 +30,7 @@ namespace BSWebtoon.Front.Service.WeekUpdateService
             //var comicorderby = comicClickRRechargeRecordViewecords.OrderByDescending(c => c.Value).Select(c => c.Key);
             var comicSource = _repository.GetAll<Comic>().Where(c => c.AuditType == (int)AuditType.auditPass);//撇除未審核
             var newComicSource = comicSource.Where(c => c.ComicStatus == (int)ComicState.newWork && c.PublishDate <= DateTime.UtcNow.AddHours(8)).Select(c=>c.ComicId);//找出已上架的新作漫畫
-            var comicList = comicSource.Where(c => c.ComicStatus == (int)ComicState.serialize || c.ComicStatus == (int)ComicState.stopUpdate || c.ComicId == newComicSource.FirstOrDefault()).OrderBy(c => c.ComicId);//連載、停更、已上架的新作漫畫類
+            var comicList = comicSource.Where(c => c.ComicStatus == (int)ComicState.serialize || c.ComicStatus == (int)ComicState.stopUpdate || newComicSource.Contains(c.ComicId)).OrderBy(c => c.ComicId);//連載、停更、已上架的新作漫畫類
             var clickRecordGroup = _repository.GetAll<ClickRecord>().GroupBy(x => x.ComicId);
 
             result = new List<WeekUpDateDTO>();
