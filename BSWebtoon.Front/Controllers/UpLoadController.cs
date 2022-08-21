@@ -135,7 +135,8 @@ namespace BSWebtoon.Front.Controllers
             //return View("WorksPage");
 
             //到上傳話次與內容頁
-            return RedirectToAction("UploadWork", "Upload");
+            //return RedirectToAction("UploadWork", "Upload");
+            return Redirect("UploadWork");
 
             ////回到作品頁
             //return RedirectToAction("WorksPage", "WorksPage");

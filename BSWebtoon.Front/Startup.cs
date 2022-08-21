@@ -204,8 +204,42 @@ namespace BSWebtoon.Front
                     pattern: "Recharge",
                     defaults: new { controller = "Recharge", action = "CashPlanView" });
 
+                //顯示上傳作品
+                endpoints.MapControllerRoute(
+                    name: "UploadComic",
+                    pattern: "UploadComic",
+                    defaults: new { controller = "UpLoad", action = "UploadComic" });
+
+                //顯示上傳作品畫次
+                endpoints.MapControllerRoute(
+                    name: "UploadWork",
+                    pattern: "UploadWork",
+                    defaults: new { controller = "Upload", action = "UploadWork" });
 
 
+                //顯示漫畫
+                endpoints.MapControllerRoute(
+                    name: "UploadWork",
+                    pattern: "WorksPage/{Id}",
+                    defaults: new { controller = "WorksPage", action = "WorksPage" });
+
+                //顯示漫畫新作
+                endpoints.MapControllerRoute(
+                    name: "NewComic",
+                    pattern: "NewComic",
+                    defaults: new { controller = "WeekUpdate", action = "NewComic" });
+                
+                //顯示星期列表漫畫
+                endpoints.MapControllerRoute(
+                    name: "WeekUpdate",
+                    pattern: "WeekUpdate",
+                    defaults: new { controller = "WeekUpdate", action = "WeekUpdate" });
+
+                //顯示完結漫畫
+                endpoints.MapControllerRoute(
+                    name: "FinishComic",
+                    pattern: "FinishComic",
+                    defaults: new { controller = "WeekUpdate", action = "FinishComic" });
             });
 
         }
