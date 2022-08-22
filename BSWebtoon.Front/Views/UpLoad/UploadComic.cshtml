@@ -23,7 +23,8 @@
             </div>
 
             <div class="b">
-                <a asp-controller="Upload" asp-action="UploadWork">2</a>
+                @*<a asp-controller="Upload" asp-action="UploadWork">2</a>*@
+                <a href="UploadWork">2</a>
                 <p>上傳分集</p>
             </div>
         </div>
@@ -62,9 +63,9 @@
                             <span asp-validation-for="ComicFigure" class="text-danger"></span>
 
                             @*<div class="text-danger small mt-1">
-                                 <!-- 錯誤訊息 -->
-                                   <p id="ComicFigureMsg">必須輸入</p>
-                            </div>*@
+                        <!-- 錯誤訊息 -->
+                        <p id="ComicFigureMsg">必須輸入</p>
+                        </div>*@
 
                             <hr>
 
@@ -105,11 +106,11 @@
                                     <label asp-for="ComicChineseName" class="form-label">漫畫中文名稱:(必須輸入)</label>
                                     @*//漫畫中文名稱*@
                                     @*<input type="text" class="form-control" name="ComicChineseName" id="ComicChineseName" placeholder="25字以下" value="@Model.ComicChineseName">*@
-                                    <input asp-for="ComicChineseName"  id="ComicChineseName" class="form-control" />
+                                    <input asp-for="ComicChineseName" id="ComicChineseName" class="form-control" />
                                     @*<div class="text-danger small mt-1">
-                                        <!-- 錯誤訊息 -->
-                                        {{ signupCheck.ComicChineseNameErrorMsg }}
-                                    </div>*@
+                                <!-- 錯誤訊息 -->
+                                {{ signupCheck.ComicChineseNameErrorMsg }}
+                                </div>*@
 
                                     @*加入防呆*@
                                     @*<span asp-validation-for="ComicChineseName" class="text-danger"></span>*@
@@ -120,7 +121,7 @@
 
                                 <div class="col-md-6" id="ComicTagList_Choose">
                                     <label asp-for="ComicTagList" class="form-label">主要漫畫類型:(必須輸入)</label>
-                                    <select required asp-for="ComicTagList" id="ComicTagList"  name="ComicTagList" id="ComicTagList" class="form-select">
+                                    <select required asp-for="ComicTagList" id="ComicTagList" name="ComicTagList"  class="form-select">
                                         @*給一個預設值*@
                                         @*<option value="1" id="Choose">Choose漫畫主要類型...</option>*@
                                         <option value="奇幻" selected>奇幻</option>
@@ -131,9 +132,9 @@
                                         <option value="懸疑恐怖">懸疑恐怖</option>
                                     </select>
                                     @*<div class="text-danger small mt-1">
-                                        <!-- 錯誤訊息 -->
-                                        {{ signupCheck.ComicTagListErrorMsg }}
-                                    </div>*@
+                                <!-- 錯誤訊息 -->
+                                {{ signupCheck.ComicTagListErrorMsg }}
+                                </div>*@
 
                                     @*加入防呆*@
                                     @*<span asp-validation-for="ComicTagList" class="text-danger"></span>*@
@@ -207,9 +208,9 @@
                                     @*<input type="date" id="PublishDate" name="PublishDate" value="@Model.PublishDate">*@
                                     <input asp-for="PublishDate" id="PublishDate" type="date" class="form-control" />
                                     @*<div class="text-danger small mt-1">
-                                        <!-- 錯誤訊息 -->
-                                        {{ signupCheck.PublishDateErrorMsg }}
-                                    </div>*@
+                                <!-- 錯誤訊息 -->
+                                {{ signupCheck.PublishDateErrorMsg }}
+                                </div>*@
 
                                     @*加入防呆*@
                                     @* <span asp-validation-for="PublishDate" class="text-danger"></span>*@
@@ -240,17 +241,17 @@
                                     @* <input type="text" class="form-control" name="Publisher" id="Publisher" placeholder="25字以下"  value="@Model.Publisher">*@
                                     <input asp-for="Publisher" class="form-control" />
                                     @*加入防呆*@
-                                    <span asp-validation-for="Publisher" class="text-danger"></span>
+                                    @*<span asp-validation-for="Publisher" class="text-danger"></span>*@
                                 </div>
 
                                 <div class="col-12">
                                     <label asp-for="Painter" class="form-label">繪者(必須輸入)</label>
                                     @*//繪者*@
-                                    <input type="text" class="form-control" name="Painter" id="Painter"  placeholder="25字以下" value="@Model.Painter">
+                                    <input type="text" class="form-control" name="Painter" id="Painter" placeholder="25字以下" value="@Model.Painter">
                                     @*<div class="text-danger small mt-1">
-                                        <!-- 錯誤訊息 -->
-                                        {{ signupCheck.PainterErrorMsg }}
-                                    </div>*@
+                                <!-- 錯誤訊息 -->
+                                {{ signupCheck.PainterErrorMsg }}
+                                </div>*@
                                     @*<span asp-validation-for="Painter" class="text-danger"></span>*@
                                 </div>
 
@@ -258,18 +259,18 @@
                                     <label asp-for="@Model.Author" class="form-label">作者(會員僅能有一個唯一的作者名稱，不可再更改)</label>
                                     @*//作者*@
                                     @*<input type="text" class="form-control" name="Author" id="Author"  placeholder="25字以下" value="@Model.Author">*@
-                                    <input asp-for="Author" type="text"  id="ReadAuthor" class="form-control" placeholder="25字以下">
+                                    <input asp-for="Author" type="text" id="ReadAuthor" class="form-control" placeholder="25字以下">
                                     @*<div class="text-danger small mt-1">
-                                        <!-- 錯誤訊息 -->
-                                        {{ signupCheck.ReadAuthorErrorMsg }}
-                                    </div>*@
+                                <!-- 錯誤訊息 -->
+                                {{ signupCheck.ReadAuthorErrorMsg }}
+                                </div>*@
                                     @*<span asp-validation-for="Author" class="text-danger"></span>*@
 
-                                    <input type="checkbox" class="d-none"  id="WriteAuthor" name="IsNewAuthorName" value=" @( string.IsNullOrEmpty(Model.Author)  )">
+                                    <input type="checkbox" readonly class="d-none" id="WriteAuthor" name="IsNewAuthorName" value=" @( string.IsNullOrEmpty(Model.Author)  )">
                                     @*<div class="text-danger small mt-1 d-none">
-                                        <!-- 錯誤訊息 -->
-                                        {{ signupCheck.WriteAuthorErrorMsg }}
-                                    </div>*@
+                                <!-- 錯誤訊息 -->
+                                {{ signupCheck.WriteAuthorErrorMsg }}
+                                </div>*@
 
                                     @*class="d-none"*@
 
@@ -286,16 +287,16 @@
                                 <div class="mb-3">
                                     <label asp-for="Introduction" class="form-label">作品簡介(故事大綱)(必須輸入)(500字以下)</label>
                                     @*//故事大綱*@
-                                    <textarea class="form-control" name="Introduction" id="Introduction"  rows="3" placeholder="500字以下">@Model.Introduction</textarea>
+                                    <textarea class="form-control" name="Introduction" id="Introduction" rows="3" placeholder="500字以下">@Model.Introduction</textarea>
                                     @*<div class="text-danger small mt-1">
-                                        <!-- 錯誤訊息 -->
-                                        {{ signupCheck.IntroductionErrorMsg }}
-                                    </div>*@
+                                <!-- 錯誤訊息 -->
+                                {{ signupCheck.IntroductionErrorMsg }}
+                                </div>*@
 
                                     @*<span asp-validation-for="Introduction" class="text-danger"></span>*@
                                 </div>
 
-                                
+
                                 <div class="col-12">
                                     <p>*投稿新星專區 投稿規格</p>
                                     <p>1. 什麼是投稿新星專區?</p>
@@ -315,8 +316,8 @@
 
                                 <div class="col-12">
                                     <div class="form-check">
-                                        <input asp-for="IsPrivacyPolicyChecked" v-on:click="change"  type="checkbox" id="gridCheck" class="form-check-input">
-                                        <div class="form-check-label" v-else="isVisiable" for="gridCheck">
+                                        <input asp-for="IsPrivacyPolicyChecked" v-on:click="change" type="checkbox" id="gridCheck" class="form-check-input">
+                                        <div class="form-check-label" @*v-else="isVisiable"*@ for="gridCheck">
                                             @*<input class="form-check-input" type="checkbox" id="gridCheck" value="@Model.IsPrivacyPolicyChecked">*@
                                             我同意投稿新星專區之隱私權保護政策。(必須打勾)
                                         </div>
@@ -329,7 +330,7 @@
                                     }*@
 
                                     </div>
-                                        
+
                                 </div>
                                 <div class="col-12">
                                     <div class="form-check">
@@ -342,7 +343,7 @@
 
                                 @*送出參數*@
                                 <div class="col-12" id="Wait">
-                                    <button type="submit" id="upload_work" class="btn btn-primary"  >新增作品</button>
+                                    <button type="submit" id="upload_work" class="btn btn-primary">新增作品</button>
 
                                     @*防呆*@
                                     <div class="" id="Loadingdata" role="status">
@@ -365,6 +366,18 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.7/dist/vue.js"></script>
     <script src="~/js/UploadComic.js"></script>
     @*@await Html.PartialAsync("_ValidationScriptsPartial")*@
+
+    @if (TempData["FirstComicSuccess"] != null)
+    {
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script type="text/javascript">
+            var message = "@Html.Raw(TempData["FirstComicSuccess"])";
+            swal({
+                icon: "success",
+                title: message
+            });
+        </script>
+    }
 
 
 

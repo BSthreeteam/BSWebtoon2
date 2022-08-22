@@ -159,6 +159,18 @@
 @section endJS{
 
     <script src="~/js/UpActivityData.js"></script>
+
+    @if (TempData["UpActivitySuccess"] != null)
+    {
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script type="text/javascript">
+            var message = "@Html.Raw(TempData["UpActivitySuccess"])";
+            swal({
+                icon: "success",
+                title: message
+            });
+        </script>
+    }
  }
 
 

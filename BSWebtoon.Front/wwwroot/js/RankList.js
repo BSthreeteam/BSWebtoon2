@@ -66,7 +66,7 @@ function getFatchall() {
 
 function getFirstRank(result) {
     let cloneRank = showRankTemplate.content.cloneNode(true);
-    cloneRank.querySelector(".banner").href = `/WorksPage/WorksPage/${result.ComicId}`
+    cloneRank.querySelector(".banner").href = `/WorksPage/${result.ComicId}`
     cloneRank.querySelector(".rank_pic_bg").src = result.BgCover
     cloneRank.querySelector(".rank_pic_title").src = result.ComicNameImage
     if (result.BannerVideoWeb != "") {
@@ -80,6 +80,12 @@ function getFirstRank(result) {
     }
     cloneRank.querySelector(".introduction").innerText = result.Introduction.slice(0, 40)
     cloneRank.querySelector(".diff").innerText = result.Diff
+    if (result.Diff >= 0) {
+        cloneRank.querySelector(".fa-caret-down").style.display = "none";
+    }
+    else {
+        cloneRank.querySelector(".fa-caret-up").style.display = "none";
+    }
 
     return cloneRank;
 }
@@ -87,7 +93,7 @@ function getFirstRank(result) {
 function getOtherRank(result, index) {
     let cloneotherRank = workTemplate.content.cloneNode(true);
     //console.log(cloneotherRank);
-    cloneotherRank.querySelector(".work").href = `/WorksPage/WorksPage/${result.ComicId}`
+    cloneotherRank.querySelector(".work").href = `/WorksPage/${result.ComicId}`
     cloneotherRank.querySelector(".rankCardCover").src = result.BgCover
     cloneotherRank.querySelector(".work_pic").src = result.ComicWeekFigure
     cloneotherRank.querySelector(".work_pic").alt = result.ComicName
@@ -95,6 +101,12 @@ function getOtherRank(result, index) {
     cloneotherRank.querySelector(".rankCardName").alt = result.ComicName
     //cloneRank.querySelector(".Ranking_num").alt = result.ComicName
     cloneotherRank.querySelector(".diff").innerText = result.Diff
+    if (result.Diff >= 0) {
+        cloneotherRank.querySelector(".fa-caret-down").style.display = "none";
+    }
+    else {
+        cloneotherRank.querySelector(".fa-caret-up").style.display = "none";
+    }
     cloneotherRank.querySelector(".Ranking_num").innerText = index + 1
 
     return cloneotherRank;

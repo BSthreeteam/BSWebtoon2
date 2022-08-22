@@ -179,4 +179,16 @@
         crossorigin="anonymous"></script>
 
     <script src="~/js/UpdateActivityData.js"></script>
+
+     @if (TempData["EidtActivitySuccess"] != null)
+    {
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script type="text/javascript">
+            var message = "@Html.Raw(TempData["EidtActivitySuccess"])";
+            swal({
+                icon: "success",
+                title: message
+            });
+        </script>
+    }
  }

@@ -173,8 +173,8 @@ namespace BSWebtoon.Front.Service.RankService
 
 
             var newrank = _repository.GetAll<Comic>()
-                .Where(n => n.AuditType == 1 //&& newGroupBy.Any(nc => nc == n.ComicId) 
-                ).OrderByDescending(c => newClickRecords.Count( cr => cr.ComicId == c.ComicId )  )
+                .Where(n => n.AuditType == 1 )
+                .OrderByDescending(c => newClickRecords.Count( cr => cr.ComicId == c.ComicId )  )
                 .ToList();
 
 
