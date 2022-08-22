@@ -22,8 +22,8 @@ let release_area = new Vue({
             { value: 8, text: "奇幻" },
             { value: 10, text: "愛情" },
             { value: 9, text: "動作冒險" },
-            { value: 11, text: "劇情" }
-            { value: 12, text: "懸疑恐怖" }
+            { value: 11, text: "劇情" },
+            { value: 12, text: "懸疑恐怖" },
             { value: 13, text: "BL/GL" }
         ],
         one_options: [
