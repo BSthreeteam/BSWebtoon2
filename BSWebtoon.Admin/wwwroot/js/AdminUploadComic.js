@@ -118,7 +118,7 @@ let release_area = new Vue({
         }
     },
     mounted() {
-        /*this.dateLimit();*/
+        this.dateLimit();
     },
     methods: {
         linkClass(idx) {
@@ -193,12 +193,12 @@ let release_area = new Vue({
             }
         },
         dateLimit() {
-                //const now = new Date()
-                //const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
-                //// 15th two months prior
+                const now = new Date()
+                const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+                // 15th two months prior
                 //const minDate = new Date(today)
                 //minDate.setDate(minDate.getDate() + 7)
-                //this.min = minDate
+                this.min = today
             },
         verify(name, value) {
             if (value || value!==0) {
