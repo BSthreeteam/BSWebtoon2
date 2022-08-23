@@ -90,7 +90,7 @@ namespace BSWebtoon.Front.Controllers
                 ComicChineseName = input.ComicChineseName,
                 BgCover = input.BgCover,                
                 ComicFigure = input.ComicFigure,
-                Publisher = input.Publisher,
+                //Publisher = input.Publisher,
                 Painter = input.Painter,
                 Author = input.Author,
                 Introduction = input.Introduction,
@@ -133,16 +133,23 @@ namespace BSWebtoon.Front.Controllers
             //return Content("上傳成功，正在審核中");
 
             //return View("WorksPage");
+            if (outputDTO != null)
+            {
 
-            //到上傳話次與內容頁
-            return RedirectToAction("UploadWork", "Upload");
+                TempData["FirstComicSuccess"] = "上傳成功，等待審核!";
+            }
+
+            return RedirectToAction("UploadComic", "Upload");
+
+            ////到上傳話次與內容頁
+            //return RedirectToAction("UploadWork", "Upload");
 
             ////回到作品頁
             //return RedirectToAction("WorksPage", "WorksPage");
 
         }
 
-
+        
 
         //上傳話次與內容頁
         [HttpGet]

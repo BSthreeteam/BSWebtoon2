@@ -152,7 +152,7 @@ namespace BSWebtoon.Front.Service.UploadService
                         LastPublishDate = DateTime.UtcNow,
                         FinallyPublishDate = DateTime.UtcNow,
                         UpdateWeek = input.UpdateWeek,
-                        Publisher = input.Publisher,
+                        Publisher = "BSWebtoon",
                         Painter = input.Painter,
                         Author = input.Author,
                         Introduction = input.Introduction,
