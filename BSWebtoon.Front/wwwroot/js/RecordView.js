@@ -1,18 +1,27 @@
 ﻿var comicDiv = document.getElementById("ComicAdd");
 
+
 function Open_del_page() {
     window.location.href = '/Favorite/RemoveRecordView';
 }
 
 function create_comic_cards() {
-    if (comicsArray.ViewRecordListAll == 0) {
+    if (comicsArray.ViewRecordListAll.length == 0) {
+
         let p = document.createElement('p');
         p.innerHTML = "您沒有任何觀看紀錄!";
         p.classList.add("mt-5", "NoComicList_text");
         comicDiv.append(p);
-        console.log(comicsArray.ViewRecordListAll)
+        document.getElementById("btn_Comic_sort").style.display = "none";
+        document.getElementById("btn_Open_del_page").style.display = "none";
+
     }
+
     else {
+        if (comicsArray.ViewRecordListAll.length == 1) {
+            document.getElementById("btn_Comic_sort").style.display = "none";
+        }
+
         let getTemplate = document.getElementById("ComicTemplate");
         comicsArray.ViewRecordListAll.forEach(item => {
             let comic_template = getTemplate.content.cloneNode(true);
