@@ -48,12 +48,12 @@ namespace BSWebtoon.Front.Models.ViewModel.UploadComic
         ////星期列表人物圖
         //public IFormFile ComicWeekFigure { get; set; }
 
-        //防呆
-        [Required(ErrorMessage = "必須輸入")]
-        //限制字輸入長度
-        [StringLength(25, MinimumLength = 1, ErrorMessage = "出版商長度需介於 1-25字")]
-        //出版商
-        public string Publisher { get; set; }
+        ////防呆
+        //[Required(ErrorMessage = "必須輸入")]
+        ////限制字輸入長度
+        //[StringLength(25, MinimumLength = 1, ErrorMessage = "出版商長度需介於 1-25字")]
+        ////出版商
+        //public string Publisher { get; set; }
 
         //防呆
         [Required(ErrorMessage = "必須輸入")]

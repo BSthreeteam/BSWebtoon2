@@ -236,10 +236,12 @@
 
 
                                 <div class="col-12">
-                                    <label asp-for="Publisher" class="form-label">出版商</label>
+                                    <label for="Publisher" class="form-label">出版商</label>
                                     @*//出版商*@
                                     @* <input type="text" class="form-control" name="Publisher" id="Publisher" placeholder="25字以下"  value="@Model.Publisher">*@
-                                    <input asp-for="Publisher" class="form-control" />
+                                    @*<input asp-for="Publisher" value="BSWebtoon" class="form-control" />*@
+                                    <p>BSWebtoon</p>
+                                    
                                     @*加入防呆*@
                                     @*<span asp-validation-for="Publisher" class="text-danger"></span>*@
                                 </div>
