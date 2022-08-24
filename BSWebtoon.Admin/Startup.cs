@@ -81,13 +81,12 @@ namespace BSWebtoon.Admin
                 return conn;
             });
 
-            //記得註冊 Invocable的實作
+            //註冊 Invocable的實作
             services.AddTransient<ActivityIsDelete>();
             services.AddTransient<CountDownCoupon>();
             services.AddTransient<NewWorkToSerialize>();
             services.AddTransient<LastFiveEpIsNotCountdown>();
 
-            //這一定要有
             services.AddScheduler();
 
             services.AddCors(options =>
@@ -119,10 +118,10 @@ namespace BSWebtoon.Admin
 
             app.ApplicationServices.UseScheduler(scheduler =>
             {
-                scheduler.Schedule<ActivityIsDelete>().DailyAtHour(0).RunOnceAtStart();
-                scheduler.Schedule<CountDownCoupon>().HourlyAt(0).RunOnceAtStart();
-                scheduler.Schedule<NewWorkToSerialize>().DailyAtHour(0).RunOnceAtStart();
-                scheduler.Schedule<LastFiveEpIsNotCountdown>().DailyAtHour(0).RunOnceAtStart();
+                scheduler.Schedule<ActivityIsDelete>().DailyAtHour(0);
+                scheduler.Schedule<CountDownCoupon>().HourlyAt(0);
+                scheduler.Schedule<NewWorkToSerialize>().DailyAtHour(0);
+                scheduler.Schedule<LastFiveEpIsNotCountdown>().DailyAtHour(0);
             });
 
             app.UseHttpsRedirection();

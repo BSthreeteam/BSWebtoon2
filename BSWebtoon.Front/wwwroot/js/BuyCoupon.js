@@ -76,7 +76,7 @@ window.onload = function () {
         let buyQuantityInt = parseInt(buyQuantity.innerText)
         let planQuantityInt = parseInt(planQuantity.innerText.slice(0, planQuantity.innerText.length - 1))
         totalQuantity.innerHTML = `${buyQuantityInt * planQuantityInt}張`
-        totalAmount.in = (buyQuantityInt * planQuantityInt * 300)
+        totalAmount.innerHTML = (buyQuantityInt * planQuantityInt * 300)
     }
 
 }

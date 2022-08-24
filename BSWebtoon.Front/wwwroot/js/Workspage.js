@@ -53,23 +53,28 @@ function postFavorite(comicId) {
         "ComicId": comicId,
         "IsLike": checkvalue
     }
-    fetch("/api/FavoriteApi/GetFavoriteData", {
-        method: "POST",
-        headers: {
-            "Accept": "application/json",
-            "Content-type": "application/json"
-        },
-        body: JSON.stringify(data)
-    })
-        .then(response => response.text())
-        .then(result => {
-            if (result.ok) {
-                console.log(result)
-            }
+    if (isAuthenticated) {
+        fetch("/api/FavoriteApi/GetFavoriteData", {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify(data)
         })
-        .catch(ex => {
-            console.log(ex)
-        })
+            .then(response => response.text())
+            .then(result => {
+                if (result.ok) {
+                    console.log(result)
+                }
+            })
+            .catch(ex => {
+                console.log(ex)
+            })
+
+    } else {
+        $('#exampleModal').modal('show');
+    }
 }
 
 

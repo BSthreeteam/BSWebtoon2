@@ -181,10 +181,18 @@ namespace BSWebtoon.Front.Service.MemberService
 
         public int GetCurrentMemberID()
         {
-            var memberId = int.Parse(
-                _httpContextAccessor.HttpContext.User.Claims.First(x => x.Type == "MemberID").Value);
-            
-            return memberId;
+            var findMemberId = 
+                _httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(x => x.Type == "MemberID");
+
+            if (findMemberId == null)
+            {
+                return 0;
+            }
+            else
+            {
+                var memberId = int.Parse(findMemberId.Value);
+                return memberId;
+            }
         }
     }
 }

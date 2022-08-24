@@ -24,8 +24,9 @@ async function clickGetCouponBtn(ActivityId, universalCouponGetCount, couponType
             .catch(ex => {
                 console.log(ex)
             })
+        getUniversalCouponBtn.disabled = true
     } else {
         $('#exampleModal').modal('show');
+        getUniversalCouponBtn.disabled = false
     }
-    getUniversalCouponBtn.disabled = true
 }

@@ -4,17 +4,19 @@ using BSWebtoon.Front.Service.RankService;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
-
+using BSWebtoon.Model.Repository.Interface;
 
 namespace BSWebtoon.Front.Controllers
 {
     public class RankController : Controller
     {
         private readonly IClickRecordService _ClickRecordService;
+        private readonly IMemoryCacheRepository _iMemoryCacheRepository;
 
-        public RankController(IClickRecordService clickRecordService)
+        public RankController(IClickRecordService clickRecordService, IMemoryCacheRepository iMemoryCacheRepository)
         {
             _ClickRecordService = clickRecordService;
+            _iMemoryCacheRepository = iMemoryCacheRepository;
         }
 
         public IActionResult Rank() //Rank/Rank 
@@ -29,7 +31,10 @@ namespace BSWebtoon.Front.Controllers
         //[Route("api/[controller]/[action]")]
         public IActionResult AllRankList() //Rank/AllRankList
         {
-            var allrank = _ClickRecordService.ReadAllRank();
+            const string redisKey = "Rank.GetAllRank";
+            var allrank = _iMemoryCacheRepository.Get<List<AllTagRankDTO>>(redisKey);
+
+            //var allrank = _ClickRecordService.ReadAllRank();
             var firstComic = allrank.First();
             var result = new RankViewModel_ClickRecord
             {
@@ -68,7 +73,10 @@ namespace BSWebtoon.Front.Controllers
         //[Route("api/[controller]/[action]/{id}")]
         public IActionResult RankList(int id) //Rank/RankList 
         {
-            var rank = _ClickRecordService.ReadOtherTagRank(id);
+            string redisKey = $"Rank.GetOtherTagRank.{id}";
+            var rank = _iMemoryCacheRepository.Get<List<CategoryRankDTO>>(redisKey);
+
+            //var rank = _ClickRecordService.ReadOtherTagRank(id);
             if (rank.Count == 0)
             {
                 var result = new RankViewModel_ClickRecord

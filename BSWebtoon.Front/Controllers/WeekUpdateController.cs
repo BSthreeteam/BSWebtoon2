@@ -3,23 +3,28 @@ using BSWebtoon.Front.Service.WeekUpdateService;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using BSWebtoon.Model.Repository.Interface;
+using BSWebtoon.Front.Models.DTO.WeekUpDate;
 
 namespace BSWebtoon.Front.Controllers
 {
     public class WeekUpdateController : Controller
     {
         private readonly IWeekUpdateService _weekUpdateService;
+        private readonly IMemoryCacheRepository _iMemoryCacheRepository;
 
-        public WeekUpdateController(IWeekUpdateService weekUpdateService)
+        public WeekUpdateController(IWeekUpdateService weekUpdateService, IMemoryCacheRepository iMemoryCacheRepository)
         {
             _weekUpdateService = weekUpdateService;
+            _iMemoryCacheRepository = iMemoryCacheRepository;
         }
 
         public IActionResult WeekUpdate()
         {
-            var weekUpdates = _weekUpdateService.ReadWeekComic();
+            const string redisKey = "Week.GetWeekComic";
+            var weekUpdates = _iMemoryCacheRepository.Get<List<WeekUpDateDTO>>(redisKey);
 
-
+            //var weekUpdates = _weekUpdateService.ReadWeekComic();
             var result = new List<WeekUpdateViewModel>();
             foreach (var weekUpdate in weekUpdates)
             {
@@ -56,7 +61,10 @@ namespace BSWebtoon.Front.Controllers
         }
         public IActionResult NewComic()
         {
-            var newComics = _weekUpdateService.ReadNewComic();
+            const string redisKey = "Week.GetNewComic";
+            var newComics = _iMemoryCacheRepository.Get<List<NewComicDTO>>(redisKey);
+
+            //var newComics = _weekUpdateService.ReadNewComic();
 
             var result = new List<NewComicViewModel>();
 
@@ -79,7 +87,10 @@ namespace BSWebtoon.Front.Controllers
         }
         public IActionResult FinishComic()
         {
-            var finishComics = _weekUpdateService.ReadFinishComic();
+            const string redisKey = "Week.GetFinishComic";
+            var finishComics = _iMemoryCacheRepository.Get<List<FinishComicDTO>>(redisKey);
+
+            //var finishComics = _weekUpdateService.ReadFinishComic();
             var finishComicBig = finishComics.First();
 
             var result = new FinishComicViewModel();

@@ -136,7 +136,6 @@ namespace BSWebtoon.Front
             services.AddTransient<DailyJob>();
             services.AddTransient<WeeklyJob>();
 
-            //±Æµ{
             services.AddScheduler();
         }
 
@@ -158,8 +157,8 @@ namespace BSWebtoon.Front
 
             app.ApplicationServices.UseScheduler(scheduler =>
             {
-                scheduler.Schedule<DailyJob>().DailyAtHour(0);
-                scheduler.Schedule<WeeklyJob>().Weekly().Friday();
+                scheduler.Schedule<DailyJob>().DailyAtHour(0).RunOnceAtStart();
+                scheduler.Schedule<WeeklyJob>().Weekly().Sunday();
             });
 
             app.UseRouting();
