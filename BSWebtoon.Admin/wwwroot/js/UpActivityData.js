@@ -314,3 +314,7 @@ function Waiting_Upload() {
     Loadingdata.classList.add("text-warning");
     //upload_work.setAttribute('disabled', 'disabled');
 }
+
+
+
+

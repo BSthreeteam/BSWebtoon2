@@ -32,7 +32,7 @@ namespace BSWebtoon.Front.Controllers
                 var weekComicSoruse = new WeekUpdateViewModel
                 {
                     WeekDay = weekUpdate.WeekDay,
-                    WeekComicLongList = weekUpdate.WeekUpDateList.Where(c => c.WeekVideoWrb != string.Empty).Select(c => new WeekUpdateViewModel.WeekUpdateDataLing
+                    WeekComicLongList = weekUpdate.WeekUpDateList.Where(c => c.WeekVideoWrb != string.Empty && c.WeekVideoWrb != null).Select(c => new WeekUpdateViewModel.WeekUpdateDataLing
                     {
                         ComicId = c.ComicId,
                         BgCover = c.BgCover,
@@ -42,7 +42,7 @@ namespace BSWebtoon.Front.Controllers
                         WeekVideoWrb = c.WeekVideoWrb
 
                     }).ToList(),
-                    WeekComicList = weekUpdate.WeekUpDateList.Where(c => c.WeekVideoWrb == string.Empty).Select(c => new WeekUpdateViewModel.WeekUpdateData
+                    WeekComicList = weekUpdate.WeekUpDateList.Where(c => c.WeekVideoWrb == string.Empty || c.WeekVideoWrb == null).Select(c => new WeekUpdateViewModel.WeekUpdateData
                     {
                         ComicId = c.ComicId,
                         BgCover = c.BgCover,
@@ -76,7 +76,7 @@ namespace BSWebtoon.Front.Controllers
                 ComicFigure = c.ComicFigure,
                 ComicId = c.ComicId,
                 ComicNameImage = c.ComicNameImage,
-                Introduction = c.Introduction,
+                Introduction = c.Introduction.Substring(0, 30),
                 Painter = c.Painter
             }).ToList();
 
@@ -108,7 +108,6 @@ namespace BSWebtoon.Front.Controllers
                     Painter = finishComicBig.Painter
 
                 },
-
                 FinishComicList = finishComics.Skip(1).Select(c => new FinishComicViewModel.FinishComicData
                 {
                     BgCover = c.BgCover,
@@ -116,6 +115,7 @@ namespace BSWebtoon.Front.Controllers
                     ComicId = c.ComicId,
                     ComicNameImage = c.ComicNameImage
                 }).ToList()
+
             };
 
 

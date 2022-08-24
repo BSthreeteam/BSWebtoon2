@@ -46,7 +46,7 @@ namespace BSWebtoon.Admin.Models.DTO.AdminUploadComicDTO
         ////防呆
         //[Required(ErrorMessage = "必須輸入")]
         ////發行日期
-        public DateTime? PublishDate { get; set; }
+        public DateTime PublishDate { get; set; }
 
         public string BgColor { get; set; }
 
@@ -61,7 +61,7 @@ namespace BSWebtoon.Admin.Models.DTO.AdminUploadComicDTO
         //[Required(ErrorMessage = "必須輸入")]
         //[StringLength(99, MinimumLength = 2)]
         //漫畫類型
-        public string MainTag { get; set; }
+        public int MainTag { get; set; }
 
         //防呆
         //[Required(ErrorMessage = "必須輸入")]
@@ -73,7 +73,7 @@ namespace BSWebtoon.Admin.Models.DTO.AdminUploadComicDTO
         ////防呆
         //[Required(ErrorMessage = "必須輸入")]
         //次要漫畫類型(1)
-        public string? Comic_subtitle { get; set; }
+        public int Comic_subtitle { get; set; }
 
 
 
@@ -84,12 +84,12 @@ namespace BSWebtoon.Admin.Models.DTO.AdminUploadComicDTO
         ////防呆
         //[Required(ErrorMessage = "必須輸入")]
         //次要漫畫類型(2)
-        public string Comic_subtitle_two { get; set; }
+        public int Comic_subtitle_two { get; set; }
 
         //防呆
         //[Required(ErrorMessage = "必須輸入")]
         //次要漫畫類型(3)
-        public string Comic_subtitle_three { get; set; }
+        public int Comic_subtitle_three { get; set; }
 
 
 
@@ -100,7 +100,7 @@ namespace BSWebtoon.Admin.Models.DTO.AdminUploadComicDTO
         //更新星期
 
 
-        public int? AuditEmployeeId { get; set; }
+        public int AuditEmployeeId { get; set; }
 
     }
 }

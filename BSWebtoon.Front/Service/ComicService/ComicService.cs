@@ -5763,21 +5763,21 @@ namespace BSWebtoon.Front.Service.ComicService
                 .Where(p => p.MemberId == memberId)
                 .OrderByDescending(p => p.CreateTime);  //最新 ....
 
-            //這部漫畫的 倒數卷 
+            //這部漫畫的 倒數券
             var countdownCoupon_forThisComic = couponSource.FirstOrDefault(p =>
                 p.CouponTypeId == (int)CouponType.countdownCoupon
                 && p.ComicId == EpSource.ComicId
             );
             bool countdownCoupon_valid = countdownCoupon_forThisComic.Quantity == 1;
 
-            //這部漫畫的 閱讀卷
+            //這部漫畫的 閱讀券
             var readCoupon = couponSource.FirstOrDefault(p =>
                 p.CouponTypeId == (int)CouponType.readCoupon
                 && p.ComicId == EpSource.ComicId
             );
             bool readCoupon_valid = readCoupon != null && readCoupon.Quantity > 0;
 
-            //通用卷
+            //通用券
             var universalCoupon = couponSource.FirstOrDefault(p =>
                 p.CouponTypeId == (int)CouponType.universalCoupon);
             bool universalCoupon_valid = universalCoupon != null && universalCoupon.Quantity > 0;
@@ -5790,8 +5790,8 @@ namespace BSWebtoon.Front.Service.ComicService
                 && !universalCoupon_valid
             ) return result;
 
-            //非免費且非倒數卷 且通用與閱讀券全皆無
-            if (!EpSource.IsFree&&!EpSource.IsCountdownCoupon
+            //非免費且非倒數券 且通用與閱讀券全皆無
+            if (!EpSource.IsFree && !EpSource.IsCountdownCoupon
                 && !readCoupon_valid
                 && !universalCoupon_valid
             ) return result;
@@ -5834,8 +5834,6 @@ namespace BSWebtoon.Front.Service.ComicService
             CouponUsedRecordCreate(epId, UseCoupon);
             return result;
             //}
-
-
 
 
         }

@@ -67,7 +67,7 @@ namespace BSWebtoon.Front.Controllers
         public async Task<IActionResult> UploadComic([FromForm] UploadComicViewModel input)
         {
             //防呆
-            if (!ModelState.IsValid || input.PublishDate < DateTime.UtcNow.AddHours(8))
+            if (!ModelState.IsValid || input.PublishDate < DateTime.UtcNow.AddDays(-1).AddHours(8))
             {
                 return View(input);//體貼地將資料填回去
             }
@@ -90,7 +90,7 @@ namespace BSWebtoon.Front.Controllers
                 ComicChineseName = input.ComicChineseName,
                 BgCover = input.BgCover,                
                 ComicFigure = input.ComicFigure,
-                Publisher = input.Publisher,
+                //Publisher = input.Publisher,
                 Painter = input.Painter,
                 Author = input.Author,
                 Introduction = input.Introduction,
@@ -133,16 +133,23 @@ namespace BSWebtoon.Front.Controllers
             //return Content("上傳成功，正在審核中");
 
             //return View("WorksPage");
+            if (outputDTO != null)
+            {
 
-            //到上傳話次與內容頁
-            return RedirectToAction("UploadWork", "Upload");
+                TempData["FirstComicSuccess"] = "上傳成功，等待審核!";
+            }
+
+            return RedirectToAction("UploadComic", "Upload");
+
+            ////到上傳話次與內容頁
+            //return RedirectToAction("UploadWork", "Upload");
 
             ////回到作品頁
             //return RedirectToAction("WorksPage", "WorksPage");
 
         }
 
-
+        
 
         //上傳話次與內容頁
         [HttpGet]
@@ -169,7 +176,8 @@ namespace BSWebtoon.Front.Controllers
             //如果資料庫裡面沒有上傳過任何一部漫畫就不能進入上傳EP頁面，因此直接跳轉回上傳漫畫的頁面。
             if (outputDto.MyComics_WithEpCount.Count == 0)
             {
-                 return RedirectToAction("UploadComic");
+                TempData["FirstComicSuccess"] = "上傳成功";
+                 return RedirectToAction("UploadComic", "UpLoad");
             }
 
             ViewData["MyComics_WithEpCount"] = outputDto.MyComics_WithEpCount;
@@ -230,6 +238,8 @@ namespace BSWebtoon.Front.Controllers
                 }
             }
 
+            //傳上傳成功訊息給View
+            TempData["EpSuccess"] = "上傳成功!";
              return RedirectToAction("UploadWork");
             ////回到作品頁
             //return RedirectToAction("WorksPage", "WorksPage");

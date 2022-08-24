@@ -2,13 +2,11 @@
     ViewData["Title"] = "Home Page";
 }
 
+
 @section topCss{
-    <style>
-        .title{
-            color:#fa0;
-        }
-    </style>
+    <link rel="stylesheet" href="~/css/dashboard.css"/>
 }
+
 
 <div class="container-fluid" id="app">
     <!-- Content Row -->
@@ -19,7 +17,7 @@
     <div class="row">
 
         <!-- Earnings (Monthly) Card Example -->
-        <div class="col-lg-3 col-md-6 mb-4">
+        <div class="col-lg-4 col-md-6 mb-4">
             <div class="card bg-success text-white shadow">
                 <div class="card-body">
                     漫畫總數
@@ -35,7 +33,7 @@
             </div>
         </div>
 
-        <div class="col-lg-3 col-md-6 mb-4">
+        <div class="col-lg-4 col-md-6 mb-4">
             <div class="card bg-warning text-white shadow">
                 <div class="card-body">
                     本月活動數
@@ -50,7 +48,7 @@
             </div>
         </div>
 
-        <div class="col-lg-3 col-md-6 mb-4">
+        <div class="col-lg-4 col-md-6 mb-4">
             <div class="card bg-info text-white shadow">
                 <div class="card-body">
                     本月會員數
@@ -79,65 +77,11 @@
 <!-- Page level plugins -->
 <script src="~/vendor/chart.js/Chart.min.js"></script>
 
-
-
 @section endJS{
-<script>
-    let bs = new Vue({
-        el: '#app',
-        data() {
-            return {
-                StatisticsInfo: [],
-                TopComicTable: [],
-                fields: [
-                             { key: 'topNum', label: '排名', class: 'text-center' ,sortable: true,Variant: 'info' },
-                             { key: 'comicChineseName', label: '漫畫名稱' },
-                             { key: 'clickRecordCount', label: '點擊數', class: 'text-center' }
-                        ],
-                 activityList:[],
-                 memberList:[],
-                 comicList:[]
-            }
-         },
-         mounted(){
-             this.getactivitySumData(), 
-             this.getmemberSumData(),
-             this.getcomicSumData(),
-             this.getrankingData()
 
-         },
-         methods: {
-             getactivitySumData() {
-                    axios.get('/api/DashboardApi/GetActivityChart')
-                        .then(res => {
-                            this.activityList=res.data[0].activityCount;
-                            console.log(res.data[0].activityCount);
-                        });
-             },
-             getmemberSumData() {
-                    axios.get('/api/DashboardApi/GetMemberChart')
-                        .then(res => {
-                            this.memberList=res.data[0].memberCount;
-                            console.log(res.data[0].memberCount);
-                        });
-             },
-             getrankingData() {
-                    axios.get('/api/DashboardApi/GetRankChart')
-                        .then(res => {
-
-                            this.TopComicTable=res.data;
-                            console.log(this.TopComicTable);
-                        });
-             },
-             getcomicSumData() {
-                     axios.get('/api/DashboardApi/GetComicChart')
-                        .then(res => {
-                            this.comicList=res.data[0].comicCount;
-                            console.log(res.data[0].comicCount);
-                        });
-             },
-         }
-    });
-</script>
+<script src="~/js/dashboard.js"></script>
 }
+
+
+
 
