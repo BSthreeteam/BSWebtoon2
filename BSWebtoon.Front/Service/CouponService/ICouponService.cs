@@ -8,7 +8,6 @@ namespace BSWebtoon.Front.Service.CouponService
         void CouponUsedRecordCreate();
         void GetUniversalCoupon(GetActivityCouponDTO universalCoupon);
         void NewMemberGetCountdownCoupon();
-        void NewComicGetCountdownCoupon();
         void GetReadCoupon(GetReadCouponDTO readCoupon);
     }
 }
