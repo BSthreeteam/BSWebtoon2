@@ -61,6 +61,7 @@
 .content {
     background-color: #000;
     margin: auto;
+    margin-top: 129px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
