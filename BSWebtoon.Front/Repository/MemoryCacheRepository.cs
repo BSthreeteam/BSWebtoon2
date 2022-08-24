@@ -23,7 +23,7 @@ namespace BSWebtoon.Model.Repository
             _iDistributedCache.Set(key, ObjectToByteArray(value),
                 new DistributedCacheEntryOptions
                 {
-                    AbsoluteExpiration = DateTimeOffset.Now.AddDays(days).AddMinutes(-1),
+                    AbsoluteExpiration = DateTimeOffset.Now.AddDays(days),
                 }
             );
         }

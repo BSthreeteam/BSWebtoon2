@@ -26,7 +26,15 @@ namespace BSWebtoon.Front.Service.ActivityService
             var activityItem = _repository.GetAll<Activity>().Where(x => x.IsDelete == false && x.ActivityId == ActivityId).First();
 
             //是否已領取通用券
-            var isGetUniversalCoupon = _repository.GetAll<Coupon>().Where(x => x.ActivityId == ActivityId && x.MemberId == MemberId).Any();
+            bool isGetUniversalCoupon;
+            if (MemberId == 0)
+            {
+                isGetUniversalCoupon = false;
+            }
+            else
+            {
+                isGetUniversalCoupon = _repository.GetAll<Coupon>().Where(x => x.ActivityId == ActivityId && x.MemberId == MemberId).Any();
+            }
 
             return new ActivityContentDTO() { 
                 ActivityId = ActivityId,

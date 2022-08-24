@@ -21,9 +21,10 @@ namespace BSWebtoon.Admin.Service.JobService
 
         public async Task Invoke()
         {
+            #region
             // couponRecord 篩選 endTime 
             // coupon 用couponId找couponType 篩選 倒數券
-
+            #endregion
             var coupons = _dapperCouponRepository.SelectAll();
             var coupoonUseRecord = _dapperCouponUseRecordRepository.SelectAll();
 
@@ -35,7 +36,8 @@ namespace BSWebtoon.Admin.Service.JobService
             }
             else
             {
-                var couponFinished = coupons.Where(c => useRecordFinished.Any(x => x.CouponId == c.CouponId) && c.CouponTypeId == (int)CouponType.countdownCoupon);
+                var couponFinished = coupons.Where(c => 
+                useRecordFinished.Any(x => x.CouponId == c.CouponId) && c.CouponTypeId == (int)CouponType.countdownCoupon);
 
                 foreach (var countdownCoupon in couponFinished)
                 {

@@ -1,6 +1,7 @@
 ﻿using BSWebtoon.Admin.IDapperRepository;
 using BSWebtoon.Admin.Models.DTO.AdminUploadComicDTO;
 using BSWebtoon.Admin.Service.AdminComicCloudinaryService;
+using BSWebtoon.Admin.Service.CouponSevice;
 using BSWebtoon.Model;
 using BSWebtoon.Model.Models;
 using System;
@@ -15,11 +16,13 @@ namespace BSWebtoon.Admin.Service.AdminUploadComicService
         private readonly IAdminComicCloudinaryService _adminComicCloudinaryService;
         private readonly IDapperAdminUploadComicRepository _adminUploadComicRepository;
         private readonly IDapperAdminComicTagListRepository _adminComicTagListRepository;
-        public AdminUploadComicService( IAdminComicCloudinaryService adminComicCloudinaryService, IDapperAdminUploadComicRepository adminUploadComicRepository, IDapperAdminComicTagListRepository adminComicTagListRepository)
+        private readonly ICouponService _couponService;
+        public AdminUploadComicService(IAdminComicCloudinaryService adminComicCloudinaryService, IDapperAdminUploadComicRepository adminUploadComicRepository, IDapperAdminComicTagListRepository adminComicTagListRepository, ICouponService couponService)
         {
             _adminComicCloudinaryService = adminComicCloudinaryService;
             _adminUploadComicRepository = adminUploadComicRepository;
             _adminComicTagListRepository = adminComicTagListRepository;
+            _couponService = couponService;
         }
 
 
@@ -42,85 +45,84 @@ namespace BSWebtoon.Admin.Service.AdminUploadComicService
             //C
             Comic comicEntity = new Comic
             {
-                ComicChineseName=input.ComicChineseName,
-                ComicEnglishName=input.ComicEnglishName,
+                ComicChineseName = input.ComicChineseName,
+                ComicEnglishName = input.ComicEnglishName,
                 ComicNameImage = ComicNameImageOutput.Url,
                 BgCover = BgCoverOutput.Url,
                 ComicFigure = ComicFigureOutput.Url,
                 ComicWeekFigure = ComicWeekFigureOutput.Url,
                 BgColor = input.BgColor,
-                PublishDate= input.PublishDate,
-                UpdateWeek= input.UpdateWeek,
-                Painter= input.Painter,
-                Author= input.Author,
-                Introduction= input.Introduction,
-                AuditEmployeeId= input.AuditEmployeeId,
-                ComicStatus= (int)ComicState.newWork,
+                PublishDate = input.PublishDate,
+                UpdateWeek = input.UpdateWeek,
+                Painter = input.Painter,
+                Author = input.Author,
+                Introduction = input.Introduction,
+                AuditEmployeeId = input.AuditEmployeeId,
+                ComicStatus = (int)ComicState.newWork,
                 Publisher = "BSWebtoon",
                 LastPublishDate = input.PublishDate,
                 AuditType = 1
             };
-             _adminUploadComicRepository.Create(comicEntity);
+            _adminUploadComicRepository.Create(comicEntity);
 
-            var comicId = _adminUploadComicRepository.SelectAll().OrderByDescending(c=>c.ComicId).Select(c=>c.ComicId).First();
-            var tagListSourse = _adminComicTagListRepository.SelectAll().GroupBy(c=>c.ComicId).Select(c => c.Key);
+            var comicId = _adminUploadComicRepository.SelectAll().OrderByDescending(c => c.ComicId).Select(c => c.ComicId).First();
+            var tagListSourse = _adminComicTagListRepository.SelectAll().GroupBy(c => c.ComicId).Select(c => c.Key);
 
 
-                if (!tagListSourse.Contains(comicId))
+            if (!tagListSourse.Contains(comicId))
+            {
+                ComicTagList mainTagEntity = new ComicTagList
                 {
-                    ComicTagList mainTagEntity = new ComicTagList
+                    TagId = input.MainTag,
+                    ComicId = comicId
+                };
+
+                _adminComicTagListRepository.Create(mainTagEntity);
+
+                if (input.Comic_subtitle != 0)
+                {
+                    ComicTagList subtitleEntity = new ComicTagList
                     {
-                        TagId = input.MainTag,
+                        TagId = input.Comic_subtitle,
                         ComicId = comicId
                     };
 
-                    _adminComicTagListRepository.Create(mainTagEntity);
-
-                    if (input.Comic_subtitle != 0)
-                    {
-                        ComicTagList subtitleEntity = new ComicTagList
-                        {
-                            TagId = input.Comic_subtitle,
-                            ComicId = comicId
-                        };
-
-                        _adminComicTagListRepository.Create(subtitleEntity);
-
-
-                    }
-
-                    if (input.Comic_subtitle_two != 0)
-                    {
-                        ComicTagList subtitleEntity = new ComicTagList
-                        {
-                            TagId = input.Comic_subtitle_two,
-                            ComicId = comicId
-                        };
-
-                        _adminComicTagListRepository.Create(subtitleEntity);
-
-
-                    }
-
-                    if (input.Comic_subtitle_three != 0)
-                    {
-                        ComicTagList subtitleEntity = new ComicTagList
-                        {
-                            TagId = input.Comic_subtitle_three,
-                            ComicId = comicId
-                        };
-
-                        _adminComicTagListRepository.Create(subtitleEntity);
-
-
-                    }
-
+                    _adminComicTagListRepository.Create(subtitleEntity);
 
 
                 }
-                       
+
+                if (input.Comic_subtitle_two != 0)
+                {
+                    ComicTagList subtitleEntity = new ComicTagList
+                    {
+                        TagId = input.Comic_subtitle_two,
+                        ComicId = comicId
+                    };
+
+                    _adminComicTagListRepository.Create(subtitleEntity);
 
 
+                }
+
+                if (input.Comic_subtitle_three != 0)
+                {
+                    ComicTagList subtitleEntity = new ComicTagList
+                    {
+                        TagId = input.Comic_subtitle_three,
+                        ComicId = comicId
+                    };
+
+                    _adminComicTagListRepository.Create(subtitleEntity);
+
+
+                }
+
+
+
+            }
+
+            _couponService.NewComicGetCountdownCoupon();
 
 
             result.IsSuccess = true;

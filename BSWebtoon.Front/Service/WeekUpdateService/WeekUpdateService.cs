@@ -2,7 +2,6 @@
 using BSWebtoon.Model;
 using BSWebtoon.Model.Models;
 using BSWebtoon.Model.Repository;
-using BSWebtoon.Model.Repository.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,19 +11,14 @@ namespace BSWebtoon.Front.Service.WeekUpdateService
     public class WeekUpdateService : IWeekUpdateService
     {
         private readonly BSRepository _repository;
-        private readonly IMemoryCacheRepository _iMemoryCacheRepository;
 
-        public WeekUpdateService(BSRepository repository, IMemoryCacheRepository iMemoryCacheRepository)
+        public WeekUpdateService(BSRepository repository)
         {
             _repository = repository;
-            _iMemoryCacheRepository = iMemoryCacheRepository;
         }
 
         public List<WeekUpDateDTO> ReadWeekComic()
         {
-            const string redisKey = "Week.GetWeekComic";
-            var result = _iMemoryCacheRepository.Get<List<WeekUpDateDTO>>(redisKey);
-            if (result != null) return result;
 
             //var comicorderby = WeekUpDate.GroupBy(c => c.ComicId).ToDictionary(c => c.Key, c => c.Count()).OrderByDescending(c => c.Value)/*.Select(c => c.Key)*/;
             //var comicorderby = comicClickRRechargeRecordViewecords.OrderByDescending(c => c.Value).Select(c => c.Key);
@@ -33,7 +27,7 @@ namespace BSWebtoon.Front.Service.WeekUpdateService
             var comicList = comicSource.Where(c => c.ComicStatus == (int)ComicState.serialize || c.ComicStatus == (int)ComicState.stopUpdate || newComicSource.Contains(c.ComicId)).OrderBy(c => c.ComicId);//連載、停更、已上架的新作漫畫類
             var clickRecordGroup = _repository.GetAll<ClickRecord>().GroupBy(x => x.ComicId);
 
-            result = new List<WeekUpDateDTO>();
+            var result = new List<WeekUpDateDTO>();
             var weekDateList = new List<WeekDayComic>();
             foreach (var comic in comicList)
             {
@@ -59,20 +53,13 @@ namespace BSWebtoon.Front.Service.WeekUpdateService
                 WeekUpDateList = x.OrderBy(data => data.ViewCount).ToList()
             }).ToList();
 
-            int refreshDays = 1;
-            _iMemoryCacheRepository.Set(redisKey, result, refreshDays);
-
             return result;
         }
         public List<NewComicDTO> ReadNewComic()
         {
-            const string redisKey = "Week.GetNewComic";
-            var result = _iMemoryCacheRepository.Get<List<NewComicDTO>>(redisKey);
-            if (result != null) return result;
-
             var newComicSource = _repository.GetAll<Comic>().Where(c => c.ComicStatus == (int)ComicState.newWork && c.AuditType == (int)AuditType.auditPass).OrderByDescending(c => c.PublishDate);
 
-            result = new List<NewComicDTO>();
+            var result = new List<NewComicDTO>();
 
 
             result = newComicSource.Select(c => new NewComicDTO
@@ -87,19 +74,10 @@ namespace BSWebtoon.Front.Service.WeekUpdateService
                 PublishDate = c.PublishDate
 
             }).ToList();
-
-            int refreshDays = 1;
-            _iMemoryCacheRepository.Set(redisKey, result, refreshDays);
-
             return result;
-
-
         }
         public List<FinishComicDTO> ReadFinishComic()
         {
-            const string redisKey = "Week.GetFinishComic";
-            var result = _iMemoryCacheRepository.Get<List<FinishComicDTO>>(redisKey);
-            if (result != null) return result;
 
             var finishComicSource = _repository.GetAll<Comic>().Where(c => c.ComicStatus == (int)ComicState.finish && c.AuditType == (int)AuditType.auditPass);
             var clickRecordGroup = _repository.GetAll<ClickRecord>().GroupBy(c => c.ComicId);
@@ -126,14 +104,9 @@ namespace BSWebtoon.Front.Service.WeekUpdateService
                 });
 
             }
-            result = finishComicList.OrderByDescending(c => c.ComicClickCount).ToList();
-
-            int refreshDays = 1;
-            _iMemoryCacheRepository.Set(redisKey, result, refreshDays);
+            var result = finishComicList.OrderByDescending(c => c.ComicClickCount).ToList();
 
             return result;
-
-
         }
     }
 }

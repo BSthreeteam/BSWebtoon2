@@ -9,18 +9,15 @@ using System.Threading.Tasks;
 using BSWebtoon.Front.Service.RecommendService;
 using BSWebtoon.Front.Models.DTO.Recommend;
 using BSWebtoon.Model;
-using BSWebtoon.Model.Repository.Interface;
 
 namespace BSWebtoon.Front.Service.RecommendService
 {
     public class RecommendService : IRecommendService
     {
         private readonly BSRepository _repository;
-        private readonly IMemoryCacheRepository _iMemoryCacheRepository;
-        public RecommendService( BSRepository repository, IMemoryCacheRepository iMemoryCacheRepository)
+        public RecommendService( BSRepository repository)
         {
             _repository = repository;
-            _iMemoryCacheRepository = iMemoryCacheRepository;
         }
         public void ActivityCreate()
         {
@@ -207,18 +204,12 @@ namespace BSWebtoon.Front.Service.RecommendService
 
         public RecommendDTO ReadRecommend()
         {
-            const string redisKey = "HomePage.GetRecommend";
-            var result = _iMemoryCacheRepository.Get<RecommendDTO>(redisKey);
-            if (result != null) return result;
 
             // 活動 新作 人氣
             var comics = _repository.GetAll<Comic>();
 
             // 活動 軟刪除
             var activityList = _repository.GetAll<Activity>().Where(a => a.IsDelete == false).Where(a => a.ActivityStartTime < DateTime.UtcNow.AddHours(8));
-
-            //// 確保有影片
-            //var filterComics = _repository.GetAll<Comic>().Where(c => c.BannerVideoWeb != "");
 
             // 新作 ComicStatus == 4
             var newWorkList = comics.Where(c => c.AuditType == (int)AuditType.auditPass && c.ComicStatus == (int)ComicState.newWork);
@@ -282,11 +273,11 @@ namespace BSWebtoon.Front.Service.RecommendService
             allList.AddRange(addNewWorkList);
             allList.AddRange(addPopularityList);
 
-            result = new RecommendDTO() { RecommendComics = allList };
+            var result = new RecommendDTO() { RecommendComics = allList };
 
-            int refreshDays = 1;
-            // 有重新查詢 就存入快取
-            _iMemoryCacheRepository.Set(redisKey, result, refreshDays);
+            //int refreshDays = 1;
+            //// 有重新查詢 就存入快取
+            //_iMemoryCacheRepository.Set(redisKey, result, refreshDays);
 
             return result;
         }

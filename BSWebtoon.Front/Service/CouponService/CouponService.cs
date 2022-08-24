@@ -187,38 +187,6 @@ namespace BSWebtoon.Front.Service.CouponService
             _repository.SaveChange();
         }
 
-        public void NewComicGetCountdownCoupon()
-        {
-            // 有新的漫畫 將每位會員跑一遍
-            var AllMember = _repository.GetAll<Member>();
-            var AllComic = _repository.GetAll<Comic>().Where(c => c.AuditType == (int)AuditType.auditPass);
-            var CoundownCoupons = _repository.GetAll<Coupon>().Where(c => c.CouponTypeId == (int)CouponType.countdownCoupon);
-            var NewComics = AllComic.Where(c => !CoundownCoupons.Any(coupon => coupon.ComicId == c.ComicId));
-
-            List<Coupon> countdowncoupons = new List<Coupon>();
-            foreach (var comic in NewComics)
-            {
-                foreach (var member in AllMember)
-                {
-                    countdowncoupons.Add(new Coupon()
-                    {
-                        MemberId = member.MemberId,
-                        ComicId = comic.ComicId,
-                        CouponTypeId = (int)CouponType.countdownCoupon,
-                        OriginQuantity = 1,
-                        CreateTime = DateTime.UtcNow.AddHours(8), //台灣時間
-                        Quantity = 1
-                    });
-                }
-            }
- 
-            foreach (var coupon in countdowncoupons)
-            {
-                _repository.Create(coupon);
-            }
-            _repository.SaveChange();
-        }
-
         public void GetReadCoupon(GetReadCouponDTO readCoupon)
         {
             // 增加coupon 減少金幣

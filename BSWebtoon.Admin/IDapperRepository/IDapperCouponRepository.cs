@@ -18,7 +18,10 @@ namespace BSWebtoon.Admin.IDapperRepository
 
         public int Create(Coupon entity)
         {
-            throw new System.NotImplementedException();
+            return _conn.Execute(@"
+                INSERT INTO Coupon(MemberId,ComicId,CouponTypeId,OriginQuantity,CreateTime,Quantity)
+                VALUES(@MemberId,@ComicId,@CouponTypeId,@OriginQuantity,@CreateTime,@Quantity)"
+            , entity);
         }
 
         public int Delete(Coupon entity)

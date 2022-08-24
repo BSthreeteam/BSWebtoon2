@@ -8,29 +8,31 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BSWebtoon.Model.Repository.Interface;
+using BSWebtoon.Front.Models.DTO.Recommend;
 
 namespace BSWebtoon.Front.Controllers
 {
     public class RecommendController : Controller
     {
         private readonly IRecommendService _recommendservice;
+        private readonly IMemoryCacheRepository _iMemoryCacheRepository;
 
-        public RecommendController(
-            IRecommendService recommendService
-            )
+        public RecommendController(IRecommendService recommendService, IMemoryCacheRepository iMemoryCacheRepository)
         {
             _recommendservice = recommendService;
+            _iMemoryCacheRepository = iMemoryCacheRepository;
         }
 
 
         public IActionResult Recommend()
         {
-            var a = HttpContext.Request.Host.Value;
-            var a1 = HttpContext.Request.Host.Port;
-            var a2 = HttpContext.Request.Scheme;
-            var a3 = HttpContext.Request.Protocol;
-
-            var recommendSource = _recommendservice.ReadRecommend();
+            const string redisKey = "HomePage.GetRecommend";
+            var recommendSource = _iMemoryCacheRepository.Get<RecommendDTO>(redisKey);
+            //if (recommendSource == null)
+            //{
+            //    recommendSource = _recommendservice.ReadRecommend();
+            //}
 
             var allRecommend = new List<RecommendViewModel.RecommendComic>() { };
             foreach (var recommend in recommendSource.RecommendComics)
