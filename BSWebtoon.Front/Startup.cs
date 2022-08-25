@@ -239,6 +239,19 @@ namespace BSWebtoon.Front
                     name: "FinishComic",
                     pattern: "FinishComic",
                     defaults: new { controller = "WeekUpdate", action = "FinishComic" });
+
+                //顯示活動內容頁
+                endpoints.MapControllerRoute(
+                    name: "ActivityContent",
+                    pattern: "ActivityContent/{Id}",
+                    defaults: new { controller = "Activity", action = "ActivityContent" });
+
+                //顯示活動
+                endpoints.MapControllerRoute(
+                    name: "GiftBox",
+                    pattern: "GiftBox",
+                    defaults: new { controller = "Activity", action = "GiftBox" });
+
             });
 
         }
