@@ -24,6 +24,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BSWebtoon.Admin.Service.CloudinaryService;
+using BSWebtoon.Admin.Service.CouponSevice;
 
 namespace BSWebtoon.Admin
 {
@@ -93,6 +94,8 @@ namespace BSWebtoon.Admin
             services.AddTransient<IAdminComicCloudinaryService, AdminComicCloudinaryService>();
             services.AddTransient<IDapperAdminUploadComicRepository, DapperAdminUploadComicRepository>();
             services.AddTransient<IDapperAdminComicTagListRepository, DapperAdminComicTagListRepository>();
+            services.AddTransient<IDapperComicRepository, DapperComicRepository>();
+            services.AddTransient<ICouponService, CouponService>();
 
 
 

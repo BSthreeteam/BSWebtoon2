@@ -42,7 +42,7 @@ namespace BSWebtoon.Admin.Service.AdminUploadComicService
             var ComicNameImageOutput = await _adminComicCloudinaryService.UploadAsync(input.ComicNameImage);
 
 
-            //C
+            //Create Comic
             Comic comicEntity = new Comic
             {
                 ComicChineseName = input.ComicChineseName,
@@ -68,7 +68,7 @@ namespace BSWebtoon.Admin.Service.AdminUploadComicService
             var comicId = _adminUploadComicRepository.SelectAll().OrderByDescending(c => c.ComicId).Select(c => c.ComicId).First();
             var tagListSourse = _adminComicTagListRepository.SelectAll().GroupBy(c => c.ComicId).Select(c => c.Key);
 
-
+            //Create ComicTagList
             if (!tagListSourse.Contains(comicId))
             {
                 ComicTagList mainTagEntity = new ComicTagList
@@ -128,6 +128,9 @@ namespace BSWebtoon.Admin.Service.AdminUploadComicService
             result.IsSuccess = true;
             return result;
         }
+
+
+
 
 
     }

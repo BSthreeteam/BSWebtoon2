@@ -5788,13 +5788,15 @@ namespace BSWebtoon.Front.Service.ComicService
                 && !countdownCoupon_valid
                 && !readCoupon_valid
                 && !universalCoupon_valid
-            ) return result;
+            ) 
+                return result;
 
             //非免費且非倒數券 且通用與閱讀券全皆無
             if (!EpSource.IsFree && !EpSource.IsCountdownCoupon
                 && !readCoupon_valid
                 && !universalCoupon_valid
-            ) return result;
+            ) 
+                return result;
 
             result.WorkContents = Read(EpSource, EpContentsSource);
             result.EpList = ReadEpTable(EpSource.ComicId);
