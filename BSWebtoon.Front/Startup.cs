@@ -158,7 +158,7 @@ namespace BSWebtoon.Front
             app.ApplicationServices.UseScheduler(scheduler =>
             {
                 scheduler.Schedule<DailyJob>().DailyAtHour(0).RunOnceAtStart();
-                scheduler.Schedule<WeeklyJob>().Weekly().Sunday();
+                scheduler.Schedule<WeeklyJob>().Weekly().Sunday().RunOnceAtStart();
             });
 
             app.UseRouting();

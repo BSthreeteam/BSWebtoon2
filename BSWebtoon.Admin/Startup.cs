@@ -24,6 +24,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BSWebtoon.Admin.Service.CloudinaryService;
+using BSWebtoon.Admin.Service.CouponSevice;
 
 namespace BSWebtoon.Admin
 {
@@ -94,6 +95,10 @@ namespace BSWebtoon.Admin
             services.AddTransient<IDapperAdminUploadComicRepository, DapperAdminUploadComicRepository>();
             services.AddTransient<IDapperAdminComicTagListRepository, DapperAdminComicTagListRepository>();
 
+            services.AddTransient<IDapperComicRepository, DapperComicRepository>();
+            services.AddTransient<IDapperActivityIsDeleteRepository, DapperActivityIsDeleteRepository>();
+            services.AddTransient<ICouponService, CouponService>();
+
 
 
             //¥[Dapperµù¥U
@@ -141,10 +146,10 @@ namespace BSWebtoon.Admin
 
             app.ApplicationServices.UseScheduler(scheduler =>
             {
-                scheduler.Schedule<ActivityIsDelete>().DailyAtHour(0);
-                scheduler.Schedule<CountDownCoupon>().HourlyAt(0);
-                scheduler.Schedule<NewWorkToSerialize>().DailyAtHour(0);
-                scheduler.Schedule<LastFiveEpIsNotCountdown>().DailyAtHour(0);
+                scheduler.Schedule<ActivityIsDelete>().Daily().RunOnceAtStart();
+                scheduler.Schedule<CountDownCoupon>().Hourly();
+                scheduler.Schedule<NewWorkToSerialize>().Daily();
+                scheduler.Schedule<LastFiveEpIsNotCountdown>().Daily();
             });
 
             app.UseHttpsRedirection();

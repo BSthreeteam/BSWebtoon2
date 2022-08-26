@@ -52,7 +52,7 @@
     @if (@Model.ComicVideoWeb != string.Empty && @Model.ComicVideoWeb != null)
     {
         <div class="big_video">
-            <video title="" preload="auto" muted class="local_video_bg object-contain pointer-events-auto   d-none">
+            <video title="" preload="auto"  class="local_video_bg object-contain pointer-events-auto   d-none">
                 <source src="@Model.ComicVideoWeb" type="video/webm">
 
             </video>
@@ -311,6 +311,7 @@
                 local_video_bg.classList.add('d-none');
             })
             local_video_bg.addEventListener('click',() => {
+                local_video_bg.pause();
                 local_video_bg.classList.add('d-none');
             })
     </script>
