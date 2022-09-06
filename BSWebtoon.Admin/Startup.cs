@@ -98,6 +98,10 @@ namespace BSWebtoon.Admin
             services.AddTransient<ICouponService, CouponService>();
             services.AddTransient<IDapperAuditComicRepository, DapperAuditComicRepository>();
 
+            services.AddTransient<IDapperComicRepository, DapperComicRepository>();
+            services.AddTransient<IDapperActivityIsDeleteRepository, DapperActivityIsDeleteRepository>();
+            services.AddTransient<ICouponService, CouponService>();
+
 
 
             //¥[Dapperµù¥U
@@ -145,10 +149,10 @@ namespace BSWebtoon.Admin
 
             app.ApplicationServices.UseScheduler(scheduler =>
             {
-                scheduler.Schedule<ActivityIsDelete>().DailyAtHour(0);
-                scheduler.Schedule<CountDownCoupon>().HourlyAt(0);
-                scheduler.Schedule<NewWorkToSerialize>().DailyAtHour(0);
-                scheduler.Schedule<LastFiveEpIsNotCountdown>().DailyAtHour(0);
+                scheduler.Schedule<ActivityIsDelete>().Daily().RunOnceAtStart();
+                scheduler.Schedule<CountDownCoupon>().Hourly();
+                scheduler.Schedule<NewWorkToSerialize>().Daily();
+                scheduler.Schedule<LastFiveEpIsNotCountdown>().Daily();
             });
 
             app.UseHttpsRedirection();

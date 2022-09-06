@@ -176,7 +176,7 @@ namespace BSWebtoon.Front.Controllers
             //如果資料庫裡面沒有上傳過任何一部漫畫就不能進入上傳EP頁面，因此直接跳轉回上傳漫畫的頁面。
             if (outputDto.MyComics_WithEpCount.Count == 0)
             {
-                TempData["FirstComicSuccess"] = "上傳成功";
+                TempData["FirstComicSuccess"] = "上傳成功，等待審核!";
                  return RedirectToAction("UploadComic", "UpLoad");
             }
 
@@ -239,7 +239,7 @@ namespace BSWebtoon.Front.Controllers
             }
 
             //傳上傳成功訊息給View
-            TempData["EpSuccess"] = "上傳成功!";
+            TempData["EpSuccess"] = "上傳成功，等待審核!";
              return RedirectToAction("UploadWork");
             ////回到作品頁
             //return RedirectToAction("WorksPage", "WorksPage");

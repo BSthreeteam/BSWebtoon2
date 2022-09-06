@@ -5930,7 +5930,7 @@ namespace BSWebtoon.Front.Service.ComicService
 
             var readCouponSource = coupons.Where(x => x.CouponTypeId == (int)CouponType.readCoupon && x.MemberId == memberId && x.ComicId == comicId).OrderByDescending(x => x.CreateTime).Select(x => x.Quantity).FirstOrDefault();
             var CDCouponSource = coupons.First(x => x.CouponTypeId == (int)CouponType.countdownCoupon && x.MemberId == memberId && x.ComicId == comicId);
-            var universalCoupon = coupons.Where(x => x.CouponTypeId == (int)CouponType.universalCoupon && x.MemberId == memberId).Count();
+            var universalCoupon = coupons.Where(x => x.CouponTypeId == (int)CouponType.universalCoupon && x.MemberId == memberId).OrderByDescending(x => x.CreateTime).Select(x => x.Quantity).FirstOrDefault();
 
             return new BuyCouponDTO
             {

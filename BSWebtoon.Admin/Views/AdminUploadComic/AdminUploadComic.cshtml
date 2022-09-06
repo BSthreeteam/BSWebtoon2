@@ -190,6 +190,15 @@
                 </b-tab>
 
 
+                                <div>
+                                    <label for="EmployeeId">員工編號</label>
+                                    <b-form-select id="EmployeeId" v-model="comicData.createComicData.AuditEmployeeId" :options="AuditEmployeeId"
+                                        size="sm" class="form-control " v-bind:class="{ 'is-invalid': inputverify.AuditEmployeeIdError }"
+                                        v-on:change="verify('AuditEmployeeId',$event)">
+                                    </b-form-select>
+                                    <div class="invalid-feedback">
+                                        {{ inputverify.AuditEmployeeIdMsg }}
+                                    </div>
 
                 <b-tab no-body title="會員漫畫審核區">
                     		<div class="row">
@@ -228,6 +237,9 @@
 			</table>
 		</div>
 
+                                <button v-on:click="checkinput" type="button" class="btn btn-primary mt-5">
+                                    確認
+                                </button>
 
 		<!-- 編輯Modal -->
 		<div class="modal fade" id="edit-modal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">

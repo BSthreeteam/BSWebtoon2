@@ -57,6 +57,10 @@ namespace BSWebtoon.Front.Service.WeekUpdateService
         }
         public List<NewComicDTO> ReadNewComic()
         {
+            //const string redisKey = "Week.GetNewComic";
+            //var result = _iMemoryCacheRepository.Get<List<NewComicDTO>>(redisKey);
+            //if (result != null) return result;
+
             var newComicSource = _repository.GetAll<Comic>().Where(c => c.ComicStatus == (int)ComicState.newWork && c.AuditType == (int)AuditType.auditPass).OrderByDescending(c => c.PublishDate);
 
             var result = new List<NewComicDTO>();
@@ -74,6 +78,10 @@ namespace BSWebtoon.Front.Service.WeekUpdateService
                 PublishDate = c.PublishDate
 
             }).ToList();
+
+            //int refreshDays = 1;
+            //_iMemoryCacheRepository.Set(redisKey, result, refreshDays);
+
             return result;
         }
         public List<FinishComicDTO> ReadFinishComic()

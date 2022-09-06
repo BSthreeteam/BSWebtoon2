@@ -10,9 +10,9 @@ namespace BSWebtoon.Admin.Service.JobService
 {
     public class ActivityIsDelete : IInvocable
     {
-        private readonly IDapperActivityRepository _dapperActivityRepository;
+        private readonly IDapperActivityIsDeleteRepository _dapperActivityRepository;
 
-        public ActivityIsDelete(IDapperActivityRepository dapperActivityRepository)
+        public ActivityIsDelete(IDapperActivityIsDeleteRepository dapperActivityRepository)
         {
             this._dapperActivityRepository = dapperActivityRepository;
         }
