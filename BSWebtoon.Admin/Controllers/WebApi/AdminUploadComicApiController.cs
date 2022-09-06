@@ -17,6 +17,9 @@ namespace BSWebtoon.Admin.Controllers.WebApi
             _adminUploadComicService = adminUploadComicService;
         }
 
+
+
+
         [HttpPost]
         public async Task<IActionResult> AdminUploadComic([FromForm] AdminUploadComicDTO input)
         {

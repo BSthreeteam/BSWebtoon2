@@ -115,10 +115,14 @@ let release_area = new Vue({
                 Comic_subtitle_three: 0,
                 AuditEmployeeId:0
             }
-        }
+        },
+        auditList: [],
+        //編輯
+        currentComic: {},
     },
     mounted() {
-        this.dateLimit();
+        this.dateLimit(),
+        this.getAllComic()
     },
     methods: {
         linkClass(idx) {
@@ -328,7 +332,58 @@ let release_area = new Vue({
 
 
 
+        },
+        getAllComic() {
+            axios.get('/api/AuditComicApi/AuditComic')
+                .then((res) => {
+                    this.auditList = res.data
+                    console.log(res.data)
+                    console.log(this.auditList)
+                    console.log("成功")
+
+                })
+                .catch(e => {
+                    console.log("錯誤")
+                })
+        },
+        selectEdit(auditComic) {
+            console.log(auditComic)
+            this.currentComic = { ...auditComic } //淺拷貝
+        },
+        updateComic() {
+            // axios({
+            // 	method:'put',
+            // 	url:'https://localhost:5001/Pokemon',
+            // 	data:this.currentComic
+            // })
+            // .then((res)=>{
+            // 	console.log(res)
+            // 	if(res.data.status==20000){
+            // 		toastr.success('更新成功')
+            // 		this.getAllComic()
+            // 		$('#edit-modal').modal('hide')
+            // 	}
+            // 	else{
+            // 		toastr.error('更新失敗');
+            // 	}
+            // })
+        },
+        deleteComic(auditComic) {
+            // 	axios.delete('https://localhost:5001/Pokemon',{
+            // 	headers:{'Content-Type':'application/json;charset=UTF-8'},
+            // 	data:auditComic
+            // })
+            // 	.then((res)=>{
+            // 		if(res.data.status==20000){
+            // 			toastr.success('刪除成功')
+            // 			this.getAllComic()
+            // 		}
+            // 		else{
+            // 			toastr.error('刪除失敗');
+            // 		}
+            // 	})
         }
+
 
 
     }

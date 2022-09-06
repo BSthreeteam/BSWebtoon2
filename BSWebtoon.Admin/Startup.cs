@@ -96,6 +96,7 @@ namespace BSWebtoon.Admin
             services.AddTransient<IDapperAdminComicTagListRepository, DapperAdminComicTagListRepository>();
             services.AddTransient<IDapperComicRepository, DapperComicRepository>();
             services.AddTransient<ICouponService, CouponService>();
+            services.AddTransient<IDapperAuditComicRepository, DapperAuditComicRepository>();
 
 
 

@@ -1,4 +1,5 @@
-﻿using BSWebtoon.Admin.Models.DTO;
+﻿
+using BSWebtoon.Admin.Models.DTO;
 using BSWebtoon.Admin.Repository;
 using BSWebtoon.Model.Models;
 using Dapper;
@@ -39,7 +40,7 @@ namespace BSWebtoon.Admin.IDapperRepository
                            inner join LoginType L on L.LoginTypeId=M.LoginTypeId";
 
 
-                return _conn.Query<MemberDTO>(result);
+            return _conn.Query<MemberDTO>(result);
 
         }
 
